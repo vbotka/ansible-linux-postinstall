@@ -7,8 +7,8 @@ galaxy_info:
   min_ansible_version: 1.2
   platforms:
     - name: Ubuntu
-  versions:
-    - xenial
+      versions:
+        - xenial
   galaxy_tags:
     - installer
     - linux
