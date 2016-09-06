@@ -6,7 +6,7 @@ linux-postinstall
 
 Ansible role. Configure Linux (wpagui, ... wip).
 
-https://galaxy.ansible.com/vbotka/ansible-linux-postinstall/
+https://galaxy.ansible.com/vbotka/linux-postinstall/
 
 Test in progress with Ubuntu 16.04
 
