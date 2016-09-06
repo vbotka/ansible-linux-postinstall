@@ -1,0 +1,5 @@
+---
+# tasks file for ansible-linux-postinstall
+
+- include: wpagui.yml
+  tags: ansible-linux-postinstall_wpagui, ansible-linux-postinstall

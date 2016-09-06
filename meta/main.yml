@@ -1,0 +1,16 @@
+galaxy_info:
+  author: Vladimir Botka
+  description: Configure Linux.
+  company: https://botka.link
+  github_branch: master
+  license: BSD
+  min_ansible_version: 1.2
+  platforms:
+    - name: Ubuntu
+  versions:
+    - xenial
+  galaxy_tags:
+    - installer
+    - linux
+    - ubuntu
+dependencies: []
