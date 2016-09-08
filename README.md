@@ -40,6 +40,7 @@ ansible-galaxy install vbotka.ansible-linux-postinstall
 
 4) Create playbook and inventory.
 
+Remote host
 ```
 > cat ~/.ansible/playbooks/linux-postinstall.yml
 ---
@@ -58,6 +59,23 @@ ansible_connection=ssh
 ansible_user=root
 ansible_python_interpreter=/usr/bin/python2.7
 ansible_perl_interpreter=/usr/bin/perl
+```
+
+Localhost
+```
+> cat ~/.ansible/playbooks/linux-postinstall.yml
+
+---
+
+- hosts: localhost
+  connection: local
+  become_user: my_user_name
+  become: yes
+  become_method: sudo
+  vars_files:
+    - ~/.ansible/vars/localhost.yml
+  roles:
+    - vbotka.ansible-linux-postinstall
 ```
 
 
