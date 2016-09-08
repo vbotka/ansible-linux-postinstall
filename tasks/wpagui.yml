@@ -1,7 +1,7 @@
 ---
 # linux-postinstall wpa_gui
-#
-# Disable NetwotkManager (NM) and install wpa_gui
+
+# Install wpa_gui and disable NetwotkManager (NM)
 
 - name: Install packages
   apt: name="{{item}}" state="installed"
@@ -10,6 +10,7 @@
     - wpasupplicant
   tags: linux_postinstall_wpagui_packages
 
+# TODO: fix idempotent (template?)
 - name: Disable NM /etc/init/network-manager.override
   shell: "echo manual > /etc/init/network-manager.override"
   tags: linux_postinstall_wpagui_disableNM
@@ -20,3 +21,4 @@
 
 - name: Stop and disable NM
   service: name="network-manager" state="stopped" enabled="no"
+  tags: linux_postinstall_wpagui_stopNM
