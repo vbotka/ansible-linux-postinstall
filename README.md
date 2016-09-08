@@ -52,7 +52,7 @@ Remote host
 ```
 > cat ~/.ansible/hosts
 [linux-test]
-<MAILSERVER-IP-OR-FQDN>
+<IP-OR-FQDN>
 
 [linux-test:vars]
 ansible_connection=ssh
