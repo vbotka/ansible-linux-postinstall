@@ -15,3 +15,10 @@
   tags:
     - lp_udev
     - linux-postinstall
+
+- include: pm.yml
+  tags:
+    - lp_pm
+    - linux-postinstall
+
+# EOF

@@ -1,0 +1,10 @@
+---
+# linux-postinstall pm
+
+# pm sleep bluetooth
+- name: Configure {{lp_pm_sleep_dir}}/{{lp_pm_sleep_bt_file}}
+  template: >
+  tags: lp_pm_sleep_bt
+
+
+# EOF

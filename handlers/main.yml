@@ -2,6 +2,12 @@
 # handlers file for ansible-linux-postinstall
 
 - name: load sysctl settings
-  command: /sbin/sysctl -p /etc/sysctl.conf
+  command: "/sbin/sysctl -p /etc/sysctl.conf"
+
+- name: restart udev
+  service: name="udev", state="restarted"
+
+- name: reload udev
+  service: name="udev", state="reloaded"
 
 # EOF
