@@ -2,11 +2,13 @@
 # vars file for ansible-linux-postinstall
 
 # linux-postinstall udev
-#lp_persistent_net_rules:
+#lp_udev_persistent_net_rules:
 #  - { kernel: "eth*", mac: "f0:de:f1:bb:18:7b", name: "eth0" }
 #  - { kernel: "wlan*", mac: "10:0b:a9:3b:5c:6c", name: "wlan0" }
 #  - { kernel: "wlan*", mac: "00:13:ef:c2:01:86", name: "wlan1" }
 #  - { kernel: "wlan*", mac: "64:70:02:27:d6:42", name: "wlan2" }
 #  - { kernel: "wlan*", mac: "00:13:ef:c2:04:7e", name: "wlan3" }
+#lp_udev_hci_rules:
+#  - { kernel: "hci2*", run: "/bin/hciconfig hci2 down" }
 
 # EOF
