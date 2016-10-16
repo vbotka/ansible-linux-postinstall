@@ -12,4 +12,11 @@ sysctl_net_bridge_bridge_nf_call_arptables: 0
 sysctl_net_ipv4_ip_forward: 1
 sysctl_net_ipv4_conf_eth0_proxy_arp: 1
 
+# udev
+#
+# persistent-net.rules
+lp_persistent_net_rules_dir: "/etc/udev/rules.d"
+lp_persistent_net_rules_file: "70-persistent-net.rules"
+lp_persistent_net_rules: []
+
 # EOF

@@ -1,0 +1,12 @@
+---
+# linux-postinstall udev
+
+- name: Configure {{lp_persistent_net_rules_dir}}/{{lp_persistent_net_rules_file}}
+  lineinfile: >
+    dest="{{lp_persistent_net_rules_dir}}/{{lp_persistent_net_rules_file}}"
+    regexp="NAME=\"{{ item.name }}\""
+    line="SUBSYSTEM==\"net\", ACTION==\"add\", DRIVERS==\"?*\", ATTR{address}==\"{{ item.mac }}\", KERNEL==\"{{ item.kernel }}\", NAME=\"{{ item.name }}\""
+    backup="yes"
+  with_items: "{{ lp_persistent_net_rules }}"
+  notify: reload udev
+  tags: lp_udev_persistent_net

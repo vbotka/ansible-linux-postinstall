@@ -2,7 +2,16 @@
 # tasks file for ansible-linux-postinstall
 
 - include: wpagui.yml
-  tags: linux-postinstall_wpagui, linux-postinstall
+  tags:
+    - lp_wpagui
+    - linux-postinstall
 
 - include: sysctl.yml
-  tags: linux-postinstall_sysctl, linux-postinstall
+  tags:
+    - lp_sysctl
+    - linux-postinstall
+
+- include: udev.yml
+  tags:
+    - lp_udev
+    - linux-postinstall
