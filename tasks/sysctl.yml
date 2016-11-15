@@ -18,3 +18,6 @@
         line: "net.ipv4.conf.eth0.proxy_arp = {{sysctl_net_ipv4_conf_eth0_proxy_arp}}"}
   tags: linux_postinstall_sysctl
   notify: load sysctl settings
+
+# EOF
+...

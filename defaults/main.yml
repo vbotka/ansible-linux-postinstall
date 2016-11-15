@@ -19,4 +19,7 @@ lp_udev_persistent_net_rules: []
 lp_udev_hci_rules_file: "71-hci.rules"
 lp_udev_hci_rules: []
 
+# wpa_gui
+lp_wpa_gui_nm_override: "manual"
+
 # EOF

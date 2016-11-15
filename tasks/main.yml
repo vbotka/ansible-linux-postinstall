@@ -1,5 +1,5 @@
 ---
-# tasks file for ansible-linux-postinstall
+# tasks for linux-postinstall
 
 - include: wpagui.yml
   tags:
@@ -16,9 +16,11 @@
     - lp_udev
     - linux-postinstall
 
-- include: pm.yml
-  tags:
-    - lp_pm
-    - linux-postinstall
+# TODO
+#- include: pm.yml
+#  tags:
+#    - lp_pm
+#    - linux-postinstall
 
 # EOF
+...

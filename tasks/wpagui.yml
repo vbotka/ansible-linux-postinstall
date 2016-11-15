@@ -4,21 +4,36 @@
 # Install wpa_gui and disable NetwotkManager (NM)
 
 - name: Install packages
-  apt: name="{{item}}" state="installed"
+  apt: >
+    name="{{item}}"
+    state="installed"
   with_items:
     - wpagui
     - wpasupplicant
   tags: linux_postinstall_wpagui_packages
 
-# TODO: fix idempotent (template?)
 - name: Disable NM /etc/init/network-manager.override
-  shell: "echo manual > /etc/init/network-manager.override"
+  template: >
+    src="network-manager-override.j2"
+    dest="/etc/init/network-manager.override"
+    owner="root"
+    group="root"
+    mode="0644"
   tags: linux_postinstall_wpagui_disableNM
   
 - name: Configure managed=false in /etc/NetworkManager/NetworkManager.conf
-  lineinfile: dest="/etc/NetworkManager/NetworkManager.conf" regexp="^managed" line="managed=false"
+  lineinfile: >
+    dest="/etc/NetworkManager/NetworkManager.conf"
+    regexp="^managed"
+    line="managed=false"
   tags: linux_postinstall_wpagui_configNM
 
 - name: Stop and disable NM
-  service: name="network-manager" state="stopped" enabled="no"
+  service: >
+    name="network-manager"
+    state="stopped"
+    enabled="no"
   tags: linux_postinstall_wpagui_stopNM
+
+# EOF
+...
