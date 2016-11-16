@@ -5,7 +5,7 @@ linux-postinstall
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/)  Configure Linux
 
-- wpa_gu
+- wpa_gui
 - sysctl
 - udev
 - (wip ...)
