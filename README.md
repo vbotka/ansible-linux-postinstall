@@ -2,13 +2,13 @@ linux-postinstall
 =================
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)
-[![license](https://img.shields.io/badge/license-BSD-red.svg)](https://www.freebsd.org/doc/en/articles/bsdl-gpl/article.html)
 
-Ansible role. Configure Linux (wpagui, ... wip).
+[Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/)  Configure Linux
 
-https://galaxy.ansible.com/vbotka/linux-postinstall/
-
-Test in progress with Ubuntu 16.04
+- wpa_gu
+- sysctl
+- udev
+- (wip ...)
 
 
 Requirements
@@ -29,13 +29,13 @@ Workflow
 1) Install role.
 
 ```
-ansible-galaxy install vbotka.ansible-linux-postinstall
+ansible-galaxy install vbotka.linux-postinstall
 ```
 
 3) Fit variables.
 
 ```
-~/.ansible/roles/vbotka.ansible-linux-postinstall/vars/main.yml
+~/.ansible/roles/vbotka.linux-postinstall/vars/main.yml
 ```
 
 4) Create playbook and inventory.
@@ -46,7 +46,7 @@ Remote host
 ---
 - hosts: linux-test
   roles:
-    - role: vbotka.ansible-linux-postinstall
+    - role: vbotka.linux-postinstall
 ```
 
 ```
@@ -75,14 +75,14 @@ Localhost
   vars_files:
     - ~/.ansible/vars/localhost.yml
   roles:
-    - vbotka.ansible-linux-postinstall
+    - vbotka.linux-postinstall
 ```
 
 
 License
 -------
 
-BSD
+[![license](https://img.shields.io/badge/license-BSD-red.svg)](https://www.freebsd.org/doc/en/articles/bsdl-gpl/article.html)
 
 
 Author Information
