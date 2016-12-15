@@ -1,0 +1,62 @@
+# {{ ansible_managed }}
+*nat
+:PREROUTING ACCEPT [0:0]
+:INPUT ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+:POSTROUTING ACCEPT [0:0]
+
+# {{ lp_iptables_wan_if }} is WAN interface
+# {{ lp_iptables_lan_if }} is LAN interface
+-A POSTROUTING -o {{ lp_iptables_wan_if }} -j MASQUERADE
+
+# NAT pinhole: HTTP from WAN to LAN
+# -A PREROUTING -p tcp -m tcp -i {{ lp_iptables_wan_if }} --dport 80 -j DNAT --to-destination 192.168.99.100:80
+
+COMMIT
+
+*filter
+:INPUT ACCEPT [0:0]
+:FORWARD ACCEPT [0:0]
+:OUTPUT ACCEPT [0:0]
+
+# Service rules
+
+# basic global accept rules - ICMP, loopback, traceroute, established all accepted
+-A INPUT -s 127.0.0.0/8 -d 127.0.0.0/8 -i lo -j ACCEPT
+-A INPUT -p icmp -j ACCEPT
+-A INPUT -m state --state ESTABLISHED -j ACCEPT
+
+# enable traceroute rejections to get sent out
+-A INPUT -p udp -m udp --dport 33434:33523 -j REJECT --reject-with icmp-port-unreachable
+
+# DNS - accept from LAN
+-A INPUT -i {{ lp_iptables_lan_if }} -p tcp --dport 53 -j ACCEPT
+-A INPUT -i {{ lp_iptables_lan_if }} -p udp --dport 53 -j ACCEPT
+
+# SSH - accept from LAN
+-A INPUT -i {{ lp_iptables_lan_if }} -p tcp --dport 22 -j ACCEPT
+#-A INPUT -p tcp --dport 22 -s {{ lp_iptables_lan }} -j ACCEPT
+#-A INPUT -p tcp --dport 22 -s 127.0.0.0/8 -j ACCEPT
+#-A INPUT -p tcp --dport 22 -j DROP
+
+# DHCP client requests - accept from LAN
+-A INPUT -i {{ lp_iptables_lan_if }} -p udp --dport 67:68 -j ACCEPT
+
+# drop all other inbound traffic
+-A INPUT -j DROP
+
+# Forwarding rules
+
+# forward packets along established/related connections
+-A FORWARD -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+# forward from LAN ({{ lp_iptables_lan_if }}) to WAN ({{ lp_iptables_wan_if }})
+-A FORWARD -i {{ lp_iptables_lan_if }} -o {{ lp_iptables_wan_if }} -j ACCEPT
+
+# allow traffic from our NAT pinhole
+-A FORWARD -p tcp -d 192.168.99.100 --dport 80 -j ACCEPT
+
+# drop all other forwarded traffic
+-A FORWARD -j DROP
+
+COMMIT

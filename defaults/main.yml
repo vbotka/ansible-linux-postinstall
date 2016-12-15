@@ -19,7 +19,16 @@ lp_udev_persistent_net_rules: []
 lp_udev_hci_rules_file: "71-hci.rules"
 lp_udev_hci_rules: []
 
-# wpa_gui
-lp_wpa_gui_nm_override: "manual"
+# wpagui
+lp_wpagui: "no"
+lp_wpagui_nm_override: "manual"
+
+# iptables
+lp_iptables: "no"
+lp_iptables_type: "router1"
+lp_iptables_wan_if: "eth0"
+lp_iptables_lan_if: "eth1"
+lp_iptables_lan: "10.1.0.0/24"
 
 # EOF
+...

@@ -4,6 +4,9 @@
 - name: load sysctl settings
   command: "/sbin/sysctl -p /etc/sysctl.conf"
 
+- name: reload iptables
+  shell: "/sbin/iptables-restore < /etc/network/iptables"
+
 - name: restart udev
   service: name="udev", state="restarted"
 
@@ -11,3 +14,4 @@
   service: name="udev", state="reloaded"
 
 # EOF
+...
