@@ -8,6 +8,7 @@ linux-postinstall
 - wpa_gui
 - sysctl
 - udev
+- iptables
 - (wip ...)
 
 
