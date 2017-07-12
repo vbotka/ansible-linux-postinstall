@@ -1,16 +1,9 @@
 ---
 # tasks for linux-postinstall
 
-- include: iptables.yml
-  when: lp_iptables == "yes"
+- include: modules.yml
   tags:
-    - lp_iptables
-    - linux-postinstall
-
-- include: wpagui.yml
-  when: lp_wpagui == "yes"
-  tags:
-    - lp_wpagui
+    - lp_modules
     - linux-postinstall
 
 - include: sysctl.yml
@@ -21,6 +14,18 @@
 - include: udev.yml
   tags:
     - lp_udev
+    - linux-postinstall
+
+- include: iptables.yml
+  when: lp_iptables == "yes"
+  tags:
+    - lp_iptables
+    - linux-postinstall
+
+- include: wpagui.yml
+  when: lp_wpagui == "yes"
+  tags:
+    - lp_wpagui
     - linux-postinstall
 
 # TODO

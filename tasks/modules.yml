@@ -1,0 +1,19 @@
+---
+# linux-postinstall modules
+
+# Load modules
+- modprobe:
+    name: "{{ item.name }}"
+    params: "{{ item.params }}"
+  with_items: "{{ lp_modules }}"
+
+- name: Configure /etc/modules
+  lineinfile: >
+    dest="/etc/modules"
+    regexp="^{{ item.name }}"
+    line="{{ item.name }} {{ item.params }}"
+    backup="yes"
+  with_items: "{{ lp_modules }}"
+
+# EOF
+...

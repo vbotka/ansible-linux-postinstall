@@ -4,18 +4,12 @@
 # Configure sysctl
 
 - name: Configure /etc/sysctl.conf
-  lineinfile: dest="/etc/sysctl.conf" regexp="{{ item.regexp }}" line="{{ item.line }}" backup="yes"
-  with_items:
-    - { regexp: "^net.bridge.bridge-nf-call-ip6tables",
-        line: "net.bridge.bridge-nf-call-ip6tables = {{sysctl_net_bridge_bridge_nf_call_ip6tables}}"}
-    - { regexp: "^net.bridge.bridge-nf-call-iptables",
-        line: "net.bridge.bridge-nf-call-iptables = {{sysctl_net_bridge_bridge_nf_call_iptables}}"}
-    - { regexp: "^net.bridge.bridge-nf-call-arptables",
-        line: "net.bridge.bridge-nf-call-arptables = {{sysctl_net_bridge_bridge_nf_call_arptables}}"}
-    - { regexp: "^net.ipv4.ip_forward",
-        line: "net.ipv4.ip_forward = {{sysctl_net_ipv4_ip_forward}}"}
-    - { regexp: "^net.ipv4.conf.eth0.proxy_arp",
-        line: "net.ipv4.conf.eth0.proxy_arp = {{sysctl_net_ipv4_conf_eth0_proxy_arp}}"}
+  lineinfile: >
+    dest="/etc/sysctl.conf"
+    regexp="^{{ item.var }}"
+    line="{{ item.var }} = {{ item.value }}"
+    backup="yes"
+  with_items: "{{ lp_sysctl_vars }}"
   tags: linux_postinstall_sysctl
   notify: load sysctl settings
 
