@@ -1,5 +1,5 @@
 ---
-# tasks for linux-postinstall
+# linux-postinstall
 
 - include: modules.yml
   tags:
@@ -26,6 +26,11 @@
   when: lp_wpagui == "yes"
   tags:
     - lp_wpagui
+    - linux-postinstall
+
+- include: users.yml
+  tags:
+    - lp_users
     - linux-postinstall
 
 - include: authorized_keys.yml
