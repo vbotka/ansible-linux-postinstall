@@ -28,6 +28,11 @@
     - lp_wpagui
     - linux-postinstall
 
+- include: authorized_keys.yml
+  tags:
+    - lp_authorized_keys
+    - linux-postinstall
+
 # TODO
 #- include: pm.yml
 #  tags:

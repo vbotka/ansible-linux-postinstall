@@ -1,5 +1,5 @@
 ---
-# vars file for ansible-linux-postinstall
+# vars file for linux-postinstall
 
 # linux-postinstall modules
 #lp_modules:
@@ -24,6 +24,10 @@
 #  - { kernel: "wlan*", mac: "00:13:ef:c2:04:7e", name: "wlan3" }
 #lp_udev_hci_rules:
 #  - { kernel: "hci2*", run: "/bin/hciconfig hci2 down" }
+
+# authorized keys
+#lp_authorized_keys:
+#  - { user: "admin", key: "{{ lookup('file', '~/.ansible/copy/ssh-pub-keys/admin/id_rsa.pub') }}" }
 
 # EOF
 ...

@@ -27,5 +27,8 @@ lp_iptables_wan_if: "eth0"
 lp_iptables_lan_if: "eth1"
 lp_iptables_lan: "10.1.0.0/24"
 
+# authorized keys
+lp_authorized_key: []
+
 # EOF
 ...
