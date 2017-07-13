@@ -42,9 +42,16 @@
 #lp_aliases:
 #  - { alias: "root", user: "admin" }
 
-# authorized keys
+# Copy authorized keys
 #lp_authorized_keys:
 #  - { user: "admin", key: "{{ lookup('file', '~/.ansible/copy/ssh-pub-keys/admin/id_rsa.pub') }}" }
+
+# Configure /etc/hostname and /etc/hosts
+#lp_hostname: "host"
+#lp_fqdn: "host.example.com"
+#lp_fqdn_ip: "127.0.1.1"
+#lp_hosts:
+#  - { ip: "10.1.0.10", fqdn: "srv.example.com", hostname: "srv" }
 
 # EOF
 ...

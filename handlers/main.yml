@@ -16,5 +16,8 @@
 - name: newaliases
   command: newaliases
 
+- name: set hostname
+  command: "/sbin/sysctl kernel.hostname={{ hostname }}"
+
 # EOF
 ...

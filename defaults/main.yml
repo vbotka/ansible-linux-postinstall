@@ -1,5 +1,5 @@
 ---
-# defaults for ansible-linux-postinstall
+# defaults for linux-postinstall
 
 lp_modules: []
 lp_sysctl_vars: []
@@ -19,6 +19,8 @@ lp_users: []
 lp_users_groups: []
 lp_aliases: []
 lp_authorized_key: []
+lp_hostname: []
+lp_fqdn: []
 
 # EOF
 ...

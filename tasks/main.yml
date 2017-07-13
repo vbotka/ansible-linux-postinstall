@@ -1,6 +1,11 @@
 ---
 # linux-postinstall
 
+- include: hostname.yml
+  tags:
+    - lp_hostname
+    - linux-postinstall
+
 - include: modules.yml
   tags:
     - lp_modules
