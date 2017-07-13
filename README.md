@@ -12,6 +12,8 @@ linux-postinstall
 - wpa_gui
 - users
 - authorized_keys
+- aliases
+- hostname and hosts
 - (wip ...)
 
 
