@@ -36,13 +36,13 @@ Workflow
 ansible-galaxy install vbotka.linux-postinstall
 ```
 
-3) Fit variables.
+2) Fit variables.
 
 ```
 ~/.ansible/roles/vbotka.linux-postinstall/vars/main.yml
 ```
 
-4) Create playbook and inventory.
+3) Create playbook and inventory.
 
 Remote host
 ```
