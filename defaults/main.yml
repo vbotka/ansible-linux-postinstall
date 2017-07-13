@@ -1,37 +1,23 @@
 ---
-# defaults file for ansible-linux-postinstall
+# defaults for ansible-linux-postinstall
 
-# sysctl
 lp_modules: []
-
-# sysctl
 lp_sysctl_vars: []
-
-# udev
 lp_udev_rules_dir: "/etc/udev/rules.d"
-# udev persistent-net.rules
 lp_udev_persistent_net_rules_file: "70-persistent-net.rules"
 lp_udev_persistent_net_rules: []
-# udev hci.rules
 lp_udev_hci_rules_file: "71-hci.rules"
 lp_udev_hci_rules: []
-
-# wpagui
 lp_wpagui: "no"
 lp_wpagui_nm_override: "manual"
-
-# iptables
 lp_iptables: "no"
 lp_iptables_type: "router1"
 lp_iptables_wan_if: "eth0"
 lp_iptables_lan_if: "eth1"
 lp_iptables_lan: "10.1.0.0/24"
-
-# users and groups
 lp_users: []
 lp_users_groups: []
-
-# authorized keys
+lp_aliases: []
 lp_authorized_key: []
 
 # EOF

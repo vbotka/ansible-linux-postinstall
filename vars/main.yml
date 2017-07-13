@@ -39,6 +39,9 @@
 #  - { name: "admin", groups: "adm" }
 # groups must not comprise primary group
 
+#lp_aliases:
+#  - { alias: "root", user: "admin" }
+
 # authorized keys
 #lp_authorized_keys:
 #  - { user: "admin", key: "{{ lookup('file', '~/.ansible/copy/ssh-pub-keys/admin/id_rsa.pub') }}" }

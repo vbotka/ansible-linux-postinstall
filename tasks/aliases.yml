@@ -1,0 +1,14 @@
+---
+
+- name: Configure /etc/aliases
+  lineinfile: >
+    dest="/etc/aliases"
+    regexp="^{{ item.alias }}{{':'}}"
+    line="{{ item.alias }}{{':'}} {{ item.user }}"
+    backup="yes"
+  with_items: "{{ lp_aliases }}"
+  when: lp_aliases > 0
+  notify: newaliases
+
+# EOF
+...
