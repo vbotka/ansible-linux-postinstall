@@ -3,25 +3,27 @@
 
 # persistent_net
 - name: Configure {{lp_udev_rules_dir}}/{{lp_udev_persistent_net_rules_file}}
-  lineinfile: >
+  template: >
+    src="persistent-net.rules.j2"
     dest="{{lp_udev_rules_dir}}/{{lp_udev_persistent_net_rules_file}}"
-    regexp="NAME=\"{{ item.name }}\""
-    line="SUBSYSTEM==\"net\", ACTION==\"add\", DRIVERS==\"?*\", ATTR{address}==\"{{ item.mac }}\", KERNEL==\"{{ item.kernel }}\", NAME=\"{{ item.name }}\""
+    owner="root"
+    group="root"
+    mode="0644"
     backup="yes"
-  with_items: "{{ lp_udev_persistent_net_rules }}"
+    with_items: "{{ lp_udev_persistent_net_rules }}"
   notify: reload udev
-  tags: lp_udev_persistent_net
 
 # hci
 - name: Configure {{lp_udev_rules_dir}}/{{lp_udev_hci_rules_file}}
-  lineinfile: >
+  template: >
+    src="hci.rules.j2"
     dest="{{lp_udev_rules_dir}}/{{lp_udev_hci_rules_file}}"
-    regexp="KERNEL==\"{{ item.kernel }}\""
-    line="SUBSYSTEM==\"bluetooth\", ACTION==\"add\", KERNEL==\"{{ item.kernel }}\", RUN+=\"{{ item.run }}\""
+    owner="root"
+    group="root"
+    mode="0644"
     backup="yes"
   with_items: "{{ lp_udev_hci_rules }}"
   notify: reload udev
-  tags: lp_udev_hci
 
 # EOF
 ...

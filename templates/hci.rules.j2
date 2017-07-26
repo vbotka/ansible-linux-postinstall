@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+{% for item in lp_udev_hci_rules %}
+ACTION=="add", ATTR{address}=="{{ item.mac }}", KERNEL=="hci*", NAME="{{ item.name }}", RUN+="{{ item.run }}"
+{% endfor %}
+# EOF

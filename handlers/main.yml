@@ -11,7 +11,8 @@
   service: name="udev", state="restarted"
 
 - name: reload udev
-  service: name="udev", state="reloaded"
+# service: name="udev", state="reloaded"
+  command: "/sbin/udevadm control --reload-rules"
 
 - name: newaliases
   command: newaliases

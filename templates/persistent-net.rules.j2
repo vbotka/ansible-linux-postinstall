@@ -1,0 +1,5 @@
+# {{ ansible_managed }}
+{% for item in lp_udev_persistent_net_rules %}
+ACTION=="add", ATTR{address}=="{{ item.mac }}", KERNEL=="{{ item.kernel }}", NAME="{{ item.name }}"
+{% endfor %}
+# EOF

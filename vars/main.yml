@@ -23,7 +23,8 @@
 #  - { kernel: "wlan*", mac: "64:70:02:27:d6:42", name: "wlan2" }
 #  - { kernel: "wlan*", mac: "00:13:ef:c2:04:7e", name: "wlan3" }
 #lp_udev_hci_rules:
-#  - { kernel: "hci2*", run: "/bin/hciconfig hci2 down" }
+#  - { mac: "00:1A:7D:DA:71:06", name: "hci0", run: "/bin/hciconfig hci0 auth encrypt" }
+#  - { mac: "40:2C:F4:7D:32:6A", name: "hci1", run: "/bin/hciconfig hci1 auth encrypt" }
 
 #lp_users:
 #  - { name: "admin",
