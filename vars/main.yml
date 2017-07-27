@@ -54,5 +54,15 @@
 #lp_hosts:
 #  - { ip: "10.1.0.10", fqdn: "srv.example.com", hostname: "srv" }
 
+#lp_grub_default:
+#  - { var: "GRUB_SAVEDEFAULT", value: "false" }
+#  - { var: "GRUB_DEFAULT", value: "0" }
+#  - { var: "GRUB_TIMEOUT", value: "10" }
+#  - { var: "GRUB_HIDDEN_TIMEOUT", value: "0" }
+#  - { var: "GRUB_HIDDEN_TIMEOUT_QUIET", value: "true" }
+#  - { var: "GRUB_DISTRIBUTOR", value: "`lsb_release -i -s 2> /dev/null || echo Debian`" }
+#  - { var: "GRUB_CMDLINE_LINUX_DEFAULT", value: "\"quiet splash\"" }
+#  - { var: "GRUB_CMDLINE_LINUX", value: "\"\"" }
+
 # EOF
 ...

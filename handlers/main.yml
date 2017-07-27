@@ -20,5 +20,8 @@
 - name: set hostname
   command: "/sbin/sysctl kernel.hostname={{ hostname }}"
 
+- name: update grub
+  command: "/usr/sbin/update-grub"
+
 # EOF
 ...

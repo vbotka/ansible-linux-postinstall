@@ -48,6 +48,11 @@
     - lp_authorized_keys
     - linux-postinstall
 
+- include: grub.yml
+  tags:
+    - lp_grub
+    - linux-postinstall
+
 # TODO
 #- include: pm.yml
 #  tags:

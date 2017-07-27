@@ -5,15 +5,16 @@ linux-postinstall
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/)  Configure Linux
 
+- aliases
+- authorized_keys
+- grub
+- hostname and hosts
+- iptables
 - modules
 - sysctl
 - udev
-- iptables
-- wpa_gui
 - users
-- authorized_keys
-- aliases
-- hostname and hosts
+- wpa_gui
 - (wip ...)
 
 
