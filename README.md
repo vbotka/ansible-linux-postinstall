@@ -15,6 +15,7 @@ linux-postinstall
 - udev
 - users
 - wpa_gui
+- xen
 - (wip ...)
 
 

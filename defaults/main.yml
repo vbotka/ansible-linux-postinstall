@@ -22,6 +22,17 @@ lp_authorized_key: []
 lp_hostname: []
 lp_fqdn: []
 lp_grub_default: []
+lp_xen: "no"
+lp_xen_version: "4.8"
+lp_xen_packages:
+  - xen-hypervisor-{{ lp_xen_version }}-amd64
+  - xen-utils-{{ lp_xen_version }}
+  - xen-utils-common
+  - xenstore-utils
+# - ubuntu-virt-server
+lp_xen_dom0_mem: "512M"
+lp_xen_dom0_mem_max: "512M"
+lp_xen_global: []
 
 # EOF
 ...

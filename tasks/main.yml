@@ -53,6 +53,12 @@
     - lp_grub
     - linux-postinstall
 
+- include: xen.yml
+  when: lp_xen == "yes"
+  tags:
+    - lp_xen
+    - linux-postinstall
+
 # TODO
 #- include: pm.yml
 #  tags:
