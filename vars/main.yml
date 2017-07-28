@@ -64,11 +64,12 @@
 #  - { var: "GRUB_CMDLINE_LINUX_DEFAULT", value: "\"quiet splash\"" }
 #  - { var: "GRUB_CMDLINE_LINUX", value: "\"\"" }
 
-lp_xen_version: "4.8"
-lp_xen_dom0_mem: "4096M"
-lp_xen_dom0_mem_max: "4096M"
-lp_xen_global:
-  - { var: "autoballoon", value: "\"0\"" }
+#lp_xen: "yes"
+#lp_xen_version: "4.8"
+#lp_xen_dom0_mem: "4096M"
+#lp_xen_dom0_mem_max: "4096M"
+#lp_xen_global:
+#  - { var: "autoballoon", value: "\"0\"" }
 
 # EOF
 ...
