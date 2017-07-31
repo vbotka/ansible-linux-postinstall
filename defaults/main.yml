@@ -20,6 +20,7 @@ lp_users_groups: []
 lp_aliases: []
 lp_authorized_key: []
 lp_hostname: []
+lp_hosts: []
 lp_fqdn: []
 lp_grub_default: []
 lp_xen: "no"
