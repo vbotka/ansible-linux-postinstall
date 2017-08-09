@@ -3,7 +3,7 @@
 
 - include: hostname.yml
   tags:
-    - lp_hostname
+    - lp_hostname_hosts
     - linux-postinstall
 
 - include: modules.yml
