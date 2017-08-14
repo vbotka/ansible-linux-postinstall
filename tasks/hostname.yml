@@ -1,5 +1,14 @@
 ---
 
+# TODO:
+# 1) SET/DONT_SET hostname via DHCP
+# /etc/dhcp/dhclient.conf
+# #send host-name = gethostname();
+# request host-name = "myhostname";
+# https://askubuntu.com/questions/104918/how-to-get-the-hostname-from-a-dhcp-server
+# http://blog.schlomo.schapiro.org/2013/11/setting-hostname-from-dhcp-in-debian.html
+# https://askubuntu.com/questions/757423/how-to-force-dhcp-client-to-allow-a-self-defined-domain-name
+
 - name: Configure hostname in /etc/hostname
   template: >
     src="hostname.j2"
