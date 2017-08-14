@@ -34,6 +34,8 @@ lp_xen_packages:
 lp_xen_dom0_mem: "512M"
 lp_xen_dom0_mem_max: "512M"
 lp_xen_global: []
+lp_latex: "no"
+lp_latex_labels: "no"
 
 # EOF
 ...

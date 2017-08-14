@@ -1,0 +1,46 @@
+---
+# linux-postinstall LaTeX
+
+- name: Install packages
+  apt: >
+    name="{{item}}"
+    state="installed"
+  with_items:
+    - texlive-full
+  tags: lp_latex_packages
+
+- name: Create directory /usr/share/texmf/tex/latex
+  file: >
+    state="directory"
+    path="/usr/share/texmf/tex/latex/"
+  tags: lp_latex_dir
+
+- name: Create directory /usr/share/texmf/tex/latex/labels
+  file: >
+    state="directory"
+    path="/usr/share/texmf/tex/latex/labels"
+  tags: lp_latex_labels
+  when: lp_latex_labels == "yes"
+
+- name: Download http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins
+  get_url: >
+    url="http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins"
+    dest="/usr/share/texmf/tex/latex/labels/"
+  tags: lp_latex_labels
+  when: lp_latex_labels == "yes"
+
+- name: Download http://mirrors.ctan.org/macros/latex/contrib/labels/labels.dtx
+  get_url: >
+    url="http://mirrors.ctan.org/macros/latex/contrib/labels/labels.dtx"
+    dest="/usr/share/texmf/tex/latex/labels/"
+  tags: lp_latex_labels
+  when: lp_latex_labels == "yes"
+
+# TODO:
+# 1) Compile and register labels.sty
+# cd /usr/share/texmf/tex/latex/labels/
+# latex labels.ins
+# texhash /usr/share/texmf
+
+# EOF
+...

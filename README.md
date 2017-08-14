@@ -3,7 +3,7 @@ linux-postinstall
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/)  Configure Linux
+[Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/) Configure Linux
 
 - aliases
 - authorized_keys
@@ -11,6 +11,7 @@ linux-postinstall
 - hostname and hosts
 - iptables
 - modules
+- latex
 - sysctl
 - udev
 - users
@@ -97,3 +98,11 @@ Author Information
 ------------------
 
 [Vladimir Botka](https://botka.link)
+
+
+References
+----------
+
+- [LaTeX](https://help.ubuntu.com/community/LaTeX)
+- [CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
+- [Directory macros/latex/contrib/labels](https://www.ctan.org/tex-archive/macros/latex/contrib/labels)

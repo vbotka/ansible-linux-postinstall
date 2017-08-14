@@ -59,6 +59,12 @@
     - lp_xen
     - linux-postinstall
 
+- include: latex.yml
+  when: lp_latex == "yes"
+  tags:
+    - lp_latex
+    - linux-postinstall
+
 # TODO
 #- include: pm.yml
 #  tags:
