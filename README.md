@@ -109,7 +109,7 @@ References
 - [LaTeX](https://help.ubuntu.com/community/LaTeX)
 - [CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
 - [Directory macros/latex/contrib/labels](https://www.ctan.org/tex-archive/macros/latex/contrib/labels)
-- [Disabling NetworkManager](Disabling NetworkManager)
+- [Disabling NetworkManager](https://help.ubuntu.com/community/NetworkManager#Disabling_NetworkManager)
 - [Xen](https://wiki.ubuntu.com/Kernel/Reference/Xen)
 - [Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
