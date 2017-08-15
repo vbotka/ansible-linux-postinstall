@@ -6,7 +6,8 @@ linux-postinstall
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/) Configure Linux
 
 - aliases
-- authorized_keys
+- authorized keys
+- automatic updates
 - grub
 - hostname and hosts
 - iptables
@@ -103,6 +104,12 @@ Author Information
 References
 ----------
 
+- [Automatic Updates](https://help.ubuntu.com/lts/serverguide/automatic-updates.html)
+- [GRUB](https://help.ubuntu.com/community/Grub2)
 - [LaTeX](https://help.ubuntu.com/community/LaTeX)
 - [CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
 - [Directory macros/latex/contrib/labels](https://www.ctan.org/tex-archive/macros/latex/contrib/labels)
+- [Disabling NetworkManager](Disabling NetworkManager)
+- [Xen](https://wiki.ubuntu.com/Kernel/Reference/Xen)
+- [Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
+- [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)

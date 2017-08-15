@@ -1,75 +1,80 @@
 ---
-# linux-postinstall
+# tasks for linux-postinstall
 
 - include: hostname.yml
   tags:
     - lp_hostname_hosts
-    - linux-postinstall
+    - linux_postinstall
 
 - include: modules.yml
   tags:
     - lp_modules
-    - linux-postinstall
+    - linux_postinstall
 
 - include: sysctl.yml
   tags:
     - lp_sysctl
-    - linux-postinstall
+    - linux_postinstall
 
 - include: udev.yml
   tags:
     - lp_udev
-    - linux-postinstall
+    - linux_postinstall
 
 - include: iptables.yml
   when: lp_iptables == "yes"
   tags:
     - lp_iptables
-    - linux-postinstall
+    - linux_postinstall
 
 - include: wpagui.yml
   when: lp_wpagui == "yes"
   tags:
     - lp_wpagui
-    - linux-postinstall
+    - linux_postinstall
 
 - include: users.yml
   tags:
     - lp_users
-    - linux-postinstall
+    - linux_postinstall
 
 - include: aliases.yml
   tags:
     - lp_aliases
-    - linux-postinstall
+    - linux_postinstall
 
 - include: authorized_keys.yml
   tags:
     - lp_authorized_keys
-    - linux-postinstall
+    - linux_postinstall
 
 - include: grub.yml
   tags:
     - lp_grub
-    - linux-postinstall
+    - linux_postinstall
 
 - include: xen.yml
   when: lp_xen == "yes"
   tags:
     - lp_xen
-    - linux-postinstall
+    - linux_postinstall
 
 - include: latex.yml
   when: lp_latex == "yes"
   tags:
     - lp_latex
-    - linux-postinstall
+    - linux_postinstall
+
+- include: auto_upgrades.yml
+  tags:
+    - lp_auto_upgrades
+    - linux_postinstall
 
 # TODO
 #- include: pm.yml
 #  tags:
 #    - lp_pm
-#    - linux-postinstall
+#    - linux_postinstall
 
 # EOF
 ...
