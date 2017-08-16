@@ -1,0 +1,20 @@
+#!/bin/sh
+# {{ ansible_managed }}
+
+PATH={{ item.value.path }}
+
+case "$1" in
+    suspend|hibernate)
+{% for command in item.value.suspend_hibernate %}
+{{ command|indent(10, true) }}
+{% endfor %}
+          ;;
+    resume|thaw)
+{% for command in item.value.resume_thaw %}
+{{ command|indent(10, true) }}
+{% endfor %}
+          ;;
+esac
+exit 0
+
+# EOF

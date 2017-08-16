@@ -70,11 +70,10 @@
     - lp_auto_upgrades
     - linux_postinstall
 
-# TODO
-#- include: pm.yml
-#  tags:
-#    - lp_pm
-#    - linux_postinstall
+- include: pm.yml
+  tags:
+    - lp_pm
+    - linux_postinstall
 
 # EOF
 ...
