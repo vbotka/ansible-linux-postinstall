@@ -70,7 +70,8 @@
     - lp_auto_upgrades
     - linux_postinstall
 
-- include: pm.yml
+- include: pm-utils.yml
+  when: lp_pm == "yes"
   tags:
     - lp_pm
     - linux_postinstall

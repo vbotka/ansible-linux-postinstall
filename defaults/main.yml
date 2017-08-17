@@ -38,6 +38,7 @@ lp_latex: "no"
 lp_latex_labels: "no"
 lp_auto_upgrades_Update_Package_Lists: "0"
 lp_auto_upgrades_Unattended_Upgrade: "0"
+lp_pm: "no"
 lp_pm_sleepd: {}
 
 # EOF

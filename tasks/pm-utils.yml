@@ -1,5 +1,11 @@
 ---
-# linux-postinstall pm
+# linux-postinstall pm-utils
+
+# TODO:
+# 1) add variables: lp_pm_powerd, lp_pm_configd
+# 2) add templates: pm-powerd.j2, pm-configd.j2
+# 3) add cases: resume, thaw, suspend, hibernate
+# 4) install pm-utils
 
 - name: Configure /etc/pm/sleep.d
   template: >

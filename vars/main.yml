@@ -73,6 +73,7 @@
 #  - { var: "autoballoon", value: "\"0\"" }
 
 # Configure /etc/pm
+#lp_pm: "yes"
 #lp_pm_sleepd:
 #  55_bluetooth:
 #    file: "55_bluetooth"

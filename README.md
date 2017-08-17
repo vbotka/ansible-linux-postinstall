@@ -13,6 +13,7 @@ linux-postinstall
 - iptables
 - modules
 - latex
+- pm-utils
 - sysctl
 - udev
 - users
@@ -113,3 +114,4 @@ References
 - [Xen](https://wiki.ubuntu.com/Kernel/Reference/Xen)
 - [Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
+- [pm-utils](https://wiki.archlinux.org/index.php/pm-utils)
