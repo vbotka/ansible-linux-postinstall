@@ -10,19 +10,31 @@
     group="root"
     mode="0644"
     backup="yes"
-    with_items: "{{ lp_udev_persistent_net_rules }}"
+  with_items: "{{ lp_udev_persistent_net_rules }}"
   notify: reload udev
 
-# hci
-- name: Configure {{lp_udev_rules_dir}}/{{lp_udev_hci_rules_file}}
+# hci name
+- name: Configure {{lp_udev_rules_dir}}/{{lp_udev_hci_name_rules_file}}
   template: >
-    src="hci.rules.j2"
-    dest="{{lp_udev_rules_dir}}/{{lp_udev_hci_rules_file}}"
+    src="hci-name.rules.j2"
+    dest="{{lp_udev_rules_dir}}/{{lp_udev_hci_name_rules_file}}"
     owner="root"
     group="root"
     mode="0644"
     backup="yes"
-  with_items: "{{ lp_udev_hci_rules }}"
+  with_items: "{{ lp_udev_hci_name_rules }}"
+  notify: reload udev
+
+# hci run
+- name: Configure {{lp_udev_rules_dir}}/{{lp_udev_hci_run_rules_file}}
+  template: >
+    src="hci-run.rules.j2"
+    dest="{{lp_udev_rules_dir}}/{{lp_udev_hci_run_rules_file}}"
+    owner="root"
+    group="root"
+    mode="0644"
+    backup="yes"
+  with_items: "{{ lp_udev_hci_run_rules }}"
   notify: reload udev
 
 # EOF

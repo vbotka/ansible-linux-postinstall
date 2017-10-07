@@ -6,8 +6,10 @@ lp_sysctl_vars: []
 lp_udev_rules_dir: "/etc/udev/rules.d"
 lp_udev_persistent_net_rules_file: "70-persistent-net.rules"
 lp_udev_persistent_net_rules: []
-lp_udev_hci_rules_file: "71-hci.rules"
-lp_udev_hci_rules: []
+lp_udev_hci_name_rules_file: "71-hci-name.rules"
+lp_udev_hci_run_rules_file: "72-hci-run.rules"
+lp_udev_hci_name_rules: []
+lp_udev_hci_run_rules: []
 lp_wpagui: "no"
 lp_wpagui_nm_override: "manual"
 lp_iptables: "no"

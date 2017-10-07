@@ -17,15 +17,21 @@
 
 # linux-postinstall udev
 #lp_udev_persistent_net_rules:
-#  - { kernel: "eth*", mac: "f0:de:f1:bb:18:7b", name: "eth0" }
-#  - { kernel: "wlan*", mac: "10:0b:a9:3b:5c:6c", name: "wlan0" }
-#  - { kernel: "wlan*", mac: "00:13:ef:c2:01:86", name: "wlan1" }
-#  - { kernel: "wlan*", mac: "64:70:02:27:d6:42", name: "wlan2" }
-#  - { kernel: "wlan*", mac: "00:13:ef:c2:04:7e", name: "wlan3" }
-#lp_udev_hci_rules:
-#  - { mac: "00:1A:7D:DA:71:06", name: "hci0", run: "/bin/hciconfig hci0 auth encrypt" }
-#  - { mac: "40:2C:F4:7D:32:6A", name: "hci1", run: "/bin/hciconfig hci1 auth encrypt" }
-
+#  - { kernel: "eth*", mac: "<MAC-ADDRESS>", name: "eth0" }
+#  - { kernel: "wlan*", mac: "<MAC-ADDRESS>", name: "wlan0" }
+#  - { kernel: "wlan*", mac: "<MAC-ADDRESS>", name: "wlan1" }
+#  - { kernel: "wlan*", mac: "<MAC-ADDRESS>", name: "wlan2" }
+#  - { kernel: "wlan*", mac: "<MAC-ADDRESS>", name: "wlan3" }
+#lp_udev_hci_name_rules:
+#  - { product: "Broadcom Bluetooth Device", name: "hci0"}
+#  - { product: "CSR8510 A10", name: "hci1" }
+# For MAC of BT devices "phys" is used instead of "address".
+# There is no phys/address of the controller available in udev
+#  - { mac: "<MAC-ADDRESS>", name: "hci0" }
+#  - { mac: "<MAC-ADDRESS>", name: "hci1" }
+#lp_udev_hci_run_rules:
+#  - { product: "Broadcom Bluetooth Device", run: "/bin/hciconfig hci0 up auth encrypt" }
+#  - { product: "CSR8510 A10", run: "/bin/hciconfig hci1 up auth encrypt" }
 #lp_users:
 #  - { name: "admin",
 #      shell: "/bin/bash",

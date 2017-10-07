@@ -1,0 +1,12 @@
+# {{ ansible_managed }}
+# For MAC of BT devices "phys" is used instead of "address".
+# There is no phys/address of the controller available in udev.
+{% for item in lp_udev_hci_name_rules %}
+{% if item.mac is defined %}
+ACTION=="add", ATTR{phys}=="{{ item.mac }}", NAME="{{ item.name }}"
+{% endif %}
+{% if item.product is defined %}
+ACTION=="add", ATTR{product}=="{{ item.product }}", NAME="{{ item.name }}"
+{% endif %}
+{% endfor %}
+# EOF
