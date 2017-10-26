@@ -11,9 +11,11 @@ linux-postinstall
 - grub
 - hostname and hosts
 - iptables
-- modules
 - latex
+- modules
 - pm-utils
+- ssh
+- sshd
 - sysctl
 - udev
 - users
@@ -115,3 +117,4 @@ References
 - [Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
 - [pm-utils](https://wiki.archlinux.org/index.php/pm-utils)
+- [GCP: Configuring Imported Images](https://cloud.google.com/compute/docs/images/configuring-imported-images)
