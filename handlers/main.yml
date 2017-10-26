@@ -8,7 +8,7 @@
   shell: "/sbin/iptables-restore < /etc/network/iptables"
 
 - name: restart udev
-  service: name="udev", state="restarted"
+  systemd: name="udev" state="restarted"
 
 - name: reload udev
 # service: name="udev", state="reloaded"
@@ -22,6 +22,9 @@
 
 - name: update grub
   command: "/usr/sbin/update-grub"
+
+- name: reload sshd
+  systemd: name="ssh" state="reloaded"
 
 # EOF
 ...

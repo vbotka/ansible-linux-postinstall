@@ -42,6 +42,9 @@ lp_auto_upgrades_Update_Package_Lists: "0"
 lp_auto_upgrades_Unattended_Upgrade: "0"
 lp_pm: "no"
 lp_pm_sleepd: {}
+lp_ssh_config: {}
+lp_sshd: "no"
+lp_sshd_config: {}
 
 # EOF
 ...

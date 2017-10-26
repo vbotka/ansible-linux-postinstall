@@ -1,0 +1,21 @@
+---
+# linux-postinstall sshd
+
+- name: Configure /etc/ssh/sshd_config
+  lineinfile: >
+    dest="/etc/ssh/sshd_config"
+    regexp="^{{ item.key }}"
+    insertbefore="^{{'#'}}{{ item.key }}"
+    line="{{ item.key }} {{ item.value }}"
+    backup="yes"
+  with_items: "{{ lp_sshd_config }}"
+  notify: reload sshd
+
+- name: Enable and start sshd
+  systemd: >
+    name="ssh"
+    enabled="yes"
+    state="started"
+
+# EOF
+...

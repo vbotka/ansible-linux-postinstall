@@ -22,13 +22,13 @@
     - linux_postinstall
 
 - include: iptables.yml
-  when: lp_iptables == "yes"
+  when: lp_iptables|lower == "yes"
   tags:
     - lp_iptables
     - linux_postinstall
 
 - include: wpagui.yml
-  when: lp_wpagui == "yes"
+  when: lp_wpagui|lower == "yes"
   tags:
     - lp_wpagui
     - linux_postinstall
@@ -54,13 +54,13 @@
     - linux_postinstall
 
 - include: xen.yml
-  when: lp_xen == "yes"
+  when: lp_xen|lower == "yes"
   tags:
     - lp_xen
     - linux_postinstall
 
 - include: latex.yml
-  when: lp_latex == "yes"
+  when: lp_latex|lower == "yes"
   tags:
     - lp_latex
     - linux_postinstall
@@ -71,9 +71,20 @@
     - linux_postinstall
 
 - include: pm-utils.yml
-  when: lp_pm == "yes"
+  when: lp_pm|lower == "yes"
   tags:
     - lp_pm
+    - linux_postinstall
+
+- include: ssh.yml
+  tags:
+    - lp_ssh
+    - linux_postinstall
+
+- include: sshd.yml
+  when: lp_sshd|lower == "yes"
+  tags:
+    - lp_sshd
     - linux_postinstall
 
 # EOF
