@@ -8,6 +8,7 @@ linux-postinstall
 - aliases
 - authorized keys
 - automatic updates
+- bluetooth
 - grub
 - hostname and hosts
 - iptables
@@ -118,3 +119,4 @@ References
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
 - [pm-utils](https://wiki.archlinux.org/index.php/pm-utils)
 - [GCP: Configuring Imported Images](https://cloud.google.com/compute/docs/images/configuring-imported-images)
+- [Connect my Bluetooth headphones](https://bbs.archlinux.org/viewtopic.php?id=212785)

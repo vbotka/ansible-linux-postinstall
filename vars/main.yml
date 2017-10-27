@@ -131,8 +131,12 @@
 #  - { key: AllowTcpForwarding, value: "{{ lp_sshd_AllowTcpForwarding }}" }
 #  - { key: X11Forwarding, value: "{{ lp_sshd_X11Forwarding }}" }
 
-# Configure /etc/pm
-#lp_pm: "yes"
+# Configure /etc/bluetooth/main.conf
+lp_bluetooth: "yes"
+lp_bluetooth_ControllerMode: "bredr"
+#lp_bluetooth_ControllerMode: "dual"
+lp_bluetooth_main_conf:
+  - { key: ControllerMode, value: "{{ lp_bluetooth_ControllerMode }}" }
 
 # EOF
 ...

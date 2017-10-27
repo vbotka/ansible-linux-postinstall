@@ -26,5 +26,8 @@
 - name: reload sshd
   systemd: name="ssh" state="reloaded"
 
+- name: restart bluetooth
+  systemd: name="bluetooth" state="restarted"
+
 # EOF
 ...

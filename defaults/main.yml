@@ -45,6 +45,8 @@ lp_pm_sleepd: {}
 lp_ssh_config: {}
 lp_sshd: "no"
 lp_sshd_config: {}
+lp_bluetooth: "yes"
+lp_bluetooth_main_conf: {}
 
 # EOF
 ...

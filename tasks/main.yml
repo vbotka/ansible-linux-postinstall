@@ -87,5 +87,11 @@
     - lp_sshd
     - linux_postinstall
 
+- include: bluetooth.yml
+  when: lp_bluetooth|lower == "yes"
+  tags:
+    - lp_bluetooth
+    - linux_postinstall
+
 # EOF
 ...
