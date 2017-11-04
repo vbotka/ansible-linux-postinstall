@@ -138,5 +138,16 @@ lp_bluetooth_ControllerMode: "bredr"
 lp_bluetooth_main_conf:
   - { key: ControllerMode, value: "{{ lp_bluetooth_ControllerMode }}" }
 
+# Configure xorg
+#lp_xorg_conf:
+#  - file: 11-Logitech-MX-Revolution-Mouse.conf
+#    section:
+#      - { param: Section, val1: "\"InputClass\"", val2: "" }
+#      - { param: Identifier, val1: "\"Logitech MX Revolution Mouse\"", val2: "" }
+#      - { param: MatchProduct, val1: "\"MX Rev\"", val2: "" }
+#      - { param: MatchIsPointer, val1: "\"on\"", val2: "" }
+#      - { param: Driver, val1: "\"evdev\"", val2: "" }
+#      - { param: Option, val1: "\"Buttonmapping\"", val2: "\"1 8 3 4 5 6 7 2 9 10 11 12 13 14 15 16 17 18 19 20\"" }
+
 # EOF
 ...

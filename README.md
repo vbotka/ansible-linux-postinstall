@@ -3,7 +3,7 @@ linux-postinstall
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/) Configure Linux
+[Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/) Configure Linux.
 
 - aliases
 - authorized keys
@@ -22,6 +22,7 @@ linux-postinstall
 - users
 - wpa_gui
 - xen
+- xorg.conf.d
 - (wip ...)
 
 
@@ -120,3 +121,4 @@ References
 - [pm-utils](https://wiki.archlinux.org/index.php/pm-utils)
 - [GCP: Configuring Imported Images](https://cloud.google.com/compute/docs/images/configuring-imported-images)
 - [Connect my Bluetooth headphones](https://bbs.archlinux.org/viewtopic.php?id=212785)
+- [Xorg Guide](https://wiki.gentoo.org/wiki/Xorg/Guide)

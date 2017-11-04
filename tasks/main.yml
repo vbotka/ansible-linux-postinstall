@@ -93,5 +93,10 @@
     - lp_bluetooth
     - linux_postinstall
 
+- include: xorg.yml
+  tags:
+    - lp_xorg
+    - linux_postinstall
+
 # EOF
 ...

@@ -1,0 +1,5 @@
+# {{ansible_managed}}
+{% for section in item.section %}
+{{section.param}} {{section.val1}} {{section.val2}}
+{% endfor %}
+EndSection
