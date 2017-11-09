@@ -17,5 +17,7 @@
     enabled="yes"
     state="started"
 
+# TODO: Configure enable/disable started/stopped ssh
+
 # EOF
 ...

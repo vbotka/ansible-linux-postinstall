@@ -1,5 +1,10 @@
 ---
-# tasks for linux-postinstall
+# tasks for vbotka.linux-postinstall
+
+- include: packages.yml
+  tags:
+    - lp_packages
+    - linux_postinstall
 
 - include: hostname.yml
   tags:

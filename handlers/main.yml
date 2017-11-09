@@ -1,5 +1,5 @@
 ---
-# handlers for ansible-linux-postinstall
+# handlers for vbotka.linux-postinstall
 
 - name: load sysctl settings
   command: "/sbin/sysctl -p /etc/sysctl.conf"

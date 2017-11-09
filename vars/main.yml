@@ -1,5 +1,18 @@
 ---
-# vars for linux-postinstall
+# vars for vbotka.linux-postinstall
+
+# linux-postinstall repos/keys/packages
+#lp_packages_repos:
+#  - deb http://packages.cloud.google.com/apt cloud-sdk-artful main
+#lp_packages_keys_url:
+#  - https://packages.cloud.google.com/apt/doc/apt-key.gpg
+#lp_packages_autoremove: "yes"
+#lp_packages_install:
+#  - ansible
+#  - google-cloud-sdk
+#lp_packages_remove:
+#  - aptdaemon
+#  - aptdaemon-data
 
 # linux-postinstall modules
 #lp_modules:
@@ -132,11 +145,11 @@
 #  - { key: X11Forwarding, value: "{{ lp_sshd_X11Forwarding }}" }
 
 # Configure /etc/bluetooth/main.conf
-lp_bluetooth: "yes"
-lp_bluetooth_ControllerMode: "bredr"
+#lp_bluetooth: "yes"
+#lp_bluetooth_ControllerMode: "bredr"
 #lp_bluetooth_ControllerMode: "dual"
-lp_bluetooth_main_conf:
-  - { key: ControllerMode, value: "{{ lp_bluetooth_ControllerMode }}" }
+#lp_bluetooth_main_conf:
+#  - { key: ControllerMode, value: "{{ lp_bluetooth_ControllerMode }}" }
 
 # Configure xorg
 #lp_xorg_conf:

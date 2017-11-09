@@ -1,0 +1,34 @@
+---
+# vbotka.linux-postinstall packages
+
+- name: Add repositories
+  apt_repository: >
+    repo="{{ item }}"
+    state="present"
+  with_items: "{{ lp_packages_repos }}"
+  tags: lp_packages_repos_add
+
+- name: Add Apt signing key by URL
+  apt_key: >
+    url="{{ item }}"
+    state="present"
+  with_items: "{{ lp_packages_keys_url }}"
+  tags: lp_packages_keys_add
+
+- name: Install packages
+  apt: >
+    name="{{ item }}"
+    state="present"
+  with_items: "{{ lp_packages_install }}"
+  tags: lp_packages_install
+
+- name: Remove packages
+  apt: >
+    name="{{ item }}"
+    state="absent"
+    autoremove="{{ lp_packages_autoremove }}"
+  with_items: "{{ lp_packages_remove }}"
+  tags: lp_packages_remove
+
+# EOF
+...

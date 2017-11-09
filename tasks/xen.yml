@@ -5,7 +5,7 @@
 
 - name: Install packages
   apt: >
-    name="{{item}}"
+    name="{{ item }}"
     state="installed"
   with_items: "{{ lp_xen_packages }}"
   tags: lp_xen_packages

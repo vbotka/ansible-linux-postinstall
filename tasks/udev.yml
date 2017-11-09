@@ -2,10 +2,10 @@
 # linux-postinstall udev
 
 # persistent_net
-- name: Configure {{lp_udev_rules_dir}}/{{lp_udev_persistent_net_rules_file}}
+- name: Configure {{ lp_udev_rules_dir }}/{{ lp_udev_persistent_net_rules_file }}
   template: >
     src="persistent-net.rules.j2"
-    dest="{{lp_udev_rules_dir}}/{{lp_udev_persistent_net_rules_file}}"
+    dest="{{ lp_udev_rules_dir }}/{{ lp_udev_persistent_net_rules_file }}"
     owner="root"
     group="root"
     mode="0644"
@@ -14,10 +14,10 @@
   notify: reload udev
 
 # hci name
-- name: Configure {{lp_udev_rules_dir}}/{{lp_udev_hci_name_rules_file}}
+- name: Configure {{ lp_udev_rules_dir }}/{{ lp_udev_hci_name_rules_file }}
   template: >
     src="hci-name.rules.j2"
-    dest="{{lp_udev_rules_dir}}/{{lp_udev_hci_name_rules_file}}"
+    dest="{{ lp_udev_rules_dir }}/{{ lp_udev_hci_name_rules_file }}"
     owner="root"
     group="root"
     mode="0644"
@@ -26,10 +26,10 @@
   notify: reload udev
 
 # hci run
-- name: Configure {{lp_udev_rules_dir}}/{{lp_udev_hci_run_rules_file}}
+- name: Configure {{ lp_udev_rules_dir }}/{{ lp_udev_hci_run_rules_file }}
   template: >
     src="hci-run.rules.j2"
-    dest="{{lp_udev_rules_dir}}/{{lp_udev_hci_run_rules_file}}"
+    dest="{{ lp_udev_rules_dir }}/{{ lp_udev_hci_run_rules_file }}"
     owner="root"
     group="root"
     mode="0644"

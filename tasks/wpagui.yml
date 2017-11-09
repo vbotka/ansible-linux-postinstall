@@ -5,12 +5,12 @@
 
 - name: Install packages
   apt: >
-    name="{{item}}"
+    name="{{ item }}"
     state="installed"
   with_items:
     - wpagui
     - wpasupplicant
-  tags: linux_postinstall_wpagui_packages
+  tags: lp_wpagui_packages
 
 - name: Disable NM /etc/init/network-manager.override
   template: >
@@ -19,21 +19,21 @@
     owner="root"
     group="root"
     mode="0644"
-  tags: linux_postinstall_wpagui_disableNM
+  tags: lp_wpagui_disableNM
   
 - name: Configure managed=false in /etc/NetworkManager/NetworkManager.conf
   lineinfile: >
     dest="/etc/NetworkManager/NetworkManager.conf"
     regexp="^managed"
     line="managed=false"
-  tags: linux_postinstall_wpagui_configNM
+  tags: lp_wpagui_configNM
 
 - name: Stop and disable NM
   service: >
     name="network-manager"
     state="stopped"
     enabled="no"
-  tags: linux_postinstall_wpagui_stopNM
+  tags: lp_wpagui_stopNM
 
 # EOF
 ...

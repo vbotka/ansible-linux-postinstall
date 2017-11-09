@@ -1,8 +1,6 @@
 ---
 # linux-postinstall sysctl
 
-# Configure sysctl
-
 - name: Configure /etc/sysctl.conf
   lineinfile: >
     dest="/etc/sysctl.conf"
