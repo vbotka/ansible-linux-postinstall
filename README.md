@@ -14,6 +14,7 @@ linux-postinstall
 - iptables
 - latex
 - modules
+- packages, repos, keys
 - pm-utils
 - ssh
 - sshd
