@@ -1,12 +1,12 @@
 ---
 
-- name: Configure cron MAILTO
+- name: Configure cron variables
   cronvar: >
-    name="MAILTO"
-    value="\"{{ item.mailto }}\""
+    name="{{ item.name }}"
+    value="\"{{ item.value }}\""
     user="{{ item.user }}"
-  with_items: "{{ lp_cron_mailto }}"
-  tags: lp_cron_mailto
+  with_items: "{{ lp_cron_var }}"
+  tags: lp_cron_var
 
 - name: Configure cron
   cron: >
