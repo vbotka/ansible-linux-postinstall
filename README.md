@@ -9,6 +9,7 @@ linux-postinstall
 - authorized keys
 - automatic updates
 - bluetooth
+- cron
 - grub
 - hostname and hosts
 - iptables
@@ -123,3 +124,4 @@ References
 - [GCP: Configuring Imported Images](https://cloud.google.com/compute/docs/images/configuring-imported-images)
 - [Connect my Bluetooth headphones](https://bbs.archlinux.org/viewtopic.php?id=212785)
 - [Xorg Guide](https://wiki.gentoo.org/wiki/Xorg/Guide)
+- [CronHowto](https://help.ubuntu.com/community/CronHowto)

@@ -1,0 +1,26 @@
+---
+
+- name: Configure cron MAILTO
+  cronvar: >
+    name="MAILTO"
+    value="\"{{ item.mailto }}\""
+    user="{{ item.user }}"
+  with_items: "{{ lp_cron_mailto }}"
+  tags: lp_cron_mailto
+
+- name: Configure cron
+  cron: >
+    state="{{ item.state }}"
+    user="{{ item.user }}"
+    name="{{ item.name }}"
+    minute="{{ item.minute }}"
+    hour="{{ item.hour }}"
+    day="{{ item.day }}"
+    month="{{ item.month }}"
+    weekday="{{ item.weekday }}"
+    job="{{ item.command }}"
+  with_items: "{{ lp_cron_tab }}"
+  tags: lp_cron_tab
+
+# EOF
+...

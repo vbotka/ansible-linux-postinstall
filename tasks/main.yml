@@ -103,5 +103,10 @@
     - lp_xorg
     - linux_postinstall
 
+- include: cron.yml
+  tags:
+    - lp_cron
+    - linux_postinstall
+
 # EOF
 ...
