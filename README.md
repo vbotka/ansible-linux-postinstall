@@ -7,7 +7,7 @@ linux-postinstall
 
 - aliases
 - authorized keys
-- automatic updates
+- automatic upgrades
 - bluetooth
 - cron
 - grub
