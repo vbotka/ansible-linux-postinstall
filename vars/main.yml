@@ -6,6 +6,8 @@
 #  - deb http://packages.cloud.google.com/apt cloud-sdk-artful main
 #lp_packages_keys_url:
 #  - https://packages.cloud.google.com/apt/doc/apt-key.gpg
+#lp_packages_selections_preinstall:
+#  - { name: 'ca-certificates', selection: 'hold' }
 #lp_packages_autoremove: "yes"
 #lp_packages_install:
 #  - ansible

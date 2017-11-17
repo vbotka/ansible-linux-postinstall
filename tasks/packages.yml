@@ -15,6 +15,13 @@
   with_items: "{{ lp_packages_keys_url }}"
   tags: lp_packages_keys_add
 
+- name: Configure package selections before Install/Remove
+  dpkg_selections: >
+    name="{{ item.name }}"
+    selection="{{ item.selection }}"
+  with_items: "{{ lp_packages_selections_preinstall }}"
+  tags: lp_packages_selections_preinstall
+
 - name: Install packages
   apt: >
     name="{{ item }}"
@@ -29,6 +36,13 @@
     autoremove="{{ lp_packages_autoremove }}"
   with_items: "{{ lp_packages_remove }}"
   tags: lp_packages_remove
+
+- name: Configure package selections after Install/Remove
+  dpkg_selections: >
+    name="{{ item.name }}"
+    selection="{{ item.selection }}"
+  with_items: "{{ lp_packages_selections_postinstall }}"
+  tags: lp_packages_selections_postinstall
 
 # EOF
 ...
