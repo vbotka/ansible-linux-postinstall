@@ -1,0 +1,30 @@
+---
+# linux-postinstall ModemManager
+
+- name: Configure /etc/init/modemmanager.override
+  template: >
+    src="modem-manager-override.j2"
+    dest="/etc/init/modemmanager.override"
+    owner="root"
+    group="root"
+    mode="0644"
+  tags: lp_mm_config
+  
+- name: Stop and disable ModemManager
+  service: >
+    name="ModemManager"
+    state="stopped"
+    enabled="no"
+  when: lp_modemmanager|lower == "no"
+  tags: lp_mm_disable
+
+- name: Start and enable ModemManager
+  service: >
+    name="ModemManager"
+    state="started"
+    enabled="yes"
+  when: lp_modemmanager|lower == "yes"
+  tags: lp_mm_enable
+
+# EOF
+...

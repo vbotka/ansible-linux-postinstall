@@ -108,5 +108,10 @@
     - lp_cron
     - linux_postinstall
 
+- include: modemmanager.yml
+  tags:
+    - lp_modemmanager
+    - linux_postinstall
+
 # EOF
 ...

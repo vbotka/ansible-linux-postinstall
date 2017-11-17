@@ -14,6 +14,7 @@ linux-postinstall
 - hostname and hosts
 - iptables
 - latex
+- modem manager
 - modules
 - packages, repos, keys
 - pm-utils
@@ -119,6 +120,8 @@ References
 - [LaTeX](https://help.ubuntu.com/community/LaTeX)
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
 - [LaTeX macros/latex/contrib/labels](https://www.ctan.org/tex-archive/macros/latex/contrib/labels)
+- [ModemManager](https://www.freedesktop.org/wiki/Software/ModemManager/)
+- [ModemManager. Remove from boot](https://askubuntu.com/questions/216114/how-can-i-remove-modem-manager-from-boot)
 - [NetworkManager disabling](https://help.ubuntu.com/community/NetworkManager#Disabling_NetworkManager)
 - [PM pm-utils](https://wiki.archlinux.org/index.php/pm-utils)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
@@ -126,3 +129,4 @@ References
 - [Xen Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
 - [Xorg Guide](https://wiki.gentoo.org/wiki/Xorg/Guide)
+

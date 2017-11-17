@@ -168,5 +168,9 @@
 #lp_cron_tab:
 #  - { state: "absent", user: "vlado", name: "Run some command", minute: "01", hour: "04", day: "*", month: "*", weekday: "*", command: "/usr/bin/somedirectory/somecommand" }
 
+# configure ModemManager
+#lp_modemmanager: "no"
+#lp_modemmanager_override: "manual"
+
 # EOF
 ...
