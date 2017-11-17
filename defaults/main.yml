@@ -43,6 +43,7 @@ lp_xen_dom0_mem_max: "512M"
 lp_xen_global: []
 lp_latex: "no"
 lp_latex_labels: "no"
+lp_latex_labels_timeout: "20"
 lp_unattended_upgrades: "no"
 lp_auto_upgrades_Update_Package_Lists: "0"
 lp_auto_upgrades_Unattended_Upgrade: "0"

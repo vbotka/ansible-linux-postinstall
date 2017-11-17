@@ -26,6 +26,7 @@
   get_url: >
     url="http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins"
     dest="/usr/share/texmf/tex/latex/labels/"
+    timeout="{{ lp_latex_labels_timeout }}"
   tags: lp_latex_labels
   when: lp_latex_labels|lower == "yes"
 
