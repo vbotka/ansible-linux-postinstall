@@ -60,6 +60,12 @@ lp_cron_mailto: {}
 lp_cron_tab: {}
 lp_modemmanager: "yes"
 lp_modemmanager_override: ""
+lp_gpsd: "no"
+lp_gpsd_START_DAEMON: "true"
+lp_gpsd_USBAUTO: "true"
+lp_gpsd_DEVICES: "/dev/rfcomm0"
+lp_gpsd_GPSD_OPTIONS: "-b"
+lp_gpsd_bt_rfcomm: {}
 
 # EOF
 ...

@@ -168,9 +168,15 @@
 #lp_cron_tab:
 #  - { state: "absent", user: "vlado", name: "Run some command", minute: "01", hour: "04", day: "*", month: "*", weekday: "*", command: "/usr/bin/somedirectory/somecommand" }
 
-# configure ModemManager
+# Configure ModemManager
 #lp_modemmanager: "no"
 #lp_modemmanager_override: "manual"
+
+# configure gpsd
+#lp_gpsd: "yes"
+#lp_gpsd_bt_rfcomm:
+#  - { rfcomm: "0", bind: "yes", device: "00:1C:D9:XX:XX:XX", channel: "1", comment: "BT GPS" }
+# NOTE: Disable ModemManager to interfere with rfcommX
 
 # EOF
 ...

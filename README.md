@@ -10,6 +10,7 @@ linux-postinstall
 - automatic upgrades
 - bluetooth
 - cron
+- gpsd
 - grub
 - hostname and hosts
 - iptables
@@ -116,6 +117,9 @@ References
 - [Bluetooth headphones](https://bbs.archlinux.org/viewtopic.php?id=212785)
 - [Cron CronHowto](https://help.ubuntu.com/community/CronHowto)
 - [GCP: Configuring Imported Images](https://cloud.google.com/compute/docs/images/configuring-imported-images)
+- [GPSD Bluetooth](https://ubuntuforums.org/showthread.php?t=200142)
+- [GPSD Troubleshooting](http://www.catb.org/gpsd/troubleshooting.html)
+- [GPSD cannot create rfcomm0](https://stackoverflow.com/questions/33892280/debian-cannot-create-rfcomm0)
 - [GRUB](https://help.ubuntu.com/community/Grub2)
 - [LaTeX](https://help.ubuntu.com/community/LaTeX)
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
@@ -129,4 +133,3 @@ References
 - [Xen Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
 - [Xorg Guide](https://wiki.gentoo.org/wiki/Xorg/Guide)
-

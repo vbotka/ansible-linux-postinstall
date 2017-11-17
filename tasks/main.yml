@@ -113,5 +113,10 @@
     - lp_modemmanager
     - linux_postinstall
 
+- include: gpsd.yml
+  tags:
+    - lp_gpsd
+    - linux_postinstall
+
 # EOF
 ...

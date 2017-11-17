@@ -7,13 +7,6 @@
 - name: reload iptables
   shell: "/sbin/iptables-restore < /etc/network/iptables"
 
-- name: restart udev
-  systemd: name="udev" state="restarted"
-
-- name: reload udev
-# service: name="udev", state="reloaded"
-  command: "/sbin/udevadm control --reload-rules"
-
 - name: newaliases
   command: newaliases
 
@@ -23,11 +16,24 @@
 - name: update grub
   command: "/usr/sbin/update-grub"
 
+- name: reload udev
+  systemd: name="udev", state="reloaded"
+# command: "/sbin/udevadm control --reload-rules"
+
+- name: restart udev
+  systemd: name="udev" state="restarted"
+
 - name: reload sshd
   systemd: name="ssh" state="reloaded"
+  when: lp_sshd|lower == "yes"
 
 - name: restart bluetooth
   systemd: name="bluetooth" state="restarted"
+  when: lp_bluetooth|lower == "yes"
+
+- name: restart gpsd
+  systemd: name="gpsd" state="restarted"
+  when: lp_gpsd|lower == "yes"
 
 # EOF
 ...
