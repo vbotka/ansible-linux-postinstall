@@ -8,6 +8,20 @@
     group="root"
     mode="0644"
     backup="yes"
+
+- name: Disable and stop unattended-upgrades
+  systemd: >
+    name="unattended-upgrades"
+    state="stopped"
+    enabled="no"
+  when: lp_unattended_upgrades|lower == "no"
+
+- name: Enable and start unattended-upgrades
+  systemd: >
+    name="unattended-upgrades"
+    state="started"
+    enabled="yes"
+  when: lp_unattended_upgrades|lower == "yes"
   
 # EOF
 ...
