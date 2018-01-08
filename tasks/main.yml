@@ -118,5 +118,10 @@
     - lp_gpsd
     - linux_postinstall
 
+- include: postfix.yml
+  tags:
+    - lp_postfix
+    - linux_postinstall
+
 # EOF
 ...

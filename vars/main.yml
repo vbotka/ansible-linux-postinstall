@@ -180,5 +180,11 @@
 #  - { rfcomm: "0", bind: "yes", device: "00:1C:D9:XX:XX:XX", channel: "1", comment: "BT GPS" }
 # NOTE: Disable ModemManager to interfere with rfcommX
 
+# configure postfix
+#lp_postfix: "yes"
+#lp_postfix_inet_protocols: "ipv4"
+#lp_postfix_main_conf:
+#  - { key: inet_protocols, value: "{{ lp_postfix_inet_protocols }}" } 
+
 # EOF
 ...

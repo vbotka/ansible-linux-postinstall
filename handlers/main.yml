@@ -35,5 +35,9 @@
   systemd: name="gpsd" state="restarted"
   when: lp_gpsd|lower == "yes"
 
+- name: restart postfix
+  systemd: name="postfix" state="restarted"
+  when: lp_postfix|lower == "yes"
+
 # EOF
 ...

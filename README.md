@@ -19,6 +19,7 @@ linux-postinstall
 - modules
 - packages, repos, keys
 - pm-utils
+- postfix
 - ssh
 - sshd
 - sysctl
@@ -128,6 +129,7 @@ References
 - [ModemManager. Remove from boot](https://askubuntu.com/questions/216114/how-can-i-remove-modem-manager-from-boot)
 - [NetworkManager disabling](https://help.ubuntu.com/community/NetworkManager#Disabling_NetworkManager)
 - [PM pm-utils](https://wiki.archlinux.org/index.php/pm-utils)
+- [Postfix Basic Setup Howto](https://help.ubuntu.com/community/PostfixBasicSetupHowto)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
 - [Xen](https://wiki.ubuntu.com/Kernel/Reference/Xen)
 - [Xen Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)

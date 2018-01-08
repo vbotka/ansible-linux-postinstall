@@ -68,6 +68,8 @@ lp_gpsd_USBAUTO: "true"
 lp_gpsd_DEVICES: "/dev/rfcomm0"
 lp_gpsd_GPSD_OPTIONS: "-b"
 lp_gpsd_bt_rfcomm: {}
+lp_postfix: "yes"
+lp_postfix_main_conf: {}
 
 # EOF
 ...
