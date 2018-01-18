@@ -58,8 +58,8 @@ lp_bluetooth: "yes"
 lp_bluetooth_main_conf: {}
 lp_xorg_conf_dir: "/usr/share/X11/xorg.conf.d"
 lp_xorg_conf: {}
-lp_cron_mailto: {}
 lp_cron_tab: {}
+lp_cron_var: {}
 lp_modemmanager: "yes"
 lp_modemmanager_override: ""
 lp_gpsd: "no"
