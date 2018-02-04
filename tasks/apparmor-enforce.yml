@@ -1,0 +1,19 @@
+---
+# linux-postinstall apparmor-enforce
+
+- name: Get path to "{{ item }}"
+  shell: which "{{ item }}" | sed 's/\//./g' | tail -c +2
+  register: apparmor_item_path
+  changed_when: false
+
+- name: Enforce "{{ apparmor_item_path.stdout }}"
+  file: >
+    src="{{ lp_apparmor_profile_dir }}/{{ apparmor_item_path.stdout }}"
+    dest="{{ lp_apparmor_profile_dir }}/disable/{{ apparmor_item_path.stdout }}"
+    state="absent"
+  notify: apparmor-enforce-profile
+
+- meta: flush_handlers
+
+# EOF
+...

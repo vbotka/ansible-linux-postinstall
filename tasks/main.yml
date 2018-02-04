@@ -123,5 +123,10 @@
     - lp_postfix
     - linux_postinstall
 
+- include: apparmor.yml
+  tags:
+    - lp_apparmor
+    - linux_postinstall
+
 # EOF
 ...

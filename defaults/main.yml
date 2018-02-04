@@ -1,6 +1,8 @@
 ---
 # defaults for vbotka.linux-postinstall
 
+lp_debug: "no"
+
 lp_packages_repos: []
 lp_packages_keys_url: []
 lp_packages_install: []
@@ -8,8 +10,11 @@ lp_packages_remove: []
 lp_packages_selections_preinstall: {}
 lp_packages_selections_postinstall: {}
 lp_packages_autoremove: "no"
+
 lp_modules: []
+
 lp_sysctl_vars: []
+
 lp_udev_rules_dir: "/etc/udev/rules.d"
 lp_udev_persistent_net_rules_file: "70-persistent-net.rules"
 lp_udev_persistent_net_rules: []
@@ -17,21 +22,31 @@ lp_udev_hci_name_rules_file: "71-hci-name.rules"
 lp_udev_hci_name_rules: []
 lp_udev_hci_run_rules_file: "72-hci-run.rules"
 lp_udev_hci_run_rules: []
+
 lp_wpagui: "no"
 lp_wpagui_nm_override: "manual"
+
 lp_iptables: "no"
 lp_iptables_type: "router1"
 lp_iptables_wan_if: "eth0"
 lp_iptables_lan_if: "eth1"
 lp_iptables_lan: "10.1.0.0/24"
+
 lp_users: []
 lp_users_groups: []
+
 lp_aliases: []
+
 lp_authorized_key: []
+
 lp_hostname: ""
+
 lp_hosts: []
+
 lp_fqdn: ""
+
 lp_grub_default: []
+
 lp_xen: "no"
 lp_xen_version: "4.8"
 lp_xen_packages:
@@ -43,33 +58,55 @@ lp_xen_packages:
 lp_xen_dom0_mem: "512M"
 lp_xen_dom0_mem_max: "512M"
 lp_xen_global: []
+
 lp_latex: "no"
 lp_latex_labels: "no"
 lp_latex_labels_timeout: "20"
+
 lp_unattended_upgrades: "no"
+
 lp_auto_upgrades_Update_Package_Lists: "0"
 lp_auto_upgrades_Unattended_Upgrade: "0"
+
 lp_pm: "no"
 lp_pm_sleepd: {}
+
 lp_ssh_config: {}
+
 lp_sshd: "no"
 lp_sshd_config: {}
+
 lp_bluetooth: "yes"
 lp_bluetooth_main_conf: {}
+
 lp_xorg_conf_dir: "/usr/share/X11/xorg.conf.d"
 lp_xorg_conf: {}
+
 lp_cron_tab: {}
 lp_cron_var: {}
+
 lp_modemmanager: "yes"
 lp_modemmanager_override: ""
+
 lp_gpsd: "no"
 lp_gpsd_START_DAEMON: "true"
 lp_gpsd_USBAUTO: "true"
 lp_gpsd_DEVICES: "/dev/rfcomm0"
 lp_gpsd_GPSD_OPTIONS: "-b"
 lp_gpsd_bt_rfcomm: {}
+
 lp_postfix: "yes"
 lp_postfix_main_conf: {}
+
+lp_apparmor: "yes"
+lp_apparmor_packages:
+  - apparmor
+  - apparmor-utils
+  - snapd
+lp_apparmor_profile_dir: "/etc/apparmor.d"
+lp_apparmor_disable: []
+lp_apparmor_complain: []
+lp_apparmor_enforce: []
 
 # EOF
 ...

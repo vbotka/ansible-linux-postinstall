@@ -1,5 +1,5 @@
 ---
-# vbotka.linux-postinstall packages
+# linux-postinstall packages
 
 - name: Add repositories
   apt_repository: >

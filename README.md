@@ -6,6 +6,7 @@ linux-postinstall
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/) Configure Linux.
 
 - aliases
+- apparmor
 - authorized keys
 - automatic upgrades
 - bluetooth
@@ -114,6 +115,9 @@ Author Information
 References
 ----------
 
+- [AppArmor wiki](https://gitlab.com/apparmor/apparmor/wikis/home)
+- [AppArmor wiki Ubuntu](https://wiki.ubuntu.com/AppArmor)
+- [AppArmor wiki Ubuntu community](https://help.ubuntu.com/community/AppArmor)
 - [Automatic Updates](https://help.ubuntu.com/lts/serverguide/automatic-updates.html)
 - [Bluetooth headphones](https://bbs.archlinux.org/viewtopic.php?id=212785)
 - [Cron CronHowto](https://help.ubuntu.com/community/CronHowto)

@@ -1,0 +1,14 @@
+---
+# linux-postinstall apparmor-complain
+
+- name: Get path to "{{ item }}"
+  shell: which "{{ item }}" | sed 's/\//./g' | tail -c +2
+  register: apparmor_item_path
+  changed_when: false
+
+- name: Complain "{{ apparmor_item_path.stdout }}"
+  shell: aa-complain "{{ apparmor_item_path.stdout }}"
+  changed_when: false
+
+# EOF
+...
