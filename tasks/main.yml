@@ -123,6 +123,11 @@
     - lp_postfix
     - linux_postinstall
 
+- include: smart.yml
+  tags:
+    - lp_smart
+    - linux_postinstall
+
 - include: apparmor.yml
   tags:
     - lp_apparmor

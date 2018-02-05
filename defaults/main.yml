@@ -1,5 +1,5 @@
 ---
-# defaults for vbotka.linux-postinstall
+# defaults for linux-postinstall
 
 lp_debug: "no"
 
@@ -107,6 +107,17 @@ lp_apparmor_profile_dir: "/etc/apparmor.d"
 lp_apparmor_disable: []
 lp_apparmor_complain: []
 lp_apparmor_enforce: []
+
+lp_smart: "yes"
+lp_smart_packages:
+  - smartmontools
+lp_smart_service_name: "smartmontools"
+lp_smart_devicescan: "no"
+lp_smart_conf_file: "/etc/smartd.conf"
+lp_smart_conf_owner: "root"
+lp_smart_conf_group: "root"
+lp_smart_conf_mode: "644"
+lp_smart_devices: {}
 
 # EOF
 ...

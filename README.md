@@ -21,6 +21,7 @@ linux-postinstall
 - packages, repos, keys
 - pm-utils
 - postfix
+- smart
 - ssh
 - sshd
 - sysctl
@@ -134,6 +135,9 @@ References
 - [NetworkManager disabling](https://help.ubuntu.com/community/NetworkManager#Disabling_NetworkManager)
 - [PM pm-utils](https://wiki.archlinux.org/index.php/pm-utils)
 - [Postfix Basic Setup Howto](https://help.ubuntu.com/community/PostfixBasicSetupHowto)
+- [SMART wiki](https://en.wikipedia.org/wiki/S.M.A.R.T.)
+- [Smartmontools](https://www.smartmontools.org/)
+- [Smartmontools Ubuntu](https://help.ubuntu.com/community/Smartmontools)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
 - [Xen](https://wiki.ubuntu.com/Kernel/Reference/Xen)
 - [Xen Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
