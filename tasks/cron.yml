@@ -3,7 +3,7 @@
 - name: Configure cron variables
   cronvar: >
     name="{{ item.name }}"
-    value="\"{{ item.value }}\""
+    value="{{ item.value }}"
     user="{{ item.user }}"
   with_items: "{{ lp_cron_var }}"
   tags: lp_cron_var
