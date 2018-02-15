@@ -5,7 +5,9 @@ lp_debug: "no"
 
 lp_packages_repos: []
 lp_packages_keys_url: []
-lp_packages_install: []
+lp_packages_keys_id: {}
+lp_packages_install:
+  - ansible
 lp_packages_remove: []
 lp_packages_selections_preinstall: {}
 lp_packages_selections_postinstall: {}

@@ -2,10 +2,15 @@
 # vars for vbotka.linux-postinstall
 
 # linux-postinstall repos/keys/packages
+# https://launchpad.net/~ansible/+archive/ubuntu/ansible-2.4
 #lp_packages_repos:
+#  - deb http://archive.canonical.com/ubuntu artful partner
 #  - deb http://packages.cloud.google.com/apt cloud-sdk-artful main
+#  - deb http://ppa.launchpad.net/ansible/ansible-2.4/ubuntu artful main
 #lp_packages_keys_url:
 #  - https://packages.cloud.google.com/apt/doc/apt-key.gpg
+#lp_packages_keys_id:
+#  - { keyserver: keyserver.ubuntu.com, id: 6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367 }
 #lp_packages_selections_preinstall:
 #  - { name: 'ca-certificates', selection: 'hold' }
 #lp_packages_autoremove: "yes"
