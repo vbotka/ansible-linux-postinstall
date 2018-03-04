@@ -1,134 +1,134 @@
 ---
 # tasks for vbotka.linux-postinstall
 
-- include_tasks: packages.yml
+- import_tasks: packages.yml
   tags:
     - lp_packages
     - linux_postinstall
 
-- include_tasks: hostname.yml
+- import_tasks: hostname.yml
   tags:
     - lp_hostname_hosts
     - linux_postinstall
 
-- include_tasks: modules.yml
+- import_tasks: modules.yml
   tags:
     - lp_modules
     - linux_postinstall
 
-- include_tasks: sysctl.yml
+- import_tasks: sysctl.yml
   tags:
     - lp_sysctl
     - linux_postinstall
 
-- include_tasks: udev.yml
+- import_tasks: udev.yml
   tags:
     - lp_udev
     - linux_postinstall
 
-- include_tasks: iptables.yml
+- import_tasks: iptables.yml
   when: lp_iptables|lower == "yes"
   tags:
     - lp_iptables
     - linux_postinstall
 
-- include_tasks: wpagui.yml
+- import_tasks: wpagui.yml
   when: lp_wpagui|lower == "yes"
   tags:
     - lp_wpagui
     - linux_postinstall
 
-- include_tasks: users.yml
+- import_tasks: users.yml
   tags:
     - lp_users
     - linux_postinstall
 
-- include_tasks: aliases.yml
+- import_tasks: aliases.yml
   tags:
     - lp_aliases
     - linux_postinstall
 
-- include_tasks: authorized_keys.yml
+- import_tasks: authorized_keys.yml
   tags:
     - lp_authorized_keys
     - linux_postinstall
 
-- include_tasks: grub.yml
+- import_tasks: grub.yml
   tags:
     - lp_grub
     - linux_postinstall
 
-- include_tasks: xen.yml
+- import_tasks: xen.yml
   when: lp_xen|lower == "yes"
   tags:
     - lp_xen
     - linux_postinstall
 
-- include_tasks: latex.yml
+- import_tasks: latex.yml
   when: lp_latex|lower == "yes"
   tags:
     - lp_latex
     - linux_postinstall
 
-- include_tasks: auto_upgrades.yml
+- import_tasks: auto_upgrades.yml
   tags:
     - lp_auto_upgrades
     - linux_postinstall
 
-- include_tasks: pm-utils.yml
+- import_tasks: pm-utils.yml
   when: lp_pm|lower == "yes"
   tags:
     - lp_pm
     - linux_postinstall
 
-- include_tasks: ssh.yml
+- import_tasks: ssh.yml
   tags:
     - lp_ssh
     - linux_postinstall
 
-- include_tasks: sshd.yml
+- import_tasks: sshd.yml
   when: lp_sshd|lower == "yes"
   tags:
     - lp_sshd
     - linux_postinstall
 
-- include_tasks: bluetooth.yml
+- import_tasks: bluetooth.yml
   when: lp_bluetooth|lower == "yes"
   tags:
     - lp_bluetooth
     - linux_postinstall
 
-- include_tasks: xorg.yml
+- import_tasks: xorg.yml
   tags:
     - lp_xorg
     - linux_postinstall
 
-- include_tasks: cron.yml
+- import_tasks: cron.yml
   tags:
     - lp_cron
     - linux_postinstall
 
-- include_tasks: modemmanager.yml
+- import_tasks: modemmanager.yml
   tags:
     - lp_modemmanager
     - linux_postinstall
 
-- include_tasks: gpsd.yml
+- import_tasks: gpsd.yml
   tags:
     - lp_gpsd
     - linux_postinstall
 
-- include_tasks: postfix.yml
+- import_tasks: postfix.yml
   tags:
     - lp_postfix
     - linux_postinstall
 
-- include_tasks: smart.yml
+- import_tasks: smart.yml
   tags:
     - lp_smart
     - linux_postinstall
 
-- include_tasks: apparmor.yml
+- import_tasks: apparmor.yml
   tags:
     - lp_apparmor
     - linux_postinstall

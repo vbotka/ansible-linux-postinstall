@@ -11,15 +11,15 @@
   when: lp_apparmor|lower == "yes"
   tags: lp_apparmor_packages
 
-- include: apparmor-disable.yml
+- include_tasks: apparmor-disable.yml
   with_items: "{{ lp_apparmor_disable }}"
   tags: lp_apparmor_disable
 
-- include: apparmor-enforce.yml
+- include_tasks: apparmor-enforce.yml
   with_items: "{{ lp_apparmor_enforce }}"
   tags: lp_apparmor_enforce
 
-- include: apparmor-complain.yml
+- include_tasks: apparmor-complain.yml
   with_items: "{{ lp_apparmor_complain }}"
   tags: lp_apparmor_complain
 
