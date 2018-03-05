@@ -220,5 +220,8 @@
 #lp_smart_devices:
 #    - { regexp: "^/dev/sda", line: "/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin" }
 #    - { regexp: "^/dev/sdb", line: "/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin" }
+
+# lp_virtualbox: "yes"
+
 # EOF
 ...

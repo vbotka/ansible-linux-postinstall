@@ -1,0 +1,27 @@
+---
+# linux-postinstall virtualbox
+
+- debug:
+    msg: "{{ ansible_lsb.description }} {{ ansible_lsb.codename }}"
+  when: lp_debug|lower == "yes"
+
+- name: Add signing key of VirtualBox
+  apt_key: >
+    url="{{ item }}"
+    state="present"
+  with_items: "{{ lp_virtualbox_keys }}"
+
+- name: Add repository of VirtualBox
+  apt_repository: >
+    repo="{{ item }}"
+    state="present"
+  with_items: "{{ lp_virtualbox_repos }}"
+
+- name: Install VirtualBox
+  apt: >
+    name="{{ item }}"
+    state="present"
+  with_items: "{{ lp_virtualbox_install }}"
+
+# EOF
+...

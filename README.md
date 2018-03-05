@@ -27,6 +27,7 @@ linux-postinstall
 - sysctl
 - udev
 - users
+- virtualbox
 - wpa_gui
 - xen
 - xorg.conf.d
@@ -139,6 +140,7 @@ References
 - [Smartmontools](https://www.smartmontools.org/)
 - [Smartmontools Ubuntu](https://help.ubuntu.com/community/Smartmontools)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
+- [VirtualBox wiki](https://www.virtualbox.org/wiki/)
 - [Xen](https://wiki.ubuntu.com/Kernel/Reference/Xen)
 - [Xen Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)

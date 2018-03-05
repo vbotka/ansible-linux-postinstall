@@ -6,8 +6,7 @@ lp_debug: "no"
 lp_packages_repos: []
 lp_packages_keys_url: []
 lp_packages_keys_id: {}
-lp_packages_install:
-  - ansible
+lp_packages_install: []
 lp_packages_remove: []
 lp_packages_selections_preinstall: {}
 lp_packages_selections_postinstall: {}
@@ -120,6 +119,16 @@ lp_smart_conf_owner: "root"
 lp_smart_conf_group: "root"
 lp_smart_conf_mode: "644"
 lp_smart_devices: {}
+
+lp_virtualbox: "no"
+lp_virtualbox_version: "5.2"
+lp_virtualbox_repos:
+  - "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
+lp_virtualbox_keys:
+  - https://www.virtualbox.org/download/oracle_vbox_2016.asc
+  - https://www.virtualbox.org/download/oracle_vbox.asc
+lp_virtualbox_install:
+  - "virtualbox-{{ lp_virtualbox_version }}"
 
 # EOF
 ...
