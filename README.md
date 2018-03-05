@@ -141,6 +141,7 @@ References
 - [Smartmontools Ubuntu](https://help.ubuntu.com/community/Smartmontools)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
 - [VirtualBox wiki](https://www.virtualbox.org/wiki/)
+- [Install Oracle VM VirtualBox in Ubuntu](http://www.elinuxbook.com/install-oracle-vm-virtualbox-in-ubuntu-16-04/)
 - [Xen](https://wiki.ubuntu.com/Kernel/Reference/Xen)
 - [Xen Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
