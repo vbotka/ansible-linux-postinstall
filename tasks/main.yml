@@ -131,6 +131,7 @@
     - linux_postinstall
 
 - import_tasks: gpsd.yml
+  when: lp_gpsd|lower == "yes"
   tags:
     - lp_gpsd
     - linux_postinstall
