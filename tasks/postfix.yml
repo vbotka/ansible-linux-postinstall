@@ -6,6 +6,7 @@
     dest="/etc/postfix/main.cf"
     regexp="^{{ item.key }}"
     line="{{ item.key }} = {{ item.value }}"
+    create="yes"
     backup="yes"
   with_items: "{{ lp_postfix_main_conf }}"
   notify: restart postfix
