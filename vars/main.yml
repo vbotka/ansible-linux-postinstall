@@ -120,7 +120,7 @@
 #lp_ssh_ForwardX11: "no"
 #lp_ssh_HostbasedAuthentication: "no"
 #lp_ssh_StrictHostKeyChecking: "no"
-#lp_ssh_Ciphers: " aes128-ctr,aes192-ctr,aes256-ctr,arcfour256,arcfour128,aes128-cbc,3des-cbc"
+#lp_ssh_Ciphers: " aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc"
 #lp_ssh_Tunnel: "no"
 #lp_ssh_ServerAliveInterval: "420"
 #lp_ssh_config:
