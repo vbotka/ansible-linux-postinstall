@@ -28,7 +28,7 @@
     group="root"
     mode="0644"
     backup="yes"
-  when: lp_hostname|length > 0
+  when: lp_hosts|length > 0
   
 # EOF
 ...
