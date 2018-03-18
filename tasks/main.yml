@@ -25,7 +25,12 @@
 
 - import_tasks: hostname.yml
   tags:
-    - lp_hostname_hosts
+    - lp_hostname
+    - linux_postinstall
+
+- import_tasks: hosts.yml
+  tags:
+    - lp_hosts
     - linux_postinstall
 
 - import_tasks: modules.yml

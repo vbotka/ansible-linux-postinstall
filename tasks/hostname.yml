@@ -19,16 +19,6 @@
     backup="yes"
   when: lp_hostname|length > 0
   notify: set hostname
-
-- name: Configure hosts in /etc/hosts
-  template: >
-    src="hosts.j2"
-    dest="/etc/hosts"
-    owner="root"
-    group="root"
-    mode="0644"
-    backup="yes"
-  when: lp_hosts|length > 0
   
 # EOF
 ...
