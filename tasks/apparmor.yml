@@ -1,7 +1,8 @@
 ---
 # linux-postinstall apparmor
 
-# TODO: disable, enforce and complain work with executables only, found by *which*. Enable other profiles.
+# TODO: disable, enforce and complain work with executables only, found by
+# *which*. Enable other profiles.
 
 - name: Install packages
   apt: >
@@ -13,14 +14,17 @@
 
 - include_tasks: apparmor-disable.yml
   with_items: "{{ lp_apparmor_disable }}"
+  whhen: lp_apparmor_disable|legth > 0
   tags: lp_apparmor_disable
 
 - include_tasks: apparmor-enforce.yml
   with_items: "{{ lp_apparmor_enforce }}"
+  when: lp_apparmor_enforce|legth > 0
   tags: lp_apparmor_enforce
 
 - include_tasks: apparmor-complain.yml
   with_items: "{{ lp_apparmor_complain }}"
+  when: lp_apparmor_complain|length > 0
   tags: lp_apparmor_complain
 
 - name: Start and enable apparmor

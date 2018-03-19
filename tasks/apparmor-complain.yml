@@ -8,6 +8,7 @@
 
 - name: Complain "{{ apparmor_item_path.stdout }}"
   shell: aa-complain "{{ apparmor_item_path.stdout }}"
+  when: not ansible_check_mode
   changed_when: false
 
 # EOF

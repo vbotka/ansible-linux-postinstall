@@ -12,6 +12,7 @@
     dest="{{ lp_apparmor_profile_dir }}/disable/{{ apparmor_item_path.stdout }}"
     state="link"
     force="yes"
+  when: not ansible_check_mode
   notify: apparmor-disable-profile
 
 - meta: flush_handlers

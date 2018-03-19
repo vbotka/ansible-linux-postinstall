@@ -1,5 +1,5 @@
 ---
-# tasks for vbotka.linux-postinstall
+# tasks for linux-postinstall
 
 - debug:
     msg: "lp_virtualbox={{ lp_virtualbox }}
