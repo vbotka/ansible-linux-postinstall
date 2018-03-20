@@ -11,7 +11,9 @@
     src="{{ lp_apparmor_profile_dir }}/{{ apparmor_item_path.stdout }}"
     dest="{{ lp_apparmor_profile_dir }}/disable/{{ apparmor_item_path.stdout }}"
     state="absent"
-  when: not ansible_check_mode
+  when:
+    - not ansible_check_mode
+    - apparmor_item_path.stdout|length > 0
   notify: apparmor-enforce-profile
 
 - meta: flush_handlers
