@@ -130,5 +130,7 @@ lp_virtualbox_keys:
 lp_virtualbox_install:
   - "virtualbox-{{ lp_virtualbox_version }}"
 
+lp_zeitgeist: "yes"
+
 # EOF
 ...

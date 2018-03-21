@@ -1,0 +1,30 @@
+---
+# linux-postinstall zeitgeist
+
+# One-way atm
+- name: Remove zeitgeist
+  apt:
+    state: absent
+    name: zeitgeist
+    purge: yes
+  when: lp_zeitgeist|lower == "no"
+
+- name: Remove zeitgeist-*
+  apt:
+    state: absent
+    name: zeitgeist-*
+    purge: yes
+  when: lp_zeitgeist|lower == "no"
+
+#- name: Disable zeitgeist
+#  service:
+#    name: zeitgeist
+#    state: started
+#    enabled: no
+#  when: lp_zeitgeist|lower == "no"
+# "Could not find the requested service zeitgeist"
+
+# for i in zeitgeist-fts zeitgeist; do systemctl --user disable $i; systemctl --user stop $i; systemctl --user mask $i; done
+
+# EOF
+...

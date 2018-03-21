@@ -156,5 +156,10 @@
     - lp_apparmor
     - linux_postinstall
 
+- import_tasks: zeitgeist.yml
+  tags:
+    - lp_zeitgeist
+    - linux_postinstall
+
 # EOF
 ...
