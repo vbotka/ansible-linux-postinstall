@@ -1,5 +1,5 @@
 ---
-# defaults for linux-postinstall
+# linux-postinstall defaults
 
 lp_debug: "no"
 

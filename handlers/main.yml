@@ -1,5 +1,5 @@
 ---
-# handlers for linux-postinstall
+# linux-postinstall handlers
 
 - name: load sysctl settings
   command: "/sbin/sysctl -p /etc/sysctl.conf"

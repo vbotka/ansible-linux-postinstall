@@ -1,5 +1,5 @@
 ---
-# vbotka.linux-postinstall bluetooth
+# linux-postinstall bluetooth
 
 - name: Configure /etc/bluetooth/main.conf
   lineinfile: >

@@ -1,5 +1,5 @@
 ---
-# tasks for linux-postinstall
+# tasks linux-postinstall
 
 - debug:
     msg: "lp_virtualbox={{ lp_virtualbox }}

@@ -1,5 +1,5 @@
 ---
-# vars for linux-postinstall
+# linux-postinstall vars
 
 # linux-postinstall repos/keys/packages
 # https://launchpad.net/~ansible/+archive/ubuntu/ansible-2.4
