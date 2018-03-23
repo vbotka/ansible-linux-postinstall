@@ -132,5 +132,11 @@ lp_virtualbox_install:
 
 lp_zeitgeist: "yes"
 
+lp_lid: "no"
+lp_lid_logind_conf: "/etc/systemd/logind.conf"
+lp_lid_logind_conf_vars: {}
+lp_lid_upower_conf: "/etc/UPower/UPower.conf"
+lp_lid_upower_conf_vars: {}
+
 # EOF
 ...

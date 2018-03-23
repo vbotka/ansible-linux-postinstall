@@ -1,0 +1,23 @@
+---
+# linux-postinstall lid
+
+- name: Configure {{ lp_lid_logind_conf }}
+  lineinfile: >
+    dest="{{ lp_lid_logind_conf }}"
+    regexp="^{{ item.var }}"
+    line="{{ item.var }}={{ item.value }}"
+    backup="yes"
+  with_items: "{{ lp_lid_logind_conf_vars }}"
+  tags: lp_lid_logind_conf
+
+- name: Configure {{ lp_lid_upower_conf }}
+  lineinfile: >
+    dest="{{ lp_lid_upower_conf }}"
+    regexp="^{{ item.var }}"
+    line="{{ item.var }}={{ item.value }}"
+    backup="yes"
+  with_items: "{{ lp_lid_upower_conf_vars }}"
+  tags: lp_lid_upower_conf
+
+# EOF
+...
