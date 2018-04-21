@@ -1,28 +1,6 @@
 ---
 # linux-postinstall packages
 
-- name: Add Apt signing key by URL
-  apt_key: >
-    url="{{ item }}"
-    state="present"
-  with_items: "{{ lp_packages_keys_url }}"
-  tags: lp_packages_keys_add
-
-- name: Add Apt signing key by ID
-  apt_key: >
-    id="{{ item.id }}"
-    keyserver="{{ item.keyserver }}"
-    state="present"
-  with_items: "{{ lp_packages_keys_id }}"
-  tags: lp_packages_keys_add
-
-- name: Add repositories
-  apt_repository: >
-    repo="{{ item }}"
-    state="present"
-  with_items: "{{ lp_packages_repos }}"
-  tags: lp_packages_repos_add
-
 - name: Configure package selections before Install/Remove
   dpkg_selections: >
     name="{{ item.name }}"

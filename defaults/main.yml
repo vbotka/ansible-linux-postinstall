@@ -3,9 +3,10 @@
 
 lp_debug: "no"
 
-lp_packages_repos: []
-lp_packages_keys_url: []
-lp_packages_keys_id: {}
+lp_repos: []
+lp_repos_keys_url: {}
+lp_repos_keys_id: {}
+
 lp_packages_install: []
 lp_packages_remove: []
 lp_packages_selections_preinstall: {}

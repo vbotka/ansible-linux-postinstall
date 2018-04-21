@@ -12,6 +12,11 @@
     - lp_debug
     - linux_postinstall
 
+- import_tasks: repos.yml
+  tags:
+    - lp_repos
+    - linux_postinstall
+
 - import_tasks: packages.yml
   tags:
     - lp_packages

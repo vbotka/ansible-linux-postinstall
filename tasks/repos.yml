@@ -1,0 +1,27 @@
+---
+# linux-postinstall repos
+
+- name: Add apt signing key by URL
+  apt_key: >
+    url="{{ item }}"
+    state="present"
+  with_items: "{{ lp_repos_keys_url }}"
+  tags: lp_repos_keys_add
+
+- name: Add apt signing key by ID
+  apt_key: >
+    id="{{ item.id }}"
+    keyserver="{{ item.keyserver }}"
+    state="present"
+  with_items: "{{ lp_repos_keys_id }}"
+  tags: lp_repos_keys_add
+
+- name: Add repositories
+  apt_repository: >
+    repo="{{ item }}"
+    state="present"
+  with_items: "{{ lp_repos }}"
+  tags: lp_repos_add
+
+# EOF
+...
