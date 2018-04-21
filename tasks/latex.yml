@@ -25,7 +25,7 @@
 - name: Download http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins
   get_url: >
     url="http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins"
-    dest="/usr/share/texmf/tex/latex/labels/"
+    dest="/usr/share/texmf/tex/latex/labels/labels.ins"
     timeout="{{ lp_latex_labels_timeout }}"
   tags: lp_latex_labels
   when: lp_latex_labels|lower == "yes"
@@ -33,7 +33,7 @@
 - name: Download http://mirrors.ctan.org/macros/latex/contrib/labels/labels.dtx
   get_url: >
     url="http://mirrors.ctan.org/macros/latex/contrib/labels/labels.dtx"
-    dest="/usr/share/texmf/tex/latex/labels/"
+    dest="/usr/share/texmf/tex/latex/labels/labels.dtx"
   tags: lp_latex_labels
   when: lp_latex_labels|lower == "yes"
 
