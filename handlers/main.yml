@@ -39,6 +39,10 @@
   systemd: name="postfix" state="restarted"
   when: lp_postfix|lower == "yes"
 
+- name: reload postfix
+  systemd: name="postfix" state="reloaded"
+  when: lp_postfix|lower == "yes"
+
 - name: reload smart
   systemd: name="{{ lp_smart_service_name }}" state="reloaded"
   when: lp_smart|lower == "yes"

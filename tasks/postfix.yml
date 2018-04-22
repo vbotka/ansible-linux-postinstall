@@ -1,5 +1,5 @@
 ---
-# vbotka.linux-postinstall postfix
+# linux-postinstall postfix
 
 - name: Configure /etc/postfix/main.cf 
   lineinfile: >
@@ -9,7 +9,7 @@
     create="yes"
     backup="yes"
   with_items: "{{ lp_postfix_main_conf }}"
-  notify: restart postfix
+  notify: reload postfix
 
 - name: Enable and start postfix
   systemd: >
