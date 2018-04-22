@@ -6,7 +6,7 @@
 - name: Install packages
   apt: >
     name="{{ item }}"
-    state="installed"
+    state="present"
   with_items:
     - wpagui
     - wpasupplicant
@@ -19,6 +19,7 @@
     owner="root"
     group="root"
     mode="0644"
+  when: lp_wpagui|lower == "yes"
   tags: lp_wpagui_disableNM
   
 - name: Configure managed=false in /etc/NetworkManager/NetworkManager.conf
@@ -26,14 +27,16 @@
     dest="/etc/NetworkManager/NetworkManager.conf"
     regexp="^managed"
     line="managed=false"
-  tags: lp_wpagui_configNM
+  when: lp_wpagui|lower == "yes"
+  tags: lp_wpagui_disableNM
 
 - name: Stop and disable NM
-  service: >
+  systemd: >
     name="network-manager"
-    state="stopped"
     enabled="no"
-  tags: lp_wpagui_stopNM
+    state="stopped"
+  when: lp_wpagui|lower == "yes"
+  tags: lp_wpagui_disableNM
 
 # EOF
 ...
