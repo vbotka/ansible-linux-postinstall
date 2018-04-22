@@ -172,5 +172,10 @@
     - lp_lid
     - linux_postinstall
 
+- import_tasks: speechd.yml
+  tags:
+    - lp_speechd
+    - linux_postinstall
+
 # EOF
 ...

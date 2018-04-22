@@ -1,0 +1,23 @@
+---
+# linux-postinstall speechd
+
+- debug:
+    msg: "lp_speechd={{ lp_speechd }}"
+  when: lp_debug|lower == "yes"
+
+- name: Enable and start speech-dispatcher
+  systemd: >
+    name="speech-dispatcher"
+    enabled="yes"
+    state="started"
+  when: lp_speechd|lower == "yes"
+
+- name: Stop and disable speech-dispatcher
+  systemd: >
+    name="speech-dispatcher"
+    enabled="no"
+    state="stopped"
+  when: lp_speechd|lower == "no"
+
+# EOF
+...

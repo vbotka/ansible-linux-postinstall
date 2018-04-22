@@ -13,15 +13,18 @@ linux-postinstall
 - cron
 - gpsd
 - grub
-- hostname and hosts
+- hostname
+- hosts
 - iptables
 - latex
+- lid
 - modem manager
 - modules
 - packages, repos, keys
 - pm-utils
 - postfix
 - smart
+- speech-dispatcher
 - ssh
 - sshd
 - sysctl
@@ -139,6 +142,7 @@ References
 - [SMART wiki](https://en.wikipedia.org/wiki/S.M.A.R.T.)
 - [Smartmontools](https://www.smartmontools.org/)
 - [Smartmontools Ubuntu](https://help.ubuntu.com/community/Smartmontools)
+- [speech-dispatcher](https://freebsoft.org/speechd)
 - [ssh_config man](https://man.openbsd.org/ssh_config)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
 - [VirtualBox wiki](https://www.virtualbox.org/wiki/)
