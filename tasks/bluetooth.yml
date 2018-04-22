@@ -1,6 +1,10 @@
 ---
 # linux-postinstall bluetooth
 
+- debug:
+    msg: "lp_bluetooth={{ lp_bluetooth }}"
+  when: lp_debug|lower == "yes"
+
 - name: Configure /etc/bluetooth/main.conf
   lineinfile: >
     dest="/etc/bluetooth/main.conf"
@@ -17,6 +21,13 @@
     enabled="yes"
     state="started"
   when: lp_bluetooth|lower == "yes"
+
+- name: Stop and disable bluetooth
+  systemd: >
+    name="bluetooth"
+    enabled="no"
+    state="stopped"
+  when: lp_bluetooth|lower == "no"
 
 # EOF
 ...
