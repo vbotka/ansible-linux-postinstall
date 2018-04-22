@@ -1,0 +1,23 @@
+---
+# linux-postinstall sudoers
+
+- name: Configure /etc/sudoers
+  lineinfile: >
+    path="/etc/sudoers"
+    line="#includedir /etc/sudoers.d"
+    create="yes"
+    backup="yes"
+
+- name: Configure /etc/sudoers.d/01
+  lineinfile: >
+    path="/etc/sudoers.d/01"
+    line="{{ item }}"
+    owner="{{ lp_sudoers_owner }}"
+    group="{{ lp_sudoers_group }}"
+    mode="{{ lp_sudoers_mode }}"
+    create="yes"
+    backup="yes"
+  with_items: "{{ lp_sudoers_01 }}"
+
+# EOF
+...

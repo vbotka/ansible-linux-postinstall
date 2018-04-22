@@ -177,5 +177,10 @@
     - lp_speechd
     - linux_postinstall
 
+- import_tasks: sudoers.yml
+  tags:
+    - lp_sudoers
+    - linux_postinstall
+
 # EOF
 ...

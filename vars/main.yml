@@ -234,5 +234,13 @@
 #lp_lid_upower_conf_vars:
 #  - { var: 'IgnoreLid', value: 'true' }
 
+# lp_speechd: "yes"
+
+# lp_sudoers_owner: "root"
+# lp_sudoers_group: "root"
+# lp_sudoers_mode: "0440"
+# lp_sudoers_01:
+#   - "admin ALL=(ALL) NOPASSWD: ALL"
+
 # EOF
 ...

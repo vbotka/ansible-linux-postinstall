@@ -141,5 +141,10 @@ lp_lid_upower_conf_vars: {}
 
 lp_speechd: "yes"
 
+lp_sudoers_owner: "root"
+lp_sudoers_group: "root"
+lp_sudoers_mode: "0440"
+lp_sudoers_01: []
+
 # EOF
 ...

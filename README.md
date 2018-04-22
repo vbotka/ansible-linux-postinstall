@@ -20,13 +20,15 @@ linux-postinstall
 - lid
 - modem manager
 - modules
-- packages, repos, keys
+- packages
 - pm-utils
 - postfix
+- repos
 - smart
 - speech-dispatcher
 - ssh
 - sshd
+- sudoers
 - sysctl
 - udev
 - users
