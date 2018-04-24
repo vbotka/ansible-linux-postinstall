@@ -33,9 +33,20 @@
 - name: Stop and disable NM
   systemd: >
     name="network-manager"
-    enabled="no"
     state="stopped"
+    enabled="no"
   when: lp_wpagui|lower == "yes"
+  tags: lp_wpagui_disableNM
+
+- name: Stop and disable all NM services
+  service: >
+    name="{{ item }}"
+    state="stopped"
+    enabled="no"
+  with_items:
+    - NetworkManager.service
+    - NetworkManager-dispatcher.service
+    - NetworkManager-wait-online.service
   tags: lp_wpagui_disableNM
 
 # EOF
