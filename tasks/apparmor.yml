@@ -7,7 +7,7 @@
 - name: Install packages
   apt: >
     name="{{ item }}"
-    state="installed"
+    state="present"
   with_items: "{{ lp_apparmor_packages }}"
   when: lp_apparmor|lower == "yes"
   tags: lp_apparmor_packages
