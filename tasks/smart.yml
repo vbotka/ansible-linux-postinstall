@@ -4,7 +4,7 @@
 - name: Install packages
   apt: >
     name="{{ item }}"
-    state="installed"
+    state="present"
   with_items: "{{ lp_smart_packages }}"
   when: lp_smart|lower == "yes"
   tags: lp_smart_packages
