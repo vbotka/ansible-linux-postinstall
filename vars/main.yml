@@ -100,6 +100,14 @@
 #lp_xen_global:
 #  - { var: "autoballoon", value: "\"0\"" }
 
+# LaTeX
+#lp_latex: "yes"
+#lp_latex_macros:
+#  - {  url: "http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins",
+#      dest: "/usr/share/texmf/tex/latex/labels" }
+#  - {  url: "http://mirrors.ctan.org/macros/latex/contrib/labels/labels.dtx",
+#      dest: "/usr/share/texmf/tex/latex/labels" }
+
 # Configure /etc/pm
 #lp_pm: "yes"
 #lp_pm_sleepd:

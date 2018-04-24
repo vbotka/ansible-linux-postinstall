@@ -4,7 +4,7 @@
 - name: Install packages
   apt: >
     name="{{ item }}"
-    state="installed"
+    state="present"
   with_items:
     - texlive-full
   tags: lp_latex_packages
@@ -15,27 +15,22 @@
     path="/usr/share/texmf/tex/latex/"
   tags: lp_latex_dir
 
-- name: Create directory /usr/share/texmf/tex/latex/labels
+- name: Create directories for macros
   file: >
     state="directory"
-    path="/usr/share/texmf/tex/latex/labels"
-  tags: lp_latex_labels
-  when: lp_latex_labels|lower == "yes"
+    path="{{ item.dest }}"
+  with_items: "{{ lp_latex_macros }}"
+  tags: lp_latex_macros
+  when: lp_latex_macros > 0
 
-- name: Download http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins
+- name: Download macros
   get_url: >
-    url="http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins"
-    dest="/usr/share/texmf/tex/latex/labels/labels.ins"
-    timeout="{{ lp_latex_labels_timeout }}"
+    url="{{ item.url }}"
+    dest="{{ item.dest }}"
+    timeout="{{ lp_latex_download_timeout }}"
+  with_items: "{{ lp_latex_macros }}"
   tags: lp_latex_labels
-  when: lp_latex_labels|lower == "yes"
-
-- name: Download http://mirrors.ctan.org/macros/latex/contrib/labels/labels.dtx
-  get_url: >
-    url="http://mirrors.ctan.org/macros/latex/contrib/labels/labels.dtx"
-    dest="/usr/share/texmf/tex/latex/labels/labels.dtx"
-  tags: lp_latex_labels
-  when: lp_latex_labels|lower == "yes"
+  when: lp_latex_macros > 0
 
 # TODO:
 # 1) Compile and register labels.sty
