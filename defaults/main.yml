@@ -50,7 +50,7 @@ lp_fqdn: ""
 lp_grub_default: []
 
 lp_xen: "no"
-lp_xen_version: "4.8"
+lp_xen_version: "4.9"
 lp_xen_packages:
   - xen-hypervisor-{{ lp_xen_version }}-amd64
   - xen-utils-{{ lp_xen_version }}
