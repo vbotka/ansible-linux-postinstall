@@ -6,7 +6,7 @@
 - name: Install packages
   apt: >
     name="{{ item }}"
-    state="installed"
+    state="present"
   with_items: "{{ lp_xen_packages }}"
   tags: lp_xen_packages
 
@@ -33,6 +33,7 @@
     dest="/etc/xen/xl.conf"
     regexp="^{{ item.var }}{{'='}}"
     line="{{ item.var }}{{'='}}{{ item.value }}"
+    create="yes"
     backup="yes"
   with_items: "{{ lp_xen_global }}"
   when: lp_xen_global > 0
