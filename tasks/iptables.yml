@@ -8,7 +8,6 @@
     owner="root"
     group="root"
     mode="0755"
-  tags: lp_iptables
 
 - name: Create /etc/network/iptables using {{ lp_iptables_type }}-iptables.j2
   template: >
@@ -18,7 +17,6 @@
     group="root"
     mode="0644"
   notify: reload iptables
-  tags: lp_iptables
 
 # EOF
 ...
