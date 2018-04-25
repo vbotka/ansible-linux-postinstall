@@ -1,5 +1,7 @@
 ---
 # linux-postinstall defaults
+#
+# Put distro specific variables and overrides to vars directory.
 
 lp_debug: "no"
 
@@ -145,6 +147,9 @@ lp_sudoers_owner: "root"
 lp_sudoers_group: "root"
 lp_sudoers_mode: "0440"
 lp_sudoers_01: []
+
+lp_nfsd: "no"
+lp_nfsd_exports: []
 
 # EOF
 ...

@@ -1,0 +1,11 @@
+---
+# Debian vars linux-postinstall
+
+lp_nfsd_packages:
+  - nfs-kernel-server
+lp_nfsd_services:
+  - nfs-kernel-server
+lp_nfsd_reload_service: "nfs-kernel-server"
+  
+# EOF
+...

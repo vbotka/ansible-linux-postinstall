@@ -12,6 +12,12 @@
     - lp_debug
     - linux_postinstall
 
+- name: Add {{ ansible_os_family }} specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+  tags:
+    - lp_vars
+    - linux_postinstall
+
 - import_tasks: repos.yml
   tags:
     - lp_repos
@@ -180,6 +186,11 @@
 - import_tasks: sudoers.yml
   tags:
     - lp_sudoers
+    - linux_postinstall
+
+- import_tasks: nfsd.yml
+  tags:
+    - lp_nfsd
     - linux_postinstall
 
 # EOF

@@ -1,0 +1,12 @@
+---
+# RedHat vars linux-postinstall
+
+lp_nfsd_packages:
+  - nfs-utils
+lp_nfsd_services:
+  - nfs
+  - nfslock
+lp_nfsd_reload_service: "nfs"
+
+# EOF
+...

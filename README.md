@@ -20,6 +20,7 @@ linux-postinstall
 - lid
 - modem manager
 - modules
+- nfsd
 - packages
 - pm-utils
 - postfix
@@ -139,6 +140,8 @@ References
 - [ModemManager](https://www.freedesktop.org/wiki/Software/ModemManager/)
 - [ModemManager. Remove from boot](https://askubuntu.com/questions/216114/how-can-i-remove-modem-manager-from-boot)
 - [NetworkManager disabling](https://help.ubuntu.com/community/NetworkManager#Disabling_NetworkManager)
+- [NFS Centos](https://www.centos.org/docs/5/html/5.2/Deployment_Guide/ch-nfs.html)
+- [NFS Ubuntu](https://help.ubuntu.com/lts/serverguide/network-file-system.html)
 - [PM pm-utils](https://wiki.archlinux.org/index.php/pm-utils)
 - [Postfix Basic Setup Howto](https://help.ubuntu.com/community/PostfixBasicSetupHowto)
 - [SMART wiki](https://en.wikipedia.org/wiki/S.M.A.R.T.)
