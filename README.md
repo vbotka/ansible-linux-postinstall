@@ -3,108 +3,119 @@ linux-postinstall
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/) Configure Linux.
-
-- aliases
-- apparmor
-- authorized keys
-- automatic upgrades
-- bluetooth
-- cron
-- gpsd
-- grub
-- hostname
-- hosts
-- iptables
-- latex
-- lid
-- modem manager
-- modules
-- nfsd
-- packages
-- pm-utils
-- postfix
-- repos
-- smart
-- speech-dispatcher
-- ssh
-- sshd
-- sudoers
-- sysctl
-- udev
-- users
-- virtualbox
-- wpa_gui
-- xen
-- xorg.conf.d
-- (wip ...)
+[Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/)
+Configure Linux: aliases, apparmor, authorized keys, automatic
+upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables,
+latex, lid, modem manager, modules, nfsd, packages, pm-utils, postfix,
+repos, smart, speech-dispatcher, ssh, sshd, sudoers, sysctl, udev,
+users, virtualbox, wpa_gui, xen, xorg.conf.d, (wip ...)
 
 
 Requirements
 ------------
 
-None.
+None. Tested with Ubuntu 18.04.
 
 
 Variables
 ---------
 
-TBD (Check the defaults).
+Read the defaults and examples in vars.
 
 
 Workflow
 --------
 
-1) Install role.
+1) Install the role.
 
 ```
 ansible-galaxy install vbotka.linux-postinstall
 ```
 
-2) Fit variables.
+2) Change variables.
 
+Make global changes in variables
 ```
-~/.ansible/roles/vbotka.linux-postinstall/vars/main.yml
-```
-
-3) Create playbook and inventory.
-
-Remote host
-```
-> cat ~/.ansible/playbooks/linux-postinstall.yml
----
-- hosts: linux-test
-  roles:
-    - role: vbotka.linux-postinstall
+roles/vbotka.linux-postinstall/vars/main.yml
 ```
 
+Put host specific variables to separate files
 ```
-> cat ~/.ansible/hosts
-[linux-test]
-<IP-OR-FQDN>
+vars/host1.example.com.yml
+```
 
-[linux-test:vars]
+3) Create the inventory.
+
+```
+> cat hosts
+[host1]
+host1.example.com
+
+[host1:vars]
 ansible_connection=ssh
 ansible_user=root
 ansible_python_interpreter=/usr/bin/python2.7
 ansible_perl_interpreter=/usr/bin/perl
 ```
 
-Localhost
+4) Create the playbook.
+
 ```
-> cat ~/.ansible/playbooks/linux-postinstall.yml
+> cat playbooks/linux-postinstall.yml
 
----
-
-- hosts: localhost
-  connection: local
-  become_user: my_user_name
-  become: yes
-  become_method: sudo
+- hosts: host1
   vars_files:
-    - ~/.ansible/vars/localhost.yml
+    - vars/host1.example.com.yml
   roles:
-    - vbotka.linux-postinstall
+    - role: vbotka.linux-postinstall
+```
+
+5) Run the playbook.
+```
+> ansible-playbook playbooks/linux-postinstall.yml
+```
+
+Best practice
+-------------
+
+Perform syntax check of the playbook
+```
+> ansible-playbook playbooks/linux-postinstall.yml --syntax-check
+```
+
+Run the playbook in in check mode first
+```
+> ansible-playbook playbooks/linux-postinstall.yml --check
+```
+
+If all is right run the playbook twice. In second run all tasks shall
+be OK and 0 changed, unreachable and failed.
+```
+> ansible-playbook playbooks/linux-postinstall.yml --check
+```
+
+Recommended configuration after the installation of OS
+------------------------------------------------------
+
+1) Configure users, sudoers and persistent network interfaces
+```
+> ansible-playbook playbooks/linux-postinstall.yml -t lp_users
+> ansible-playbook playbooks/linux-postinstall.yml -t lp_sudoers
+> ansible-playbook playbooks/linux-postinstall.yml -t lp_udev
+```
+
+2) Reboot
+
+3) Configure iptables
+```
+> ansible-playbook playbooks/linux-postinstall.yml -t lp_iptables
+```
+
+4) Configure network connection
+
+5) Configure other tasks
+```
+> ansible-playbook playbooks/linux-postinstall.yml
 ```
 
 
