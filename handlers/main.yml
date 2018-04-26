@@ -17,8 +17,10 @@
   command: "/usr/sbin/update-grub"
 
 - name: reload udev
-  systemd: name="udev", state="reloaded"
-# command: "/sbin/udevadm control --reload-rules"
+  command: "/sbin/udevadm control --reload-rules"
+#  Ubuntu 18.04 error: Failed to reload udev.service: Job type reload
+#  is not applicable for unit systemd-udevd.service
+#  systemd: name="udev" state="reloaded"
 
 - name: restart udev
   systemd: name="udev" state="restarted"
