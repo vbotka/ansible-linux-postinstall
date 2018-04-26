@@ -91,7 +91,7 @@ Run the playbook in in check mode first
 If all is right run the playbook twice. In second run all tasks shall
 be OK and 0 changed, unreachable and failed.
 ```
-> ansible-playbook playbooks/linux-postinstall.yml --check
+> ansible-playbook playbooks/linux-postinstall.yml
 ```
 
 Recommended configuration after the installation of OS
