@@ -67,7 +67,7 @@ ansible_perl_interpreter=/usr/bin/perl
   vars_files:
     - vars/host1.example.com.yml
   roles:
-    - role: vbotka.linux-postinstall
+    - vbotka.linux-postinstall
 ```
 
 5) Run the playbook.
@@ -149,6 +149,7 @@ References
 - [LaTeX](https://help.ubuntu.com/community/LaTeX)
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
 - [LaTeX macros/latex/contrib/labels](https://www.ctan.org/tex-archive/macros/latex/contrib/labels)
+- [Lid Ubuntu](https://askubuntu.com/questions/85705/stop-laptop-from-suspending-when-closing-lid-in-lightdm)
 - [ModemManager](https://www.freedesktop.org/wiki/Software/ModemManager/)
 - [ModemManager. Remove from boot](https://askubuntu.com/questions/216114/how-can-i-remove-modem-manager-from-boot)
 - [NetworkManager disabling](https://help.ubuntu.com/community/NetworkManager#Disabling_NetworkManager)
