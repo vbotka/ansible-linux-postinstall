@@ -69,7 +69,8 @@
 # groups must not comprise primary group
 
 #lp_aliases:
-#  - { alias: "root", user: "admin" }
+# - { alias: "root", users: [ "admin", "user1" ] }
+# - { alias: "admin", users: [ "user1", ] }
 
 # Copy authorized keys
 #lp_authorized_keys:
