@@ -1,13 +1,14 @@
 ---
 
 - name: Configure /etc/aliases
-  lineinfile: >
+  template: >
+    src="aliases.j2"
     dest="/etc/aliases"
-    regexp="^{{ item.alias }}{{':'}}"
-    line="{{ item.alias }}{{':'}} {{ item.user }}"
+    owner="root"
+    group="root"
+    mode="0644"
     backup="yes"
   with_items: "{{ lp_aliases }}"
-  when: lp_aliases > 0
   notify: newaliases
 
 # EOF
