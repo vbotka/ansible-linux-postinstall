@@ -10,11 +10,12 @@ latex, lid, modem manager, modules, nfsd, packages, pm-utils, postfix,
 repos, smart, speech-dispatcher, ssh, sshd, sudoers, sysctl, udev,
 users, virtualbox, wpa_gui, xen, xorg.conf.d, (wip ...)
 
+Tested with Ubuntu 18.04.
 
 Requirements
 ------------
 
-None. Tested with Ubuntu 18.04.
+None.
 
 
 Variables
@@ -165,7 +166,8 @@ References
 - [ssh_config man](https://man.openbsd.org/ssh_config)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
 - [VirtualBox wiki](https://www.virtualbox.org/wiki/)
-- [Install Oracle VM VirtualBox in Ubuntu](http://www.elinuxbook.com/install-oracle-vm-virtualbox-in-ubuntu-16-04/)
+- [VirtualBox - Ubuntu community](https://help.ubuntu.com/community/VirtualBox)
+- [VirtualBox - Install Oracle VM VirtualBox in Ubuntu](http://www.elinuxbook.com/install-oracle-vm-virtualbox-in-ubuntu-16-04/)
 - [Xen](https://wiki.ubuntu.com/Kernel/Reference/Xen)
 - [Xen Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
