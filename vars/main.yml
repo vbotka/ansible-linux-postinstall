@@ -26,6 +26,7 @@
 # linux-postinstall modules
 #lp_modules:
 #  - { name: 'br_netfilter', params: '' }
+#  - { name: 'vboxdrv', params: '' }
 
 # linux-postinstall sysctl
 # https://help.ubuntu.com/community/Xen
