@@ -126,7 +126,7 @@ lp_smart_devices: {}
 lp_virtualbox: "no"
 lp_virtualbox_version: "5.2"
 lp_virtualbox_repos:
-  - "deb https://download.virtualbox.org/virtualbox/debian {{ ansible_lsb.codename }} contrib"
+  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/ {{ ansible_lsb.codename }} contrib"
 lp_virtualbox_keys:
   - https://www.virtualbox.org/download/oracle_vbox_2016.asc
   - https://www.virtualbox.org/download/oracle_vbox.asc
