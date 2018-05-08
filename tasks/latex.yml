@@ -31,6 +31,7 @@
   with_items: "{{ lp_latex_macros }}"
   tags: lp_latex_labels
   when: lp_latex_macros > 0
+  ignore_errors: "{{ lp_latex_get_url_ignore_errors }}"
 
 # TODO:
 # 1) Compile and register labels.sty

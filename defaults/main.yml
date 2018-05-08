@@ -66,6 +66,7 @@ lp_xen_global: []
 lp_latex: "no"
 lp_latex_download_timeout: "20"
 lp_latex_macros: {}
+lp_latex_get_url_ignore_errors: "no"
 
 lp_unattended_upgrades: "no"
 
