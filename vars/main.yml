@@ -252,5 +252,71 @@
 # lp_sudoers_01:
 #   - "admin ALL=(ALL) NOPASSWD: ALL"
 
+#lp_netplan: "yes"
+#lp_netplan_renderer: "networkd"
+#lp_netplan_conf:
+#  - file: "10-ethernet.yaml"
+#    category: "ethernets"
+#    conf: |
+#      eth0:
+#        optional: true
+#        match:
+#          macaddress: "68:f7:28:fc:a1:c4"
+#        set-name: eth0
+#        dhcp4: true
+#      enp3s0:
+#        optional: true
+#        dhcp4: true
+#      enp4s0:
+#        optional: true
+#        dhcp4: true
+#  - file: "20-wifi.yaml"
+#    category: "wifis"
+#    conf: |
+#      wlp2s0b1:
+#        dhcp4: no
+#        dhcp6: no
+#        addresses: [192.168.0.21/24]
+#        gateway4: 192.168.0.1
+#        nameservers:
+#          addresses: [192.168.0.1, 8.8.8.8]
+#        access-points:
+#          "network_ssid_name":
+#            password: "**********"
+#  - file: "30-bond.yaml"
+#    category: "bonds"
+#    conf: |
+#      bond0:
+#        dhcp4: yes
+#        interfaces:
+#          - enp3s0
+#          - enp4s0
+#        parameters:
+#          mode: active-backup
+#          primary: enp3s0
+#  - file: "40-bridge.yaml"
+#    category: "bridges"
+#    conf: |
+#      xenbr0:
+#        optional: true
+#        addresses:
+#          - 10.1.1.1/16
+#        interfaces:
+#          - eth0
+#  - file: "50-vlan.yaml"
+#    category: "vlans"
+#    conf: |
+#      vlan15:
+#        id: 15
+#        link: eth0
+#        addresses: [ "10.3.99.5/24" ]
+#      vlan10:
+#        id: 10
+#        link: eth0
+#        addresses: [ "10.3.98.5/24" ]
+#        nameservers:
+#          addresses: [ "127.0.0.1" ]
+#          search: [ domain1.example.com, domain2.example.com ]
+
 # EOF
 ...

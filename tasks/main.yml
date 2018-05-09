@@ -193,5 +193,11 @@
     - lp_nfsd
     - linux_postinstall
 
+- import_tasks: netplan.yml
+  when: lp_netplan|lower == "yes"
+  tags:
+    - lp_netplan
+    - linux_postinstall
+
 # EOF
 ...

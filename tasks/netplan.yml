@@ -1,0 +1,32 @@
+---
+# linux-postinstall netplan
+
+# Configure 01-network-manager-all.yaml only if it already exists.
+- stat: path="{{ lp_netplan_root }}/01-network-manager-all.yaml"
+  register: file_status
+
+- name: Configure {{ lp_netplan_root }}/01-network-manager-all.yaml
+  template: >
+    src="netplan-network-manager-all.j2"
+    dest="{{ lp_netplan_root }}/01-network-manager-all.yaml"
+    owner="{{ lp_netplan_owner }}"
+    group="{{ lp_netplan_group }}"
+    mode="{{ lp_netplan_mode }}"
+    backup="yes"
+  notify: netplan apply
+  when: file_status.stat.exists
+
+- name: Configure files in {{ lp_netplan_root }}
+  template: >
+    src="netplan-conf.j2"
+    dest="{{ lp_netplan_root }}/{{ item.file }}"
+    owner="{{ lp_netplan_owner }}"
+    group="{{ lp_netplan_group }}"
+    mode="{{ lp_netplan_mode }}"
+    backup="yes"
+  with_items: "{{ lp_netplan_conf }}"
+  notify: netplan apply
+  when: lp_netplan_conf > 0
+
+# EOF
+...

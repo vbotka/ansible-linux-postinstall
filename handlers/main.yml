@@ -59,5 +59,9 @@
   systemd: name="{{ lp_nfsd_reload_service }}" state="reloaded"
   when: lp_nfsd|lower == "yes"
 
+- name: netplan apply
+  shell: netplan apply
+  when: lp_netplan|lower == "yes"
+
 # EOF
 ...

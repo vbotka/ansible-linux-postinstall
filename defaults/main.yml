@@ -152,5 +152,14 @@ lp_sudoers_01: []
 lp_nfsd: "no"
 lp_nfsd_exports: []
 
+lp_netplan: "no"
+lp_netplan_root: "/etc/netplan"
+lp_netplan_owner: "root"
+lp_netplan_group: "root"
+lp_netplan_mode: "0644"
+lp_netplan_version: "2"
+lp_netplan_renderer: "NetworkManager"
+lp_netplan_conf: {}
+
 # EOF
 ...
