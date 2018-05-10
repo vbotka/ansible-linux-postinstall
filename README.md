@@ -10,7 +10,7 @@ latex, lid, modem manager, modules, netplan, nfsd, packages, pm-utils,
 postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, sysctl,
 udev, users, virtualbox, wpa_gui, xen, xorg.conf.d, (wip ...)
 
-Tested with Ubuntu 18.04.
+Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
 Requirements
 ------------
@@ -153,6 +153,7 @@ References
 - [Lid Ubuntu](https://askubuntu.com/questions/85705/stop-laptop-from-suspending-when-closing-lid-in-lightdm)
 - [ModemManager](https://www.freedesktop.org/wiki/Software/ModemManager/)
 - [ModemManager. Remove from boot](https://askubuntu.com/questions/216114/how-can-i-remove-modem-manager-from-boot)
+- [modules - CentOS Persistent Module Loading](https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-kernel-modules-persistant.html)
 - [Netplan](https://netplan.io/)
 - [NetworkManager disabling](https://help.ubuntu.com/community/NetworkManager#Disabling_NetworkManager)
 - [NFS Centos](https://www.centos.org/docs/5/html/5.2/Deployment_Guide/ch-nfs.html)
