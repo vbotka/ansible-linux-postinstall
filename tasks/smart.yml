@@ -1,12 +1,14 @@
 ---
 # linux-postinstall smart
 
-- name: Install packages
+- name: Install packages Debian
   apt: >
     name="{{ item }}"
     state="present"
   with_items: "{{ lp_smart_packages }}"
-  when: lp_smart|lower == "yes"
+  when:
+    - lp_smart|lower == "yes"
+    - ansible_os_family == "Debian"
   tags: lp_smart_packages
 
 - name: Configure {{ lp_smart_conf_file }}. Do not scan for devices.

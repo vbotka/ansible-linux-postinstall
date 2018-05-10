@@ -7,6 +7,7 @@
     state="present"
   with_items:
     - texlive-full
+  when: ansible_os_family == "Debian"
   tags: lp_latex_packages
 
 - name: Create directory /usr/share/texmf/tex/latex

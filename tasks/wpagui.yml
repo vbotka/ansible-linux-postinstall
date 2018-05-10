@@ -10,6 +10,7 @@
   with_items:
     - wpagui
     - wpasupplicant
+  when: ansible_os_family == "Debian"
   tags: lp_wpagui_packages
 
 - name: Disable NM /etc/init/network-manager.override

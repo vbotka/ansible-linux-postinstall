@@ -9,7 +9,9 @@
     name="{{ item }}"
     state="present"
   with_items: "{{ lp_apparmor_packages }}"
-  when: lp_apparmor|lower == "yes"
+  when:
+    - lp_apparmor|lower == "yes"
+    - ansible_os_family == "Debian"
   tags: lp_apparmor_packages
 
 - include_tasks: apparmor-disable.yml

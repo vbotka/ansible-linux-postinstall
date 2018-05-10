@@ -6,6 +6,7 @@
     name="{{ item.name }}"
     selection="{{ item.selection }}"
   with_items: "{{ lp_packages_selections_preinstall }}"
+  when: ansible_os_family == "Debian"
   tags: lp_packages_selections_preinstall
 
 - name: Install packages
@@ -13,6 +14,7 @@
     name="{{ item }}"
     state="present"
   with_items: "{{ lp_packages_install }}"
+  when: ansible_os_family == "Debian"
   tags: lp_packages_install
 
 - name: Remove packages
@@ -21,6 +23,7 @@
     state="absent"
     autoremove="{{ lp_packages_autoremove }}"
   with_items: "{{ lp_packages_remove }}"
+  when: ansible_os_family == "Debian"
   tags: lp_packages_remove
 
 - name: Configure package selections after Install/Remove
@@ -28,6 +31,7 @@
     name="{{ item.name }}"
     selection="{{ item.selection }}"
   with_items: "{{ lp_packages_selections_postinstall }}"
+  when: ansible_os_family == "Debian"
   tags: lp_packages_selections_postinstall
 
 # EOF

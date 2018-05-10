@@ -10,18 +10,21 @@
     url="{{ item }}"
     state="present"
   with_items: "{{ lp_virtualbox_keys }}"
+  when: ansible_os_family == "Debian"
 
 - name: Add repository of VirtualBox
   apt_repository: >
     repo="{{ item }}"
     state="present"
   with_items: "{{ lp_virtualbox_repos }}"
+  when: ansible_os_family == "Debian"
 
 - name: Install VirtualBox
   apt: >
     name="{{ item }}"
     state="present"
   with_items: "{{ lp_virtualbox_install }}"
+  when: ansible_os_family == "Debian"
 
 # EOF
 ...

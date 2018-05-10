@@ -8,7 +8,9 @@
   with_items:
     - gpsd
     - gpsd-clients
-  when: lp_gpsd|lower == "yes"
+  when:
+    - lp_gpsd|lower == "yes"
+    - ansible_os_family == "Debian"
   tags: lp_gpsd_packages
 
 - name: Add user gpsd to group dialout

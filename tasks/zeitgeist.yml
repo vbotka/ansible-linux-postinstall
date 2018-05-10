@@ -7,14 +7,18 @@
     state: absent
     name: zeitgeist
     purge: yes
-  when: lp_zeitgeist|lower == "no"
+  when:
+    - lp_zeitgeist|lower == "no"
+    - ansible_os_family == "Debian"
 
 - name: Remove zeitgeist-*
   apt:
     state: absent
     name: zeitgeist-*
     purge: yes
-  when: lp_zeitgeist|lower == "no"
+  when:
+    - lp_zeitgeist|lower == "no"
+    - ansible_os_family == "Debian"
 
 #- name: Disable zeitgeist
 #  service:

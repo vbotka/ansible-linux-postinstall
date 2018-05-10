@@ -8,6 +8,7 @@
     name="{{ item }}"
     state="present"
   with_items: "{{ lp_xen_packages }}"
+  when: ansible_os_family == "Debian"
   tags: lp_xen_packages
 
 - name: Configure GRUB_CMDLINE_XEN_DEFAULT in /etc/default/grub
