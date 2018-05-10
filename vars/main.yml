@@ -271,8 +271,18 @@
 #        optional: true
 #        dhcp4: true
 #  - file: "20-wifi.yaml"
+#    owner: "root"
+#    group: "root"
+#    mode: "0640"
 #    category: "wifis"
 #    conf: |
+#      wlan2:
+#        optional: True
+#        dhcp6: False
+#        dhcp4: True
+#        access-points:
+#          "network_ssid_name_1":
+#            password: "**********"
 #      wlp2s0b1:
 #        dhcp4: no
 #        dhcp6: no
@@ -281,7 +291,7 @@
 #        nameservers:
 #          addresses: [192.168.0.1, 8.8.8.8]
 #        access-points:
-#          "network_ssid_name":
+#          "network_ssid_name_2":
 #            password: "**********"
 #  - file: "30-bond.yaml"
 #    category: "bonds"

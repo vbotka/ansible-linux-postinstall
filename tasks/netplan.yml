@@ -20,9 +20,9 @@
   template: >
     src="netplan-conf.j2"
     dest="{{ lp_netplan_root }}/{{ item.file }}"
-    owner="{{ lp_netplan_owner }}"
-    group="{{ lp_netplan_group }}"
-    mode="{{ lp_netplan_mode }}"
+    owner="{{ item.owner | default(lp_netplan_owner) }}"
+    group="{{ item.group | default(lp_netplan_group) }}"
+    mode="{{ item.mode | default(lp_netplan_mode) }}"
     backup="yes"
   with_items: "{{ lp_netplan_conf }}"
   notify: netplan apply
