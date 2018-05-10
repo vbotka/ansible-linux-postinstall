@@ -1,6 +1,8 @@
 ---
 # Debian vars linux-postinstall
 
+lp_modules_conf: "/etc/modules"
+
 lp_nfsd_packages:
   - nfs-kernel-server
 lp_nfsd_services:
