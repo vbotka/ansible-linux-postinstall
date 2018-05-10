@@ -4,9 +4,11 @@
 - name: Configure /etc/sudoers
   lineinfile: >
     path="/etc/sudoers"
-    line="#includedir /etc/sudoers.d"
+    line="{{ item.line }}"
+    state="{{ item.state | default('present') }}"
     create="yes"
     backup="yes"
+  with_items: "{{ lp_sudoers_conf }}"
 
 - name: Configure /etc/sudoers.d/01
   lineinfile: >
