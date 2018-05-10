@@ -17,8 +17,15 @@
     group="root"
     mode="0644"
     backup="yes"
+  when:
+    - lp_hostname|length > 0
+    - ansible_os_family == "Debian"
+#  notify: set hostname
+
+- name: Configure hostname
+  hostname: >
+    name="{{ lp_hostname }}"
   when: lp_hostname|length > 0
-  notify: set hostname
-  
+
 # EOF
 ...
