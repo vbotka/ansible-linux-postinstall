@@ -149,7 +149,7 @@ References
 - [Iptables HowTo](https://help.ubuntu.com/community/IptablesHowTo)
 - [LaTeX](https://help.ubuntu.com/community/LaTeX)
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
-- [LaTeX macros/latex/contrib/labels](https://www.ctan.org/tex-archive/macros/latex/contrib/labels)
+- [LaTeX macros/latex/contrib/](https://www.ctan.org/tex-archive/macros/latex/contrib/)
 - [Lid Ubuntu](https://askubuntu.com/questions/85705/stop-laptop-from-suspending-when-closing-lid-in-lightdm)
 - [ModemManager](https://www.freedesktop.org/wiki/Software/ModemManager/)
 - [ModemManager. Remove from boot](https://askubuntu.com/questions/216114/how-can-i-remove-modem-manager-from-boot)
