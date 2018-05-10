@@ -45,6 +45,7 @@
 #  - { kernel: "wlan*", mac: "<MAC-ADDRESS>", name: "wlan1" }
 #  - { kernel: "wlan*", mac: "<MAC-ADDRESS>", name: "wlan2" }
 #  - { kernel: "wlan*", mac: "<MAC-ADDRESS>", name: "wlan3" }
+
 #lp_udev_hci_name_rules:
 #  - { product: "Broadcom Bluetooth Device", name: "hci0"}
 #  - { product: "CSR8510 A10", name: "hci1" }
@@ -55,6 +56,7 @@
 #lp_udev_hci_run_rules:
 #  - { product: "Broadcom Bluetooth Device", run: "/bin/hciconfig hci0 up auth encrypt" }
 #  - { product: "CSR8510 A10", run: "/bin/hciconfig hci1 up auth encrypt" }
+
 #lp_users:
 #  - { name: "admin",
 #      shell: "/bin/bash",

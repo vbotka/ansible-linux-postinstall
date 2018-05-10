@@ -3,9 +3,9 @@
 - name: Add or update users
   user: >
     name="{{ item.name }}"
-    shell="{{ item.shell }}"
-    password="{{ item.password }}"
-    update_password="{{ item.update_password }}"
+    shell="{{ item.shell | default(omit) }}"
+    password="{{ item.password | default(omit) }}"
+    update_password="{{ item.update_password | default(omit) }}"
   with_items: "{{ lp_users }}"
 
 - name: Add users to additional groups
