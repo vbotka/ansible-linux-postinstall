@@ -3,6 +3,10 @@
 
 lp_modules_conf: "/etc/rc.modules"
 
+lp_hosts_default:
+  - { ip: "127.0.0.1", name1: "localhost", name2: "localhost.localdomain", name3: "localhost4", name4: "localhost4.localdomain4" }
+  - { ip: "::1", name1: "localhost", name2: "localhost.localdomain", name3: "localhost6", name4: "localhost6.localdomain6" }
+
 lp_nfsd_packages:
   - nfs-utils
 lp_nfsd_services:
