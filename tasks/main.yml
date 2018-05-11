@@ -132,7 +132,6 @@
     - linux_postinstall
 
 - import_tasks: sshd.yml
-  when: lp_sshd|lower == "yes"
   tags:
     - lp_sshd
     - linux_postinstall

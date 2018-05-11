@@ -13,11 +13,17 @@
 
 - name: Enable and start sshd
   systemd: >
-    name="ssh"
+    name="{{ lp_service_sshd }}"
     enabled="yes"
     state="started"
+  when: lp_sshd|lower == "yes"
 
-# TODO: Configure enable/disable started/stopped ssh
+- name: Disable and stop sshd
+  systemd: >
+    name="{{ lp_service_sshd }}"
+    enabled="no"
+    state="stopped"
+  when: lp_sshd|lower == "no"
 
 # EOF
 ...
