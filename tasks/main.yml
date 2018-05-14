@@ -30,6 +30,11 @@
     - lp_vars
     - linux_postinstall
 
+- import_tasks: swap.yml
+  tags:
+    - lp_swap
+    - linux_postinstall
+
 - import_tasks: repos.yml
   tags:
     - lp_repos

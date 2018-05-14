@@ -336,5 +336,16 @@
 #          addresses: [ "127.0.0.1" ]
 #          search: [ domain1.example.com, domain2.example.com ]
 
+# swap
+#lp_swap: "yes"
+#lp_swap_file: "/usr/swap0"
+#lp_swap_size: "4096"
+#lp_swap_stsize: "4294967296"
+#lp_swap_size: "2048"
+#lp_swap_stsize: "2147483648"
+#lp_swap_size: "1536"
+#lp_swap_stsize: "1610612736"
+
+
 # EOF
 ...

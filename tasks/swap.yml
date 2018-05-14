@@ -1,0 +1,43 @@
+---
+
+- name: Create swapfile {{ lp_swap_file }}
+  shell: sh -c 'if [ ! -e {{ lp_swap_file }} ]; then printf "create"; fi'
+  register: command_result
+  changed_when: command_result.stdout == "create"
+  notify: create and mount swap file
+  when: lp_swap|lower == "yes"
+
+- name: Change swapfile {{ lp_swap_file }}
+  shell: sh -c 'if [ -e {{ lp_swap_file }} ] && [ "`stat --format '%s' {{ lp_swap_file }}`" -ne "{{ lp_swap_stsize }}" ]; then printf "change"; fi'
+  register: command_result
+  changed_when: command_result.stdout == "change"
+  notify: change and mount swap file
+  when: lp_swap|lower == "yes"
+  
+- name: Create swap entry in /etc/fstab
+  mount: >
+    name="none"
+    src="{{ lp_swap_file }}"
+    fstype="swap"
+    opts="sw"
+    passno="0"
+    dump="0"
+    state="present"
+    backup="yes"
+  when: lp_swap|lower == "yes"
+
+- name: Remove swap entry from /etc/fstab
+  mount: >
+    name="none"
+    src="{{ lp_swap_file }}"
+    fstype="swap"
+    opts="sw"
+    passno="0"
+    dump="0"
+    state="absent"
+    backup="yes"
+  notify: remove swap file
+  when: lp_swap|lower == "no"
+
+# EOF
+...

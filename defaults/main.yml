@@ -163,5 +163,7 @@ lp_netplan_version: "2"
 lp_netplan_renderer: "NetworkManager"
 lp_netplan_conf: {}
 
+lp_swap: "no"
+
 # EOF
 ...

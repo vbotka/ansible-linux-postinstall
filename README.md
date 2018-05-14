@@ -7,8 +7,8 @@ linux-postinstall
 Configure Linux: aliases, apparmor, authorized keys, automatic
 upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables,
 latex, lid, modem manager, modules, netplan, nfsd, packages, pm-utils,
-postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, sysctl,
-udev, users, virtualbox, wpa_gui, xen, xorg.conf.d, (wip ...)
+postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap,
+sysctl, udev, users, virtualbox, wpa_gui, xen, xorg.conf.d, (wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
@@ -166,6 +166,7 @@ References
 - [Smartmontools Ubuntu](https://help.ubuntu.com/community/Smartmontools)
 - [speech-dispatcher](https://freebsoft.org/speechd)
 - [ssh_config man](https://man.openbsd.org/ssh_config)
+- [SwapFaq](https://help.ubuntu.com/community/SwapFaq)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
 - [VirtualBox wiki](https://www.virtualbox.org/wiki/)
 - [VirtualBox - Ubuntu community](https://help.ubuntu.com/community/VirtualBox)
