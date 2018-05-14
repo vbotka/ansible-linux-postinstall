@@ -21,8 +21,8 @@
     state="directory"
     path="{{ item.dest }}"
   with_items: "{{ lp_latex_macros }}"
-  tags: lp_latex_macros
   when: lp_latex_macros > 0
+  tags: lp_latex_macros
 
 - name: Download macros
   get_url: >
@@ -30,9 +30,12 @@
     dest="{{ item.dest }}"
     timeout="{{ lp_latex_download_timeout }}"
   with_items: "{{ lp_latex_macros }}"
-  tags: lp_latex_labels
   when: lp_latex_macros > 0
   ignore_errors: "{{ lp_latex_get_url_ignore_errors }}"
+  changed_when: false
+  tags: lp_latex_labels
+# get_url: check mode reports changes with force enabled
+# https://github.com/ansible/ansible/issues/25418
 
 # TODO:
 # 1) Compile and register labels.sty
