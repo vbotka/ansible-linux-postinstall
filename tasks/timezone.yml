@@ -1,0 +1,13 @@
+---
+
+- name: Debug
+  debug:
+    msg: "lp_timezone_zoneinfo [ {{ lp_timezone_zoneinfo }} ]"
+  when: lp_debug|lower == "yes"
+
+- name: Set timezone {{ lp_timezone_zoneinfo }}
+  timezone:
+    name: "{{ lp_timezone_zoneinfo|default(UTC) }}"
+
+# EOF
+...

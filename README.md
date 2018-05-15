@@ -4,11 +4,13 @@ linux-postinstall
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/)
+
 Configure Linux: aliases, apparmor, authorized keys, automatic
 upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables,
 latex, lid, modem manager, modules, netplan, nfsd, packages, pm-utils,
 postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap,
-sysctl, udev, users, virtualbox, wpa_gui, xen, xorg.conf.d, (wip ...)
+sysctl, timezone, udev, users, virtualbox, wpa_gui, xen, xorg.conf.d,
+(wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 

@@ -165,5 +165,8 @@ lp_netplan_conf: {}
 
 lp_swap: "no"
 
+lp_timezone: "no"
+lp_timezone_zoneinfo: "UTC"
+
 # EOF
 ...
