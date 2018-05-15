@@ -135,6 +135,10 @@ Author Information
 References
 ----------
 
+- [Ubuntu Desktop Guide](https://help.ubuntu.com/lts/ubuntu-help/index.html)
+- [Ubuntu Server Guide](https://help.ubuntu.com/lts/serverguide/index.html)
+- [RHEL 7 SYSTEM ADMINISTRATOR'S GUIDE](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index)
+
 - [AppArmor wiki](https://gitlab.com/apparmor/apparmor/wikis/home)
 - [AppArmor wiki Ubuntu](https://wiki.ubuntu.com/AppArmor)
 - [AppArmor wiki Ubuntu community](https://help.ubuntu.com/community/AppArmor)
