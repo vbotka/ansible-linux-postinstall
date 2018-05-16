@@ -1,0 +1,12 @@
+# {{ ansible_managed }}
+
+[Time]
+{% if lp_timesyncd_NTP|length > 0 %}
+NTP={{ lp_timesyncd_NTP }}
+{% endif %}
+FallbackNTP={{ lp_timesyncd_FallbackNTP }}
+RootDistanceMaxSec={{ lp_timesyncd_RootDistanceMaxSec }}
+PollIntervalMinSec={{ lp_timesyncd_PollIntervalMinSec }}
+PollIntervalMaxSec={{ lp_timesyncd_PollIntervalMaxSec }}
+
+# EOF

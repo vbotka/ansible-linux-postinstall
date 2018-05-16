@@ -347,5 +347,9 @@
 #lp_swap_stsize: "2147483648"
 #lp_swap_stsize: "1610612736"
 
+#lp_timesyncd: "yes"
+#lp_timesyncd_NTP: "0.ubuntu.pool.ntp.org, 1.ubuntu.pool.ntp.org, 2.ubuntu.pool.ntp.org, 3.ubuntu.pool.ntp.org"
+
+
 # EOF
 ...

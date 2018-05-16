@@ -139,7 +139,8 @@ References
 
 - [Ubuntu Desktop Guide](https://help.ubuntu.com/lts/ubuntu-help/index.html)
 - [Ubuntu Server Guide](https://help.ubuntu.com/lts/serverguide/index.html)
-- [RHEL 7 SYSTEM ADMINISTRATOR'S GUIDE](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index)
+- [RHEL 7 System Administrator's Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index)
+- [Ubuntu Release Notes](https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes#New_features_in_18.04)
 
 - [AppArmor wiki](https://gitlab.com/apparmor/apparmor/wikis/home)
 - [AppArmor wiki Ubuntu](https://wiki.ubuntu.com/AppArmor)
@@ -160,6 +161,7 @@ References
 - [ModemManager](https://www.freedesktop.org/wiki/Software/ModemManager/)
 - [ModemManager. Remove from boot](https://askubuntu.com/questions/216114/how-can-i-remove-modem-manager-from-boot)
 - [modules - CentOS Persistent Module Loading](https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-kernel-modules-persistant.html)
+- [NTP - Time Synchronization Ubuntu](https://help.ubuntu.com/lts/serverguide/NTP.html)
 - [Netplan](https://netplan.io/)
 - [NetworkManager disabling](https://help.ubuntu.com/community/NetworkManager#Disabling_NetworkManager)
 - [NFS Centos](https://www.centos.org/docs/5/html/5.2/Deployment_Guide/ch-nfs.html)
@@ -173,6 +175,7 @@ References
 - [speech-dispatcher](https://freebsoft.org/speechd)
 - [ssh_config man](https://man.openbsd.org/ssh_config)
 - [SwapFaq](https://help.ubuntu.com/community/SwapFaq)
+- [timesyncd](https://www.freedesktop.org/software/systemd/man/systemd-timesyncd.service.html#)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
 - [VirtualBox wiki](https://www.virtualbox.org/wiki/)
 - [VirtualBox - Ubuntu community](https://help.ubuntu.com/community/VirtualBox)

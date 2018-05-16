@@ -168,5 +168,12 @@ lp_swap: "no"
 lp_timezone: "no"
 lp_timezone_zoneinfo: "UTC"
 
+lp_timesyncd: "yes"
+lp_timesyncd_NTP: ""
+lp_timesyncd_FallbackNTP: "ntp.ubuntu.com"
+lp_timesyncd_RootDistanceMaxSec: "5"
+lp_timesyncd_PollIntervalMinSec: "32"
+lp_timesyncd_PollIntervalMaxSec: "2048"
+
 # EOF
 ...

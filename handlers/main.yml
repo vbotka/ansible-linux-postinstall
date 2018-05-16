@@ -1,6 +1,9 @@
 ---
 # linux-postinstall handlers
 
+- name: restart timesyncd
+  service: name="systemd-timesyncd.service" state="restarted"
+
 - name: load sysctl settings
   command: "/sbin/sysctl -p /etc/sysctl.conf"
 

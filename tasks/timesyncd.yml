@@ -1,0 +1,47 @@
+---
+- name: Debug
+  vars:
+    msg: |
+      lp_timesyncd [ {{ lp_timesyncd }} ]
+      lp_timesyncd_NTP [ {{ lp_timesyncd_NTP }} ]
+      lp_timesyncd_FallbackNTP [ {{ lp_timesyncd_FallbackNTP }} ]
+      lp_timesyncd_RootDistanceMaxSec [ {{ lp_timesyncd_RootDistanceMaxSec }} ]
+      lp_timesyncd_PollIntervalMinSec [ {{ lp_timesyncd_PollIntervalMinSec }} ]
+      lp_timesyncd_PollIntervalMaxSec [ {{ lp_timesyncd_PollIntervalMaxSec }} ]
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug|lower == "yes"
+
+- name: Configure /etc/systemd/timesyncd.conf
+  template: >
+    src="timesyncd.conf.j2"
+    dest="/etc/systemd/timesyncd.conf"
+    owner="root"
+    group="root"
+    mode="0644"
+    backup="yes"
+  notify: restart timesyncd
+
+- name: Enable and start timesyncd
+  service: >
+    name="systemd-timesyncd.service"
+    state="started"
+    enabled="yes"
+  when: lp_timesyncd == "yes"
+
+- name: Disable and stop timesyncd
+  service: >
+    name="systemd-timesyncd.service"
+    state="stopped"
+    enabled="no"
+  when: lp_timesyncd == "no"
+
+# Notes on CentOS
+# * systemd compiled without timesyncd service in CentOS 7 ?
+# * use ntpd or chrony only ?
+# https://unix.stackexchange.com/questions/286708/
+# centos-7-2-minimal-time-synchronization-timedated-and-or-ntpd-chrony
+# https://www.freedesktop.org/wiki/Software/systemd/timedated/
+
+# EOF
+...
