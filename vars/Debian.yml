@@ -2,6 +2,7 @@
 # Debian vars linux-postinstall
 
 lp_service_sshd: "ssh"
+lp_path_sshd: "/usr/sbin/sshd"
 
 lp_modules_conf: "/etc/modules"
 
