@@ -1,15 +1,27 @@
 ---
 # linux-postinstall virtualbox
 
-- debug:
-    msg: "{{ ansible_lsb.description }} {{ ansible_lsb.codename }}"
+- name: Debug
+  vars:
+    msg: |
+      ansible_lsb.description [ {{ ansible_lsb.codename }} ]
+      lp_virtualbox_ignore_errors [ {{ lp_virtualbox_ignore_errors }} ]
+      lp_virtualbox_keys [ {{ lp_virtualbox_keys }} ]
+      lp_virtualbox_repos [ {{ lp_virtualbox_repos }} ]
+      lp_virtualbox_install [ {{ lp_virtualbox_install }} ]
+  debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_debug|lower == "yes"
+  tags:
+    - lp_debug
+    - linux_postinstall
 
 - name: Add signing key of VirtualBox
   apt_key: >
     url="{{ item }}"
     state="present"
   with_items: "{{ lp_virtualbox_keys }}"
+  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
   when: ansible_os_family == "Debian"
 
 - name: Add repository of VirtualBox
@@ -17,6 +29,7 @@
     repo="{{ item }}"
     state="present"
   with_items: "{{ lp_virtualbox_repos }}"
+  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
   when: ansible_os_family == "Debian"
 
 - name: Install VirtualBox
@@ -24,6 +37,7 @@
     name="{{ item }}"
     state="present"
   with_items: "{{ lp_virtualbox_install }}"
+  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
   when: ansible_os_family == "Debian"
 
 # EOF

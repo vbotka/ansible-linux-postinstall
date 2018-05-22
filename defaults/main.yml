@@ -125,6 +125,7 @@ lp_smart_conf_mode: "644"
 lp_smart_devices: {}
 
 lp_virtualbox: "no"
+lp_virtualbox_ignore_errors: "no"
 lp_virtualbox_version: "5.2"
 lp_virtualbox_repos:
   - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/ {{ ansible_lsb.codename }} contrib"
