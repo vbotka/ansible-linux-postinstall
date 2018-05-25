@@ -1,0 +1,29 @@
+---
+# linux-postinstall gpg
+
+- name: Install gpg packages Debian
+  apt: >
+    name="{{ item }}"
+  with_items: "{{ lp_gpg_packages }}"
+  when: ansible_os_family == "Debian"
+
+- name: Install gpg packages RedHat
+  yum: >
+    name="{{ item }}"
+  with_items: "{{ lp_gpg_packages }}"
+  when: ansible_os_family == "RedHat"
+
+- name: Configure ~/.gnupg/gpg.conf
+  template: >
+    src="gpg.conf.j2"
+    dest="/home/{{ item.owner }}/.gnupg/gpg.conf"
+    owner="{{ item.owner }}"
+    group="{{ item.owner }}"
+    mode="0600"
+    backup="yes"
+  with_items: "{{ lp_gpg_conf_user }}"
+
+# TODO: import keys
+
+# EOF
+...

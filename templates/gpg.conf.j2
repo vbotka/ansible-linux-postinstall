@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+# default
+{% for conf in lp_gpg_conf_default %}
+{{ conf.key }} {{ conf.value }}
+{% endfor %}
+
+# user
+{% for conf in item.conf %}
+{{ conf.key }} {{ conf.value }}
+{% endfor %}

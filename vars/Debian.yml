@@ -19,6 +19,14 @@ lp_nfsd_packages:
 lp_nfsd_services:
   - nfs-kernel-server
 lp_nfsd_reload_service: "nfs-kernel-server"
-  
+
+lp_gpg_packages:
+  - gnupg
+lp_gpg_conf_default:
+  - { key: "keyserver", value: "hkp://keys.gnupg.net" }
+  - { key: "use-agent", value: "" }
+  - { key: "cert-digest-algo", value: "SHA256" }
+  - { key: "digest-algo", value: "SHA256" }
+
 # EOF
 ...

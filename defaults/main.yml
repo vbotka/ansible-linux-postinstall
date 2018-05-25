@@ -176,5 +176,8 @@ lp_timesyncd_RootDistanceMaxSec: "5"
 lp_timesyncd_PollIntervalMinSec: "32"
 lp_timesyncd_PollIntervalMaxSec: "2048"
 
+lp_gpg: "yes"
+lp_gpg_conf_user: {}
+
 # EOF
 ...

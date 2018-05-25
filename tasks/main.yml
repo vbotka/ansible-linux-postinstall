@@ -4,11 +4,16 @@
 - name: Debug
   vars:
     msg: |
+      ansible_architecture [ {{ ansible_architecture }} ]
       ansible_os_family [ {{ ansible_os_family }} ]
       ansible_distribution [ {{ ansible_distribution }} ]
       ansible_distribution_major_version [ {{ ansible_distribution_major_version }} ]
+      ansible_distribution_version [ {{ ansible_distribution_version }} ]
+      ansible_distribution_release [ {{ ansible_distribution_release }} ]
+
       lp_apparmor [ {{ lp_apparmor }} ]
       lp_bluetooth [ {{ lp_bluetooth }} ]
+      lp_gpg [ {{ lp_gpg }} ]
       lp_gpsd [ {{ lp_gpsd }} ]
       lp_iptables [ {{ lp_iptables }} ]
       lp_latex [ {{ lp_latex }} ]
@@ -37,8 +42,14 @@
     - lp_debug
     - linux_postinstall
 
-- name: Add {{ ansible_os_family }} specific variables
-  include_vars: "{{ ansible_os_family }}.yml"
+- name: vars for {{ ansible_os_family }} {{ ansible_distribution }} {{ ansible_distribution_release }}
+  include_vars: "{{ item }}"
+  with_first_found:
+    - files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+      paths: '{{ role_path }}/vars'
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
   tags:
@@ -303,6 +314,14 @@
     - lp_wpagui|lower == "yes"
   tags:
     - lp_wpagui
+    - linux_postinstall
+
+- import_tasks: gpg.yml
+  when:
+    - ansible_os_family == "Debian"   # TODO: RH
+    - lp_gpg|lower == "yes"
+  tags:
+    - lp_gpg
     - linux_postinstall
 
 # EOF
