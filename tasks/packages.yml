@@ -1,6 +1,20 @@
 ---
 # linux-postinstall packages
 
+- name: Debug
+  vars:
+    msg: |
+      ansible_os_family [ {{ ansible_os_family }} ]
+      lp_packages_selections_preinstall [ {{ lp_packages_selections_preinstall }} ]
+      lp_packages_install [ {{ lp_packages_install }} ]
+      lp_packages_autoremove [ {{ lp_packages_autoremove }} ]
+      lp_packages_selections_postinstall [ {{ lp_packages_selections_postinstall }} ]
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug|lower == "yes"
+
+# Debian
+
 - name: Configure package selections before Install/Remove
   dpkg_selections: >
     name="{{ item.name }}"
@@ -9,7 +23,7 @@
   when: ansible_os_family == "Debian"
   tags: lp_packages_selections_preinstall
 
-- name: Install packages
+- name: Install Debian packages
   apt: >
     name="{{ item }}"
     state="present"
@@ -33,6 +47,16 @@
   with_items: "{{ lp_packages_selections_postinstall }}"
   when: ansible_os_family == "Debian"
   tags: lp_packages_selections_postinstall
+
+# RedHat
+
+- name: Install RedHat packages
+  yum: >
+    name="{{ item }}"
+    state="present"
+  with_items: "{{ lp_packages_install }}"
+  when: ansible_os_family == "RedHat"
+  tags: lp_packages_install
 
 # EOF
 ...

@@ -107,7 +107,8 @@
     - linux_postinstall
 
 - import_tasks: packages.yml
-  when: ansible_os_family == "Debian" # TODO: RH
+  when: (ansible_os_family == "RedHat" ) or
+        (ansible_os_family == "Debian" )
   tags:
     - lp_packages
     - linux_postinstall
