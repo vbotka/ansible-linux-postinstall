@@ -28,5 +28,22 @@ lp_gpg_conf_default:
   - { key: "cert-digest-algo", value: "SHA256" }
   - { key: "digest-algo", value: "SHA256" }
 
+lp_wpagui_packages:
+  - wpasupplicant
+  - wpagui
+  - net-tools
+  - ifupdown
+  - wireless-tools
+lp_wpagui_systemd:
+  - network-manager
+lp_wpagui_service:
+  - NetworkManager.service
+  - NetworkManager-dispatcher.service
+  - NetworkManager-wait-online.service
+# Notes
+# Netplan in 18.04 does not support wpa_supplicant.conf
+# https://bugs.launchpad.net/netplan/+bug/1735288
+# status: New → Triaged/Wishlist
+
 # EOF
 ...

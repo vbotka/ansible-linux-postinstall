@@ -1,16 +1,13 @@
 ---
 # linux-postinstall wpa_gui
 
-# Install wpa_gui and disable NetwotkManager (NM)
+# Install wpa_gui and disable NetworkManager
 
 - name: Install packages
-  apt: >
+  package: >
     name="{{ item }}"
-    state="present"
-  with_items:
-    - wpagui
-    - wpasupplicant
-  when: ansible_os_family == "Debian"
+    state="{{ lp_package_state }}"
+  with_items: "{{ lp_wpagui_packages }}"
   tags: lp_wpagui_packages
 
 - name: Disable NM /etc/init/network-manager.override
@@ -20,7 +17,6 @@
     owner="root"
     group="root"
     mode="0644"
-  when: lp_wpagui|lower == "yes"
   tags: lp_wpagui_disableNM
   
 - name: Configure managed=false in /etc/NetworkManager/NetworkManager.conf
@@ -28,15 +24,14 @@
     dest="/etc/NetworkManager/NetworkManager.conf"
     regexp="^managed"
     line="managed=false"
-  when: lp_wpagui|lower == "yes"
   tags: lp_wpagui_disableNM
 
 - name: Stop and disable NM
   systemd: >
-    name="network-manager"
+    name="{{ item }}"
     state="stopped"
     enabled="no"
-  when: lp_wpagui|lower == "yes"
+  with_items: "{{ lp_wpagui_systemd }}"
   tags: lp_wpagui_disableNM
 
 - name: Stop and disable all NM services
@@ -44,10 +39,7 @@
     name="{{ item }}"
     state="stopped"
     enabled="no"
-  with_items:
-    - NetworkManager.service
-    - NetworkManager-dispatcher.service
-    - NetworkManager-wait-online.service
+  with_items: "{{ lp_wpagui_service }}"
   tags: lp_wpagui_disableNM
 
 # EOF
