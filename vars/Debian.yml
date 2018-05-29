@@ -40,6 +40,10 @@ lp_wpagui_service:
   - NetworkManager.service
   - NetworkManager-dispatcher.service
   - NetworkManager-wait-online.service
+
+lp_wpasupplicant_packages:
+  - wpasupplicant
+
 # Notes
 # Netplan in 18.04 does not support wpa_supplicant.conf
 # https://bugs.launchpad.net/netplan/+bug/1735288

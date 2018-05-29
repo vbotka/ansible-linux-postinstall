@@ -181,5 +181,14 @@ lp_timesyncd_PollIntervalMaxSec: "2048"
 lp_gpg: "yes"
 lp_gpg_conf_user: {}
 
+lp_wpasupplicant: "yes"
+lp_wpasupplicant_conf_owner: "root"
+lp_wpasupplicant_conf_group: "root"
+lp_wpasupplicant_conf_mode: "0600"
+lp_wpasupplicant_conf_dir: "/etc/wpa_supplicant"
+lp_wpasupplicant_conf_file: "wpa_supplicant.conf"
+lp_wpasupplicant_conf_global: {}
+lp_wpasupplicant_conf: {}
+
 # EOF
 ...

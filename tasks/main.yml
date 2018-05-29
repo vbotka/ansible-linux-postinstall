@@ -33,6 +33,7 @@
       lp_unattended_upgrades [ {{ lp_unattended_upgrades }} ]
       lp_virtualbox [ {{ lp_virtualbox }} ]
       lp_wpagui [ {{ lp_wpagui }} ]
+      lp_wpasupplicant [ {{ lp_wpasupplicant }} ]
       lp_xen [ {{ lp_xen }} ]
       lp_zeitgeist [ {{ lp_zeitgeist }} ]
   debug:
@@ -315,6 +316,16 @@
     - lp_wpagui|lower == "yes"
   tags:
     - lp_wpagui
+    - linux_postinstall
+
+- import_tasks: wpasupplicant.yml
+  when:
+    - (ansible_os_family == "RedHat" ) or
+      (ansible_os_family == "Debian" )
+    - lp_wpasupplicant|lower == "yes"
+
+  tags:
+    - lp_wpasupplicant
     - linux_postinstall
 
 - import_tasks: gpg.yml

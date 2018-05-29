@@ -9,8 +9,8 @@ Configure Linux: aliases, apparmor, authorized keys, automatic
 upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables,
 latex, lid, modem manager, modules, netplan, nfsd, packages, pm-utils,
 postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap,
-sysctl, timezone, udev, users, virtualbox, wpa_gui, xen, xorg.conf.d,
-(wip ...)
+sysctl, timezone, udev, users, virtualbox, wpa_gui, wpa_supplicant,
+xen, xorg.conf.d, (wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
@@ -180,6 +180,8 @@ References
 - [VirtualBox wiki](https://www.virtualbox.org/wiki/)
 - [VirtualBox - Ubuntu community](https://help.ubuntu.com/community/VirtualBox)
 - [VirtualBox - Install Oracle VM VirtualBox in Ubuntu](http://www.elinuxbook.com/install-oracle-vm-virtualbox-in-ubuntu-16-04/)
+- [wpa_supplicant](https://w1.fi/wpa_supplicant/)
+- [wpa_supplicant.conf](https://w1.fi/cgit/hostap/plain/wpa_supplicant/wpa_supplicant.conf)
 - [Xen](https://wiki.ubuntu.com/Kernel/Reference/Xen)
 - [Xen Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)

@@ -17,5 +17,8 @@ lp_nfsd_services:
   - nfslock
 lp_nfsd_reload_service: "nfs"
 
+lp_wpasupplicant_packages:
+  - wpa_supplicant
+
 # EOF
 ...

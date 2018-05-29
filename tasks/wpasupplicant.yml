@@ -1,0 +1,50 @@
+---
+
+- name: Debug
+  vars:
+    msg: |
+      lp_package_state [ {{ lp_package_state }} ]
+      lp_wpasupplicant_packages [ {{ lp_wpasupplicant_packages }} ]
+      lp_wpasupplicant_conf_dir [ {{ lp_wpasupplicant_conf_dir }} ]
+      lp_wpasupplicant_conf_file [ {{ lp_wpasupplicant_conf_file }} ]
+      lp_wpasupplicant_conf_owner [ {{ lp_wpasupplicant_conf_owner }} ]
+      lp_wpasupplicant_conf_group [ {{ lp_wpasupplicant_conf_group }} ]
+      lp_wpasupplicant_conf_mode [ {{ lp_wpasupplicant_conf_mode }} ]
+      lp_wpasupplicant_conf_global [ {{  lp_wpasupplicant_conf_global }} ]
+      lp_wpasupplicant_conf [ {{  lp_wpasupplicant_conf }} ]
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug|lower == "yes"
+
+- name: Install packages
+  package: >
+    name="{{ item }}"
+    state="{{ lp_package_state }}"
+  with_items: "{{ lp_wpasupplicant_packages }}"
+  tags: lp_wpasupplicant_packages
+
+- name: Configure {{ lp_wpasupplicant_conf_dir }}/{{ lp_wpasupplicant_conf_file }}.DEV
+  template: >
+    src="wpa_supplicant.conf.j2"
+    dest="{{ lp_wpasupplicant_conf_dir }}/{{ lp_wpasupplicant_conf_file }}.{{ item.dev }}"
+    owner="{{ lp_wpasupplicant_conf_owner }}"
+    group="{{ lp_wpasupplicant_conf_group }}"
+    mode="{{ lp_wpasupplicant_conf_mode }}"
+    backup="yes"
+  register: wpa_supplicant_conf
+  with_items: "{{ lp_wpasupplicant_conf }}"
+  tags: lp_wpasupplicant_conf
+
+- debug: msg="{{ wpa_supplicant_conf }}"
+  when: lp_debug|lower == "yes"
+
+- name: Reconfigure wpa_supplicant
+  become: yes
+  command: wpa_cli reconfigure -i {{ item.item.dev }}
+  when: item.changed
+  with_items: "{{ wpa_supplicant_conf.results }}"
+  tags: lp_wpasupplicant_handler
+  # TODO: Wait for OK result. Error: 'RECONFIGURE' command timed out.
+  
+# EOF
+...
