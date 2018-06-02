@@ -44,7 +44,10 @@ lp_wpagui_service:
 lp_wpasupplicant_packages:
   - wpasupplicant
 
-# Notes
+lp_logrotate_packages:
+  - logrotate
+
+# Note 1.
 # Netplan in 18.04 does not support wpa_supplicant.conf
 # https://bugs.launchpad.net/netplan/+bug/1735288
 # status: New → Triaged/Wishlist

@@ -7,10 +7,10 @@ linux-postinstall
 
 Configure Linux: aliases, apparmor, authorized keys, automatic
 upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables,
-latex, lid, modem manager, modules, netplan, nfsd, packages, pm-utils,
-postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap,
-sysctl, timezone, udev, users, virtualbox, wpa_gui, wpa_supplicant,
-xen, xorg.conf.d, (wip ...)
+latex, lid, logrotate, modem manager, modules, netplan, nfsd,
+packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh,
+sshd, sudoers, swap, sysctl, timezone, udev, users, virtualbox,
+wpa_gui, wpa_supplicant, xen, xorg.conf.d, (wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
@@ -158,6 +158,7 @@ References
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
 - [LaTeX macros/latex/contrib/](https://www.ctan.org/tex-archive/macros/latex/contrib/)
 - [Lid Ubuntu](https://askubuntu.com/questions/85705/stop-laptop-from-suspending-when-closing-lid-in-lightdm)
+- [ Logrotate - How to Setup and Manage Log Rotation](https://www.tecmint.com/install-logrotate-to-manage-log-rotation-in-linux/)
 - [ModemManager](https://www.freedesktop.org/wiki/Software/ModemManager/)
 - [ModemManager. Remove from boot](https://askubuntu.com/questions/216114/how-can-i-remove-modem-manager-from-boot)
 - [modules - CentOS Persistent Module Loading](https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-kernel-modules-persistant.html)

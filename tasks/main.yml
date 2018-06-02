@@ -323,7 +323,6 @@
     - (ansible_os_family == "RedHat" ) or
       (ansible_os_family == "Debian" )
     - lp_wpasupplicant|lower == "yes"
-
   tags:
     - lp_wpasupplicant
     - linux_postinstall
@@ -334,6 +333,14 @@
     - lp_gpg|lower == "yes"
   tags:
     - lp_gpg
+    - linux_postinstall
+
+- import_tasks: logrotate.yml
+  when:
+    - (ansible_os_family == "RedHat" ) or
+      (ansible_os_family == "Debian" )
+  tags:
+    - lp_logrotate
     - linux_postinstall
 
 # EOF

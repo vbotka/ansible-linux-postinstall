@@ -20,5 +20,8 @@ lp_nfsd_reload_service: "nfs"
 lp_wpasupplicant_packages:
   - wpa_supplicant
 
+lp_logrotate_packages:
+  - logrotate
+
 # EOF
 ...
