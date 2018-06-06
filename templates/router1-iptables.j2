@@ -34,6 +34,9 @@ COMMIT
 -A INPUT -i {{ lp_iptables_lan_if }} -p udp --dport 53 -j ACCEPT
 
 # SSH - accept from LAN
+{% for item in lp_iptables_accept_ssh %}
+-A INPUT -p tcp -s {{ item }} --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+{% endfor %}
 -A INPUT -i {{ lp_iptables_lan_if }} -p tcp --dport 22 -j ACCEPT
 #-A INPUT -p tcp --dport 22 -s {{ lp_iptables_lan }} -j ACCEPT
 #-A INPUT -p tcp --dport 22 -s 127.0.0.0/8 -j ACCEPT
