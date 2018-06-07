@@ -382,5 +382,8 @@
 #             delaycompress
 #      }
 
+#lp_iptables_INPUT_if:
+#  - { if: "xenbr0", proto: "tcp", port: "22", policy: "ACCEPT" }
+
 # EOF
 ...

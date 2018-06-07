@@ -37,7 +37,8 @@ lp_iptables_type: "router1"
 lp_iptables_wan_if: "eth0"
 lp_iptables_lan_if: "eth1"
 lp_iptables_lan: "10.1.0.0/24"
-lp_iptables_accept_ssh: []
+lp_iptables_INPUT_if: {}
+lp_iptables_INPUT_net: {}
 
 lp_users: []
 lp_users_groups: []
