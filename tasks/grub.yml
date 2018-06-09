@@ -1,11 +1,11 @@
 ---
 
-- name: Configure /etc/default/grub
-  lineinfile: >
-    dest="/etc/default/grub"
-    regexp="^{{ item.var }}{{'='}}"
-    line="{{ item.var }}{{'='}}{{ item.value }}"
-    backup="yes"
+- name: "grub: Configure /etc/default/grub"
+  lineinfile:
+    dest: "/etc/default/grub"
+    regexp: "^{{ item.var }}{{'='}}"
+    line: "{{ item.var }}{{'='}}{{ item.value }}"
+    backup: "yes"
   with_items: "{{ lp_grub_default }}"
   when: lp_grub_default > 0
   notify: update grub

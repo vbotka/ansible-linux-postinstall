@@ -1,13 +1,13 @@
 ---
 # linux-postinstall ssh
 
-- name: Configure /etc/ssh/ssh_config
-  lineinfile: >
-    dest="/etc/ssh/ssh_config"
-    regexp="^{{ item.key }}"
-    insertbefore="^{{'#'}}{{ item.key }}"
-    line="{{ item.key }} {{ item.value }}"
-    backup="yes"
+- name: "ssh: Configure /etc/ssh/ssh_config"
+  lineinfile:
+    dest: "/etc/ssh/ssh_config"
+    regexp: "^{{ item.key }}"
+    insertbefore: "^{{'#'}}{{ item.key }}"
+    line: "{{ item.key }} {{ item.value }}"
+    backup: yes
   with_items: "{{ lp_ssh_config }}"
 
 # EOF

@@ -3,42 +3,52 @@
 
 # Install wpa_gui and disable NetworkManager
 
-- name: Install packages
-  package: >
-    name="{{ item }}"
-    state="{{ lp_package_state }}"
+- name: "repos: Debug"
+  vars:
+    msg: |
+      lp_wpagui_packages [ {{ lp_wpagui_packages | to_nice_yaml }} ]
+      lp_wpagui_systemd [ {{ lp_wpagui_systemd | to_nice_yaml }} ]
+      lp_wpagui_service [ {{ lp_wpagui_service | to_nice_yaml }} ]
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug
+
+- name: "wpagui: Install packages"
+  package:
+    name: "{{ item }}"
+    state: "{{ lp_package_state }}"
   with_items: "{{ lp_wpagui_packages }}"
   tags: lp_wpagui_packages
 
-- name: Disable NM /etc/init/network-manager.override
-  template: >
-    src="network-manager-override.j2"
-    dest="/etc/init/network-manager.override"
-    owner="root"
-    group="root"
-    mode="0644"
+- name: "wpagui: Disable NM /etc/init/network-manager.override"
+  template:
+    src: "network-manager-override.j2"
+    dest: "/etc/init/network-manager.override"
+    owner: "root"
+    group: "root"
+    mode: "0644"
   tags: lp_wpagui_disableNM
   
-- name: Configure managed=false in /etc/NetworkManager/NetworkManager.conf
-  lineinfile: >
-    dest="/etc/NetworkManager/NetworkManager.conf"
-    regexp="^managed"
-    line="managed=false"
+- name: "wpagui: Configure managed=false in /etc/NetworkManager/NetworkManager.conf"
+  lineinfile:
+    dest: "/etc/NetworkManager/NetworkManager.conf"
+    regexp: "^managed"
+    line: "managed=false"
   tags: lp_wpagui_disableNM
 
-- name: Stop and disable NM
-  systemd: >
-    name="{{ item }}"
-    state="stopped"
-    enabled="no"
+- name: "wpagui: Stop and disable NM"
+  systemd:
+    name: "{{ item }}"
+    state: "stopped"
+    enabled: no
   with_items: "{{ lp_wpagui_systemd }}"
   tags: lp_wpagui_disableNM
 
-- name: Stop and disable all NM services
-  service: >
-    name="{{ item }}"
-    state="stopped"
-    enabled="no"
+- name: "wpagui: Stop and disable all NM services"
+  service:
+    name: "{{ item }}"
+    state: "stopped"
+    enabled: no
   with_items: "{{ lp_wpagui_service }}"
   tags: lp_wpagui_disableNM
 

@@ -1,24 +1,24 @@
 ---
 
-- name: Configure cron variables
-  cronvar: >
-    name="{{ item.name }}"
-    value="{{ item.value }}"
-    user="{{ item.user }}"
+- name: "cron: Configure cron variables"
+  cronvar:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    user: "{{ item.user }}"
   with_items: "{{ lp_cron_var }}"
   tags: lp_cron_var
 
-- name: Configure cron
-  cron: >
-    state="{{ item.state }}"
-    user="{{ item.user }}"
-    name="{{ item.name }}"
-    minute="{{ item.minute }}"
-    hour="{{ item.hour }}"
-    day="{{ item.day }}"
-    month="{{ item.month }}"
-    weekday="{{ item.weekday }}"
-    job="{{ item.command }}"
+- name: "cron: Configure cron"
+  cron:
+    state: "{{ item.state }}"
+    user: "{{ item.user }}"
+    name: "{{ item.name }}"
+    minute: "{{ item.minute }}"
+    hour: "{{ item.hour }}"
+    day: "{{ item.day }}"
+    month: "{{ item.month }}"
+    weekday: "{{ item.weekday }}"
+    job: "{{ item.command }}"
   with_items: "{{ lp_cron_tab }}"
   tags: lp_cron_tab
 

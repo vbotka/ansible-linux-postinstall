@@ -1,13 +1,13 @@
 ---
 
-- name: Configure /etc/aliases
-  template: >
-    src="aliases.j2"
-    dest="/etc/aliases"
-    owner="root"
-    group="root"
-    mode="0644"
-    backup="yes"
+- name: "aliases: Configure /etc/aliases"
+  template:
+    src: "aliases.j2"
+    dest: "/etc/aliases"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+    backup: "yes"
   with_items: "{{ lp_aliases }}"
   notify: newaliases
 

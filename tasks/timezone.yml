@@ -1,11 +1,11 @@
 ---
 
-- name: Debug
+- name: "timezone: Debug"
   debug:
     msg: "lp_timezone_zoneinfo [ {{ lp_timezone_zoneinfo }} ]"
-  when: lp_debug|lower == "yes"
+  when: lp_debug
 
-- name: Set timezone {{ lp_timezone_zoneinfo }}
+- name: "timezone: Set timezone {{ lp_timezone_zoneinfo }}"
   timezone:
     name: "{{ lp_timezone_zoneinfo|default(UTC) }}"
 

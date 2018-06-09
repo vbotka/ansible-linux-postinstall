@@ -1,31 +1,27 @@
 ---
 # linux-postinstall ModemManager
 
-- name: Configure /etc/init/modemmanager.override
-  template: >
-    src="modem-manager-override.j2"
-    dest="/etc/init/modemmanager.override"
-    owner="root"
-    group="root"
-    mode="0644"
-  when: ansible_os_family == "Debian"
-  tags: lp_mm_config
+- name: "modem_manager: Configure /etc/init/modemmanager.override"
+  template:
+    src: "modem-manager-override.j2"
+    dest: "/etc/init/modemmanager.override"
+    owner: "root"
+    group: "root"
+    mode: "0644"
   
-- name: Stop and disable ModemManager
-  service: >
-    name="ModemManager"
-    state="stopped"
-    enabled="no"
-  when: lp_modemmanager|lower == "no"
-  tags: lp_mm_disable
+- name: "modem_manager: Stop and disable ModemManager"
+  service:
+    name: "ModemManager"
+    state: "stopped"
+    enabled: "no"
+  when: not lp_modemmanager
 
-- name: Start and enable ModemManager
-  service: >
-    name="ModemManager"
-    state="started"
-    enabled="yes"
-  when: lp_modemmanager|lower == "yes"
-  tags: lp_mm_enable
+- name: "modem_manager: Start and enable ModemManager"
+  service:
+    name: "ModemManager"
+    state: "started"
+    enabled: "yes"
+  when: lp_modemmanager
 
 # EOF
 ...

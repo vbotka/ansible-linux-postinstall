@@ -11,49 +11,47 @@
       lp_packages_selections_postinstall [ {{ lp_packages_selections_postinstall }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug|lower == "yes"
+  when: lp_debug
 
 # Debian
 
-- name: Configure package selections before Install/Remove
-  dpkg_selections: >
-    name="{{ item.name }}"
-    selection="{{ item.selection }}"
+- name: "packages: Configure package selections before Install/Remove"
+  dpkg_selections:
+    name: "{{ item.name }}"
+    selection: "{{ item.selection }}"
   with_items: "{{ lp_packages_selections_preinstall }}"
   when: ansible_os_family == "Debian"
   tags: lp_packages_selections_preinstall
 
-- name: Install Debian packages
-  apt: >
-    name="{{ item }}"
-    state="present"
+- name: "packages: Install Debian packages"
+  apt:
+    name: "{{ item }}"
   with_items: "{{ lp_packages_install }}"
   when: ansible_os_family == "Debian"
   tags: lp_packages_install
 
-- name: Remove packages
-  apt: >
-    name="{{ item }}"
-    state="absent"
-    autoremove="{{ lp_packages_autoremove }}"
+- name: "packages: Remove packages"
+  apt:
+    name: "{{ item }}"
+    state: "absent"
+    autoremove: "{{ lp_packages_autoremove }}"
   with_items: "{{ lp_packages_remove }}"
   when: ansible_os_family == "Debian"
   tags: lp_packages_remove
 
-- name: Configure package selections after Install/Remove
-  dpkg_selections: >
-    name="{{ item.name }}"
-    selection="{{ item.selection }}"
+- name: "packages: Configure package selections after Install/Remove"
+  dpkg_selections:
+    name: "{{ item.name }}"
+    selection: "{{ item.selection }}"
   with_items: "{{ lp_packages_selections_postinstall }}"
   when: ansible_os_family == "Debian"
   tags: lp_packages_selections_postinstall
 
 # RedHat
 
-- name: Install RedHat packages
-  yum: >
-    name="{{ item }}"
-    state="present"
+- name: "packages: Install RedHat packages"
+  yum:
+    name: "{{ item }}"
   with_items: "{{ lp_packages_install }}"
   when: ansible_os_family == "RedHat"
   tags: lp_packages_install

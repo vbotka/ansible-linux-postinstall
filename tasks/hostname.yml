@@ -9,22 +9,22 @@
 # http://blog.schlomo.schapiro.org/2013/11/setting-hostname-from-dhcp-in-debian.html
 # https://askubuntu.com/questions/757423/how-to-force-dhcp-client-to-allow-a-self-defined-domain-name
 
-- name: Configure hostname in /etc/hostname
-  template: >
-    src="hostname.j2"
-    dest="/etc/hostname"
-    owner="root"
-    group="root"
-    mode="0644"
-    backup="yes"
+- name: "hostname: Configure hostname in /etc/hostname"
+  template:
+    src: "hostname.j2"
+    dest: "/etc/hostname"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+    backup: "yes"
   when:
     - lp_hostname|length > 0
     - ansible_os_family == "Debian"
 #  notify: set hostname
 
-- name: Configure hostname
-  hostname: >
-    name="{{ lp_hostname }}"
+- name: "hostname: Configure hostname"
+  hostname:
+    name: "{{ lp_hostname }}"
   when: lp_hostname|length > 0
 
 # EOF

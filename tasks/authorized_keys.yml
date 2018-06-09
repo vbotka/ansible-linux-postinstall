@@ -1,10 +1,10 @@
 ---
 
-- name: Configure authorized_keys
-  authorized_key: >
-    user="{{ item.user }}"
-    key="{{ item.key }}"
-    manage_dir="yes"
+- name: "authorized_key: Configure authorized_keys"
+  authorized_key:
+    user: "{{ item.user }}"
+    key: "{{ item.key }}"
+    manage_dir: yes
   with_items: "{{ lp_authorized_keys }}"
 
 # EOF

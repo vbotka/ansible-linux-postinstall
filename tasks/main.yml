@@ -38,10 +38,8 @@
       lp_zeitgeist [ {{ lp_zeitgeist }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug|lower == "yes"
-  tags:
-    - lp_debug
-    - linux_postinstall
+  when: lp_debug
+  tags: lp_debug
 
 - name: vars for {{ ansible_os_family }} {{ ansible_distribution }} {{ ansible_distribution_release }}
   include_vars: "{{ item }}"
@@ -51,297 +49,213 @@
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
       paths: '{{ role_path }}/vars'
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
-  tags:
-    - lp_vars
-    - linux_postinstall
+  tags: lp_vars
 
 - import_tasks: swap.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_swap
-    - linux_postinstall
+  tags: lp_swap
 
 - import_tasks: modules.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_modules
-    - linux_postinstall
+  tags: lp_modules
 
 - import_tasks: udev.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_udev
-    - linux_postinstall
+  tags: lp_udev
 
 - import_tasks: netplan.yml
   when:
     - ansible_os_family == "Debian"
-    - lp_netplan|lower == "yes"
-  tags:
     - lp_netplan
-    - linux_postinstall
+  tags: lp_netplan
 
 - import_tasks: timezone.yml
   when:
     - (ansible_os_family == "RedHat" ) or
       (ansible_os_family == "Debian" )
-    - lp_timezone|lower == "yes"
-  tags:
     - lp_timezone
-    - linux_postinstall
+  tags: lp_timezone
   
 - import_tasks: timesyncd.yml
   when: ansible_os_family == "Debian"
-  tags:
-    - lp_timesyncd
-    - linux_postinstall
+  tags: lp_timesyncd
 
 - import_tasks: repos.yml
   when: ansible_os_family == "Debian" # TODO: RH
-  tags:
-    - lp_repos
-    - linux_postinstall
+  tags: lp_repos
 
 - import_tasks: packages.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_packages
-    - linux_postinstall
+  tags: lp_packages
 
 - import_tasks: auto_upgrades.yml
   when: ansible_os_family == "Debian" # TODO: RH
-  tags:
-    - lp_auto_upgrades
-    - linux_postinstall
+  tags: lp_auto_upgrades
 
 - import_tasks: sysctl.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_sysctl
-    - linux_postinstall
+  tags: lp_sysctl
 
 - import_tasks: hostname.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_hostname
-    - linux_postinstall
+  tags: lp_hostname
 
 - import_tasks: hosts.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_hosts
-    - linux_postinstall
+  tags: lp_hosts
 
 - import_tasks: iptables.yml
   when:
     - ansible_os_family == "Debian" # TODO: RH
-    - lp_iptables|lower == "yes"
-  tags:
     - lp_iptables
-    - linux_postinstall
+  tags: lp_iptables
 
 - import_tasks: grub.yml
   when: ansible_os_family == "Debian" # TODO: RH
-  tags:
-    - lp_grub
-    - linux_postinstall
+  tags: lp_grub
   # https://unix.stackexchange.com/questions/152222/equivalent-of-update-grub-for-rhel-fedora-centos-systems
 
 - import_tasks: users.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_users
-    - linux_postinstall
+  tags: lp_users
 
 - import_tasks: sudoers.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_sudoers
-    - linux_postinstall
+  tags: lp_sudoers
 
 - import_tasks: authorized_keys.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_authorized_keys
-    - linux_postinstall
+  tags: lp_authorized_keys
 
 - import_tasks: aliases.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_aliases
-    - linux_postinstall
+  tags: lp_aliases
 
 - import_tasks: pm-utils.yml
   when:
     - ansible_os_family == "Debian" # TODO: RH
-    - lp_pm|lower == "yes"
-  tags:
     - lp_pm
-    - linux_postinstall
+  tags: lp_pm
 
 - import_tasks: ssh.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_ssh
-    - linux_postinstall
+  tags: lp_ssh
 
 - import_tasks: sshd.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_sshd
-    - linux_postinstall
+  tags: lp_sshd
 
 - import_tasks: bluetooth.yml
   when:
     - ansible_os_family == "Debian"
-    - lp_bluetooth|lower == "yes"
-  tags:
     - lp_bluetooth
-    - linux_postinstall
+  tags: lp_bluetooth
 
 - import_tasks: xorg.yml
   when: ansible_os_family == "Debian"
-  tags:
-    - lp_xorg
-    - linux_postinstall
+  tags: lp_xorg
 
 - import_tasks: cron.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_cron
-    - linux_postinstall
+  tags: lp_cron
 
 - import_tasks: modemmanager.yml
   when: ansible_os_family == "Debian"
-  tags:
-    - lp_modemmanager
-    - linux_postinstall
+  tags: lp_modemmanager
 
 - import_tasks: gpsd.yml
   when:
     - ansible_os_family == "Debian"
-    - lp_gpsd|lower == "yes"
-  tags:
     - lp_gpsd
-    - linux_postinstall
+  tags: lp_gpsd
 
 - import_tasks: postfix.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
-  tags:
-    - lp_postfix
-    - linux_postinstall
+  tags: lp_postfix
 
 - import_tasks: smart.yml
   when: ansible_os_family == "Debian" # TODO: RH
-  tags:
-    - lp_smart
-    - linux_postinstall
+  tags: lp_smart
 
 - import_tasks: apparmor.yml
   when: ansible_os_family == "Debian"
-  tags:
-    - lp_apparmor
-    - linux_postinstall
+  tags: lp_apparmor
 
 - import_tasks: zeitgeist.yml
   when: ansible_os_family == "Debian"
-  tags:
-    - lp_zeitgeist
-    - linux_postinstall
+  tags: lp_zeitgeist
 
 - import_tasks: lid.yml
   when:
     - ansible_os_family == "Debian"
-    - lp_lid|lower == "yes"
-  tags:
     - lp_lid
-    - linux_postinstall
+  tags: lp_lid
 
 - import_tasks: speechd.yml
   when: ansible_os_family == "Debian"
-  tags:
-    - lp_speechd
-    - linux_postinstall
+  tags: lp_speechd
 
 - import_tasks: nfsd.yml
   when: ansible_os_family == "Debian" # TODO: RH
-  tags:
-    - lp_nfsd
-    - linux_postinstall
+  tags: lp_nfsd
 
 - import_tasks: latex.yml
   when:
-    - ansible_os_family == "Debian" # TODO: RH
-    - lp_latex|lower == "yes"
-  tags:
+    - ansible_os_family == "Debian"  # TODO: RH
     - lp_latex
-    - linux_postinstall
+  tags: lp_latex
 
 - import_tasks: xen.yml
   when:
     - ansible_os_family == "Debian" # TODO: RH
-    - lp_xen|lower == "yes"
-  tags:
     - lp_xen
-    - linux_postinstall
+  tags: lp_xen
 
 - import_tasks: virtualbox.yml
   when:
     - ansible_os_family == "Debian"   # TODO: RH
-    - lp_virtualbox|lower == "yes"
-  tags:
     - lp_virtualbox
-    - linux_postinstall
+  tags: lp_virtualbox
 
 - import_tasks: wpagui.yml
   when:
     - ansible_os_family == "Debian"
-    - lp_wpagui|lower == "yes"
-  tags:
     - lp_wpagui
-    - linux_postinstall
+  tags: lp_wpagui
 
 - import_tasks: wpasupplicant.yml
   when:
     - (ansible_os_family == "RedHat" ) or
       (ansible_os_family == "Debian" )
-    - lp_wpasupplicant|lower == "yes"
-  tags:
     - lp_wpasupplicant
-    - linux_postinstall
+  tags: lp_wpasupplicant
 
 - import_tasks: gpg.yml
   when:
     - ansible_os_family == "Debian"   # TODO: RH
-    - lp_gpg|lower == "yes"
-  tags:
     - lp_gpg
-    - linux_postinstall
+  tags: lp_gpg
 
 - import_tasks: logrotate.yml
   when:
     - (ansible_os_family == "RedHat" ) or
       (ansible_os_family == "Debian" )
-  tags:
-    - lp_logrotate
-    - linux_postinstall
+  tags: lp_logrotate
 
 # EOF
 ...

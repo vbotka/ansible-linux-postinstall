@@ -1,27 +1,20 @@
 ---
 # linux-postinstall gpsd
 
-- name: Install packages for gpsd
-  apt: >
-    name="{{ item }}"
-    state="present"
-  with_items:
-    - gpsd
-    - gpsd-clients
-  when:
-    - lp_gpsd|lower == "yes"
-    - ansible_os_family == "Debian"
+- name: "gpsd: Install packages for gpsd"
+  package:
+    name: "{{ item }}"
+  with_items: "{{ lp_gpsd_packages }}"
   tags: lp_gpsd_packages
 
-- name: Add user gpsd to group dialout
-  user: >
-    name="gpsd"
-    groups="dialout"
-    append="yes"
-  when: lp_gpsd|lower == "yes"
+- name: "gpsd: Add user gpsd to group dialout"
+  user:
+    name: "gpsd"
+    groups: "dialout"
+    append: "yes"
   tags: lp_gpsd_group
 
-- name: Configure /etc/bluetooth/rfcomm.conf
+- name: "gpsd: Configure /etc/bluetooth/rfcomm.conf"
   blockinfile:
     dest: "/etc/bluetooth/rfcomm.conf"
     marker: "# {mark} ANSIBLE MANAGED BLOCK rfcomm{{ item.rfcomm }}"
@@ -41,31 +34,31 @@
   notify: restart bluetooth
   tags: lp_gpsd_bt_rfcom
 
-- name: Configure /etc/default/gpsd
-  template: >
-    src="gpsd.j2"
-    dest="/etc/default/gpsd"
-    owner="root"
-    group="root"
-    mode="0644"
-    backup="yes"
+- name: "gpsd: Configure /etc/default/gpsd"
+  template:
+    src: "gpsd.j2"
+    dest: "/etc/default/gpsd"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+    backup: "yes"
   notify: restart gpsd
   tags: lp_gpsd_config
   
-- name: Stop and disable gpsd
-  systemd: >
-    name="gpsd"
-    state="stopped"
-    enabled="no"
-  when: lp_gpsd|lower == "no"
+- name: "gpsd: Stop and disable gpsd"
+  systemd:
+    name: "gpsd"
+    state: "stopped"
+    enabled: "no"
+  when: not lp_gpsd
   tags: lp_gpsd_stop
 
-- name: Start and enable gpsd
-  systemd: >
-    name="gpsd"
-    state="started"
-    enabled="yes"
-  when: lp_gpsd|lower == "yes"
+- name: "gpsd: Start and enable gpsd"
+  systemd:
+    name: "gpsd"
+    state: "started"
+    enabled: "yes"
+  when: lp_gpsd
   tags: lp_gpsd_start
 
 # EOF

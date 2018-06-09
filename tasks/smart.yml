@@ -1,58 +1,55 @@
 ---
 # linux-postinstall smart
 
-- name: Install packages Debian
-  apt: >
-    name="{{ item }}"
-    state="present"
+- name: "smart: Install packages"
+  package:
+    name: "{{ item }}"
   with_items: "{{ lp_smart_packages }}"
-  when:
-    - lp_smart|lower == "yes"
-    - ansible_os_family == "Debian"
+  when: lp_smart
   tags: lp_smart_packages
 
-- name: Configure {{ lp_smart_conf_file }}. Do not scan for devices.
-  lineinfile: >
-    dest="{{ lp_smart_conf_file }}"
-    regexp="^DEVICESCAN"
-    state="absent"
-    create="yes"
-    owner="{{ lp_smart_conf_owner }}"
-    group="{{ lp_smart_conf_group }}"
-    mode="{{ lp_smart_conf_mode }}"
-    backup="yes"
-  when: lp_smart_devicescan|lower == "no"
+- name: "smart: Configure {{ lp_smart_conf_file }}. Do not scan for devices"
+  lineinfile:
+    dest: "{{ lp_smart_conf_file }}"
+    regexp: "^DEVICESCAN"
+    state: "absent"
+    owner: "{{ lp_smart_conf_owner }}"
+    group: "{{ lp_smart_conf_group }}"
+    mode: "{{ lp_smart_conf_mode }}"
+    create: yes
+    backup: yes
+  when: not lp_smart_devicescan
   notify: reload smart
   tags: lp_smart_conf
 
-- name: Configure devices in {{ lp_smart_conf_file }}
-  lineinfile: >
-    dest="{{ lp_smart_conf_file }}"
-    regexp="{{ item.regexp }}"
-    line="{{ item.line }}"
-    create="yes"
-    owner="{{ lp_smart_conf_owner }}"
-    group="{{ lp_smart_conf_group }}"
-    mode="{{ lp_smart_conf_mode }}"
-    backup="yes"
+- name: "smart: Configure devices in {{ lp_smart_conf_file }}"
+  lineinfile:
+    dest: "{{ lp_smart_conf_file }}"
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    owner: "{{ lp_smart_conf_owner }}"
+    group: "{{ lp_smart_conf_group }}"
+    mode: "{{ lp_smart_conf_mode }}"
+    create: yes
+    backup: yes
   with_items: "{{ lp_smart_devices }}"
   notify: reload smart
   tags: lp_smart_conf
 
-- name: Start and enable smart
-  service: >
-    name="{{ lp_smart_service_name }}"
-    state="started"
-    enabled="yes"
-  when: lp_smart|lower == "yes"
+- name: "smart: Start and enable smart"
+  service:
+    name: "{{ lp_smart_service_name }}"
+    state: "started"
+    enabled: yes
+  when: lp_smart
   tags: lp_smart_service
 
-- name: Stop and disable smart
-  service: >
-    name="{{ lp_smart_service_name }}"
-    state="stopped"
-    enabled="no"
-  when: lp_smart|lower == "no"
+- name: "smart: Stop and disable smart"
+  service:
+    name: "{{ lp_smart_service_name }}"
+    state: "stopped"
+    enabled: no
+  when: not lp_smart
   tags: lp_smart_service
 
 # EOF

@@ -1,17 +1,19 @@
 ---
 # linux-postinstall apparmor-complain
 
-- name: Get path to "{{ item }}"
+- name: "apparmor-complain: Get path to {{ item }}"
   shell: which "{{ item }}" | sed 's/\//./g' | tail -c +2
   register: apparmor_item_path
   changed_when: false
+  tags: lp_apparmor
 
-- name: Complain "{{ apparmor_item_path.stdout }}"
+- name: "apparmor-complain: Complain {{ apparmor_item_path.stdout }}"
   shell: aa-complain "{{ apparmor_item_path.stdout }}"
   when:
     - not ansible_check_mode
     - apparmor_item_path.stdout|length > 0
   changed_when: false
+  tags: lp_apparmor
 
 # EOF
 ...

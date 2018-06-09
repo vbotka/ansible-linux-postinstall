@@ -217,8 +217,6 @@
 
 # smart
 #lp_smart: "yes"
-#lp_smart_packages:
-#  - smartmontools
 #lp_smart_service_name: "smartmontools"
 #lp_smart_conf_file: "/etc/smartd.conf"
 #lp_smart_conf_owner: "root"

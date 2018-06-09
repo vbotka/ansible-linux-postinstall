@@ -3,31 +3,31 @@
 
 - debug:
     msg: "lp_bluetooth={{ lp_bluetooth }}"
-  when: lp_debug|lower == "yes"
+  when: lp_debug
 
-- name: Configure /etc/bluetooth/main.conf
-  lineinfile: >
-    dest="/etc/bluetooth/main.conf"
-    regexp="^{{ item.key }}"
-    insertbefore="^{{'#'}}{{ item.key }}"
-    line="{{ item.key }} = {{ item.value }}"
-    backup="yes"
+- name: "bluetooth: Configure /etc/bluetooth/main.conf"
+  lineinfile:
+    dest: "/etc/bluetooth/main.conf"
+    regexp: "^{{ item.key }}"
+    insertbefore: "^{{'#'}}{{ item.key }}"
+    line: "{{ item.key }} = {{ item.value }}"
+    backup: "yes"
   with_items: "{{ lp_bluetooth_main_conf }}"
   notify: restart bluetooth
 
-- name: Enable and start bluetooth
-  systemd: >
-    name="bluetooth"
-    enabled="yes"
-    state="started"
-  when: lp_bluetooth|lower == "yes"
+- name: "bluetooth: Enable and start bluetooth"
+  systemd:
+    name: "bluetooth"
+    enabled: "yes"
+    state: "started"
+  when: lp_bluetooth
 
-- name: Stop and disable bluetooth
-  systemd: >
-    name="bluetooth"
-    enabled="no"
-    state="stopped"
-  when: lp_bluetooth|lower == "no"
+- name: "bluetooth: Stop and disable bluetooth"
+  systemd:
+    name: "bluetooth"
+    enabled: "no"
+    state: "stopped"
+  when: not lp_bluetooth
 
 # EOF
 ...

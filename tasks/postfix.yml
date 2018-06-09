@@ -1,29 +1,29 @@
 ---
 # linux-postinstall postfix
 
-- name: Configure /etc/postfix/main.cf 
-  lineinfile: >
-    dest="/etc/postfix/main.cf"
-    regexp="^{{ item.key }}"
-    line="{{ item.key }} = {{ item.value }}"
-    create="yes"
-    backup="yes"
+- name: "postfix: Configure /etc/postfix/main.cf"
+  lineinfile:
+    dest: "/etc/postfix/main.cf"
+    regexp: "^{{ item.key }}"
+    line: "{{ item.key }} = {{ item.value }}"
+    create: yes
+    backup: yes
   with_items: "{{ lp_postfix_main_conf }}"
   notify: reload postfix
 
-- name: Enable and start postfix
-  systemd: >
-    name="postfix"
-    enabled="yes"
-    state="started"
-  when: lp_postfix|lower == "yes"
+- name: "postfix: Enable and start postfix"
+  systemd:
+    name: "postfix"
+    enabled: yes
+    state: "started"
+  when: lp_postfix
 
-- name: Disable and stop postfix
-  systemd: >
-    name="postfix"
-    enabled="no"
-    state="stopped"
-  when: lp_postfix|lower == "no"
+- name: "postfix: Disable and stop postfix"
+  systemd:
+    name: "postfix"
+    enabled: no
+    state: "stopped"
+  when: not lp_postfix
 
 # EOF
 ...

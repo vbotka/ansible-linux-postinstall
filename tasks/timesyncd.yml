@@ -1,5 +1,6 @@
 ---
-- name: Debug
+
+- name: "timesyncd: Debug"
   vars:
     msg: |
       lp_timesyncd [ {{ lp_timesyncd }} ]
@@ -10,31 +11,31 @@
       lp_timesyncd_PollIntervalMaxSec [ {{ lp_timesyncd_PollIntervalMaxSec }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug|lower == "yes"
+  when: lp_debug
 
-- name: Configure /etc/systemd/timesyncd.conf
-  template: >
-    src="timesyncd.conf.j2"
-    dest="/etc/systemd/timesyncd.conf"
-    owner="root"
-    group="root"
-    mode="0644"
-    backup="yes"
+- name: "timesyncd: Configure /etc/systemd/timesyncd.conf"
+  template:
+    src: "timesyncd.conf.j2"
+    dest: "/etc/systemd/timesyncd.conf"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+    backup: yes
   notify: restart timesyncd
 
-- name: Enable and start timesyncd
-  service: >
-    name="systemd-timesyncd.service"
-    state="started"
-    enabled="yes"
-  when: lp_timesyncd == "yes"
+- name: "timesyncd: Enable and start timesyncd"
+  service:
+    name: "systemd-timesyncd.service"
+    state: "started"
+    enabled: yes
+  when: lp_timesyncd
 
-- name: Disable and stop timesyncd
-  service: >
-    name="systemd-timesyncd.service"
-    state="stopped"
-    enabled="no"
-  when: lp_timesyncd == "no"
+- name: "timesyncd: Disable and stop timesyncd"
+  service:
+    name: "systemd-timesyncd.service"
+    state: "stopped"
+    enabled: no
+  when: not lp_timesyncd
 
 # Notes on CentOS
 # * systemd compiled without timesyncd service in CentOS 7 ?

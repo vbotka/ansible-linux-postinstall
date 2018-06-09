@@ -30,27 +30,27 @@
 
 - name: reload sshd
   systemd: name="{{ lp_service_sshd }}" state="reloaded"
-  when: lp_sshd|lower == "yes"
+  when: lp_sshd
 
 - name: restart bluetooth
   systemd: name="bluetooth" state="restarted"
-  when: lp_bluetooth|lower == "yes"
+  when: lp_bluetooth
 
 - name: restart gpsd
   systemd: name="gpsd" state="restarted"
-  when: lp_gpsd|lower == "yes"
+  when: lp_gpsd
 
 - name: restart postfix
   systemd: name="postfix" state="restarted"
-  when: lp_postfix|lower == "yes"
+  when: lp_postfix
 
 - name: reload postfix
   systemd: name="postfix" state="reloaded"
-  when: lp_postfix|lower == "yes"
+  when: lp_postfix
 
 - name: reload smart
   systemd: name="{{ lp_smart_service_name }}" state="reloaded"
-  when: lp_smart|lower == "yes"
+  when: lp_smart
 
 - name: apparmor-disable-profile
   shell: apparmor_parser -R /etc/apparmor.d/"{{ apparmor_item_path.stdout }}"
@@ -60,11 +60,11 @@
 
 - name: reload nfsd
   systemd: name="{{ lp_nfsd_reload_service }}" state="reloaded"
-  when: lp_nfsd|lower == "yes"
+  when: lp_nfsd
 
 - name: netplan apply
   shell: netplan apply
-  when: lp_netplan|lower == "yes"
+  when: lp_netplan
 
 - name: create and mount swap file
   shell: sh -c 'dd if=/dev/zero of={{lp_swap_file}} bs=1M count={{lp_swap_size}} && chmod 0600 {{lp_swap_file}} && mkswap {{lp_swap_file}} && swapon {{lp_swap_file}}'

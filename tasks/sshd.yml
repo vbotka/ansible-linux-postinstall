@@ -1,30 +1,30 @@
 ---
 # linux-postinstall sshd
 
-- name: Configure /etc/ssh/sshd_config
-  lineinfile: >
-    dest="/etc/ssh/sshd_config"
-    regexp="^{{ item.key }}"
-    insertbefore="^{{'#'}}{{ item.key }}"
-    line="{{ item.key }} {{ item.value }}"
-    backup="yes"
-    validate="{{ lp_path_sshd }} -t -f %s"
+- name: "sshd: Configure /etc/ssh/sshd_config"
+  lineinfile:
+    dest: "/etc/ssh/sshd_config"
+    regexp: "^{{ item.key }}"
+    insertbefore: "^{{'#'}}{{ item.key }}"
+    line: "{{ item.key }} {{ item.value }}"
+    backup: yes
+    validate: "{{ lp_path_sshd }} -t -f %s"
   with_items: "{{ lp_sshd_config }}"
   notify: reload sshd
 
-- name: Enable and start sshd
-  systemd: >
-    name="{{ lp_service_sshd }}"
-    enabled="yes"
-    state="started"
-  when: lp_sshd|lower == "yes"
+- name: "sshd: Enable and start sshd"
+  systemd:
+    name: "{{ lp_service_sshd }}"
+    enabled: yes
+    state: "started"
+  when: lp_sshd
 
-- name: Disable and stop sshd
-  systemd: >
-    name="{{ lp_service_sshd }}"
-    enabled="no"
-    state="stopped"
-  when: lp_sshd|lower == "no"
+- name: "sshd: Disable and stop sshd"
+  systemd:
+    name: "{{ lp_service_sshd }}"
+    enabled: no
+    state: "stopped"
+  when: not lp_sshd
 
 # EOF
 ...

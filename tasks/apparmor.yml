@@ -4,13 +4,13 @@
 # TODO: disable, enforce and complain work with executables only, found by
 # *which*. Enable other profiles.
 
-- name: Install packages
-  apt: >
-    name="{{ item }}"
-    state="present"
+- name: "apparmor: Install packages"
+  apt:
+    name: "{{ item }}"
+    state: "present"
   with_items: "{{ lp_apparmor_packages }}"
   when:
-    - lp_apparmor|lower == "yes"
+    - lp_apparmor
     - ansible_os_family == "Debian"
   tags: lp_apparmor_packages
 
@@ -29,20 +29,20 @@
   when: lp_apparmor_complain|length > 0
   tags: lp_apparmor_complain
 
-- name: Start and enable apparmor
-  service: >
-    name="apparmor"
-    state="started"
-    enabled="yes"
-  when: lp_apparmor|lower == "yes"
+- name: "apparmor: Start and enable apparmor"
+  service:
+    name: "apparmor"
+    state: "started"
+    enabled: "yes"
+  when: lp_apparmor
   tags: lp_apparmor_service
 
-- name: Stop and disable apparmor
-  service: >
-    name="apparmor"
-    state="stopped"
-    enabled="no"
-  when: lp_apparmor|lower == "no"
+- name: "apparmor: Stop and disable apparmor"
+  service:
+    name: "apparmor"
+    state: "stopped"
+    enabled: "no"
+  when: not lp_apparmor
   tags: lp_apparmor_service
 
 # EOF

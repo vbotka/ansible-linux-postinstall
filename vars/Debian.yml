@@ -47,6 +47,23 @@ lp_wpasupplicant_packages:
 lp_logrotate_packages:
   - logrotate
 
+lp_gpsd_packages:
+  - gpsd
+  - gpsd-clients
+
+lp_latex_packages:
+  - texlive-full
+
+lp_smart_packages:
+  - smartmontools
+
+lp_xen_packages:
+  - xen-hypervisor-{{ lp_xen_version }}-amd64
+  - xen-utils-{{ lp_xen_version }}
+  - xen-utils-common
+  - xenstore-utils
+# - ubuntu-virt-server
+
 # Note 1.
 # Netplan in 18.04 does not support wpa_supplicant.conf
 # https://bugs.launchpad.net/netplan/+bug/1735288

@@ -23,5 +23,17 @@ lp_wpasupplicant_packages:
 lp_logrotate_packages:
   - logrotate
 
+lp_gpsd_packages: []
+#  - gpsd
+#  - gpsd-clients
+
+lp_latex_packages: []
+#  - texlive-full
+
+lp_smart_packages: []
+#  - smartmontools
+
+lp_xen_packages: []
+
 # EOF
 ...

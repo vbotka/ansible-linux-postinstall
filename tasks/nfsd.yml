@@ -3,9 +3,9 @@
 
 - debug:
     msg: "lp_nfsd={{ lp_nfsd }}"
-  when: lp_debug|lower == "yes"
+  when: lp_debug
 
-- name: Configure exports
+- name: "nfsd: Configure exports"
   template:
     src: exports.j2
     dest: /etc/exports
@@ -14,24 +14,24 @@
     mode: 0644
   notify: reload nfsd
 
-- name: Enable and start nfsd services
-  systemd: >
-    name="{{ item }}"
-    enabled="yes"
-    state="started"
+- name: "nfsd: Enable and start nfsd services"
+  systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: "started"
   with_items: "{{ lp_nfsd_services }}"
   when:
-    - lp_nfsd|lower == "yes"
+    - lp_nfsd
     - lp_nfsd_services > 0
 
-- name: Stop and disable nfsd services
-  systemd: >
-    name="{{ item }}"
-    enabled="no"
-    state="stopped"
+- name: "nfsd: Stop and disable nfsd services"
+  systemd:
+    name: "{{ item }}"
+    enabled: no
+    state: "stopped"
   with_items: "{{ lp_nfsd_services }}"
   when:
-    - lp_nfsd|lower == "no"
+    - not lp_nfsd
     - lp_nfsd_services > 0
 
 - meta: flush_handlers

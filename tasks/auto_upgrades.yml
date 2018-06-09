@@ -1,31 +1,31 @@
 ---
 
-- name: Configure /etc/apt/apt.conf.d/20auto-upgrades
-  template: >
-    src="auto-upgrades.j2"
-    dest="/etc/apt/apt.conf.d/20auto-upgrades"
-    owner="root"
-    group="root"
-    mode="0644"
-    backup="yes"
+- name: "auto_upgrades: Configure /etc/apt/apt.conf.d/20auto-upgrades"
+  template:
+    src: "auto-upgrades.j2"
+    dest: "/etc/apt/apt.conf.d/20auto-upgrades"
+    owner: "root"
+    group: "root"
+    mode: "0644"
+    backup: "yes"
   when: ansible_os_family == "Debian"
 
-- name: Disable and stop unattended-upgrades
-  systemd: >
-    name="unattended-upgrades"
-    state="stopped"
-    enabled="no"
+- name: "auto_upgrades: Disable and stop unattended-upgrades"
+  systemd:
+    name: "unattended-upgrades"
+    state: "stopped"
+    enabled: "no"
   when:
-    - lp_unattended_upgrades|lower == "no"
+    - not lp_unattended_upgrades
     - ansible_os_family == "Debian"
 
-- name: Enable and start unattended-upgrades
-  systemd: >
-    name="unattended-upgrades"
-    state="started"
-    enabled="yes"
+- name: "auto_upgrades: Enable and start unattended-upgrades"
+  systemd:
+    name: "unattended-upgrades"
+    state: "started"
+    enabled: "yes"
   when:
-    - lp_unattended_upgrades|lower == "yes"
+    - lp_unattended_upgrades
     - ansible_os_family == "Debian"
   
 # EOF

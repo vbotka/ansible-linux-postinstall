@@ -1,14 +1,13 @@
 ---
 # linux-postinstall sysctl
 
-- name: Configure /etc/sysctl.conf
-  lineinfile: >
-    dest="/etc/sysctl.conf"
-    regexp="^{{ item.var }}"
-    line="{{ item.var }} = {{ item.value }}"
-    backup="yes"
+- name: "sysctl: Configure /etc/sysctl.conf"
+  lineinfile:
+    dest: "/etc/sysctl.conf"
+    regexp: "^{{ item.var }}"
+    line: "{{ item.var }} = {{ item.value }}"
+    backup: yes
   with_items: "{{ lp_sysctl_vars }}"
-  tags: linux_postinstall_sysctl
   notify: load sysctl settings
 
 # EOF

@@ -1,12 +1,12 @@
 ---
 # linux-postinstall logrotate
 
-- name: Install packages for logrotate
+- name: "logrotate: Install packages for logrotate"
   package:
     name: "{{ item }}"
   with_items: "{{ lp_logrotate_packages }}"
 
-- name: Configure blocks in {{ lp_logrotate_conf_file }}
+- name: "logrotate: Configure blocks in {{ lp_logrotate_conf_file }}"
   blockinfile:
     path: "{{ lp_logrotate_conf_file }}"
     mark: "{{ item.mark}}"
@@ -15,7 +15,7 @@
     backup: yes
   with_items: "{{ lp_logrotate_conf_blocks }}"
 
-- name: Configure lines in {{ lp_logrotate_conf_file }}
+- name: "logrotate: Configure lines in {{ lp_logrotate_conf_file }}"
   lineinfile:
     path: "{{ lp_logrotate_conf_file }}"
     line: "{{ item.line }}"
@@ -23,7 +23,7 @@
     backup: yes
   with_items: "{{ lp_logrotate_conf_lines }}"
 
-- name: Configure {{ lp_logrotate_conf_dir }}
+- name: "logrotate: Configure {{ lp_logrotate_conf_dir }}"
   blockinfile:
     path: "{{ lp_logrotate_conf_dir }}/{{ item.path }}"
     block: "{{ item.conf }}"

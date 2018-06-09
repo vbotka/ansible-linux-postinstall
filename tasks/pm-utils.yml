@@ -7,14 +7,14 @@
 # 3) add cases: resume, thaw, suspend, hibernate
 # 4) install pm-utils
 
-- name: Configure /etc/pm/sleep.d
-  template: >
-    src="pm-sleepd.j2"
-    dest="/etc/pm/sleep.d/{{ item.value.file }}"
-    owner="root"
-    group="root"
-    mode="0755"
-    backup="no"
+- name: "pm_utils: Configure /etc/pm/sleep.d"
+  template:
+    src: "pm-sleepd.j2"
+    dest: "/etc/pm/sleep.d/{{ item.value.file }}"
+    owner: "root"
+    group: "root"
+    mode: "0755"
+    backup: no
   with_dict: "{{ lp_pm_sleepd|default({}) }}"
   when: item.value > 0
 

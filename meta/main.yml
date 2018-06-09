@@ -9,11 +9,11 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - bionic
-        - xenial
-        - zesty
-        - artful
+    - name: EL
+      versions:
+        - 7
   galaxy_tags:
-    - installer
     - linux
     - ubuntu
+    - centos
 dependencies: []

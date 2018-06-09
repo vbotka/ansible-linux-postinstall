@@ -1,18 +1,27 @@
 ---
 
-- name: Add or update users
-  user: >
-    name="{{ item.name }}"
-    shell="{{ item.shell | default(omit) }}"
-    password="{{ item.password | default(omit) }}"
-    update_password="{{ item.update_password | default(omit) }}"
+- name: "users: Debug"
+  vars:
+    msg: |
+      lp_users [ {{ lp_users | to_nice_yaml }} ]
+      lp_users_groups [ {{ lp_users_groups | to_nice_yaml }} ]
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug
+
+- name: "users: Add or update users"
+  user:
+    name: "{{ item.name }}"
+    shell: "{{ item.shell | default(omit) }}"
+    password: "{{ item.password | default(omit) }}"
+    update_password: "{{ item.update_password | default(omit) }}"
   with_items: "{{ lp_users }}"
 
-- name: Add users to additional groups
-  user: >
-    name="{{ item.name }}"
-    groups="{{ item.groups }}"
-    append="yes"
+- name: "users: Add users to additional groups"
+  user:
+    name: "{{ item.name }}"
+    groups: "{{ item.groups }}"
+    append: yes
   with_items: "{{ lp_users_groups }}"
 
 #  EOF

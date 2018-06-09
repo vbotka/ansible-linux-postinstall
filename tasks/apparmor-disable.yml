@@ -1,21 +1,24 @@
 ---
 # linux-postinstall apparmor-disable
 
-- name: Get path to "{{ item }}"
+- name: "apparmor-disable: Get path to {{ item }}"
   shell: which "{{ item }}" | sed 's/\//./g' | tail -c +2
   register: apparmor_item_path
   changed_when: false
+  tags: lp_apparmor
 
-- name: Disable "{{ apparmor_item_path.stdout }}"
-  file: >
-    src="{{ lp_apparmor_profile_dir }}/{{ apparmor_item_path.stdout }}"
-    dest="{{ lp_apparmor_profile_dir }}/disable/{{ apparmor_item_path.stdout }}"
-    state="link"
-    force="yes"
+- name: "apparmor-disable: Disable {{ apparmor_item_path.stdout }}"
+  file:
+    src: "{{ lp_apparmor_profile_dir }}/{{ apparmor_item_path.stdout }}"
+    dest: "{{ lp_apparmor_profile_dir }}/disable/{{ apparmor_item_path.stdout }}"
+    state: "link"
+    force: "yes"
   when: not ansible_check_mode
   notify: apparmor-disable-profile
+  tags: lp_apparmor
 
 - meta: flush_handlers
+  tags: lp_apparmor
 
 # EOF
 ...

@@ -1,41 +1,47 @@
 ---
 # linux-postinstall xen
 
-# Install and configure Xen
+- name: "xen: Debug"
+  vars:
+    msg: |
+      lp_xen_packages [ {{ lp_xen_packages | to_nice_yaml }} ]
+      lp_xen_dom0_mem [ {{ lp_xen_dom0_mem | to_nice_yaml }} ]
+      lp_xen_global [ {{ lp_xen_global | to_nice_yaml }} ]
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug
 
-- name: Install packages
-  apt: >
-    name="{{ item }}"
-    state="present"
+- name: "xen: Install packages"
+  package:
+    name: "{{ item }}"
   with_items: "{{ lp_xen_packages }}"
-  when: ansible_os_family == "Debian"
   tags: lp_xen_packages
 
-- name: Configure GRUB_CMDLINE_XEN_DEFAULT in /etc/default/grub
-  lineinfile: >
-    dest="/etc/default/grub"
-    regexp="^GRUB_CMDLINE_XEN_DEFAULT"
-    line="GRUB_CMDLINE_XEN_DEFAULT=\"dom0_mem={{ lp_xen_dom0_mem }},max:{{ lp_xen_dom0_mem_max }}\""
-    backup="yes"
+- name: "xen: Configure GRUB_CMDLINE_XEN_DEFAULT in /etc/default/grub"
+  lineinfile:
+    dest: "/etc/default/grub"
+    regexp: "^GRUB_CMDLINE_XEN_DEFAULT"
+    line: "GRUB_CMDLINE_XEN_DEFAULT=\"dom0_mem={{ lp_xen_dom0_mem }},max:{{ lp_xen_dom0_mem_max }}\""
+    backup: yes
   notify: update grub
   tags: lp_xen_grub
 
-- name: Configure XEN_OVERRIDE_GRUB_DEFAULT in /etc/default/grub
-  lineinfile: >
-    dest="/etc/default/grub"
-    regexp="^XEN_OVERRIDE_GRUB_DEFAULT"
-    line="XEN_OVERRIDE_GRUB_DEFAULT=\"1\""
-    backup="yes"
+- name: "xen: Configure XEN_OVERRIDE_GRUB_DEFAULT in /etc/default/grub"
+  lineinfile:
+    dest: "/etc/default/grub"
+    regexp: "^XEN_OVERRIDE_GRUB_DEFAULT"
+    line: "XEN_OVERRIDE_GRUB_DEFAULT=\"1\""
+    backup: yes
   notify: update grub
   tags: lp_xen_grub
 
-- name: Configure /etc/xen/xl.conf
-  lineinfile: >
-    dest="/etc/xen/xl.conf"
-    regexp="^{{ item.var }}{{'='}}"
-    line="{{ item.var }}{{'='}}{{ item.value }}"
-    create="yes"
-    backup="yes"
+- name: "xen: Configure /etc/xen/xl.conf"
+  lineinfile:
+    dest: "/etc/xen/xl.conf"
+    regexp: "^{{ item.var }}{{'='}}"
+    line: "{{ item.var }}{{'='}}{{ item.value }}"
+    create: yes
+    backup: yes
   with_items: "{{ lp_xen_global }}"
   when: lp_xen_global > 0
   tags: lp_xen_global
