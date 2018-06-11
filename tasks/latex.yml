@@ -29,7 +29,7 @@
   with_items: "{{ lp_latex_macros }}"
   when: lp_latex_macros > 0
   ignore_errors: "{{ lp_latex_get_url_ignore_errors }}"
-  changed_when: false
+  changed_when: False
   tags: lp_latex_labels
 
 # get_url: check mode reports changes with force enabled

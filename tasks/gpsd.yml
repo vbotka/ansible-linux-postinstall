@@ -11,7 +11,7 @@
   user:
     name: "gpsd"
     groups: "dialout"
-    append: "yes"
+    append: yes
   tags: lp_gpsd_group
 
 - name: "gpsd: Configure /etc/bluetooth/rfcomm.conf"
@@ -22,7 +22,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-    backup: "yes"
+    backup: yes
     block: |
       rfcomm{{ item.rfcomm }} {
         bind {{ item.bind }}
@@ -41,7 +41,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-    backup: "yes"
+    backup: yes
   notify: restart gpsd
   tags: lp_gpsd_config
   
@@ -49,7 +49,7 @@
   systemd:
     name: "gpsd"
     state: "stopped"
-    enabled: "no"
+    enabled: no
   when: not lp_gpsd
   tags: lp_gpsd_stop
 
@@ -57,7 +57,7 @@
   systemd:
     name: "gpsd"
     state: "started"
-    enabled: "yes"
+    enabled: yes
   when: lp_gpsd
   tags: lp_gpsd_start
 

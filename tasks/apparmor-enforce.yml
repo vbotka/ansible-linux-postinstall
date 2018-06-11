@@ -4,7 +4,7 @@
 - name: "apparmor-enforce: Get path to {{ item }}"
   shell: which "{{ item }}" | sed 's/\//./g' | tail -c +2
   register: apparmor_item_path
-  changed_when: false
+  changed_when: False
   tags:
     - lp_apparmor
 

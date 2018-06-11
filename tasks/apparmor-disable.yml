@@ -4,7 +4,7 @@
 - name: "apparmor-disable: Get path to {{ item }}"
   shell: which "{{ item }}" | sed 's/\//./g' | tail -c +2
   register: apparmor_item_path
-  changed_when: false
+  changed_when: False
   tags: lp_apparmor
 
 - name: "apparmor-disable: Disable {{ apparmor_item_path.stdout }}"
@@ -12,7 +12,7 @@
     src: "{{ lp_apparmor_profile_dir }}/{{ apparmor_item_path.stdout }}"
     dest: "{{ lp_apparmor_profile_dir }}/disable/{{ apparmor_item_path.stdout }}"
     state: "link"
-    force: "yes"
+    force: yes
   when: not ansible_check_mode
   notify: apparmor-disable-profile
   tags: lp_apparmor

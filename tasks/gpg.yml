@@ -15,7 +15,7 @@
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"
     mode: "0600"
-    backup: "yes"
+    backup: yes
   with_items: "{{ lp_gpg_conf_user }}"
 
 # TODO: import keys

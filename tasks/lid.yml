@@ -6,7 +6,7 @@
     dest: "{{ lp_lid_logind_conf }}"
     regexp: "^{{ item.var }}"
     line: "{{ item.var }}={{ item.value }}"
-    backup: "yes"
+    backup: yes
   with_items: "{{ lp_lid_logind_conf_vars }}"
 
 - name: "lid: Configure {{ lp_lid_upower_conf }}"
@@ -14,7 +14,7 @@
     dest: "{{ lp_lid_upower_conf }}"
     regexp: "^{{ item.var }}"
     line: "{{ item.var }}={{ item.value }}"
-    backup: "yes"
+    backup: yes
   with_items: "{{ lp_lid_upower_conf_vars }}"
 
 # EOF

@@ -4,9 +4,12 @@
 - name: "udev: Debug"
   vars:
     msg: |
-      lp_udev_persistent_net_rules [ {{ lp_udev_persistent_net_rules | to_nice_yaml }} ]
-      lp_udev_hci_name_rules [ {{ lp_udev_hci_name_rules | to_nice_yaml }} ]
-      lp_udev_hci_run_rules [ {{ lp_udev_hci_run_rules | to_nice_yaml }} ]
+      lp_udev_persistent_net_rules [
+      {{ lp_udev_persistent_net_rules | to_nice_yaml }} ]
+      lp_udev_hci_name_rules [
+      {{ lp_udev_hci_name_rules | to_nice_yaml }} ]
+      lp_udev_hci_run_rules [
+      {{ lp_udev_hci_run_rules | to_nice_yaml }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug

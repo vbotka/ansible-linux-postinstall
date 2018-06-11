@@ -12,9 +12,6 @@
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug
-  tags:
-    - lp_debug
-    - linux_postinstall
 
 - name: "virtualbox: Add signing key of VirtualBox"
   apt_key:

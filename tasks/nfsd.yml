@@ -1,17 +1,13 @@
 ---
 # linux-postinstall nfsd
 
-- debug:
-    msg: "lp_nfsd={{ lp_nfsd }}"
-  when: lp_debug
-
 - name: "nfsd: Configure exports"
   template:
-    src: exports.j2
-    dest: /etc/exports
-    owner: root
-    group: root
-    mode: 0644
+    src: "exports.j2"
+    dest: "/etc/exports"
+    owner: "root"
+    group: "root"
+    mode: "0644"
   notify: reload nfsd
 
 - name: "nfsd: Enable and start nfsd services"

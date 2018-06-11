@@ -6,9 +6,12 @@
 - name: "repos: Debug"
   vars:
     msg: |
-      lp_wpagui_packages [ {{ lp_wpagui_packages | to_nice_yaml }} ]
-      lp_wpagui_systemd [ {{ lp_wpagui_systemd | to_nice_yaml }} ]
-      lp_wpagui_service [ {{ lp_wpagui_service | to_nice_yaml }} ]
+      lp_wpagui_packages [
+      {{ lp_wpagui_packages | to_nice_yaml }} ]
+      lp_wpagui_systemd [
+      {{ lp_wpagui_systemd | to_nice_yaml }} ]
+      lp_wpagui_service [
+      {{ lp_wpagui_service | to_nice_yaml }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug

@@ -4,9 +4,12 @@
 - name: "xen: Debug"
   vars:
     msg: |
-      lp_xen_packages [ {{ lp_xen_packages | to_nice_yaml }} ]
-      lp_xen_dom0_mem [ {{ lp_xen_dom0_mem | to_nice_yaml }} ]
-      lp_xen_global [ {{ lp_xen_global | to_nice_yaml }} ]
+      lp_xen_packages [
+      {{ lp_xen_packages | to_nice_yaml }} ]
+      lp_xen_dom0_mem [
+      {{ lp_xen_dom0_mem | to_nice_yaml }} ]
+      lp_xen_global [
+      {{ lp_xen_global | to_nice_yaml }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug

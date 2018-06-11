@@ -4,9 +4,12 @@
 - name: "repos: Debug"
   vars:
     msg: |
-      lp_repos_keys_url [ {{ lp_repos_keys_url | to_nice_yaml }} ]
-      lp_repos_keys_id [ {{ lp_repos_keys_id | to_nice_yaml }} ]
-      lp_repos [ {{ lp_repos | to_nice_yaml }} ]
+      lp_repos_keys_url [
+      {{ lp_repos_keys_url | to_nice_yaml }} ]
+      lp_repos_keys_id [
+      {{ lp_repos_keys_id | to_nice_yaml }} ]
+      lp_repos [
+      {{ lp_repos | to_nice_yaml }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug

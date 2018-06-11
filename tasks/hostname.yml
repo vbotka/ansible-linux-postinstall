@@ -16,7 +16,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-    backup: "yes"
+    backup: yes
   when:
     - lp_hostname|length > 0
     - ansible_os_family == "Debian"
