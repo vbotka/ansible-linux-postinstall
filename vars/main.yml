@@ -128,25 +128,6 @@
 #      - 'hciconfig hci0 auth'
 #      - 'hciconfig hci0 encrypt'
 
-# Configure /etc/ssh/ssh_config
-#lp_ssh_Protocol: "2"
-#lp_ssh_ForwardAgent: "no"
-#lp_ssh_ForwardX11: "no"
-#lp_ssh_HostbasedAuthentication: "no"
-#lp_ssh_StrictHostKeyChecking: "no"
-#lp_ssh_Ciphers: " aes128-ctr,aes192-ctr,aes256-ctr,aes128-cbc,3des-cbc"
-#lp_ssh_Tunnel: "no"
-#lp_ssh_ServerAliveInterval: "420"
-#lp_ssh_config:
-#  - { key: Protocol, value: "{{ lp_ssh_Protocol }}" }
-#  - { key: ForwardAgent, value: "{{ lp_ssh_ForwardAgent }}" }
-#  - { key: ForwardX11, value: "{{ lp_ssh_ForwardX11 }}" }
-#  - { key: HostbasedAuthentication, value: "{{ lp_ssh_HostbasedAuthentication }}" }
-#  - { key: StrictHostKeyChecking, value: "{{ lp_ssh_StrictHostKeyChecking }}" }
-#  - { key: Ciphers, value: "{{ lp_ssh_Ciphers }}" }
-#  - { key: Tunnel, value: "{{ lp_ssh_Tunnel }}" }
-#  - { key: ServerAliveInterval, value: "{{ lp_ssh_ServerAliveInterval }}" }
-
 # Configure /etc/ssh/sshd_config
 #lp_sshd: "yes"
 #lp_sshd_PubkeyAuthentication: "yes"
@@ -353,6 +334,12 @@
 #    conf:
 #      - key: "verbose"
 #        value: ""
+
+#lp_ssh_config:
+#  - host: "*"
+#    conf:
+#      - { key: "key1", value: "value1" }
+#      - { key: "key2", value: "value2" }
 
 #lp_wpasupplicant_conf_global:
 #  - { key: "ctrl_interface", value: "/run/wpa_supplicant" }

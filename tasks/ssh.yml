@@ -1,14 +1,21 @@
 ---
 # linux-postinstall ssh
 
+- name: Debug
+  vars:
+    msg: |
+      lp_ssh_config [
+      {{ lp_ssh_config | to_yaml }}
+      ]
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug
+
 - name: "ssh: Configure /etc/ssh/ssh_config"
-  lineinfile:
+  template:
+    src: "ssh_config.j2"
     dest: "/etc/ssh/ssh_config"
-    regexp: "^{{ item.key }}"
-    insertbefore: "^{{'#'}}{{ item.key }}"
-    line: "{{ item.key }} {{ item.value }}"
     backup: yes
-  with_items: "{{ lp_ssh_config }}"
 
 # EOF
 ...

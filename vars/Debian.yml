@@ -1,6 +1,14 @@
 ---
 # Debian vars linux-postinstall
 
+#lp_ssh: True
+#lp_ssh_config:
+#  - host: "*"
+#    conf:
+#      - { key: "SendEnv", val: "LANG LC_*" }
+#      - { key: "HashKnownHosts", val: "yes" }
+#      - { key: "GSSAPIAuthentication", val: "yes" }
+
 lp_service_sshd: "ssh"
 lp_path_sshd: "/usr/sbin/sshd"
 
