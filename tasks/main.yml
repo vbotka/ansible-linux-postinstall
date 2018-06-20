@@ -1,47 +1,6 @@
 ---
 # tasks linux-postinstall
 
-- name: Debug
-  vars:
-    msg: |
-      ansible_architecture [ {{ ansible_architecture }} ]
-      ansible_os_family [ {{ ansible_os_family }} ]
-      ansible_distribution [ {{ ansible_distribution }} ]
-      ansible_distribution_major_version [ {{ ansible_distribution_major_version }} ]
-      ansible_distribution_version [ {{ ansible_distribution_version }} ]
-      ansible_distribution_release [ {{ ansible_distribution_release }} ]
-
-      lp_apparmor [ {{ lp_apparmor }} ]
-      lp_bluetooth [ {{ lp_bluetooth }} ]
-      lp_gpg [ {{ lp_gpg }} ]
-      lp_gpsd [ {{ lp_gpsd }} ]
-      lp_iptables [ {{ lp_iptables }} ]
-      lp_latex [ {{ lp_latex }} ]
-      lp_lid [ {{ lp_lid }} ]
-      lp_modemmanager [ {{ lp_modemmanager }} ]
-      lp_netplan [ {{ lp_netplan }} ]
-      lp_nfsd [ {{ lp_nfsd }} ]
-      lp_packages_autoremove [ {{ lp_packages_autoremove }} ]
-      lp_pm [ {{ lp_pm }} ]
-      lp_postfix [ {{ lp_postfix }} ]
-      lp_smart [ {{ lp_smart }} ]
-      lp_speechd [ {{ lp_speechd }} ]
-      lp_ssh [ {{ lp_ssh }} ]
-      lp_sshd [ {{ lp_sshd }} ]
-      lp_swap [ {{ lp_swap }} ]
-      lp_timesyncd [ {{ lp_timesyncd }} ]
-      lp_timezone [ {{ lp_timezone }} ]
-      lp_unattended_upgrades [ {{ lp_unattended_upgrades }} ]
-      lp_virtualbox [ {{ lp_virtualbox }} ]
-      lp_wpagui [ {{ lp_wpagui }} ]
-      lp_wpasupplicant [ {{ lp_wpasupplicant }} ]
-      lp_xen [ {{ lp_xen }} ]
-      lp_zeitgeist [ {{ lp_zeitgeist }} ]
-  debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug
-  tags: lp_debug
-
 - name: vars for {{ ansible_os_family }} {{ ansible_distribution }} {{ ansible_distribution_release }}
   include_vars: "{{ item }}"
   with_first_found:
@@ -51,6 +10,10 @@
         - "{{ ansible_os_family }}.yml"
       paths: '{{ role_path }}/vars'
   tags: lp_vars
+
+- import_tasks: debug.yml
+  when: lp_debug
+  tags: lp_debug
 
 - import_tasks: swap.yml
   when: (ansible_os_family == "RedHat" ) or

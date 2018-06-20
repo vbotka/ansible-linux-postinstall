@@ -1,0 +1,82 @@
+---
+# Debian vars linux-postinstall
+
+#lp_ssh: True
+#lp_ssh_config:
+#  - host: "*"
+#    conf:
+#      - { key: "SendEnv", val: "LANG LC_*" }
+#      - { key: "HashKnownHosts", val: "yes" }
+#      - { key: "GSSAPIAuthentication", val: "yes" }
+
+lp_service_sshd: "ssh"
+lp_path_sshd: "/usr/sbin/sshd"
+
+lp_modules_conf: "/etc/modules"
+
+lp_hosts_default:
+  - { ip: "127.0.0.1", name1: "localhost" }
+  - { ip: "::1", name1: "ip6-localhost", name2: "ip6-loopback" }
+  - { ip: "fe00::0", name1: "ip6-localnet" }
+  - { ip: "ff00::0", name1: "ip6-mcastprefix" }
+  - { ip: "ff02::1", name1: "ip6-allnodes" }
+  - { ip: "ff02::2", name1: "ip6-allrouters" }
+
+lp_nfsd_packages:
+  - nfs-kernel-server
+lp_nfsd_services:
+  - nfs-kernel-server
+lp_nfsd_reload_service: "nfs-kernel-server"
+
+lp_gpg_packages:
+  - gnupg
+lp_gpg_conf_default:
+  - { key: "keyserver", value: "hkp://keys.gnupg.net" }
+  - { key: "use-agent", value: "" }
+  - { key: "cert-digest-algo", value: "SHA256" }
+  - { key: "digest-algo", value: "SHA256" }
+
+lp_wpagui_packages:
+  - wpasupplicant
+  - wpagui
+  - net-tools
+  - ifupdown
+  - wireless-tools
+lp_wpagui_systemd:
+  - network-manager
+lp_wpagui_service:
+  - NetworkManager.service
+  - NetworkManager-dispatcher.service
+  - NetworkManager-wait-online.service
+  - wpa_supplicant.service
+
+lp_wpasupplicant_packages:
+  - wpasupplicant
+
+lp_logrotate_packages:
+  - logrotate
+
+lp_gpsd_packages:
+  - gpsd
+  - gpsd-clients
+
+lp_latex_packages:
+  - texlive-full
+
+lp_smart_packages:
+  - smartmontools
+
+lp_xen_packages:
+  - xen-hypervisor-{{ lp_xen_version }}-amd64
+  - xen-utils-{{ lp_xen_version }}
+  - xen-utils-common
+  - xenstore-utils
+# - ubuntu-virt-server
+
+# Note 1.
+# Netplan in 18.04 does not support wpa_supplicant.conf
+# https://bugs.launchpad.net/netplan/+bug/1735288
+# status: New → Triaged/Wishlist
+
+# EOF
+...
