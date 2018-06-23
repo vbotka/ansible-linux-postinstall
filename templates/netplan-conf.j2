@@ -3,4 +3,4 @@ network:
   version: {{ lp_netplan_version }}
   renderer: {{ lp_netplan_renderer }}
   {{ item.category }}:
-    {{ item.conf | from_yaml }}
+    {{ item.conf | from_yaml | to_nice_json }}
