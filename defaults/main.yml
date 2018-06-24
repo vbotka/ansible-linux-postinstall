@@ -184,7 +184,8 @@ lp_wpasupplicant_conf_group: "root"
 lp_wpasupplicant_conf_mode: "0600"
 lp_wpasupplicant_conf_dir: "/etc/wpa_supplicant"
 lp_wpasupplicant_conf_file: "wpa_supplicant.conf"
-lp_wpasupplicant_conf_global: {}
+lp_wpasupplicant_conf_global:
+    - { key: "ctrl_interface", value: "{{ lp_wpasupplicant_conf_ctrl_interface }}" }
 lp_wpasupplicant_conf: {}
 
 lp_logrotate_conf_file: "/etc/logrotate.conf"

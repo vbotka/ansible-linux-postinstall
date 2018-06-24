@@ -30,6 +30,8 @@ lp_nfsd_reload_service: "nfs"
 
 lp_wpasupplicant_packages:
   - wpa_supplicant
+lp_wpasupplicant_conf_ctrl_interface: "/run/wpa_supplicant"
+#lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
 
 lp_logrotate_packages:
   - logrotate

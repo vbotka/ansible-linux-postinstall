@@ -51,6 +51,8 @@ lp_wpagui_service:
 
 lp_wpasupplicant_packages:
   - wpasupplicant
+lp_wpasupplicant_conf_ctrl_interface: "/run/wpa_supplicant"
+#lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
 
 lp_logrotate_packages:
   - logrotate
