@@ -2,7 +2,7 @@
 # tasks linux-postinstall
 
 - import_tasks: vars.yml
-  tags: lp_vars
+  tags: [lp_vars, always]
 
 - import_tasks: debug.yml
   when: lp_debug
