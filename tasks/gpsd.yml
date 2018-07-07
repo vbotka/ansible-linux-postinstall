@@ -4,7 +4,7 @@
 - name: "gpsd: Install packages for gpsd"
   package:
     name: "{{ item }}"
-  with_items: "{{ lp_gpsd_packages }}"
+  loop: "{{ lp_gpsd_packages }}"
   tags: lp_gpsd_packages
 
 - name: "gpsd: Add user gpsd to group dialout"
@@ -30,7 +30,7 @@
         channel {{ item.channel }}
         comment "{{ item.comment }}"
         }
-  with_items: "{{ lp_gpsd_bt_rfcomm }}"
+  loop: "{{ lp_gpsd_bt_rfcomm }}"
   notify: restart bluetooth
   tags: lp_gpsd_bt_rfcom
 

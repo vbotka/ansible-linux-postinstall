@@ -8,24 +8,24 @@
   apt:
     name: "{{ item }}"
     state: "present"
-  with_items: "{{ lp_apparmor_packages }}"
+  loop: "{{ lp_apparmor_packages }}"
   when:
     - lp_apparmor
     - ansible_os_family == "Debian"
   tags: lp_apparmor_packages
 
 - include_tasks: apparmor-disable.yml
-  with_items: "{{ lp_apparmor_disable }}"
+  loop: "{{ lp_apparmor_disable }}"
   whhen: lp_apparmor_disable|legth > 0
   tags: lp_apparmor_disable
 
 - include_tasks: apparmor-enforce.yml
-  with_items: "{{ lp_apparmor_enforce }}"
+  loop: "{{ lp_apparmor_enforce }}"
   when: lp_apparmor_enforce|legth > 0
   tags: lp_apparmor_enforce
 
 - include_tasks: apparmor-complain.yml
-  with_items: "{{ lp_apparmor_complain }}"
+  loop: "{{ lp_apparmor_complain }}"
   when: lp_apparmor_complain|length > 0
   tags: lp_apparmor_complain
 

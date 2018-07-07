@@ -17,14 +17,14 @@
     shell: "{{ item.shell | default(omit) }}"
     password: "{{ item.password | default(omit) }}"
     update_password: "{{ item.update_password | default(omit) }}"
-  with_items: "{{ lp_users }}"
+  loop: "{{ lp_users }}"
 
 - name: "users: Add users to additional groups"
   user:
     name: "{{ item.name }}"
     groups: "{{ item.groups }}"
     append: yes
-  with_items: "{{ lp_users_groups }}"
+  loop: "{{ lp_users_groups }}"
 
 #  EOF
 ...

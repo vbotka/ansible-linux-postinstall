@@ -5,7 +5,7 @@
     name: "{{ item.name }}"
     value: "{{ item.value }}"
     user: "{{ item.user }}"
-  with_items: "{{ lp_cron_var }}"
+  loop: "{{ lp_cron_var }}"
   tags: lp_cron_var
 
 - name: "cron: Configure cron"
@@ -19,7 +19,7 @@
     month: "{{ item.month }}"
     weekday: "{{ item.weekday }}"
     job: "{{ item.command }}"
-  with_items: "{{ lp_cron_tab }}"
+  loop: "{{ lp_cron_tab }}"
   tags: lp_cron_tab
 
 # EOF

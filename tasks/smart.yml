@@ -4,15 +4,15 @@
 - name: "smart: Install packages"
   package:
     name: "{{ item }}"
-  with_items: "{{ lp_smart_packages }}"
+  loop: "{{ lp_smart_packages }}"
   when: lp_smart
   tags: lp_smart_packages
 
 - name: "smart: Configure {{ lp_smart_conf_file }}. Do not scan for devices"
   lineinfile:
+    state: absent
     dest: "{{ lp_smart_conf_file }}"
     regexp: "^DEVICESCAN"
-    state: "absent"
     owner: "{{ lp_smart_conf_owner }}"
     group: "{{ lp_smart_conf_group }}"
     mode: "{{ lp_smart_conf_mode }}"
@@ -32,14 +32,14 @@
     mode: "{{ lp_smart_conf_mode }}"
     create: yes
     backup: yes
-  with_items: "{{ lp_smart_devices }}"
+  loop: "{{ lp_smart_devices }}"
   notify: reload smart
   tags: lp_smart_conf
 
 - name: "smart: Start and enable smart"
   service:
     name: "{{ lp_smart_service_name }}"
-    state: "started"
+    state: started
     enabled: yes
   when: lp_smart
   tags: lp_smart_service
@@ -47,7 +47,7 @@
 - name: "smart: Stop and disable smart"
   service:
     name: "{{ lp_smart_service_name }}"
-    state: "stopped"
+    state: stopped
     enabled: no
   when: not lp_smart
   tags: lp_smart_service

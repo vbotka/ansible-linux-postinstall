@@ -19,7 +19,7 @@
   package:
     name: "{{ item }}"
     state: "{{ lp_package_state }}"
-  with_items: "{{ lp_wpagui_packages }}"
+  loop: "{{ lp_wpagui_packages }}"
   tags: lp_wpagui_packages
 
 - name: "wpagui: Disable NM /etc/init/network-manager.override"
@@ -43,7 +43,7 @@
     name: "{{ item }}"
     state: "stopped"
     enabled: no
-  with_items: "{{ lp_wpagui_systemd }}"
+  loop: "{{ lp_wpagui_systemd }}"
   tags: lp_wpagui_disableNM
 
 - name: "wpagui: Stop and disable all NM services"
@@ -51,7 +51,7 @@
     name: "{{ item }}"
     state: "stopped"
     enabled: no
-  with_items: "{{ lp_wpagui_service }}"
+  loop: "{{ lp_wpagui_service }}"
   tags: lp_wpagui_disableNM
 
 # EOF

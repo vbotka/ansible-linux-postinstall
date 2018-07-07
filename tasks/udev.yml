@@ -4,12 +4,12 @@
 - name: "udev: Debug"
   vars:
     msg: |
-      lp_udev_persistent_net_rules [
-      {{ lp_udev_persistent_net_rules | to_nice_yaml }} ]
-      lp_udev_hci_name_rules [
-      {{ lp_udev_hci_name_rules | to_nice_yaml }} ]
-      lp_udev_hci_run_rules [
-      {{ lp_udev_hci_run_rules | to_nice_yaml }} ]
+      lp_udev_persistent_net_rules
+      {{ lp_udev_persistent_net_rules | to_nice_yaml }}
+      lp_udev_hci_name_rules
+      {{ lp_udev_hci_name_rules | to_nice_yaml }}
+      lp_udev_hci_run_rules
+      {{ lp_udev_hci_run_rules | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug
@@ -23,7 +23,7 @@
     group: "root"
     mode: "0644"
     backup: yes
-  with_items: "{{ lp_udev_persistent_net_rules }}"
+  loop: "{{ lp_udev_persistent_net_rules }}"
   notify: reload udev
 
 # hci name
@@ -35,7 +35,7 @@
     group: "root"
     mode: "0644"
     backup: yes
-  with_items: "{{ lp_udev_hci_name_rules }}"
+  loop: "{{ lp_udev_hci_name_rules }}"
   notify: reload udev
 
 # hci run
@@ -47,7 +47,7 @@
     group: "root"
     mode: "0644"
     backup: yes
-  with_items: "{{ lp_udev_hci_run_rules }}"
+  loop: "{{ lp_udev_hci_run_rules }}"
   notify: reload udev
 
 # EOF

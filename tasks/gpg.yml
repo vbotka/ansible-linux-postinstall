@@ -4,7 +4,7 @@
 - name: "gpg: Install gpg packages"
   package:
     name: "{{ item }}"
-  with_items: "{{ lp_gpg_packages }}"
+  loop: "{{ lp_gpg_packages }}"
   when: (ansible_os_family == "Debian") or
         (ansible_os_family == "RedHat")
 
@@ -16,7 +16,7 @@
     group: "{{ item.owner }}"
     mode: "0600"
     backup: yes
-  with_items: "{{ lp_gpg_conf_user }}"
+  loop: "{{ lp_gpg_conf_user }}"
 
 # TODO: import keys
 

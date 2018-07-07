@@ -15,7 +15,7 @@
     name: "{{ item }}"
     enabled: yes
     state: "started"
-  with_items: "{{ lp_nfsd_services }}"
+  loop: "{{ lp_nfsd_services }}"
   when:
     - lp_nfsd
     - lp_nfsd_services > 0
@@ -25,7 +25,7 @@
     name: "{{ item }}"
     enabled: no
     state: "stopped"
-  with_items: "{{ lp_nfsd_services }}"
+  loop: "{{ lp_nfsd_services }}"
   when:
     - not lp_nfsd
     - lp_nfsd_services > 0

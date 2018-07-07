@@ -1,11 +1,11 @@
 ---
 
-- name: Configure {{ lp_xorg_conf_dir }}
+- name: "xorg: Configure {{ lp_xorg_conf_dir }}"
   template:
     src: "xorg.conf.j2"
     dest: "{{ lp_xorg_conf_dir }}/{{ item.file }}"
     backup: yes
-  with_items: "{{ lp_xorg_conf }}"
+  loop: "{{ lp_xorg_conf }}"
   tags: lp_xorg_conf
 
 # EOF

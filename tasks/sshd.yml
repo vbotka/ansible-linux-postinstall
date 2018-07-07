@@ -9,7 +9,7 @@
     line: "{{ item.key }} {{ item.value }}"
     backup: yes
     validate: "{{ lp_path_sshd }} -t -f %s"
-  with_items: "{{ lp_sshd_config }}"
+  loop: "{{ lp_sshd_config }}"
   notify: reload sshd
 
 - name: "sshd: Enable and start sshd"

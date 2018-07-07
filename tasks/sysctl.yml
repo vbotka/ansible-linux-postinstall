@@ -7,7 +7,7 @@
     regexp: "^{{ item.var }}"
     line: "{{ item.var }} = {{ item.value }}"
     backup: yes
-  with_items: "{{ lp_sysctl_vars }}"
+  loop: "{{ lp_sysctl_vars }}"
   notify: load sysctl settings
 
 # EOF

@@ -15,7 +15,7 @@
     group: "root"
     mode: "0755"
     backup: no
-  with_dict: "{{ lp_pm_sleepd|default({}) }}"
+  with_dict: "{{ lp_pm_sleepd | default({}) }}"
   when: item.value > 0
 
 # EOF

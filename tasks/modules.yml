@@ -10,7 +10,7 @@
     name: "{{ item.name }}"
     params: "{{ item.params }}"
     state: "{{ item.state | default('present') }}"
-  with_items: "{{ lp_modules }}"
+  loop: "{{ lp_modules }}"
 
 - name: "modules: Configure {{ lp_modules_conf }} in Debian"
   lineinfile:
@@ -18,7 +18,7 @@
     regexp: "^{{ item.name }}"
     line: "{{ item.name }} {{ item.params }}"
     backup: yes
-  with_items: "{{ lp_modules }}"
+  loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == "Debian"
     - item.state | default("present") == "present"
@@ -29,7 +29,7 @@
     regexp: "^modprobe {{ item.name }}"
     line: "modprobe {{ item.name }} {{ item.params }}"
     backup: yes
-  with_items: "{{ lp_modules }}"
+  loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == "RedHat"
     - item.state | default("present") == "present"

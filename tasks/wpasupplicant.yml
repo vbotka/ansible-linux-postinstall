@@ -4,7 +4,8 @@
   vars:
     msg: |
       lp_package_state [ {{ lp_package_state }} ]
-      lp_wpasupplicant_packages [ {{ lp_wpasupplicant_packages }} ]
+      lp_wpasupplicant_packages
+      {{ lp_wpasupplicant_packages | to_nice_yaml }}
       lp_wpasupplicant_conf_dir [ {{ lp_wpasupplicant_conf_dir }} ]
       lp_wpasupplicant_conf_file [ {{ lp_wpasupplicant_conf_file }} ]
       lp_wpasupplicant_conf_owner [ {{ lp_wpasupplicant_conf_owner }} ]
@@ -23,7 +24,7 @@
   package:
     name: "{{ item }}"
     state: "{{ lp_package_state }}"
-  with_items: "{{ lp_wpasupplicant_packages }}"
+  loop: "{{ lp_wpasupplicant_packages }}"
   tags: lp_wpasupplicant_packages
 
 - name: "wpasupplicant: Configure {{ lp_wpasupplicant_conf_dir }}/{{ lp_wpasupplicant_conf_file }}.DEV"
@@ -35,7 +36,7 @@
     mode: "{{ lp_wpasupplicant_conf_mode }}"
     backup: yes
   register: wpa_supplicant_conf
-  with_items: "{{ lp_wpasupplicant_conf }}"
+  loop: "{{ lp_wpasupplicant_conf }}"
   tags: lp_wpasupplicant_conf
 
 - name: "wpasupplicant: Debug: registered to wpa_supplicant_conf"
@@ -45,7 +46,7 @@
 - name: "wpasupplicant: Debug: wpa_cli reconfigure commands"
   debug:
     msg: 'sh -c "[ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ item.item.dev }} ] && wpa_cli -p {{ lp_wpasupplicant_conf_ctrl_interface }} -i {{ item.item.dev }} reconfigure"'
-  with_items: "{{ wpa_supplicant_conf.results }}"
+  loop: "{{ wpa_supplicant_conf.results }}"
   when:
     - item.changed
     - lp_wpasupplicant_debug
@@ -53,7 +54,7 @@
 - name: "wpasupplicant: Reconfigure wpa_supplicant"
   shell: "[ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ item.item.dev }} ] && wpa_cli -p {{ lp_wpasupplicant_conf_ctrl_interface }} -i {{ item.item.dev }} reconfigure  || exit 0"
   when: item.changed
-  with_items: "{{ wpa_supplicant_conf.results }}"
+  loop: "{{ wpa_supplicant_conf.results }}"
   tags: lp_wpasupplicant_handler
   # TODO: Wait for OK result. Error: 'RECONFIGURE' command timed out.
   

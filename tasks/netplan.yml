@@ -26,9 +26,8 @@
     group: "{{ item.group | default(lp_netplan_group) }}"
     mode: "{{ item.mode | default(lp_netplan_mode) }}"
     backup: yes
-  with_items: "{{ lp_netplan_conf }}"
+  loop: "{{ lp_netplan_conf }}"
   notify: netplan apply
-  when: lp_netplan_conf > 0
 
 # EOF
 ...

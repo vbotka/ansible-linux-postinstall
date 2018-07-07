@@ -4,21 +4,20 @@
 - name: "latex: Install packages"
   package:
     name: "{{ item }}"
-  with_items: "{{ lp_latex_packages }}"
+  loop: "{{ lp_latex_packages }}"
   tags: lp_latex_packages
 
 - name: "latex: Create directory /usr/share/texmf/tex/latex"
   file:
-    state: "directory"
+    state: directory
     path: "/usr/share/texmf/tex/latex/"
   tags: lp_latex_dir
 
 - name: "latex: Create directories for macros"
   file:
-    state: "directory"
+    state: directory
     path: "{{ item.dest }}"
-  with_items: "{{ lp_latex_macros }}"
-  when: lp_latex_macros > 0
+  loop: "{{ lp_latex_macros }}"
   tags: lp_latex_macros
 
 - name: "latex: Download macros"
@@ -26,8 +25,7 @@
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
     timeout: "{{ lp_latex_download_timeout }}"
-  with_items: "{{ lp_latex_macros }}"
-  when: lp_latex_macros > 0
+  loop: "{{ lp_latex_macros }}"
   ignore_errors: "{{ lp_latex_get_url_ignore_errors }}"
   changed_when: False
   tags: lp_latex_labels

@@ -4,7 +4,7 @@
 - name: "logrotate: Install packages for logrotate"
   package:
     name: "{{ item }}"
-  with_items: "{{ lp_logrotate_packages }}"
+  loop: "{{ lp_logrotate_packages }}"
 
 - name: "logrotate: Configure blocks in {{ lp_logrotate_conf_file }}"
   blockinfile:
@@ -13,7 +13,7 @@
     block: "{{ item.block }}"
     state: "{{ item.state }}"
     backup: yes
-  with_items: "{{ lp_logrotate_conf_blocks }}"
+  loop: "{{ lp_logrotate_conf_blocks }}"
 
 - name: "logrotate: Configure lines in {{ lp_logrotate_conf_file }}"
   lineinfile:
@@ -21,7 +21,7 @@
     line: "{{ item.line }}"
     state: "{{ item.state }}"
     backup: yes
-  with_items: "{{ lp_logrotate_conf_lines }}"
+  loop: "{{ lp_logrotate_conf_lines }}"
 
 - name: "logrotate: Configure {{ lp_logrotate_conf_dir }}"
   blockinfile:
@@ -29,8 +29,7 @@
     block: "{{ item.conf }}"
     create: yes
     backup: yes
-  with_items: "{{ lp_logrotate_confd }}"
+  loop: "{{ lp_logrotate_confd }}"
 
-  
 # EOF
 ...

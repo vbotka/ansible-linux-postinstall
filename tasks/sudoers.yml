@@ -8,7 +8,7 @@
     state: "{{ item.state | default('present') }}"
     create: yes
     backup: yes
-  with_items: "{{ lp_sudoers_conf }}"
+  loop: "{{ lp_sudoers_conf }}"
 
 - name: "sudoers: Configure /etc/sudoers.d/01"
   lineinfile:
@@ -19,7 +19,7 @@
     mode: "{{ lp_sudoers_mode }}"
     create: yes
     backup: yes
-  with_items: "{{ lp_sudoers_01 }}"
+  loop: "{{ lp_sudoers_01 }}"
 
 # EOF
 ...

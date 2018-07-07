@@ -8,21 +8,21 @@
     line: "{{ item.key }} = {{ item.value }}"
     create: yes
     backup: yes
-  with_items: "{{ lp_postfix_main_conf }}"
+  loop: "{{ lp_postfix_main_conf }}"
   notify: reload postfix
 
 - name: "postfix: Enable and start postfix"
   systemd:
     name: "postfix"
     enabled: yes
-    state: "started"
+    state: started
   when: lp_postfix
 
 - name: "postfix: Disable and stop postfix"
   systemd:
     name: "postfix"
     enabled: no
-    state: "stopped"
+    state: stopped
   when: not lp_postfix
 
 # EOF

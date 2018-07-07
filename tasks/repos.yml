@@ -4,12 +4,12 @@
 - name: "repos: Debug"
   vars:
     msg: |
-      lp_repos_keys_url [
-      {{ lp_repos_keys_url | to_nice_yaml }} ]
-      lp_repos_keys_id [
-      {{ lp_repos_keys_id | to_nice_yaml }} ]
-      lp_repos [
-      {{ lp_repos | to_nice_yaml }} ]
+      lp_repos_keys_url
+      {{ lp_repos_keys_url | to_nice_yaml }}
+      lp_repos_keys_id
+      {{ lp_repos_keys_id | to_nice_yaml }}
+      lp_repos
+      {{ lp_repos | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug
@@ -17,7 +17,7 @@
 - name: "repos: Add repo signing keys by URL"
   apt_key:
     url: "{{ item }}"
-  with_items: "{{ lp_repos_keys_url }}"
+  loop: "{{ lp_repos_keys_url }}"
   when: ansible_os_family == "Debian"
   tags: lp_repos_keys_add
 
@@ -26,7 +26,7 @@
     id: "{{ item.id }}"
     keyserver: "{{ item.keyserver }}"
     state: "present"
-  with_items: "{{ lp_repos_keys_id }}"
+  loop: "{{ lp_repos_keys_id }}"
   when: ansible_os_family == "Debian"
   tags: lp_repos_keys_add
 
@@ -34,7 +34,7 @@
   apt_repository:
     repo: "{{ item }}"
     state: "present"
-  with_items: "{{ lp_repos }}"
+  loop: "{{ lp_repos }}"
   when: ansible_os_family == "Debian"
   tags: lp_repos_add
 

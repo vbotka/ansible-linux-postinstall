@@ -17,7 +17,7 @@
   apt_key:
     url: "{{ item }}"
     state: "present"
-  with_items: "{{ lp_virtualbox_keys }}"
+  loop: "{{ lp_virtualbox_keys }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
   when: ansible_os_family == "Debian"
 
@@ -25,7 +25,7 @@
   apt_repository:
     repo: "{{ item }}"
     state: "present"
-  with_items: "{{ lp_virtualbox_repos }}"
+  loop: "{{ lp_virtualbox_repos }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
   when: ansible_os_family == "Debian"
 
@@ -33,7 +33,7 @@
   apt:
     name: "{{ item }}"
     state: "present"
-  with_items: "{{ lp_virtualbox_install }}"
+  loop: "{{ lp_virtualbox_install }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
   when: ansible_os_family == "Debian"
 

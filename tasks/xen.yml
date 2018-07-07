@@ -4,12 +4,12 @@
 - name: "xen: Debug"
   vars:
     msg: |
-      lp_xen_packages [
-      {{ lp_xen_packages | to_nice_yaml }} ]
-      lp_xen_dom0_mem [
-      {{ lp_xen_dom0_mem | to_nice_yaml }} ]
-      lp_xen_global [
-      {{ lp_xen_global | to_nice_yaml }} ]
+      lp_xen_packages
+      {{ lp_xen_packages | to_nice_yaml }}
+      lp_xen_dom0_mem
+      {{ lp_xen_dom0_mem | to_nice_yaml }}
+      lp_xen_global
+      {{ lp_xen_global | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug
@@ -17,7 +17,7 @@
 - name: "xen: Install packages"
   package:
     name: "{{ item }}"
-  with_items: "{{ lp_xen_packages }}"
+  loop: "{{ lp_xen_packages }}"
   tags: lp_xen_packages
 
 - name: "xen: Configure GRUB_CMDLINE_XEN_DEFAULT in /etc/default/grub"
@@ -45,7 +45,7 @@
     line: "{{ item.var }}{{'='}}{{ item.value }}"
     create: yes
     backup: yes
-  with_items: "{{ lp_xen_global }}"
+  loop: "{{ lp_xen_global }}"
   when: lp_xen_global > 0
   tags: lp_xen_global
 

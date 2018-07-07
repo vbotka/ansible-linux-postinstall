@@ -6,15 +6,15 @@
 lp_debug: False
 
 lp_repos: []
-lp_repos_keys_url: {}
-lp_repos_keys_id: {}
+lp_repos_keys_url: []
+lp_repos_keys_id: []
 
 lp_package_state: "present" # apt and yum support "latest"
 
 lp_packages_install: []
 lp_packages_remove: []
-lp_packages_selections_preinstall: {}
-lp_packages_selections_postinstall: {}
+lp_packages_selections_preinstall: []
+lp_packages_selections_postinstall: []
 lp_packages_autoremove: False
 
 lp_modules: []
@@ -37,8 +37,8 @@ lp_iptables_type: "router1"
 lp_iptables_wan_if: "eth0"
 lp_iptables_lan_if: "eth1"
 lp_iptables_lan: "10.1.0.0/24"
-lp_iptables_INPUT_if: {}
-lp_iptables_INPUT_net: {}
+lp_iptables_INPUT_if: []
+lp_iptables_INPUT_net: []
 
 lp_users: []
 lp_users_groups: []
@@ -63,7 +63,7 @@ lp_xen_global: []
 
 lp_latex: False
 lp_latex_download_timeout: "20"
-lp_latex_macros: {}
+lp_latex_macros: []
 lp_latex_get_url_ignore_errors: False
 
 lp_unattended_upgrades: False
@@ -81,13 +81,13 @@ lp_sshd: False
 lp_sshd_config: {}
 
 lp_bluetooth: False
-lp_bluetooth_main_conf: {}
+lp_bluetooth_main_conf: []
 
 lp_xorg_conf_dir: "/usr/share/X11/xorg.conf.d"
 lp_xorg_conf: {}
 
-lp_cron_tab: {}
-lp_cron_var: {}
+lp_cron_tab: []
+lp_cron_var: []
 
 lp_modemmanager: True
 lp_modemmanager_override: ""
@@ -97,10 +97,10 @@ lp_gpsd_START_DAEMON: "true"
 lp_gpsd_USBAUTO: "true"
 lp_gpsd_DEVICES: "/dev/rfcomm0"
 lp_gpsd_GPSD_OPTIONS: "-b"
-lp_gpsd_bt_rfcomm: {}
+lp_gpsd_bt_rfcomm: []
 
 lp_postfix: True
-lp_postfix_main_conf: {}
+lp_postfix_main_conf: []
 
 lp_apparmor: True
 lp_apparmor_packages:
@@ -121,7 +121,7 @@ lp_smart_conf_file: "/etc/smartd.conf"
 lp_smart_conf_owner: "root"
 lp_smart_conf_group: "root"
 lp_smart_conf_mode: "644"
-lp_smart_devices: {}
+lp_smart_devices: []
 
 lp_virtualbox: False
 lp_virtualbox_ignore_errors: False
@@ -138,9 +138,9 @@ lp_zeitgeist: True
 
 lp_lid: False
 lp_lid_logind_conf: "/etc/systemd/logind.conf"
-lp_lid_logind_conf_vars: {}
+lp_lid_logind_conf_vars: []
 lp_lid_upower_conf: "/etc/UPower/UPower.conf"
-lp_lid_upower_conf_vars: {}
+lp_lid_upower_conf_vars: []
 
 lp_speechd: True
 
@@ -161,7 +161,7 @@ lp_netplan_group: "root"
 lp_netplan_mode: "0644"
 lp_netplan_version: "2"
 lp_netplan_renderer: "NetworkManager"
-lp_netplan_conf: {}
+lp_netplan_conf: []
 
 lp_swap: False
 
@@ -176,7 +176,7 @@ lp_timesyncd_PollIntervalMinSec: "32"
 lp_timesyncd_PollIntervalMaxSec: "2048"
 
 lp_gpg: True
-lp_gpg_conf_user: {}
+lp_gpg_conf_user: []
 
 lp_wpasupplicant: True
 lp_wpasupplicant_conf_owner: "root"
@@ -192,8 +192,8 @@ lp_logrotate_conf_file: "/etc/logrotate.conf"
 lp_logrotate_conf_dir: "/etc/logrotate.d"
 lp_logrotate_conf_lines:
   - { line: "include /etc/logrotate.d", state: "present" }
-lp_logrotate_conf_blocks: {}
-lp_logrotate_confd: {}
+lp_logrotate_conf_blocks: []
+lp_logrotate_confd: []
 
 # EOF
 ...
