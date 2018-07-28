@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: linux_postinstall
   author: Vladimir Botka
   description: Configure Linux.
   company: https://botka.link

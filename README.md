@@ -1,9 +1,9 @@
-linux-postinstall
+linux_postinstall
 =================
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/linux-postinstall/)
+[Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/)
 
 Configure Linux: aliases, apparmor, authorized keys, automatic
 upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables,
@@ -32,28 +32,21 @@ Workflow
 1) Install the role.
 
 ```
-ansible-galaxy install vbotka.linux-postinstall
+# ansible-galaxy install vbotka.linux_postinstall
 ```
 
 2) Change variables.
 
-Make global changes in variables
 ```
-roles/vbotka.linux-postinstall/vars/main.yml
-```
-
-Put host specific variables to separate files
-```
-vars/host1.example.com.yml
+# editor vbotka.linux_postinstall/vars/main.yml
 ```
 
 3) Create the inventory.
 
 ```
-> cat hosts
+# cat hosts
 [host1]
 host1.example.com
-
 [host1:vars]
 ansible_connection=ssh
 ansible_user=root
@@ -64,61 +57,66 @@ ansible_perl_interpreter=/usr/bin/perl
 4) Create the playbook.
 
 ```
-> cat playbooks/linux-postinstall.yml
+# cat linux-postinstall.yml
 
 - hosts: host1
-  vars_files:
-    - vars/host1.example.com.yml
   roles:
-    - vbotka.linux-postinstall
+    - vbotka.linux_postinstall
 ```
 
 5) Run the playbook.
+
 ```
-> ansible-playbook playbooks/linux-postinstall.yml
+# ansible-playbook playbooks/linux-postinstall.yml
 ```
 
 Best practice
 -------------
 
 Perform syntax check of the playbook
+
 ```
-> ansible-playbook playbooks/linux-postinstall.yml --syntax-check
+# ansible-playbook linux-postinstall.yml --syntax-check
 ```
 
 Run the playbook in in check mode first
+
 ```
-> ansible-playbook playbooks/linux-postinstall.yml --check
+# ansible-playbook linux-postinstall.yml --check
 ```
 
 If all is right run the playbook twice. In second run all tasks shall
 be OK and 0 changed, unreachable and failed.
+
 ```
-> ansible-playbook playbooks/linux-postinstall.yml
+# ansible-playbook linux-postinstall.yml
 ```
 
 Recommended configuration after the installation of OS
 ------------------------------------------------------
 
 1) Configure users, sudoers and persistent network interfaces
+
 ```
-> ansible-playbook playbooks/linux-postinstall.yml -t lp_users
-> ansible-playbook playbooks/linux-postinstall.yml -t lp_sudoers
-> ansible-playbook playbooks/linux-postinstall.yml -t lp_udev
+# ansible-playbook linux-postinstall.yml -t lp_users
+# ansible-playbook linux-postinstall.yml -t lp_sudoers
+# ansible-playbook linux-postinstall.yml -t lp_udev
 ```
 
 2) Reboot
 
 3) Configure iptables
+
 ```
-> ansible-playbook playbooks/linux-postinstall.yml -t lp_iptables
+# ansible-playbook linux-postinstall.yml -t lp_iptables
 ```
 
 4) Configure network connection
 
 5) Configure other tasks
+
 ```
-> ansible-playbook playbooks/linux-postinstall.yml
+# ansible-playbook linux-postinstall.yml
 ```
 
 
