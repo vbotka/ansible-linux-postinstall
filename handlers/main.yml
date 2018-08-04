@@ -75,5 +75,9 @@
 - name: remove swap file
   shell: sh -c 'swapoff {{lp_swap_file}} && rm {{lp_swap_file}}'
 
+# MESSAGES -------------------------------------------------------------
+- name: logind message reboot
+  debug: msg="[MESSAGE] Reboot to activate configuration in logind.conf"
+
 # EOF
 ...

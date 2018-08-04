@@ -8,6 +8,7 @@
     line: "{{ item.var }}={{ item.value }}"
     backup: yes
   loop: "{{ lp_lid_logind_conf_vars }}"
+  notify: logind message reboot
 
 - name: "lid: Configure {{ lp_lid_upower_conf }}"
   lineinfile:
