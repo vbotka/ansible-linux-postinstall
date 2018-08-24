@@ -21,7 +21,7 @@
 
 - include_tasks: apparmor-enforce.yml
   loop: "{{ lp_apparmor_enforce }}"
-  when: lp_apparmor_enforce|legth > 0
+  when: lp_apparmor_enforce|length > 0
   tags: lp_apparmor_enforce
 
 - include_tasks: apparmor-complain.yml
