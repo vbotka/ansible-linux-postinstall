@@ -16,7 +16,7 @@
 
 - include_tasks: apparmor-disable.yml
   loop: "{{ lp_apparmor_disable }}"
-  whhen: lp_apparmor_disable|legth > 0
+  when: lp_apparmor_disable|legth > 0
   tags: lp_apparmor_disable
 
 - include_tasks: apparmor-enforce.yml
