@@ -75,6 +75,10 @@
 - name: remove swap file
   shell: sh -c 'swapoff {{lp_swap_file}} && rm {{lp_swap_file}}'
 
+- name: restart tlp
+  systemd: name="{{ lp_tlp_restart_service }}" state="restarted"
+  when: lp_tlp_enable
+
 # MESSAGES -------------------------------------------------------------
 - name: logind message reboot
   debug: msg="[MESSAGE] Reboot to activate configuration in logind.conf"

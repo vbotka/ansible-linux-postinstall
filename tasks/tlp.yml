@@ -1,0 +1,67 @@
+---
+# linux-postinstall tlp
+
+- name: "tlp: Debug"
+  vars:
+    msg: |
+      lp_tlp_enable [ {{ lp_tlp_enable }} ]
+      lp_tlp_thinkpad [ {{ lp_tlp_thinkpad }} ]
+      lp_tlp_package_state [ {{ lp_tlp_package_state }} ]
+      lp_tlp_packages
+      {{ lp_tlp_packages | to_nice_yaml }}
+      lp_tlp_packages_tp
+      {{ lp_tlp_packages_tp | to_nice_yaml }}
+      lp_tlp_config_file [ {{ lp_tlp_config_file }} ]
+      lp_tlp_config
+      {{ lp_tlp_config | to_nice_yaml }}
+      lp_tlp_systemd
+      {{ lp_tlp_systemd | to_nice_yaml }}
+      lp_tlp_restart_service [ {{ lp_tlp_restart_service }} ]
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug
+
+- name: "tlp: Install packages"
+  package:
+    name: "{{ item }}"
+    state: "{{ lp_tlp_package_state }}"
+  loop: "{{ lp_tlp_packages }}"
+  tags: lp_tlp_packages
+
+- name: "tlp: Install packages for ThinkPad"
+  package:
+    name: "{{ item }}"
+    state: "{{ lp_tlp_package_state }}"
+  loop: "{{ lp_tlp_packages_tp }}"
+  when: lp_tlp_thinkpad
+  tags: lp_tlp_packages
+
+- name: "tlp: Configure {{ lp_tlp_config_file }}"
+  lineinfile:
+    dest: "{{ lp_tlp_config_file }}"
+    regexp: "^{{ item.key }}"
+    line: "{{ item.key }}={{ item.value }}"
+  loop: "{{ lp_tlp_config }}"
+  notify: restart tlp
+  tags: lp_tlp_config
+
+- name: "tlp: Start and enable tlp"
+  systemd:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop: "{{ lp_tlp_systemd }}"
+  when: lp_tlp_enable
+  tags: lp_tlp_enable
+
+- name: "tlp: Stop and disable tlp"
+  systemd:
+    name: "{{ item }}"
+    state: stopped
+    enabled: no
+  loop: "{{ lp_tlp_systemd }}"
+  when: not lp_tlp_enable
+  tags: lp_tlp_disable
+
+# EOF
+...

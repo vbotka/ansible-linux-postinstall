@@ -216,5 +216,11 @@
       (ansible_os_family == "Debian" )
   tags: lp_logrotate
 
+- import_tasks: tlp.yml
+  when:
+    - ansible_os_family == "Debian"
+    - lp_tlp
+  tags: lp_tlp
+
 # EOF
 ...

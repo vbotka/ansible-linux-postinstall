@@ -3,7 +3,7 @@
 #
 # Put distro specific variables and overrides to vars directory.
 
-lp_debug: False
+lp_debug: false
 
 lp_repos: []
 lp_repos_keys_url: []
@@ -15,7 +15,7 @@ lp_packages_install: []
 lp_packages_remove: []
 lp_packages_selections_preinstall: []
 lp_packages_selections_postinstall: []
-lp_packages_autoremove: False
+lp_packages_autoremove: false
 
 lp_modules: []
 
@@ -29,10 +29,10 @@ lp_udev_hci_name_rules: []
 lp_udev_hci_run_rules_file: "72-hci-run.rules"
 lp_udev_hci_run_rules: []
 
-lp_wpagui: False
+lp_wpagui: false
 lp_wpagui_nm_override: "manual"
 
-lp_iptables: False
+lp_iptables: false
 lp_iptables_type: "router1"
 lp_iptables_wan_if: "eth0"
 lp_iptables_lan_if: "eth1"
@@ -55,32 +55,32 @@ lp_fqdn: ""
 
 lp_grub_default: []
 
-lp_xen: False
+lp_xen: false
 lp_xen_version: "4.9"
 lp_xen_dom0_mem: "512M"
 lp_xen_dom0_mem_max: "512M"
 lp_xen_global: []
 
-lp_latex: False
+lp_latex: false
 lp_latex_download_timeout: "20"
 lp_latex_macros: []
-lp_latex_get_url_ignore_errors: False
+lp_latex_get_url_ignore_errors: false
 
-lp_unattended_upgrades: False
+lp_unattended_upgrades: false
 
 lp_auto_upgrades_Update_Package_Lists: "0"
 lp_auto_upgrades_Unattended_Upgrade: "0"
 
-lp_pm: False
+lp_pm: false
 lp_pm_sleepd: {}
 
-lp_ssh: False
+lp_ssh: false
 lp_ssh_config: {}
 
-lp_sshd: False
+lp_sshd: false
 lp_sshd_config: {}
 
-lp_bluetooth: False
+lp_bluetooth: false
 lp_bluetooth_main_conf: []
 
 lp_xorg_conf_dir: "/usr/share/X11/xorg.conf.d"
@@ -89,20 +89,20 @@ lp_xorg_conf: {}
 lp_cron_tab: []
 lp_cron_var: []
 
-lp_modemmanager: True
+lp_modemmanager: true
 lp_modemmanager_override: ""
 
-lp_gpsd: False
+lp_gpsd: false
 lp_gpsd_START_DAEMON: "true"
 lp_gpsd_USBAUTO: "true"
 lp_gpsd_DEVICES: "/dev/rfcomm0"
 lp_gpsd_GPSD_OPTIONS: "-b"
 lp_gpsd_bt_rfcomm: []
 
-lp_postfix: True
+lp_postfix: true
 lp_postfix_main_conf: []
 
-lp_apparmor: True
+lp_apparmor: true
 lp_apparmor_packages:
   - apparmor
   - apparmor-utils
@@ -112,19 +112,19 @@ lp_apparmor_disable: []
 lp_apparmor_complain: []
 lp_apparmor_enforce: []
 
-lp_smart: True
+lp_smart: true
 lp_smart_packages:
   - smartmontools
 lp_smart_service_name: "smartmontools"
-lp_smart_devicescan: False
+lp_smart_devicescan: false
 lp_smart_conf_file: "/etc/smartd.conf"
 lp_smart_conf_owner: "root"
 lp_smart_conf_group: "root"
 lp_smart_conf_mode: "644"
 lp_smart_devices: []
 
-lp_virtualbox: False
-lp_virtualbox_ignore_errors: False
+lp_virtualbox: false
+lp_virtualbox_ignore_errors: false
 lp_virtualbox_version: "5.2"
 lp_virtualbox_repos:
   - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/ {{ ansible_lsb.codename }} contrib"
@@ -134,15 +134,15 @@ lp_virtualbox_keys:
 lp_virtualbox_install:
   - "virtualbox-{{ lp_virtualbox_version }}"
 
-lp_zeitgeist: True
+lp_zeitgeist: true
 
-lp_lid: False
+lp_lid: false
 lp_lid_logind_conf: "/etc/systemd/logind.conf"
 lp_lid_logind_conf_vars: []
 lp_lid_upower_conf: "/etc/UPower/UPower.conf"
 lp_lid_upower_conf_vars: []
 
-lp_speechd: True
+lp_speechd: true
 
 lp_sudoers_owner: "root"
 lp_sudoers_group: "root"
@@ -151,10 +151,10 @@ lp_sudoers_conf:
   - { line: "#includedir /etc/sudoers.d", state: "present" }
 lp_sudoers_01: []
 
-lp_nfsd: False
+lp_nfsd: false
 lp_nfsd_exports: []
 
-lp_netplan: False
+lp_netplan: false
 lp_netplan_root: "/etc/netplan"
 lp_netplan_owner: "root"
 lp_netplan_group: "root"
@@ -163,22 +163,22 @@ lp_netplan_version: "2"
 lp_netplan_renderer: "NetworkManager"
 lp_netplan_conf: []
 
-lp_swap: False
+lp_swap: false
 
-lp_timezone: False
+lp_timezone: false
 lp_timezone_zoneinfo: "UTC"
 
-lp_timesyncd: True
+lp_timesyncd: true
 lp_timesyncd_NTP: ""
 lp_timesyncd_FallbackNTP: "ntp.ubuntu.com"
 lp_timesyncd_RootDistanceMaxSec: "5"
 lp_timesyncd_PollIntervalMinSec: "32"
 lp_timesyncd_PollIntervalMaxSec: "2048"
 
-lp_gpg: True
+lp_gpg: true
 lp_gpg_conf_user: []
 
-lp_wpasupplicant: True
+lp_wpasupplicant: true
 lp_wpasupplicant_conf_owner: "root"
 lp_wpasupplicant_conf_group: "root"
 lp_wpasupplicant_conf_mode: "0600"
@@ -194,6 +194,13 @@ lp_logrotate_conf_lines:
   - { line: "include /etc/logrotate.d", state: "present" }
 lp_logrotate_conf_blocks: []
 lp_logrotate_confd: []
+
+lp_tlp: false
+lp_tlp_enable: false
+lp_tlp_thinkpad: false
+lp_tlp_package_state: present
+lp_tlp_config_file: "/etc/default/tlp"
+lp_tlp_config: []
 
 # EOF
 ...

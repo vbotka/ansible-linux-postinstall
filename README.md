@@ -5,7 +5,7 @@ linux_postinstall
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/)
 
-Configure Linux: aliases, apparmor, authorized keys, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, latex, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, (wip ...)
+Configure Linux: aliases, apparmor, authorized keys, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, latex, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, (wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
@@ -169,6 +169,7 @@ References
 - [speech-dispatcher](https://freebsoft.org/speechd)
 - [ssh_config man](https://man.openbsd.org/ssh_config)
 - [SwapFaq](https://help.ubuntu.com/community/SwapFaq)
+- [TLP - Linux Advanced Power Management Tool](https://linrunner.de/en/tlp/tlp.html)
 - [timesyncd](https://www.freedesktop.org/software/systemd/man/systemd-timesyncd.service.html#)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
 - [VirtualBox wiki](https://www.virtualbox.org/wiki/)

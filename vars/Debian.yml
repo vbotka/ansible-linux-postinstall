@@ -74,6 +74,16 @@ lp_xen_packages:
   - xenstore-utils
 # - ubuntu-virt-server
 
+lp_tlp_packages:
+  - tlp
+  - tlp-rdw
+lp_tlp_packages_tp:
+  - tp-smapi-dkms
+  - acpi-call-dkms
+lp_tlp_systemd:
+  - tlp
+lp_tlp_restart_service: "tlp"
+
 # Note 1.
 # Netplan in 18.04 does not support wpa_supplicant.conf
 # https://bugs.launchpad.net/netplan/+bug/1735288
