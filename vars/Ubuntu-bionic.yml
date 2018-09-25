@@ -85,6 +85,12 @@ lp_tlp_systemd:
   - tlp
 lp_tlp_restart_service: "tlp"
 
+lp_virtualbox_services:
+  - vboxautostart-service
+  - vboxballoonctrl-service
+  - vboxdrv.service
+  - vboxweb-service
+
 # Note 1.
 # Netplan in 18.04 does not support wpa_supplicant.conf
 # https://bugs.launchpad.net/netplan/+bug/1735288

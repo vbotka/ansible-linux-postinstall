@@ -188,7 +188,6 @@
 - import_tasks: virtualbox.yml
   when:
     - ansible_os_family == "Debian"   # TODO: RH
-    - lp_virtualbox
   tags: lp_virtualbox
 
 - import_tasks: wpagui.yml

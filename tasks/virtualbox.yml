@@ -5,13 +5,19 @@
   vars:
     msg: |
       ansible_lsb.description [ {{ ansible_lsb.codename }} ]
+      lp_virtualbox [ {{ lp_virtualbox }} ]
       lp_virtualbox_ignore_errors [ {{ lp_virtualbox_ignore_errors }} ]
       lp_virtualbox_keys [ {{ lp_virtualbox_keys }} ]
       lp_virtualbox_repos [ {{ lp_virtualbox_repos }} ]
       lp_virtualbox_install [ {{ lp_virtualbox_install }} ]
+      lp_virtualbox_services
+      {{ lp_virtualbox_services | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug
+
+# TODO: assert lp_virtualbox_modules are loaded
+#       when: lp_virtualbox
 
 - name: "virtualbox: Add signing key of VirtualBox"
   apt_key:
@@ -19,7 +25,8 @@
     state: "present"
   loop: "{{ lp_virtualbox_keys }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
-  when: ansible_os_family == "Debian"
+  when: lp_virtualbox
+  tags: lp_virtualbox_keys
 
 - name: "virtualbox: Add repository of VirtualBox"
   apt_repository:
@@ -27,7 +34,8 @@
     state: "present"
   loop: "{{ lp_virtualbox_repos }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
-  when: ansible_os_family == "Debian"
+  when: lp_virtualbox
+  tags: lp_virtualbox_repos
 
 - name: "virtualbox: Install VirtualBox"
   apt:
@@ -35,7 +43,26 @@
     state: "present"
   loop: "{{ lp_virtualbox_install }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
-  when: ansible_os_family == "Debian"
+  when: lp_virtualbox
+  tags: lp_virtualbox_install
+
+- name: "virtualbox: Enable and start services"
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: yes
+  loop: "{{ lp_virtualbox_services }}"
+  when: lp_virtualbox
+  tags: lp_virtualbox_services
+
+- name: "virtualbox: Disable and stop services"
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: no
+  loop: "{{ lp_virtualbox_services }}"
+  when: not lp_virtualbox
+  tags: lp_virtualbox_services
 
 # EOF
 ...
