@@ -48,6 +48,8 @@ lp_wpagui_service:
   - NetworkManager.service
   - NetworkManager-dispatcher.service
   - NetworkManager-wait-online.service
+lp_wpagui_service_mask:
+  - NetworkManager.service
 
 lp_wpasupplicant_packages:
   - wpasupplicant
