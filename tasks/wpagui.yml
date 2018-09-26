@@ -40,13 +40,14 @@
     line: "managed=false"
   tags: lp_wpagui_disableNM
 
-- name: "wpagui: Stop and disable NM"
-  systemd:
-    name: "{{ item }}"
-    state: "stopped"
-    enabled: no
-  loop: "{{ lp_wpagui_systemd }}"
-  tags: lp_wpagui_disableNM
+# NetworkManager.service will be stopped and disabled in the next task
+#- name: "wpagui: Stop and disable NM"
+#  systemd:
+#    name: "{{ item }}"
+#    state: "stopped"
+#    enabled: no
+#  loop: "{{ lp_wpagui_systemd }}"
+#  tags: lp_wpagui_disableNM
 
 - name: "wpagui: Stop and disable all NM services"
   service:
