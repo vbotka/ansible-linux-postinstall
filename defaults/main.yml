@@ -179,6 +179,7 @@ lp_gpg: true
 lp_gpg_conf_user: []
 
 lp_wpasupplicant: true
+lp_wpasupplicant_backup: yes
 lp_wpasupplicant_conf_owner: "root"
 lp_wpasupplicant_conf_group: "root"
 lp_wpasupplicant_conf_mode: "0600"
@@ -187,6 +188,12 @@ lp_wpasupplicant_conf_file: "wpa_supplicant.conf"
 lp_wpasupplicant_conf_global:
     - { key: "ctrl_interface", value: "{{ lp_wpasupplicant_conf_ctrl_interface }}" }
 lp_wpasupplicant_conf: {}
+lp_wpa_action_script: false
+lp_wpa_action_script_dir: "/root/bin"
+lp_wpa_action_script_file: "{{ lp_wpa_action_script_dir }}/wpa_action.sh"
+lp_wpa_action_script_owner: "root"
+lp_wpa_action_script_group: "root"
+lp_wpa_action_script_mode: "0770"
 
 lp_logrotate_conf_file: "/etc/logrotate.conf"
 lp_logrotate_conf_dir: "/etc/logrotate.d"

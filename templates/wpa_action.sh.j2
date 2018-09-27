@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Example how to activate the script.
+# wpa_cli -B -i wlan2 -a /root/bin/wpa_action.sh
+
+ifname=$1
+cmd=$2
+my_date=`date +"%b %d %T"`
+printf "$my_date $ifname: $cmd \n" >> /tmp/wpa_action.$ifname
+
+if [ "$cmd" == "CONNECTED" ]; then
+    #SSID=`wpa_cli -i$ifname status | grep ^ssid= | cut -f2- -d=`
+    dhclient $ifname
+fi
+if [ "$cmd" == "DISCONNECTED" ]; then
+    dhclient -r $ifname
+fi
+exit 0
+
+# EOF

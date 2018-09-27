@@ -13,9 +13,15 @@
       lp_wpasupplicant_conf_mode [ {{ lp_wpasupplicant_conf_mode }} ]
       lp_wpasupplicant_conf_ctrl_interface [ {{ lp_wpasupplicant_conf_ctrl_interface }} ]
       lp_wpasupplicant_conf_global
-      {{  lp_wpasupplicant_conf_global | to_yaml }}
+      {{ lp_wpasupplicant_conf_global | to_yaml }}
       lp_wpasupplicant_conf
-      {{  lp_wpasupplicant_conf | to_yaml }}
+      {{ lp_wpasupplicant_conf | to_yaml }}
+      lp_wpa_action_script [ {{ lp_wpa_action_script }} ]
+      lp_wpa_action_script_dir [ {{ lp_wpa_action_script_dir }} ]
+      lp_wpa_action_script_file [ {{ lp_wpa_action_script_file }} ]
+      lp_wpa_action_script_owner [ {{ lp_wpa_action_script_owner }} ]
+      lp_wpa_action_script_group [ {{ lp_wpa_action_script_group }} ]
+      lp_wpa_action_script_mode [ {{ lp_wpa_action_script_mode }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_wpasupplicant_debug
@@ -34,7 +40,7 @@
     owner: "{{ lp_wpasupplicant_conf_owner }}"
     group: "{{ lp_wpasupplicant_conf_group }}"
     mode: "{{ lp_wpasupplicant_conf_mode }}"
-    backup: yes
+    backup: "{{ lp_wpasupplicant_backup }}"
   register: wpa_supplicant_conf
   loop: "{{ lp_wpasupplicant_conf }}"
   tags: lp_wpasupplicant_conf
@@ -57,6 +63,26 @@
   loop: "{{ wpa_supplicant_conf.results }}"
   tags: lp_wpasupplicant_handler
   # TODO: Wait for OK result. Error: 'RECONFIGURE' command timed out.
-  
+
+- name: "wpasupplicant: Create dir {{ lp_wpa_action_script_dir }}"
+  file:
+    state: directory
+    path: "{{ lp_wpa_action_script_dir }}"
+    owner: "{{ lp_wpa_action_script_owner }}"
+    group: "{{ lp_wpa_action_script_group }}"
+  when: lp_wpa_action_script
+  tags: lp_wpa_action_script_dir
+
+- name: "wpasupplicant: Create script {{ lp_wpa_action_script_file }}"
+  template:
+    src: wpa_action.sh.j2
+    dest: "{{ lp_wpa_action_script_file }}"
+    owner: "{{ lp_wpa_action_script_owner }}"
+    group: "{{ lp_wpa_action_script_group }}"
+    mode: "{{ lp_wpa_action_script_mode }}"
+    backup: "{{ lp_wpasupplicant_backup }}"
+  when: lp_wpa_action_script
+  tags: lp_wpa_action_script_file
+
 # EOF
 ...
