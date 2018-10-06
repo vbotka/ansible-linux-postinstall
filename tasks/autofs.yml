@@ -1,0 +1,50 @@
+---
+# linux-postinstall autofs
+
+- debug:
+    msg: "lp_autofs_enable [ {{ lp_autofs_enable }} ]"
+  when: lp_debug
+
+- name: "autofs: Configure {{ lp_autofs_conf_file }}"
+  lineinfile:
+    dest: "{{ lp_autofs_conf_file }}"
+    regexp: "^{{ item.key }}"
+    line: "{{ item.key }} = {{ item.value }}"
+    backup: "{{ lp_autofs_conf_backup }}"
+  loop: "{{ lp_autofs_conf }}"
+  notify: reload autofs
+
+- name: "autofs: Configure {{ lp_autofs_master_conf_file }}"
+  lineinfile:
+    dest: "{{ lp_autofs_master_conf_file }}"
+    regexp: "^{{ item.key }}"
+    line: "{{ item.key }}{{ item.value }}"
+    backup: "{{ lp_autofs_conf_backup }}"
+  loop: "{{ lp_autofs_master_conf }}"
+  notify: reload autofs
+
+- name: "autofs: Configure {{ lp_autofs_misc_conf_file }}"
+  lineinfile:
+    dest: "{{ lp_autofs_misc_conf_file }}"
+    regexp: "^{{ item.key }}"
+    line: "{{ item.key }}{{ item.value }}"
+    backup: "{{ lp_autofs_conf_backup }}"
+  loop: "{{ lp_autofs_misc_conf }}"
+  notify: reload autofs
+
+- name: "autofs: Enable and start autofs"
+  systemd:
+    name: "autofs"
+    enabled: yes
+    state: started
+  when: lp_autofs_enable
+
+- name: "autofs: Stop and disable autofs"
+  systemd:
+    name: "autofs"
+    enabled: no
+    state: stopped
+  when: not lp_autofs_enable
+
+# EOF
+...

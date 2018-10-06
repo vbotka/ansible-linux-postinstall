@@ -5,7 +5,7 @@ linux_postinstall
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/)
 
-Configure Linux: aliases, apparmor, authorized keys, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, latex, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, (wip ...)
+Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, latex, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, (wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
@@ -139,6 +139,7 @@ References
 - [AppArmor wiki Ubuntu](https://wiki.ubuntu.com/AppArmor)
 - [AppArmor wiki Ubuntu community](https://help.ubuntu.com/community/AppArmor)
 - [Automatic Updates](https://help.ubuntu.com/lts/serverguide/automatic-updates.html)
+- [Autofs - Ubuntu community](https://help.ubuntu.com/community/Autofs)
 - [Bluetooth headphones](https://bbs.archlinux.org/viewtopic.php?id=212785)
 - [Cron CronHowto](https://help.ubuntu.com/community/CronHowto)
 - [GCP: Configuring Imported Images](https://cloud.google.com/compute/docs/images/configuring-imported-images)

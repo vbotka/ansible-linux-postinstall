@@ -79,6 +79,14 @@
   systemd: name="{{ lp_tlp_restart_service }}" state="restarted"
   when: lp_tlp_enable
 
+- name: restart autofs
+  systemd: name="autofs" state="restarted"
+  when: lp_autofs_enable
+
+- name: reload autofs
+  systemd: name="autofs" state="reloaded"
+  when: lp_autofs_enable
+
 # MESSAGES -------------------------------------------------------------
 - name: logind message reboot
   debug: msg="[MESSAGE] Reboot to activate configuration in logind.conf"

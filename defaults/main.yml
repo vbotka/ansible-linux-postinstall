@@ -209,5 +209,15 @@ lp_tlp_package_state: present
 lp_tlp_config_file: "/etc/default/tlp"
 lp_tlp_config: []
 
+lp_autofs: false
+lp_autofs_enable: false
+lp_autofs_conf_backup: no
+lp_autofs_conf_file: "/etc/autofs.conf"
+lp_autofs_conf: []
+lp_autofs_master_conf_file: "/etc/auto.master"
+lp_autofs_master_conf: []
+lp_autofs_misc_conf_file: "/etc/auto.misc"
+lp_autofs_misc_conf: []
+
 # EOF
 ...

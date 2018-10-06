@@ -221,5 +221,11 @@
     - lp_tlp
   tags: lp_tlp
 
+- import_tasks: autofs.yml
+  when:
+    - ansible_os_family == "Debian"
+    - lp_autofs
+  tags: lp_autofs
+
 # EOF
 ...
