@@ -87,6 +87,9 @@
   systemd: name="autofs" state="reloaded"
   when: lp_autofs_enable
 
+- name: update initramfs
+  command: update-initramfs -u
+
 # MESSAGES -------------------------------------------------------------
 - name: logind message reboot
   debug: msg="[MESSAGE] Reboot to activate configuration in logind.conf"

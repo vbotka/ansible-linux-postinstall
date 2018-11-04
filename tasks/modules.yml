@@ -34,5 +34,12 @@
     - ansible_os_family == "RedHat"
     - item.state | default("present") == "present"
 
+- name: "modules: Blacklist modules in {{ lp_modules_blacklist_path }}"
+  template:
+    src: blacklist-module.j2
+    dest: "{{ lp_modules_blacklist_path }}/blacklist-{{ item }}.conf"
+  loop: "{{ lp_modules_blacklist }}"
+  notify: update initramfs
+
 # EOF
 ...

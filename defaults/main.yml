@@ -18,6 +18,8 @@ lp_packages_selections_postinstall: []
 lp_packages_autoremove: false
 
 lp_modules: []
+lp_modules_blacklist_path: "/etc/modprobe.d"
+lp_modules_blacklist: []
 
 lp_sysctl_vars: []
 
