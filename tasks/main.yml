@@ -6,7 +6,7 @@
 
 - import_tasks: debug.yml
   when: lp_debug
-  tags: lp_debug
+  tags: [lp_debug, always]
 
 - import_tasks: swap.yml
   when: (ansible_os_family == "RedHat" ) or

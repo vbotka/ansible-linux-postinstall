@@ -82,7 +82,10 @@ lp_tlp_packages:
   - tlp-rdw
 lp_tlp_packages_tp:
   - tp-smapi-dkms
-  - acpi-call-dkms
+#  - acpi-call-dkms
+# Error: acpi_call: module verification failed: signature and/or
+# required key missing - tainting kernel
+
 lp_tlp_systemd:
   - tlp
 lp_tlp_restart_service: "tlp"

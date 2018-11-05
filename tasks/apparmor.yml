@@ -7,7 +7,7 @@
 - name: "apparmor: Install packages"
   apt:
     name: "{{ item }}"
-    state: "present"
+    state: present
   loop: "{{ lp_apparmor_packages }}"
   when:
     - lp_apparmor
@@ -16,31 +16,34 @@
 
 - include_tasks: apparmor-disable.yml
   loop: "{{ lp_apparmor_disable }}"
-  when: lp_apparmor_disable|length > 0
+  tags: lp_apparmor_disable
+
+- meta: flush_handlers
   tags: lp_apparmor_disable
 
 - include_tasks: apparmor-enforce.yml
   loop: "{{ lp_apparmor_enforce }}"
-  when: lp_apparmor_enforce|length > 0
+  tags: lp_apparmor_enforce
+
+- meta: flush_handlers
   tags: lp_apparmor_enforce
 
 - include_tasks: apparmor-complain.yml
   loop: "{{ lp_apparmor_complain }}"
-  when: lp_apparmor_complain|length > 0
   tags: lp_apparmor_complain
 
 - name: "apparmor: Start and enable apparmor"
   service:
-    name: "apparmor"
-    state: "started"
+    name: apparmor
+    state: started
     enabled: yes
   when: lp_apparmor
   tags: lp_apparmor_service
 
 - name: "apparmor: Stop and disable apparmor"
   service:
-    name: "apparmor"
-    state: "stopped"
+    name: apparmor
+    state: stopped
     enabled: no
   when: not lp_apparmor
   tags: lp_apparmor_service
