@@ -9,7 +9,7 @@
 - name: "logrotate: Configure blocks in {{ lp_logrotate_conf_file }}"
   blockinfile:
     path: "{{ lp_logrotate_conf_file }}"
-    mark: "{{ item.mark}}"
+    mark: "{{ item.mark }}"
     block: "{{ item.block }}"
     state: "{{ item.state }}"
     backup: yes

@@ -5,7 +5,7 @@
   lineinfile:
     dest: "/etc/ssh/sshd_config"
     regexp: "^{{ item.key }}"
-    insertbefore: "^{{'#'}}{{ item.key }}"
+    insertbefore: "^{{ '#' }}{{ item.key }}"
     line: "{{ item.key }} {{ item.value }}"
     backup: yes
     validate: "{{ lp_path_sshd }} -t -f %s"

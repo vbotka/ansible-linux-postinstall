@@ -67,13 +67,13 @@
   when: lp_netplan
 
 - name: create and mount swap file
-  shell: sh -c 'dd if=/dev/zero of={{lp_swap_file}} bs=1M count={{lp_swap_size}} && chmod 0600 {{lp_swap_file}} && mkswap {{lp_swap_file}} && swapon {{lp_swap_file}}'
+  shell: sh -c 'dd if=/dev/zero of={{ lp_swap_file }} bs=1M count={{ lp_swap_size }} && chmod 0600 {{ lp_swap_file }} && mkswap {{ lp_swap_file }} && swapon {{ lp_swap_file }}'
 
 - name: change and mount swap file
-  shell: sh -c 'swapoff {{lp_swap_file}} && dd if=/dev/zero of={{lp_swap_file}} bs=1M count={{lp_swap_size}} && chmod 0600 {{lp_swap_file}} && mkswap {{lp_swap_file}} && swapon {{lp_swap_file}}'
+  shell: sh -c 'swapoff {{ lp_swap_file }} && dd if=/dev/zero of={{ lp_swap_file }} bs=1M count={{ lp_swap_size }} && chmod 0600 {{ lp_swap_file }} && mkswap {{ lp_swap_file }} && swapon {{ lp_swap_file }}'
 
 - name: remove swap file
-  shell: sh -c 'swapoff {{lp_swap_file}} && rm {{lp_swap_file}}'
+  shell: sh -c 'swapoff {{ lp_swap_file }} && rm {{ lp_swap_file }}'
 
 - name: restart tlp
   systemd: name="{{ lp_tlp_restart_service }}" state="restarted"

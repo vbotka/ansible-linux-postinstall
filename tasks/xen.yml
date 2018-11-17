@@ -41,8 +41,8 @@
 - name: "xen: Configure /etc/xen/xl.conf"
   lineinfile:
     dest: "/etc/xen/xl.conf"
-    regexp: "^{{ item.var }}{{'='}}"
-    line: "{{ item.var }}{{'='}}{{ item.value }}"
+    regexp: "^{{ item.var }}{{ '=' }}"
+    line: "{{ item.var }}{{ '=' }}{{ item.value }}"
     create: yes
     backup: yes
   loop: "{{ lp_xen_global }}"

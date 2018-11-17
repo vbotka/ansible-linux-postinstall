@@ -3,8 +3,8 @@
 - name: "grub: Configure /etc/default/grub"
   lineinfile:
     dest: "/etc/default/grub"
-    regexp: "^{{ item.var }}{{'='}}"
-    line: "{{ item.var }}{{'='}}{{ item.value }}"
+    regexp: "^{{ item.var }}{{ '=' }}"
+    line: "{{ item.var }}{{ '=' }}{{ item.value }}"
     backup: yes
   loop: "{{ lp_grub_default }}"
   when: lp_grub_default > 0

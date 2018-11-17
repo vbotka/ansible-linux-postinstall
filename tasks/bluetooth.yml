@@ -9,7 +9,7 @@
   lineinfile:
     dest: "/etc/bluetooth/main.conf"
     regexp: "^{{ item.key }}"
-    insertbefore: "^{{'#'}}{{ item.key }}"
+    insertbefore: "^{{ '#' }}{{ item.key }}"
     line: "{{ item.key }} = {{ item.value }}"
     backup: yes
   loop: "{{ lp_bluetooth_main_conf }}"

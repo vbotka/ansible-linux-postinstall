@@ -1,6 +1,6 @@
 # {{ ansible_managed }}
 {% for item in lp_aliases %}
 
-{{item.alias}}:{% for arg in item.users %} {{arg}}{% if not loop.last %},{% endif %}
+{{ item.alias }}:{% for arg in item.users %} {{ arg }}{% if not loop.last %},{% endif %}
 {% endfor %}
 {% endfor %}
