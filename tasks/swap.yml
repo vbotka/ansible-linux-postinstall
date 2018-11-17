@@ -24,7 +24,7 @@
   changed_when: command_result.stdout == "change"
   notify: change and mount swap file
   when: lp_swap
-  
+
 - name: "swap: Create swap entry in /etc/fstab"
   mount:
     name: "none"

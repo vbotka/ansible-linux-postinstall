@@ -13,7 +13,7 @@
       lp_libvirt_conf_dir [ {{ lp_libvirt_conf_dir }} ]
       lp_libvirt_packages
       {{ lp_libvirt_packages | to_nice_yaml }}
-      lp_libvirt_conf 
+      lp_libvirt_conf
       {{ lp_libvirt_conf | to_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"

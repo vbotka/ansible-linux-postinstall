@@ -8,7 +8,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-  
+
 - name: "modem_manager: Stop and disable ModemManager"
   service:
     name: "ModemManager"

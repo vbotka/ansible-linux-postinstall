@@ -32,7 +32,7 @@
     group: "root"
     mode: "0644"
   tags: lp_wpagui_disableNM
-  
+
 - name: "wpagui: Configure managed=false in /etc/NetworkManager/NetworkManager.conf"
   lineinfile:
     dest: "/etc/NetworkManager/NetworkManager.conf"

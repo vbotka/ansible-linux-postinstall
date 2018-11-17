@@ -44,7 +44,7 @@
     backup: yes
   notify: restart gpsd
   tags: lp_gpsd_config
-  
+
 - name: "gpsd: Stop and disable gpsd"
   systemd:
     name: "gpsd"

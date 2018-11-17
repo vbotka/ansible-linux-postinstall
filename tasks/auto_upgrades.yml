@@ -27,6 +27,6 @@
   when:
     - lp_unattended_upgrades
     - ansible_os_family == "Debian"
-  
+
 # EOF
 ...
