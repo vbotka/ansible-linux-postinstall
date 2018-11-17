@@ -1,5 +1,5 @@
 ---
-# Debian vars linux-postinstall
+# Ubuntu Bionic vars linux-postinstall
 
 #lp_ssh: True
 #lp_ssh_config:
@@ -95,6 +95,20 @@ lp_virtualbox_services:
   - vboxballoonctrl-service
   - vboxdrv.service
   - vboxweb-service
+
+lp_libvirt_libvirtd_service: libvirtd
+lp_libvirt_guests_service: libvirt-guests
+lp_libvirt_packages:
+  - libvirt0
+  - libvirt-bin
+  - libvirt-daemon
+  - libvirt-daemon-driver-storage-rbd
+  - libvirt-daemon-system
+  - virtinst
+lp_libvirt_conf_owner: root
+lp_libvirt_conf_group: root
+lp_libvirt_conf_mode: 0644
+lp_libvirt_conf_dir: /etc/libvirt
 
 # Note 1.
 # Netplan in 18.04 does not support wpa_supplicant.conf

@@ -1,0 +1,71 @@
+---
+# linux-postinstall libvirt
+
+- name: "libvirt Debug"
+  vars:
+    msg: |
+      lp_libvirt_guests_enable   [ {{ lp_libvirt_guests_enable }} ]
+      lp_libvirt_libvirtd_enable [ {{  lp_libvirt_libvirtd_enable }} ]
+      lp_libvirt_backup [ {{ lp_libvirt_backup }} ]
+      lp_libvirt_conf_owner [ {{ lp_libvirt_conf_owner }} ]
+      lp_libvirt_conf_group [ {{ lp_libvirt_conf_group }} ]
+      lp_libvirt_conf_mode [ {{ lp_libvirt_conf_mode }} ]
+      lp_libvirt_conf_dir [ {{ lp_libvirt_conf_dir }} ]
+      lp_libvirt_packages
+      {{ lp_libvirt_packages | to_nice_yaml }}
+      lp_libvirt_conf 
+      {{ lp_libvirt_conf | to_yaml }}
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug
+  tags: [ lp_libvirt_debug, always ]
+
+- name: "libvirt: Install packages"
+  package:
+    name: "{{ item }}"
+  loop: "{{ lp_libvirt_packages }}"
+  tags: lp_libvirt_pkg
+
+- name: "libvirt: Configure"
+  include_tasks: libvirt-conf.yml
+  loop: "{{ lp_libvirt_conf | dict2items }}"
+  notify:
+    - reload libvirtd
+    - reload libvirt_guests
+  tags: lp_libvirt_conf
+
+- name: "libvirt: Start and enable {{ lp_libvirt_libvirtd_service }}"
+  service:
+    name: "{{ lp_libvirt_libvirtd_service }}"
+    state: started
+    enabled: yes
+  when: lp_libvirt_libvirtd_enable
+  tags: lp_libvirt_libvirtd_service
+
+- name: "libvirt: Stop and disable {{ lp_libvirt_libvirtd_service }}"
+  service:
+    name: "{{ lp_libvirt_libvirtd_service }}"
+    state: stopped
+    enabled: no
+  when: not lp_libvirt_libvirtd_enable
+  tags: lp_libvirt_libvirtd_service
+
+- name: "libvirt: Start and enable {{ lp_libvirt_guests_service }}"
+  service:
+    name: "{{ lp_libvirt_guests_service }}"
+    state: started
+    enabled: yes
+  when: lp_libvirt_guests_enable
+  tags: lp_libvirt_guests_service
+
+- name: "libvirt: Stop and disable {{ lp_libvirt_guests_service }}"
+  service:
+    name: "{{ lp_libvirt_guests_service }}"
+    state: stopped
+    enabled: no
+  when: not lp_libvirt_libvirtd_enable
+  tags: lp_libvirt_guests_service
+
+
+# EOF
+...

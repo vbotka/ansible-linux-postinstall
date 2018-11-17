@@ -227,5 +227,11 @@
     - lp_autofs
   tags: lp_autofs
 
+- import_tasks: libvirt.yml
+  when:
+    - ansible_os_family == "Debian"
+    - lp_libvirt
+  tags: lp_libvirt
+
 # EOF
 ...

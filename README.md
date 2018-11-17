@@ -5,7 +5,7 @@ linux_postinstall
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/)
 
-Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, latex, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, (wip ...)
+Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, (wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
@@ -151,6 +151,9 @@ References
 - [LaTeX](https://help.ubuntu.com/community/LaTeX)
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
 - [LaTeX macros/latex/contrib/](https://www.ctan.org/tex-archive/macros/latex/contrib/)
+- [libvirt](https://libvirt.org/)
+- [libvirt Ubuntu](https://help.ubuntu.com/lts/serverguide/libvirt.html.en)
+- [libvirt Xen4 for CentOS 6 and 7](https://wiki.centos.org/HowTos/Xen/Xen4QuickStart/Xen4Libvirt)
 - [Lid Ubuntu](https://askubuntu.com/questions/85705/stop-laptop-from-suspending-when-closing-lid-in-lightdm)
 - [ Logrotate - How to Setup and Manage Log Rotation](https://www.tecmint.com/install-logrotate-to-manage-log-rotation-in-linux/)
 - [ModemManager](https://www.freedesktop.org/wiki/Software/ModemManager/)
@@ -179,7 +182,8 @@ References
 - [VirtualBox - Install Oracle VM VirtualBox in Ubuntu](http://www.elinuxbook.com/install-oracle-vm-virtualbox-in-ubuntu-16-04/)
 - [wpa_supplicant](https://w1.fi/wpa_supplicant/)
 - [wpa_supplicant.conf](https://w1.fi/cgit/hostap/plain/wpa_supplicant/wpa_supplicant.conf)
-- [Xen](https://wiki.ubuntu.com/Kernel/Reference/Xen)
-- [Xen Tuning Xen for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
+- [Xen Ubuntu Help](https://help.ubuntu.com/community/Xen)
+- [Xen Ubuntu Wiki](https://wiki.ubuntu.com/Kernel/Reference/Xen)
+- [Xen Tuning for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
 - [Xorg Guide](https://wiki.gentoo.org/wiki/Xorg/Guide)

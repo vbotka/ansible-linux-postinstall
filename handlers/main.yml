@@ -90,6 +90,22 @@
 - name: update initramfs
   command: update-initramfs -u
 
+- name: restart libvirtd
+  systemd: name="{{ lp_libvirt_libvirtd_service }}" state="restarted"
+  when: lp_libvirt_libvirtd_enable
+
+- name: reload libvirtd
+  systemd: name="{{ lp_libvirt_libvirtd_service }}" state="reloaded"
+  when: lp_libvirt_libvirtd_enable
+
+- name: restart libvirt_guests
+  systemd: name="{{ lp_libvirt_guests_service }}" state="restarted"
+  when: lp_libvirt_libvirtd_enable
+
+- name: reload libvirt_guests
+  systemd: name="{{ lp_libvirt_guests_service }}" state="reloaded"
+  when: lp_libvirt_libvirtd_enable
+
 # MESSAGES -------------------------------------------------------------
 - name: logind message reboot
   debug: msg="[MESSAGE] Reboot to activate configuration in logind.conf"

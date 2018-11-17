@@ -1,0 +1,19 @@
+---
+
+- debug: msg="{{ item }}"
+  when: lp_debug
+
+- name: "Configure {{ lp_libvirt_conf_dir }}/{{ item.key }}"
+  lineinfile:
+    dest: "{{ lp_libvirt_conf_dir }}/{{ item.key }}"
+    regexp: "^{{ conf[0] }}(\\s|=)"
+    line: "{{ conf[0] }} = {{ conf[1] }}"
+    state: "{{ conf[2] | default('present') }}"
+    backup: "{{ lp_libvirt_backup }}"
+    create: yes
+  loop: "{{ item.value }}"
+  loop_control:
+    loop_var: conf
+
+# EOF
+...

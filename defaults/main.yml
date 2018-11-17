@@ -221,5 +221,11 @@ lp_autofs_master_conf: []
 lp_autofs_misc_conf_file: "/etc/auto.misc"
 lp_autofs_misc_conf: []
 
+lp_libvirt: false
+lp_libvirt_guests_enable: false
+lp_libvirt_libvirtd_enable: false
+lp_libvirt_backup: no
+lp_libvirt_conf: []
+
 # EOF
 ...
