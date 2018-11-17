@@ -86,6 +86,8 @@ lp_tlp_systemd:
   - tlp
 lp_tlp_restart_service: "tlp"
 
+lp_virtualbox_repos:
+  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/ {{ ansible_lsb.codename }} contrib"
 lp_virtualbox_services:
   - vboxautostart-service
   - vboxballoonctrl-service
