@@ -8,7 +8,7 @@
   tags: lp_apparmor
 
 - name: "apparmor-complain: Complain {{ apparmor_item_path.stdout }}"
-  shell: aa-complain "{{ apparmor_item_path.stdout }}"
+  command: aa-complain "{{ apparmor_item_path.stdout }}"
   when:
     - not ansible_check_mode
     - apparmor_item_path.stdout|length > 0

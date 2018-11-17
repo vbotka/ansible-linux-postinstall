@@ -53,17 +53,17 @@
   when: lp_smart
 
 - name: apparmor disable profile
-  shell: apparmor_parser -R /etc/apparmor.d/"{{ apparmor_item_path.stdout }}"
+  command: apparmor_parser -R /etc/apparmor.d/"{{ apparmor_item_path.stdout }}"
 
 - name: apparmor enforce profile
-  shell: apparmor_parser -r /etc/apparmor.d/"{{ apparmor_item_path.stdout }}"
+  command: apparmor_parser -r /etc/apparmor.d/"{{ apparmor_item_path.stdout }}"
 
 - name: reload nfsd
   systemd: name="{{ lp_nfsd_reload_service }}" state="reloaded"
   when: lp_nfsd
 
 - name: netplan apply
-  shell: netplan apply
+  command: netplan apply
   when: lp_netplan
 
 - name: create and mount swap file
