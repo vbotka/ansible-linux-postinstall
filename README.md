@@ -9,6 +9,33 @@ Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades,
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
+Note on Ansible Galaxy Content Score
+------------------------------------
+Quality Score Details "Syntax Score" reports Warning (Severity:High)
+
+```
+E303:  systemctl used in place of systemd modul
+```
+
+ansible-lint reports the details
+
+```
+$ ansible-lint linux-postinstall.yml
+[ANSIBLE0006] systemctl used in place of systemd module
+/home/vlado/.ansible/roles/vbotka.linux_postinstall/tasks/wpagui.yml:60
+Task/Handler: wpagui: Mask NM services
+```
+
+This Warning report is wrong. There is neither systemctl nor systemd module used.
+
+```
+- name: "wpagui: Mask NM services"
+  command: "systemctl mask {{ item }}"
+  loop: "{{ lp_wpagui_service_mask }}"
+```
+
+This problem is tracked in the [Issue #48848](https://github.com/ansible/ansible/issues/48848).
+
 Requirements
 ------------
 
