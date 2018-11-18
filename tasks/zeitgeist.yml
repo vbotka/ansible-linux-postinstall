@@ -28,7 +28,11 @@
 #  when: not lp_zeitgeist
 # "Could not find the requested service zeitgeist"
 
-# for i in zeitgeist-fts zeitgeist; do systemctl --user disable $i; systemctl --user stop $i; systemctl --user mask $i; done
+# for i in zeitgeist-fts zeitgeist; do
+# systemctl --user disable $i;
+# systemctl --user stop $i;
+# systemctl --user mask $i;
+# done
 
 # EOF
 ...

@@ -67,10 +67,19 @@
   when: lp_netplan
 
 - name: create and mount swap file
-  shell: sh -c 'dd if=/dev/zero of={{ lp_swap_file }} bs=1M count={{ lp_swap_size }} && chmod 0600 {{ lp_swap_file }} && mkswap {{ lp_swap_file }} && swapon {{ lp_swap_file }}'
+  shell: >
+    sh -c 'dd if=/dev/zero of={{ lp_swap_file }} bs=1M count={{ lp_swap_size }} &&
+    chmod 0600 {{ lp_swap_file }} &&
+    mkswap {{ lp_swap_file }} &&
+    swapon {{ lp_swap_file }}'
 
 - name: change and mount swap file
-  shell: sh -c 'swapoff {{ lp_swap_file }} && dd if=/dev/zero of={{ lp_swap_file }} bs=1M count={{ lp_swap_size }} && chmod 0600 {{ lp_swap_file }} && mkswap {{ lp_swap_file }} && swapon {{ lp_swap_file }}'
+  shell: >
+    sh -c 'swapoff {{ lp_swap_file }} &&
+    dd if=/dev/zero of={{ lp_swap_file }} bs=1M count={{ lp_swap_size }} &&
+    chmod 0600 {{ lp_swap_file }} &&
+    mkswap {{ lp_swap_file }} &&
+    swapon {{ lp_swap_file }}'
 
 - name: remove swap file
   shell: sh -c 'swapoff {{ lp_swap_file }} && rm {{ lp_swap_file }}'
@@ -105,6 +114,15 @@
 - name: reload libvirt_guests
   systemd: name="{{ lp_libvirt_guests_service }}" state="reloaded"
   when: lp_libvirt_libvirtd_enable
+
+- name: reconfigure wpa_supplicant
+  shell: >
+    [ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ item.item.dev }} ] &&
+    wpa_cli -p {{ lp_wpasupplicant_conf_ctrl_interface }} -i {{ item.item.dev }} reconfigure ||
+    exit 0
+  when: item.changed
+  loop: "{{ lp_wpasupplicant_conf_changes.results }}"
+  # TODO: Wait for OK result. Error: 'RECONFIGURE' command timed out.
 
 # MESSAGES -------------------------------------------------------------
 - name: logind message reboot
