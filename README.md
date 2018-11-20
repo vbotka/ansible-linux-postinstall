@@ -5,7 +5,7 @@ linux_postinstall
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/)
 
-Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, (wip ...)
+Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, (wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
@@ -175,6 +175,7 @@ References
 - [GPSD cannot create rfcomm0](https://stackoverflow.com/questions/33892280/debian-cannot-create-rfcomm0)
 - [GRUB](https://help.ubuntu.com/community/Grub2)
 - [Iptables HowTo](https://help.ubuntu.com/community/IptablesHowTo)
+- [KVM Ubuntu](https://help.ubuntu.com/community/KVM)
 - [LaTeX](https://help.ubuntu.com/community/LaTeX)
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
 - [LaTeX macros/latex/contrib/](https://www.ctan.org/tex-archive/macros/latex/contrib/)

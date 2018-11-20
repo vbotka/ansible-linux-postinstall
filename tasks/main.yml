@@ -179,6 +179,12 @@
     - lp_latex
   tags: lp_latex
 
+- import_tasks: kvm.yml
+  when:
+    - ansible_os_family == "Debian" # TODO: RH
+    - lp_kvm
+  tags: lp_kvm
+
 - import_tasks: xen.yml
   when:
     - ansible_os_family == "Debian" # TODO: RH

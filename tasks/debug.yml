@@ -17,6 +17,7 @@
       lp_gpg [ {{ lp_gpg }} ]
       lp_gpsd [ {{ lp_gpsd }} ]
       lp_iptables [ {{ lp_iptables }} ]
+      lp_kvm [ {{ lp_kvm }} ]
       lp_latex [ {{ lp_latex }} ]
       lp_libvirt [ {{ lp_libvirt }} ]
       lp_lid [ {{ lp_lid }} ]

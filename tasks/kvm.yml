@@ -1,0 +1,20 @@
+---
+# linux-postinstall kvm
+
+- name: "kvm: Debug"
+  vars:
+    msg: |
+      lp_kvm_packages
+      {{ lp_kvm_packages | to_nice_yaml }}
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug
+
+- name: "kvm: Install packages"
+  package:
+    name: "{{ item }}"
+  loop: "{{ lp_kvm_packages }}"
+  tags: lp_kvm_packages
+
+# EOF
+...

@@ -57,6 +57,8 @@ lp_fqdn: ""
 
 lp_grub_default: []
 
+lp_kvm: false
+
 lp_xen: false
 lp_xen_version: "4.9"
 lp_xen_dom0_mem: "512M"
