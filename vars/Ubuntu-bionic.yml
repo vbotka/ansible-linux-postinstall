@@ -119,6 +119,10 @@ lp_libvirt_conf_group: root
 lp_libvirt_conf_mode: 0644
 lp_libvirt_conf_dir: /etc/libvirt
 
+lp_zfs_packages:
+  - zfsutils-linux
+
+
 # Note 1.
 # Netplan in 18.04 does not support wpa_supplicant.conf
 # https://bugs.launchpad.net/netplan/+bug/1735288

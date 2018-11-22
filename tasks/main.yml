@@ -58,6 +58,12 @@
         (ansible_os_family == "Debian" )
   tags: lp_sysctl
 
+- import_tasks: zfs.yml
+  when:
+    - ansible_os_family == "Debian" # TODO: RH
+    - lp_zfs
+  tags: lp_zfs
+
 - import_tasks: hostname.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
@@ -77,7 +83,8 @@
 - import_tasks: grub.yml
   when: ansible_os_family == "Debian" # TODO: RH
   tags: lp_grub
-  # https://unix.stackexchange.com/questions/152222/equivalent-of-update-grub-for-rhel-fedora-centos-systems
+  # https://unix.stackexchange.com/questions/152222/
+  # equivalent-of-update-grub-for-rhel-fedora-centos-systems
 
 - import_tasks: users.yml
   when: (ansible_os_family == "RedHat" ) or

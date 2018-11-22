@@ -41,6 +41,7 @@
       lp_wpasupplicant [ {{ lp_wpasupplicant }} ]
       lp_xen [ {{ lp_xen }} ]
       lp_zeitgeist [ {{ lp_zeitgeist }} ]
+      lp_zfs [ {{ lp_zfs }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
 

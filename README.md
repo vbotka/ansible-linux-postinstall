@@ -5,7 +5,7 @@ linux_postinstall
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/)
 
-Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, (wip ...)
+Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
@@ -215,3 +215,4 @@ References
 - [Xen Tuning for Performance](https://wiki.xenproject.org/wiki/Tuning_Xen_for_Performance)
 - [Xen Project Best Practices](https://wiki.xenproject.org/wiki/Xen_Project_Best_Practices)
 - [Xorg Guide](https://wiki.gentoo.org/wiki/Xorg/Guide)
+- [ZFS Ubuntu Wiki](https://wiki.ubuntu.com/ZFS)

@@ -228,5 +228,10 @@ lp_libvirt_libvirtd_enable: false
 lp_libvirt_backup: no
 lp_libvirt_conf: []
 
+lp_zfs: false
+lp_zfs_debug: false
+lp_zfs_manage: []
+lp_zfs_mountpoints: []
+
 # EOF
 ...
