@@ -159,8 +159,12 @@
   tags: lp_smart
 
 - import_tasks: apparmor.yml
-  when: ansible_os_family == "Debian"
+  when:
+    - ansible_os_family == "Debian"
+    - lp_apparmor
   tags: lp_apparmor
+
+- meta: flush_handlers
 
 - import_tasks: zeitgeist.yml
   when: ansible_os_family == "Debian"
@@ -179,6 +183,8 @@
 - import_tasks: nfsd.yml
   when: ansible_os_family == "Debian" # TODO: RH
   tags: lp_nfsd
+
+- meta: flush_handlers
 
 - import_tasks: latex.yml
   when:

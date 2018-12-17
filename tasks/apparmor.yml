@@ -9,24 +9,23 @@
     name: "{{ item }}"
     state: present
   loop: "{{ lp_apparmor_packages }}"
-  when:
-    - lp_apparmor
-    - ansible_os_family == "Debian"
   tags: lp_apparmor_packages
 
 - include_tasks: apparmor-disable.yml
   loop: "{{ lp_apparmor_disable }}"
   tags: lp_apparmor_disable
 
-- meta: flush_handlers
-  tags: lp_apparmor_disable
+# flush_handlers task does not support when conditional
+#- meta: flush_handlers
+#  tags: lp_apparmor_disable
 
 - include_tasks: apparmor-enforce.yml
   loop: "{{ lp_apparmor_enforce }}"
   tags: lp_apparmor_enforce
 
-- meta: flush_handlers
-  tags: lp_apparmor_enforce
+# flush_handlers task does not support when conditional
+#- meta: flush_handlers
+#  tags: lp_apparmor_enforce
 
 - include_tasks: apparmor-complain.yml
   loop: "{{ lp_apparmor_complain }}"
