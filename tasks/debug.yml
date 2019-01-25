@@ -42,6 +42,10 @@
       lp_xen [ {{ lp_xen }} ]
       lp_zeitgeist [ {{ lp_zeitgeist }} ]
       lp_zfs [ {{ lp_zfs }} ]
+
+      lp_service
+      {{ lp_service | to_yaml }}
+
   debug:
     msg: "{{ msg.split('\n') }}"
 

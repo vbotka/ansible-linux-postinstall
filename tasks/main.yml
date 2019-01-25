@@ -253,5 +253,10 @@
     - lp_libvirt
   tags: lp_libvirt
 
+- meta: flush_handlers
+
+- import_tasks: service.yml
+  tags: lp_service
+
 # EOF
 ...
