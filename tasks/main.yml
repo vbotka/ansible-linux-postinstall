@@ -41,7 +41,7 @@
   tags: lp_timesyncd
 
 - import_tasks: repos.yml
-  when: ansible_os_family == "Debian" # TODO: RH
+  when: ansible_os_family == "Debian"           # TODO: RH
   tags: lp_repos
 
 - import_tasks: packages.yml
@@ -50,7 +50,7 @@
   tags: lp_packages
 
 - import_tasks: auto_upgrades.yml
-  when: ansible_os_family == "Debian" # TODO: RH
+  when: ansible_os_family == "Debian"           # TODO: RH
   tags: lp_auto_upgrades
 
 - import_tasks: sysctl.yml
@@ -60,7 +60,7 @@
 
 - import_tasks: zfs.yml
   when:
-    - ansible_os_family == "Debian" # TODO: RH
+    - ansible_os_family == "Debian"           # TODO: RH
     - lp_zfs
   tags: lp_zfs
 
@@ -76,12 +76,12 @@
 
 - import_tasks: iptables.yml
   when:
-    - ansible_os_family == "Debian" # TODO: RH
+    - ansible_os_family == "Debian"           # TODO: RH
     - lp_iptables
   tags: lp_iptables
 
 - import_tasks: grub.yml
-  when: ansible_os_family == "Debian" # TODO: RH
+  when: ansible_os_family == "Debian"           # TODO: RH
   tags: lp_grub
   # https://unix.stackexchange.com/questions/152222/
   # equivalent-of-update-grub-for-rhel-fedora-centos-systems
@@ -108,7 +108,7 @@
 
 - import_tasks: pm-utils.yml
   when:
-    - ansible_os_family == "Debian" # TODO: RH
+    - ansible_os_family == "Debian"           # TODO: RH
     - lp_pm
   tags: lp_pm
 
@@ -155,7 +155,7 @@
   tags: lp_postfix
 
 - import_tasks: smart.yml
-  when: ansible_os_family == "Debian" # TODO: RH
+  when: ansible_os_family == "Debian"           # TODO: RH
   tags: lp_smart
 
 - import_tasks: apparmor.yml
@@ -181,32 +181,32 @@
   tags: lp_speechd
 
 - import_tasks: nfsd.yml
-  when: ansible_os_family == "Debian" # TODO: RH
+  when: ansible_os_family == "Debian"           # TODO: RH
   tags: lp_nfsd
 
 - meta: flush_handlers
 
 - import_tasks: latex.yml
   when:
-    - ansible_os_family == "Debian"  # TODO: RH
+    - ansible_os_family == "Debian"            # TODO: RH
     - lp_latex
   tags: lp_latex
 
 - import_tasks: kvm.yml
   when:
-    - ansible_os_family == "Debian" # TODO: RH
+    - ansible_os_family == "Debian"           # TODO: RH
     - lp_kvm
   tags: lp_kvm
 
 - import_tasks: xen.yml
   when:
-    - ansible_os_family == "Debian" # TODO: RH
+    - ansible_os_family == "Debian"           # TODO: RH
     - lp_xen
   tags: lp_xen
 
 - import_tasks: virtualbox.yml
   when:
-    - ansible_os_family == "Debian"   # TODO: RH
+    - ansible_os_family == "Debian"             # TODO: RH
     - lp_virtualbox
   tags: lp_virtualbox
 
@@ -225,7 +225,7 @@
 
 - import_tasks: gpg.yml
   when:
-    - ansible_os_family == "Debian"   # TODO: RH
+    - ansible_os_family == "Debian"             # TODO: RH
     - lp_gpg
   tags: lp_gpg
 

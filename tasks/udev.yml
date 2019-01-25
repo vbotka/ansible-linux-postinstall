@@ -15,7 +15,8 @@
   when: lp_debug
 
 # persistent_net
-- name: "udev: Configure {{ lp_udev_rules_dir }}/{{ lp_udev_persistent_net_rules_file }}"
+- name: "udev: Configure {{ lp_udev_rules_dir }}/
+                         {{ lp_udev_persistent_net_rules_file }}"
   template:
     src: "persistent-net.rules.j2"
     dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_persistent_net_rules_file }}"
@@ -27,7 +28,8 @@
   notify: reload udev
 
 # hci name
-- name: "udev: Configure {{ lp_udev_rules_dir }}/{{ lp_udev_hci_name_rules_file }}"
+- name: "udev: Configure {{ lp_udev_rules_dir }}/
+                         {{ lp_udev_hci_name_rules_file }}"
   template:
     src: "hci-name.rules.j2"
     dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_hci_name_rules_file }}"
@@ -39,7 +41,8 @@
   notify: reload udev
 
 # hci run
-- name: "udev: Configure {{ lp_udev_rules_dir }}/{{ lp_udev_hci_run_rules_file }}"
+- name: "udev: Configure {{ lp_udev_rules_dir }}/
+                         {{ lp_udev_hci_run_rules_file }}"
   template:
     src: "hci-run.rules.j2"
     dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_hci_run_rules_file }}"

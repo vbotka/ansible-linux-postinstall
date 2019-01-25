@@ -10,7 +10,8 @@
 # lp_repos_keys_url:
 #  - https://packages.cloud.google.com/apt/doc/apt-key.gpg
 # lp_repos_keys_id:
-#  - { keyserver: keyserver.ubuntu.com, id: 6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367 }
+#  - { keyserver: keyserver.ubuntu.com,
+#      id: 6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367 }
 
 # linux-postinstall packages
 # lp_packages_selections_preinstall:
@@ -54,8 +55,10 @@
 #  - { mac: "<MAC-ADDRESS>", name: "hci0" }
 #  - { mac: "<MAC-ADDRESS>", name: "hci1" }
 # lp_udev_hci_run_rules:
-#  - { product: "Broadcom Bluetooth Device", run: "/bin/hciconfig hci0 up auth encrypt" }
-#  - { product: "CSR8510 A10", run: "/bin/hciconfig hci1 up auth encrypt" }
+#  - { product: "Broadcom Bluetooth Device",
+#      run: "/bin/hciconfig hci0 up auth encrypt" }
+#  - { product: "CSR8510 A10",
+#      run: "/bin/hciconfig hci1 up auth encrypt" }
 
 # lp_users:
 #  - { name: "admin",
@@ -63,7 +66,8 @@
 #      password: "",
 #      update_password: "on_create" }
 # SEE: How do I generate crypted passwords for the user module?
-# http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+# http://docs.ansible.com/ansible/
+#        faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
 # example: mkpasswd --method=SHA-512 PASSWORD -s SALT
 # SALT can be created with: pwgen -s 16 1
 #
@@ -77,7 +81,9 @@
 
 # Copy authorized keys
 # lp_authorized_keys:
-#  - { user: "admin", key: "{{ lookup('file', '~/.ansible/copy/ssh-pub-keys/admin/id_rsa.pub') }}" }
+#  - { user: "admin",
+#      key: "{{ lookup('file',
+#      '~/.ansible/copy/ssh-pub-keys/admin/id_rsa.pub') }}" }
 
 # Configure /etc/hostname and /etc/hosts
 # lp_hostname: "host"
@@ -92,7 +98,8 @@
 #  - { var: "GRUB_TIMEOUT", value: "10" }
 #  - { var: "GRUB_HIDDEN_TIMEOUT", value: "0" }
 #  - { var: "GRUB_HIDDEN_TIMEOUT_QUIET", value: "true" }
-#  - { var: "GRUB_DISTRIBUTOR", value: "`lsb_release -i -s 2> /dev/null || echo Debian`" }
+#  - { var: "GRUB_DISTRIBUTOR",
+#            value: "`lsb_release -i -s 2> /dev/null || echo Debian`" }
 #  - { var: "GRUB_CMDLINE_LINUX_DEFAULT", value: "\"quiet splash\"" }
 #  - { var: "GRUB_CMDLINE_LINUX", value: "\"\"" }
 
@@ -138,9 +145,11 @@
 # lp_sshd_AllowTcpForwarding: "yes"
 # lp_sshd_X11Forwarding: "no"
 # lp_sshd_config:
-#  - { key: PasswordAuthentication, value: "{{ lp_sshd_PasswordAuthentication }}" }
+#  - { key: PasswordAuthentication,
+#      value: "{{ lp_sshd_PasswordAuthentication }}" }
 #  - { key: PubkeyAuthentication, value: "{{ lp_sshd_PubkeyAuthentication }}" }
-#  - { key: ChallengeResponseAuthentication, value: "{{ lp_sshd_ChallengeResponseAuthentication }}" }
+#  - { key: ChallengeResponseAuthentication,
+#      value: "{{ lp_sshd_ChallengeResponseAuthentication }}" }
 #  - { key: PermitRootLogin, value: "{{ lp_sshd_PermitRootLogin }}" }
 #  - { key: PermitTunnel, value: "{{ lp_sshd_PermitTunnel }}" }
 #  - { key: AllowTcpForwarding, value: "{{ lp_sshd_AllowTcpForwarding }}" }
@@ -158,11 +167,13 @@
 #  - file: 11-Logitech-MX-Revolution-Mouse.conf
 #    section:
 #      - { param: Section, val1: "\"InputClass\"", val2: "" }
-#      - { param: Identifier, val1: "\"Logitech MX Revolution Mouse\"", val2: "" }
+#      - { param: Identifier, val1: "\"Logitech MX Revolution Mouse\"",
+#          val2: "" }
 #      - { param: MatchProduct, val1: "\"MX Rev\"", val2: "" }
 #      - { param: MatchIsPointer, val1: "\"on\"", val2: "" }
 #      - { param: Driver, val1: "\"evdev\"", val2: "" }
-#      - { param: Option, val1: "\"Buttonmapping\"", val2: "\"1 8 3 4 5 6 7 2 9 10 11 12 13 14 15 16 17 18 19 20\"" }
+#      - { param: Option, val1: "\"Buttonmapping\"",
+#          val2: "\"1 8 3 4 5 6 7 2 9 10 11 12 13 14 15 16 17 18 19 20\"" }
 
 # Configure cron
 # lp_cron_var:
@@ -185,14 +196,15 @@
 # configure gpsd
 # lp_gpsd: "yes"
 # lp_gpsd_bt_rfcomm:
-#  - { rfcomm: "0", bind: "yes", device: "00:1C:D9:XX:XX:XX", channel: "1", comment: "BT GPS" }
+#  - { rfcomm: "0", bind: "yes", device: "00:1C:D9:XX:XX:XX",
+#      channel: "1", comment: "BT GPS" }
 # NOTE: Disable ModemManager to interfere with rfcommX
 
 # configure postfix
 # lp_postfix: "yes"
 # lp_postfix_inet_protocols: "ipv4"
 # lp_postfix_main_conf:
-#  - { key: inet_protocols, value: "{{ lp_postfix_inet_protocols }}" } 
+#  - { key: inet_protocols, value: "{{ lp_postfix_inet_protocols }}" }
 
 # apparmor
 # lp_apparmor: "yes"
@@ -213,14 +225,20 @@
 # lp_smart_conf_mode: "644"
 # man smartctl
 # -a Prints all SMART information about the disk.
-# -o [ATA only] Enables or disables SMART automatic offline test, which scans the drive every
+# -o [ATA only] Enables or disables SMART automatic offline test,
+#    which scans the drive every
 #    four  hours  for  disk  defects.
-# -S [ATA only] Enables  or  disables  SMART autosave of device vendor-specific Attributes.
+# -S [ATA only] Enables or disables SMART autosave of device
+#    vendor-specific Attributes.
 # -s Schedule self-tests. Short: daily 2PM. Long: Each Saturday 3PM.
 # -m Mail errors to admin.
 # lp_smart_devices:
-#    - { regexp: "^/dev/sda", line: "/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin" }
-#    - { regexp: "^/dev/sdb", line: "/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin" }
+#    - { regexp: "^/dev/sda",
+#        line: "/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03)
+#                        -m admin" }
+#    - { regexp: "^/dev/sdb",
+#        line: "/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03)
+#                        -m admin" }
 
 # lp_virtualbox: "yes"
 
@@ -335,7 +353,10 @@
 # lp_swap_stsize: "1610612736"
 
 # lp_timesyncd: "yes"
-# lp_timesyncd_NTP: "0.ubuntu.pool.ntp.org, 1.ubuntu.pool.ntp.org, 2.ubuntu.pool.ntp.org, 3.ubuntu.pool.ntp.org"
+# lp_timesyncd_NTP: "0.ubuntu.pool.ntp.org,
+#                    1.ubuntu.pool.ntp.org,
+#                    2.ubuntu.pool.ntp.org,
+#                    3.ubuntu.pool.ntp.org"
 
 # lp_gpg_conf_user:
 #  - owner: "admin"

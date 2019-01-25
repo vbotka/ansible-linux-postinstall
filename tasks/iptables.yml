@@ -9,7 +9,8 @@
     group: "root"
     mode: "0755"
 
-- name: "iptables: Create /etc/network/iptables using {{ lp_iptables_type }}-iptables.j2"
+- name: "iptables: Create /etc/network/iptables
+                   using {{ lp_iptables_type }}-iptables.j2"
   template:
     src: "{{ lp_iptables_type }}-iptables.j2"
     dest: "/etc/network/iptables"

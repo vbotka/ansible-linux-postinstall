@@ -20,12 +20,12 @@
     - not lp_zeitgeist
     - ansible_os_family == "Debian"
 
-#- name: Disable zeitgeist
-#  service:
-#    name: zeitgeist
-#    state: started
-#    enabled: no
-#  when: not lp_zeitgeist
+# - name: Disable zeitgeist
+#   service:
+#     name: zeitgeist
+#     state: started
+#     enabled: no
+#   when: not lp_zeitgeist
 # "Could not find the requested service zeitgeist"
 
 # for i in zeitgeist-fts zeitgeist; do

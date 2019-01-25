@@ -10,7 +10,8 @@
 - name: "apparmor-disable: Disable {{ apparmor_item_path.stdout }}"
   file:
     src: "{{ lp_apparmor_profile_dir }}/{{ apparmor_item_path.stdout }}"
-    dest: "{{ lp_apparmor_profile_dir }}/disable/{{ apparmor_item_path.stdout }}"
+    dest: "{{ lp_apparmor_profile_dir }}/disable/{{
+              apparmor_item_path.stdout }}"
     state: link
     force: yes
   when: not ansible_check_mode

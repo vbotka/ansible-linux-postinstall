@@ -1,14 +1,17 @@
 ---
 # RedHat vars linux-postinstall
 
-#lp_ssh: True
-#lp_ssh_config:
+# lp_ssh: True
+# lp_ssh_config:
 #  - host: "*"
 #    conf:
 #      - { key: "GSSAPIAuthentication", val: "yes" }
 #      - { key: "ForwardX11Trusted", val: "yes" }
-#      - { key: "SendEnv", val: "LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES" }
-#      - { key: "SendEnv", val: "LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT" }
+#      - { key: "SendEnv",
+#          val: "LANG LC_CTYPE LC_NUMERIC LC_TIME
+#                LC_COLLATE LC_MONETARY LC_MESSAGES" }
+#      - { key: "SendEnv",
+#          val: "LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT" }
 #      - { key: "SendEnv", val: "LC_IDENTIFICATION LC_ALL LANGUAGE" }
 #      - { key: "SendEnv", val: "XMODIFIERS" }
 
@@ -39,7 +42,7 @@ lp_nfsd_reload_service: "nfs"
 lp_wpasupplicant_packages:
   - wpa_supplicant
 lp_wpasupplicant_conf_ctrl_interface: "/run/wpa_supplicant"
-#lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
+# lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
 
 lp_logrotate_packages:
   - logrotate

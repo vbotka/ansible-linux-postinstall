@@ -1,8 +1,8 @@
 ---
 # Ubuntu 18.04 Bionic vars linux-postinstall
 
-#lp_ssh: True
-#lp_ssh_config:
+# lp_ssh: True
+# lp_ssh_config:
 #  - host: "*"
 #    conf:
 #      - { key: "SendEnv", val: "LANG LC_*" }
@@ -15,12 +15,12 @@ lp_path_sshd: "/usr/sbin/sshd"
 lp_modules_conf: "/etc/modules"
 
 lp_hosts_default:
-  - { ip: "127.0.0.1", name1: "localhost" }
-  - { ip: "::1", name1: "ip6-localhost", name2: "ip6-loopback" }
-  - { ip: "fe00::0", name1: "ip6-localnet" }
-  - { ip: "ff00::0", name1: "ip6-mcastprefix" }
-  - { ip: "ff02::1", name1: "ip6-allnodes" }
-  - { ip: "ff02::2", name1: "ip6-allrouters" }
+  - {ip: "127.0.0.1", name1: "localhost"}
+  - {ip: "::1", name1: "ip6-localhost", name2: "ip6-loopback"}
+  - {ip: "fe00::0", name1: "ip6-localnet"}
+  - {ip: "ff00::0", name1: "ip6-mcastprefix"}
+  - {ip: "ff02::1", name1: "ip6-allnodes"}
+  - {ip: "ff02::2", name1: "ip6-allrouters"}
 
 lp_nfsd_packages:
   - nfs-kernel-server
@@ -31,10 +31,10 @@ lp_nfsd_reload_service: "nfs-kernel-server"
 lp_gpg_packages:
   - gnupg
 lp_gpg_conf_default:
-  - { key: "keyserver", value: "hkp://keys.gnupg.net" }
-  - { key: "use-agent", value: "" }
-  - { key: "cert-digest-algo", value: "SHA256" }
-  - { key: "digest-algo", value: "SHA256" }
+  - {key: "keyserver", value: "hkp://keys.gnupg.net"}
+  - {key: "use-agent", value: ""}
+  - {key: "cert-digest-algo", value: "SHA256"}
+  - {key: "digest-algo", value: "SHA256"}
 
 lp_wpagui_packages:
   - wpasupplicant
@@ -55,7 +55,7 @@ lp_wpagui_service_mask:
 lp_wpasupplicant_packages:
   - wpasupplicant
 lp_wpasupplicant_conf_ctrl_interface: "/run/wpa_supplicant"
-#lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
+# lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
 
 lp_logrotate_packages:
   - logrotate
@@ -78,8 +78,8 @@ lp_kvm_packages:
   - bridge-utils
 
 lp_xen_packages:
-  - xen-hypervisor-{{ lp_xen_version }}-amd64
-  - xen-utils-{{ lp_xen_version }}
+  - "xen-hypervisor-{{ lp_xen_version }}-amd64"
+  - "xen-utils-{{ lp_xen_version }}"
   - xen-utils-common
   - xenstore-utils
 # - ubuntu-virt-server
@@ -98,7 +98,8 @@ lp_tlp_systemd:
 lp_tlp_restart_service: "tlp"
 
 lp_virtualbox_repos:
-  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/ {{ ansible_lsb.codename }} contrib"
+  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
+                      {{ ansible_lsb.codename }} contrib"
 lp_virtualbox_services:
   - vboxautostart-service
   - vboxballoonctrl-service

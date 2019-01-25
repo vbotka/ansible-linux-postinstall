@@ -9,7 +9,7 @@ lp_repos: []
 lp_repos_keys_url: []
 lp_repos_keys_id: []
 
-lp_package_state: "present" # apt and yum support "latest"
+lp_package_state: "present"         # apt and yum support "latest"
 
 lp_packages_install: []
 lp_packages_remove: []
@@ -151,7 +151,7 @@ lp_sudoers_owner: "root"
 lp_sudoers_group: "root"
 lp_sudoers_mode: "0440"
 lp_sudoers_conf:
-  - { line: "#includedir /etc/sudoers.d", state: "present" }
+  - {line: "#includedir /etc/sudoers.d", state: "present"}
 lp_sudoers_01: []
 
 lp_nfsd: false
@@ -182,14 +182,14 @@ lp_gpg: true
 lp_gpg_conf_user: []
 
 lp_wpasupplicant: true
-lp_wpasupplicant_backup: yes
+lp_wpasupplicant_backup: 'yes'
 lp_wpasupplicant_conf_owner: "root"
 lp_wpasupplicant_conf_group: "root"
 lp_wpasupplicant_conf_mode: "0600"
 lp_wpasupplicant_conf_dir: "/etc/wpa_supplicant"
 lp_wpasupplicant_conf_file: "wpa_supplicant.conf"
 lp_wpasupplicant_conf_global:
-    - { key: "ctrl_interface", value: "{{ lp_wpasupplicant_conf_ctrl_interface }}" }
+  - {key: "ctrl_interface", value: "{{ lp_wpasupplicant_conf_ctrl_interface }}"}
 lp_wpasupplicant_conf: {}
 lp_wpa_action_script: false
 lp_wpa_action_script_dir: "/root/bin"
@@ -201,7 +201,7 @@ lp_wpa_action_script_mode: "0770"
 lp_logrotate_conf_file: "/etc/logrotate.conf"
 lp_logrotate_conf_dir: "/etc/logrotate.d"
 lp_logrotate_conf_lines:
-  - { line: "include /etc/logrotate.d", state: "present" }
+  - {line: "include /etc/logrotate.d", state: "present"}
 lp_logrotate_conf_blocks: []
 lp_logrotate_confd: []
 
@@ -214,7 +214,7 @@ lp_tlp_config: []
 
 lp_autofs: false
 lp_autofs_enable: false
-lp_autofs_conf_backup: no
+lp_autofs_conf_backup: 'no'
 lp_autofs_conf_file: "/etc/autofs.conf"
 lp_autofs_conf: []
 lp_autofs_master_conf_file: "/etc/auto.master"
@@ -225,7 +225,7 @@ lp_autofs_misc_conf: []
 lp_libvirt: false
 lp_libvirt_guests_enable: false
 lp_libvirt_libvirtd_enable: false
-lp_libvirt_backup: no
+lp_libvirt_backup: 'no'
 lp_libvirt_conf: []
 
 lp_zfs: false

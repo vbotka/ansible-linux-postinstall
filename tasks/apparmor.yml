@@ -16,7 +16,7 @@
   tags: lp_apparmor_disable
 
 # flush_handlers task does not support when conditional
-#- meta: flush_handlers
+# - meta: flush_handlers
 #  tags: lp_apparmor_disable
 
 - include_tasks: apparmor-enforce.yml
@@ -24,7 +24,7 @@
   tags: lp_apparmor_enforce
 
 # flush_handlers task does not support when conditional
-#- meta: flush_handlers
+# - meta: flush_handlers
 #  tags: lp_apparmor_enforce
 
 - include_tasks: apparmor-complain.yml

@@ -24,7 +24,8 @@
   lineinfile:
     dest: "/etc/default/grub"
     regexp: "^GRUB_CMDLINE_XEN_DEFAULT"
-    line: "GRUB_CMDLINE_XEN_DEFAULT=\"dom0_mem={{ lp_xen_dom0_mem }},max:{{ lp_xen_dom0_mem_max }}\""
+    line: "GRUB_CMDLINE_XEN_DEFAULT=\"dom0_mem={{ lp_xen_dom0_mem }},
+                                      max:{{ lp_xen_dom0_mem_max }}\""
     backup: yes
   notify: update grub
   tags: lp_xen_grub

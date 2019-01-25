@@ -20,9 +20,11 @@
 
 - name: "swap: Change swapfile {{ lp_swap_file }}"
   shell: >
-    sh -c 'if [ -e {{ lp_swap_file }} ] &&
-    [ "`stat --format '%s' {{ lp_swap_file }}`" -ne "{{ lp_swap_stsize }}" ]; then
-    printf "change"; fi'
+    sh -c
+    'if [ -e {{ lp_swap_file }} ] &&
+    [ "`stat --format '%s' {{ lp_swap_file }}`" -ne "{{ lp_swap_stsize }}" ];
+    then printf "change";
+    fi'
   register: command_result
   changed_when: command_result.stdout == "change"
   notify: change and mount swap file

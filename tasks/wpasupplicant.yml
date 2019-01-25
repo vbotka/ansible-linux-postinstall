@@ -11,7 +11,8 @@
       lp_wpasupplicant_conf_owner [ {{ lp_wpasupplicant_conf_owner }} ]
       lp_wpasupplicant_conf_group [ {{ lp_wpasupplicant_conf_group }} ]
       lp_wpasupplicant_conf_mode [ {{ lp_wpasupplicant_conf_mode }} ]
-      lp_wpasupplicant_conf_ctrl_interface [ {{ lp_wpasupplicant_conf_ctrl_interface }} ]
+      lp_wpasupplicant_conf_ctrl_interface
+      [ {{ lp_wpasupplicant_conf_ctrl_interface }} ]
       lp_wpasupplicant_conf_global
       {{ lp_wpasupplicant_conf_global | to_yaml }}
       lp_wpasupplicant_conf
@@ -33,10 +34,13 @@
   loop: "{{ lp_wpasupplicant_packages }}"
   tags: lp_wpasupplicant_packages
 
-- name: "wpasupplicant: Configure {{ lp_wpasupplicant_conf_dir }}/{{ lp_wpasupplicant_conf_file }}.DEV"
+- name: "wpasupplicant: Configure {{ lp_wpasupplicant_conf_dir }}/{{
+                                     lp_wpasupplicant_conf_file }}.DEV"
   template:
     src: "wpa_supplicant.conf.j2"
-    dest: "{{ lp_wpasupplicant_conf_dir }}/{{ lp_wpasupplicant_conf_file }}.{{ item.dev }}"
+    dest: "{{ lp_wpasupplicant_conf_dir }}/{{
+              lp_wpasupplicant_conf_file }}.{{
+              item.dev }}"
     owner: "{{ lp_wpasupplicant_conf_owner }}"
     group: "{{ lp_wpasupplicant_conf_group }}"
     mode: "{{ lp_wpasupplicant_conf_mode }}"
@@ -50,11 +54,13 @@
   debug: msg="{{ lp_wpasupplicant_conf_changes }}"
   when: lp_wpasupplicant_debug
 
-#- name: "wpasupplicant: Debug: wpa_cli reconfigure commands"
+# - name: "wpasupplicant: Debug: wpa_cli reconfigure commands"
 #  debug:
 #    msg: >
-#      'sh -c "[ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ item.item.dev }} ] &&
-#      wpa_cli -p {{ lp_wpasupplicant_conf_ctrl_interface }} -i {{ item.item.dev }} reconfigure"'
+#      'sh -c "[ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/\
+#                   {{ item.item.dev }} ] &&
+#      wpa_cli -p {{ lp_wpasupplicant_conf_ctrl_interface }} \
+#              -i {{ item.item.dev }} reconfigure"'
 #  loop: "{{ lp_wpasupplicant_conf_changes.results }}"
 #  when:
 #    - item.changed

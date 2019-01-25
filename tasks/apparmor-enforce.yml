@@ -10,7 +10,8 @@
 - name: "apparmor-enforce: Enforce {{ apparmor_item_path.stdout }}"
   file:
     src: "{{ lp_apparmor_profile_dir }}/{{ apparmor_item_path.stdout }}"
-    dest: "{{ lp_apparmor_profile_dir }}/disable/{{ apparmor_item_path.stdout }}"
+    dest: "{{ lp_apparmor_profile_dir }}/disable/{{
+              apparmor_item_path.stdout }}"
     state: absent
   when:
     - not ansible_check_mode
