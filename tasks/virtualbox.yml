@@ -25,6 +25,10 @@
     url: "{{ item }}"
     state: "present"
   loop: "{{ lp_virtualbox_keys }}"
+  register: result
+  retries: "{{ lp_install_retries }}"
+  until: result is succeeded
+  delay: "{{ lp_install_delay }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
   tags: lp_virtualbox_keys
 

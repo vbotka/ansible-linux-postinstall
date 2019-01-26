@@ -18,6 +18,10 @@
   apt_key:
     url: "{{ item }}"
   loop: "{{ lp_repos_keys_url }}"
+  register: result
+  retries: "{{ lp_install_retries }}"
+  until: result is succeeded
+  delay: "{{ lp_install_delay }}"
   when: ansible_os_family == "Debian"
   tags: lp_repos_keys_add
 
@@ -27,6 +31,10 @@
     keyserver: "{{ item.keyserver }}"
     state: "present"
   loop: "{{ lp_repos_keys_id }}"
+  register: result
+  retries: "{{ lp_install_retries }}"
+  until: result is succeeded
+  delay: "{{ lp_install_delay }}"
   when: ansible_os_family == "Debian"
   tags: lp_repos_keys_add
 
