@@ -1,0 +1,14 @@
+---
+# linux-postinstall function install-package
+
+- name: "function: Install package"
+  package:
+    name: "{{ item }}"
+    state: "{{ lp_package_state }}"
+  register: result
+  retries: "{{ lp_install_retries }}"
+  until: result is succeeded
+  delay: "{{ lp_install_delay }}"
+
+# EOF
+...

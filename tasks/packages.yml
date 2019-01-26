@@ -10,13 +10,13 @@
       {{ lp_packages_selections_preinstall | to_nice_yaml }}
       lp_packages_install
       {{ lp_packages_install | to_nice_yaml }}
+      lp_packages_remove
+      {{ lp_packages_remove | to_nice_yaml }}
       lp_packages_selections_postinstall
       {{ lp_packages_selections_postinstall | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug
-
-# Debian
 
 - name: "packages: Configure package selections before Install/Remove"
   dpkg_selections:
@@ -26,20 +26,14 @@
   when: ansible_os_family == "Debian"
   tags: lp_packages_selections_preinstall
 
-- name: "packages: Install Debian packages"
-  apt:
-    name: "{{ item }}"
+- name: "packages: Install packages"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_packages_install }}"
-  when: ansible_os_family == "Debian"
   tags: lp_packages_install
 
 - name: "packages: Remove packages"
-  apt:
-    name: "{{ item }}"
-    state: "absent"
-    autoremove: "{{ lp_packages_autoremove }}"
+  include_tasks: fn/remove-package.yml
   loop: "{{ lp_packages_remove }}"
-  when: ansible_os_family == "Debian"
   tags: lp_packages_remove
 
 - name: "packages: Configure package selections after Install/Remove"
@@ -49,15 +43,6 @@
   loop: "{{ lp_packages_selections_postinstall }}"
   when: ansible_os_family == "Debian"
   tags: lp_packages_selections_postinstall
-
-# RedHat
-
-- name: "packages: Install RedHat packages"
-  yum:
-    name: "{{ item }}"
-  loop: "{{ lp_packages_install }}"
-  when: ansible_os_family == "RedHat"
-  tags: lp_packages_install
 
 # EOF
 ...

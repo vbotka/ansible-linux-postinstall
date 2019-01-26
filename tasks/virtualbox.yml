@@ -37,9 +37,7 @@
   tags: lp_virtualbox_repos
 
 - name: "virtualbox: Install VirtualBox packages"
-  apt:
-    name: "{{ item }}"
-    state: "present"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_virtualbox_packages }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
   tags: lp_virtualbox_pkg

@@ -2,8 +2,7 @@
 # linux-postinstall logrotate
 
 - name: "logrotate: Install packages for logrotate"
-  package:
-    name: "{{ item }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_logrotate_packages }}"
 
 - name: "logrotate: Configure blocks in {{ lp_logrotate_conf_file }}"

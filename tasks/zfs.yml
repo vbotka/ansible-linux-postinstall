@@ -15,8 +15,7 @@
   tags: lp_zfs_debug
 
 - name: "zfs: Install packages"
-  package:
-    name: "{{ item }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_zfs_packages }}"
   tags: lp_zfs_packages
 

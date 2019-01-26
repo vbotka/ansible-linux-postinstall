@@ -2,11 +2,8 @@
 # linux-postinstall gpg
 
 - name: "gpg: Install gpg packages"
-  package:
-    name: "{{ item }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_gpg_packages }}"
-  when: (ansible_os_family == "Debian") or
-        (ansible_os_family == "RedHat")
 
 - name: "gpg: Configure ~/.gnupg/gpg.conf"
   template:

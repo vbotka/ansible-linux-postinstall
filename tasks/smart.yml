@@ -2,8 +2,7 @@
 # linux-postinstall smart
 
 - name: "smart: Install packages"
-  package:
-    name: "{{ item }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_smart_packages }}"
   when: lp_smart
   tags: lp_smart_packages

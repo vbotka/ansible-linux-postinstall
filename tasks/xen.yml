@@ -15,8 +15,7 @@
   when: lp_debug
 
 - name: "xen: Install packages"
-  package:
-    name: "{{ item }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_xen_packages }}"
   tags: lp_xen_packages
 

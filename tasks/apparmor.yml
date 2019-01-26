@@ -5,9 +5,7 @@
 # *which*. Enable other profiles.
 
 - name: "apparmor: Install packages"
-  apt:
-    name: "{{ item }}"
-    state: present
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_apparmor_packages }}"
   tags: lp_apparmor_packages
 

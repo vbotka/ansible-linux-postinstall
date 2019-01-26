@@ -1,0 +1,17 @@
+---
+# linux-postinstall function remove-package
+
+- name: "function: Remove package"
+  package:
+    name: "{{ item }}"
+    state: "{{ lp_package_state_remove }}"
+
+- name: "function: Autoremove packages"
+  apt:
+    autoremove: true
+  when:
+    - ansible_os_family == "Debian"
+    - lp_packages_autoremove
+
+# EOF
+...

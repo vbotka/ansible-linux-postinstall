@@ -11,8 +11,7 @@
   when: lp_debug
 
 - name: "kvm: Install packages"
-  package:
-    name: "{{ item }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_kvm_packages }}"
   tags: lp_kvm_packages
 

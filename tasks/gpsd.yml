@@ -2,8 +2,7 @@
 # linux-postinstall gpsd
 
 - name: "gpsd: Install packages for gpsd"
-  package:
-    name: "{{ item }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_gpsd_packages }}"
   tags: lp_gpsd_packages
 

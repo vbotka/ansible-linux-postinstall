@@ -28,9 +28,7 @@
   when: lp_wpasupplicant_debug
 
 - name: "wpasupplicant: Install packages"
-  package:
-    name: "{{ item }}"
-    state: "{{ lp_package_state }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_wpasupplicant_packages }}"
   tags: lp_wpasupplicant_packages
 

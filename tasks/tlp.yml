@@ -6,7 +6,6 @@
     msg: |
       lp_tlp_enable [ {{ lp_tlp_enable }} ]
       lp_tlp_thinkpad [ {{ lp_tlp_thinkpad }} ]
-      lp_tlp_package_state [ {{ lp_tlp_package_state }} ]
       lp_tlp_packages
       {{ lp_tlp_packages | to_nice_yaml }}
       lp_tlp_packages_tp
@@ -22,16 +21,12 @@
   when: lp_debug
 
 - name: "tlp: Install packages"
-  package:
-    name: "{{ item }}"
-    state: "{{ lp_tlp_package_state }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_tlp_packages }}"
   tags: lp_tlp_packages
 
 - name: "tlp: Install packages for ThinkPad"
-  package:
-    name: "{{ item }}"
-    state: "{{ lp_tlp_package_state }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_tlp_packages_tp }}"
   when: lp_tlp_thinkpad
   tags: lp_tlp_packages

@@ -21,8 +21,7 @@
   tags: lp_libvirt_debug
 
 - name: "libvirt: Install packages"
-  package:
-    name: "{{ item }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_libvirt_packages }}"
   tags: lp_libvirt_pkg
 

@@ -5,12 +5,15 @@
 
 lp_debug: false
 
+lp_install_retries: 5
+lp_install_delay: 2
+
 lp_repos: []
 lp_repos_keys_url: []
 lp_repos_keys_id: []
 
-lp_package_state: "present"         # apt and yum support "latest"
-
+lp_package_state: "present"             # apt and yum support "latest"
+lp_package_state_remove: "absent"       # see "remove" vs. "purge"
 lp_packages_install: []
 lp_packages_remove: []
 lp_packages_selections_preinstall: []
@@ -208,7 +211,6 @@ lp_logrotate_confd: []
 lp_tlp: false
 lp_tlp_enable: false
 lp_tlp_thinkpad: false
-lp_tlp_package_state: present
 lp_tlp_config_file: "/etc/default/tlp"
 lp_tlp_config: []
 

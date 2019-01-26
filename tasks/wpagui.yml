@@ -18,9 +18,7 @@
   when: lp_debug
 
 - name: "wpagui: Install packages"
-  package:
-    name: "{{ item }}"
-    state: "{{ lp_package_state }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_wpagui_packages }}"
   tags: lp_wpagui_packages
 

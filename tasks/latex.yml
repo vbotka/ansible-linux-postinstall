@@ -2,8 +2,7 @@
 # linux-postinstall LaTeX
 
 - name: "latex: Install packages"
-  package:
-    name: "{{ item }}"
+  include_tasks: fn/install-package.yml
   loop: "{{ lp_latex_packages }}"
   tags: lp_latex_packages
 
