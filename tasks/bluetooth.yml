@@ -2,7 +2,7 @@
 # linux-postinstall bluetooth
 
 - name: "bluetooth: Debug"
-   debug:
+  debug:
     msg: "lp_bluetooth [ {{ lp_bluetooth }} ]"
   when: lp_debug
 
