@@ -8,7 +8,6 @@
     group: "root"
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_aliases }}"
   notify: newaliases
 
 # EOF
