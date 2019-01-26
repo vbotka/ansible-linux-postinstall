@@ -17,7 +17,7 @@
     dest: "{{ lp_modules_conf }}"
     regexp: "^{{ item.name }}"
     line: "{{ item.name }} {{ item.params }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == "Debian"
@@ -28,7 +28,7 @@
     dest: "{{ lp_modules_conf }}"
     regexp: "^modprobe {{ item.name }}"
     line: "modprobe {{ item.name }} {{ item.params }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == "RedHat"

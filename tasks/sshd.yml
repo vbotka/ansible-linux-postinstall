@@ -7,7 +7,7 @@
     regexp: "^{{ item.key }}"
     insertbefore: "^{{ '#' }}{{ item.key }}"
     line: "{{ item.key }} {{ item.value }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
     validate: "{{ lp_path_sshd }} -t -f %s"
   loop: "{{ lp_sshd_config }}"
   notify: reload sshd

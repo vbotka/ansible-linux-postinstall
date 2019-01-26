@@ -9,7 +9,7 @@
     regexp: "^{{ conf[0] }}(\\s|=)"
     line: "{{ conf[0] }} = {{ conf[1] }}"
     state: "{{ conf[2] | default('present') }}"
-    backup: "{{ lp_libvirt_backup }}"
+    backup: "{{ lp_backup_conf }}"
     create: yes
   loop: "{{ item.value }}"
   loop_control:

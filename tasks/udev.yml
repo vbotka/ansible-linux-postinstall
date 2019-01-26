@@ -23,7 +23,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_persistent_net_rules }}"
   notify: reload udev
 
@@ -36,7 +36,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_hci_name_rules }}"
   notify: reload udev
 
@@ -49,7 +49,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_hci_run_rules }}"
   notify: reload udev
 

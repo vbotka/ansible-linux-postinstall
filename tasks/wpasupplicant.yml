@@ -42,7 +42,7 @@
     owner: "{{ lp_wpasupplicant_conf_owner }}"
     group: "{{ lp_wpasupplicant_conf_group }}"
     mode: "{{ lp_wpasupplicant_conf_mode }}"
-    backup: "{{ lp_wpasupplicant_backup }}"
+    backup: "{{ lp_backup_conf }}"
   register: lp_wpasupplicant_conf_changes
   notify: reconfigure wpa_supplicant
   loop: "{{ lp_wpasupplicant_conf }}"
@@ -80,7 +80,7 @@
     owner: "{{ lp_wpa_action_script_owner }}"
     group: "{{ lp_wpa_action_script_group }}"
     mode: "{{ lp_wpa_action_script_mode }}"
-    backup: "{{ lp_wpasupplicant_backup }}"
+    backup: "{{ lp_backup_conf }}"
   when: lp_wpa_action_script
   tags: lp_wpa_action_script_file
 

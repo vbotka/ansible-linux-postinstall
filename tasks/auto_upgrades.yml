@@ -7,7 +7,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   when: ansible_os_family == "Debian"
 
 - name: "auto_upgrades: Disable and stop unattended-upgrades"

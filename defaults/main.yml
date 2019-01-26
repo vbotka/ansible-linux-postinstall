@@ -4,6 +4,7 @@
 # Put distro specific variables and overrides to vars directory.
 
 lp_debug: false
+lp_backup_conf: false
 
 lp_install_retries: 5
 lp_install_delay: 2
@@ -185,7 +186,6 @@ lp_gpg: true
 lp_gpg_conf_user: []
 
 lp_wpasupplicant: true
-lp_wpasupplicant_backup: 'yes'
 lp_wpasupplicant_conf_owner: "root"
 lp_wpasupplicant_conf_group: "root"
 lp_wpasupplicant_conf_mode: "0600"
@@ -216,7 +216,6 @@ lp_tlp_config: []
 
 lp_autofs: false
 lp_autofs_enable: false
-lp_autofs_conf_backup: 'no'
 lp_autofs_conf_file: "/etc/autofs.conf"
 lp_autofs_conf: []
 lp_autofs_master_conf_file: "/etc/auto.master"
@@ -227,7 +226,6 @@ lp_autofs_misc_conf: []
 lp_libvirt: false
 lp_libvirt_guests_enable: false
 lp_libvirt_libvirtd_enable: false
-lp_libvirt_backup: 'no'
 lp_libvirt_conf: []
 
 lp_zfs: false

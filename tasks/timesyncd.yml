@@ -20,7 +20,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   notify: restart timesyncd
 
 - name: "timesyncd: Enable and start timesyncd"

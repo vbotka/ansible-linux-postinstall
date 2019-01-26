@@ -39,7 +39,7 @@
     passno: "0"
     dump: "0"
     state: "present"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   when: lp_swap
 
 - name: "swap: Remove swap entry from /etc/fstab"
@@ -51,7 +51,7 @@
     passno: "0"
     dump: "0"
     state: "absent"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   notify: remove swap file
   when:
     - not lp_swap

@@ -6,7 +6,7 @@
     dest: "/etc/sysctl.conf"
     regexp: "^{{ item.var }}"
     line: "{{ item.var }} = {{ item.value }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_sysctl_vars }}"
   notify: load sysctl settings
 

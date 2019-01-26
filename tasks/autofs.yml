@@ -10,7 +10,7 @@
     dest: "{{ lp_autofs_conf_file }}"
     regexp: "^{{ item.key }}"
     line: "{{ item.key }} = {{ item.value }}"
-    backup: "{{ lp_autofs_conf_backup }}"
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_autofs_conf }}"
   notify: reload autofs
 
@@ -19,7 +19,7 @@
     dest: "{{ lp_autofs_master_conf_file }}"
     regexp: "^{{ item.key }}"
     line: "{{ item.key }}{{ item.value }}"
-    backup: "{{ lp_autofs_conf_backup }}"
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_autofs_master_conf }}"
   notify: reload autofs
 
@@ -28,7 +28,7 @@
     dest: "{{ lp_autofs_misc_conf_file }}"
     regexp: "^{{ item.key }}"
     line: "{{ item.key }}{{ item.value }}"
-    backup: "{{ lp_autofs_conf_backup }}"
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_autofs_misc_conf }}"
   notify: reload autofs
 

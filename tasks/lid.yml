@@ -6,7 +6,7 @@
     dest: "{{ lp_lid_logind_conf }}"
     regexp: "^{{ item.var }}"
     line: "{{ item.var }}={{ item.value }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_lid_logind_conf_vars }}"
   notify: logind message reboot
 
@@ -15,7 +15,7 @@
     dest: "{{ lp_lid_upower_conf }}"
     regexp: "^{{ item.var }}"
     line: "{{ item.var }}={{ item.value }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_lid_upower_conf_vars }}"
 
 # EOF

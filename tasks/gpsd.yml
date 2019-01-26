@@ -21,7 +21,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
     block: |
       rfcomm{{ item.rfcomm }} {
         bind {{ item.bind }}
@@ -40,7 +40,7 @@
     owner: "root"
     group: "root"
     mode: "0644"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   notify: restart gpsd
   tags: lp_gpsd_config
 

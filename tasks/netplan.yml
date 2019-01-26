@@ -14,7 +14,7 @@
     owner: "{{ lp_netplan_owner }}"
     group: "{{ lp_netplan_group }}"
     mode: "{{ lp_netplan_mode }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   notify: netplan apply
   when: file_status.stat.exists
 
@@ -25,7 +25,7 @@
     owner: "{{ item.owner | default(lp_netplan_owner) }}"
     group: "{{ item.group | default(lp_netplan_group) }}"
     mode: "{{ item.mode | default(lp_netplan_mode) }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_netplan_conf }}"
   notify: netplan apply
 

@@ -11,7 +11,7 @@
     regexp: "^{{ item.key }}"
     insertbefore: "^{{ '#' }}{{ item.key }}"
     line: "{{ item.key }} = {{ item.value }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_bluetooth_main_conf }}"
   notify: restart bluetooth
 

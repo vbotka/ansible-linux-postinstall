@@ -16,7 +16,7 @@
     group: "{{ lp_smart_conf_group }}"
     mode: "{{ lp_smart_conf_mode }}"
     create: yes
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   when: not lp_smart_devicescan
   notify: reload smart
   tags: lp_smart_conf
@@ -30,7 +30,7 @@
     group: "{{ lp_smart_conf_group }}"
     mode: "{{ lp_smart_conf_mode }}"
     create: yes
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_smart_devices }}"
   notify: reload smart
   tags: lp_smart_conf

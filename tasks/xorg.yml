@@ -4,7 +4,7 @@
   template:
     src: "xorg.conf.j2"
     dest: "{{ lp_xorg_conf_dir }}/{{ item.file }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_xorg_conf }}"
   tags: lp_xorg_conf
 

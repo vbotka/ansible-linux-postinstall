@@ -7,7 +7,7 @@
     regexp: "^{{ item.key }}"
     line: "{{ item.key }} = {{ item.value }}"
     create: yes
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_postfix_main_conf }}"
   notify: reload postfix
 

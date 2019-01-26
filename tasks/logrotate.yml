@@ -11,7 +11,7 @@
     mark: "{{ item.mark }}"
     block: "{{ item.block }}"
     state: "{{ item.state }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_logrotate_conf_blocks }}"
 
 - name: "logrotate: Configure lines in {{ lp_logrotate_conf_file }}"
@@ -19,7 +19,7 @@
     path: "{{ lp_logrotate_conf_file }}"
     line: "{{ item.line }}"
     state: "{{ item.state }}"
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_logrotate_conf_lines }}"
 
 - name: "logrotate: Configure {{ lp_logrotate_conf_dir }}"
@@ -27,7 +27,7 @@
     path: "{{ lp_logrotate_conf_dir }}/{{ item.path }}"
     block: "{{ item.conf }}"
     create: yes
-    backup: yes
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_logrotate_confd }}"
 
 # EOF
