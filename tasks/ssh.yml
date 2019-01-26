@@ -1,7 +1,7 @@
 ---
 # linux-postinstall ssh
 
-- name: Debug
+- name: "ssh: Debug"
   vars:
     msg: |
       lp_ssh_config [

@@ -1,7 +1,7 @@
 ---
 # linux-postinstall packages
 
-- name: Debug
+- name: "packages: Debug"
   vars:
     msg: |
       ansible_os_family [ {{ ansible_os_family }} ]

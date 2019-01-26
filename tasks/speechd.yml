@@ -1,7 +1,8 @@
 ---
 # linux-postinstall speechd
 
-- debug:
+- name: "speechd: Debug"
+  debug:
     msg: "lp_speechd={{ lp_speechd }}"
   when: lp_debug
 

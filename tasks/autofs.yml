@@ -1,7 +1,8 @@
 ---
 # linux-postinstall autofs
 
-- debug:
+- name: "autofs: Debug"
+  debug:
     msg: "lp_autofs_enable [ {{ lp_autofs_enable }} ]"
   when: lp_debug
 

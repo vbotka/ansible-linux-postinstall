@@ -1,7 +1,8 @@
 ---
 # linux-postinstall modules
 
-- debug:
+- name: "modules: Debug"
+  debug:
     msg: "lp_modules_conf [ {{ lp_modules_conf }} ]"
   when: lp_debug
 
