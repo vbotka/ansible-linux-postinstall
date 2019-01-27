@@ -46,19 +46,19 @@
 
 - name: "gpsd: Stop and disable gpsd"
   systemd:
-    name: "gpsd"
+    name: "{{ lp_gpsd_service }}"
     state: "stopped"
     enabled: no
-  when: not lp_gpsd
-  tags: lp_gpsd_stop
+  when: not lp_gpsd_enable
+  tags: lp_gpsd_service
 
 - name: "gpsd: Start and enable gpsd"
   systemd:
-    name: "gpsd"
+    name: "{{ lp_gpsd_service }}"
     state: "started"
     enabled: yes
-  when: lp_gpsd
-  tags: lp_gpsd_start
+  when: lp_gpsd_enable
+  tags: lp_gpsd_service
 
 # EOF
 ...

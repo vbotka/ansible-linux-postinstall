@@ -1,9 +1,10 @@
 ---
 
-- debug: msg="{{ item }}"
+- name: "libvirt-conf: Debug"
+  debug: msg="{{ item }}"
   when: lp_debug
 
-- name: "Configure {{ lp_libvirt_conf_dir }}/{{ item.key }}"
+- name: "libvirt-conf: Configure {{ lp_libvirt_conf_dir }}/{{ item.key }}"
   lineinfile:
     dest: "{{ lp_libvirt_conf_dir }}/{{ item.key }}"
     regexp: "^{{ conf[0] }}(\\s|=)"

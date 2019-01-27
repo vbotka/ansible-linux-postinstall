@@ -53,5 +53,21 @@
   loop: "{{ lp_udev_hci_run_rules }}"
   notify: reload udev
 
+- name: "udev: Start and enable udev"
+  service:
+    name: "{{ lp_udev_service }}"
+    state: started
+    enabled: yes
+  when: lp_udev_enable
+  tags: lp_udev_service
+
+- name: "udev: Stop and disable udev"
+  service:
+    name: "{{ lp_udev_service }}"
+    state: stopped
+    enabled: no
+  when: not lp_udev_enable
+  tags: lp_udev_service
+
 # EOF
 ...

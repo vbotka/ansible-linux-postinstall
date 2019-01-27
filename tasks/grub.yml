@@ -7,7 +7,6 @@
     line: "{{ item.var }}{{ '=' }}{{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_grub_default }}"
-  when: lp_grub_default > 0
   notify: update grub
 
 # EOF

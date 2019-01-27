@@ -8,25 +8,20 @@
     group: "root"
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
-  when: ansible_os_family == "Debian"
 
 - name: "auto_upgrades: Disable and stop unattended-upgrades"
   systemd:
-    name: "unattended-upgrades"
+    name: "{{ lp_auto_upgrades_service }}"
     state: "stopped"
     enabled: no
-  when:
-    - not lp_unattended_upgrades
-    - ansible_os_family == "Debian"
+  when: not lp_auto_upgrades_enable
 
 - name: "auto_upgrades: Enable and start unattended-upgrades"
   systemd:
-    name: "unattended-upgrades"
+    name: "{{ lp_auto_upgrades_service }}"
     state: "started"
     enabled: yes
-  when:
-    - lp_unattended_upgrades
-    - ansible_os_family == "Debian"
+  when: lp_auto_upgrades_enable
 
 # EOF
 ...

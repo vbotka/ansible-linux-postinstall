@@ -9,79 +9,71 @@
   tags: [lp_debug, always]
 
 - import_tasks: swap.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: ((ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")) and lp_swap
   tags: lp_swap
 
 - import_tasks: modules.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
   tags: lp_modules
 
 - import_tasks: udev.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: ((ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")) and lp_udev
   tags: lp_udev
 
 - import_tasks: netplan.yml
-  when:
-    - ansible_os_family == "Debian"
-    - lp_netplan
+  when: (ansible_os_family == "Debian") and lp_netplan
   tags: lp_netplan
 
 - import_tasks: timezone.yml
-  when:
-    - (ansible_os_family == "RedHat" ) or
-      (ansible_os_family == "Debian" )
-    - lp_timezone
+  when: ((ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")) and lp_timezone
   tags: lp_timezone
 
 - import_tasks: timesyncd.yml
-  when: ansible_os_family == "Debian"
+  when: (ansible_os_family == "Debian") and lp_timesyncd
   tags: lp_timesyncd
 
 - import_tasks: repos.yml
-  when: ansible_os_family == "Debian"           # TODO: RH
+  when: ansible_os_family == "Debian"
   tags: lp_repos
 
 - import_tasks: packages.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
   tags: lp_packages
 
 - import_tasks: auto_upgrades.yml
-  when: ansible_os_family == "Debian"           # TODO: RH
+  when: (ansible_os_family == "Debian") and lp_auto_upgrades
   tags: lp_auto_upgrades
 
 - import_tasks: sysctl.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
   tags: lp_sysctl
 
 - import_tasks: zfs.yml
-  when:
-    - ansible_os_family == "Debian"           # TODO: RH
-    - lp_zfs
+  when: (ansible_os_family == "Debian") and lp_zfs
   tags: lp_zfs
 
 - import_tasks: hostname.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
   tags: lp_hostname
 
 - import_tasks: hosts.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
   tags: lp_hosts
 
 - import_tasks: iptables.yml
-  when:
-    - ansible_os_family == "Debian"           # TODO: RH
-    - lp_iptables
+  when: (ansible_os_family == "Debian") and lp_iptables
   tags: lp_iptables
 
 - import_tasks: grub.yml
-  when: ansible_os_family == "Debian"           # TODO: RH
+  when: ansible_os_family == "Debian"
   tags: lp_grub
   # https://unix.stackexchange.com/questions/152222/
   # equivalent-of-update-grub-for-rhel-fedora-centos-systems
@@ -107,27 +99,22 @@
   tags: lp_aliases
 
 - import_tasks: pm-utils.yml
-  when:
-    - ansible_os_family == "Debian"           # TODO: RH
-    - lp_pm
+  when: (ansible_os_family == "Debian") and
+        lp_pm
   tags: lp_pm
 
 - import_tasks: ssh.yml
-  when:
-    - lp_ssh
-    - (ansible_os_family == "RedHat" ) or
-      (ansible_os_family == "Debian" )
+  when: ((ansible_os_family == "RedHat" ) or
+        (ansible_os_family == "Debian" )) and lp_ssh
   tags: lp_ssh
 
 - import_tasks: sshd.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: ((ansible_os_family == "RedHat" ) or
+        (ansible_os_family == "Debian" )) and lp_sshd
   tags: lp_sshd
 
 - import_tasks: bluetooth.yml
-  when:
-    - ansible_os_family == "Debian"
-    - lp_bluetooth
+  when: (ansible_os_family == "Debian") and lp_bluetooth
   tags: lp_bluetooth
 
 - import_tasks: xorg.yml
@@ -144,24 +131,20 @@
   tags: lp_modemmanager
 
 - import_tasks: gpsd.yml
-  when:
-    - ansible_os_family == "Debian"
-    - lp_gpsd
+  when: (ansible_os_family == "Debian") and lp_gpsd
   tags: lp_gpsd
 
 - import_tasks: postfix.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: ((ansible_os_family == "RedHat" ) or
+        (ansible_os_family == "Debian" )) and lp_postfix
   tags: lp_postfix
 
 - import_tasks: smart.yml
-  when: ansible_os_family == "Debian"           # TODO: RH
+  when: (ansible_os_family == "Debian") and lp_smart
   tags: lp_smart
 
 - import_tasks: apparmor.yml
-  when:
-    - ansible_os_family == "Debian"
-    - lp_apparmor
+  when: (ansible_os_family == "Debian") and lp_apparmor
   tags: lp_apparmor
 
 - meta: flush_handlers
@@ -171,86 +154,63 @@
   tags: lp_zeitgeist
 
 - import_tasks: lid.yml
-  when:
-    - ansible_os_family == "Debian"
-    - lp_lid
+  when: (ansible_os_family == "Debian") and lp_lid
   tags: lp_lid
 
 - import_tasks: speechd.yml
-  when: ansible_os_family == "Debian"
+  when: (ansible_os_family == "Debian") and lp_speechd
   tags: lp_speechd
 
 - import_tasks: nfsd.yml
-  when: ansible_os_family == "Debian"           # TODO: RH
+  when: (ansible_os_family == "Debian") and lp_nfsd
   tags: lp_nfsd
 
 - meta: flush_handlers
 
 - import_tasks: latex.yml
-  when:
-    - ansible_os_family == "Debian"            # TODO: RH
-    - lp_latex
+  when: (ansible_os_family == "Debian") and lp_latex
   tags: lp_latex
 
 - import_tasks: kvm.yml
-  when:
-    - ansible_os_family == "Debian"           # TODO: RH
-    - lp_kvm
+  when: (ansible_os_family == "Debian") and lp_kvm
   tags: lp_kvm
 
 - import_tasks: xen.yml
-  when:
-    - ansible_os_family == "Debian"           # TODO: RH
-    - lp_xen
+  when: (ansible_os_family == "Debian") and lp_xen
   tags: lp_xen
 
 - import_tasks: virtualbox.yml
-  when:
-    - ansible_os_family == "Debian"             # TODO: RH
-    - lp_virtualbox
+  when: (ansible_os_family == "Debian") and lp_virtualbox
   tags: lp_virtualbox
 
 - import_tasks: wpagui.yml
-  when:
-    - ansible_os_family == "Debian"
-    - lp_wpagui
+  when: (ansible_os_family == "Debian") and lp_wpagui
   tags: lp_wpagui
 
 - import_tasks: wpasupplicant.yml
-  when:
-    - (ansible_os_family == "RedHat" ) or
-      (ansible_os_family == "Debian" )
-    - lp_wpasupplicant
+  when: ((ansible_os_family == "RedHat" ) or
+        (ansible_os_family == "Debian" )) and lp_wpasupplicant
   tags: lp_wpasupplicant
 
 - import_tasks: gpg.yml
-  when:
-    - ansible_os_family == "Debian"             # TODO: RH
-    - lp_gpg
+  when: (ansible_os_family == "Debian") and lp_gpg
   tags: lp_gpg
 
 - import_tasks: logrotate.yml
-  when:
-    - (ansible_os_family == "RedHat" ) or
-      (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat" ) or
+        (ansible_os_family == "Debian" )
   tags: lp_logrotate
 
 - import_tasks: tlp.yml
-  when:
-    - ansible_os_family == "Debian"
-    - lp_tlp
+  when: (ansible_os_family == "Debian") and lp_tlp
   tags: lp_tlp
 
 - import_tasks: autofs.yml
-  when:
-    - ansible_os_family == "Debian"
-    - lp_autofs
+  when: (ansible_os_family == "Debian") and lp_autofs
   tags: lp_autofs
 
 - import_tasks: libvirt.yml
-  when:
-    - ansible_os_family == "Debian"
-    - lp_libvirt
+  when: (ansible_os_family == "Debian") and lp_libvirt
   tags: lp_libvirt
 
 - meta: flush_handlers

@@ -1,6 +1,11 @@
 ---
 # linux-postinstall nfsd
 
+- name: "nfsd: Install packages"
+  include_tasks: fn/install-package.yml
+  loop: "{{ lp_nfsd_packages }}"
+  tags: lp_nfsd_packages
+
 - name: "nfsd: Configure exports"
   template:
     src: "exports.j2"
@@ -9,6 +14,7 @@
     group: "root"
     mode: "0644"
   notify: reload nfsd
+  tags: lp_nfsd_exports
 
 - name: "nfsd: Enable and start nfsd services"
   systemd:
@@ -17,8 +23,9 @@
     state: "started"
   loop: "{{ lp_nfsd_services }}"
   when:
-    - lp_nfsd
-    - lp_nfsd_services > 0
+    - lp_nfsd_enable
+    - lp_nfsd_services|length > 0
+  tags: lp_nfsd_service
 
 - name: "nfsd: Stop and disable nfsd services"
   systemd:
@@ -27,8 +34,9 @@
     state: "stopped"
   loop: "{{ lp_nfsd_services }}"
   when:
-    - not lp_nfsd
-    - lp_nfsd_services > 0
+    - not lp_nfsd_enable
+    - lp_nfsd_services|length > 0
+  tags: lp_nfsd_service
 
 # EOF
 ...

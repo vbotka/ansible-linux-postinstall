@@ -4,6 +4,7 @@
   vars:
     msg: |
       lp_swap [ {{ lp_swap }} ]
+      lp_swap_enable [ {{ lp_swap_enable }} ]
       lp_swap_file [ {{ lp_swap_file|default("NOT-DEFINED") }} ]
       lp_swap_size [ {{ lp_swap_size|default("NOT-DEFINED") }} ]
       lp_swap_stsize [ {{ lp_swap_stsize|default("NOT-DEFINED") }} ]
@@ -16,7 +17,7 @@
   register: command_result
   changed_when: command_result.stdout == "create"
   notify: create and mount swap file
-  when: lp_swap
+  tags: lp_swap_swapfile
 
 - name: "swap: Change swapfile {{ lp_swap_file }}"
   shell: >
@@ -28,7 +29,7 @@
   register: command_result
   changed_when: command_result.stdout == "change"
   notify: change and mount swap file
-  when: lp_swap
+  tags: lp_swap_swapfile
 
 - name: "swap: Create swap entry in /etc/fstab"
   mount:
@@ -40,7 +41,8 @@
     dump: "0"
     state: "present"
     backup: "{{ lp_backup_conf }}"
-  when: lp_swap
+  when: lp_swap_enable
+  tags: lp_swap_fstab
 
 - name: "swap: Remove swap entry from /etc/fstab"
   mount:
@@ -54,8 +56,9 @@
     backup: "{{ lp_backup_conf }}"
   notify: remove swap file
   when:
-    - not lp_swap
+    - not lp_swap_enable
     - lp_swap_file is defined
+  tags: lp_swap_swapfile
 
 # EOF
 ...

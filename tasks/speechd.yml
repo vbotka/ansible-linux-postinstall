@@ -3,22 +3,22 @@
 
 - name: "speechd: Debug"
   debug:
-    msg: "lp_speechd={{ lp_speechd }}"
+    msg: "lp_speechd_enable [ {{ lp_speechd_enable }} ]"
   when: lp_debug
 
 - name: "speechd: Enable and start speech-dispatcher"
   systemd:
-    name: "speech-dispatcher"
+    name: "{{ lp_speechd_service }}"
     enabled: yes
     state: "started"
-  when: lp_speechd
+  when: lp_speechd_enable
 
 - name: "speechd: Stop and disable speech-dispatcher"
   systemd:
-    name: "speech-dispatcher"
+    name: "{{ lp_speechd_service }}"
     enabled: no
     state: "stopped"
-  when: not lp_speechd
+  when: not lp_speechd_enable
 
 # EOF
 ...

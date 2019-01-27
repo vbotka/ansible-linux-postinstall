@@ -22,7 +22,6 @@
   retries: "{{ lp_install_retries }}"
   until: result is succeeded
   delay: "{{ lp_install_delay }}"
-  when: ansible_os_family == "Debian"
   tags: lp_repos_keys_add
 
 - name: "repos: Add repo signing keys by ID"
@@ -35,7 +34,6 @@
   retries: "{{ lp_install_retries }}"
   until: result is succeeded
   delay: "{{ lp_install_delay }}"
-  when: ansible_os_family == "Debian"
   tags: lp_repos_keys_add
 
 - name: "repos: Add repositories"
@@ -43,7 +41,6 @@
     repo: "{{ item }}"
     state: "present"
   loop: "{{ lp_repos }}"
-  when: ansible_os_family == "Debian"
   tags: lp_repos_add
 
 # EOF

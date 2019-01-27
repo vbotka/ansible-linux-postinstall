@@ -22,11 +22,13 @@ lp_packages_selections_postinstall: []
 lp_packages_autoremove: false
 
 lp_modules: []
-lp_modules_blacklist_path: "/etc/modprobe.d"
 lp_modules_blacklist: []
+lp_modules_blacklist_path: "/etc/modprobe.d"
 
 lp_sysctl_vars: []
 
+lp_udev: true
+lp_udev_enable: true
 lp_udev_rules_dir: "/etc/udev/rules.d"
 lp_udev_persistent_net_rules_file: "70-persistent-net.rules"
 lp_udev_persistent_net_rules: []
@@ -74,7 +76,8 @@ lp_latex_download_timeout: "20"
 lp_latex_macros: []
 lp_latex_get_url_ignore_errors: false
 
-lp_unattended_upgrades: false
+lp_auto_upgrades: false
+lp_auto_upgrades_enable: false
 
 lp_auto_upgrades_Update_Package_Lists: "0"
 lp_auto_upgrades_Unattended_Upgrade: "0"
@@ -86,9 +89,11 @@ lp_ssh: false
 lp_ssh_config: {}
 
 lp_sshd: false
+lp_sshd_enable: false
 lp_sshd_config: {}
 
 lp_bluetooth: false
+lp_bluetooth_enable: false
 lp_bluetooth_main_conf: []
 
 lp_xorg_conf_dir: "/usr/share/X11/xorg.conf.d"
@@ -101,6 +106,7 @@ lp_modemmanager: true
 lp_modemmanager_override: ""
 
 lp_gpsd: false
+lp_gpsd_enable: false
 lp_gpsd_START_DAEMON: "true"
 lp_gpsd_USBAUTO: "true"
 lp_gpsd_DEVICES: "/dev/rfcomm0"
@@ -108,6 +114,7 @@ lp_gpsd_GPSD_OPTIONS: "-b"
 lp_gpsd_bt_rfcomm: []
 
 lp_postfix: true
+lp_postfix_enable: true
 lp_postfix_main_conf: []
 
 lp_apparmor: true
@@ -120,10 +127,11 @@ lp_apparmor_disable: []
 lp_apparmor_complain: []
 lp_apparmor_enforce: []
 
-lp_smart: true
+lp_smart: false
+lp_smart_enable: false
 lp_smart_packages:
   - smartmontools
-lp_smart_service_name: "smartmontools"
+lp_smart_service: "smartmontools"
 lp_smart_devicescan: false
 lp_smart_conf_file: "/etc/smartd.conf"
 lp_smart_conf_owner: "root"
@@ -150,6 +158,7 @@ lp_lid_upower_conf: "/etc/UPower/UPower.conf"
 lp_lid_upower_conf_vars: []
 
 lp_speechd: true
+lp_speechd_enable: true
 
 lp_sudoers_owner: "root"
 lp_sudoers_group: "root"
@@ -159,6 +168,7 @@ lp_sudoers_conf:
 lp_sudoers_01: []
 
 lp_nfsd: false
+lp_nfsd_enable: false
 lp_nfsd_exports: []
 
 lp_netplan: false
@@ -171,11 +181,13 @@ lp_netplan_renderer: "NetworkManager"
 lp_netplan_conf: []
 
 lp_swap: false
+lp_swap_enable: false
 
 lp_timezone: false
 lp_timezone_zoneinfo: "UTC"
 
 lp_timesyncd: true
+lp_timesyncd_enable: true
 lp_timesyncd_NTP: ""
 lp_timesyncd_FallbackNTP: "ntp.ubuntu.com"
 lp_timesyncd_RootDistanceMaxSec: "5"
@@ -234,6 +246,23 @@ lp_zfs_manage: []
 lp_zfs_mountpoints: []
 
 lp_service: []
+lp_service_enable:
+  - udev
+  - auto_upgrades
+  - sshd
+  - bluetooth
+  - gpsd
+  - postfix
+  - smart
+  - speechd
+  - timesyncd
+  - autofs
+  - libvirt_libvirtd
+  - libvirt_guests
+# TODO:
+# * lp_virtualbox_services lp_virtualbox_enable
+# * lp_tlp_services lp_tlp_enable
+# * lp_nfsd_services lp_nfsd_enable
 
 # EOF
 ...

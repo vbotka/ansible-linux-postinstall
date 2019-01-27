@@ -13,6 +13,7 @@
     state: "{{ item.state | default('present') }}"
   loop: "{{ lp_modules }}"
 
+# Debian
 - name: "modules: Configure {{ lp_modules_conf }} in Debian"
   lineinfile:
     dest: "{{ lp_modules_conf }}"
@@ -22,8 +23,9 @@
   loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == "Debian"
-    - item.state | default("present") == "present"
+    - item.state|default("present") == "present"
 
+# RedHat
 - name: "modules: Configure {{ lp_modules_conf }} in RedHat"
   lineinfile:
     dest: "{{ lp_modules_conf }}"
@@ -33,7 +35,7 @@
   loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == "RedHat"
-    - item.state | default("present") == "present"
+    - item.state|default("present") == "present"
 
 - name: "modules: Blacklist modules in {{ lp_modules_blacklist_path }}"
   template:

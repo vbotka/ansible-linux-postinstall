@@ -1,4 +1,22 @@
 ---
+# linux-postinstall service
+
+- name: "service: Debug"
+  debug:
+    msg: >
+      service={{ lookup('vars', 'lp_' + item + '_service') }}
+      enable={{ lookup('vars', 'lp_' + item + '_enable') }}
+  loop: "{{ lp_service_enable }}"
+  when:
+    - lp_debug
+    - lookup('vars', 'lp_' + item, default='false')
+
+- name: "service: Enable or Disable services managed by this role."
+  service:
+    name: "{{ lookup('vars', 'lp_' + item + '_service') }}"
+    enabled: "{{ lookup('vars', 'lp_' + item + '_enable') }}"
+  loop: "{{ lp_service_enable }}"
+  when: lookup('vars', 'lp_' + item, default='false')
 
 - name: "service: Manage services."
   service:
@@ -13,6 +31,9 @@
   loop: "{{ lp_service }}"
   when: (item.state is defined) or
         (item.enabled is defined)
+
+# TODO: Mask a service. Do not allow any servce to activate a masked
+# service. See tasks/wpagui.yml
 
 # EOF
 ...

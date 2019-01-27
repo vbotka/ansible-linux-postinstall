@@ -36,7 +36,7 @@
       lp_timesyncd [ {{ lp_timesyncd }} ]
       lp_timezone [ {{ lp_timezone }} ]
       lp_tlp [ {{ lp_tlp }} ]
-      lp_unattended_upgrades [ {{ lp_unattended_upgrades }} ]
+      lp_auto_upgrades [ {{ lp_auto_upgrades }} ]
       lp_virtualbox [ {{ lp_virtualbox }} ]
       lp_wpagui [ {{ lp_wpagui }} ]
       lp_wpasupplicant [ {{ lp_wpasupplicant }} ]

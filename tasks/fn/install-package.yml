@@ -1,7 +1,7 @@
 ---
 # linux-postinstall function install-package
 
-- name: "function: Install package"
+- name: "fn install-package: {{ lp_package_state }} package: {{ item }}"
   package:
     name: "{{ item }}"
     state: "{{ lp_package_state }}"

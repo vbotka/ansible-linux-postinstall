@@ -15,8 +15,15 @@
 #      - { key: "SendEnv", val: "LC_IDENTIFICATION LC_ALL LANGUAGE" }
 #      - { key: "SendEnv", val: "XMODIFIERS" }
 
-lp_service_sshd: "sshd"
-lp_path_sshd: "/sbin/sshd"
+lp_autofs_service: "autofs"
+lp_timesyncd_service: "systemd-timesyncd.service"
+lp_postfix_service: "postfix"
+lp_gpsd_service: "gpsd"
+lp_bluetooth_service: "bluetooth"
+lp_udev_service: "udev"
+
+lp_sshd_service: "sshd"
+lp_sshd_path: "/sbin/sshd"
 
 lp_modules_conf: "/etc/rc.modules"
 

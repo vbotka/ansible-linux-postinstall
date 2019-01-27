@@ -4,7 +4,6 @@
 - name: "smart: Install packages"
   include_tasks: fn/install-package.yml
   loop: "{{ lp_smart_packages }}"
-  when: lp_smart
   tags: lp_smart_packages
 
 - name: "smart: Configure {{ lp_smart_conf_file }}. Do not scan for devices"
@@ -37,18 +36,18 @@
 
 - name: "smart: Start and enable smart"
   service:
-    name: "{{ lp_smart_service_name }}"
+    name: "{{ lp_smart_service }}"
     state: started
     enabled: yes
-  when: lp_smart
+  when: lp_smart_enable
   tags: lp_smart_service
 
 - name: "smart: Stop and disable smart"
   service:
-    name: "{{ lp_smart_service_name }}"
+    name: "{{ lp_smart_service }}"
     state: stopped
     enabled: no
-  when: not lp_smart
+  when: not lp_smart_enable
   tags: lp_smart_service
 
 # EOF

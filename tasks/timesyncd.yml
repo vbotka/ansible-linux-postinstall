@@ -12,6 +12,7 @@
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug
+  tags: lp_timesyncd_debug
 
 - name: "timesyncd: Configure /etc/systemd/timesyncd.conf"
   template:
@@ -22,20 +23,23 @@
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
   notify: restart timesyncd
+  tags: lp_timesyncd_conf
 
 - name: "timesyncd: Enable and start timesyncd"
   service:
-    name: "systemd-timesyncd.service"
+    name: "{{ lp_timesyncd_service }}"
     state: "started"
     enabled: yes
-  when: lp_timesyncd
+  when: lp_timesyncd_enable
+  tags: lp_timesyncd_service
 
 - name: "timesyncd: Disable and stop timesyncd"
   service:
-    name: "systemd-timesyncd.service"
+    name: "{{ lp_timesyncd_service }}"
     state: "stopped"
     enabled: no
-  when: not lp_timesyncd
+  when: not lp_timesyncd_enable
+  tags: lp_timesyncd_service
 
 # Notes on CentOS
 # * systemd compiled without timesyncd service in CentOS 7 ?

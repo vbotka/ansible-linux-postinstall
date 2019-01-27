@@ -13,8 +13,8 @@
       lp_tlp_config_file [ {{ lp_tlp_config_file }} ]
       lp_tlp_config
       {{ lp_tlp_config | to_nice_yaml }}
-      lp_tlp_systemd
-      {{ lp_tlp_systemd | to_nice_yaml }}
+      lp_tlp_services
+      {{ lp_tlp_services | to_nice_yaml }}
       lp_tlp_restart_service [ {{ lp_tlp_restart_service }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
@@ -38,25 +38,25 @@
     line: "{{ item.key }}={{ item.value }}"
   loop: "{{ lp_tlp_config }}"
   notify: restart tlp
-  tags: lp_tlp_config
+  tags: lp_tlp_conf
 
 - name: "tlp: Start and enable tlp"
   systemd:
     name: "{{ item }}"
     state: started
     enabled: yes
-  loop: "{{ lp_tlp_systemd }}"
+  loop: "{{ lp_tlp_services }}"
   when: lp_tlp_enable
-  tags: lp_tlp_enable
+  tags: lp_tlp_service
 
 - name: "tlp: Stop and disable tlp"
   systemd:
     name: "{{ item }}"
     state: stopped
     enabled: no
-  loop: "{{ lp_tlp_systemd }}"
+  loop: "{{ lp_tlp_services }}"
   when: not lp_tlp_enable
-  tags: lp_tlp_disable
+  tags: lp_tlp_service
 
 # EOF
 ...

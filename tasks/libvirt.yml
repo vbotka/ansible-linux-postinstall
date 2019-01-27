@@ -62,7 +62,7 @@
     name: "{{ lp_libvirt_guests_service }}"
     state: stopped
     enabled: no
-  when: not lp_libvirt_libvirtd_enable
+  when: not lp_libvirt_guests_enable
   tags: lp_libvirt_guests_service
 
 

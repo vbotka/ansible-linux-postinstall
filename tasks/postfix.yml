@@ -10,20 +10,23 @@
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_postfix_main_conf }}"
   notify: reload postfix
+  tags: lp_postfix_conf
 
 - name: "postfix: Enable and start postfix"
   systemd:
-    name: "postfix"
+    name: "{{ lp_postfix_service }}"
     enabled: yes
     state: started
-  when: lp_postfix
+  when: lp_postfix_enable
+  tags: lp_postfix_service
 
 - name: "postfix: Disable and stop postfix"
   systemd:
-    name: "postfix"
+    name: "{{ lp_postfix_service }}"
     enabled: no
     state: stopped
-  when: not lp_postfix
+  when: not lp_postfix_enable
+  tags: lp_postfix_service
 
 # EOF
 ...
