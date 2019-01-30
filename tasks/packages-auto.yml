@@ -1,0 +1,46 @@
+---
+# linux-postinstall packages-auto
+
+- name: "packages-auto: Init variable local_pkg_lists"
+  set_fact:
+    local_pkg_lists: []
+    local_pkg_list: []
+  tags: lp_packages_auto
+
+- name: "packages-auto: List variables ^lp_.*_packages$"
+  set_fact:
+    local_pkg_lists: "{{ local_pkg_lists + 
+                     [{'install': item.split('_')[0] + '_' + item.split('_')[1],
+                       'packages': item}] }}"
+  loop: "{{ hostvars[inventory_hostname].keys() |
+            select('match', '^lp_.*_packages$') |
+            list }}"
+  tags: lp_packages_auto
+
+- name: "packages-auto: Debug"
+  debug:
+    msg: "[ {{ lookup('vars', item.install, default='false')|bool }} ]
+               packages {{ lookup('vars', item.packages) }}"
+  loop: "{{ local_pkg_lists }}"
+  tags: lp_packages_auto
+
+- name: "packages-auto: Create local_pkg_list"
+  set_fact:
+    local_pkg_list: "{{ local_pkg_list + lookup('vars', item.packages) }}"
+  loop: "{{ local_pkg_lists }}"
+  when: lookup('vars', item.install, default='False')|bool
+  tags: lp_packages_auto
+
+- name: "packages-auto: Debug"
+  debug:
+    var: local_pkg_list
+  when: lp_debug
+  tags: lp_packages_auto
+
+- name: "packages-auto: Install packages"
+  include_tasks: fn/install-package.yml
+  loop: "{{ local_pkg_list }}"
+  tags: lp_packages_auto
+ 
+# EOF
+...

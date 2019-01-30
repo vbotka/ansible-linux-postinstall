@@ -63,6 +63,11 @@ Workflow
 # editor vbotka.linux_postinstall/vars/main.yml
 ```
 
+Review OS specific variables in *vars/defaults*. Optionally put
+customized OS specific variables into the *vars* directory. See
+*tasks/vars.yml* to learn the naming conventions and precedence. Os
+specific variables will overwrite variables in *var/main.yml*.
+
 3) Create the inventory.
 
 ```
@@ -114,6 +119,30 @@ be OK and 0 changed, unreachable and failed.
 # ansible-playbook linux-postinstall.yml
 ```
 
+
+Auto-installation of packages
+----------------------------
+
+Packages listed in the variables lp_*_packages will be automatically installed by the tasks/packages.yml if enabled by variable lp_* . For example
+
+```
+lp_libvirt: true
+lp_libvirt_packages:
+  - libvirt0
+  - libvirt-bin
+  - libvirt-daemon
+  - libvirt-daemon-driver-storage-rbd
+  - libvirt-daemon-system
+  - virtinst
+```
+
+the lp_libvirt_packages will be included in the packages installed by
+
+```
+# ansible-playbook linux-postinstall.yml -t lp_packages
+```
+
+
 Recommended configuration after the installation of OS
 ------------------------------------------------------
 
@@ -135,7 +164,19 @@ Recommended configuration after the installation of OS
 
 4) Configure network connection
 
-5) Configure other tasks
+5) Test installation of the packages
+
+```
+# ansible-playbook -t lp_packages -e 'lp_package_install_dryrun=true' linux-postinstall.yml
+```
+
+6) Install packages
+
+```
+# ansible-playbook -t lp_packages linux-postinstall.yml
+```
+
+7) Install and configure other tasks
 
 ```
 # ansible-playbook linux-postinstall.yml

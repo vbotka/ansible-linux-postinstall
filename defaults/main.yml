@@ -13,13 +13,16 @@ lp_repos: []
 lp_repos_keys_url: []
 lp_repos_keys_id: []
 
-lp_package_state: "present"             # apt and yum support "latest"
-lp_package_state_remove: "absent"       # see "remove" vs. "purge"
+lp_packages_auto: false
 lp_packages_install: []
 lp_packages_remove: []
 lp_packages_selections_preinstall: []
 lp_packages_selections_postinstall: []
 lp_packages_autoremove: false
+
+lp_package_state: "present"             # apt and yum support "latest"
+lp_package_state_remove: "absent"       # see "remove" vs. "purge"
+lp_package_install_dryrun: false
 
 lp_modules: []
 lp_modules_blacklist: []

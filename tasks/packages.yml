@@ -26,6 +26,11 @@
   when: ansible_os_family == "Debian"
   tags: lp_packages_selections_preinstall
 
+- name: "packages: Install packages listed in variables lp_*_packages"
+  include_tasks: packages-auto.yml
+  when: lp_packages_auto
+  tags: lp_packages_auto
+
 - name: "packages: Install packages"
   include_tasks: fn/install-package.yml
   loop: "{{ lp_packages_install }}"
