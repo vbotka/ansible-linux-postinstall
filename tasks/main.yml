@@ -5,7 +5,7 @@
   tags: [lp_vars, always]
 
 - import_tasks: debug.yml
-  when: lp_debug
+  when: lp_debug|bool
   tags: [lp_debug, always]
 
 - import_tasks: swap.yml

@@ -4,7 +4,7 @@
 - name: "modules: Debug"
   debug:
     msg: "lp_modules_conf [ {{ lp_modules_conf }} ]"
-  when: lp_debug
+  when: lp_debug|bool
 
 - name: "modules: modprobe modules"
   modprobe:

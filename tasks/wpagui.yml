@@ -15,7 +15,7 @@
       {{ lp_wpagui_service_mask | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
 
 - name: "wpagui: Install packages"
   include_tasks: fn/install-package.yml

@@ -4,7 +4,7 @@
 - name: "bluetooth: Debug"
   debug:
     msg: "lp_bluetooth_enable [ {{ lp_bluetooth_enable }} ]"
-  when: lp_debug
+  when: lp_debug|bool
 
 - name: "bluetooth: Configure /etc/bluetooth/main.conf"
   lineinfile:
@@ -21,14 +21,14 @@
     name: "{{ lp_bluetooth_service }}"
     enabled: yes
     state: started
-  when: lp_bluetooth_enable
+  when: lp_bluetooth_enable|bool
 
 - name: "bluetooth: Stop and disable bluetooth"
   systemd:
     name: "{{ lp_bluetooth_service }}"
     enabled: no
     state: stopped
-  when: not lp_bluetooth_enable
+  when: not lp_bluetooth_enable|bool
 
 # EOF
 ...

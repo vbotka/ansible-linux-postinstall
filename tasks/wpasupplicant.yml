@@ -25,7 +25,7 @@
       lp_wpa_action_script_mode [ {{ lp_wpa_action_script_mode }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_wpasupplicant_debug
+  when: lp_wpasupplicant_debug|bool
 
 - name: "wpasupplicant: Install packages"
   include_tasks: fn/install-package.yml
@@ -50,7 +50,7 @@
 
 - name: "wpasupplicant: Debug: registered to lp_wpasupplicant_conf_changes"
   debug: msg="{{ lp_wpasupplicant_conf_changes }}"
-  when: lp_wpasupplicant_debug
+  when: lp_wpasupplicant_debug|bool
 
 # - name: "wpasupplicant: Debug: wpa_cli reconfigure commands"
 #  debug:
@@ -70,7 +70,7 @@
     path: "{{ lp_wpa_action_script_dir }}"
     owner: "{{ lp_wpa_action_script_owner }}"
     group: "{{ lp_wpa_action_script_group }}"
-  when: lp_wpa_action_script
+  when: lp_wpa_action_script|bool
   tags: lp_wpa_action_script_dir
 
 - name: "wpasupplicant: Create script {{ lp_wpa_action_script_file }}"
@@ -81,7 +81,7 @@
     group: "{{ lp_wpa_action_script_group }}"
     mode: "{{ lp_wpa_action_script_mode }}"
     backup: "{{ lp_backup_conf }}"
-  when: lp_wpa_action_script
+  when: lp_wpa_action_script|bool
   tags: lp_wpa_action_script_file
 
 # EOF

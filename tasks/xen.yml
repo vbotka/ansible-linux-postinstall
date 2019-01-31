@@ -12,7 +12,7 @@
       {{ lp_xen_global | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
 
 - name: "xen: Install packages"
   include_tasks: fn/install-package.yml

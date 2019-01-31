@@ -16,7 +16,7 @@
     mode: "{{ lp_smart_conf_mode }}"
     create: yes
     backup: "{{ lp_backup_conf }}"
-  when: not lp_smart_devicescan
+  when: not lp_smart_devicescan|bool
   notify: reload smart
   tags: lp_smart_conf
 
@@ -39,7 +39,7 @@
     name: "{{ lp_smart_service }}"
     state: started
     enabled: yes
-  when: lp_smart_enable
+  when: lp_smart_enable|bool
   tags: lp_smart_service
 
 - name: "smart: Stop and disable smart"
@@ -47,7 +47,7 @@
     name: "{{ lp_smart_service }}"
     state: stopped
     enabled: no
-  when: not lp_smart_enable
+  when: not lp_smart_enable|bool
   tags: lp_smart_service
 
 # EOF

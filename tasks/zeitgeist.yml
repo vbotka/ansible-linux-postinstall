@@ -8,7 +8,7 @@
     name: "zeitgeist"
     purge: yes
   when:
-    - not lp_zeitgeist
+    - not lp_zeitgeist|bool
     - ansible_os_family == "Debian"
 
 - name: Remove zeitgeist-*
@@ -17,7 +17,7 @@
     name: "zeitgeist-*"
     purge: yes
   when:
-    - not lp_zeitgeist
+    - not lp_zeitgeist|bool
     - ansible_os_family == "Debian"
 
 # - name: Disable zeitgeist

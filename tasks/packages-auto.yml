@@ -34,7 +34,7 @@
 - name: "packages-auto: Debug"
   debug:
     var: local_pkg_list
-  when: lp_debug
+  when: lp_debug|bool
   tags: lp_packages_auto
 
 - name: "packages-auto: Install packages"

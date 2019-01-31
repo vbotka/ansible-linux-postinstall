@@ -17,7 +17,7 @@
     name: "{{ lp_postfix_service }}"
     enabled: yes
     state: started
-  when: lp_postfix_enable
+  when: lp_postfix_enable|bool
   tags: lp_postfix_service
 
 - name: "postfix: Disable and stop postfix"
@@ -25,7 +25,7 @@
     name: "{{ lp_postfix_service }}"
     enabled: no
     state: stopped
-  when: not lp_postfix_enable
+  when: not lp_postfix_enable|bool
   tags: lp_postfix_service
 
 # EOF

@@ -17,7 +17,7 @@
       {{ lp_libvirt_conf | to_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
   tags: lp_libvirt_debug
 
 - name: "libvirt: Install packages"
@@ -38,7 +38,7 @@
     name: "{{ lp_libvirt_libvirtd_service }}"
     state: started
     enabled: yes
-  when: lp_libvirt_libvirtd_enable
+  when: lp_libvirt_libvirtd_enable|bool
   tags: lp_libvirt_libvirtd_service
 
 - name: "libvirt: Stop and disable {{ lp_libvirt_libvirtd_service }}"
@@ -46,7 +46,7 @@
     name: "{{ lp_libvirt_libvirtd_service }}"
     state: stopped
     enabled: no
-  when: not lp_libvirt_libvirtd_enable
+  when: not lp_libvirt_libvirtd_enable|bool
   tags: lp_libvirt_libvirtd_service
 
 - name: "libvirt: Start and enable {{ lp_libvirt_guests_service }}"
@@ -54,7 +54,7 @@
     name: "{{ lp_libvirt_guests_service }}"
     state: started
     enabled: yes
-  when: lp_libvirt_guests_enable
+  when: lp_libvirt_guests_enable|bool
   tags: lp_libvirt_guests_service
 
 - name: "libvirt: Stop and disable {{ lp_libvirt_guests_service }}"
@@ -62,7 +62,7 @@
     name: "{{ lp_libvirt_guests_service }}"
     state: stopped
     enabled: no
-  when: not lp_libvirt_guests_enable
+  when: not lp_libvirt_guests_enable|bool
   tags: lp_libvirt_guests_service
 
 

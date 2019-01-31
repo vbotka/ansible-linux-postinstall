@@ -23,7 +23,7 @@
     state: "started"
   loop: "{{ lp_nfsd_services }}"
   when:
-    - lp_nfsd_enable
+    - lp_nfsd_enable|bool
     - lp_nfsd_services|length > 0
   tags: lp_nfsd_service
 
@@ -34,7 +34,7 @@
     state: "stopped"
   loop: "{{ lp_nfsd_services }}"
   when:
-    - not lp_nfsd_enable
+    - not lp_nfsd_enable|bool
     - lp_nfsd_services|length > 0
   tags: lp_nfsd_service
 

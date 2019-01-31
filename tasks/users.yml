@@ -9,7 +9,7 @@
       {{ lp_users_groups | to_nice_yaml }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
 
 - name: "users: Add or update users"
   user:

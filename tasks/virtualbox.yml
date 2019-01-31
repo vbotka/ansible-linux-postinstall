@@ -15,10 +15,10 @@
       {{ lp_virtualbox_services | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
 
 # TODO: assert lp_virtualbox_modules are loaded
-#       when: lp_virtualbox
+#       when: lp_virtualbox|bool
 
 - name: "virtualbox: Add signing key of VirtualBox"
   apt_key:
@@ -52,7 +52,7 @@
     state: started
     enabled: yes
   loop: "{{ lp_virtualbox_services }}"
-  when: lp_virtualbox_enable
+  when: lp_virtualbox_enable|bool
   tags: lp_virtualbox_services
 
 - name: "virtualbox: Disable and stop services"
@@ -61,7 +61,7 @@
     state: stopped
     enabled: no
   loop: "{{ lp_virtualbox_services }}"
-  when: not lp_virtualbox_enable
+  when: not lp_virtualbox_enable|bool
   tags: lp_virtualbox_services
 
 # EOF

@@ -4,7 +4,7 @@
 - name: "autofs: Debug"
   debug:
     msg: "lp_autofs_enable [ {{ lp_autofs_enable }} ]"
-  when: lp_debug
+  when: lp_debug|bool
 
 - name: "autofs: Configure {{ lp_autofs_conf_file }}"
   lineinfile:
@@ -38,14 +38,14 @@
     name: "{{ lp_autofs_service }}"
     enabled: yes
     state: started
-  when: lp_autofs_enable
+  when: lp_autofs_enable|bool
 
 - name: "autofs: Stop and disable autofs"
   systemd:
     name: "{{ lp_autofs_service }}"
     enabled: no
     state: stopped
-  when: not lp_autofs_enable
+  when: not lp_autofs_enable|bool
 
 # EOF
 ...

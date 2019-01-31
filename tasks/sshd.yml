@@ -18,7 +18,7 @@
     name: "{{ lp_sshd_service }}"
     enabled: yes
     state: "started"
-  when: lp_sshd_enable
+  when: lp_sshd_enable|bool
   tags: lp_sshd_service
 
 - name: "sshd: Disable and stop sshd"
@@ -26,7 +26,7 @@
     name: "{{ lp_sshd_service }}"
     enabled: no
     state: "stopped"
-  when: not lp_sshd_enable
+  when: not lp_sshd_enable|bool
   tags: lp_sshd_service
 
 # EOF

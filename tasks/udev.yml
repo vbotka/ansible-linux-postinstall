@@ -12,7 +12,7 @@
       {{ lp_udev_hci_run_rules | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
 
 # persistent_net
 - name: "udev: Configure {{ lp_udev_rules_dir }}/
@@ -58,7 +58,7 @@
     name: "{{ lp_udev_service }}"
     state: started
     enabled: yes
-  when: lp_udev_enable
+  when: lp_udev_enable|bool
   tags: lp_udev_service
 
 - name: "udev: Stop and disable udev"
@@ -66,7 +66,7 @@
     name: "{{ lp_udev_service }}"
     state: stopped
     enabled: no
-  when: not lp_udev_enable
+  when: not lp_udev_enable|bool
   tags: lp_udev_service
 
 # EOF

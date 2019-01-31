@@ -11,7 +11,7 @@
       {{ lp_zfs_mountpoints | to_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_zfs_debug
+  when: lp_zfs_debug|bool
   tags: lp_zfs_debug
 
 - name: "zfs: Install packages"

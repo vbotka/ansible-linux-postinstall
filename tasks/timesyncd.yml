@@ -11,7 +11,7 @@
       lp_timesyncd_PollIntervalMaxSec [ {{ lp_timesyncd_PollIntervalMaxSec }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
   tags: lp_timesyncd_debug
 
 - name: "timesyncd: Configure /etc/systemd/timesyncd.conf"
@@ -30,7 +30,7 @@
     name: "{{ lp_timesyncd_service }}"
     state: "started"
     enabled: yes
-  when: lp_timesyncd_enable
+  when: lp_timesyncd_enable|bool
   tags: lp_timesyncd_service
 
 - name: "timesyncd: Disable and stop timesyncd"
@@ -38,7 +38,7 @@
     name: "{{ lp_timesyncd_service }}"
     state: "stopped"
     enabled: no
-  when: not lp_timesyncd_enable
+  when: not lp_timesyncd_enable|bool
   tags: lp_timesyncd_service
 
 # Notes on CentOS

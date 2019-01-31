@@ -16,7 +16,7 @@
       {{ lp_packages_selections_postinstall | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
 
 - name: "packages: Configure package selections before Install/Remove"
   dpkg_selections:
@@ -28,7 +28,7 @@
 
 - name: "packages: Install packages listed in variables lp_*_packages"
   include_tasks: packages-auto.yml
-  when: lp_packages_auto
+  when: lp_packages_auto|bool
   tags: lp_packages_auto
 
 - name: "packages: Install packages"

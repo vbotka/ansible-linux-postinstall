@@ -34,7 +34,7 @@
     name: apparmor
     state: started
     enabled: yes
-  when: lp_apparmor
+  when: lp_apparmor|bool
   tags: lp_apparmor_service
 
 - name: "apparmor: Stop and disable apparmor"
@@ -42,7 +42,7 @@
     name: apparmor
     state: stopped
     enabled: no
-  when: not lp_apparmor
+  when: not lp_apparmor|bool
   tags: lp_apparmor_service
 
 # EOF

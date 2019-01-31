@@ -9,7 +9,7 @@
   retries: "{{ lp_install_retries }}"
   until: result is succeeded
   delay: "{{ lp_install_delay }}"
-  when: not lp_package_install_dryrun
+  when: not lp_package_install_dryrun|bool
   tags: lp_packages_auto
 
 # EOF

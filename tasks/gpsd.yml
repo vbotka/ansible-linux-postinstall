@@ -49,7 +49,7 @@
     name: "{{ lp_gpsd_service }}"
     state: "stopped"
     enabled: no
-  when: not lp_gpsd_enable
+  when: not lp_gpsd_enable|bool
   tags: lp_gpsd_service
 
 - name: "gpsd: Start and enable gpsd"
@@ -57,7 +57,7 @@
     name: "{{ lp_gpsd_service }}"
     state: "started"
     enabled: yes
-  when: lp_gpsd_enable
+  when: lp_gpsd_enable|bool
   tags: lp_gpsd_service
 
 # EOF

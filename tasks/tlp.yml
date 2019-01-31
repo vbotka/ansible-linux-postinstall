@@ -18,7 +18,7 @@
       lp_tlp_restart_service [ {{ lp_tlp_restart_service }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
 
 - name: "tlp: Install packages"
   include_tasks: fn/install-package.yml
@@ -28,7 +28,7 @@
 - name: "tlp: Install packages for ThinkPad"
   include_tasks: fn/install-package.yml
   loop: "{{ lp_tlp_packages_tp }}"
-  when: lp_tlp_thinkpad
+  when: lp_tlp_thinkpad|bool
   tags: lp_tlp_packages
 
 - name: "tlp: Configure {{ lp_tlp_config_file }}"
@@ -46,7 +46,7 @@
     state: started
     enabled: yes
   loop: "{{ lp_tlp_services }}"
-  when: lp_tlp_enable
+  when: lp_tlp_enable|bool
   tags: lp_tlp_service
 
 - name: "tlp: Stop and disable tlp"
@@ -55,7 +55,7 @@
     state: stopped
     enabled: no
   loop: "{{ lp_tlp_services }}"
-  when: not lp_tlp_enable
+  when: not lp_tlp_enable|bool
   tags: lp_tlp_service
 
 # EOF

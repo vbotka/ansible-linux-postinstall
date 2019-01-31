@@ -14,14 +14,14 @@
     name: "ModemManager"
     state: "stopped"
     enabled: no
-  when: not lp_modemmanager
+  when: not lp_modemmanager|bool
 
 - name: "modem_manager: Start and enable ModemManager"
   service:
     name: "ModemManager"
     state: "started"
     enabled: yes
-  when: lp_modemmanager
+  when: lp_modemmanager|bool
 
 # EOF
 ...

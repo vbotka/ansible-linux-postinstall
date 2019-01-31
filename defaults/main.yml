@@ -201,6 +201,7 @@ lp_gpg: true
 lp_gpg_conf_user: []
 
 lp_wpasupplicant: true
+lp_wpasupplicant_debug: false
 lp_wpasupplicant_conf_owner: "root"
 lp_wpasupplicant_conf_group: "root"
 lp_wpasupplicant_conf_mode: "0600"

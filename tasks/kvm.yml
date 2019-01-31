@@ -8,7 +8,7 @@
       {{ lp_kvm_packages | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
 
 - name: "kvm: Install packages"
   include_tasks: fn/install-package.yml

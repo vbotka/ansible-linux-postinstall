@@ -14,14 +14,14 @@
     name: "{{ lp_auto_upgrades_service }}"
     state: "stopped"
     enabled: no
-  when: not lp_auto_upgrades_enable
+  when: not lp_auto_upgrades_enable|bool
 
 - name: "auto_upgrades: Enable and start unattended-upgrades"
   systemd:
     name: "{{ lp_auto_upgrades_service }}"
     state: "started"
     enabled: yes
-  when: lp_auto_upgrades_enable
+  when: lp_auto_upgrades_enable|bool
 
 # EOF
 ...

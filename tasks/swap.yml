@@ -10,7 +10,7 @@
       lp_swap_stsize [ {{ lp_swap_stsize|default("NOT-DEFINED") }} ]
   debug:
     msg: "{{ msg.split('\n') }}"
-  when: lp_debug
+  when: lp_debug|bool
 
 - name: "swap: Create swapfile {{ lp_swap_file }}"
   shell: sh -c 'if [ ! -e {{ lp_swap_file }} ]; then printf "create"; fi'
@@ -41,7 +41,7 @@
     dump: "0"
     state: "present"
     backup: "{{ lp_backup_conf }}"
-  when: lp_swap_enable
+  when: lp_swap_enable|bool
   tags: lp_swap_fstab
 
 - name: "swap: Remove swap entry from /etc/fstab"
@@ -56,7 +56,7 @@
     backup: "{{ lp_backup_conf }}"
   notify: remove swap file
   when:
-    - not lp_swap_enable
+    - not lp_swap_enable|bool
     - lp_swap_file is defined
   tags: lp_swap_swapfile
 
