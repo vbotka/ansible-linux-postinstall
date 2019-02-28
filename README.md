@@ -77,7 +77,7 @@ host1.example.com
 [host1:vars]
 ansible_connection=ssh
 ansible_user=root
-ansible_python_interpreter=/usr/bin/python2.7
+ansible_python_interpreter=/usr/bin/python3.6
 ansible_perl_interpreter=/usr/bin/perl
 ```
 
