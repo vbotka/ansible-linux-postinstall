@@ -9,7 +9,7 @@
 
 - name: "packages-auto: List variables ^lp_.*_packages$"
   set_fact:
-    local_pkg_lists: "{{ local_pkg_lists + 
+    local_pkg_lists: "{{ local_pkg_lists +
                      [{'install': item.split('_')[0] + '_' + item.split('_')[1],
                        'packages': item}] }}"
   loop: "{{ hostvars[inventory_hostname].keys() |
@@ -41,6 +41,6 @@
   include_tasks: fn/install-package.yml
   loop: "{{ local_pkg_list }}"
   tags: lp_packages_auto
- 
+
 # EOF
 ...

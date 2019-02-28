@@ -58,9 +58,20 @@
 
 - name: "wpagui: Mask NM services"
   command: "systemctl mask {{ item }}"
+  args:
+    warn: False
   loop: "{{ lp_wpagui_service_mask }}"
   changed_when: false
   tags: lp_wpagui_mask_NM
+  #
+  # False Positives: Skipping Rules
+  # https://github.com/ansible/ansible-lint#false-positives-skipping-rules
+  # noqa 303 does not work
+  #
+  # ansible-lint "systemctl used in place of systemd module" No
+  # systemctl / systemd module. #48848
+  # https://github.com/ansible/ansible/issues/48848
+
 
 # EOF
 ...
