@@ -1,5 +1,4 @@
-linux_postinstall
-=================
+# linux_postinstall
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)
 
@@ -9,28 +8,26 @@ Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades,
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
-Requirements
-------------
+
+## Requirements
 
 None.
 
 
-Variables
----------
+## Variables
 
 Read the defaults and examples in vars.
 
 
-Workflow
---------
+## Workflow
 
-1) Install the role.
+1. Install the role.
 
 ```
 # ansible-galaxy install vbotka.linux_postinstall
 ```
 
-2) Change variables.
+2. Change variables.
 
 ```
 # editor vbotka.linux_postinstall/vars/main.yml
@@ -41,7 +38,7 @@ customized OS specific variables into the *vars* directory. See
 *tasks/vars.yml* to learn the naming conventions and precedence. Os
 specific variables will overwrite variables in *var/main.yml*.
 
-3) Create the inventory.
+3. Create the inventory.
 
 ```
 # cat hosts
@@ -54,7 +51,7 @@ ansible_python_interpreter=/usr/bin/python3.6
 ansible_perl_interpreter=/usr/bin/perl
 ```
 
-4) Create the playbook.
+4. Create the playbook.
 
 ```
 # cat linux-postinstall.yml
@@ -64,14 +61,14 @@ ansible_perl_interpreter=/usr/bin/perl
     - vbotka.linux_postinstall
 ```
 
-5) Run the playbook.
+5. Run the playbook.
 
 ```
 # ansible-playbook linux-postinstall.yml
 ```
 
-Best practice
--------------
+
+## Best practice
 
 Perform syntax check of the playbook
 
@@ -93,10 +90,11 @@ be OK and 0 changed, unreachable and failed.
 ```
 
 
-Auto-installation of packages
-----------------------------
+## Auto-installation of packages
 
-Packages listed in the variables lp_*_packages will be automatically installed by the tasks/packages.yml if enabled by variable lp_* . For example
+Packages listed in the variables lp_*_packages will be automatically
+installed by the tasks/packages.yml if enabled by variable lp_* . For
+example
 
 ```
 lp_libvirt: true
@@ -116,10 +114,9 @@ the lp_libvirt_packages will be included in the packages installed by
 ```
 
 
-Recommended configuration after the installation of OS
-------------------------------------------------------
+## Recommended configuration after the installation of OS
 
-1) Configure users, sudoers and persistent network interfaces
+1. Configure users, sudoers and persistent network interfaces
 
 ```
 # ansible-playbook linux-postinstall.yml -t lp_users
@@ -127,49 +124,46 @@ Recommended configuration after the installation of OS
 # ansible-playbook linux-postinstall.yml -t lp_udev
 ```
 
-2) Reboot
+2. Reboot
 
-3) Configure iptables
+3. Configure the firewall. For example iptables
 
 ```
 # ansible-playbook linux-postinstall.yml -t lp_iptables
 ```
 
-4) Configure network connection
+4. Configure network connection
 
-5) Test installation of the packages
+5. Test installation of the packages
 
 ```
 # ansible-playbook -t lp_packages -e 'lp_package_install_dryrun=true' linux-postinstall.yml
 ```
 
-6) Install packages
+6. Install packages
 
 ```
 # ansible-playbook -t lp_packages linux-postinstall.yml
 ```
 
-7) Install and configure other tasks
+7. Install and configure other tasks
 
 ```
 # ansible-playbook linux-postinstall.yml
 ```
 
 
-License
--------
+## License
 
 [![license](https://img.shields.io/badge/license-BSD-red.svg)](https://www.freebsd.org/doc/en/articles/bsdl-gpl/article.html)
 
 
-Author Information
-------------------
+## Author Information
 
 [Vladimir Botka](https://botka.link)
 
 
-References
-----------
+## References
 
 - [Ubuntu Desktop Guide](https://help.ubuntu.com/lts/ubuntu-help/index.html)
 - [Ubuntu Server Guide](https://help.ubuntu.com/lts/serverguide/index.html)
