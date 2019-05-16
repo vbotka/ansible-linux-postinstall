@@ -9,11 +9,14 @@
 #      - { key: "HashKnownHosts", val: "yes" }
 #      - { key: "GSSAPIAuthentication", val: "yes" }
 
+lp_speechd_service: "speech-dispatcher"
+
 lp_autofs_service: "autofs"
 lp_timesyncd_service: "systemd-timesyncd.service"
 lp_postfix_service: "postfix"
 lp_gpsd_service: "gpsd"
 lp_bluetooth_service: "bluetooth"
+
 lp_udev_service: "udev"
 
 lp_sshd_service: "ssh"
@@ -55,6 +58,7 @@ lp_wpagui_service:
   - NetworkManager.service
   - NetworkManager-dispatcher.service
   - NetworkManager-wait-online.service
+  - wpa_supplicant.service
 lp_wpagui_service_mask:
   - NetworkManager.service
 
@@ -76,6 +80,13 @@ lp_latex_packages:
 lp_smart_packages:
   - smartmontools
 
+lp_kvm_packages:
+  - qemu
+  - qemu-kvm
+  - libvirt-bin
+  - ubuntu-vm-builder
+  - bridge-utils
+
 lp_xen_packages:
   - "xen-hypervisor-{{ lp_xen_version }}-amd64"
   - "xen-utils-{{ lp_xen_version }}"
@@ -88,7 +99,7 @@ lp_tlp_packages:
   - tlp-rdw
 lp_tlp_packages_tp:
   - tp-smapi-dkms
-  - acpi-call-dkms
+#  - acpi-call-dkms
 lp_tlp_services:
   - tlp
 lp_tlp_restart_service: "tlp"
@@ -115,6 +126,9 @@ lp_libvirt_conf_owner: root
 lp_libvirt_conf_group: root
 lp_libvirt_conf_mode: 0644
 lp_libvirt_conf_dir: /etc/libvirt
+
+lp_zfs_packages:
+  - zfsutils-linux
 
 # Note 1.
 # Netplan in 18.04 does not support wpa_supplicant.conf
