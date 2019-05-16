@@ -249,6 +249,7 @@ lp_zfs_debug: false
 lp_zfs_manage: []
 lp_zfs_mountpoints: []
 
+lp_service_debug: false
 lp_service: []
 lp_service_enable:
   - udev

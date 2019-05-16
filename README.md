@@ -113,6 +113,23 @@ the lp_libvirt_packages will be included in the packages installed by
 # ansible-playbook linux-postinstall.yml -t lp_packages
 ```
 
+## Auto-management of services
+
+Variable `lp_service_enable` contains a list of services automatically managed by the task [service.yml](tasks/service.yml). A *<service>* will be manged by the task [service.yml](tasks/service.yml) if `lp_<service>: true`. Setting `lp_<service>: false` will disable management of *<service>* by the task [service.yml](tasks/service.yml). Variable `lp_<service>_enable` controls the status of the *<service>*. For example service *udev* is listed among `lp_service_enable` and by default
+
+```
+lp_udev: true
+lp_udev_enable: true
+```
+
+Run the following command to see what services will be managed.
+
+```
+# ansible-playbook linux-postinstall.yml -e lp_service_debug=true -t lp_service_debug
+```
+
+See [service.yml](tasks/service.yml) for details.
+
 
 ## Recommended configuration after the installation of OS
 

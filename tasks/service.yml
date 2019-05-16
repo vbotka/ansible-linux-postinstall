@@ -8,17 +8,19 @@
       enable={{ lookup('vars', 'lp_' + item + '_enable') }}
   loop: "{{ lp_service_enable }}"
   when:
-    - lp_debug
+    - lp_service_debug|bool
     - lookup('vars', 'lp_' + item, default='false')
+  tags: lp_service_debug
 
-- name: "service: Enable or Disable services managed by this role."
+- name: "service: Automaticaly enable or disable services managed by this role."
   service:
     name: "{{ lookup('vars', 'lp_' + item + '_service') }}"
     enabled: "{{ lookup('vars', 'lp_' + item + '_enable') }}"
   loop: "{{ lp_service_enable }}"
   when: lookup('vars', 'lp_' + item, default='false')
+  tags: lp_service_auto
 
-- name: "service: Manage services."
+- name: "service: General managent of services."
   service:
     name: "{{ item.name }}"
     state: "{{ item.state | default(omit) }}"
@@ -31,6 +33,7 @@
   loop: "{{ lp_service }}"
   when: (item.state is defined) or
         (item.enabled is defined)
+  tags: lp_service_general
 
 # TODO: Mask a service. Do not allow any servce to activate a masked
 # service. See tasks/wpagui.yml
