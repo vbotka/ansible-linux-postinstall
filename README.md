@@ -22,24 +22,20 @@ Read the defaults and examples in vars.
 ## Workflow
 
 1. Install the role.
-
 ```
 # ansible-galaxy install vbotka.linux_postinstall
 ```
 
 2. Change variables.
-
 ```
 # editor vbotka.linux_postinstall/vars/main.yml
 ```
-
 Review OS specific variables in *vars/defaults*. Optionally put
 customized OS specific variables into the *vars* directory. See
 *tasks/vars.yml* to learn the naming conventions and precedence. Os
 specific variables will overwrite variables in *var/main.yml*.
 
 3. Create the inventory.
-
 ```
 # cat hosts
 [host1]
@@ -52,17 +48,14 @@ ansible_perl_interpreter=/usr/bin/perl
 ```
 
 4. Create the playbook.
-
 ```
 # cat linux-postinstall.yml
-
 - hosts: host1
   roles:
     - vbotka.linux_postinstall
 ```
 
 5. Run the playbook.
-
 ```
 # ansible-playbook linux-postinstall.yml
 ```
@@ -71,20 +64,15 @@ ansible_perl_interpreter=/usr/bin/perl
 ## Best practice
 
 Perform syntax check of the playbook
-
 ```
 # ansible-playbook linux-postinstall.yml --syntax-check
 ```
-
 Run the playbook in in check mode first
-
 ```
 # ansible-playbook linux-postinstall.yml --check
 ```
-
 If all is right run the playbook twice. In second run all tasks shall
 be OK and 0 changed, unreachable and failed.
-
 ```
 # ansible-playbook linux-postinstall.yml
 ```
@@ -95,7 +83,6 @@ be OK and 0 changed, unreachable and failed.
 Packages listed in the variables lp_*_packages will be automatically
 installed by the tasks/packages.yml if enabled by variable lp_* . For
 example
-
 ```
 lp_libvirt: true
 lp_libvirt_packages:
@@ -106,28 +93,23 @@ lp_libvirt_packages:
   - libvirt-daemon-system
   - virtinst
 ```
-
 the lp_libvirt_packages will be included in the packages installed by
-
 ```
 # ansible-playbook linux-postinstall.yml -t lp_packages
 ```
 
+
 ## Auto-management of services
 
-Variable `lp_service_enable` contains a list of services automatically managed by the task [service.yml](tasks/service.yml). A *<service>* will be manged by the task [service.yml](tasks/service.yml) if `lp_<service>: true`. Setting `lp_<service>: false` will disable management of *<service>* by the task [service.yml](tasks/service.yml). Variable `lp_<service>_enable` controls the status of the *<service>*. For example service *udev* is listed among `lp_service_enable` and by default
-
+Variable `lp_service_enable` contains a list of services automatically managed by the task [service.yml](tasks/service.yml). A *service* will be manged by the task [service.yml](tasks/service.yml) if `lp_<service>: true`. Setting `lp_<service>: false` will disable management of the *service* by the task [service.yml](tasks/service.yml). Variable `lp_<service>_enable` controls the status of the *service*. For example service *udev* will be enabled, because it is listed among `lp_service_enable` and by default
 ```
 lp_udev: true
 lp_udev_enable: true
 ```
-
 Run the following command to see what services will be managed.
-
 ```
 # ansible-playbook linux-postinstall.yml -e lp_service_debug=true -t lp_service_debug
 ```
-
 See [service.yml](tasks/service.yml) for details.
 
 
