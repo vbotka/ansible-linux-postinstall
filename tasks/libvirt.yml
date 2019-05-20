@@ -28,9 +28,6 @@
 - name: "libvirt: Configure"
   include_tasks: libvirt-conf.yml
   loop: "{{ lp_libvirt_conf | dict2items }}"
-  notify:
-    - reload libvirtd
-    - reload libvirt_guests
   tags: lp_libvirt_conf
 
 - name: "libvirt: Start and enable {{ lp_libvirt_libvirtd_service }}"
