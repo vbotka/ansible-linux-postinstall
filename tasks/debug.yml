@@ -44,9 +44,12 @@
       lp_xen [ {{ lp_xen }} ]
       lp_zeitgeist [ {{ lp_zeitgeist }} ]
       lp_zfs [ {{ lp_zfs }} ]
+      lp_ufw [ {{ lp_ufw }} ]
 
       lp_service
       {{ lp_service | to_yaml }}
+      lp_package_state [ {{ lp_package_state }} ]
+      lp_package_state_remove [ {{ lp_package_state_remove }} ]
 
   debug:
     msg: "{{ msg.split('\n') }}"

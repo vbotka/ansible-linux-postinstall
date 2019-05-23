@@ -4,7 +4,7 @@
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/)
 
-Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
+Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
@@ -212,6 +212,7 @@ See [service.yml](tasks/service.yml) for details.
 - [TLP - Linux Advanced Power Management Tool](https://linrunner.de/en/tlp/tlp.html)
 - [timesyncd](https://www.freedesktop.org/software/systemd/man/systemd-timesyncd.service.html#)
 - [udev - Linux dynamic device management](https://wiki.debian.org/udev)
+- [ufw - Ubuntu Wiki UncomplicatedFirewall](https://wiki.ubuntu.com/UncomplicatedFirewall)
 - [VirtualBox wiki](https://www.virtualbox.org/wiki/)
 - [VirtualBox - Ubuntu community](https://help.ubuntu.com/community/VirtualBox)
 - [VirtualBox - Install Oracle VM VirtualBox in Ubuntu](http://www.elinuxbook.com/install-oracle-vm-virtualbox-in-ubuntu-16-04/)

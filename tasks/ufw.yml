@@ -1,0 +1,53 @@
+---
+# linux-postinstall ufw
+
+# TODO:
+# 1) Check with
+# Ufw module example does not work because of missing parameter #53854
+# https://github.com/ansible/ansible/issues/53854
+# ufw: fix default, direction is not necessary for it #54799
+# https://github.com/ansible/ansible/pull/54799
+# 2) Enable insert_relative_to for Ansible >= 2.8
+
+- name: "ufw: Debug"
+  vars:
+    msg: |
+      lp_ufw_packages
+      {{ lp_ufw_packages | to_nice_yaml }}
+      lp_ufw_conf
+      {{ lp_ufw_conf | to_yaml }}
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_ufw_debug|bool
+  tags: lp_ufw_debug
+
+- name: "ufw: Install packages"
+  include_tasks: fn/install-package.yml
+  loop: "{{ lp_ufw_packages }}"
+  tags: lp_ufw_packages
+
+- name: "ufw: Configure ufw"
+  ufw:
+    comment: "{{ item.comment|default(omit) }}"
+    default: "{{ item.default|default(omit) }}"
+    delete: "{{ item.delete|default(omit) }}"
+    direction: "{{ item.direction|default(omit) }}"
+    from_ip: "{{ item.from_ip|default(omit) }}"
+    from_port: "{{ item.from_port|default(omit) }}"
+    insert: "{{ item.insert|default(omit) }}"
+    # insert_relative_to: "{{ item.insert_relative_to|default(omit) }}"
+    interface: "{{ item.interface|default(omit) }}"
+    log: "{{ item.log|default(omit) }}"
+    logging: "{{ item.logging|default(omit) }}"
+    name: "{{ item.name|default(omit) }}"
+    proto: "{{ item.proto|default(omit) }}"
+    route: "{{ item.route|default(omit) }}"
+    rule: "{{ item.rule|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
+    to_ip: "{{ item.to_ip|default(omit) }}"
+    to_port: "{{ item.to_port|default(omit) }}"
+  loop: "{{ lp_ufw_conf }}"
+  tags: lp_ufw_conf
+
+# EOF
+...

@@ -264,6 +264,16 @@ lp_service_enable:
   - autofs
   - libvirt_libvirtd
   - libvirt_guests
+
+lp_ufw: true
+lp_ufw_debug: false
+lp_ufw_conf:
+  - {direction: incoming, default: reject}
+  - {direction: outgoing, default: allow}
+  - {direction: in, rule: allow, name: OpenSSH, from_ip: 10.1.0.0/24}
+  - {logging: on}
+  - {state: enabled}
+
 # TODO:
 # * lp_virtualbox_services lp_virtualbox_enable
 # * lp_tlp_services lp_tlp_enable

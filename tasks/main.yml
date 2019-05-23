@@ -213,6 +213,10 @@
   when: (ansible_os_family == "Debian") and lp_libvirt
   tags: lp_libvirt
 
+- import_tasks: ufw.yml
+  when: (ansible_os_family == "Debian") and lp_ufw
+  tags: lp_ufw
+
 - meta: flush_handlers
 
 - import_tasks: service.yml
