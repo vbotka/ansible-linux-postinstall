@@ -1,0 +1,43 @@
+
+nftables
+========
+https://wiki.debian.org/nftables
+
+* nftables is a framework by the Netfilter Project that provides
+  packet filtering, network address translation (NAT) and other packet
+  mangling.
+* Two of the most common uses of nftables is to provide firewall
+  support and NAT.
+* nftables replaces the iptables framework.
+
+Moving from iptables to nftables
+--------------------------------
+https://wiki.nftables.org/wiki-nftables/index.php/Moving_from_iptables_to_nftables
+
+
+firewalld
+=========
+https://firewalld.org/
+
+* RHEL 7, CentOS 7, Fedora 18 and newer
+
+firewalld – Manage arbitrary ports/services with firewalld
+----------------------------------------------------------
+https://docs.ansible.com/ansible/latest/modules/firewalld_module.html
+* Not tested on any Debian based system.
+
+Using Firewalld on Ubuntu 18.04
+-------------------------------
+https://computingforgeeks.com/install-and-use-firewalld-on-ubuntu-18-04-ubuntu-16-04/
+
+man firewalld
+-------------
+http://manpages.ubuntu.com/manpages/bionic/man1/firewalld.1.html
+* firewalld provides a dynamically managed firewall with support for
+  network/firewall zones to define the trust level of network
+  connections or interfaces.
+* firewalld has a D-Bus interface for firewall configuration of
+  services and applications.  It also has a command line client for
+  the user. Services or applications already using D-Bus can request
+  changes to the firewall with the D-Bus interface directly.
+
