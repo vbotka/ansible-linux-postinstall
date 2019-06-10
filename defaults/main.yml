@@ -27,6 +27,8 @@ lp_package_install_dryrun: false
 lp_modules: []
 lp_modules_blacklist: []
 lp_modules_blacklist_path: "/etc/modprobe.d"
+lp_modules_options: []
+lp_modules_options_path: "/etc/modprobe.d"
 
 lp_sysctl_vars: []
 

@@ -26,8 +26,12 @@
 
 # linux-postinstall modules
 # lp_modules:
-#  - { name: 'br_netfilter', params: '' }
-#  - { name: 'vboxdrv', params: '', state: 'absent' }
+#  - {name: 'br_netfilter', params: ''}
+#  - {name: 'vboxdrv', params: '', state: 'absent'}
+# lp_modules_options:
+#     - module: 'btusb'
+#       options:
+#         - 'options btusb enable_autosuspend=0'
 
 # linux-postinstall sysctl
 # https://help.ubuntu.com/community/Xen

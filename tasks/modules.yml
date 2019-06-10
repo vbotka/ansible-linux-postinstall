@@ -2,8 +2,19 @@
 # linux-postinstall modules
 
 - name: "modules: Debug"
+  vars:
+    msg: |
+      lp_modules_conf [ {{ lp_modules_conf }} ]
+      lp_modules
+      {{ lp_modules|to_yaml }}
+      lp_modules_options_path [ {{ lp_modules_options_path }} ]
+      lp_modules_options
+      {{ lp_modules_options|to_nice_yaml }}
+      lp_modules_blacklist_path [ {{ lp_modules_blacklist_path }} ]
+      lp_modules_blacklist
+      {{ lp_modules_blacklist|to_nice_yaml }}
   debug:
-    msg: "lp_modules_conf [ {{ lp_modules_conf }} ]"
+    msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
 
 - name: "modules: modprobe modules"
@@ -41,7 +52,16 @@
   template:
     src: blacklist-module.j2
     dest: "{{ lp_modules_blacklist_path }}/blacklist-{{ item }}.conf"
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules_blacklist }}"
+  notify: update initramfs
+
+- name: "modules: Set modules options in {{ lp_modules_options_path }}"
+  template:
+    src: options-module.j2
+    dest: "{{ lp_modules_options_path }}/{{ item.module }}.conf"
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_modules_options }}"
   notify: update initramfs
 
 # EOF
