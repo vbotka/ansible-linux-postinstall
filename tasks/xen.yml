@@ -22,7 +22,7 @@
 - name: "xen: Configure GRUB_CMDLINE_XEN_DEFAULT in /etc/default/grub"
   lineinfile:
     dest: "/etc/default/grub"
-    regexp: "^GRUB_CMDLINE_XEN_DEFAULT"
+    regexp: "^\\s*GRUB_CMDLINE_XEN_DEFAULT\\s*="
     line: "GRUB_CMDLINE_XEN_DEFAULT=\"dom0_mem={{ lp_xen_dom0_mem }},
                                       max:{{ lp_xen_dom0_mem_max }}\""
     backup: "{{ lp_backup_conf }}"
@@ -32,8 +32,8 @@
 - name: "xen: Configure XEN_OVERRIDE_GRUB_DEFAULT in /etc/default/grub"
   lineinfile:
     dest: "/etc/default/grub"
-    regexp: "^XEN_OVERRIDE_GRUB_DEFAULT"
-    line: "XEN_OVERRIDE_GRUB_DEFAULT=\"1\""
+    regexp: "^\\s*XEN_OVERRIDE_GRUB_DEFAULT\\s*="
+    line: "XEN_OVERRIDE_GRUB_DEFAULT={{ lp_xen_XEN_OVERRIDE_GRUB_DEFAULT }}"
     backup: "{{ lp_backup_conf }}"
   notify: update grub
   tags: lp_xen_grub
@@ -41,8 +41,8 @@
 - name: "xen: Configure /etc/xen/xl.conf"
   lineinfile:
     dest: "/etc/xen/xl.conf"
-    regexp: "^{{ item.var }}{{ '=' }}"
-    line: "{{ item.var }}{{ '=' }}{{ item.value }}"
+    regexp: "^\\s*{{ item.var }}\\s*="
+    line: "{{ item.var }}={{ item.value }}"
     create: yes
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_xen_global }}"
