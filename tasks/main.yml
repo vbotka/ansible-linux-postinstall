@@ -23,6 +23,11 @@
         (ansible_os_family == "Debian")) and lp_udev
   tags: lp_udev
 
+- import_tasks: fstab.yml
+  when: ((ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian"))
+  tags: lp_fstab
+
 - import_tasks: netplan.yml
   when: (ansible_os_family == "Debian") and lp_netplan
   tags: lp_netplan

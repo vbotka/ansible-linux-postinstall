@@ -430,5 +430,11 @@
 # lp_service:
 # - { name: apache2, state: stopped, enabled: no }
 
+# lp_fstab_entries:
+#   - name: /windows
+#     src: /dev/sda2
+#     fstype: ntfs
+#     opts: ro
+
 # EOF
 ...

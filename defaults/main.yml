@@ -277,6 +277,8 @@ lp_ufw_conf:
   - {logging: on}
   - {state: enabled}
 
+lp_fstab_entries: []
+
 # TODO:
 # * lp_virtualbox_services lp_virtualbox_enable
 # * lp_tlp_services lp_tlp_enable
