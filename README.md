@@ -4,7 +4,7 @@
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/)
 
-Configure Linux: aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, fstab, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
+Configure Linux: acpi, aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, fstab, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 Tested with Ubuntu 18.04. Some tasks tested with CentOS 7.
 
@@ -169,6 +169,7 @@ See [service.yml](tasks/service.yml) for details.
 - [RHEL 7 System Administrator's Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index)
 - [Ubuntu Release Notes](https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes#New_features_in_18.04)
 
+- [ACPI - Ubuntu Wiki](https://wiki.ubuntu.com/DebuggingACPI)
 - [AppArmor wiki](https://gitlab.com/apparmor/apparmor/wikis/home)
 - [AppArmor wiki Ubuntu](https://wiki.ubuntu.com/AppArmor)
 - [AppArmor wiki Ubuntu community](https://help.ubuntu.com/community/AppArmor)

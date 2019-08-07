@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Ubuntu 18.04 – Disable screen on lid close
+# https://mensfeld.pl/2018/08/ubuntu-18-04-disable-screen-on-lid-close/
+
+# {{ item.key }}: {{ item.value.template }}
+
+# USER=your_username
+ 
+# grep -q close /proc/acpi/button/lid/*/state
+# if [ $? = 0 ]; then
+#   su -c  "sleep 1 && xset -display :0.0 dpms force off" - $USER
+# fi
+ 
+# grep -q open /proc/acpi/button/lid/*/state
+# if [ $? = 0 ]; then
+#   su -c  "xset -display :0 dpms force on &> /tmp/screen.lid" - $USER
+# fi

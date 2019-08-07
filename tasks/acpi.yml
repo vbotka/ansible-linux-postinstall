@@ -1,0 +1,27 @@
+---
+# linux-postinstall acpi
+
+- name: "acpi: Configure {{ lp_acpi_dir }}/events"
+  template:
+    src: "{{ item.value.template }}"
+    dest: "{{ lp_acpi_dir }}/events/{{ item.value.file }}"
+    owner: "{{ lp_acpi_owner }}"
+    group: "{{ lp_acpi_group }}"
+    mode: "{{ lp_acpi_event_mode }}"
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_acpi_events|dict2items }}"
+  tags: lp_acpi_events
+
+- name: "acpi: Create actions in {{ lp_acpi_dir }}"
+  template:
+    src: "{{ item.value.template }}"
+    dest: "{{ lp_acpi_dir }}/{{ item.value.file }}"
+    owner: "{{ lp_acpi_owner }}"
+    group: "{{ lp_acpi_group }}"
+    mode: "{{ lp_acpi_action_mode }}"
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_acpi_actions|dict2items }}"
+  tags: lp_acpi_actions
+
+# EOF
+...

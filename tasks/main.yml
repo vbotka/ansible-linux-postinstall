@@ -162,6 +162,10 @@
   when: (ansible_os_family == "Debian") and lp_lid
   tags: lp_lid
 
+- import_tasks: acpi.yml
+  when: (ansible_os_family == "Debian") and lp_acpi
+  tags: lp_acpi
+
 - import_tasks: speechd.yml
   when: (ansible_os_family == "Debian") and lp_speechd
   tags: lp_speechd
