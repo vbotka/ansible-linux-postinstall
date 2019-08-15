@@ -10,8 +10,7 @@ lp_install_retries: 5
 lp_install_delay: 2
 
 lp_repos: []
-lp_repos_keys_url: []
-lp_repos_keys_id: []
+lp_repos_keys: []
 
 lp_packages_auto: false
 lp_packages_install: []

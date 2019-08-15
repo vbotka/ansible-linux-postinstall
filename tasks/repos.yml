@@ -4,44 +4,42 @@
 - name: "repos: Debug"
   vars:
     msg: |
-      lp_repos_keys_url
-      {{ lp_repos_keys_url | to_nice_yaml }}
-      lp_repos_keys_id
-      {{ lp_repos_keys_id | to_nice_yaml }}
+      lp_repos_keys
+      {{ lp_repos_keys | to_nice_yaml }}
       lp_repos
       {{ lp_repos | to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
 
-- name: "repos: Add repo signing keys by URL"
+- name: "repos: Manage repo signing keys"
   apt_key:
-    url: "{{ item }}"
-  loop: "{{ lp_repos_keys_url }}"
+    data: "{{ item.data|default(omit) }}"
+    file: "{{ item.file|default(omit) }}"
+    id: "{{ item.id|default(omit) }}"
+    keyring: "{{ item.keyring|default(omit) }}"
+    keyserver: "{{ item.keyserver|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
+    url: "{{ item.url|default(omit) }}"
+    validate_certs: "{{ item.validate_certs|default(omit) }}"
+  loop: "{{ lp_repos_keys }}"
   register: result
   retries: "{{ lp_install_retries }}"
   until: result is succeeded
   delay: "{{ lp_install_delay }}"
-  tags: lp_repos_keys_add
+  tags: lp_repos_keys_manage
 
-- name: "repos: Add repo signing keys by ID"
-  apt_key:
-    id: "{{ item.id }}"
-    keyserver: "{{ item.keyserver }}"
-    state: "present"
-  loop: "{{ lp_repos_keys_id }}"
-  register: result
-  retries: "{{ lp_install_retries }}"
-  until: result is succeeded
-  delay: "{{ lp_install_delay }}"
-  tags: lp_repos_keys_add
-
-- name: "repos: Add repositories"
+- name: "repos: Manage repositories"
   apt_repository:
-    repo: "{{ item }}"
-    state: "present"
+    codename: "{{ item.codename|default(omit) }}"
+    filename: "{{ item.filename|default(omit) }}"
+    mode: "{{ item.mode|default(omit) }}"
+    repo: "{{ item.repo|mandatory }}"
+    state: "{{ item.state|default(omit) }}"
+    update_cache: "{{ item.update_cache|default(omit) }}"
+    validate_certs: "{{ item.validate_certs|default(omit) }}"
   loop: "{{ lp_repos }}"
-  tags: lp_repos_add
+  tags: lp_repos_manage
 
 # EOF
 ...
