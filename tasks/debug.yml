@@ -15,6 +15,7 @@
 
       lp_acpi [ {{ lp_acpi }} ]
       lp_apparmor [ {{ lp_apparmor }} ]
+      lp_auto_upgrades [ {{ lp_auto_upgrades }} ]
       lp_autofs [ {{ lp_autofs }} ]
       lp_bluetooth [ {{ lp_bluetooth }} ]
       lp_gpg [ {{ lp_gpg }} ]
@@ -30,6 +31,7 @@
       lp_packages_autoremove [ {{ lp_packages_autoremove }} ]
       lp_pm [ {{ lp_pm }} ]
       lp_postfix [ {{ lp_postfix }} ]
+      lp_reboot [ {{ lp_reboot }} ]
       lp_smart [ {{ lp_smart }} ]
       lp_speechd [ {{ lp_speechd }} ]
       lp_ssh [ {{ lp_ssh }} ]
@@ -38,14 +40,13 @@
       lp_timesyncd [ {{ lp_timesyncd }} ]
       lp_timezone [ {{ lp_timezone }} ]
       lp_tlp [ {{ lp_tlp }} ]
-      lp_auto_upgrades [ {{ lp_auto_upgrades }} ]
+      lp_ufw [ {{ lp_ufw }} ]
       lp_virtualbox [ {{ lp_virtualbox }} ]
       lp_wpagui [ {{ lp_wpagui }} ]
       lp_wpasupplicant [ {{ lp_wpasupplicant }} ]
       lp_xen [ {{ lp_xen }} ]
       lp_zeitgeist [ {{ lp_zeitgeist }} ]
       lp_zfs [ {{ lp_zfs }} ]
-      lp_ufw [ {{ lp_ufw }} ]
 
       lp_service
       {{ lp_service | to_yaml }}

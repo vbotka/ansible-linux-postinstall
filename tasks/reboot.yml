@@ -1,0 +1,63 @@
+---
+# linux-postinstall reboot
+
+- name: "reboot Debug"
+  vars:
+    msg: |
+      lp_reboot_force [ {{ lp_reboot_force }} ]
+      lp_reboot_required_ignore [ {{ lp_reboot_required_ignore }} ]
+      lp_reboot_required_file [ {{ lp_reboot_required_file }} ]
+      lp_reboot_command [ {{ lp_reboot_command }} ]
+      lp_reboot_wait_connect_timeout [ {{ lp_reboot_wait_connect_timeout }} ]
+      lp_reboot_wait_sleep [ {{ lp_reboot_wait_sleep }} ]
+      lp_reboot_wait_delay [ {{ lp_reboot_wait_delay }} ]
+      lp_reboot_wait_timeout [ {{ lp_reboot_wait_timeout }} ]
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_reboot_debug|bool
+
+- name: "reboot: Debian test {{ lp_reboot_required_file }}"
+  block:
+    - name: "reboot: Stat {{ lp_reboot_required_file }}"
+      stat:
+        path: "{{ lp_reboot_required_file }}"
+      register: reboot_required_file_status
+    - name: "reboot: Set reboot_required"
+      set_fact:
+        reboot_required: "{{ reboot_required_file_status.exists|
+                             default(false) }}"
+  when: ansible_os_family == "Debian"
+
+- name: "reboot: RedHat test {{ lp_reboot_required_command }}"
+  block:
+    - name: "reboot: Run {{ lp_reboot_required_command }}"
+      command: "{{ lp_reboot_required_command }}"
+      register: reboot_required_cmd_status
+    - name: "reboot: Set reboot_required"
+      set_fact:
+        reboot_required: "{{ (reboot_required_cmd_status.rc != 0)|
+                                 ternary(true, false) }}"
+  when: ansible_os_family == "RedHat"
+
+- name: "reboot: Debug reboot_required"
+  debug:
+    var: reboot_required
+  when: lp_reboot_debug|bool
+
+- name: "reboot: Reboot and wait for connection"
+  block:
+    - name: "reboot: Reboot"  # noqa 305
+      shell: "{{ lp_reboot_command }}"
+      async: 1
+      poll: 0
+    - name: "reboot: Wait for connection"
+      wait_for_connection:
+        connect_timeout: "{{ lp_reboot_wait_connect_timeout }}"
+        sleep: "{{ lp_reboot_wait_sleep }}"
+        delay: "{{ lp_reboot_wait_delay }}"
+        timeout: "{{ lp_reboot_wait_timeout }}"
+  when: ( reboot_required|default(false) and
+        ( not lp_reboot_required_ignore)) or lp_reboot_force
+
+# EOF
+...

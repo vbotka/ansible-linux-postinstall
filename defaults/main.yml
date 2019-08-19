@@ -287,6 +287,18 @@ lp_ufw_conf:
 
 lp_fstab_entries: []
 
+lp_reboot: false
+lp_reboot_debug: false
+lp_reboot_force: false
+lp_reboot_required_ignore: true
+lp_reboot_required_file: '/var/run/reboot-required'
+lp_reboot_required_command: '/sbin/needs-restarting -r'
+lp_reboot_command: 'sleep 5 && shutdown -r now'
+lp_reboot_wait_connect_timeout: 20
+lp_reboot_wait_sleep: 5
+lp_reboot_wait_delay: 5
+lp_reboot_wait_timeout: 300
+
 # TODO:
 # * lp_virtualbox_services lp_virtualbox_enable
 # * lp_tlp_services lp_tlp_enable
