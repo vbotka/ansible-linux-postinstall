@@ -11,6 +11,9 @@
       ansible_distribution_version [ {{ ansible_distribution_version }} ]
       ansible_distribution_release [ {{ ansible_distribution_release }} ]
 
+      lp_flavors_enable [ {{ lp_flavors_enable }} ]
+      {{ my_release|default([])|to_nice_yaml }}
+
       lp_backup_conf [ {{ lp_backup_conf }} ]
 
       lp_acpi [ {{ lp_acpi }} ]

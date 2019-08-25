@@ -299,6 +299,17 @@ lp_reboot_wait_sleep: 5
 lp_reboot_wait_delay: 5
 lp_reboot_wait_timeout: 300
 
+lp_flavors_enable: true
+lp_flavors_dir: "{{ inventory_dir ~ '/flavors' }}"
+lp_flavors_dir_owner: "admin"
+lp_flavors_dir_group: "adm"
+lp_flavors_dir_mode: "0775"
+lp_flavors:
+  armbian:
+    flavor: "armbian"
+    release_file: "/etc/armbian-release"
+    release_attr: ["ARCH", "LINUXFAMILY", "VERSION", "BOARDFAMILY", "BOARD", "BOARD_NAME"]
+
 # TODO:
 # * lp_virtualbox_services lp_virtualbox_enable
 # * lp_tlp_services lp_tlp_enable

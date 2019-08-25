@@ -13,6 +13,10 @@
         - "default.yml"
       paths: "{{ role_path }}/vars/defaults"
 
+- name: "vars: Default vars for various flavors"
+  when: lp_flavors_enable|bool
+  include_tasks: sub/vars-flavors.yml
+
 - name: "vars: Custom vars for
                {{ ansible_os_family }}
                {{ ansible_distribution }}

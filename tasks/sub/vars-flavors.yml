@@ -1,0 +1,32 @@
+---
+# linux-postinstall vars: vars-flavors
+
+- name: 'sub vars-flavors: Create {{ lp_flavors_dir }}'
+  file:
+    state: directory
+    path: "{{ lp_flavors_dir }}"
+    owner: "{{ lp_flavors_dir_owner }}"
+    group: "{{ lp_flavors_dir_group }}"
+    mode: "{{ lp_flavors_dir_mode }}"
+  delegate_to: localhost
+  run_once: true
+
+- name: 'sub vars-flavors: Detect flavor'
+  stat:
+    path: '{{ item.value.release_file }}'
+  loop: "{{ lp_flavors|dict2items }}"
+  register: result
+
+- name: 'sub vars-flavors: Debug result'
+  when: lp_debug|bool
+  debug:
+    var: result
+
+- name: 'sub vars-flavors: Include tasks for flavor'
+  include_tasks: "{{ 'sub/vars-flavors-' ~ outer_item.key ~ '.yml' }}"
+  loop: "{{ result.results|json_query('[?stat.exists].item') }}"
+  loop_control:
+    loop_var: outer_item
+
+# EOF
+...
