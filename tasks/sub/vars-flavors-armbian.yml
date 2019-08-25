@@ -1,16 +1,16 @@
 ---
 # linux-postinstall vars: vars-flavors-armbian
 
-- name: 'sub vars-flavors: Set my_release_file'
+- name: 'sub vars-flavors-armbian: Set my_release_file'
   set_fact:
     my_release_file: "{{ outer_item.value.release_file }}"
 
-- name: 'sub vars-flavors: Debug my_release_file'
+- name: 'sub vars-flavors-armbian: Debug my_release_file'
   when: lp_debug|bool
   debug:
     var: my_release_file
 
-- name: 'sub vars-flavors: Set my_release'
+- name: 'sub vars-flavors-armbian: Set my_release'
   set_fact:
     my_flavor: "{{ lp_flavors|
                     dict2items|
@@ -19,23 +19,23 @@
   vars:
     query: "[?value.release_file == '{{ my_release_file }}'].key"
 
-- name: 'sub vars-flavors: Debug my_flavor'
+- name: 'sub vars-flavors-armbian: Debug my_flavor'
   when: lp_debug|bool
   debug:
     var: my_flavor
 
-- name: "sub vars-flavors: Fetch {{ lp_flavors[my_flavor].release_file }} to
+- name: "sub vars-flavors-armbian: Fetch {{ lp_flavors[my_flavor].release_file }} to
                                  {{ lp_flavors_dir }}"
   fetch:
     flat: true
     src: "{{ lp_flavors[my_flavor].release_file }}"
     dest: "{{ lp_flavors_dir ~ '/' ~ inventory_hostname }}"
 
-- name: "sub vars-flavors: Set my_release OS"
+- name: "sub vars-flavors-armbian: Set my_release OS"
   set_fact:
     my_release: "{{ my_release|default({})|combine({'OS': my_flavor}) }}"
 
-- name: "sub vars-flavors: Set my_release attributes"
+- name: "sub vars-flavors-armbian: Set my_release attributes"
   set_fact:
     my_release: "{{ my_release|
                     combine({item: lookup('ini',
@@ -47,21 +47,23 @@
                                           }}"
   loop: "{{ lp_flavors[my_flavor].release_attr }}"
 
-- name: 'sub vars-flavors: Debug my_release'
+- name: 'sub vars-flavors-armbian: Debug my_release'
   when: lp_debug|bool
   debug:
     var: my_release
 
-- name: "sub vars-flavors: Default vars for
+- name: "sub vars-flavors-armbian: Default vars for
                {{ my_release.OS }}
                {{ my_release.VERSION }}
                {{ my_release.BOARD }}"
-  include_vars: "{{ item }}"
-  with_first_found:
-    - files:
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
         - "{{ my_release.OS }}_{{ my_release.VERSION }}_{{ my_release.BOARD }}.yml"
         - "default.yml"
-      paths: "{{ role_path }}/vars/flavors"
+      paths:
+        - "{{ role_path }}/vars/flavors"
 
 # EOF
 ...
