@@ -1,6 +1,23 @@
 ---
 # linux-postinstall vars: vars-flavors
 
+# Create dir lp_flavors_dir. Loop lp_flavors and get stat of
+# release_file. If release_file exists include tasks specific to this
+# flavor.
+
+- name: 'sub vars-flavors: Debug'
+  vars:
+    msg: |
+      lp_flavors_dir [ {{ lp_flavors_dir }} ]
+      lp_flavors_dir_owner [ {{ lp_flavors_dir_owner }} ]
+      lp_flavors_dir_group [ {{ lp_flavors_dir_group }} ]
+      lp_flavors_dir_mode [ {{ lp_flavors_dir_mode }} ]
+      lp_flavors
+      {{ lp_flavors| to_nice_yaml }}
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_debug|bool
+
 - name: 'sub vars-flavors: Create {{ lp_flavors_dir }}'
   file:
     state: directory

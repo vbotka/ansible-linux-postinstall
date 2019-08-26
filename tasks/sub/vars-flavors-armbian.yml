@@ -1,6 +1,10 @@
 ---
 # linux-postinstall vars: vars-flavors-armbian
 
+# Fetch my_release_file from the remote host and store the file in
+# lp_flavors_dir. Read release_attr from the fetched file and include
+# vars that correspond to the release.
+
 - name: 'sub vars-flavors-armbian: Set my_release_file'
   set_fact:
     my_release_file: "{{ outer_item.value.release_file }}"
@@ -25,7 +29,7 @@
     var: my_flavor
 
 - name: "sub vars-flavors-armbian: Fetch {{ lp_flavors[my_flavor].release_file }} to
-                                 {{ lp_flavors_dir }}"
+                                         {{ lp_flavors_dir }}"
   fetch:
     flat: true
     src: "{{ lp_flavors[my_flavor].release_file }}"
@@ -61,6 +65,8 @@
     params:
       files:
         - "{{ my_release.OS }}_{{ my_release.VERSION }}_{{ my_release.BOARD }}.yml"
+        - "{{ my_release.OS }}_{{ my_release.VERSION }}.yml"
+        - "{{ my_release.OS }}.yml"
         - "default.yml"
       paths:
         - "{{ role_path }}/vars/flavors"

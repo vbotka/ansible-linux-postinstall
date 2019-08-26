@@ -306,7 +306,6 @@ lp_flavors_dir_group: "adm"
 lp_flavors_dir_mode: "0775"
 lp_flavors:
   armbian:
-    flavor: "armbian"
     release_file: "/etc/armbian-release"
     release_attr: ["ARCH", "LINUXFAMILY", "VERSION", "BOARDFAMILY", "BOARD", "BOARD_NAME"]
 
