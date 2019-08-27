@@ -1,9 +1,9 @@
 ---
 
-- name: "vars: Default vars for
-               {{ ansible_os_family }}
-               {{ ansible_distribution }}
-               {{ ansible_distribution_release }}"
+- name: "vars: Include default vars for
+              [{{ ansible_os_family }},
+               {{ ansible_distribution }},
+               {{ ansible_distribution_release }}]"
   include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
@@ -11,18 +11,18 @@
         - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
-        - "default.yml"
+        - "defaults.yml"
       paths:
         - "{{ role_path }}/vars/defaults"
 
-- name: "vars: Default vars for various flavors"
+- name: "vars: Include default vars for various flavors"
   when: lp_flavors_enable|bool
   include_tasks: sub/vars-flavors.yml
 
-- name: "vars: Custom vars for
-               {{ ansible_os_family }}
-               {{ ansible_distribution }}
-               {{ ansible_distribution_release }}"
+- name: "vars: Include custom vars for
+              [{{ ansible_os_family }},
+               {{ ansible_distribution }},
+               {{ ansible_distribution_release }}]"
   include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
@@ -30,7 +30,7 @@
         - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
-        - "default.yml"
+        - "defaults.yml"
       paths:
         - "{{ role_path }}/vars"
 

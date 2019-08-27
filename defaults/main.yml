@@ -1,7 +1,8 @@
 ---
 # linux-postinstall defaults
 #
-# Put distro specific variables and overrides to vars directory.
+# Put distro and flavor specific vars and overrides to the vars
+# directory.
 
 lp_debug: false
 lp_backup_conf: false
@@ -299,15 +300,35 @@ lp_reboot_wait_sleep: 5
 lp_reboot_wait_delay: 5
 lp_reboot_wait_timeout: 300
 
+
+# Include default vars for various flavors. For example put vars into
+# one of the files below. First found will be included.
+#
+#     vars/flavors/armbian-<VERSION>-<BOARD>.yml
+#     vars/flavors/armbian-<VERSION>.yml
+#     vars/flavors/armbian.yml
+#     vars/defaults.yml
+#
+# 1) File with service tasks task/sub/vars-flavors-<flavor>.yml is
+#    needed when new flavor is added to lp_flavors. See
+#    tasks/sub/vars-flavors-common.yml
+# 2) For precedence of vars see tasks/vars.yml 
+
 lp_flavors_enable: true
 lp_flavors_dir: "{{ inventory_dir ~ '/flavors' }}"
 lp_flavors_dir_owner: "admin"
 lp_flavors_dir_group: "adm"
 lp_flavors_dir_mode: "0775"
 lp_flavors:
+  lsb:
+    release_file: "/etc/lsb-release"
+    file_labels: ["DISTRIB_ID", "DISTRIB_CODENAME"]
+  os:
+    release_file: "/etc/os-release"
+    file_labels: ["ID", "UBUNTU_CODENAME"]
   armbian:
     release_file: "/etc/armbian-release"
-    release_attr: ["ARCH", "LINUXFAMILY", "VERSION", "BOARDFAMILY", "BOARD", "BOARD_NAME"]
+    file_labels: ["VERSION", "BOARD"]
 
 # TODO:
 # * lp_virtualbox_services lp_virtualbox_enable

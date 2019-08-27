@@ -2,10 +2,10 @@
 # linux-postinstall vars: vars-flavors
 
 # Create dir lp_flavors_dir. Loop lp_flavors and get stat of
-# release_file. If release_file exists include tasks specific to this
+# release_file(s). If release_file exists include tasks specific to this
 # flavor.
 
-- name: 'sub vars-flavors: Debug'
+- name: 'sub: vars-flavors: Debug'
   vars:
     msg: |
       lp_flavors_dir [ {{ lp_flavors_dir }} ]
@@ -18,28 +18,28 @@
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
 
-- name: 'sub vars-flavors: Create {{ lp_flavors_dir }}'
+- name: 'sub: vars-flavors: Create {{ lp_flavors_dir }}'
   file:
     state: directory
-    path: "{{ lp_flavors_dir }}"
-    owner: "{{ lp_flavors_dir_owner }}"
-    group: "{{ lp_flavors_dir_group }}"
-    mode: "{{ lp_flavors_dir_mode }}"
+    path: '{{ lp_flavors_dir }}'
+    owner: '{{ lp_flavors_dir_owner }}'
+    group: '{{ lp_flavors_dir_group }}'
+    mode: '{{ lp_flavors_dir_mode }}'
   delegate_to: localhost
   run_once: true
 
-- name: 'sub vars-flavors: Detect flavor'
+- name: 'sub: vars-flavors: Detect flavor'
   stat:
     path: '{{ item.value.release_file }}'
-  loop: "{{ lp_flavors|dict2items }}"
+  loop: '{{ lp_flavors|dict2items }}'
   register: result
 
-- name: 'sub vars-flavors: Debug result'
+- name: 'sub: vars-flavors: Debug result'
   when: lp_debug|bool
   debug:
-    var: result
+    msg: "{{ result.results|json_query('[?stat.exists].item') }}"
 
-- name: 'sub vars-flavors: Include tasks for flavor'
+- name: 'sub: vars-flavors: Include tasks for flavor'
   include_tasks: "{{ 'sub/vars-flavors-' ~ outer_item.key ~ '.yml' }}"
   loop: "{{ result.results|json_query('[?stat.exists].item') }}"
   loop_control:
