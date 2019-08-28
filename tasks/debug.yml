@@ -36,7 +36,7 @@
       lp_postfix [{{ lp_postfix }}] lp_postfix_enable [{{ lp_postfix_enable }}]
       lp_reboot [{{ lp_reboot }}]
       lp_smart [{{ lp_smart }}] lp_smart_enable [{{ lp_smart_enable }}]
-      lp_speechd [{{ lp_speechd }}]
+      lp_speechd [{{ lp_speechd }}] lp_speechd_enable [{{ lp_speechd_enable }}]
       lp_ssh [{{ lp_ssh }}]
       lp_sshd [{{ lp_sshd }}] lp_sshd_enable [{{ lp_sshd_enable }}]
       lp_swap [{{ lp_swap }}] lp_swap_enable [{{ lp_swap_enable }}]

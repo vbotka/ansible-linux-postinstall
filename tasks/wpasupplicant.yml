@@ -3,29 +3,30 @@
 - name: "wpasupplicant: Debug"
   vars:
     msg: |
-      lp_package_state [ {{ lp_package_state }} ]
+      lp_package_state [{{ lp_package_state }}]
       lp_wpasupplicant_packages
       {{ lp_wpasupplicant_packages | to_nice_yaml }}
-      lp_wpasupplicant_conf_dir [ {{ lp_wpasupplicant_conf_dir }} ]
-      lp_wpasupplicant_conf_file [ {{ lp_wpasupplicant_conf_file }} ]
-      lp_wpasupplicant_conf_owner [ {{ lp_wpasupplicant_conf_owner }} ]
-      lp_wpasupplicant_conf_group [ {{ lp_wpasupplicant_conf_group }} ]
-      lp_wpasupplicant_conf_mode [ {{ lp_wpasupplicant_conf_mode }} ]
+      lp_wpasupplicant_conf_dir [{{ lp_wpasupplicant_conf_dir }}]
+      lp_wpasupplicant_conf_file [{{ lp_wpasupplicant_conf_file }}]
+      lp_wpasupplicant_conf_owner [{{ lp_wpasupplicant_conf_owner }}]
+      lp_wpasupplicant_conf_group [{{ lp_wpasupplicant_conf_group }}]
+      lp_wpasupplicant_conf_mode [{{ lp_wpasupplicant_conf_mode }}]
       lp_wpasupplicant_conf_ctrl_interface
-      [ {{ lp_wpasupplicant_conf_ctrl_interface }} ]
+      [{{ lp_wpasupplicant_conf_ctrl_interface }}]
       lp_wpasupplicant_conf_global
-      {{ lp_wpasupplicant_conf_global | to_yaml }}
+      {{ lp_wpasupplicant_conf_global|to_yaml }}
       lp_wpasupplicant_conf
-      {{ lp_wpasupplicant_conf | to_yaml }}
-      lp_wpa_action_script [ {{ lp_wpa_action_script }} ]
-      lp_wpa_action_script_dir [ {{ lp_wpa_action_script_dir }} ]
-      lp_wpa_action_script_file [ {{ lp_wpa_action_script_file }} ]
-      lp_wpa_action_script_owner [ {{ lp_wpa_action_script_owner }} ]
-      lp_wpa_action_script_group [ {{ lp_wpa_action_script_group }} ]
-      lp_wpa_action_script_mode [ {{ lp_wpa_action_script_mode }} ]
+      {{ lp_wpasupplicant_conf|to_yaml }}
+      lp_wpa_action_script [{{ lp_wpa_action_script }}]
+      lp_wpa_action_script_dir [{{ lp_wpa_action_script_dir }}]
+      lp_wpa_action_script_file [{{ lp_wpa_action_script_file }}]
+      lp_wpa_action_script_owner [{{ lp_wpa_action_script_owner }}]
+      lp_wpa_action_script_group [{{ lp_wpa_action_script_group }}]
+      lp_wpa_action_script_mode [{{ lp_wpa_action_script_mode }}]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_wpasupplicant_debug|bool
+  tags: lp_wpasupplicant_debug
 
 - name: "wpasupplicant: Install packages"
   include_tasks: fn/install-package.yml

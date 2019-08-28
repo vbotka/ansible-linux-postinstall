@@ -4,14 +4,14 @@
 - name: "reboot Debug"
   vars:
     msg: |
-      lp_reboot_force [ {{ lp_reboot_force }} ]
-      lp_reboot_required_ignore [ {{ lp_reboot_required_ignore }} ]
-      lp_reboot_required_file [ {{ lp_reboot_required_file }} ]
-      lp_reboot_command [ {{ lp_reboot_command }} ]
-      lp_reboot_wait_connect_timeout [ {{ lp_reboot_wait_connect_timeout }} ]
-      lp_reboot_wait_sleep [ {{ lp_reboot_wait_sleep }} ]
-      lp_reboot_wait_delay [ {{ lp_reboot_wait_delay }} ]
-      lp_reboot_wait_timeout [ {{ lp_reboot_wait_timeout }} ]
+      lp_reboot_force [{{ lp_reboot_force }}]
+      lp_reboot_required_ignore [{{ lp_reboot_required_ignore }}]
+      lp_reboot_required_file [{{ lp_reboot_required_file }}]
+      lp_reboot_command [{{ lp_reboot_command }}]
+      lp_reboot_wait_connect_timeout [{{ lp_reboot_wait_connect_timeout }}]
+      lp_reboot_wait_sleep [{{ lp_reboot_wait_sleep }}]
+      lp_reboot_wait_delay [{{ lp_reboot_wait_delay }}]
+      lp_reboot_wait_timeout [{{ lp_reboot_wait_timeout }}]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_reboot_debug|bool
@@ -36,7 +36,7 @@
     - name: "reboot: Set reboot_required"
       set_fact:
         reboot_required: "{{ (reboot_required_cmd_status.rc != 0)|
-                                 ternary(true, false) }}"
+                              ternary(true, false) }}"
   when: ansible_os_family == "RedHat"
 
 - name: "reboot: Debug reboot_required"
@@ -56,8 +56,8 @@
         sleep: "{{ lp_reboot_wait_sleep }}"
         delay: "{{ lp_reboot_wait_delay }}"
         timeout: "{{ lp_reboot_wait_timeout }}"
-  when: ( reboot_required|default(false) and
-        ( not lp_reboot_required_ignore)) or lp_reboot_force
+  when: (reboot_required|default(false) and
+        (not lp_reboot_required_ignore)) or lp_reboot_force
 
 # EOF
 ...

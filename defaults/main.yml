@@ -213,6 +213,7 @@ lp_gpg_conf_user: []
 
 lp_wpasupplicant: true
 lp_wpasupplicant_debug: false
+lp_wpasupplicant_conf_only: false
 lp_wpasupplicant_conf_owner: "root"
 lp_wpasupplicant_conf_group: "root"
 lp_wpasupplicant_conf_mode: "0600"
@@ -311,7 +312,7 @@ lp_reboot_wait_timeout: 300
 # 1) File with service tasks task/sub/vars-flavors-<flavor>.yml is
 #    needed when new flavor is added to lp_flavors. See
 #    tasks/sub/vars-flavors-common.yml
-# 2) For precedence of vars see tasks/vars.yml 
+# 2) For precedence of vars see tasks/vars.yml
 
 lp_flavors_enable: true
 lp_flavors_dir: "{{ inventory_dir ~ '/flavors' }}"

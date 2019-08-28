@@ -1,15 +1,36 @@
 ---
 # linux-postinstall service
 
-- name: "service: Debug"
-  debug:
-    msg: >
-      service={{ lookup('vars', 'lp_' + item + '_service') }}
-      enable={{ lookup('vars', 'lp_' + item + '_enable') }}
+- name: "service: Set my_service_name_vars"
+  set_fact:
+    my_service_name_vars: "{{ my_service_name_vars|default([]) +
+                              [{item: lookup('vars', 'lp_' + item + '_service')}] }}"
   loop: "{{ lp_service_enable }}"
-  when:
-    - lp_service_debug|bool
-    - lookup('vars', 'lp_' + item, default='false')
+  when: lookup('vars', 'lp_' + item, default='false')
+  tags: lp_service_debug
+
+- name: "service: Set my_service_enable_vars"
+  set_fact:
+    my_service_enable_vars: "{{ my_service_enable_vars|default([]) +
+                                [{item: lookup('vars', 'lp_' + item + '_enable')}] }}"
+  loop: "{{ lp_service_enable }}"
+  when: lookup('vars', 'lp_' + item, default='false')
+  tags: lp_service_debug
+
+- name: "service: Debug print"
+  debug:
+    msg: "{{ my_msg.split('\n') }}"
+  vars:
+    my_msg: |
+      lp_service
+      {{ lp_service|to_nice_yaml }}
+      lp_service_enable
+      {{ lp_service_enable|to_nice_yaml }}
+      my_service_name_vars
+      {{ my_service_name_vars|default([])|to_nice_yaml }}
+      my_service_enable_vars
+      {{ my_service_enable_vars|default([])|to_nice_yaml }}
+  when: lp_service_debug|bool
   tags: lp_service_debug
 
 - name: "service: Automaticaly enable or disable services managed by this role."

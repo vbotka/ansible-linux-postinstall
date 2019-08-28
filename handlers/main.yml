@@ -136,7 +136,9 @@
     wpa_cli -p {{ lp_wpasupplicant_conf_ctrl_interface }}
             -i {{ item.item.dev }} reconfigure ||
     exit 0
-  when: item.changed
+  when:
+    - item.changed
+    - not lp_wpasupplicant_conf_only|bool
   loop: "{{ lp_wpasupplicant_conf_changes.results }}"
   # TODO: Wait for OK result. Error: 'RECONFIGURE' command timed out.
 
