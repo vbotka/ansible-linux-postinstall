@@ -1,0 +1,8 @@
+---
+# Armbian 5.90 cubox-i  vars linux-postinstall
+
+lp_netplan_default: armbian-default.yaml
+lp_netplan_mode: "0664"
+
+# EOF
+...

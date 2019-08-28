@@ -130,6 +130,9 @@ lp_libvirt_conf_dir: /etc/libvirt
 lp_zfs_packages:
   - zfsutils-linux
 
+lp_netplan_default: 01-network-manager-all.yaml
+lp_netplan_mode: "0644"
+
 # Note 1.
 # Netplan in 18.04 does not support wpa_supplicant.conf
 # https://bugs.launchpad.net/netplan/+bug/1735288
