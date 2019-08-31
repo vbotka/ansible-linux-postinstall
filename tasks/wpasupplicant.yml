@@ -6,6 +6,7 @@
       lp_package_state [{{ lp_package_state }}]
       lp_wpasupplicant_packages
       {{ lp_wpasupplicant_packages | to_nice_yaml }}
+      lp_wpasupplicant_conf_only [{{ lp_wpasupplicant_conf_only }}]
       lp_wpasupplicant_conf_dir [{{ lp_wpasupplicant_conf_dir }}]
       lp_wpasupplicant_conf_file [{{ lp_wpasupplicant_conf_file }}]
       lp_wpasupplicant_conf_owner [{{ lp_wpasupplicant_conf_owner }}]
