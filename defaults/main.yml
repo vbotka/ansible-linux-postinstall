@@ -57,7 +57,7 @@ lp_users: []
 lp_users_groups: []
 
 lp_aliases: false
-lp_aliases: []
+lp_aliases_config: []
 
 lp_authorized_key: []
 
