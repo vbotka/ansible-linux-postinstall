@@ -56,6 +56,7 @@ lp_iptables_INPUT_net: []
 lp_users: []
 lp_users_groups: []
 
+lp_aliases: false
 lp_aliases: []
 
 lp_authorized_key: []

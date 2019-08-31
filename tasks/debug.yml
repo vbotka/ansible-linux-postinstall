@@ -17,6 +17,7 @@
       lp_backup_conf [{{ lp_backup_conf }}]
 
       lp_acpi [{{ lp_acpi }}]
+      lp_aliases [{{ lp_aliases }}]
       lp_apparmor [{{ lp_apparmor }}]
       lp_auto_upgrades [{{ lp_auto_upgrades }}] lp_auto_upgrades_enable [{{ lp_auto_upgrades_enable }}]
       lp_autofs [{{ lp_autofs }}] lp_autofs_enable [{{ lp_autofs_enable }}]
