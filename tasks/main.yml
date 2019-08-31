@@ -132,7 +132,7 @@
   tags: lp_cron
 
 - import_tasks: modemmanager.yml
-  when: ansible_os_family == "Debian"
+  when: (ansible_os_family == "Debian") and lp_modemmanager
   tags: lp_modemmanager
 
 - import_tasks: gpsd.yml

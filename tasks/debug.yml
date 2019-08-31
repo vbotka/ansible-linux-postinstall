@@ -28,7 +28,7 @@
       lp_latex [{{ lp_latex }}]
       lp_libvirt [{{ lp_libvirt }}] lp_libvirt_guests_enable [{{ lp_libvirt_guests_enable }}] lp_libvirt_libvirtd_enable [{{ lp_libvirt_libvirtd_enable }}]
       lp_lid [{{ lp_lid }}]
-      lp_modemmanager [{{ lp_modemmanager }}]
+      lp_modemmanager [{{ lp_modemmanager }}] lp_modemmanager_enable [{{ lp_modemmanager_enable }}]
       lp_netplan [{{ lp_netplan }}]
       lp_nfsd [{{ lp_nfsd }}] lp_nfsd_enable [{{ lp_nfsd_enable }}]
       lp_packages_autoremove [{{ lp_packages_autoremove }}]

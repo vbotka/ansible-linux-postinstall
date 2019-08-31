@@ -109,6 +109,7 @@ lp_cron_tab: []
 lp_cron_var: []
 
 lp_modemmanager: true
+lp_modemmanager_enable: true
 lp_modemmanager_override: ""
 
 lp_gpsd: false
