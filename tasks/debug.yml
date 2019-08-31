@@ -23,6 +23,7 @@
       lp_bluetooth [{{ lp_bluetooth }}] lp_bluetooth_enable [{{ lp_bluetooth_enable }}]
       lp_gpg [{{ lp_gpg }}]
       lp_gpsd [{{ lp_gpsd }}] lp_gpsd_enable [{{ lp_gpsd_enable }}]
+      lp_grub [{{ lp_grub }}]
       lp_iptables [{{ lp_iptables }}]
       lp_kvm [{{ lp_kvm }}]
       lp_latex [{{ lp_latex }}]

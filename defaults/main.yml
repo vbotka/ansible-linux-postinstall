@@ -66,6 +66,7 @@ lp_hosts: []
 
 lp_fqdn: ""
 
+lp_grub: true
 lp_grub_default: []
 
 lp_kvm: false

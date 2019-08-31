@@ -78,7 +78,7 @@
   tags: lp_iptables
 
 - import_tasks: grub.yml
-  when: ansible_os_family == "Debian"
+  when: (ansible_os_family == "Debian") and lp_grub
   tags: lp_grub
   # https://unix.stackexchange.com/questions/152222/
   # equivalent-of-update-grub-for-rhel-fedora-centos-systems
