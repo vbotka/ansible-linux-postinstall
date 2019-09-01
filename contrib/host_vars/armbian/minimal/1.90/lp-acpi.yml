@@ -1,0 +1,4 @@
+lp_acpi: false
+
+lp_acpi_events: {}
+lp_acpi_actions: {}

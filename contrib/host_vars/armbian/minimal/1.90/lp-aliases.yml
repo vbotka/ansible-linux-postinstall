@@ -1,0 +1,3 @@
+lp_aliases: false
+lp_aliases_config:
+  - { alias: "root", users: [ "admin", ] }

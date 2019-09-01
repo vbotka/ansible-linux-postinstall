@@ -1,0 +1,4 @@
+lp_gpsd: false
+lp_gpsd_enable: false
+lp_gpsd_bt_rfcomm: []
+# - { rfcomm: "0", bind: "yes", device: "AA:BB:CC:F0:06:CB", channel: "1", comment: "BT GPS" }

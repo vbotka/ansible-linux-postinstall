@@ -1,0 +1,23 @@
+# /usr/share/X11/xorg.conf.d/
+lp_xorg_conf: []
+#  - file: 11-Logitech-MX-Master2S-Mouse.conf
+#    section:
+#      - { param: Section, val1: "\"InputClass\"", val2: "" }
+#      - { param: Identifier, val1: "\"MX Master 2S\"", val2: "" }
+#      - { param: MatchProduct, val1: "\"MX Master\"", val2: "" }
+#      - { param: MatchIsPointer, val1: "\"on\"", val2: "" }
+#      - { param: Driver, val1: "\"libinput\"", val2: "" }
+#      - { param: Option, val1: "\"Buttonmapping\"", val2: "\"1 8 3 4 5 6 7 2 9\"" }
+#  - file: 20-intel.conf  # Note 1.
+#    section:
+#      - { param: Section, val1: "\"Device\"", val2: "" }
+#      - { param: Identifier, val1: "\"Intel Graphics\"", val2: "" }
+#      - { param: Driver, val1: "\"intel\"", val2: "" }
+#      - { param: Option, val1: "\"AccelMethod\"", val2: "\"sna\"" }
+#      - { param: Option, val1: "\"TearFree\"", val2: "\"true\"" }
+#      - { param: Option, val1: "\"DRI\"", val2: "\"3\"" }
+
+# Notes
+#
+# 1) Random unrecoverable freezes on Ubuntu 18.10
+# https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1798961/comments/42

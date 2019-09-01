@@ -1,0 +1,21 @@
+lp_wpasupplicant_debug: true
+lp_wpa_action_script: false
+# lp_wpasupplicant_conf_ctrl_interface: "/run/wpa_supplicant"
+
+lp_wpasupplicant_conf_global:
+  - {key: "ctrl_interface", value: "{{ lp_wpasupplicant_conf_ctrl_interface }}"}
+  - {key: "ctrl_interface_group", value: "adm"}
+  - {key: "fast_reauth", value: "0"}
+# - {key: "update_config", value: "1"}
+
+lp_wpasupplicant_conf:
+  - dev: "wlan0"
+    network:
+      - conf:
+        - {key: "ssid", value: "\"MY-AP-01\""}
+        - {key: "psk", value: "\"<my-ap-01-psk>\""}
+        - {key: "disabled", value: "0"}
+      - conf:
+        - {key: "ssid", value: "\"MY-AP-02\""}
+        - {key: "psk", value: "\"<my-ap-01-psk>\""}
+        - {key: "disabled", value: "1"}

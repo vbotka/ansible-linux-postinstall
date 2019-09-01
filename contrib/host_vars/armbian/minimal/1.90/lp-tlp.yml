@@ -1,0 +1,6 @@
+lp_tlp: false
+lp_tlp_enable: false
+lp_tlp_thinkpad: false
+lp_tlp_config: []
+#  - { key: "WIFI_PWR_ON_AC", value: "off" }
+#  - { key: "WIFI_PWR_ON_BAT", value: "off" }

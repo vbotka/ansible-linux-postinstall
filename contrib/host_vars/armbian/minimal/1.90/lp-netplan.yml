@@ -1,0 +1,87 @@
+lp_netplan: true
+lp_netplan_renderer: "networkd"
+lp_netplan_conf:
+  - file: "10-ethernet.yaml"
+    category: "ethernets"
+    conf: |
+      eth0:
+        optional: true
+        set-name: eth0
+        dhcp4: false
+        match:
+          macaddress: "AA:BB:CC:00:4d:7f"
+
+#  - file: "40-bridge.yaml" # SEE Note 2.
+#    category: "bridges"
+#    conf: |
+#      br0:
+#        optional: true
+#        interfaces: [eth0]
+#        addresses: [192.168.1.10/24]
+#  - file: "40-bridge.yaml" # SEE Note 2.
+#    category: "bridges"
+#    conf: |
+#      xenbr0:
+#        optional: true
+#        interfaces: [eth0]
+#        addresses: [192.168.1.10/24]
+#        gateway4: 192.168.1.1
+#        nameservers:
+#          search: [example.com]
+#          addresses: [192.168.1.1]
+#  - file: "20-wifi.yaml" # SEE Note 1
+#    mode: "0640"
+#    category: "wifis"
+#    conf: |
+#      wlan0:
+#        optional: true
+#        dhcp4: yes
+#        dhcp6: no
+#        access-points:
+#          "dummy":
+#            password: "password"
+#      wlan1:
+#        optional: true
+#        dhcp4: no
+#        dhcp6: no
+#        access-points:
+#          "dummy":
+#            password: "password"
+#      wlan2:
+#        optional: true
+#        dhcp4: yes
+#        dhcp6: no
+#        access-points:
+#          "dummy":
+#            password: "password"
+# SEE Note 3.
+#      wlan1:
+#        optional: true
+#        dhcp4: yes
+#        dhcp6: no
+#  - file: "40-bridge.yaml"
+#    category: "bridges"
+#    conf: |
+#      xenbr0:
+#        optional: true
+#        interfaces:
+#          - eth0
+#        addresses:
+#          - 192.168.1.10/24
+#        gateway4: 192.168.1.1
+#        nameservers:
+#          search: [example.com]
+#          addresses: [192.168.1.1]
+# Note 1.
+# ERROR: wlan0: networkd backend does not support wifi with match:,
+# only by interface name
+#        match:
+#          macaddress: "64:70:02:27:d6:42"
+#        set-name: wlan2
+#
+# Note 2.
+# "gateway4" adds "default" to the routing tables
+#
+# Note 3.
+# "Error in network definition /etc/netplan/20-wifi.yaml line 5 column
+# 14: wlan1: No access points defined"

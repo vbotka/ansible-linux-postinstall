@@ -1,0 +1,3 @@
+lp_reboot: false
+lp_reboot_debug: true
+lp_reboot_force: false

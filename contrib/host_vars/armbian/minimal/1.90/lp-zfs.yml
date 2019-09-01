@@ -1,0 +1,19 @@
+lp_zfs: false
+lp_zfs_debug: false
+
+lp_zfs_manage: []
+#  - name: zroot/test1
+#    state: present
+#    extra_zfs_properties:
+#      compression: on
+#  - name: zroot/images
+#    state: present
+#    extra_zfs_properties:
+#      compression: on
+#      mountpoint: /var/lib/libvirt/images
+
+lp_zfs_mountpoints: []
+#  - mountpoint: /var/lib/libvirt/images
+#    owner: root
+#    group: root
+#    mode: "0755"

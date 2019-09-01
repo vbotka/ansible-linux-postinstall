@@ -1,0 +1,10 @@
+lp_logrotate_confd: []
+#  - path: "ansible"
+#    conf: |
+#      /var/log/ansible.log {
+#             weekly
+#             rotate 3
+#             size 10M
+#             compress
+#             delaycompress
+#      }

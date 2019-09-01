@@ -1,0 +1,8 @@
+lp_grub: false
+lp_grub_default: []
+#  - {var: "GRUB_DEFAULT", value: saved}
+#  - {var: "GRUB_SAVEDEFAULT", value: True}
+#  - {var: "GRUB_TIMEOUT", value: 2}
+#  - {var: "GRUB_CMDLINE_LINUX_DEFAULT", value: "\"\""}
+#  - {var: "GRUB_CMDLINE_LINUX", value: "\"ipv6.disable=1\""}
+#  - {var: "GRUB_CMDLINE_LINUX", value: "\"ipv6.disable=1 netcfg/do_not_use_netplan=true\""}

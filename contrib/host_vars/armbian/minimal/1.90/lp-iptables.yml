@@ -1,0 +1,8 @@
+lp_iptables: false
+# lp_iptables_type: "default"  # see templates e.g. router1
+# lp_iptables_wan_if: "eth0"
+# lp_iptables_lan_if: "wlan0"
+# lp_iptables_lan: "10.1.0.0/24"
+# lp_iptables_INPUT_if:
+#   - {if: "xenbr0", proto: "tcp", port: "22", policy: "ACCEPT"}
+# lp_iptables_INPUT_net: []

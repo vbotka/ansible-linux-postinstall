@@ -1,0 +1,3 @@
+lp_authorized_keys:
+  - user: "admin"
+    key: "{{ lookup('file', 'copy/ssh-pub-keys/admin-master/id_rsa.pub') }}"

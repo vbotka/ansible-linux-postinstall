@@ -1,0 +1,19 @@
+lp_apparmor: false
+
+lp_apparmor_disable:
+  - /usr/bin/firefox
+
+lp_apparmor_enforce:
+  - /usr/sbin/rsyslogd
+
+lp_apparmor_complain: []
+
+# lp_apparmor_disable:
+#   - /usr/bin/firefox
+#
+# lp_apparmor_enforce:
+#   - /usr/bin/evince
+#   - /usr/sbin/rsyslogd
+#
+# lp_apparmor_complain:
+#   - /usr/bin/evince

@@ -1,0 +1,20 @@
+lp_udev_persistent_net_rules:
+  - { kernel: "eth*",  mac: "AA:BB:CC:00:4d:7f", name: "eth0" }
+  - { kernel: "wlan*", mac: "AA:BB:CC:e9:5e:5a", name: "wlan0" }
+
+lp_udev_hci_name_rules: []
+#  - { product: "Broadcom Bluetooth Device", name: "hci0"}
+#  - { product: "CSR8510 A10", name: "hci1" }
+# For MAC of BT devices "phys" is used instead of "address".
+# There is no phys/address of the controller available in udev
+#  - { mac: "AA:BB:CC:7D:32:6A", name: "hci0" }
+#  - { mac: "AA:BB:CC:DA:71:06", name: "hci1" }
+#
+# udevadm info -a /sys/class/bluetooth/hci0 | grep product
+
+lp_udev_hci_run_rules: []
+#  - { product: "xHCI Host Controller", run: "/bin/hciconfig hci0 up auth encrypt" }
+#  - { product: "CSR8510 A10", run: "/bin/hciconfig hci1 up auth encrypt" }
+#  - { product: "Broadcom Bluetooth Device", run: "/bin/hciconfig hci0 up auth encrypt" }
+#  - { mac: "AA:BB:CC:7D:32:6A", run: "/bin/hciconfig hci0 auth encrypt" }
+#  - { mac: "AA:BB:CC:DA:71:06", run: "/bin/hciconfig hci1 auth encrypt" }

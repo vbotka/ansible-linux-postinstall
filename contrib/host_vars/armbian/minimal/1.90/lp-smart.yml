@@ -1,0 +1,35 @@
+lp_smart: false
+lp_smart_enable: false
+lp_smart_packages:
+  - smartmontools
+lp_smart_service_name: "smartmontools"
+lp_smart_conf_file: "/etc/smartd.conf"
+lp_smart_conf_owner: "root"
+lp_smart_conf_group: "root"
+lp_smart_conf_mode: "644"
+
+# man smartctl
+# -a Prints all SMART information about the disk. Equivalent to
+#    -H -f -t -l error -l selftest -C 197 -U 198
+# -H Monitor SMART Health Status, report if failed
+# -f Monitor for failure of any 'Usage' Attributes
+# -t Equivalent to -p and -u Directives (report Prefailure & Usage)
+# -l Monitor SMART log
+# -C Report if Current Pending Sector count non-zero
+# -o [ATA only] Enables or disables SMART automatic offline test,
+#    which scans the drive every four  hours  for  disk  defects.
+# -S [ATA only] Enables or disables SMART autosave of device
+#    vendor-specific Attributes.
+# -s Schedule self-tests. Short: daily 2PM. Long: Each Saturday 3PM.
+# -m Mail errors to admin.
+# NOTES:
+# 1) INTEL SSDSC2BF240A5L, S/N:CVTS516401AD240JGN,
+# WWN:5-5cd2e4-04bfed615, FW:LTVi, 240 GB
+# syslog: not found in smartd database; can't monitor
+# Current_Pending_Sector count - no Attribute 197; can't monitor
+# Offline_Uncorrectable count - no Attribute 198; no SMART Self-test
+# Log, ignoring -l selftest; no SMART Error Log, ignoring -l error
+lp_smart_devices:
+    - { regexp: "^/dev/sda", line: "/dev/sda -H -f -t -o on -S on -s (S/../.././02|L/../../6/03) -m admin" }
+#    - { regexp: "^/dev/sda", line: "/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin" }
+#    - { regexp: "^/dev/sdb", line: "/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin" }

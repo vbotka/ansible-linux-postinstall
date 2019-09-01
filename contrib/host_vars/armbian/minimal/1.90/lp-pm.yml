@@ -1,0 +1,19 @@
+lp_pm: false
+lp_pm_sleepd: {}
+#  55_bluetooth:
+#    file: "55_bluetooth"
+#    path: "/sbin:/usr/sbin:/bin:/usr/bin"
+#    suspend_hibernate:
+#      - 'service bluetooth stop'
+#      - 'hciconfig hci0 down'
+#      - 'hciconfig hci1 down'
+#    resume_thaw:
+#      - 'hciconfig hci0 reset'
+#      - 'hciconfig hci1 reset'
+#      - 'service bluetooth restart'
+#      - 'hciconfig hci0 up'
+#      - 'hciconfig hci1 up'
+#      - 'hciconfig hci0 auth'
+#      - 'hciconfig hci1 auth'
+#      - 'hciconfig hci0 encrypt'
+#      - 'hciconfig hci1 encrypt'

@@ -1,0 +1,12 @@
+lp_repos: []
+#   - repo: 'deb http://ppa.launchpad.net/ansible/ansible-2.8/ubuntu bionic main'
+#   - repo: '[arch=amd64] https://download.virtualbox.org/virtualbox/debian/ bionic contrib'
+#   - deb http://ppa.launchpad.net/ansible/ansible-2.6/ubuntu bionic main
+#   - deb http://ppa.launchpad.net/ansible/ansible-2.7/ubuntu bionic main
+#   - deb http://ppa.launchpad.net/ansible/ansible-2.4/ubuntu/ artful main
+#   - deb http://archive.canonical.com/ubuntu/ bionic partner
+#   - deb http://packages.cloud.google.com/apt/ cloud-sdk-artful main
+# lp_repos_keys_url:
+#   - https://packages.cloud.google.com/apt/doc/apt-key.gpg
+# lp_repos_keys_id:
+#   - { keyserver: keyserver.ubuntu.com, id: 6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367 }

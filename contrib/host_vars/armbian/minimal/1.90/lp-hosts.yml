@@ -1,0 +1,2 @@
+lp_hosts: []
+#  - {ip: "10.1.0.10", fqdn: "srv1.example.com", hostname: "srv1"}

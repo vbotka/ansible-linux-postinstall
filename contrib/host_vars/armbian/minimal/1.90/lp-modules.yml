@@ -1,0 +1,12 @@
+lp_modules: []
+#  - { name: 'br_netfilter', params: '' }
+#  - { name: 'vboxdrv', params: '' }
+#  - { name: 'i915', params: 'enable_execlists=0' }
+
+lp_modules_options: []
+#  - module: 'btusb'
+#    options:
+#      - 'options btusb enable_autosuspend=0'
+
+#lp_modules_blacklist:
+#  - acpi_call

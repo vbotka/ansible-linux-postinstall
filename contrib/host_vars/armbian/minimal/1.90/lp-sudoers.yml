@@ -1,0 +1,7 @@
+lp_sudoers_conf:
+  - line: "#includedir /etc/sudoers.d"
+    state: "present"
+  - line: "admin ALL=(ALL) NOPASSWD: ALL"
+    state: "present"
+lp_sudoers_01:
+  - "ansible ALL=(ALL) NOPASSWD: ALL"

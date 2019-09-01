@@ -1,0 +1,14 @@
+lp_packages_auto: true
+lp_package_install_dryrun: false
+lp_packages_autoremove: false
+
+lp_packages_selections_preinstall: []
+# - { name: 'ca-certificates', selection: 'hold' }
+
+lp_packages_install: []
+#  - ansible
+#  - google-cloud-sdk
+
+lp_packages_remove: []
+# - aptdaemon
+# - aptdaemon-data

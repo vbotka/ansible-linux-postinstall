@@ -1,0 +1,3 @@
+lp_timezone: true
+# lp_timezone_zoneinfo: "W-SU"
+lp_timezone_zoneinfo: "Europe/Sarajevo"
