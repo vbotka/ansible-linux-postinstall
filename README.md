@@ -150,7 +150,7 @@ ansible-playbook -t lp_packages -e 'lp_package_install_dryrun=true' linux-postin
 ansible-playbook -t lp_packages linux-postinstall.yml
 ```
 
-6. Check, install and configure other tasks
+5. Check, install and configure other tasks
 
 ```
 ansible-playbook linux-postinstall.yml --check
