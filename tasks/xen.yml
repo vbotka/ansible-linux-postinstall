@@ -8,6 +8,8 @@
       {{ lp_xen_packages | to_nice_yaml }}
       lp_xen_dom0_mem
       {{ lp_xen_dom0_mem | to_nice_yaml }}
+      lp_xen_default_grub_conf
+      {{ lp_xen_default_grub_conf | to_nice_yaml }}
       lp_xen_global
       {{ lp_xen_global | to_nice_yaml }}
   debug:
@@ -19,24 +21,15 @@
   loop: "{{ lp_xen_packages }}"
   tags: lp_xen_packages
 
-- name: "xen: Configure GRUB_CMDLINE_XEN_DEFAULT in /etc/default/grub"
+- name: "xen: Configure /etc/default/grub"
   lineinfile:
     dest: "/etc/default/grub"
-    regexp: "^\\s*GRUB_CMDLINE_XEN_DEFAULT\\s*="
-    line: "GRUB_CMDLINE_XEN_DEFAULT=\"dom0_mem={{ lp_xen_dom0_mem }},
-                                      max:{{ lp_xen_dom0_mem_max }}\""
+    regexp: "^\\s*{{ item.key }}\\s*="
+    line: "{{ item.key }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_xen_default_grub_conf }}"
   notify: update grub
-  tags: lp_xen_grub
-
-- name: "xen: Configure XEN_OVERRIDE_GRUB_DEFAULT in /etc/default/grub"
-  lineinfile:
-    dest: "/etc/default/grub"
-    regexp: "^\\s*XEN_OVERRIDE_GRUB_DEFAULT\\s*="
-    line: "XEN_OVERRIDE_GRUB_DEFAULT={{ lp_xen_XEN_OVERRIDE_GRUB_DEFAULT }}"
-    backup: "{{ lp_backup_conf }}"
-  notify: update grub
-  tags: lp_xen_grub
+  tags: lp_xen_default_grub
 
 - name: "xen: Configure /etc/xen/xl.conf"
   lineinfile:
@@ -46,7 +39,6 @@
     create: yes
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_xen_global }}"
-  when: lp_xen_global > 0
   tags: lp_xen_global
 
 # EOF
