@@ -30,10 +30,12 @@ Read the defaults and examples in vars.
 ```
 # editor vbotka.linux_postinstall/vars/main.yml
 ```
-Review OS specific variables in *vars/defaults*. Optionally put
-customized OS specific variables into the *vars* directory. See
-*tasks/vars.yml* to learn the naming conventions and precedence. Os
-specific variables will overwrite variables in *var/main.yml*.
+* Review OS specific variables in *vars/defaults*.
+* Review, customize and/or add Flavor specific variables in *vars/flavors*.
+* Optionally disable *lp_flavors_enable: false*. This will speedup the playbook.
+* Optionally put customized OS specific variables into the *vars* directory.
+* See *tasks/vars.yml* for the naming conventions and precedence.
+* Os specific variables will overwrite variables in *var/main.yml*.
 
 3. Create the inventory.
 ```
