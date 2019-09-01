@@ -43,8 +43,8 @@ Read the defaults and examples in vars.
 [host1]
 host1.example.com
 [host1:vars]
+ansible_user: admin
 ansible_connection=ssh
-ansible_user=root
 ansible_python_interpreter=/usr/bin/python3.6
 ansible_perl_interpreter=/usr/bin/perl
 ```
@@ -53,6 +53,9 @@ ansible_perl_interpreter=/usr/bin/perl
 ```
 # cat linux-postinstall.yml
 - hosts: host1
+  become: yes
+  become_user: root
+  become_method: sudo
   roles:
     - vbotka.linux_postinstall
 ```
@@ -120,37 +123,38 @@ See [service.yml](tasks/service.yml) for details.
 1. Configure users, sudoers and persistent network interfaces
 
 ```
-# ansible-playbook linux-postinstall.yml -t lp_users
-# ansible-playbook linux-postinstall.yml -t lp_sudoers
-# ansible-playbook linux-postinstall.yml -t lp_udev
+ansible-playbook linux-postinstall.yml -t lp_hostname                                              
+ansible-playbook linux-postinstall.yml -t lp_users
+ansible-playbook linux-postinstall.yml -t lp_sudoers
+ansible-playbook linux-postinstall.yml -t lp_udev                                                  
+ansible-playbook linux-postinstall.yml -t lp_netplan                                               
+ansible-playbook linux-postinstall.yml -t lp_wpasupplicant                                         
+ansible-playbook linux-postinstall.yml -t lp_reboot -e 'lp_reboot=true lp_reboot_force=true'       
 ```
 
-2. Reboot
-
-3. Configure the firewall. For example iptables
+2. Configure the firewall. For example iptables
 
 ```
 # ansible-playbook linux-postinstall.yml -t lp_iptables
 ```
 
-4. Configure network connection
-
-5. Test installation of the packages
+3. Test installation of the packages
 
 ```
-# ansible-playbook -t lp_packages -e 'lp_package_install_dryrun=true' linux-postinstall.yml
+ansible-playbook -t lp_packages -e 'lp_package_install_dryrun=true' linux-postinstall.yml
 ```
 
-6. Install packages
+4. Install packages
 
 ```
-# ansible-playbook -t lp_packages linux-postinstall.yml
+ansible-playbook -t lp_packages linux-postinstall.yml
 ```
 
-7. Install and configure other tasks
+6. Check, install and configure other tasks
 
 ```
-# ansible-playbook linux-postinstall.yml
+ansible-playbook linux-postinstall.yml --check
+ansible-playbook linux-postinstall.yml
 ```
 
 
