@@ -1,0 +1,8 @@
+# {{ ansible_managed }}
+{% for dev in lp_udev_persistent_net_rules %}
+{% for item in dev %}
+{{ item.key }}{{ item.operator }}"{{ item.value }}"{% if not loop.last %}, {% endif %}
+{% endfor %}
+
+{% endfor %}
+# EOF
