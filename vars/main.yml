@@ -1,4 +1,6 @@
 ---
+# Variables in var/main.yml override variables in defaults/*
+#
 # linux-postinstall vars
 
 # linux-postinstall repos
@@ -217,16 +219,6 @@
 # lp_postfix_inet_protocols: "ipv4"
 # lp_postfix_main_conf:
 #  - { key: inet_protocols, value: "{{ lp_postfix_inet_protocols }}" }
-
-# apparmor
-# lp_apparmor: "yes"
-# lp_apparmor_disable:
-#  - firefox
-#  - rsyslogd
-# lp_apparmor_enforce:
-#  - evince
-# lp_apparmor_complain:
-#  - evince
 
 # smart
 # lp_smart: "yes"

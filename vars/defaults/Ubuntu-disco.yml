@@ -84,9 +84,11 @@ lp_smart_packages:
 lp_kvm_packages:
   - qemu
   - qemu-kvm
-  - libvirt-bin
-  - ubuntu-vm-builder
+  - libvirt-daemon
+  - libvirt-daemon-system
+  - libvirt-clients
   - bridge-utils
+  # - ubuntu-vm-builder
 
 lp_xen_packages:
   - "xen-hypervisor-{{ lp_xen_version }}-amd64"
@@ -120,10 +122,10 @@ lp_libvirt_libvirtd_service: libvirtd
 lp_libvirt_guests_service: libvirt-guests
 lp_libvirt_packages:
   - libvirt0
-  - libvirt-bin
   - libvirt-daemon
   - libvirt-daemon-driver-storage-rbd
   - libvirt-daemon-system
+  - libvirt-clients
   - virtinst
 lp_libvirt_conf_owner: root
 lp_libvirt_conf_group: root

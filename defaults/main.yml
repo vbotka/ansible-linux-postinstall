@@ -134,16 +134,6 @@ lp_postfix: true
 lp_postfix_enable: true
 lp_postfix_main_conf: []
 
-lp_apparmor: true
-lp_apparmor_packages:
-  - apparmor
-  - apparmor-utils
-  - snapd
-lp_apparmor_profile_dir: "/etc/apparmor.d"
-lp_apparmor_disable: []
-lp_apparmor_complain: []
-lp_apparmor_enforce: []
-
 lp_smart: false
 lp_smart_enable: false
 lp_smart_packages:
