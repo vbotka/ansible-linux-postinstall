@@ -39,16 +39,28 @@
     name: "{{ lp_smart_service }}"
     state: started
     enabled: yes
+  register: result
   when: lp_smart_enable|bool
   tags: lp_smart_service
+
+- name: "smart: Debug service"
+  debug:
+    var: result
+  when: lp_smart_debug|bool
 
 - name: "smart: Stop and disable smart"
   service:
     name: "{{ lp_smart_service }}"
     state: stopped
     enabled: no
+  register: result
   when: not lp_smart_enable|bool
   tags: lp_smart_service
+
+- name: "smart: Debug service"
+  debug:
+    var: result
+  when: lp_smart_debug|bool
 
 # EOF
 ...
