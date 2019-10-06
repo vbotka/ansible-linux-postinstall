@@ -24,6 +24,11 @@
       lp_wpa_action_script_owner [{{ lp_wpa_action_script_owner }}]
       lp_wpa_action_script_group [{{ lp_wpa_action_script_group }}]
       lp_wpa_action_script_mode [{{ lp_wpa_action_script_mode }}]
+      lp_wpa_action_script_dhclient [{{ lp_wpa_action_script_dhclient }}]
+      lp_wpa_action_script_pidfile [{{ lp_wpa_action_script_pidfile }}]
+      lp_wpa_action_script_options_connect [{{ lp_wpa_action_script_options_connect }}]
+      lp_wpa_action_script_options_disconnect [{{ lp_wpa_action_script_options_disconnect }}]
+      lp_wpa_action_script_logfile [{{ lp_wpa_action_script_logfile }}]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_wpasupplicant_debug|bool
