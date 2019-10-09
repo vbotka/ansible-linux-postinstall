@@ -287,11 +287,8 @@ lp_service_enable:
 lp_ufw: true
 lp_ufw_debug: false
 lp_ufw_conf:
-  - {direction: 'incoming', default: 'reject'}
-  - {direction: 'outgoing', default: 'allow'}
-  - {direction: 'in', rule: 'allow', name: 'OpenSSH', from_ip: '10.1.0.0/24'}
+  - {state: 'enabled', policy: 'allow'}
   - {logging: 'on'}
-  - {state: 'enabled'}
 
 lp_fstab_entries: []
 

@@ -11,6 +11,7 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - bionic
+        - disco dingo
     - name: EL
       versions:
         - 7
