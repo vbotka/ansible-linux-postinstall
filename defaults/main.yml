@@ -285,7 +285,9 @@ lp_service_enable:
   - libvirt_guests
 
 lp_ufw: true
+lp_ufw_enable: true
 lp_ufw_debug: false
+lp_ufw_service: "ufw"
 lp_ufw_conf:
   - {state: 'enabled', policy: 'allow'}
   - {logging: 'on'}

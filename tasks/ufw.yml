@@ -4,6 +4,7 @@
 - name: "ufw: Debug"
   vars:
     msg: |
+      lp_ufw_enable [{{ lp_ufw_enable }}]
       lp_ufw_packages
       {{ lp_ufw_packages | to_nice_yaml }}
       lp_ufw_conf
@@ -40,6 +41,40 @@
     to_port: "{{ item.to_port|default(omit) }}"
   loop: "{{ lp_ufw_conf }}"
   tags: lp_ufw_conf
+
+- name: "ufw: Start and enable ufw"
+  service:
+    name: "{{ lp_ufw_service }}"
+    state: started
+    enabled: yes
+  register: result
+  when: lp_ufw_enable|bool
+  tags: lp_ufw_service
+
+- name: "ufw: Debug enabled service"
+  debug:
+    var: result
+  when:
+    - lp_ufw_enable|bool
+    - lp_ufw_debug|bool
+  tags: lp_ufw_service
+
+- name: "ufw: Stop and disable ufw"
+  service:
+    name: "{{ lp_ufw_service }}"
+    state: stopped
+    enabled: no
+  register: result
+  when: not lp_ufw_enable|bool
+  tags: lp_ufw_service
+
+- name: "ufw: Debug disabled service"
+  debug:
+    var: result
+  when:
+    - not lp_ufw_enable|bool
+    - lp_ufw_debug|bool
+  tags: lp_ufw_service
 
 # EOF
 ...
