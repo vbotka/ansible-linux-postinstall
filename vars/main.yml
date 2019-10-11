@@ -436,5 +436,21 @@
 #     fstype: ntfs
 #     opts: ro
 
+# lp_ufw: true
+# lp_ufw_enable: true
+# lp_ufw_debug: true
+# lp_ufw_reset: false
+# lp_ufw_reload: false
+# lp_ufw_src_lan: '10.1.0.0/24'
+# lp_ufw_conf:
+#   - {default: 'deny', direction: 'incoming'}
+#   - {default: 'allow', direction: 'outgoing'}
+#   - {rule: 'allow', to_port: '22', proto: 'tcp', from_ip: '{{ lp_ufw_src_lan }}'}
+#   - {rule: 'allow', to_port: '80', proto: 'tcp', from_ip: '{{ lp_ufw_src_lan }}'}
+#   - {rule: 'allow', to_port: '443', proto: 'tcp', from_ip: '{{ lp_ufw_src_lan }}'}
+#   - {rule: 'allow', to_port: '8080', proto: 'tcp', from_ip: '{{ lp_ufw_src_lan }}'}
+#   - {logging: 'on'}
+#   - {state: 'enabled'}
+
 # EOF
 ...

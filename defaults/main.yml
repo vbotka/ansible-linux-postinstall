@@ -287,6 +287,8 @@ lp_service_enable:
 lp_ufw: true
 lp_ufw_enable: true
 lp_ufw_debug: false
+lp_ufw_reset: false
+lp_ufw_reload: false
 lp_ufw_service: "ufw"
 lp_ufw_conf:
   - {state: 'enabled', policy: 'allow'}
@@ -305,7 +307,6 @@ lp_reboot_wait_connect_timeout: 20
 lp_reboot_wait_sleep: 5
 lp_reboot_wait_delay: 5
 lp_reboot_wait_timeout: 300
-
 
 # Include default vars for various flavors. For example put vars into
 # one of the files below. First found will be included.
