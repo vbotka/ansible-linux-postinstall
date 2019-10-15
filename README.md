@@ -6,7 +6,11 @@
 
 Configure Linux: acpi, aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, fstab, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
-Tested with Ubuntu 18.04. Some tasks tested with CentOS 7 and Armbian 5.90.
+Tested systems:
+* Ubuntu 18.04
+* Ubuntu 19.04
+* CentOS 7
+* Armbian 5.90
 
 
 ## Requirements
@@ -85,8 +89,8 @@ be OK and 0 changed, unreachable and failed.
 
 ## Auto-installation of packages
 
-Packages listed in the variables lp_*_packages will be automatically
-installed by the tasks/packages.yml if enabled by variable lp_* . For
+Packages listed in the variables ``lp_*_packages`` will be automatically
+installed by the tasks/packages.yml if enabled by variable ``lp_*`` . For
 example
 ```
 lp_libvirt: true
