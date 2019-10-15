@@ -12,6 +12,7 @@ Tested systems:
 * CentOS 7
 * Armbian 5.90
 
+Please feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-linux-postinstall/issues).
 
 ## Requirements
 
