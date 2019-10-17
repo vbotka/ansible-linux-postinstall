@@ -44,7 +44,7 @@
   systemd:
     name: "{{ item }}"
     state: started
-    enabled: yes
+    enabled: true
   loop: "{{ lp_tlp_services }}"
   when: lp_tlp_enable|bool
   tags: lp_tlp_service
@@ -53,7 +53,7 @@
   systemd:
     name: "{{ item }}"
     state: stopped
-    enabled: no
+    enabled: false
   loop: "{{ lp_tlp_services }}"
   when: not lp_tlp_enable|bool
   tags: lp_tlp_service

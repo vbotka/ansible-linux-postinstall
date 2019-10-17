@@ -36,7 +36,7 @@
     dest: "/etc/xen/xl.conf"
     regexp: "^\\s*{{ item.var }}\\s*="
     line: "{{ item.var }}={{ item.value }}"
-    create: yes
+    create: true
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_xen_global }}"
   tags: lp_xen_global

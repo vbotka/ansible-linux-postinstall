@@ -1,8 +1,9 @@
+---
 lp_lid: false
 lp_lid_logind_conf: "/etc/systemd/logind.conf"
 lp_lid_upower_conf: "/etc/UPower/UPower.conf"
 lp_lid_logind_conf_vars:
-  - { var: "HandleLidSwitch", value: "ignore" }
-  - { var: "LidSwitchIgnoreInhibited", value: "no" }
+  - {var: "HandleLidSwitch", value: "ignore"}
+  - {var: "LidSwitchIgnoreInhibited", value: "no"}
 lp_lid_upower_conf_vars:
-  - { var: "IgnoreLid", value: "true" }
+  - {var: "IgnoreLid", value: "true"}

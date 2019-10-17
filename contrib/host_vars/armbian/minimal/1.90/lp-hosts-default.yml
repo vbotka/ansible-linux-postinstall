@@ -1,3 +1,4 @@
+---
 lp_hosts_default_override:
   - {ip: "127.0.0.1", name1: "localhost", name2: "{{ lp_hostname }}"}
   - {ip: "::1", name1: "ip6-localhost", name2: "ip6-loopback"}

@@ -19,14 +19,14 @@
 - name: "bluetooth: Enable and start bluetooth"
   systemd:
     name: "{{ lp_bluetooth_service }}"
-    enabled: yes
+    enabled: true
     state: started
   when: lp_bluetooth_enable|bool
 
 - name: "bluetooth: Stop and disable bluetooth"
   systemd:
     name: "{{ lp_bluetooth_service }}"
-    enabled: no
+    enabled: false
     state: stopped
   when: not lp_bluetooth_enable|bool
 

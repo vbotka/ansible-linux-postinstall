@@ -1,3 +1,4 @@
+---
 lp_netplan: true
 lp_netplan_renderer: "networkd"
 lp_netplan_conf:

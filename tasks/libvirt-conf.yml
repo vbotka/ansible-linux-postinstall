@@ -12,7 +12,7 @@
     line: "{{ conf[0] }} = {{ conf[1] }}"
     state: "{{ conf[2] | default('present') }}"
     backup: "{{ lp_backup_conf }}"
-    create: yes
+    create: true
   loop: "{{ item.value }}"
   loop_control:
     loop_var: conf

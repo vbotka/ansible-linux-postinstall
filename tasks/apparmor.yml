@@ -55,7 +55,7 @@
   service:
     name: apparmor
     state: started
-    enabled: yes
+    enabled: true
   when: lp_apparmor|bool
   tags: lp_apparmor_service
 
@@ -63,7 +63,7 @@
   service:
     name: apparmor
     state: stopped
-    enabled: no
+    enabled: false
   when: not lp_apparmor|bool
   tags: lp_apparmor_service
 

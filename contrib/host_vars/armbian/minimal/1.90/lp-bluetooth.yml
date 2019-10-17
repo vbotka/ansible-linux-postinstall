@@ -1,3 +1,4 @@
+---
 lp_bluetooth: true
 lp_bluetooth_enable: false
 lp_bluetooth_ControllerMode: "dual"

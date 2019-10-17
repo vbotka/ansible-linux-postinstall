@@ -1,3 +1,4 @@
+---
 lp_postfix: false
 lp_postfix_inet_protocols: "ipv4"
 lp_postfix_main_conf:

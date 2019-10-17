@@ -1,3 +1,4 @@
+---
 # /usr/share/X11/xorg.conf.d/
 lp_xorg_conf: []
 #  - file: 11-Logitech-MX-Master2S-Mouse.conf

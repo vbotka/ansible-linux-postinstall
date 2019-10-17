@@ -9,14 +9,14 @@
 - name: "speechd: Enable and start speech-dispatcher"
   systemd:
     name: "{{ lp_speechd_service }}"
-    enabled: yes
+    enabled: true
     state: "started"
   when: lp_speechd_enable|bool
 
 - name: "speechd: Stop and disable speech-dispatcher"
   systemd:
     name: "{{ lp_speechd_service }}"
-    enabled: no
+    enabled: false
     state: "stopped"
   when: not lp_speechd_enable|bool
 

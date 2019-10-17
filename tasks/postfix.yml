@@ -6,7 +6,7 @@
     dest: "/etc/postfix/main.cf"
     regexp: "^{{ item.key }}"
     line: "{{ item.key }} = {{ item.value }}"
-    create: yes
+    create: true
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_postfix_main_conf }}"
   notify: reload postfix
@@ -15,7 +15,7 @@
 - name: "postfix: Enable and start postfix"
   systemd:
     name: "{{ lp_postfix_service }}"
-    enabled: yes
+    enabled: true
     state: started
   when: lp_postfix_enable|bool
   tags: lp_postfix_service
@@ -23,7 +23,7 @@
 - name: "postfix: Disable and stop postfix"
   systemd:
     name: "{{ lp_postfix_service }}"
-    enabled: no
+    enabled: false
     state: stopped
   when: not lp_postfix_enable|bool
   tags: lp_postfix_service

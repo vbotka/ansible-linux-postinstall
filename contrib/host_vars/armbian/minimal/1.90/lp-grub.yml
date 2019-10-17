@@ -1,3 +1,4 @@
+---
 lp_grub: false
 lp_grub_default: []
 #  - {var: "GRUB_DEFAULT", value: saved}

@@ -4,7 +4,7 @@
   authorized_key:
     user: "{{ item.user }}"
     key: "{{ item.key }}"
-    manage_dir: yes
+    manage_dir: true
   loop: "{{ lp_authorized_keys }}"
 
 # EOF

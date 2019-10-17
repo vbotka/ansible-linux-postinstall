@@ -43,23 +43,23 @@
 # - name: "wpagui: Stop and disable NM"
 #  systemd:
 #    name: "{{ item }}"
-#    state: "stopped"
-#    enabled: no
+#    state: stopped
+#    enabled: false
 #  loop: "{{ lp_wpagui_systemd }}"
 #  tags: lp_wpagui_disableNM
 
 - name: "wpagui: Stop and disable all NM services"
   service:
     name: "{{ item }}"
-    state: "stopped"
-    enabled: no
+    state: stopped
+    enabled: false
   loop: "{{ lp_wpagui_service }}"
   tags: lp_wpagui_disableNM
 
 - name: "wpagui: Mask NM services"
   command: "systemctl mask {{ item }}"
   args:
-    warn: False
+    warn: false
   loop: "{{ lp_wpagui_service_mask }}"
   changed_when: false
   tags: lp_wpagui_mask_NM

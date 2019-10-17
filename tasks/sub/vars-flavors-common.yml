@@ -5,7 +5,7 @@
 # lp_flavors_dir. Read release_attr from the fetched file and include
 # vars that correspond the flavor, release and HW.
 
-  # my_release_file
+# my_release_file
 - name: 'sub: vars-flavors-common: Set my_release_file'
   set_fact:
     my_release_file: '{{ outer_item.value.release_file }}'
@@ -14,7 +14,7 @@
   debug:
     var: my_release_file
 
-  # my_flavor
+# my_flavor
 - name: 'sub: vars-flavors-common: Set my_flavor'
   set_fact:
     my_flavor: '{{ outer_item.key }}'
@@ -23,7 +23,7 @@
   debug:
     var: my_flavor
 
-  # my_release_file_fetch
+# my_release_file_fetch
 - name: 'sub: vars-flavors-common: Set my_release_file_fetch'
   set_fact:
     my_release_file_fetch: "{{ lp_flavors_dir ~
@@ -38,7 +38,7 @@
     src: '{{ my_release_file }}'
     dest: '{{ my_release_file_fetch }}'
 
-  # my_release_keys
+# my_release_keys
 - name: 'sub: vars-flavors-common: Clear my_release_keys'
   set_fact:
     my_release_keys: []
@@ -53,7 +53,7 @@
   debug:
     var: my_release_keys
 
-  # my_release_dict
+# my_release_dict
 - name: 'sub: vars-flavors-common: Clear my_release_dict'
   set_fact:
     my_release_dict: {}
@@ -69,7 +69,7 @@
   debug:
     var: my_release_dict
 
-  # my_release
+# my_release
 - name: 'sub: vars-flavors-common: Add flavor to my_release'
   set_fact:
     my_release: '{{ my_release|
@@ -80,7 +80,7 @@
   debug:
     var: my_release
 
-  # my_labels
+# my_labels
 - name: 'sub: vars-flavors-common: Set my_labels'
   set_fact:
     my_labels: "{{ lp_flavors[my_flavor].file_labels|
@@ -91,7 +91,7 @@
   debug:
     var: my_labels
 
-  # Include default vars for flavor
+# Include default vars for flavor
 - name: 'sub: vars-flavors-common: Include default vars for flavor
               [{{ my_flavor }},
                {{ my_labels.0 }},

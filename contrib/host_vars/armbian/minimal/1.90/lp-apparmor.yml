@@ -1,3 +1,4 @@
+---
 lp_apparmor: false
 
 lp_apparmor_disable:

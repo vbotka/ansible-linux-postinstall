@@ -16,7 +16,7 @@
 - name: "sshd: Enable and start sshd"
   systemd:
     name: "{{ lp_sshd_service }}"
-    enabled: yes
+    enabled: true
     state: "started"
   when: lp_sshd_enable|bool
   tags: lp_sshd_service
@@ -24,7 +24,7 @@
 - name: "sshd: Disable and stop sshd"
   systemd:
     name: "{{ lp_sshd_service }}"
-    enabled: no
+    enabled: false
     state: "stopped"
   when: not lp_sshd_enable|bool
   tags: lp_sshd_service

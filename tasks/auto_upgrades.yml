@@ -12,15 +12,15 @@
 - name: "auto_upgrades: Disable and stop unattended-upgrades"
   systemd:
     name: "{{ lp_auto_upgrades_service }}"
-    state: "stopped"
-    enabled: no
+    state: stopped
+    enabled: false
   when: not lp_auto_upgrades_enable|bool
 
 - name: "auto_upgrades: Enable and start unattended-upgrades"
   systemd:
     name: "{{ lp_auto_upgrades_service }}"
-    state: "started"
-    enabled: yes
+    state: started
+    enabled: true
   when: lp_auto_upgrades_enable|bool
 
 # EOF

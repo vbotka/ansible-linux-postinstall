@@ -1,3 +1,4 @@
+---
 lp_iptables: false
 # lp_iptables_type: "default"  # see templates e.g. router1
 # lp_iptables_wan_if: "eth0"

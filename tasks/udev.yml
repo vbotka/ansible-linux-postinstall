@@ -81,7 +81,7 @@
   service:
     name: "{{ lp_udev_service }}"
     state: started
-    enabled: yes
+    enabled: true
   when: lp_udev_enable|bool
   tags: lp_udev_service
 
@@ -89,7 +89,7 @@
   service:
     name: "{{ lp_udev_service }}"
     state: stopped
-    enabled: no
+    enabled: false
   when: not lp_udev_enable|bool
   tags: lp_udev_service
 

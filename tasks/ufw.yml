@@ -74,7 +74,7 @@
   service:
     name: "{{ lp_ufw_service }}"
     state: started
-    enabled: yes
+    enabled: true
   register: result
   when: lp_ufw_enable|bool
   tags: lp_ufw_service
@@ -91,7 +91,7 @@
   service:
     name: "{{ lp_ufw_service }}"
     state: stopped
-    enabled: no
+    enabled: false
   register: result
   when: not lp_ufw_enable|bool
   tags: lp_ufw_service

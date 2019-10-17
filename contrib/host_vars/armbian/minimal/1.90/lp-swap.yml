@@ -1,3 +1,4 @@
+---
 lp_swap: false
 lp_swap_enable: false
 lp_swap_file: "/usr/swap0"

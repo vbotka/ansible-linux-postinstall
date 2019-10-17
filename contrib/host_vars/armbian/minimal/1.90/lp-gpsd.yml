@@ -1,3 +1,4 @@
+---
 lp_gpsd: false
 lp_gpsd_enable: false
 lp_gpsd_bt_rfcomm: []

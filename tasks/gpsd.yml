@@ -10,7 +10,7 @@
   user:
     name: "gpsd"
     groups: "dialout"
-    append: yes
+    append: true
   tags: lp_gpsd_group
 
 - name: "gpsd: Configure /etc/bluetooth/rfcomm.conf"
@@ -47,16 +47,16 @@
 - name: "gpsd: Stop and disable gpsd"
   systemd:
     name: "{{ lp_gpsd_service }}"
-    state: "stopped"
-    enabled: no
+    state: stopped
+    enabled: false
   when: not lp_gpsd_enable|bool
   tags: lp_gpsd_service
 
 - name: "gpsd: Start and enable gpsd"
   systemd:
     name: "{{ lp_gpsd_service }}"
-    state: "started"
-    enabled: yes
+    state: started
+    enabled: true
   when: lp_gpsd_enable|bool
   tags: lp_gpsd_service
 

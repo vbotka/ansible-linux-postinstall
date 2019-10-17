@@ -1,3 +1,4 @@
+---
 lp_sudoers_conf:
   - line: "#includedir /etc/sudoers.d"
     state: "present"

@@ -23,7 +23,7 @@
   user:
     name: "{{ item.name }}"
     groups: "{{ item.groups }}"
-    append: yes
+    append: true
   loop: "{{ lp_users_groups }}"
 
 #  EOF

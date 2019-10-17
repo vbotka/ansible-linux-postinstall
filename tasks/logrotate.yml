@@ -26,7 +26,7 @@
   blockinfile:
     path: "{{ lp_logrotate_conf_dir }}/{{ item.path }}"
     block: "{{ item.conf }}"
-    create: yes
+    create: true
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_logrotate_confd }}"
 

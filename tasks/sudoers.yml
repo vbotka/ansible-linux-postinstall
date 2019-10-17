@@ -6,7 +6,7 @@
     path: "/etc/sudoers"
     line: "{{ item.line }}"
     state: "{{ item.state | default('present') }}"
-    create: yes
+    create: true
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_sudoers_conf }}"
 
@@ -17,7 +17,7 @@
     owner: "{{ lp_sudoers_owner }}"
     group: "{{ lp_sudoers_group }}"
     mode: "{{ lp_sudoers_mode }}"
-    create: yes
+    create: true
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_sudoers_01 }}"
 

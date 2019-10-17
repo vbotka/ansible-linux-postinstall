@@ -19,7 +19,7 @@
 - name: "nfsd: Enable and start nfsd services"
   systemd:
     name: "{{ item }}"
-    enabled: yes
+    enabled: true
     state: "started"
   loop: "{{ lp_nfsd_services }}"
   when:
@@ -30,7 +30,7 @@
 - name: "nfsd: Stop and disable nfsd services"
   systemd:
     name: "{{ item }}"
-    enabled: no
+    enabled: false
     state: "stopped"
   loop: "{{ lp_nfsd_services }}"
   when:

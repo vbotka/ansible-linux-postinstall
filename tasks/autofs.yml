@@ -36,14 +36,14 @@
 - name: "autofs: Enable and start autofs"
   systemd:
     name: "{{ lp_autofs_service }}"
-    enabled: yes
+    enabled: true
     state: started
   when: lp_autofs_enable|bool
 
 - name: "autofs: Stop and disable autofs"
   systemd:
     name: "{{ lp_autofs_service }}"
-    enabled: no
+    enabled: false
     state: stopped
   when: not lp_autofs_enable|bool
 

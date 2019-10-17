@@ -6,7 +6,7 @@
   apt:
     state: "absent"
     name: "zeitgeist"
-    purge: yes
+    purge: true
   when:
     - not lp_zeitgeist|bool
     - ansible_os_family == "Debian"
@@ -15,7 +15,7 @@
   apt:
     state: "absent"
     name: "zeitgeist-*"
-    purge: yes
+    purge: true
   when:
     - not lp_zeitgeist|bool
     - ansible_os_family == "Debian"
@@ -23,7 +23,7 @@
 # - name: Disable zeitgeist
 #   service:
 #     name: zeitgeist
-#     state: started
+#     state: stopped
 #     enabled: no
 #   when: not lp_zeitgeist
 # "Could not find the requested service zeitgeist"

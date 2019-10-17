@@ -1,3 +1,4 @@
+---
 lp_logrotate_confd: []
 #  - path: "ansible"
 #    conf: |

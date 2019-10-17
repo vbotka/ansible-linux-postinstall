@@ -12,15 +12,15 @@
 - name: "modem_manager: Stop and disable ModemManager"
   service:
     name: "ModemManager"
-    state: "stopped"
-    enabled: no
+    state: stopped
+    enabled: false
   when: not lp_modemmanager_enable|bool
 
 - name: "modem_manager: Start and enable ModemManager"
   service:
     name: "ModemManager"
-    state: "started"
-    enabled: yes
+    state: started
+    enabled: true
   when: lp_modemmanager_enable|bool
 
 # EOF

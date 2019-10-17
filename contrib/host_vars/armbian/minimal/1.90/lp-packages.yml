@@ -1,3 +1,4 @@
+---
 lp_packages_auto: true
 lp_package_install_dryrun: false
 lp_packages_autoremove: false

@@ -28,16 +28,16 @@
 - name: "timesyncd: Enable and start timesyncd"
   service:
     name: "{{ lp_timesyncd_service }}"
-    state: "started"
-    enabled: yes
+    state: started
+    enabled: true
   when: lp_timesyncd_enable|bool
   tags: lp_timesyncd_service
 
 - name: "timesyncd: Disable and stop timesyncd"
   service:
     name: "{{ lp_timesyncd_service }}"
-    state: "stopped"
-    enabled: no
+    state: stopped
+    enabled: false
   when: not lp_timesyncd_enable|bool
   tags: lp_timesyncd_service
 

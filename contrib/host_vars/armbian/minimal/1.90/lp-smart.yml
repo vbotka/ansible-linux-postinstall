@@ -1,3 +1,4 @@
+---
 lp_smart: false
 lp_smart_enable: false
 lp_smart_packages:
@@ -30,6 +31,6 @@ lp_smart_conf_mode: "644"
 # Offline_Uncorrectable count - no Attribute 198; no SMART Self-test
 # Log, ignoring -l selftest; no SMART Error Log, ignoring -l error
 lp_smart_devices:
-    - { regexp: "^/dev/sda", line: "/dev/sda -H -f -t -o on -S on -s (S/../.././02|L/../../6/03) -m admin" }
-#    - { regexp: "^/dev/sda", line: "/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin" }
-#    - { regexp: "^/dev/sdb", line: "/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin" }
+  - {regexp: "^/dev/sda", line: "/dev/sda -H -f -t -o on -S on -s (S/../.././02|L/../../6/03) -m admin"}
+# - {regexp: "^/dev/sda", line: "/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin"}
+# - {regexp: "^/dev/sdb", line: "/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin"}

@@ -1,3 +1,4 @@
+---
 lp_virtualbox: false
 lp_virtualbox_enable: false
 lp_virtualbox_ignore_errors: true

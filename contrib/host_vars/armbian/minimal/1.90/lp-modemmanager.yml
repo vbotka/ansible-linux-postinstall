@@ -1,4 +1,5 @@
+---
 lp_modemmanager: false
 lp_modemmanager_enable: false
-#lp_modemmanager_override: "manual"
+# lp_modemmanager_override: "manual"
 lp_modemmanager_override: ""
