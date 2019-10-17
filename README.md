@@ -4,7 +4,7 @@
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/)
 
-Configure Linux: acpi, aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, fstab, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
+Configure Linux: acpi, aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums, fstab, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 Tested systems:
 * Ubuntu 18.04
@@ -189,6 +189,7 @@ ansible-playbook linux-postinstall.yml
 - [Autofs - Ubuntu community](https://help.ubuntu.com/community/Autofs)
 - [Bluetooth headphones](https://bbs.archlinux.org/viewtopic.php?id=212785)
 - [Cron CronHowto](https://help.ubuntu.com/community/CronHowto)
+- [Debsums man](https://manpages.debian.org/stretch/debsums/debsums.1.en.html)
 - [GCP: Configuring Imported Images](https://cloud.google.com/compute/docs/images/configuring-imported-images)
 - [GPSD Bluetooth](https://ubuntuforums.org/showthread.php?t=200142)
 - [GPSD Troubleshooting](http://www.catb.org/gpsd/troubleshooting.html)

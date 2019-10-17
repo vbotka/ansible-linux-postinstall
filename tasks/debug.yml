@@ -22,6 +22,7 @@
       lp_auto_upgrades [{{ lp_auto_upgrades }}] lp_auto_upgrades_enable [{{ lp_auto_upgrades_enable }}]
       lp_autofs [{{ lp_autofs }}] lp_autofs_enable [{{ lp_autofs_enable }}]
       lp_bluetooth [{{ lp_bluetooth }}] lp_bluetooth_enable [{{ lp_bluetooth_enable }}]
+      lp_debsums [{{ lp_debsums }}]
       lp_gpg [{{ lp_gpg }}]
       lp_gpsd [{{ lp_gpsd }}] lp_gpsd_enable [{{ lp_gpsd_enable }}]
       lp_grub [{{ lp_grub }}]

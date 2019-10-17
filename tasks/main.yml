@@ -226,6 +226,10 @@
   when: (ansible_os_family == "Debian") and lp_ufw
   tags: lp_ufw
 
+- import_tasks: debsums.yml
+  when: (ansible_os_family == "Debian") and lp_debsums
+  tags: lp_debsums
+
 - meta: flush_handlers
 
 - import_tasks: service.yml

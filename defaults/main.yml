@@ -294,6 +294,14 @@ lp_ufw_conf:
   - {state: 'enabled', policy: 'allow'}
   - {logging: 'on'}
 
+lp_debsums: false
+lp_debsums_debug: false
+lp_debsums_default_file: "/etc/default/debsums"
+lp_debsums_default_conf:
+  - {key: 'CRON_CHECK', value: 'never'}
+lp_debsums_ignore_file: "/etc/debsums-ignore"
+lp_debsums_ignore_conf: []
+
 lp_fstab_entries: []
 
 lp_reboot: false

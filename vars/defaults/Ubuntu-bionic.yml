@@ -155,5 +155,8 @@ lp_apparmor_disable: []
 lp_apparmor_complain: []
 lp_apparmor_enforce: []
 
+lp_debsums_packages:
+  - debsums
+
 # EOF
 ...
