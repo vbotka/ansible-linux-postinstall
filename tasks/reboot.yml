@@ -45,19 +45,27 @@
   when: lp_reboot_debug|bool
 
 - name: "reboot: Reboot and wait for connection"
-  block:
-    - name: "reboot: Reboot"  # noqa 305
-      shell: "{{ lp_reboot_command }}"
-      async: 1
-      poll: 0
-    - name: "reboot: Wait for connection"
-      wait_for_connection:
-        connect_timeout: "{{ lp_reboot_wait_connect_timeout }}"
-        sleep: "{{ lp_reboot_wait_sleep }}"
-        delay: "{{ lp_reboot_wait_delay }}"
-        timeout: "{{ lp_reboot_wait_timeout }}"
+  reboot:
+    connect_timeout: "{{ lp_reboot_wait_connect_timeout }}"
+    post_reboot_delay: "{{ lp_reboot_wait_delay }}"
+    reboot_timeout: "{{ lp_reboot_wait_timeout }}"
   when: (reboot_required|default(false) and
         (not lp_reboot_required_ignore)) or lp_reboot_force
+
+# - name: "reboot: Reboot and wait for connection"
+#   block:
+#     - name: "reboot: Reboot"  # noqa 305
+#       shell: "{{ lp_reboot_command }}"
+#       async: 1
+#       poll: 0
+#     - name: "reboot: Wait for connection"
+#       wait_for_connection:
+#         connect_timeout: "{{ lp_reboot_wait_connect_timeout }}"
+#         sleep: "{{ lp_reboot_wait_sleep }}"
+#         delay: "{{ lp_reboot_wait_delay }}"
+#         timeout: "{{ lp_reboot_wait_timeout }}"
+#   when: (reboot_required|default(false) and
+#         (not lp_reboot_required_ignore)) or lp_reboot_force
 
 # EOF
 ...
