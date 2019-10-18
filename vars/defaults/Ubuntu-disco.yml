@@ -9,7 +9,6 @@
 #      - { key: "HashKnownHosts", val: "yes" }
 #      - { key: "GSSAPIAuthentication", val: "yes" }
 
-lp_dhclient: "/usr/sbin/dhclient"
 lp_speechd_service: "speech-dispatcher"
 
 lp_autofs_service: "autofs"
@@ -68,7 +67,7 @@ lp_wpasupplicant_packages:
   - wpasupplicant
 lp_wpasupplicant_conf_ctrl_interface: "/run/wpa_supplicant"
 # lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
-lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
+# lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
 
 lp_logrotate_packages:
   - logrotate
@@ -161,6 +160,9 @@ lp_apparmor_enforce: []
 
 lp_debsums_packages:
   - debsums
+
+# userland paths
+# lp_dhclient: "/sbin/dhclient"
 
 # EOF
 ...

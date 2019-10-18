@@ -15,8 +15,6 @@
 #      - { key: "SendEnv", val: "LC_IDENTIFICATION LC_ALL LANGUAGE" }
 #      - { key: "SendEnv", val: "XMODIFIERS" }
 
-lp_dhclient: "/sbin/dhclient"
-
 lp_autofs_service: "autofs"
 lp_timesyncd_service: "systemd-timesyncd.service"
 lp_postfix_service: "postfix"
@@ -52,7 +50,7 @@ lp_wpasupplicant_packages:
   - wpa_supplicant
 lp_wpasupplicant_conf_ctrl_interface: "/run/wpa_supplicant"
 # lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
-lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
+# lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
 
 lp_logrotate_packages:
   - logrotate
@@ -76,6 +74,9 @@ lp_apparmor_profile_dir: "/etc/apparmor.d"
 lp_apparmor_disable: []
 lp_apparmor_complain: []
 lp_apparmor_enforce: []
+
+# userland paths
+# lp_dhclient: "/sbin/dhclient"
 
 # EOF
 ...
