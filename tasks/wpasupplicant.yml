@@ -16,8 +16,6 @@
       [{{ lp_wpasupplicant_conf_ctrl_interface }}]
       lp_wpasupplicant_conf_global
       {{ lp_wpasupplicant_conf_global|to_yaml }}
-      lp_wpasupplicant_conf
-      {{ lp_wpasupplicant_conf|to_yaml }}
       lp_wpa_action_script [{{ lp_wpa_action_script }}]
       lp_wpa_action_script_dir [{{ lp_wpa_action_script_dir }}]
       lp_wpa_action_script_file [{{ lp_wpa_action_script_file }}]
@@ -29,6 +27,11 @@
       lp_wpa_action_script_options_connect [{{ lp_wpa_action_script_options_connect }}]
       lp_wpa_action_script_options_disconnect [{{ lp_wpa_action_script_options_disconnect }}]
       lp_wpa_action_script_logfile [{{ lp_wpa_action_script_logfile }}]
+
+      {% if lp_wpasupplicant_debug_classified|bool %}
+      lp_wpasupplicant_conf
+      {{ lp_wpasupplicant_conf|to_yaml }}
+      {% endif %}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_wpasupplicant_debug|bool
@@ -53,11 +56,12 @@
   register: lp_wpasupplicant_conf_changes
   notify: reconfigure wpa_supplicant
   loop: "{{ lp_wpasupplicant_conf }}"
+  no_log: "{{ not lp_wpasupplicant_debug_classified }}"
   tags: lp_wpasupplicant_conf
 
 - name: "wpasupplicant: Debug: registered to lp_wpasupplicant_conf_changes"
   debug: msg="{{ lp_wpasupplicant_conf_changes }}"
-  when: lp_wpasupplicant_debug|bool
+  when: lp_wpasupplicant_debug_classified|bool
 
 # - name: "wpasupplicant: Debug: wpa_cli reconfigure commands"
 #  debug:
