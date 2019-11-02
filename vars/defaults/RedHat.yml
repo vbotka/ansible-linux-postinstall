@@ -71,9 +71,6 @@ lp_xen_packages: []
 lp_apparmor: false
 lp_apparmor_packages: []
 lp_apparmor_profile_dir: "/etc/apparmor.d"
-lp_apparmor_disable: []
-lp_apparmor_complain: []
-lp_apparmor_enforce: []
 
 # userland paths
 # lp_dhclient: "/sbin/dhclient"

@@ -147,16 +147,12 @@ lp_netplan_mode: "0644"
 # https://bugs.launchpad.net/netplan/+bug/1735288
 # status: New → Triaged/Wishlist
 
-lp_apparmor: true
 lp_apparmor_packages:
   - apparmor
   - apparmor-utils
   - snapd
   - jq
 lp_apparmor_profile_dir: "/etc/apparmor.d"
-lp_apparmor_disable: []
-lp_apparmor_complain: []
-lp_apparmor_enforce: []
 
 lp_debsums_packages:
   - debsums

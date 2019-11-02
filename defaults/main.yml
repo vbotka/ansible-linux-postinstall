@@ -196,6 +196,11 @@ lp_netplan_version: "2"
 lp_netplan_renderer: "NetworkManager"
 lp_netplan_conf: []
 
+lp_apparmor: true
+lp_apparmor_disable: []
+lp_apparmor_complain: []
+lp_apparmor_enforce: []
+
 lp_swap: false
 lp_swap_enable: false
 
