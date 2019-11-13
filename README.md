@@ -132,6 +132,7 @@ See [service.yml](tasks/service.yml) for details.
 1. Configure users, sudoers and persistent network interfaces
 
 ```
+ansible-playbook linux-postinstall.yml -t lp_vars
 ansible-playbook linux-postinstall.yml -t lp_hostname                                              
 ansible-playbook linux-postinstall.yml -t lp_users
 ansible-playbook linux-postinstall.yml -t lp_sudoers
