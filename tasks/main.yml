@@ -99,8 +99,8 @@
   tags: lp_authorized_keys
 
 - import_tasks: aliases.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" ) and lp_aliases
+  when: ((ansible_os_family == "RedHat" ) or
+        (ansible_os_family == "Debian" )) and lp_aliases
   tags: lp_aliases
 
 - import_tasks: pm-utils.yml
