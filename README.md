@@ -73,11 +73,15 @@ ansible_perl_interpreter=/usr/bin/perl
 
 ## Best practice
 
-Perform syntax check of the playbook
+Check syntax of the playbook
 ```
 # ansible-playbook linux-postinstall.yml --syntax-check
 ```
-Run the playbook in in check mode first
+Review variables. Optionaly detect and store flavors
+```
+# ansible-playbook linux-postinstall.yml -t lp_vars
+```
+Run the playbook in check mode
 ```
 # ansible-playbook linux-postinstall.yml --check
 ```
@@ -128,6 +132,7 @@ See [service.yml](tasks/service.yml) for details.
 1. Configure users, sudoers and persistent network interfaces
 
 ```
+ansible-playbook linux-postinstall.yml -t lp_vars
 ansible-playbook linux-postinstall.yml -t lp_hostname                                              
 ansible-playbook linux-postinstall.yml -t lp_users
 ansible-playbook linux-postinstall.yml -t lp_sudoers
