@@ -19,7 +19,7 @@
   delay: "{{ lp_install_delay }}"
   when:
     - ansible_os_family == "Debian"
-    - lp_packages_autoremove
+    - lp_packages_autoremove|bool
 
 # EOF
 ...

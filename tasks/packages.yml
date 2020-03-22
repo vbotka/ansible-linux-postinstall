@@ -4,16 +4,16 @@
 - name: "packages: Debug"
   vars:
     msg: |
-      ansible_os_family [ {{ ansible_os_family }} ]
-      lp_packages_autoremove [ {{ lp_packages_autoremove }} ]
+      ansible_os_family [{{ ansible_os_family }}]
+      lp_packages_autoremove [{{ lp_packages_autoremove }}]
       lp_packages_selections_preinstall
-      {{ lp_packages_selections_preinstall | to_nice_yaml }}
+      {{ lp_packages_selections_preinstall|to_nice_yaml }}
       lp_packages_install
-      {{ lp_packages_install | to_nice_yaml }}
+      {{ lp_packages_install|to_nice_yaml }}
       lp_packages_remove
-      {{ lp_packages_remove | to_nice_yaml }}
+      {{ lp_packages_remove|to_nice_yaml }}
       lp_packages_selections_postinstall
-      {{ lp_packages_selections_postinstall | to_nice_yaml }}
+      {{ lp_packages_selections_postinstall|to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool

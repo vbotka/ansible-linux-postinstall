@@ -9,7 +9,7 @@
 - name: "autofs: Configure {{ lp_autofs_conf_file }}"
   lineinfile:
     dest: "{{ lp_autofs_conf_file }}"
-    regexp: "^{{ item.key }}"
+    regexp: "^{{ item.key }}\\s*=\\s*(.*)$"
     line: "{{ item.key }} = {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_autofs_conf }}"
@@ -18,8 +18,8 @@
 - name: "autofs: Configure {{ lp_autofs_master_conf_file }}"
   lineinfile:
     dest: "{{ lp_autofs_master_conf_file }}"
-    regexp: "^{{ item.key }}"
-    line: "{{ item.key }}{{ item.value }}"
+    regexp: "^{{ item.key }}\\s*(.*)$"
+    line: "{{ item.key }} {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_autofs_master_conf }}"
   notify: reload autofs
@@ -27,8 +27,8 @@
 - name: "autofs: Configure {{ lp_autofs_misc_conf_file }}"
   lineinfile:
     dest: "{{ lp_autofs_misc_conf_file }}"
-    regexp: "^{{ item.key }}"
-    line: "{{ item.key }}{{ item.value }}"
+    regexp: "^{{ item.key }}\\s*(.*)$"
+    line: "{{ item.key }} {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_autofs_misc_conf }}"
   notify: reload autofs

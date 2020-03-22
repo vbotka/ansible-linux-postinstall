@@ -9,14 +9,14 @@
 
 - name: "pm_utils: Configure /etc/pm/sleep.d"
   template:
-    src: "pm-sleepd.j2"
+    src: pm-sleepd.j2
     dest: "/etc/pm/sleep.d/{{ item.value.file }}"
-    owner: "root"
-    group: "root"
+    owner: root
+    group: root
     mode: "0755"
     backup: "{{ lp_backup_conf }}"
-  with_dict: "{{ lp_pm_sleepd | default({}) }}"
-  when: item.value > 0
+  with_dict: "{{ lp_pm_sleepd|default({}) }}"
+  when: item.value.file|length > 0
 
 # EOF
 ...

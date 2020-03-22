@@ -4,7 +4,7 @@
 - name: "lid: Configure {{ lp_lid_logind_conf }}"
   lineinfile:
     dest: "{{ lp_lid_logind_conf }}"
-    regexp: "^{{ item.var }}"
+    regexp: "^\\s*{{ item.var }}\\s*=\\s*(.*)$"
     line: "{{ item.var }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_lid_logind_conf_vars }}"
@@ -13,7 +13,7 @@
 - name: "lid: Configure {{ lp_lid_upower_conf }}"
   lineinfile:
     dest: "{{ lp_lid_upower_conf }}"
-    regexp: "^{{ item.var }}"
+    regexp: "^\\s*{{ item.var }}\\s*=\\s*(.*)$"
     line: "{{ item.var }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_lid_upower_conf_vars }}"

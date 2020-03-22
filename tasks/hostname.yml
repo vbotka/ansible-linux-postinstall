@@ -11,10 +11,10 @@
 
 - name: "hostname: Configure hostname in /etc/hostname"
   template:
-    src: "hostname.j2"
-    dest: "/etc/hostname"
-    owner: "root"
-    group: "root"
+    src: hostname.j2
+    dest: /etc/hostname
+    owner: root
+    group: root
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
   when:

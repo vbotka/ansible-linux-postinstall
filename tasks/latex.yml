@@ -9,7 +9,7 @@
 - name: "latex: Create directory /usr/share/texmf/tex/latex"
   file:
     state: directory
-    path: "/usr/share/texmf/tex/latex/"
+    path: /usr/share/texmf/tex/latex
   tags: lp_latex_dir
 
 - name: "latex: Create directories for macros"

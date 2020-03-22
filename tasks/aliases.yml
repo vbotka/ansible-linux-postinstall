@@ -2,10 +2,10 @@
 
 - name: "aliases: Configure /etc/aliases"
   template:
-    src: "aliases.j2"
-    dest: "/etc/aliases"
-    owner: "root"
-    group: "root"
+    src: aliases.j2
+    dest: /etc/aliases
+    owner: root
+    group: root
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
   notify: newaliases

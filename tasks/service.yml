@@ -33,7 +33,7 @@
   when: lp_service_debug|bool
   tags: lp_service_debug
 
-- name: "service: Automaticaly enable or disable services managed by this role."
+- name: "service: Automaticaly enable or disable services managed by this role"
   service:
     name: "{{ lookup('vars', 'lp_' + item + '_service') }}"
     enabled: "{{ lookup('vars', 'lp_' + item + '_enable') }}"
@@ -41,16 +41,16 @@
   when: lookup('vars', 'lp_' + item, default='false')
   tags: lp_service_auto
 
-- name: "service: General managent of services."
+- name: "service: General managent of services"
   service:
     name: "{{ item.name }}"
-    state: "{{ item.state | default(omit) }}"
-    enabled: "{{ item.enabled | default(omit) }}"
-    arguments: "{{ item.arguments | default(omit) }}"
-    pattern: "{{ item.pattern | default(omit) }}"
-    runlevel: "{{ item.runlevel | default(omit) }}"
-    sleep: "{{ item.sleep | default(omit) }}"
-    use: "{{ item.use | default('auto') }}"
+    state: "{{ item.state|default(omit) }}"
+    enabled: "{{ item.enabled|default(omit) }}"
+    arguments: "{{ item.arguments|default(omit) }}"
+    pattern: "{{ item.pattern|default(omit) }}"
+    runlevel: "{{ item.runlevel|default(omit) }}"
+    sleep: "{{ item.sleep|default(omit) }}"
+    use: "{{ item.use|default('omit') }}"
   loop: "{{ lp_service }}"
   when: (item.state is defined) or
         (item.enabled is defined)

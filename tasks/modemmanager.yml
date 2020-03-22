@@ -3,22 +3,22 @@
 
 - name: "modem_manager: Configure /etc/init/modemmanager.override"
   template:
-    src: "modem-manager-override.j2"
-    dest: "/etc/init/modemmanager.override"
-    owner: "root"
-    group: "root"
+    src: modem-manager-override.j2
+    dest: /etc/init/modemmanager.override
+    owner: root
+    group: root
     mode: "0644"
 
 - name: "modem_manager: Stop and disable ModemManager"
   service:
-    name: "ModemManager"
+    name: ModemManager
     state: stopped
     enabled: false
   when: not lp_modemmanager_enable|bool
 
 - name: "modem_manager: Start and enable ModemManager"
   service:
-    name: "ModemManager"
+    name: ModemManager
     state: started
     enabled: true
   when: lp_modemmanager_enable|bool

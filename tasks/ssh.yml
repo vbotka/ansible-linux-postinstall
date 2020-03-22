@@ -4,17 +4,16 @@
 - name: "ssh: Debug"
   vars:
     msg: |
-      lp_ssh_config [
-      {{ lp_ssh_config | to_yaml }}
-      ]
+      lp_ssh_config
+      {{ lp_ssh_config|to_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
 
 - name: "ssh: Configure /etc/ssh/ssh_config"
   template:
-    src: "ssh_config.j2"
-    dest: "/etc/ssh/ssh_config"
+    src: ssh_config.j2
+    dest: /etc/ssh/ssh_config
     backup: "{{ lp_backup_conf }}"
 
 # EOF

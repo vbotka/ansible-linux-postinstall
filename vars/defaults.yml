@@ -4,7 +4,7 @@
 # linux-postinstall vars
 
 # apparmor
-# lp_apparmor: "yes"
+# lp_apparmor: true
 # lp_apparmor_disable:
 #  - firefox
 #  - rsyslogd

@@ -10,7 +10,7 @@
   lineinfile:
     state: absent
     dest: "{{ lp_smart_conf_file }}"
-    regexp: "^DEVICESCAN"
+    regexp: "^\\s*DEVICESCAN\\s*(.*)$"
     owner: "{{ lp_smart_conf_owner }}"
     group: "{{ lp_smart_conf_group }}"
     mode: "{{ lp_smart_conf_mode }}"

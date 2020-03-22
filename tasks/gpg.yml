@@ -7,7 +7,7 @@
 
 - name: "gpg: Configure ~/.gnupg/gpg.conf"
   template:
-    src: "gpg.conf.j2"
+    src: gpg.conf.j2
     dest: "/home/{{ item.owner }}/.gnupg/gpg.conf"
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"

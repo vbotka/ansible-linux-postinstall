@@ -21,8 +21,8 @@
 
 # linux-postinstall packages
 # lp_packages_selections_preinstall:
-#  - { name: 'ca-certificates', selection: 'hold' }
-# lp_packages_autoremove: "yes"
+#  - {name: ca-certificates, selection: hold}
+# lp_packages_autoremove: true
 # lp_packages_install:
 #  - ansible
 #  - google-cloud-sdk
@@ -32,10 +32,10 @@
 
 # linux-postinstall modules
 # lp_modules:
-#  - {name: 'br_netfilter', params: ''}
-#  - {name: 'vboxdrv', params: '', state: 'absent'}
+#  - {name: br_netfilter, params: ''}
+#  - {name: vboxdrv, params: '', state: absent}
 # lp_modules_options:
-#     - module: 'btusb'
+#     - module: btusb
 #       options:
 #         - 'options btusb enable_autosuspend=0'
 
@@ -43,42 +43,42 @@
 # https://help.ubuntu.com/community/Xen
 # http://askubuntu.com/questions/243499/how-do-i-set-up-a-xen-bridge
 # lp_sysctl_vars:
-#  - { var: 'net.bridge.bridge-nf-call-ip6tables', value: '1' }
-#  - { var: 'net.bridge.bridge-nf-call-iptables', value: '1' }
-#  - { var: 'net.bridge.bridge-nf-call-arptables', value: '1' }
-#  - { var: 'net.ipv4.ip_forward', value: '1' }
-#  - { var: 'net.ipv4.conf.eth0.proxy_arp', value: '1' }
+#  - {var: net.bridge.bridge-nf-call-ip6tables, value: '1' }
+#  - {var: net.bridge.bridge-nf-call-iptables, value: '1' }
+#  - {var: net.bridge.bridge-nf-call-arptables, value: '1' }
+#  - {var: net.ipv4.ip_forward, value: '1' }
+#  - {var: net.ipv4.conf.eth0.proxy_arp, value: '1' }
 
 # linux-postinstall udev
 #
-# lp_udev_rules_template: 'udev-rules.j2'
+# lp_udev_rules_template: udev-rules.j2
 # lp_udev_rules:
 #   70-persistent-net.rules:
-#     - - { key: 'NAME', value: "eth0", operator: '==' }
-#       - { key: 'SUBSYSTEM', value: 'net', operator: '==' }
-#       - { key: 'ACTION', value: 'add', operator: '==' }
-#       - { key: 'DRIVERS', value: '?*', operator: '==' }
-#       - { key: 'ATTR{address}', value: '80:3f:5d:14:b1:d3', operator: '==' }
-#       - { key: 'ATTR{type}', value: '1', operator: '==' }
+#     - - {key: 'NAME', value: "eth0", operator: '=='}
+#       - {key: 'SUBSYSTEM', value: 'net', operator: '=='}
+#       - {key: 'ACTION', value: 'add', operator: '=='}
+#       - {key: 'DRIVERS', value: '?*', operator: '=='}
+#       - {key: 'ATTR{address}', value: '80:3f:5d:14:b1:d3', operator: '=='}
+#       - {key: 'ATTR{type}', value: '1', operator: '=='}
 
 # lp_udev_hci_name_rules:
-#  - { product: "Broadcom Bluetooth Device", name: "hci0"}
-#  - { product: "CSR8510 A10", name: "hci1" }
+#  - {product: "Broadcom Bluetooth Device", name: "hci0"}
+#  - {product: "CSR8510 A10", name: "hci1"}
 # For MAC of BT devices "phys" is used instead of "address".
 # There is no phys/address of the controller available in udev
-#  - { mac: "<MAC-ADDRESS>", name: "hci0" }
-#  - { mac: "<MAC-ADDRESS>", name: "hci1" }
+#  - {mac: "<MAC-ADDRESS>", name: "hci0"}
+#  - {mac: "<MAC-ADDRESS>", name: "hci1"}
 # lp_udev_hci_run_rules:
-#  - { product: "Broadcom Bluetooth Device",
-#      run: "/bin/hciconfig hci0 up auth encrypt" }
-#  - { product: "CSR8510 A10",
-#      run: "/bin/hciconfig hci1 up auth encrypt" }
+#  - {product: "Broadcom Bluetooth Device",
+#     run: "/bin/hciconfig hci0 up auth encrypt"}
+#  - {product: "CSR8510 A10",
+#     run: "/bin/hciconfig hci1 up auth encrypt"}
 
 # lp_users:
-#  - { name: "admin",
-#      shell: "/bin/bash",
-#      password: "",
-#      update_password: "on_create" }
+#  - {name: "admin",
+#     shell: "/bin/bash",
+#     password: "",
+#     update_password: "on_create"}
 # SEE: How do I generate crypted passwords for the user module?
 # http://docs.ansible.com/ansible/
 #        faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
@@ -86,18 +86,18 @@
 # SALT can be created with: pwgen -s 16 1
 #
 # lp_users_groups:
-#  - { name: "admin", groups: "adm" }
+#  - {name: "admin", groups: "adm"}
 # groups must not comprise primary group
 
 # lp_aliases:
-# - { alias: "root", users: [ "admin", "user1" ] }
-# - { alias: "admin", users: [ "user1", ] }
+# - {alias: "root", users: ["admin", "user1"]}
+# - {alias: "admin", users: ["user1",]}
 
 # Copy authorized keys
 # lp_authorized_keys:
-#  - { user: "admin",
-#      key: "{{ lookup('file',
-#      '~/.ansible/copy/ssh-pub-keys/admin/id_rsa.pub') }}" }
+#  - {user: "admin",
+#     key: "{{ lookup('file',
+#     '~/.ansible/copy/ssh-pub-keys/admin/id_rsa.pub') }}" }
 
 # Configure /etc/hostname and /etc/hosts
 # lp_hostname: "host"
@@ -107,34 +107,34 @@
 #  - { ip: "10.1.0.10", fqdn: "srv.example.com", hostname: "srv" }
 
 # lp_grub_default:
-#  - { var: "GRUB_SAVEDEFAULT", value: "false" }
-#  - { var: "GRUB_DEFAULT", value: "0" }
-#  - { var: "GRUB_TIMEOUT", value: "10" }
-#  - { var: "GRUB_HIDDEN_TIMEOUT", value: "0" }
-#  - { var: "GRUB_HIDDEN_TIMEOUT_QUIET", value: "true" }
-#  - { var: "GRUB_DISTRIBUTOR",
-#            value: "`lsb_release -i -s 2> /dev/null || echo Debian`" }
-#  - { var: "GRUB_CMDLINE_LINUX_DEFAULT", value: "\"quiet splash\"" }
-#  - { var: "GRUB_CMDLINE_LINUX", value: "\"\"" }
+#  - {var: "GRUB_SAVEDEFAULT", value: "false"}
+#  - {var: "GRUB_DEFAULT", value: "0"}
+#  - {var: "GRUB_TIMEOUT", value: "10"}
+#  - {var: "GRUB_HIDDEN_TIMEOUT", value: "0"}
+#  - {var: "GRUB_HIDDEN_TIMEOUT_QUIET", value: "true"}
+#  - {var: "GRUB_DISTRIBUTOR",
+#            value: "`lsb_release -i -s 2> /dev/null || echo Debian`"}
+#  - {var: "GRUB_CMDLINE_LINUX_DEFAULT", value: "\"quiet splash\""}
+#  - {var: "GRUB_CMDLINE_LINUX", value: "\"\""}
 
 # Configure XEN
-# lp_xen: "yes"
-# lp_xen_version: "4.8"
+# lp_xen: true
+# lp_xen_version: "4.9"
 # lp_xen_dom0_mem: "4096M"
 # lp_xen_dom0_mem_max: "4096M"
 # lp_xen_global:
-#  - { var: "autoballoon", value: "\"0\"" }
+#  - {var: "autoballoon", value: "\"0\""}
 
 # LaTeX
-# lp_latex: "yes"
+# lp_latex: true
 # lp_latex_macros:
-#  - {  url: "http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins",
-#      dest: "/usr/share/texmf/tex/latex/labels" }
-#  - {  url: "http://mirrors.ctan.org/macros/latex/contrib/labels/labels.dtx",
-#      dest: "/usr/share/texmf/tex/latex/labels" }
+#  - {url: "http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins",
+#     dest: "/usr/share/texmf/tex/latex/labels"}
+#  - {url: "http://mirrors.ctan.org/macros/latex/contrib/labels/labels.dtx",
+#     dest: "/usr/share/texmf/tex/latex/labels"}
 
 # Configure /etc/pm
-# lp_pm: "yes"
+# lp_pm: true
 # lp_pm_sleepd:
 #  55_bluetooth:
 #    file: "55_bluetooth"
@@ -150,7 +150,7 @@
 #      - 'hciconfig hci0 encrypt'
 
 # Configure /etc/ssh/sshd_config
-# lp_sshd: "yes"
+# lp_sshd: true
 # lp_sshd_PubkeyAuthentication: "yes"
 # lp_sshd_PasswordAuthentication: "no"
 # lp_sshd_ChallengeResponseAuthentication: "no"
@@ -159,39 +159,39 @@
 # lp_sshd_AllowTcpForwarding: "yes"
 # lp_sshd_X11Forwarding: "no"
 # lp_sshd_config:
-#  - { key: PasswordAuthentication,
-#      value: "{{ lp_sshd_PasswordAuthentication }}" }
-#  - { key: PubkeyAuthentication, value: "{{ lp_sshd_PubkeyAuthentication }}" }
-#  - { key: ChallengeResponseAuthentication,
-#      value: "{{ lp_sshd_ChallengeResponseAuthentication }}" }
-#  - { key: PermitRootLogin, value: "{{ lp_sshd_PermitRootLogin }}" }
-#  - { key: PermitTunnel, value: "{{ lp_sshd_PermitTunnel }}" }
-#  - { key: AllowTcpForwarding, value: "{{ lp_sshd_AllowTcpForwarding }}" }
-#  - { key: X11Forwarding, value: "{{ lp_sshd_X11Forwarding }}" }
+#  - {key: PasswordAuthentication,
+#     value: "{{ lp_sshd_PasswordAuthentication }}"}
+#  - {key: PubkeyAuthentication, value: "{{ lp_sshd_PubkeyAuthentication }}"}
+#  - {key: ChallengeResponseAuthentication,
+#     value: "{{ lp_sshd_ChallengeResponseAuthentication }}"}
+#  - {key: PermitRootLogin, value: "{{ lp_sshd_PermitRootLogin }}"}
+#  - {key: PermitTunnel, value: "{{ lp_sshd_PermitTunnel }}"}
+#  - {key: AllowTcpForwarding, value: "{{ lp_sshd_AllowTcpForwarding }}"}
+#  - {key: X11Forwarding, value: "{{ lp_sshd_X11Forwarding }}"}
 
 # Configure /etc/bluetooth/main.conf
-# lp_bluetooth: "yes"
+# lp_bluetooth: true
 # lp_bluetooth_ControllerMode: "bredr"
 # lp_bluetooth_ControllerMode: "dual"
 # lp_bluetooth_main_conf:
-#  - { key: ControllerMode, value: "{{ lp_bluetooth_ControllerMode }}" }
+#  - {key: ControllerMode, value: "{{ lp_bluetooth_ControllerMode }}"}
 
 # Configure xorg
 # lp_xorg_conf:
 #  - file: 11-Logitech-MX-Revolution-Mouse.conf
 #    section:
-#      - { param: Section, val1: "\"InputClass\"", val2: "" }
-#      - { param: Identifier, val1: "\"Logitech MX Revolution Mouse\"",
-#          val2: "" }
-#      - { param: MatchProduct, val1: "\"MX Rev\"", val2: "" }
-#      - { param: MatchIsPointer, val1: "\"on\"", val2: "" }
-#      - { param: Driver, val1: "\"evdev\"", val2: "" }
-#      - { param: Option, val1: "\"Buttonmapping\"",
-#          val2: "\"1 8 3 4 5 6 7 2 9 10 11 12 13 14 15 16 17 18 19 20\"" }
+#      - {param: Section, val1: "\"InputClass\"", val2: ""}
+#      - {param: Identifier, val1: "\"Logitech MX Revolution Mouse\"",
+#         val2: ""}
+#      - {param: MatchProduct, val1: "\"MX Rev\"", val2: ""}
+#      - {param: MatchIsPointer, val1: "\"on\"", val2: ""}
+#      - {param: Driver, val1: "\"evdev\"", val2: ""}
+#      - {param: Option, val1: "\"Buttonmapping\"",
+#         val2: "\"1 8 3 4 5 6 7 2 9 10 11 12 13 14 15 16 17 18 19 20\""}
 
 # Configure cron
 # lp_cron_var:
-#  - { user: "vlado", name: "MAILTO", value: "admin@example.com" }
+#  - {user: "vlado", name: "MAILTO", value: "admin@example.com"}
 # lp_cron_tab:
 #  - state: "absent"
 #    user: "vlado"
@@ -204,24 +204,24 @@
 #    command: "/usr/bin/somedirectory/somecommand"
 
 # Configure ModemManager
-# lp_modemmanager: "no"
+# lp_modemmanager: false
 # lp_modemmanager_override: "manual"
 
 # configure gpsd
-# lp_gpsd: "yes"
+# lp_gpsd: true
 # lp_gpsd_bt_rfcomm:
-#  - { rfcomm: "0", bind: "yes", device: "00:1C:D9:XX:XX:XX",
-#      channel: "1", comment: "BT GPS" }
+#  - {rfcomm: "0", bind: "yes", device: "00:1C:D9:XX:XX:XX",
+#     channel: "1", comment: "BT GPS"}
 # NOTE: Disable ModemManager to interfere with rfcommX
 
 # configure postfix
-# lp_postfix: "yes"
+# lp_postfix: true
 # lp_postfix_inet_protocols: "ipv4"
 # lp_postfix_main_conf:
-#  - { key: inet_protocols, value: "{{ lp_postfix_inet_protocols }}" }
+#  - {key: inet_protocols, value: "{{ lp_postfix_inet_protocols }}"}
 
 # smart
-# lp_smart: "yes"
+# lp_smart: true
 # lp_smart_service_name: "smartmontools"
 # lp_smart_conf_file: "/etc/smartd.conf"
 # lp_smart_conf_owner: "root"
@@ -244,18 +244,18 @@
 #        line: "/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03)
 #                        -m admin" }
 
-# lp_virtualbox: "yes"
+# lp_virtualbox: true
 
-# lp_lid: "yes"
+# lp_lid: true
 # lp_lid_logind_conf: "/etc/systemd/logind.conf"
 # lp_lid_upower_conf: "/etc/UPower/UPower.conf"
 # lp_lid_logind_conf_vars:
-#  - { var: 'HandleLidSwitch', value: 'ignore' }
-#  - { var: 'LidSwitchIgnoreInhibited', value: 'no' }
+#  - {var: 'HandleLidSwitch', value: 'ignore'}
+#  - {var: 'LidSwitchIgnoreInhibited', value: 'no'}
 # lp_lid_upower_conf_vars:
-#  - { var: 'IgnoreLid', value: 'true' }
+#  - {var: 'IgnoreLid', value: 'true'}
 
-# lp_speechd: "yes"
+# lp_speechd: true
 
 # lp_sudoers_owner: "root"
 # lp_sudoers_group: "root"
@@ -264,12 +264,12 @@
 # https://bugzilla.redhat.com/show_bug.cgi?id=1020147
 # https://www.shell-tips.com/2014/09/08/sudo-sorry-you-must-have-a-tty-to-run-sudo/
 # lp_sudoers_conf:
-#  - { line: "#includedir /etc/sudoers.d", state: "present" }
-#  - { line: "Defaults    requiretty", state: "absent" }
+#  - {line: "#includedir /etc/sudoers.d", state: "present"}
+#  - {line: "Defaults    requiretty", state: "absent"}
 # lp_sudoers_01:
 #   - "admin ALL=(ALL) NOPASSWD: ALL"
 
-# lp_netplan: "yes"
+# lp_netplan: true
 # lp_netplan_renderer: "networkd"
 # lp_netplan_conf:
 #  - file: "10-ethernet.yaml"
@@ -336,17 +336,17 @@
 #      vlan15:
 #        id: 15
 #        link: eth0
-#        addresses: [ "10.3.99.5/24" ]
+#        addresses: ["10.3.99.5/24"]
 #      vlan10:
 #        id: 10
 #        link: eth0
-#        addresses: [ "10.3.98.5/24" ]
+#        addresses: ["10.3.98.5/24"]
 #        nameservers:
-#          addresses: [ "127.0.0.1" ]
-#          search: [ domain1.example.com, domain2.example.com ]
+#          addresses: ["127.0.0.1"]
+#          search: [domain1.example.com, domain2.example.com]
 
 # swap
-# lp_swap: "yes"
+# lp_swap: true
 # lp_swap_file: "/usr/swap0"
 # lp_swap_size: 4096
 # lp_swap_size: 2048
@@ -356,7 +356,7 @@
 # lp_swap_stsize: "2147483648"
 # lp_swap_stsize: "1610612736"
 
-# lp_timesyncd: "yes"
+# lp_timesyncd: true
 # lp_timesyncd_NTP: "0.ubuntu.pool.ntp.org,
 #                    1.ubuntu.pool.ntp.org,
 #                    2.ubuntu.pool.ntp.org,
@@ -371,23 +371,23 @@
 # lp_ssh_config:
 #  - host: "*"
 #    conf:
-#      - { key: "key1", value: "value1" }
-#      - { key: "key2", value: "value2" }
+#      - {key: "key1", value: "value1"}
+#      - {key: "key2", value: "value2"}
 
 # lp_wpasupplicant_conf_global:
-#  - { key: "ctrl_interface", value: "/run/wpa_supplicant" }
-#  - { key: "ctrl_interface_group", value: "adm" }
-#  - { key: "fast_reauth", value: "0" }
-#  - { key: "update_config", value: "1" }
+#  - {key: "ctrl_interface", value: "/run/wpa_supplicant"}
+#  - {key: "ctrl_interface_group", value: "adm"}
+#  - {key: "fast_reauth", value: "0"}
+#  - {key: "update_config", value: "1"}
 # lp_wpasupplicant_conf:
 #  - dev: "wlan1"
 #    network:
 #      - conf:
-#        - { key: "ssid", value: "\"MYSSID01\"" }
-#        - { key: "psk", value: "\"my-wifi-password\"" }
+#        - {key: "ssid", value: "\"MYSSID01\""}
+#        - {key: "psk", value: "\"my-wifi-password\""}
 #      - conf:
-#        - { key: "ssid", value: "\"MYSSID02\"" }
-#        - { key: "psk", value: "\"my-wifi-password\"" }
+#        - {key: "ssid", value: "\"MYSSID02\""}
+#        - {key: "psk", value: "\"my-wifi-password\""}
 
 # lp_logrotate_confd:
 #  - path: "ansible"
@@ -401,7 +401,7 @@
 #      }
 
 # lp_iptables_INPUT_if:
-#  - { if: "xenbr0", proto: "tcp", port: "22", policy: "ACCEPT" }
+#  - {if: "xenbr0", proto: "tcp", port: "22", policy: "ACCEPT"}
 
 # lp_libvirt: true
 # lp_libvirt_guests_enable: true
@@ -413,11 +413,11 @@
 #   libvirt-admin.conf: []
 #   libvirt.conf: []
 #   libvirtd.conf:
-#     - [ "unix_sock_group", "\"libvirt\"" ]
-#     - [ "unix_sock_ro_perms", "\"0777\"" ]
-#     - [ "unix_sock_rw_perms", "\"0770\"" ]
-#     - [ "auth_unix_ro", "\"none\"" ]
-#     - [ "auth_unix_rw", "\"none\"" ]
+#     - ["unix_sock_group", "\"libvirt\""]
+#     - ["unix_sock_ro_perms", "\"0777\""]
+#     - ["unix_sock_rw_perms", "\"0770\""]
+#     - ["auth_unix_ro", "\"none\""]
+#     - ["auth_unix_rw", "\"none\""]
 #   libxl.conf: []
 #   libxl-lockd.conf: []
 #   lxc.conf: []
@@ -428,7 +428,7 @@
 #   virt-login-shell.conf: []
 
 # lp_service:
-# - { name: apache2, state: stopped, enabled: no }
+# - {name: apache2, state: stopped, enabled: false}
 
 # lp_fstab_entries:
 #   - name: /windows

@@ -4,13 +4,13 @@
 - name: "modules: Debug"
   vars:
     msg: |
-      lp_modules_conf [ {{ lp_modules_conf }} ]
+      lp_modules_conf [{{ lp_modules_conf }}]
       lp_modules
       {{ lp_modules|to_yaml }}
-      lp_modules_options_path [ {{ lp_modules_options_path }} ]
+      lp_modules_options_path [ {{ lp_modules_options_path }}]
       lp_modules_options
       {{ lp_modules_options|to_nice_yaml }}
-      lp_modules_blacklist_path [ {{ lp_modules_blacklist_path }} ]
+      lp_modules_blacklist_path [{{ lp_modules_blacklist_path }}]
       lp_modules_blacklist
       {{ lp_modules_blacklist|to_nice_yaml }}
   debug:
@@ -21,14 +21,14 @@
   modprobe:
     name: "{{ item.name }}"
     params: "{{ item.params }}"
-    state: "{{ item.state | default('present') }}"
+    state: "{{ item.state|default('present') }}"
   loop: "{{ lp_modules }}"
 
 # Debian
 - name: "modules: Configure {{ lp_modules_conf }} in Debian"
   lineinfile:
     dest: "{{ lp_modules_conf }}"
-    regexp: "^{{ item.name }}"
+    regexp: "^\\s*{{ item.name }}\\s*(.*)$"
     line: "{{ item.name }} {{ item.params }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules }}"
@@ -40,7 +40,7 @@
 - name: "modules: Configure {{ lp_modules_conf }} in RedHat"
   lineinfile:
     dest: "{{ lp_modules_conf }}"
-    regexp: "^modprobe {{ item.name }}"
+    regexp: "^\\s*modprobe\\s+{{ item.name }}\\s*(.*)$"
     line: "modprobe {{ item.name }} {{ item.params }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules }}"

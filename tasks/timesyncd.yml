@@ -3,12 +3,12 @@
 - name: "timesyncd: Debug"
   vars:
     msg: |
-      lp_timesyncd [ {{ lp_timesyncd }} ]
-      lp_timesyncd_NTP [ {{ lp_timesyncd_NTP }} ]
-      lp_timesyncd_FallbackNTP [ {{ lp_timesyncd_FallbackNTP }} ]
-      lp_timesyncd_RootDistanceMaxSec [ {{ lp_timesyncd_RootDistanceMaxSec }} ]
-      lp_timesyncd_PollIntervalMinSec [ {{ lp_timesyncd_PollIntervalMinSec }} ]
-      lp_timesyncd_PollIntervalMaxSec [ {{ lp_timesyncd_PollIntervalMaxSec }} ]
+      lp_timesyncd [{{ lp_timesyncd }}]
+      lp_timesyncd_NTP [{{ lp_timesyncd_NTP }}]
+      lp_timesyncd_FallbackNTP [{{ lp_timesyncd_FallbackNTP }}]
+      lp_timesyncd_RootDistanceMaxSec [{{ lp_timesyncd_RootDistanceMaxSec }}]
+      lp_timesyncd_PollIntervalMinSec [{{ lp_timesyncd_PollIntervalMinSec }}]
+      lp_timesyncd_PollIntervalMaxSec [{{ lp_timesyncd_PollIntervalMaxSec }}]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
@@ -16,10 +16,10 @@
 
 - name: "timesyncd: Configure /etc/systemd/timesyncd.conf"
   template:
-    src: "timesyncd.conf.j2"
-    dest: "/etc/systemd/timesyncd.conf"
-    owner: "root"
-    group: "root"
+    src: timesyncd.conf.j2
+    dest: /etc/systemd/timesyncd.conf
+    owner: root
+    group: root
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
   notify: restart timesyncd

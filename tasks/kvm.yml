@@ -5,7 +5,7 @@
   vars:
     msg: |
       lp_kvm_packages
-      {{ lp_kvm_packages | to_nice_yaml }}
+      {{ lp_kvm_packages|to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool

@@ -15,17 +15,17 @@
 #      - { key: "SendEnv", val: "LC_IDENTIFICATION LC_ALL LANGUAGE" }
 #      - { key: "SendEnv", val: "XMODIFIERS" }
 
-lp_autofs_service: "autofs"
-lp_timesyncd_service: "systemd-timesyncd.service"
-lp_postfix_service: "postfix"
-lp_gpsd_service: "gpsd"
-lp_bluetooth_service: "bluetooth"
-lp_udev_service: "udev"
+lp_autofs_service: autofs
+lp_timesyncd_service: systemd-timesyncd.service
+lp_postfix_service: postfix
+lp_gpsd_service: gpsd
+lp_bluetooth_service: bluetooth
+lp_udev_service: udev
 
-lp_sshd_service: "sshd"
-lp_sshd_path: "/sbin/sshd"
+lp_sshd_service: sshd
+lp_sshd_path: /sbin/sshd
 
-lp_modules_conf: "/etc/rc.modules"
+lp_modules_conf: /etc/rc.modules
 
 lp_hosts_default:
   - ip: "127.0.0.1"
@@ -44,11 +44,11 @@ lp_nfsd_packages:
 lp_nfsd_services:
   - nfs
   - nfslock
-lp_nfsd_reload_service: "nfs"
+lp_nfsd_reload_service: nfs
 
 lp_wpasupplicant_packages:
   - wpa_supplicant
-lp_wpasupplicant_conf_ctrl_interface: "/run/wpa_supplicant"
+lp_wpasupplicant_conf_ctrl_interface: /run/wpa_supplicant
 # lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
 # lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
 
@@ -70,7 +70,7 @@ lp_xen_packages: []
 # apparmor not implemented
 lp_apparmor: false
 lp_apparmor_packages: []
-lp_apparmor_profile_dir: "/etc/apparmor.d"
+lp_apparmor_profile_dir: /etc/apparmor.d
 
 # userland paths
 # lp_dhclient: "/sbin/dhclient"

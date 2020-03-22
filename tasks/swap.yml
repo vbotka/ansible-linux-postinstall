@@ -3,11 +3,11 @@
 - name: "swap: Debug"
   vars:
     msg: |
-      lp_swap [ {{ lp_swap }} ]
-      lp_swap_enable [ {{ lp_swap_enable }} ]
-      lp_swap_file [ {{ lp_swap_file|default("NOT-DEFINED") }} ]
-      lp_swap_size [ {{ lp_swap_size|default("NOT-DEFINED") }} ]
-      lp_swap_stsize [ {{ lp_swap_stsize|default("NOT-DEFINED") }} ]
+      lp_swap [{{ lp_swap }}]
+      lp_swap_enable [{{ lp_swap_enable }}]
+      lp_swap_file [{{ lp_swap_file|default("UNDEFINED") }}]
+      lp_swap_size [{{ lp_swap_size|default("UNDEFINED") }}]
+      lp_swap_stsize [{{ lp_swap_stsize|default("UNDEFINED") }}]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
@@ -35,11 +35,11 @@
   mount:
     name: "none"
     src: "{{ lp_swap_file }}"
-    fstype: "swap"
-    opts: "sw"
+    fstype: swap
+    opts: sw
     passno: "0"
     dump: "0"
-    state: "present"
+    state: present
     backup: "{{ lp_backup_conf }}"
   when: lp_swap_enable|bool
   tags: lp_swap_fstab
@@ -48,11 +48,11 @@
   mount:
     name: "none"
     src: "{{ lp_swap_file }}"
-    fstype: "swap"
-    opts: "sw"
-    passno: "0"
-    dump: "0"
-    state: "absent"
+    fstype: swap
+    opts: sw
+    passno: 0
+    dump: 0
+    state: absent
     backup: "{{ lp_backup_conf }}"
   notify: remove swap file
   when:

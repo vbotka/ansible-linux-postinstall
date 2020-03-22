@@ -8,18 +8,18 @@
 
 - name: "gpsd: Add user gpsd to group dialout"
   user:
-    name: "gpsd"
-    groups: "dialout"
+    name: gpsd
+    groups: dialout
     append: true
   tags: lp_gpsd_group
 
 - name: "gpsd: Configure /etc/bluetooth/rfcomm.conf"
   blockinfile:
-    dest: "/etc/bluetooth/rfcomm.conf"
+    dest: /etc/bluetooth/rfcomm.conf
     marker: "# {mark} ANSIBLE MANAGED BLOCK rfcomm{{ item.rfcomm }}"
-    insertafter: "EOF"
-    owner: "root"
-    group: "root"
+    insertafter: EOF
+    owner: root
+    group: root
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
     block: |
@@ -35,10 +35,10 @@
 
 - name: "gpsd: Configure /etc/default/gpsd"
   template:
-    src: "gpsd.j2"
-    dest: "/etc/default/gpsd"
-    owner: "root"
-    group: "root"
+    src: gpsd.j2
+    dest: /etc/default/gpsd
+    owner: root
+    group: root
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
   notify: restart gpsd

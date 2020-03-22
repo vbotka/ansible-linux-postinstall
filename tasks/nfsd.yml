@@ -8,10 +8,10 @@
 
 - name: "nfsd: Configure exports"
   template:
-    src: "exports.j2"
-    dest: "/etc/exports"
-    owner: "root"
-    group: "root"
+    src: exports.j2
+    dest: /etc/exports
+    owner: root
+    group: root
     mode: "0644"
   notify: reload nfsd
   tags: lp_nfsd_exports
@@ -20,7 +20,7 @@
   systemd:
     name: "{{ item }}"
     enabled: true
-    state: "started"
+    state: started
   loop: "{{ lp_nfsd_services }}"
   when:
     - lp_nfsd_enable|bool
@@ -31,7 +31,7 @@
   systemd:
     name: "{{ item }}"
     enabled: false
-    state: "stopped"
+    state: stopped
   loop: "{{ lp_nfsd_services }}"
   when:
     - not lp_nfsd_enable|bool

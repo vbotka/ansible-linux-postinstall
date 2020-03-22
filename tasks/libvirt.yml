@@ -4,17 +4,17 @@
 - name: "libvirt Debug"
   vars:
     msg: |
-      lp_libvirt_guests_enable   [ {{ lp_libvirt_guests_enable }} ]
-      lp_libvirt_libvirtd_enable [ {{  lp_libvirt_libvirtd_enable }} ]
-      lp_libvirt_backup [ {{ lp_libvirt_backup }} ]
-      lp_libvirt_conf_owner [ {{ lp_libvirt_conf_owner }} ]
-      lp_libvirt_conf_group [ {{ lp_libvirt_conf_group }} ]
-      lp_libvirt_conf_mode [ {{ lp_libvirt_conf_mode }} ]
-      lp_libvirt_conf_dir [ {{ lp_libvirt_conf_dir }} ]
+      lp_libvirt_guests_enable   [{{ lp_libvirt_guests_enable }}]
+      lp_libvirt_libvirtd_enable [{{ lp_libvirt_libvirtd_enable }}]
+      lp_libvirt_backup [{{ lp_libvirt_backup }}]
+      lp_libvirt_conf_owner [{{ lp_libvirt_conf_owner }}]
+      lp_libvirt_conf_group [{{ lp_libvirt_conf_group }}]
+      lp_libvirt_conf_mode [{{ lp_libvirt_conf_mode }}]
+      lp_libvirt_conf_dir [{{ lp_libvirt_conf_dir }}]
       lp_libvirt_packages
-      {{ lp_libvirt_packages | to_nice_yaml }}
+      {{ lp_libvirt_packages|to_nice_yaml }}
       lp_libvirt_conf
-      {{ lp_libvirt_conf | to_yaml }}
+      {{ lp_libvirt_conf|to_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool

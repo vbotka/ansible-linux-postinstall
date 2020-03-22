@@ -3,9 +3,9 @@
 
 - name: "sshd: Configure /etc/ssh/sshd_config"
   lineinfile:
-    dest: "/etc/ssh/sshd_config"
-    regexp: "^{{ item.key }}"
-    insertbefore: "^{{ '#' }}{{ item.key }}"
+    dest: /etc/ssh/sshd_config
+    regexp: "^\\s*{{ item.key }}\\s*(.*)$"
+    insertbefore: "^{{ '#' }}{{ item.key }}\\s*(.*)$"
     line: "{{ item.key }} {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
     validate: "{{ lp_sshd_path }} -t -f %s"
@@ -17,7 +17,7 @@
   systemd:
     name: "{{ lp_sshd_service }}"
     enabled: true
-    state: "started"
+    state: started
   when: lp_sshd_enable|bool
   tags: lp_sshd_service
 
@@ -25,7 +25,7 @@
   systemd:
     name: "{{ lp_sshd_service }}"
     enabled: false
-    state: "stopped"
+    state: stopped
   when: not lp_sshd_enable|bool
   tags: lp_sshd_service
 

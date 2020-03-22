@@ -4,18 +4,18 @@
 - name: "tlp: Debug"
   vars:
     msg: |
-      lp_tlp_enable [ {{ lp_tlp_enable }} ]
-      lp_tlp_thinkpad [ {{ lp_tlp_thinkpad }} ]
+      lp_tlp_enable [{{ lp_tlp_enable }}]
+      lp_tlp_thinkpad [{{ lp_tlp_thinkpad }}]
       lp_tlp_packages
-      {{ lp_tlp_packages | to_nice_yaml }}
+      {{ lp_tlp_packages|to_nice_yaml }}
       lp_tlp_packages_tp
-      {{ lp_tlp_packages_tp | to_nice_yaml }}
-      lp_tlp_config_file [ {{ lp_tlp_config_file }} ]
+      {{ lp_tlp_packages_tp|to_nice_yaml }}
+      lp_tlp_config_file [{{ lp_tlp_config_file }}]
       lp_tlp_config
-      {{ lp_tlp_config | to_nice_yaml }}
+      {{ lp_tlp_config|to_nice_yaml }}
       lp_tlp_services
-      {{ lp_tlp_services | to_nice_yaml }}
-      lp_tlp_restart_service [ {{ lp_tlp_restart_service }} ]
+      {{ lp_tlp_services|to_nice_yaml }}
+      lp_tlp_restart_service [{{ lp_tlp_restart_service }}]
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
@@ -34,7 +34,7 @@
 - name: "tlp: Configure {{ lp_tlp_config_file }}"
   lineinfile:
     dest: "{{ lp_tlp_config_file }}"
-    regexp: "^{{ item.key }}"
+    regexp: "^\\s*{{ item.key }}\\s*=\\s*(.*)$"
     line: "{{ item.key }}={{ item.value }}"
   loop: "{{ lp_tlp_config }}"
   notify: restart tlp

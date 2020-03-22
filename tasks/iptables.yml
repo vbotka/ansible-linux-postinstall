@@ -3,19 +3,19 @@
 
 - name: "iptables: Create /etc/network/if-pre-up.d/iptables"
   template:
-    src: "iptables-restore.j2"
-    dest: "/etc/network/if-pre-up.d/iptables"
-    owner: "root"
-    group: "root"
+    src: iptables-restore.j2
+    dest: /etc/network/if-pre-up.d/iptables
+    owner: root
+    group: root
     mode: "0755"
 
 - name: "iptables: Create /etc/network/iptables
                    using {{ lp_iptables_type }}-iptables.j2"
   template:
     src: "{{ lp_iptables_type }}-iptables.j2"
-    dest: "/etc/network/iptables"
-    owner: "root"
-    group: "root"
+    dest: /etc/network/iptables
+    owner: root
+    group: root
     mode: "0644"
   notify: reload iptables
 

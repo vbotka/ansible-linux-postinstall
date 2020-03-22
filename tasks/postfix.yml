@@ -3,8 +3,8 @@
 
 - name: "postfix: Configure /etc/postfix/main.cf"
   lineinfile:
-    dest: "/etc/postfix/main.cf"
-    regexp: "^{{ item.key }}"
+    dest: /etc/postfix/main.cf
+    regexp: "^\\s*{{ item.key }}\\s*=\\s*(.*)$"
     line: "{{ item.key }} = {{ item.value }}"
     create: true
     backup: "{{ lp_backup_conf }}"

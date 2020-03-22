@@ -4,11 +4,11 @@
   vars:
     msg: |
       lp_zfs_packages
-      {{ lp_zfs_packages | to_nice_yaml }}
+      {{ lp_zfs_packages|to_nice_yaml }}
       lp_zfs_manage
-      {{ lp_zfs_manage | to_yaml }}
+      {{ lp_zfs_manage|to_yaml }}
       lp_zfs_mountpoints
-      {{ lp_zfs_mountpoints | to_yaml }}
+      {{ lp_zfs_mountpoints|to_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_zfs_debug|bool
@@ -23,8 +23,8 @@
   zfs:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
-    origin: "{{ item.origin|default('') }}"
-    extra_zfs_properties: "{{ item.extra_zfs_properties|default({}) }}"
+    origin: "{{ item.origin|default(omit) }}"
+    extra_zfs_properties: "{{ item.extra_zfs_properties|default(omit) }}"
   loop: "{{ lp_zfs_manage }}"
   tags: lp_zfs_manage
 

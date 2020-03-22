@@ -10,7 +10,7 @@
 
 - import_tasks: swap.yml
   when: ((ansible_os_family == "RedHat") or
-        (ansible_os_family == "Debian")) and lp_swap
+        (ansible_os_family == "Debian")) and lp_swap|bool
   tags: lp_swap
 
 - import_tasks: modules.yml
@@ -20,7 +20,7 @@
 
 - import_tasks: udev.yml
   when: ((ansible_os_family == "RedHat") or
-        (ansible_os_family == "Debian")) and lp_udev
+        (ansible_os_family == "Debian")) and lp_udev|bool
   tags: lp_udev
 
 - import_tasks: fstab.yml
@@ -29,16 +29,16 @@
   tags: lp_fstab
 
 - import_tasks: netplan.yml
-  when: (ansible_os_family == "Debian") and lp_netplan
+  when: (ansible_os_family == "Debian") and lp_netplan|bool
   tags: lp_netplan
 
 - import_tasks: timezone.yml
   when: ((ansible_os_family == "RedHat") or
-        (ansible_os_family == "Debian")) and lp_timezone
+        (ansible_os_family == "Debian")) and lp_timezone|bool
   tags: lp_timezone
 
 - import_tasks: timesyncd.yml
-  when: (ansible_os_family == "Debian") and lp_timesyncd
+  when: (ansible_os_family == "Debian") and lp_timesyncd|bool
   tags: lp_timesyncd
 
 - import_tasks: repos.yml
@@ -51,7 +51,7 @@
   tags: lp_packages
 
 - import_tasks: auto_upgrades.yml
-  when: (ansible_os_family == "Debian") and lp_auto_upgrades
+  when: (ansible_os_family == "Debian") and lp_auto_upgrades|bool
   tags: lp_auto_upgrades
 
 - import_tasks: sysctl.yml
@@ -60,7 +60,7 @@
   tags: lp_sysctl
 
 - import_tasks: zfs.yml
-  when: (ansible_os_family == "Debian") and lp_zfs
+  when: (ansible_os_family == "Debian") and lp_zfs|bool
   tags: lp_zfs
 
 - import_tasks: hostname.yml
@@ -74,11 +74,11 @@
   tags: lp_hosts
 
 - import_tasks: iptables.yml
-  when: (ansible_os_family == "Debian") and lp_iptables
+  when: (ansible_os_family == "Debian") and lp_iptables|bool
   tags: lp_iptables
 
 - import_tasks: grub.yml
-  when: (ansible_os_family == "Debian") and lp_grub
+  when: (ansible_os_family == "Debian") and lp_grub|bool
   tags: lp_grub
   # https://unix.stackexchange.com/questions/152222/
   # equivalent-of-update-grub-for-rhel-fedora-centos-systems
@@ -100,7 +100,7 @@
 
 - import_tasks: aliases.yml
   when: ((ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )) and lp_aliases
+        (ansible_os_family == "Debian" )) and lp_aliases|bool
   tags: lp_aliases
 
 - import_tasks: pm-utils.yml
@@ -110,16 +110,16 @@
 
 - import_tasks: ssh.yml
   when: ((ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )) and lp_ssh
+        (ansible_os_family == "Debian" )) and lp_ssh|bool
   tags: lp_ssh
 
 - import_tasks: sshd.yml
   when: ((ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )) and lp_sshd
+        (ansible_os_family == "Debian" )) and lp_sshd|bool
   tags: lp_sshd
 
 - import_tasks: bluetooth.yml
-  when: (ansible_os_family == "Debian") and lp_bluetooth
+  when: (ansible_os_family == "Debian") and lp_bluetooth|bool
   tags: lp_bluetooth
 
 - import_tasks: xorg.yml
@@ -132,24 +132,24 @@
   tags: lp_cron
 
 - import_tasks: modemmanager.yml
-  when: (ansible_os_family == "Debian") and lp_modemmanager
+  when: (ansible_os_family == "Debian") and lp_modemmanager|bool
   tags: lp_modemmanager
 
 - import_tasks: gpsd.yml
-  when: (ansible_os_family == "Debian") and lp_gpsd
+  when: (ansible_os_family == "Debian") and lp_gpsd|bool
   tags: lp_gpsd
 
 - import_tasks: postfix.yml
   when: ((ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )) and lp_postfix
+        (ansible_os_family == "Debian" )) and lp_postfix|bool
   tags: lp_postfix
 
 - import_tasks: smart.yml
-  when: (ansible_os_family == "Debian") and lp_smart
+  when: (ansible_os_family == "Debian") and lp_smart|bool
   tags: lp_smart
 
 - import_tasks: apparmor.yml
-  when: (ansible_os_family == "Debian") and lp_apparmor
+  when: (ansible_os_family == "Debian") and lp_apparmor|bool
   tags: lp_apparmor
 
 - meta: flush_handlers
@@ -159,50 +159,50 @@
   tags: lp_zeitgeist
 
 - import_tasks: lid.yml
-  when: (ansible_os_family == "Debian") and lp_lid
+  when: (ansible_os_family == "Debian") and lp_lid|bool
   tags: lp_lid
 
 - import_tasks: acpi.yml
-  when: (ansible_os_family == "Debian") and lp_acpi
+  when: (ansible_os_family == "Debian") and lp_acpi|bool
   tags: lp_acpi
 
 - import_tasks: speechd.yml
-  when: (ansible_os_family == "Debian") and lp_speechd
+  when: (ansible_os_family == "Debian") and lp_speechd|bool
   tags: lp_speechd
 
 - import_tasks: nfsd.yml
-  when: (ansible_os_family == "Debian") and lp_nfsd
+  when: (ansible_os_family == "Debian") and lp_nfsd|bool
   tags: lp_nfsd
 
 - meta: flush_handlers
 
 - import_tasks: latex.yml
-  when: (ansible_os_family == "Debian") and lp_latex
+  when: (ansible_os_family == "Debian") and lp_latex|bool
   tags: lp_latex
 
 - import_tasks: kvm.yml
-  when: (ansible_os_family == "Debian") and lp_kvm
+  when: (ansible_os_family == "Debian") and lp_kvm|bool
   tags: lp_kvm
 
 - import_tasks: xen.yml
-  when: (ansible_os_family == "Debian") and lp_xen
+  when: (ansible_os_family == "Debian") and lp_xen|bool
   tags: lp_xen
 
 - import_tasks: virtualbox.yml
-  when: (ansible_os_family == "Debian") and lp_virtualbox
+  when: (ansible_os_family == "Debian") and lp_virtualbox|bool
   tags: lp_virtualbox
 
 - import_tasks: wpagui.yml
-  when: (ansible_os_family == "Debian") and lp_wpagui
+  when: (ansible_os_family == "Debian") and lp_wpagui|bool
   tags: lp_wpagui
 
 - import_tasks: wpasupplicant.yml
   when: ((ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )) and lp_wpasupplicant
+        (ansible_os_family == "Debian" )) and lp_wpasupplicant|bool
   tags: lp_wpasupplicant
 
 - import_tasks: gpg.yml
-  when: (ansible_os_family == "Debian") and lp_gpg
+  when: (ansible_os_family == "Debian") and lp_gpg|bool
   tags: lp_gpg
 
 - import_tasks: logrotate.yml
@@ -211,23 +211,23 @@
   tags: lp_logrotate
 
 - import_tasks: tlp.yml
-  when: (ansible_os_family == "Debian") and lp_tlp
+  when: (ansible_os_family == "Debian") and lp_tlp|bool
   tags: lp_tlp
 
 - import_tasks: autofs.yml
-  when: (ansible_os_family == "Debian") and lp_autofs
+  when: (ansible_os_family == "Debian") and lp_autofs|bool
   tags: lp_autofs
 
 - import_tasks: libvirt.yml
-  when: (ansible_os_family == "Debian") and lp_libvirt
+  when: (ansible_os_family == "Debian") and lp_libvirt|bool
   tags: lp_libvirt
 
 - import_tasks: ufw.yml
-  when: (ansible_os_family == "Debian") and lp_ufw
+  when: (ansible_os_family == "Debian") and lp_ufw|bool
   tags: lp_ufw
 
 - import_tasks: debsums.yml
-  when: (ansible_os_family == "Debian") and lp_debsums
+  when: (ansible_os_family == "Debian") and lp_debsums|bool
   tags: lp_debsums
 
 - meta: flush_handlers
@@ -237,7 +237,7 @@
 
 - import_tasks: reboot.yml
   when: ((ansible_os_family == "RedHat" ) or
-         (ansible_os_family == "Debian")) and lp_reboot
+         (ansible_os_family == "Debian")) and lp_reboot|bool
   tags: lp_reboot
 
 # EOF

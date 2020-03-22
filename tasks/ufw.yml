@@ -22,9 +22,9 @@
       lp_ufw_reset [{{ lp_ufw_reset }}]
       lp_ufw_reload [{{ lp_ufw_reload }}]
       lp_ufw_packages
-      {{ lp_ufw_packages | to_nice_yaml }}
+      {{ lp_ufw_packages|to_nice_yaml }}
       lp_ufw_conf
-      {{ lp_ufw_conf | to_yaml }}
+      {{ lp_ufw_conf|to_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_ufw_debug|bool
@@ -37,13 +37,13 @@
 
 - name: "ufw: Disable and reset firewall to installation defaults"
   ufw:
-    state: 'reset'
+    state: reset
   when: lp_ufw_reset|bool
   tags: lp_ufw_reset
 
 - name: "ufw: Reload firewall"
   ufw:
-    state: 'reloaded'
+    state: reloaded
   when: lp_ufw_reload|bool
   tags: lp_ufw_reload
 

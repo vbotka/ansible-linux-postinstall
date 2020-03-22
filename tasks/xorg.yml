@@ -2,7 +2,7 @@
 
 - name: "xorg: Configure {{ lp_xorg_conf_dir }}"
   template:
-    src: "xorg.conf.j2"
+    src: xorg.conf.j2
     dest: "{{ lp_xorg_conf_dir }}/{{ item.file }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_xorg_conf }}"

@@ -1,5 +1,5 @@
 ---
-# linux-postinstall defaults
+# linux_postinstall defaults
 #
 # Put distro and flavor specific vars and overrides to the vars
 # directory.
@@ -20,39 +20,39 @@ lp_packages_selections_preinstall: []
 lp_packages_selections_postinstall: []
 lp_packages_autoremove: false
 
-lp_package_state: "present"             # apt and yum support "latest"
-lp_package_state_remove: "absent"       # see "remove" vs. "purge"
+lp_package_state: present               # apt and yum support "latest"
+lp_package_state_remove: absent         # see "remove" vs. "purge"
 lp_package_install_dryrun: false
 
 lp_modules: []
 lp_modules_blacklist: []
-lp_modules_blacklist_path: "/etc/modprobe.d"
+lp_modules_blacklist_path: /etc/modprobe.d
 lp_modules_options: []
-lp_modules_options_path: "/etc/modprobe.d"
+lp_modules_options_path: /etc/modprobe.d
 
 lp_sysctl_vars: []
 
 lp_udev: true
 lp_udev_enable: true
-lp_udev_rules_dir: "/etc/udev/rules.d"
-lp_udev_rules_template: 'udev-rules.j2'
+lp_udev_rules_dir: /etc/udev/rules.d
+lp_udev_rules_template: udev-rules.j2
 lp_udev_rules: {}
-lp_udev_persistent_net_template: 'persistent-net.rules.j2'
-lp_udev_persistent_net_rules_file: "70-persistent-net.rules"
+lp_udev_persistent_net_template: persistent-net.rules.j2
+lp_udev_persistent_net_rules_file: 70-persistent-net.rules
 lp_udev_persistent_net_rules: []
-lp_udev_hci_name_rules_file: "71-hci-name.rules"
+lp_udev_hci_name_rules_file: 71-hci-name.rules
 lp_udev_hci_name_rules: []
-lp_udev_hci_run_rules_file: "72-hci-run.rules"
+lp_udev_hci_run_rules_file: 72-hci-run.rules
 lp_udev_hci_run_rules: []
 
 lp_wpagui: false
-lp_wpagui_nm_override: "manual"
+lp_wpagui_nm_override: manual
 
 lp_iptables: false
-lp_iptables_type: "default"
-lp_iptables_wan_if: "eth0"
-lp_iptables_lan_if: "eth1"
-lp_iptables_lan: "10.1.0.0/24"
+lp_iptables_type: default
+lp_iptables_wan_if: eth0
+lp_iptables_lan_if: eth1
+lp_iptables_lan: 10.1.0.0/24
 lp_iptables_INPUT_if: []
 lp_iptables_INPUT_net: []
 
@@ -76,44 +76,44 @@ lp_grub_default: []
 lp_kvm: false
 
 lp_xen: false
-lp_xen_version: "4.9"
-lp_xen_dom0_mem: "512M"
-lp_xen_dom0_mem_max: "512M"
-lp_xen_XEN_OVERRIDE_GRUB_DEFAULT: "0"
+lp_xen_version: 4.9
+lp_xen_dom0_mem: 512M
+lp_xen_dom0_mem_max: 512M
+lp_xen_XEN_OVERRIDE_GRUB_DEFAULT: 0
 lp_xen_default_grub_conf:
-  - key: "GRUB_CMDLINE_XEN_DEFAULT"
+  - key: GRUB_CMDLINE_XEN_DEFAULT
     value: "\"dom0_mem={{ lp_xen_dom0_mem }}, max:{{ lp_xen_dom0_mem_max }}\""
-  - key: "XEN_OVERRIDE_GRUB_DEFAULT"
+  - key: XEN_OVERRIDE_GRUB_DEFAULT
     value: "{{ lp_xen_XEN_OVERRIDE_GRUB_DEFAULT }}"
 lp_xen_global: []
 
 lp_latex: false
-lp_latex_download_timeout: "20"
+lp_latex_download_timeout: 20
 lp_latex_macros: []
 lp_latex_get_url_ignore_errors: false
 
 lp_auto_upgrades: false
 lp_auto_upgrades_enable: false
 
-lp_auto_upgrades_Update_Package_Lists: "0"
-lp_auto_upgrades_Unattended_Upgrade: "0"
+lp_auto_upgrades_Update_Package_Lists: 0
+lp_auto_upgrades_Unattended_Upgrade: 0
 
 lp_pm: false
 lp_pm_sleepd: {}
 
 lp_ssh: false
-lp_ssh_config: {}
+lp_ssh_config: []
 
 lp_sshd: false
 lp_sshd_enable: false
-lp_sshd_config: {}
+lp_sshd_config: []
 
 lp_bluetooth: false
 lp_bluetooth_enable: false
 lp_bluetooth_main_conf: []
 
-lp_xorg_conf_dir: "/usr/share/X11/xorg.conf.d"
-lp_xorg_conf: {}
+lp_xorg_conf_dir: /usr/share/X11/xorg.conf.d
+lp_xorg_conf: []
 
 lp_cron_tab: []
 lp_cron_var: []
@@ -126,8 +126,8 @@ lp_gpsd: false
 lp_gpsd_enable: false
 lp_gpsd_START_DAEMON: "true"
 lp_gpsd_USBAUTO: "true"
-lp_gpsd_DEVICES: "/dev/rfcomm0"
-lp_gpsd_GPSD_OPTIONS: "-b"
+lp_gpsd_DEVICES: /dev/rfcomm0
+lp_gpsd_GPSD_OPTIONS: -b
 lp_gpsd_bt_rfcomm: []
 
 lp_postfix: true
@@ -139,18 +139,18 @@ lp_smart_enable: false
 lp_smart_debug: false
 lp_smart_packages:
   - smartmontools
-lp_smart_service: "smartmontools"
+lp_smart_service: smartmontools
 lp_smart_devicescan: false
-lp_smart_conf_file: "/etc/smartd.conf"
-lp_smart_conf_owner: "root"
-lp_smart_conf_group: "root"
-lp_smart_conf_mode: "644"
+lp_smart_conf_file: /etc/smartd.conf
+lp_smart_conf_owner: root
+lp_smart_conf_group: root
+lp_smart_conf_mode: "0644"
 lp_smart_devices: []
 
 lp_virtualbox: false
 lp_virtualbox_enable: false
 lp_virtualbox_ignore_errors: false
-lp_virtualbox_version: "5.2"
+lp_virtualbox_version: 5.2
 lp_virtualbox_keys:
   - https://www.virtualbox.org/download/oracle_vbox_2016.asc
   - https://www.virtualbox.org/download/oracle_vbox.asc
@@ -160,25 +160,25 @@ lp_virtualbox_packages:
 lp_zeitgeist: true
 
 lp_lid: false
-lp_lid_logind_conf: "/etc/systemd/logind.conf"
+lp_lid_logind_conf: /etc/systemd/logind.conf
 lp_lid_logind_conf_vars: []
-lp_lid_upower_conf: "/etc/UPower/UPower.conf"
+lp_lid_upower_conf: /etc/UPower/UPower.conf
 lp_lid_upower_conf_vars: []
 
 lp_acpi: false
-lp_acpi_dir: "/etc/acpi"
+lp_acpi_dir: /etc/acpi
 lp_acpi_owner: root
 lp_acpi_group: root
-lp_acpi_event_mode: '0644'
-lp_acpi_action_mode: '0755'
+lp_acpi_event_mode: "0644"
+lp_acpi_action_mode: "0755"
 lp_acpi_events: {}
 lp_acpi_actions: {}
 
 lp_speechd: true
 lp_speechd_enable: true
 
-lp_sudoers_owner: "root"
-lp_sudoers_group: "root"
+lp_sudoers_owner: root
+lp_sudoers_group: root
 lp_sudoers_mode: "0440"
 lp_sudoers_conf:
   - {line: "#includedir /etc/sudoers.d", state: "present"}
@@ -189,11 +189,11 @@ lp_nfsd_enable: false
 lp_nfsd_exports: []
 
 lp_netplan: false
-lp_netplan_root: "/etc/netplan"
-lp_netplan_owner: "root"
-lp_netplan_group: "root"
-lp_netplan_version: "2"
-lp_netplan_renderer: "NetworkManager"
+lp_netplan_root: /etc/netplan
+lp_netplan_owner: root
+lp_netplan_group: root
+lp_netplan_version: 2
+lp_netplan_renderer: NetworkManager
 lp_netplan_conf: []
 
 lp_apparmor: true
@@ -205,15 +205,15 @@ lp_swap: false
 lp_swap_enable: false
 
 lp_timezone: false
-lp_timezone_zoneinfo: "UTC"
+lp_timezone_zoneinfo: UTC
 
 lp_timesyncd: true
 lp_timesyncd_enable: true
 lp_timesyncd_NTP: ""
-lp_timesyncd_FallbackNTP: "ntp.ubuntu.com"
-lp_timesyncd_RootDistanceMaxSec: "5"
-lp_timesyncd_PollIntervalMinSec: "32"
-lp_timesyncd_PollIntervalMaxSec: "2048"
+lp_timesyncd_FallbackNTP: ntp.ubuntu.com
+lp_timesyncd_RootDistanceMaxSec: 5
+lp_timesyncd_PollIntervalMinSec: 32
+lp_timesyncd_PollIntervalMaxSec: 2048
 
 lp_gpg: true
 lp_gpg_conf_user: []
@@ -222,28 +222,28 @@ lp_wpasupplicant: true
 lp_wpasupplicant_debug: false
 lp_wpasupplicant_debug_classified: false
 lp_wpasupplicant_conf_only: false
-lp_wpasupplicant_conf_owner: "root"
-lp_wpasupplicant_conf_group: "root"
+lp_wpasupplicant_conf_owner: root
+lp_wpasupplicant_conf_group: root
 lp_wpasupplicant_conf_mode: "0600"
-lp_wpasupplicant_conf_dir: "/etc/wpa_supplicant"
-lp_wpasupplicant_conf_file: "wpa_supplicant.conf"
+lp_wpasupplicant_conf_dir: /etc/wpa_supplicant
+lp_wpasupplicant_conf_file: wpa_supplicant.conf
 lp_wpasupplicant_conf_global:
-  - {key: "ctrl_interface", value: "{{ lp_wpasupplicant_conf_ctrl_interface }}"}
-lp_wpasupplicant_conf: {}
+  - {key: ctrl_interface, value: "{{ lp_wpasupplicant_conf_ctrl_interface }}"}
+lp_wpasupplicant_conf: []
 lp_wpa_action_script: false
-lp_wpa_action_script_dir: "/root/bin"
+lp_wpa_action_script_dir: /root/bin
 lp_wpa_action_script_file: "{{ lp_wpa_action_script_dir }}/wpa_action.sh"
-lp_wpa_action_script_owner: "root"
-lp_wpa_action_script_group: "root"
+lp_wpa_action_script_owner: root
+lp_wpa_action_script_group: root
 lp_wpa_action_script_mode: "0770"
 lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
-lp_wpa_action_script_pidfile: "/var/run/dhclient.$ifname.pid"
+lp_wpa_action_script_pidfile: /var/run/dhclient.$ifname.pid
 lp_wpa_action_script_options_connect: "-4 -nw -pf $pidfile -v"
 lp_wpa_action_script_options_disconnect: "-4 -r -pf $pidfile -v"
 lp_wpa_action_script_logfile: "/tmp/wpa_action.$ifname"
 
-lp_logrotate_conf_file: "/etc/logrotate.conf"
-lp_logrotate_conf_dir: "/etc/logrotate.d"
+lp_logrotate_conf_file: /etc/logrotate.conf
+lp_logrotate_conf_dir: /etc/logrotate.d
 lp_logrotate_conf_lines:
   - {line: "include /etc/logrotate.d", state: "present"}
 lp_logrotate_conf_blocks: []
@@ -252,16 +252,16 @@ lp_logrotate_confd: []
 lp_tlp: false
 lp_tlp_enable: false
 lp_tlp_thinkpad: false
-lp_tlp_config_file: "/etc/default/tlp"
+lp_tlp_config_file: /etc/default/tlp
 lp_tlp_config: []
 
 lp_autofs: false
 lp_autofs_enable: false
-lp_autofs_conf_file: "/etc/autofs.conf"
+lp_autofs_conf_file: /etc/autofs.conf
 lp_autofs_conf: []
-lp_autofs_master_conf_file: "/etc/auto.master"
+lp_autofs_master_conf_file: /etc/auto.master
 lp_autofs_master_conf: []
-lp_autofs_misc_conf_file: "/etc/auto.misc"
+lp_autofs_misc_conf_file: /etc/auto.misc
 lp_autofs_misc_conf: []
 
 lp_libvirt: false
@@ -295,17 +295,17 @@ lp_ufw_enable: true
 lp_ufw_debug: false
 lp_ufw_reset: false
 lp_ufw_reload: false
-lp_ufw_service: "ufw"
+lp_ufw_service: ufw
 lp_ufw_conf:
-  - {state: 'enabled', policy: 'allow'}
-  - {logging: 'on'}
+  - {state: enabled, policy: allow}
+  - {logging: "on"}
 
 lp_debsums: false
 lp_debsums_debug: false
-lp_debsums_default_file: "/etc/default/debsums"
+lp_debsums_default_file: /etc/default/debsums
 lp_debsums_default_conf:
-  - {key: 'CRON_CHECK', value: 'never'}
-lp_debsums_ignore_file: "/etc/debsums-ignore"
+  - {key: CRON_CHECK, value: never}
+lp_debsums_ignore_file: /etc/debsums-ignore
 lp_debsums_ignore_conf: []
 
 lp_fstab_entries: []
@@ -314,9 +314,9 @@ lp_reboot: false
 lp_reboot_debug: false
 lp_reboot_force: false
 lp_reboot_required_ignore: true
-lp_reboot_required_file: '/var/run/reboot-required'
-lp_reboot_required_command: '/sbin/needs-restarting -r'
-lp_reboot_command: 'sleep 5 && shutdown -r now'
+lp_reboot_required_file: /var/run/reboot-required
+lp_reboot_required_command: /sbin/needs-restarting -r
+lp_reboot_command: "sleep 5 && shutdown -r now"
 lp_reboot_wait_connect_timeout: 20
 lp_reboot_wait_sleep: 5
 lp_reboot_wait_delay: 5
@@ -337,22 +337,22 @@ lp_reboot_wait_timeout: 300
 
 lp_flavors_enable: true
 lp_flavors_dir: "{{ inventory_dir ~ '/flavors' }}"
-lp_flavors_dir_owner: "admin"
-lp_flavors_dir_group: "adm"
+lp_flavors_dir_owner: admin
+lp_flavors_dir_group: adm
 lp_flavors_dir_mode: "0775"
 lp_flavors:
   lsb:
-    release_file: "/etc/lsb-release"
-    file_labels: ["DISTRIB_ID", "DISTRIB_CODENAME"]
+    release_file: /etc/lsb-release
+    file_labels: [DISTRIB_ID, DISTRIB_CODENAME]
   os:
-    release_file: "/etc/os-release"
-    file_labels: ["ID", "UBUNTU_CODENAME"]
+    release_file: /etc/os-release
+    file_labels: [ID, UBUNTU_CODENAME]
   armbian:
-    release_file: "/etc/armbian-release"
-    file_labels: ["VERSION", "BOARD"]
+    release_file: /etc/armbian-release
+    file_labels: [VERSION, BOARD]
 
 # userland paths
-lp_dhclient: '/sbin/dhclient'
+lp_dhclient: /sbin/dhclient
 
 # TODO:
 # * lp_virtualbox_services lp_virtualbox_enable

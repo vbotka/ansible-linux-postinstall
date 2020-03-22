@@ -6,13 +6,10 @@
 
 Configure Linux: acpi, aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums, fstab, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, pm-utils, postfix, repos, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
-Tested systems:
-* Ubuntu 18.04
-* Ubuntu 19.04
-* CentOS 7
-* Armbian 5.90
+Tested systems: Ubuntu 18.04, Ubuntu 19.04, CentOS 7, Armbian 5.90
 
 Please feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-linux-postinstall/issues).
+
 
 ## Requirements
 
@@ -26,37 +23,42 @@ Read the defaults and examples in vars.
 
 ## Workflow
 
-1. Install the role.
+1. Install the role
+
 ```
-# ansible-galaxy install vbotka.linux_postinstall
+shell> ansible-galaxy install vbotka.linux_postinstall
 ```
 
-2. Change variables.
-```
-# editor vbotka.linux_postinstall/vars/main.yml
-```
-* Review OS specific variables in *vars/defaults*.
-* Review, customize and/or add Flavor specific variables in *vars/flavors*.
-* Optionally disable *lp_flavors_enable: false*. This will speedup the playbook.
-* Optionally put customized OS specific variables into the *vars* directory.
-* See *tasks/vars.yml* for the naming conventions and precedence.
-* Os specific variables will overwrite variables in *var/main.yml*.
+2. Change variables
 
-3. Create the inventory.
 ```
-# cat hosts
+shell> editor vbotka.linux_postinstall/vars/main.yml
+```
+
+* Review OS specific variables in *vars/defaults*
+* Review, customize and/or add Flavor specific variables in *vars/flavors*
+* Optionally disable *lp_flavors_enable: false*. This will speedup the playbook
+* Optionally put customized OS specific variables into the *vars* directory
+* See *tasks/vars.yml* for the naming conventions and precedence
+* Os specific variables will overwrite variables in *var/main.yml*
+
+3. Create the inventory
+
+```
+shell> cat hosts
 [host1]
 host1.example.com
 [host1:vars]
 ansible_user: admin
 ansible_connection=ssh
-ansible_python_interpreter=/usr/bin/python3.6
+ansible_python_interpreter=/usr/bin/python3.7
 ansible_perl_interpreter=/usr/bin/perl
 ```
 
-4. Create the playbook.
+4. Create the playbook
+
 ```
-# cat linux-postinstall.yml
+shell> cat linux-postinstall.yml
 - hosts: host1
   become: yes
   become_user: root
@@ -65,38 +67,44 @@ ansible_perl_interpreter=/usr/bin/perl
     - vbotka.linux_postinstall
 ```
 
-5. Run the playbook.
+5. Run the playbook
+
 ```
-# ansible-playbook linux-postinstall.yml
+shell> ansible-playbook linux-postinstall.yml
 ```
 
 
 ## Best practice
 
 Check syntax of the playbook
+
 ```
-# ansible-playbook linux-postinstall.yml --syntax-check
+shell> ansible-playbook linux-postinstall.yml --syntax-check
 ```
+
 Review variables. Optionaly detect and store flavors
+
 ```
-# ansible-playbook linux-postinstall.yml -t lp_vars
+shell> ansible-playbook linux-postinstall.yml -t lp_vars
 ```
+
 Run the playbook in check mode
+
 ```
-# ansible-playbook linux-postinstall.yml --check
+shell> ansible-playbook linux-postinstall.yml --check
 ```
-If all is right run the playbook twice. In second run all tasks shall
-be OK and 0 changed, unreachable and failed.
+
+If all is right run the playbook twice. In second run all tasks shall be OK and 0 changed, unreachable and failed.
+
 ```
-# ansible-playbook linux-postinstall.yml
+shell> ansible-playbook linux-postinstall.yml
 ```
 
 
 ## Auto-installation of packages
 
-Packages listed in the variables ``lp_*_packages`` will be automatically
-installed by the tasks/packages.yml if enabled by variable ``lp_*`` . For
-example
+Packages listed in the variables ``lp_*_packages`` will be automatically installed by the tasks/packages.yml if enabled by variable ``lp_*`` . For example
+
 ```
 lp_libvirt: true
 lp_libvirt_packages:
@@ -107,22 +115,28 @@ lp_libvirt_packages:
   - libvirt-daemon-system
   - virtinst
 ```
-the lp_libvirt_packages will be included in the packages installed by
+
+The packages listed in ``lp_libvirt_packages`` will be included in the packages installed by
+
 ```
-# ansible-playbook linux-postinstall.yml -t lp_packages
+shell> ansible-playbook linux-postinstall.yml -t lp_packages
 ```
 
 
 ## Auto-management of services
 
 Variable `lp_service_enable` contains a list of services automatically managed by the task [service.yml](tasks/service.yml). A *service* will be manged by the task [service.yml](tasks/service.yml) if `lp_<service>: true`. Setting `lp_<service>: false` will disable management of the *service* by the task [service.yml](tasks/service.yml). Variable `lp_<service>_enable` controls the status of the *service*. For example service *udev* will be enabled, because it is listed among `lp_service_enable` and by default
+
 ```
 lp_udev: true
 lp_udev_enable: true
 ```
+
 Run the following command to see what services will be managed.
+
 ```
-# ansible-playbook linux-postinstall.yml -e lp_service_debug=true -t lp_service_debug
+shell> ansible-playbook linux-postinstall.yml -e lp_service_debug=true -t lp_service_debug
+
 ```
 See [service.yml](tasks/service.yml) for details.
 
@@ -145,26 +159,26 @@ ansible-playbook linux-postinstall.yml -t lp_reboot -e 'lp_reboot=true lp_reboot
 2. Configure the firewall. For example iptables
 
 ```
-# ansible-playbook linux-postinstall.yml -t lp_iptables
+shell> ansible-playbook linux-postinstall.yml -t lp_iptables
 ```
 
 3. Test installation of the packages
 
 ```
-ansible-playbook -t lp_packages -e 'lp_package_install_dryrun=true' linux-postinstall.yml
+shell> ansible-playbook -t lp_packages -e 'lp_package_install_dryrun=true' linux-postinstall.yml
 ```
 
 4. Install packages
 
 ```
-ansible-playbook -t lp_packages linux-postinstall.yml
+shell> ansible-playbook -t lp_packages linux-postinstall.yml
 ```
 
 5. Check, install and configure other tasks
 
 ```
-ansible-playbook linux-postinstall.yml --check
-ansible-playbook linux-postinstall.yml
+shell> ansible-playbook linux-postinstall.yml --check
+shell> ansible-playbook linux-postinstall.yml
 ```
 
 

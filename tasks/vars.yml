@@ -11,7 +11,8 @@
         - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
-        - "defaults.yml"
+        - defaults.yml
+        - default.yml
       paths:
         - "{{ role_path }}/vars/defaults"
 
@@ -30,7 +31,8 @@
         - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
-        - "defaults.yml"
+        - defaults.yml
+        - default.yml
       paths:
         - "{{ role_path }}/vars"
 

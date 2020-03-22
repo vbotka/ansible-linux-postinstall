@@ -2,12 +2,12 @@
 
 - name: "timezone: Debug"
   debug:
-    msg: "lp_timezone_zoneinfo [ {{ lp_timezone_zoneinfo }} ]"
+    msg: "lp_timezone_zoneinfo [{{ lp_timezone_zoneinfo }}]"
   when: lp_debug|bool
 
 - name: "timezone: Set timezone {{ lp_timezone_zoneinfo }}"
   timezone:
-    name: "{{ lp_timezone_zoneinfo|default(UTC) }}"
+    name: "{{ lp_timezone_zoneinfo|default('UTC') }}"
 
 # EOF
 ...

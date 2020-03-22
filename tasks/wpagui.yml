@@ -6,13 +6,13 @@
   vars:
     msg: |
       lp_wpagui_packages
-      {{ lp_wpagui_packages | to_nice_yaml }}
+      {{ lp_wpagui_packages|to_nice_yaml }}
       lp_wpagui_systemd
-      {{ lp_wpagui_systemd | to_nice_yaml }}
+      {{ lp_wpagui_systemd|to_nice_yaml }}
       lp_wpagui_service
-      {{ lp_wpagui_service | to_nice_yaml }}
+      {{ lp_wpagui_service|to_nice_yaml }}
       lp_wpagui_service_mask
-      {{ lp_wpagui_service_mask | to_nice_yaml }}
+      {{ lp_wpagui_service_mask|to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
@@ -24,18 +24,18 @@
 
 - name: "wpagui: Disable NM /etc/init/network-manager.override"
   template:
-    src: "network-manager-override.j2"
-    dest: "/etc/init/network-manager.override"
-    owner: "root"
-    group: "root"
+    src: network-manager-override.j2
+    dest: /etc/init/network-manager.override
+    owner: root
+    group: root
     mode: "0644"
   tags: lp_wpagui_disableNM
 
 - name: "wpagui: Configure managed=false
                  in /etc/NetworkManager/NetworkManager.conf"
   lineinfile:
-    dest: "/etc/NetworkManager/NetworkManager.conf"
-    regexp: "^managed"
+    dest: /etc/NetworkManager/NetworkManager.conf
+    regexp: "^\\s*managed\\s*=\\s*(.*)$"
     line: "managed=false"
   tags: lp_wpagui_disableNM
 

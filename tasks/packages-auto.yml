@@ -12,15 +12,15 @@
     local_pkg_lists: "{{ local_pkg_lists +
                      [{'install': item.split('_')[0] + '_' + item.split('_')[1],
                        'packages': item}] }}"
-  loop: "{{ hostvars[inventory_hostname].keys() |
-            select('match', '^lp_.*_packages$') |
+  loop: "{{ hostvars[inventory_hostname].keys()|
+            select('match', '^lp_.*_packages$')|
             list }}"
   tags: lp_packages_auto
 
 - name: "packages-auto: Debug"
   debug:
-    msg: "[ {{ lookup('vars', item.install, default='false')|bool }} ]
-               packages {{ lookup('vars', item.packages) }}"
+    msg: "[{{ lookup('vars', item.install, default='false')|bool }}]
+              packages {{ lookup('vars', item.packages) }}"
   loop: "{{ local_pkg_lists }}"
   tags: lp_packages_auto
 

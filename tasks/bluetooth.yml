@@ -3,14 +3,14 @@
 
 - name: "bluetooth: Debug"
   debug:
-    msg: "lp_bluetooth_enable [ {{ lp_bluetooth_enable }} ]"
+    msg: "lp_bluetooth_enable [{{ lp_bluetooth_enable }}]"
   when: lp_debug|bool
 
 - name: "bluetooth: Configure /etc/bluetooth/main.conf"
   lineinfile:
-    dest: "/etc/bluetooth/main.conf"
-    regexp: "^{{ item.key }}"
-    insertbefore: "^{{ '#' }}{{ item.key }}"
+    dest: /etc/bluetooth/main.conf
+    regexp: "^{{ item.key }}\\s*=(.*)$"
+    insertbefore: "^{{ '#' }}{{ item.key }}\\s*=(.*)$"
     line: "{{ item.key }} = {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_bluetooth_main_conf }}"

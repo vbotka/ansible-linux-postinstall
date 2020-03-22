@@ -50,7 +50,8 @@
     post_reboot_delay: "{{ lp_reboot_wait_delay }}"
     reboot_timeout: "{{ lp_reboot_wait_timeout }}"
   when: (reboot_required|default(false) and
-        (not lp_reboot_required_ignore)) or lp_reboot_force
+        (not lp_reboot_required_ignore)) or
+        lp_reboot_force|bool
 
 # - name: "reboot: Reboot and wait for connection"
 #   block:

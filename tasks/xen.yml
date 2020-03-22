@@ -5,13 +5,13 @@
   vars:
     msg: |
       lp_xen_packages
-      {{ lp_xen_packages | to_nice_yaml }}
+      {{ lp_xen_packages|to_nice_yaml }}
       lp_xen_dom0_mem
-      {{ lp_xen_dom0_mem | to_nice_yaml }}
+      {{ lp_xen_dom0_mem|to_nice_yaml }}
       lp_xen_default_grub_conf
-      {{ lp_xen_default_grub_conf | to_nice_yaml }}
+      {{ lp_xen_default_grub_conf|to_nice_yaml }}
       lp_xen_global
-      {{ lp_xen_global | to_nice_yaml }}
+      {{ lp_xen_global|to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
@@ -23,8 +23,8 @@
 
 - name: "xen: Configure /etc/default/grub"
   lineinfile:
-    dest: "/etc/default/grub"
-    regexp: "^\\s*{{ item.key }}\\s*="
+    dest: /etc/default/grub
+    regexp: "^\\s*{{ item.key }}\\s*=\\s*(.*)$"
     line: "{{ item.key }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_xen_default_grub_conf }}"
@@ -33,8 +33,8 @@
 
 - name: "xen: Configure /etc/xen/xl.conf"
   lineinfile:
-    dest: "/etc/xen/xl.conf"
-    regexp: "^\\s*{{ item.var }}\\s*="
+    dest: /etc/xen/xl.conf
+    regexp: "^\\s*{{ item.var }}\\s*=\\s*(.*)$"
     line: "{{ item.var }}={{ item.value }}"
     create: true
     backup: "{{ lp_backup_conf }}"

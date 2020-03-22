@@ -4,8 +4,8 @@
 # One-way atm
 - name: Remove zeitgeist
   apt:
-    state: "absent"
-    name: "zeitgeist"
+    state: absent
+    name: zeitgeist
     purge: true
   when:
     - not lp_zeitgeist|bool
@@ -13,8 +13,8 @@
 
 - name: Remove zeitgeist-*
   apt:
-    state: "absent"
-    name: "zeitgeist-*"
+    state: absent
+    name: zeitgeist-*
     purge: true
   when:
     - not lp_zeitgeist|bool

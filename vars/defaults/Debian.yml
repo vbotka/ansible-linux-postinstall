@@ -9,20 +9,20 @@
 #      - { key: "HashKnownHosts", val: "yes" }
 #      - { key: "GSSAPIAuthentication", val: "yes" }
 
-lp_speechd_service: "speech-dispatcher"
+lp_speechd_service: speech-dispatcher
 
-lp_autofs_service: "autofs"
-lp_timesyncd_service: "systemd-timesyncd.service"
-lp_postfix_service: "postfix"
-lp_gpsd_service: "gpsd"
-lp_bluetooth_service: "bluetooth"
+lp_autofs_service: autofs
+lp_timesyncd_service: systemd-timesyncd.service
+lp_postfix_service: postfix
+lp_gpsd_service: gpsd
+lp_bluetooth_service: bluetooth
 
-lp_udev_service: "udev"
+lp_udev_service: udev
 
-lp_sshd_service: "ssh"
-lp_sshd_path: "/usr/sbin/sshd"
+lp_sshd_service: ssh
+lp_sshd_path: /usr/sbin/sshd
 
-lp_modules_conf: "/etc/modules"
+lp_modules_conf: /etc/modules
 
 lp_hosts_default:
   - {ip: "127.0.0.1", name1: "localhost"}
@@ -36,15 +36,15 @@ lp_nfsd_packages:
   - nfs-kernel-server
 lp_nfsd_services:
   - nfs-kernel-server
-lp_nfsd_reload_service: "nfs-kernel-server"
+lp_nfsd_reload_service: nfs-kernel-server
 
 lp_gpg_packages:
   - gnupg
 lp_gpg_conf_default:
-  - {key: "keyserver", value: "hkp://keys.gnupg.net"}
-  - {key: "use-agent", value: ""}
-  - {key: "cert-digest-algo", value: "SHA256"}
-  - {key: "digest-algo", value: "SHA256"}
+  - {key: keyserver, value: "hkp://keys.gnupg.net"}
+  - {key: use-agent, value: ""}
+  - {key: cert-digest-algo, value: SHA256}
+  - {key: digest-algo, value: SHA256}
 
 lp_wpagui_packages:
   - wpasupplicant
@@ -64,8 +64,8 @@ lp_wpagui_service_mask:
 
 lp_wpasupplicant_packages:
   - wpasupplicant
-lp_wpasupplicant_conf_ctrl_interface: "/run/wpa_supplicant"
-# lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
+lp_wpasupplicant_conf_ctrl_interface: /run/wpa_supplicant
+# lp_wpasupplicant_conf_ctrl_interface: /var/run/wpa_supplicant
 # lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
 
 lp_logrotate_packages:
@@ -103,7 +103,7 @@ lp_tlp_packages_tp:
 #  - acpi-call-dkms
 lp_tlp_services:
   - tlp
-lp_tlp_restart_service: "tlp"
+lp_tlp_restart_service: tlp
 
 lp_virtualbox_repos:
   - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
@@ -144,7 +144,7 @@ lp_apparmor_packages:
   - apparmor-utils
   - snapd
   - jq
-lp_apparmor_profile_dir: "/etc/apparmor.d"
+lp_apparmor_profile_dir: /etc/apparmor.d
 
 lp_debsums_packages:
   - debsums
