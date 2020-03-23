@@ -5,6 +5,7 @@
                {{ ansible_distribution }},
                {{ ansible_distribution_release }}]"
   include_vars: "{{ lookup('first_found', params) }}"
+  register: result
   vars:
     params:
       files:
@@ -16,6 +17,11 @@
       paths:
         - "{{ role_path }}/vars/defaults"
 
+- name: "vars: Debug include default vars from"
+  debug:
+    var: result.ansible_included_var_files
+  when: lp_debug|bool
+
 - name: "vars: Include default vars for various flavors"
   when: lp_flavors_enable|bool
   include_tasks: sub/vars-flavors.yml
@@ -24,6 +30,7 @@
               [{{ ansible_os_family }},
                {{ ansible_distribution }},
                {{ ansible_distribution_release }}]"
+  register: result
   include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
@@ -35,6 +42,11 @@
         - default.yml
       paths:
         - "{{ role_path }}/vars"
+
+- name: "vars: Debug include custom vars from"
+  debug:
+    var: result.ansible_included_var_files
+  when: lp_debug|bool
 
 # EOF
 ...

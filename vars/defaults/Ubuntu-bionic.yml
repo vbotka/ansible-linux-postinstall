@@ -89,11 +89,14 @@ lp_kvm_packages:
   - ubuntu-vm-builder
   - bridge-utils
 
+lp_xen_version: 4.9
 lp_xen_packages:
-  - "xen-hypervisor-{{ lp_xen_version }}-amd64"
-  - "xen-utils-{{ lp_xen_version }}"
+  - xen-hypervisor-4.9-amd64
+  - xen-utils-4.9
   - xen-utils-common
   - xenstore-utils
+# - "xen-hypervisor-{{ lp_xen_version }}-amd64"
+# - "xen-utils-{{ lp_xen_version }}"
 # - ubuntu-virt-server
 
 lp_tlp_packages:
@@ -109,8 +112,9 @@ lp_tlp_services:
 lp_tlp_restart_service: tlp
 
 lp_virtualbox_repos:
-  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
-                      {{ ansible_lsb.codename }} contrib"
+  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/bionic contrib"
+# - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
+#                     {{ ansible_lsb.codename }} contrib"
 lp_virtualbox_services:
   - vboxautostart-service
   - vboxballoonctrl-service
@@ -154,6 +158,14 @@ lp_apparmor_profile_dir: /etc/apparmor.d
 
 lp_debsums_packages:
   - debsums
+
+lp_resolvconf_service: resolvconf
+lp_resolvconf_packages:
+  - resolvconf
+lp_resolvconf_confd_head_path: /etc/resolvconf/resolv.conf.d/head
+lp_resolvconf_conf_owner: root
+lp_resolvconf_conf_group: root
+lp_resolvconf_conf_mode: "0644"
 
 # userland paths
 # lp_dhclient: "/sbin/dhclient"

@@ -235,6 +235,10 @@
 - import_tasks: service.yml
   tags: lp_service
 
+- import_tasks: resolvconf.yml
+  when: (ansible_os_family == "Debian") and lp_resolvconf|bool
+  tags: lp_resolvconf
+
 - import_tasks: reboot.yml
   when: ((ansible_os_family == "RedHat" ) or
          (ansible_os_family == "Debian")) and lp_reboot|bool

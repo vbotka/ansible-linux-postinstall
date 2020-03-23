@@ -1,0 +1,55 @@
+---
+
+- name: "resolvconf: Debug"
+  vars:
+    msg: |
+      lp_resolvconf_service [{{ lp_resolvconf_service }}]
+      lp_resolvconf_enable [{{ lp_resolvconf_enable }}]
+      lp_package_state [{{ lp_package_state }}]
+      lp_resolvconf_packages
+      {{ lp_resolvconf_packages|to_nice_yaml }}
+      lp_resolvconf_confd_head_path [{{ lp_resolvconf_confd_head_path }}]
+      lp_resolvconf_conf_owner [{{ lp_resolvconf_conf_owner }}]
+      lp_resolvconf_conf_group [{{ lp_resolvconf_conf_group }}]
+      lp_resolvconf_conf_mode [{{ lp_resolvconf_conf_mode }}]
+      lp_resolvconf_confd_head
+      {{ lp_resolvconf_confd_head|to_yaml }}
+  debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_resolvconf_debug|bool
+  tags: lp_resolvconf_debug
+
+- name: "resolvconf: Install packages"
+  include_tasks: fn/install-package.yml
+  loop: "{{ lp_resolvconf_packages }}"
+  tags: lp_resolvconf_packages
+
+- name: "resolvconf: Configure {{ lp_resolvconf_confd_head_path }}"
+  template:
+    src: resolvconf-confd-head.j2
+    dest: "{{ lp_resolvconf_confd_head_path }}"
+    owner: "{{ lp_resolvconf_conf_owner }}"
+    group: "{{ lp_resolvconf_conf_group }}"
+    mode: "{{ lp_resolvconf_conf_mode }}"
+    backup: "{{ lp_backup_conf }}"
+  notify: restart resolvconf
+  tags: lp_resolvconf_confd_head
+
+- name: "resolvconf: Enable and start resolvconf"
+  systemd:
+    name: "{{ lp_resolvconf_service }}"
+    enabled: true
+    state: started
+  when: lp_resolvconf_enable|bool
+  tags: lp_resolvconf_service
+
+- name: "resolvconf: Disable and stop resolvconf"
+  systemd:
+    name: "{{ lp_resolvconf_service }}"
+    enabled: false
+    state: stopped
+  when: not lp_resolvconf_enable|bool
+  tags: lp_resolvconf_service
+
+# EOF
+...

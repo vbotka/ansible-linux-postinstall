@@ -76,7 +76,6 @@ lp_grub_default: []
 lp_kvm: false
 
 lp_xen: false
-lp_xen_version: 4.9
 lp_xen_dom0_mem: 512M
 lp_xen_dom0_mem_max: 512M
 lp_xen_XEN_OVERRIDE_GRUB_DEFAULT: 0
@@ -309,6 +308,11 @@ lp_debsums_ignore_file: /etc/debsums-ignore
 lp_debsums_ignore_conf: []
 
 lp_fstab_entries: []
+
+lp_resolvconf: false
+lp_resolvconf_enable: false
+lp_resolvconf_debug: false
+lp_resolvconf_confd_head: []
 
 lp_reboot: false
 lp_reboot_debug: false
