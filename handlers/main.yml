@@ -20,11 +20,15 @@
   command: "/usr/sbin/update-grub"
 
 - name: reload udev
-  command: "/sbin/udevadm control --reload-rules"
+  command: "{{ lp_udev_path }} control --reload-rules"
   when: lp_udev_enable
 #  Ubuntu 18.04 error: Failed to reload udev.service: Job type reload
 #  is not applicable for unit systemd-udevd.service
 #  systemd: name="udev" state="reloaded"
+# Ubuntu 18.04
+# command: "/sbin/udevadm control --reload-rules"
+# Ubuntu 20.04
+# command: "/usr/bin/udevadm control --reload-rules"
 
 - name: restart udev
   systemd: name="{{ lp_service_udev }}" state="restarted"
@@ -99,8 +103,17 @@
   shell: sh -c 'swapoff {{ lp_swap_file }} && rm {{ lp_swap_file }}'
   when: not lp_swap_enable
 
+- name: start tlp
+  systemd: name="{{ lp_tlp_restart_service }}" state="started"
+  when: lp_tlp_enable
+
+- name: stop tlp
+  systemd: name="{{ lp_tlp_restart_service }}" state="stopped"
+
 - name: restart tlp
-  systemd: name="{{ lp_tlp_restart_service }}" state="restarted"
+  shell: sh -c '{{ lp_tlp_path }} init stop && {{ lp_tlp_path }} init start'
+# systemd: name="{{ lp_tlp_restart_service }}" state="restarted"
+# TODO: "restarted" freeze 20.04
   when: lp_tlp_enable
 
 - name: restart autofs
@@ -145,7 +158,7 @@
             -i {{ item.item.dev }} reconfigure ||
     exit 0
   when:
-    - item.changed
+    - item.changed|bool
     - not lp_wpasupplicant_conf_only|bool
   loop: "{{ lp_wpasupplicant_conf_changes.results }}"
   # TODO: Wait for OK result. Error: 'RECONFIGURE' command timed out.

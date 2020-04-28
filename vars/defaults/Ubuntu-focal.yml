@@ -19,7 +19,7 @@ lp_bluetooth_service: bluetooth
 lp_auto_upgrades_service: unattended-upgrades
 
 lp_udev_service: udev
-lp_udev_path: /bin/udevadm
+lp_udev_path: /usr/bin/udevadm
 
 lp_sshd_service: ssh
 lp_sshd_path: /usr/sbin/sshd
@@ -90,14 +90,14 @@ lp_kvm_packages:
   - libvirt-daemon-system
   - libvirt-clients
   - bridge-utils
-  # - ubuntu-vm-builder
+# - ubuntu-vm-builder
 
-lp_xen_version: 4.9
+lp_xen_version: "4.11"
 lp_xen_packages:
-  - xen-hypervisor-4.9-amd64
-  - xen-utils-4.9
-  - xen-utils-common
-  - xenstore-utils
+  - "xen-hypervisor-4.11-amd64"
+  - "xen-utils-4.11"
+  - "xen-utils-common"
+  - "xenstore-utils"
 # - "xen-hypervisor-{{ lp_xen_version }}-amd64"
 # - "xen-utils-{{ lp_xen_version }}"
 # - ubuntu-virt-server
@@ -114,10 +114,10 @@ lp_tlp_services:
   - tlp
 lp_tlp_restart_service: tlp
 lp_tlp_config_file: /etc/tlp.conf
-lp_tlp_path: /sbin/tlp
+lp_tlp_path: /usr/sbin/tlp
 
 lp_virtualbox_repos:
-  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/disco contrib"
+  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/focal contrib"
 # - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
 #                     {{ ansible_lsb.codename }} contrib"
 lp_virtualbox_services:
@@ -126,6 +126,7 @@ lp_virtualbox_services:
   - vboxdrv.service
   - vboxweb-service
 
+# TODO: Not tested in 20.04 yet
 lp_libvirt_libvirtd_service: libvirtd
 lp_libvirt_guests_service: libvirt-guests
 lp_libvirt_packages:

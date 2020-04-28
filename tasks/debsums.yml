@@ -27,6 +27,7 @@
     regexp: '^\s*{{ item.key }}\s*=(.*)$'
     line: "{{ item.key }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
+    create: true
   loop: "{{ lp_debsums_default_conf }}"
   tags: lp_debsums_default_conf
 
@@ -36,6 +37,7 @@
     state: "{{ item.state|default(omit) }}"
     line: "{{ item }}"
     backup: "{{ lp_backup_conf }}"
+    create: true
   loop: "{{ lp_debsums_ignore_conf }}"
   tags: lp_debsums_ignore_conf
 

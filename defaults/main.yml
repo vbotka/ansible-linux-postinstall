@@ -251,7 +251,6 @@ lp_logrotate_confd: []
 lp_tlp: false
 lp_tlp_enable: false
 lp_tlp_thinkpad: false
-lp_tlp_config_file: /etc/default/tlp
 lp_tlp_config: []
 
 lp_autofs: false

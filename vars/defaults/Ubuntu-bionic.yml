@@ -19,6 +19,7 @@ lp_bluetooth_service: bluetooth
 lp_auto_upgrades_service: unattended-upgrades
 
 lp_udev_service: udev
+lp_udev_path: /bin/udevadm
 
 lp_sshd_service: ssh
 lp_sshd_path: /usr/sbin/sshd
@@ -110,6 +111,8 @@ lp_tlp_packages_tp:
 lp_tlp_services:
   - tlp
 lp_tlp_restart_service: tlp
+lp_tlp_config_file: /etc/tlp.conf
+lp_tlp_path: /sbin/tlp
 
 lp_virtualbox_repos:
   - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/bionic contrib"

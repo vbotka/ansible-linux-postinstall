@@ -11,16 +11,10 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - bionic
-        - cosmic
-        - disco
-        - eoan
-    - name: EL
-      versions:
-        - 7
+        - focal
   galaxy_tags:
     - linux
     - ubuntu
-    - centos
     - armbian
 dependencies: []
 ...

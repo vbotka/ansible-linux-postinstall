@@ -36,6 +36,7 @@
     dest: "{{ lp_tlp_config_file }}"
     regexp: "^\\s*{{ item.key }}\\s*=\\s*(.*)$"
     line: "{{ item.key }}={{ item.value }}"
+    create: true
   loop: "{{ lp_tlp_config }}"
   notify: restart tlp
   tags: lp_tlp_conf
