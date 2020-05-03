@@ -1,3 +1,4 @@
+---
 extends: default
 
 rules:
@@ -10,6 +11,10 @@ rules:
   comments: disable
   comments-indentation: disable
   line-length:
-    max: 120
+    max: 160
     level: warning
-  truthy: enable
+  truthy:
+    allowed-values: ['true', 'false', 'True', 'False']
+  indentation:
+    spaces: 2
+    indent-sequences: true
