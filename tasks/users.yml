@@ -11,19 +11,43 @@
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
 
-- name: "users: Add or update users"
+- name: "users: Manage user accounts"
   user:
     name: "{{ item.name }}"
     shell: "{{ item.shell|default(omit) }}"
     password: "{{ item.password|default(omit) }}"
     update_password: "{{ item.update_password|default(omit) }}"
+    comment: "{{ item.comment|default(omit) }}"
+    create_home: "{{ item.create_home|default(omit) }}"
+    expires: "{{ item.expires|default(omit) }}"
+    force: "{{ item.force|default(omit) }}"
+    generate_ssh_key: "{{ item.generate_ssh_key|default(omit) }}"
+    group: "{{ item.group|default(omit) }}"
+    home: "{{ item.home|default(omit) }}"
+    local: "{{ item.local|default(omit) }}"
+    login_class: "{{ item.login_class|default(omit) }}"
+    move_home: "{{ item.move_home|default(omit) }}"
+    non_unique: "{{ item.non_unique|default(omit) }}"
+    remove: "{{ item.remove|default(omit) }}"
+    seuser: "{{  item.seuser|default(omit) }}"
+    skeleton: "{{ item.skeleton|default(omit) }}"
+    ssh_key_bits: "{{ item.ssh_key_bits|default(omit) }}"
+    ssh_key_comment: "{{ item.ssh_key_comment|default(omit) }}"
+    ssh_key_file: "{{ item.ssh_key_file|default(omit) }}"
+    ssh_key_passpharse: "{{ item.ssh_key_passphase|default(omit) }}"
+    ssh_key_type: "{{ item.ssh_key_type|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
+    system: "{{ item.system|default(omit) }}"
+    uid: "{{ item.uid|default(omit) }}"
   loop: "{{ lp_users }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: "users: Add users to additional groups"
   user:
     name: "{{ item.name }}"
     groups: "{{ item.groups }}"
-    append: true
+    append: "{{ item.append|default(true) }}"
   loop: "{{ lp_users_groups }}"
 
 #  EOF
