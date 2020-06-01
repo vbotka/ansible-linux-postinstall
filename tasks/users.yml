@@ -4,9 +4,9 @@
   vars:
     msg: |
       lp_users
-      {{ lp_users|to_nice_yaml }}
+      {{ lp_users|default(['UNDEFINED'])|to_nice_yaml }}
       lp_users_groups
-      {{ lp_users_groups|to_nice_yaml }}
+      {{ lp_users_groups|default(['UNDEFINED'])|to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
@@ -39,7 +39,7 @@
     state: "{{ item.state|default(omit) }}"
     system: "{{ item.system|default(omit) }}"
     uid: "{{ item.uid|default(omit) }}"
-  loop: "{{ lp_users }}"
+  loop: "{{ lp_users|default([]) }}"
   loop_control:
     label: "{{ item.name }}"
 
@@ -48,7 +48,7 @@
     name: "{{ item.name }}"
     groups: "{{ item.groups }}"
     append: "{{ item.append|default(true) }}"
-  loop: "{{ lp_users_groups }}"
+  loop: "{{ lp_users_groups|default([]) }}"
 
 #  EOF
 ...
