@@ -59,6 +59,23 @@ lp_iptables_INPUT_net: []
 lp_users: []
 lp_users_groups: []
 
+lp_passwords: false
+lp_passwords_debug: false
+lp_passwords_debug_classified: false
+lp_passwords_fail_gracefully: false
+lp_password_update_password: always
+lp_passwordstore: false
+lp_passwordstore_debug: false
+lp_passwordstore_backup: false
+lp_passwordstore_create: false
+lp_passwordstore_length: 16
+lp_passwordstore_nosymbols: false
+lp_passwordstore_overwrite: false
+lp_passwordstore_passwordstore: ~/.password-store
+lp_passwordstore_returnall: false
+lp_passwordstore_subkey: password
+lp_passwordstore_idempotent_password_hash: true
+
 lp_aliases: false
 lp_aliases_config: []
 

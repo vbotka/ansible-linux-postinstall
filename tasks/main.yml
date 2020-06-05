@@ -88,6 +88,11 @@
         (ansible_os_family == "Debian" )
   tags: lp_users
 
+- import_tasks: passwords.yml
+  when: (ansible_os_family == "RedHat" ) or
+        (ansible_os_family == "Debian" ) and lp_passwords|bool
+  tags: lp_passwords
+
 - import_tasks: sudoers.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )
