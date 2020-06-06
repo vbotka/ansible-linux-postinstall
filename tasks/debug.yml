@@ -38,6 +38,7 @@
       lp_netplan [{{ lp_netplan }}]
       lp_nfsd [{{ lp_nfsd }}] lp_nfsd_enable [{{ lp_nfsd_enable }}]
       lp_packages_autoremove [{{ lp_packages_autoremove }}]
+      lp_passwords [{{ lp_passwords }}]
       lp_pm [{{ lp_pm }}]
       lp_postfix [{{ lp_postfix }}] lp_postfix_enable [{{ lp_postfix_enable }}]
       lp_reboot [{{ lp_reboot }}]

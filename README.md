@@ -1,14 +1,24 @@
 # linux_postinstall
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)
+[![Documentation Status](https://readthedocs.org/projects/docs/badge/?version=latest)](https://ansible-linux-postinstall.readthedocs.io/en/latest/)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/)
+[Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi, aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums, fstab, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, passwords, pm-utils, postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
-Configure Linux: acpi, aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums, fstab, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, nfsd, packages, passwords, pm-utils, postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
+[Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io) [[PDF 296K](https://github.com/vbotka/ansible-config-light/blob/master/ansible-role-linux-postinstall.pdf)]
 
-Tested systems: Ubuntu 18.04, Ubuntu 20.04, and Armbian 5.90
+Feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-linux-postinstall/issues). Contributions are welcome.
 
-Please feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-linux-postinstall/issues).
+
+## Supported platforms
+
+This role has been developed and tested with
+* [Ubuntu Supported Releases](http://releases.ubuntu.com/)
+* Armbian 5.90
+
+This may be different from the platforms in Ansible Galaxy which does not offer all
+released versions in time and would report an error. For example:
+`IMPORTER101: Invalid platform: "Ubuntu focal", skipping.`
 
 
 ## Requirements
@@ -16,7 +26,7 @@ Please feel free to [share your feedback and report issues](https://github.com/v
 * [ansible_lib](https://galaxy.ansible.com/vbotka/ansible_lib)
 
 
-## Variables
+## Role Variables
 
 Read the defaults and examples in vars.
 

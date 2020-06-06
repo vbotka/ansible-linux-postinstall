@@ -1,0 +1,25 @@
+---
+mytasks:
+  - file: main.yml
+    link: main.yml
+    synopsis: |
+      Tasks of the playbook.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+{% for file in my_files %}
+  - file: {{ file }}
+    link: {{ file }}
+    synopsis: |
+      Configure {{ file|splitext|first }}.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+{% endfor %}
+...

@@ -1,0 +1,44 @@
+.. _as:
+
+Annotated source code
+*********************
+.. contents:: Table of Contents
+   :depth: 3
+
+.. _as_tree:
+
+Tasks
+=====
+
+{% for i in mytasks %}
+.. _as_{{ i.link }}:
+
+{{ i.file }}
+{{ '-' * i.file|length }}
+
+Synopsis: {{ i.synopsis }}
+
+{{ i.description }}
+
+[`{{ i.file }} <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/{{ i.file }}>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/{{ i.file }}
+    :language: Yaml
+    :emphasize-lines: {{ i.lines }}
+    :linenos:
+
+{% if i.seealso|length > 0 %}
+.. seealso:: 
+
+{% endif %}
+{% if i.note|length > 0 %}
+.. note::
+
+{% endif %}
+{% if i.warning|length > 0 %}
+.. warning::
+
+{% endif %}
+{% endfor %}

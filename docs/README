@@ -1,0 +1,29 @@
+README
+======
+
+Update version
+
+  shell> grep "version =" source/conf.py 
+  version = '1.3'
+
+Create source/annotation.rst and source/examples.rst
+
+  shell> ansible-playbook playbook.yml
+
+Create html documents
+
+  shell> make html
+
+Create LaTex and PDF documents
+
+  shell> make latexpdf
+
+Create epub documents
+
+  shell> make epub
+
+See the documents
+
+  shell> browser build/html/index.html
+
+# EOF

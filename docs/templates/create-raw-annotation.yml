@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - set_fact:
+        my_files: "{{ my_files|default([]) + [item] }}"
+      loop: "{{ lookup('file', 'annotation-files.txt').splitlines() }}"
+    - debug:
+        var: my_files
+    - template:
+        src: raw-annotation.yml.j2
+        dest: raw-annotation.yml
+# EOF
+...
