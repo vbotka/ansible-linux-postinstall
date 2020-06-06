@@ -13,7 +13,7 @@ Please feel free to [share your feedback and report issues](https://github.com/v
 
 ## Requirements
 
-None.
+* [ansible_lib](https://galaxy.ansible.com/vbotka/ansible_lib)
 
 
 ## Variables
