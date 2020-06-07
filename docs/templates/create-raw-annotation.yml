@@ -2,12 +2,15 @@
 - hosts: localhost
   gather_facts: false
   tasks:
-    - set_fact:
+    - name: Read list of files
+      set_fact:
         my_files: "{{ my_files|default([]) + [item] }}"
       loop: "{{ lookup('file', 'annotation-files.txt').splitlines() }}"
-    - debug:
+    - name: Debug my_files
+      debug:
         var: my_files
-    - template:
+    - name: Create raw-annotation.yml
+      template:
         src: raw-annotation.yml.j2
         dest: raw-annotation.yml
 # EOF

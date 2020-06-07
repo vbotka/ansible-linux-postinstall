@@ -285,6 +285,7 @@ lp_libvirt_libvirtd_enable: false
 lp_libvirt_conf: []
 
 lp_zfs: false
+lp_zfs_install: true
 lp_zfs_debug: false
 lp_zfs_manage: []
 lp_zfs_mountpoints: []

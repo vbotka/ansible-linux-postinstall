@@ -3,8 +3,11 @@
 - name: "zfs: Debug"
   vars:
     msg: |
+      lp_zfs_install [{{ lp_zfs_install }}]
       lp_zfs_packages
       {{ lp_zfs_packages|to_nice_yaml }}
+      lp_zfs_services
+      {{ lp_zfs_services|default([])|to_yaml }}
       lp_zfs_manage
       {{ lp_zfs_manage|to_yaml }}
       lp_zfs_mountpoints
@@ -17,7 +20,16 @@
 - name: "zfs: Install packages"
   include_tasks: fn/install-package.yml
   loop: "{{ lp_zfs_packages }}"
+  when: lp_zfs_install|bool
   tags: lp_zfs_packages
+
+- name: "zfs: Manage zfs services"
+  systemd:
+    name: "{{ item.name }}"
+    enabled: "{{ item.enabled|default(true) }}"
+    state: "{{ item.state|default('started') }}"
+  loop: "{{ lp_zfs_services|default([]) }}"
+  tags: lp_zfs_services
 
 - name: "zfs: Manage zfs"
   zfs:
