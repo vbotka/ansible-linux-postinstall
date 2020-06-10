@@ -231,8 +231,14 @@ lp_timesyncd_RootDistanceMaxSec: 5
 lp_timesyncd_PollIntervalMinSec: 32
 lp_timesyncd_PollIntervalMaxSec: 2048
 
-lp_gpg: true
-lp_gpg_conf_user: []
+lp_gpg: false
+lp_gpg_debug: false
+lp_gpg_install: true
+lp_gpg_packages_extra: []
+lp_gpg_conf_default: []
+lp_gpg_conf: []
+lp_gpg_agent_conf_default: []
+lp_gpg_agent_conf: []
 
 lp_wpasupplicant: true
 lp_wpasupplicant_debug: false

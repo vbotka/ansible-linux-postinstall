@@ -362,11 +362,24 @@
 #                    2.ubuntu.pool.ntp.org,
 #                    3.ubuntu.pool.ntp.org"
 
-# lp_gpg_conf_user:
-#  - owner: "admin"
-#    conf:
-#      - key: "verbose"
-#        value: ""
+# lp_gpg: true
+# lp_gpg_install: true
+# lp_gpg_debug: true
+# lp_gpg_conf:
+#   - owner: admin
+#     conf:
+#       - {key: keyserver, value: hkp://keyserver.ubuntu.com}
+#       - {key: use-agent}
+#       - {key: cert-digest-algo, value: SHA256}
+#       - {key: digest-algo, value: SHA256}
+#       - {key: default-key, value: <KEY-ID> }
+# lp_gpg_agent_conf:
+#   - owner: admin
+#     conf:
+#       - {key: no-grab}
+#       - {key: pinentry-program, value: /usr/bin/pinentry-curses}
+# lp_gpg_packages_extra:
+#   - pinentry-curses
 
 # lp_ssh_config:
 #  - host: "*"
