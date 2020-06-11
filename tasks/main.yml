@@ -88,6 +88,10 @@
         (ansible_os_family == "Debian" )
   tags: lp_users
 
+- import_tasks: gpg.yml
+  when: (ansible_os_family == "Debian") and lp_gpg|bool
+  tags: lp_gpg
+
 - import_tasks: passwords.yml
   when: (ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" ) and lp_passwords|bool
@@ -109,8 +113,7 @@
   tags: lp_aliases
 
 - import_tasks: pm-utils.yml
-  when: (ansible_os_family == "Debian") and
-        lp_pm
+  when: (ansible_os_family == "Debian") and lp_pm|bool
   tags: lp_pm
 
 - import_tasks: ssh.yml
@@ -205,10 +208,6 @@
   when: ((ansible_os_family == "RedHat" ) or
         (ansible_os_family == "Debian" )) and lp_wpasupplicant|bool
   tags: lp_wpasupplicant
-
-- import_tasks: gpg.yml
-  when: (ansible_os_family == "Debian") and lp_gpg|bool
-  tags: lp_gpg
 
 - import_tasks: logrotate.yml
   when: (ansible_os_family == "RedHat" ) or

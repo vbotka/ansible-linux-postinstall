@@ -66,6 +66,7 @@ lp_passwords_fail_gracefully: false
 lp_password_update_password: always
 lp_passwordstore: false
 lp_passwordstore_debug: false
+lp_passwordstore_install: true
 lp_passwordstore_backup: false
 lp_passwordstore_create: false
 lp_passwordstore_length: 16

@@ -1,16 +1,29 @@
 ---
 # linux-postinstall function install-package
 
-- name: "fn install-package: {{ lp_package_state }} package: {{ item }}"
-  package:
-    name: "{{ item }}"
-    state: "{{ lp_package_state }}"
-  register: result
-  retries: "{{ lp_install_retries }}"
-  until: result is succeeded
-  delay: "{{ lp_install_delay }}"
+- block:
+    - name: "fn install-package: {{ lp_package_state }} package: {{ item }}"
+      package:
+        name: "{{ item }}"
+        state: "{{ lp_package_state }}"
+      register: result
+      retries: "{{ lp_install_retries }}"
+      until: result is succeeded
+      delay: "{{ lp_install_delay }}"
+      when: not my_delegate_to_localhost|default(false)|bool
+
+    - name: "fn install-package: localhost {{ lp_package_state }} package: {{ item }}"
+      package:
+        name: "{{ item }}"
+        state: "{{ lp_package_state }}"
+      register: result
+      retries: "{{ lp_install_retries }}"
+      until: result is succeeded
+      delay: "{{ lp_install_delay }}"
+      delegate_to: localhost
+      when: my_delegate_to_localhost|default(false)|bool
+
   when: not lp_package_install_dryrun|bool
-  tags: lp_packages_auto
 
 # EOF
 ...

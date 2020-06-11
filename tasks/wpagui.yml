@@ -16,6 +16,7 @@
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
+  tags: lp_wpagui_debug
 
 - name: "wpagui: Install packages"
   include_tasks: fn/install-package.yml
@@ -71,7 +72,6 @@
   # ansible-lint "systemctl used in place of systemd module" No
   # systemctl / systemd module. #48848
   # https://github.com/ansible/ansible/issues/48848
-
 
 # EOF
 ...

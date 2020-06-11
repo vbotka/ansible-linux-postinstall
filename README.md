@@ -247,6 +247,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [NFS - Centos](https://www.centos.org/docs/5/html/5.2/Deployment_Guide/ch-nfs.html)
 - [NFS - Ubuntu](https://help.ubuntu.com/lts/serverguide/network-file-system.html)
 - [Packages - How to prevent updating of a specific package? - Ubuntu Ask](https://askubuntu.com/questions/18654/how-to-prevent-updating-of-a-specific-package)
+- [Password(store) - pass the standard unix password manager](https://www.passwordstore.org/)
 - [PM pm-utils - ArchLinux Wiki](https://wiki.archlinux.org/index.php/pm-utils)
 - [Postfix Basic Setup Howto - Ubuntu Help](https://help.ubuntu.com/community/PostfixBasicSetupHowto)
 - [Smartmontools](https://www.smartmontools.org/)

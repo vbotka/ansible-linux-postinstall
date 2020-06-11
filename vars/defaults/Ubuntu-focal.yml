@@ -179,5 +179,8 @@ lp_resolvconf_conf_mode: "0644"
 # userland paths
 # lp_dhclient: /sbin/dhclient
 
+lp_passwordstore_packages:
+  - pass
+
 # EOF
 ...

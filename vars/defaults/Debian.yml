@@ -162,5 +162,8 @@ lp_resolvconf_confd_head: []
 # userland paths
 # lp_dhclient: "/sbin/dhclient"
 
+lp_passwordstore_packages:
+  - pass
+
 # EOF
 ...

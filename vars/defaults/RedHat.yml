@@ -75,5 +75,8 @@ lp_apparmor_profile_dir: /etc/apparmor.d
 # userland paths
 # lp_dhclient: "/sbin/dhclient"
 
+lp_passwordstore_packages:
+  - pass
+
 # EOF
 ...
