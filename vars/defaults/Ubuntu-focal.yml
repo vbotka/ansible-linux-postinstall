@@ -140,12 +140,6 @@ lp_libvirt_conf_dir: /etc/libvirt
 
 lp_zfs_packages:
   - zfsutils-linux
-lp_zfs_services:
-  - {name: zfs-mount, enabled: true, state: started}
-  - {name: zfs-share, enabled: true, state: started}
-  - {name: zfs-zed, enabled: true, state: started}
-# zfs-import is masked by default
-# - {name: zfs-import, enabled: false, state: stopped}
 
 lp_ufw_packages:
   - ufw
