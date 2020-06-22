@@ -151,6 +151,18 @@
   systemd: name="{{ lp_resolvconf_service }}" state="reloaded"
   when: lp_resolvconf_enable
 
+- name: gpgconf kill gpg-agent
+  command: gpgconf --kill gpg-agent
+  loop: "{{ lp_gpg_agent_conf_changes.results }}"
+  become: "{{ item.item.owner }}"
+  when: item.changed|bool
+
+- name: gpgconf kill dirmngr
+  command: gpgconf --kill dirmngr
+  loop: "{{ lp_gpg_dirmngr_conf_changes.results }}"
+  become: "{{ item.item.owner }}"
+  when: item.changed|bool
+
 - name: reconfigure wpa_supplicant
   shell: >
     [ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ item.item.dev }} ] &&

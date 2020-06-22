@@ -19,6 +19,11 @@
       {{ lp_gpg_agent_conf_default|to_yaml }}
       lp_gpg_agent_conf
       {{ lp_gpg_agent_conf|to_yaml }}
+
+      lp_gpg_dirmngr_conf_default
+      {{ lp_gpg_dirmngr_conf_default|to_yaml }}
+      lp_gpg_dirmngr_conf
+      {{ lp_gpg_dirmngr_conf|to_yaml }}
   debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_gpg_debug|bool
@@ -32,10 +37,10 @@
   when: lp_gpg_install|bool
   tags: lp_gpg_packages
 
-- name: "gpg: Configure ~/.gnupg/gpg.conf"
+- name: "gpg: Configure gpg.conf"
   template:
     src: gpg.conf.j2
-    dest: "/home/{{ item.owner }}/.gnupg/gpg.conf"
+    dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/gpg.conf') }}"
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"
     mode: "0600"
@@ -45,10 +50,10 @@
     label: "{{ item.owner }}"
   tags: lp_gpg_conf
 
-- name: "gpg: Configure ~/.gnupg/gpg-agent.conf"
+- name: "gpg: Configure gpg-agent.conf"
   template:
     src: gpg-agent.conf.j2
-    dest: "/home/{{ item.owner }}/.gnupg/gpg-agent.conf"
+    dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/gpg-agent.conf') }}"
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"
     mode: "0600"
@@ -56,7 +61,24 @@
   loop: "{{ lp_gpg_agent_conf }}"
   loop_control:
     label: "{{ item.owner }}"
-  tags: lp_gpg_conf
+  register: lp_gpg_agent_conf_changes
+  notify: gpgconf kill gpg-agent
+  tags: lp_gpg_agent_conf
+
+- name: "gpg: Configure dirmngr.conf"
+  template:
+    src: gpg-dirmngr.conf.j2
+    dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/dirmngr.conf') }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.owner }}"
+    mode: "0600"
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_gpg_dirmngr_conf }}"
+  loop_control:
+    label: "{{ item.owner }}"
+  register: lp_gpg_dirmngr_conf_changes
+  notify: gpgconf kill dirmngr
+  tags: lp_gpg_dirmngr_conf
 
 # TODO: import keys
 

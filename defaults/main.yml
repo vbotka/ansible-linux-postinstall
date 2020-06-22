@@ -240,6 +240,8 @@ lp_gpg_conf_default: []
 lp_gpg_conf: []
 lp_gpg_agent_conf_default: []
 lp_gpg_agent_conf: []
+lp_gpg_dirmngr_conf_default: []
+lp_gpg_dirmngr_conf: []
 
 lp_wpasupplicant: true
 lp_wpasupplicant_debug: false
