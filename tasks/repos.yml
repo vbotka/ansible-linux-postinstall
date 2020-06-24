@@ -9,8 +9,9 @@
       lp_repos
       {{ lp_repos|to_nice_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_repos_debug|bool
+  tags: lp_repos_debug
 
 - name: "repos: Manage repo signing keys"
   apt_key:

@@ -33,7 +33,7 @@
       {{ lp_wpasupplicant_conf|to_yaml }}
       {% endif %}
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_wpasupplicant_debug|bool
   tags: lp_wpasupplicant_debug
 

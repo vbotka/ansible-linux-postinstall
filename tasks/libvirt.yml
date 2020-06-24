@@ -4,7 +4,7 @@
 - name: "libvirt Debug"
   vars:
     msg: |
-      lp_libvirt_guests_enable   [{{ lp_libvirt_guests_enable }}]
+      lp_libvirt_guests_enable [{{ lp_libvirt_guests_enable }}]
       lp_libvirt_libvirtd_enable [{{ lp_libvirt_libvirtd_enable }}]
       lp_libvirt_backup [{{ lp_libvirt_backup }}]
       lp_libvirt_conf_owner [{{ lp_libvirt_conf_owner }}]
@@ -16,8 +16,8 @@
       lp_libvirt_conf
       {{ lp_libvirt_conf|to_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_libvirt_debug|bool
   tags: lp_libvirt_debug
 
 - name: "libvirt: Install packages"
@@ -61,7 +61,6 @@
     enabled: false
   when: not lp_libvirt_guests_enable|bool
   tags: lp_libvirt_guests_service
-
 
 # EOF
 ...

@@ -22,8 +22,9 @@
       lp_udev_hci_run_rules
       {{ lp_udev_hci_run_rules|to_nice_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_udev_debug|bool
+  tags: lp_udev_debug
 
 # udev rules
 - name: "udev: Configure {{ lp_udev_rules_dir }}"
@@ -36,6 +37,7 @@
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_rules|dict2items }}"
   notify: reload udev
+  tags: lp_udev_rules
 
 # persistent_net
 - name: "udev: Configure {{ lp_udev_rules_dir }}/
@@ -49,6 +51,7 @@
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_persistent_net_rules }}"
   notify: reload udev
+  tags: lp_udev_persistentnet
 
 # hci name
 - name: "udev: Configure {{ lp_udev_rules_dir }}/
@@ -62,6 +65,7 @@
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_hci_name_rules }}"
   notify: reload udev
+  tags: lp_udev_hciname
 
 # hci run
 - name: "udev: Configure {{ lp_udev_rules_dir }}/
@@ -75,6 +79,7 @@
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_hci_run_rules }}"
   notify: reload udev
+  tags: lp_udev_hcirun
 
 # Service
 - name: "udev: Start and enable udev"

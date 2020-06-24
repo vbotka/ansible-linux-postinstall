@@ -13,7 +13,7 @@
       lp_zfs_mountpoints
       {{ lp_zfs_mountpoints|to_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_zfs_debug|bool
   tags: lp_zfs_debug
 

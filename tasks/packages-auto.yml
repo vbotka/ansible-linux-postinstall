@@ -17,11 +17,12 @@
             list }}"
   tags: lp_packages_auto
 
-- name: "packages-auto: Debug"
+- name: "packages-auto: Debug local_pkg_lists"
   debug:
     msg: "[{{ lookup('vars', item.install, default='false')|bool }}]
               packages {{ lookup('vars', item.packages) }}"
   loop: "{{ local_pkg_lists }}"
+  when: lp_packages_debug|bool
   tags: lp_packages_auto
 
 - name: "packages-auto: Create local_pkg_list"
@@ -31,10 +32,10 @@
   when: lookup('vars', item.install, default='False')|bool
   tags: lp_packages_auto
 
-- name: "packages-auto: Debug"
+- name: "packages-auto: Debug local_pkg_list"
   debug:
     var: local_pkg_list
-  when: lp_debug|bool
+  when: lp_packages_debug|bool
   tags: lp_packages_auto
 
 - name: "packages-auto: Install packages"

@@ -13,7 +13,7 @@
       lp_reboot_wait_delay [{{ lp_reboot_wait_delay }}]
       lp_reboot_wait_timeout [{{ lp_reboot_wait_timeout }}]
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_reboot_debug|bool
 
 - name: "reboot: Debian test {{ lp_reboot_required_file }}"

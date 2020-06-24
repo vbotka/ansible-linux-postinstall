@@ -1,6 +1,16 @@
 ---
 # linux-postinstall sysctl
 
+- name: "sysctl: Debug"
+  vars:
+    msg: |
+      lp_sysctl_vars
+      {{ lp_sysctl_vars|to_yaml }}
+  debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_sysctl_debug|bool
+  tags: lp_sysctl_debug
+
 - name: "sysctl: Configure /etc/sysctl.conf"
   lineinfile:
     dest: /etc/sysctl.conf

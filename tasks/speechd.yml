@@ -4,7 +4,7 @@
 - name: "speechd: Debug"
   debug:
     msg: "lp_speechd_enable [{{ lp_speechd_enable }}]"
-  when: lp_debug|bool
+  when: lp_speechd_debug|bool
 
 - name: "speechd: Enable and start speech-dispatcher"
   systemd:

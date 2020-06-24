@@ -1,5 +1,15 @@
 ---
 
+- name: "xorg: Debug"
+  vars:
+    msg: |
+      lp_xorg_conf
+      {{ lp_xorg_conf|to_nice_yaml }}
+  debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_xorg_debug|bool
+  tags: lp_xorg_debug
+
 - name: "xorg: Configure {{ lp_xorg_conf_dir }}"
   template:
     src: xorg.conf.j2

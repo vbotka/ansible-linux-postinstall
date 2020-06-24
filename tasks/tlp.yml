@@ -17,8 +17,9 @@
       {{ lp_tlp_services|to_nice_yaml }}
       lp_tlp_restart_service [{{ lp_tlp_restart_service }}]
   debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_tlp_debug|bool
+  tags: lp_tlp_debug
 
 - name: "tlp: Install packages"
   include_tasks: fn/install-package.yml

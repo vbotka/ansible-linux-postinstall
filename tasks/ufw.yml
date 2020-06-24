@@ -26,7 +26,7 @@
       lp_ufw_conf
       {{ lp_ufw_conf|to_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_ufw_debug|bool
   tags: lp_ufw_debug
 

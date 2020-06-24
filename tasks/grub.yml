@@ -1,13 +1,14 @@
 ---
 
 - name: "grub: Debug"
-  when: lp_debug
   vars:
     msg: |
       lp_grub_default
       {{ lp_grub_default|to_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_grub_debug|bool
+  tags: lp_grub_debug
 
 - name: "grub: Configure /etc/default/grub"
   lineinfile:
@@ -17,6 +18,7 @@
     backup: "{{ lp_backup_conf|bool }}"
   loop: "{{ lp_grub_default }}"
   notify: update grub
+  tags: lp_grub_conf
 
 # EOF
 ...

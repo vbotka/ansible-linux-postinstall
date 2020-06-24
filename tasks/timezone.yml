@@ -3,11 +3,13 @@
 - name: "timezone: Debug"
   debug:
     msg: "lp_timezone_zoneinfo [{{ lp_timezone_zoneinfo }}]"
-  when: lp_debug|bool
+  when: lp_timezone_debug|bool
+  tags: lp_timezone_debug
 
 - name: "timezone: Set timezone {{ lp_timezone_zoneinfo }}"
   timezone:
     name: "{{ lp_timezone_zoneinfo|default('UTC') }}"
+  tags: lp_timezone_set
 
 # EOF
 ...

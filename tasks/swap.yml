@@ -9,8 +9,9 @@
       lp_swap_size [{{ lp_swap_size|default("UNDEFINED") }}]
       lp_swap_stsize [{{ lp_swap_stsize|default("UNDEFINED") }}]
   debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_swap_debug|bool
+  tags: lp_swap_debug
 
 - name: "swap: Create swapfile {{ lp_swap_file }}"
   shell: sh -c 'if [ ! -e {{ lp_swap_file }} ]; then printf "create"; fi'

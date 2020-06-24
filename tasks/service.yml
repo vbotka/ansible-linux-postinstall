@@ -17,9 +17,9 @@
   when: lookup('vars', 'lp_' + item, default='false')
   tags: lp_service_debug
 
-- name: "service: Debug print"
+- name: "service: Debug"
   debug:
-    msg: "{{ my_msg.split('\n') }}"
+    msg: "{{ my_msg.split('\n')[:-1] }}"
   vars:
     my_msg: |
       lp_service

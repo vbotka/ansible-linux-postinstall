@@ -10,8 +10,8 @@
       lp_timesyncd_PollIntervalMinSec [{{ lp_timesyncd_PollIntervalMinSec }}]
       lp_timesyncd_PollIntervalMaxSec [{{ lp_timesyncd_PollIntervalMaxSec }}]
   debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_timesyncd_debug|bool
   tags: lp_timesyncd_debug
 
 - name: "timesyncd: Configure /etc/systemd/timesyncd.conf"

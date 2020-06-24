@@ -14,8 +14,9 @@
       lp_virtualbox_services
       {{ lp_virtualbox_services|to_nice_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_virtualbox_debug|bool
+  tags: lp_virtualbox_debug
 
 # TODO: assert lp_virtualbox_modules are loaded
 #       when: lp_virtualbox|bool

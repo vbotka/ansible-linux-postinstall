@@ -1,6 +1,16 @@
 ---
 # linux-postinstall sudoers
 
+- name: "sudoers: Debug"
+  vars:
+    msg: |
+      lp_sudoers_conf
+      {{ lp_sudoers_conf|to_yaml }}
+  debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_sudoers_debug|bool
+  tags: lp_sudoers_debug
+
 - name: "sudoers: Configure /etc/sudoers"
   lineinfile:
     path: /etc/sudoers
@@ -9,6 +19,7 @@
     create: true
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_sudoers_conf }}"
+  tags: lp_sudoers_conf
 
 - name: "sudoers: Configure /etc/sudoers.d/01"
   lineinfile:
@@ -20,6 +31,7 @@
     create: true
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_sudoers_01 }}"
+  tags: lp_sudoers_dconf
 
 # EOF
 ...

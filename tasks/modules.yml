@@ -14,8 +14,8 @@
       lp_modules_blacklist
       {{ lp_modules_blacklist|to_nice_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_modules_debug|bool
 
 - name: "modules: modprobe modules"
   modprobe:

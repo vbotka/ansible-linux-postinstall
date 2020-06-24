@@ -1,6 +1,19 @@
 ---
 # linux-postinstall postfix
 
+- name: "postfix: Debug"
+  vars:
+    msg: |
+      ansible_os_family [{{ ansible_os_family }}]
+      lp_postfix_service [{{ lp_postfix_service }}]
+      lp_postfix_enable [{{ lp_postfix_enable }}]
+      lp_postfix_main_conf
+      {{ lp_postfix_main_conf|to_yaml }}
+  debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_postfix_debug|bool
+  tags: lp_postfix_debug
+
 - name: "postfix: Configure /etc/postfix/main.cf"
   lineinfile:
     dest: /etc/postfix/main.cf

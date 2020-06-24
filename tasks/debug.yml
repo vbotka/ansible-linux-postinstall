@@ -65,7 +65,7 @@
       lp_package_state_remove [{{ lp_package_state_remove }}]
 
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
 
 # EOF
 ...

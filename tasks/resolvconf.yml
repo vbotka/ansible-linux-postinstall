@@ -15,7 +15,7 @@
       lp_resolvconf_confd_head
       {{ lp_resolvconf_confd_head|to_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_resolvconf_debug|bool
   tags: lp_resolvconf_debug
 

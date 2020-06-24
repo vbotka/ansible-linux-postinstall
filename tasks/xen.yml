@@ -13,8 +13,9 @@
       lp_xen_global
       {{ lp_xen_global|to_nice_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_xen_debug|bool
+  tags: lp_xen_debug
 
 - name: "xen: Install packages"
   include_tasks: fn/install-package.yml

@@ -3,7 +3,7 @@
 - name: "libvirt-conf: Debug"
   debug:
     msg: "{{ item }}"
-  when: lp_debug|bool
+  when: lp_libvirt_debug|bool
 
 - name: "libvirt-conf: Configure {{ lp_libvirt_conf_dir }}/{{ item.key }}"
   lineinfile:

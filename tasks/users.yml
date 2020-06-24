@@ -8,8 +8,9 @@
       lp_users_groups
       {{ lp_users_groups|default(['UNDEFINED'])|to_nice_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_users_debug|bool
+  tags: lp_users_debug
 
 - name: "users: Manage user accounts"
   user:
@@ -47,6 +48,7 @@
   loop: "{{ lp_users|default([]) }}"
   loop_control:
     label: "{{ item.name }}"
+  tags: lp_users_accounts
 
 - name: "users: Add users to additional groups"
   user:
@@ -54,6 +56,7 @@
     groups: "{{ item.groups }}"
     append: "{{ item.append|default(true) }}"
   loop: "{{ lp_users_groups|default([]) }}"
+  tags: lp_users_groups
 
 #  EOF
 ...

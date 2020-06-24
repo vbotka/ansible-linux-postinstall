@@ -11,7 +11,7 @@
       lp_debsums_ignore_conf
       {{ lp_debsums_ignore_conf|to_nice_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_debsums_debug|bool
   tags: lp_debsums_debug
 

@@ -1,6 +1,16 @@
 ---
 # linux-postinstall sshd
 
+- name: "sshd: Debug"
+  vars:
+    msg: |
+      lp_sshd_config
+      {{ lp_sshd_config|to_yaml }}
+  debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_sshd_debug|bool
+  tags: lp_sshd_debug
+
 - name: "sshd: Configure /etc/ssh/sshd_config"
   lineinfile:
     dest: /etc/ssh/sshd_config

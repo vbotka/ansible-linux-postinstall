@@ -4,16 +4,21 @@
 # Put distro and flavor specific vars and overrides to the vars
 # directory.
 
+lp_hostname: ""
+lp_fqdn: ""
+
 lp_debug: false
 lp_backup_conf: false
 
 lp_install_retries: 5
 lp_install_delay: 2
 
+lp_repos_debug: false
 lp_repos: []
 lp_repos_keys: []
 
 lp_packages_auto: false
+lp_packages_debug: false
 lp_packages_install: []
 lp_packages_remove: []
 lp_packages_selections_preinstall: []
@@ -24,15 +29,18 @@ lp_package_state: present               # apt and yum support "latest"
 lp_package_state_remove: absent         # see "remove" vs. "purge"
 lp_package_install_dryrun: false
 
+lp_modules_debug: false
 lp_modules: []
 lp_modules_blacklist: []
 lp_modules_blacklist_path: /etc/modprobe.d
 lp_modules_options: []
 lp_modules_options_path: /etc/modprobe.d
 
+lp_sysctl_debug: false
 lp_sysctl_vars: []
 
 lp_udev: true
+lp_udev_debug: false
 lp_udev_enable: true
 lp_udev_rules_dir: /etc/udev/rules.d
 lp_udev_rules_template: udev-rules.j2
@@ -46,6 +54,7 @@ lp_udev_hci_run_rules_file: 72-hci-run.rules
 lp_udev_hci_run_rules: []
 
 lp_wpagui: false
+lp_wpagui_debug: false
 lp_wpagui_nm_override: manual
 
 lp_iptables: false
@@ -56,6 +65,7 @@ lp_iptables_lan: 10.1.0.0/24
 lp_iptables_INPUT_if: []
 lp_iptables_INPUT_net: []
 
+lp_users_debug: false
 lp_users: []
 lp_users_groups: []
 
@@ -82,18 +92,18 @@ lp_aliases_config: []
 
 lp_authorized_key: []
 
-lp_hostname: ""
-
+lp_hosts_debug: false
 lp_hosts: []
 
-lp_fqdn: ""
-
 lp_grub: true
+lp_grub_debug: false
 lp_grub_default: []
 
 lp_kvm: false
+lp_kvm_debug: false
 
 lp_xen: false
+lp_xen_debug: false
 lp_xen_dom0_mem: 512M
 lp_xen_dom0_mem_max: 512M
 lp_xen_XEN_OVERRIDE_GRUB_DEFAULT: 0
@@ -119,16 +129,20 @@ lp_pm: false
 lp_pm_sleepd: {}
 
 lp_ssh: false
+lp_ssh_debug: false
 lp_ssh_config: []
 
 lp_sshd: false
+lp_sshd_debug: false
 lp_sshd_enable: false
 lp_sshd_config: []
 
 lp_bluetooth: false
+lp_bluetooth_debug: false
 lp_bluetooth_enable: false
 lp_bluetooth_main_conf: []
 
+lp_xorg_debug: false
 lp_xorg_conf_dir: /usr/share/X11/xorg.conf.d
 lp_xorg_conf: []
 
@@ -148,12 +162,13 @@ lp_gpsd_GPSD_OPTIONS: -b
 lp_gpsd_bt_rfcomm: []
 
 lp_postfix: true
+lp_postfix_debug: false
 lp_postfix_enable: true
 lp_postfix_main_conf: []
 
 lp_smart: false
-lp_smart_enable: false
 lp_smart_debug: false
+lp_smart_enable: false
 lp_smart_packages:
   - smartmontools
 lp_smart_service: smartmontools
@@ -165,6 +180,7 @@ lp_smart_conf_mode: "0644"
 lp_smart_devices: []
 
 lp_virtualbox: false
+lp_virtualbox_debug: false
 lp_virtualbox_enable: false
 lp_virtualbox_ignore_errors: false
 lp_virtualbox_version: 5.2
@@ -192,8 +208,10 @@ lp_acpi_events: {}
 lp_acpi_actions: {}
 
 lp_speechd: true
+lp_speechd_debug: false
 lp_speechd_enable: true
 
+lp_sudoers_debug: false
 lp_sudoers_owner: root
 lp_sudoers_group: root
 lp_sudoers_mode: "0440"
@@ -219,12 +237,15 @@ lp_apparmor_complain: []
 lp_apparmor_enforce: []
 
 lp_swap: false
+lp_swap_debug: false
 lp_swap_enable: false
 
 lp_timezone: false
+lp_timezone_debug: false
 lp_timezone_zoneinfo: UTC
 
 lp_timesyncd: true
+lp_timesyncd_debug: false
 lp_timesyncd_enable: true
 lp_timesyncd_NTP: ""
 lp_timesyncd_FallbackNTP: ntp.ubuntu.com
@@ -275,6 +296,7 @@ lp_logrotate_conf_blocks: []
 lp_logrotate_confd: []
 
 lp_tlp: false
+lp_tlp_debug: false
 lp_tlp_enable: false
 lp_tlp_thinkpad: false
 lp_tlp_config: []
@@ -289,6 +311,7 @@ lp_autofs_misc_conf_file: /etc/auto.misc
 lp_autofs_misc_conf: []
 
 lp_libvirt: false
+lp_libvirt_debug: false
 lp_libvirt_guests_enable: false
 lp_libvirt_libvirtd_enable: false
 lp_libvirt_conf: []

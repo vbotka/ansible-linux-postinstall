@@ -25,7 +25,7 @@
       lp_gpg_dirmngr_conf
       {{ lp_gpg_dirmngr_conf|to_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_gpg_debug|bool
   tags: lp_gpg_debug
 
