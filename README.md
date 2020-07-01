@@ -223,6 +223,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [GPG - GnuPG](https://gnupg.org/)
 - [GPG - GnuPG HowTo - Ubuntu Help community](https://help.ubuntu.com/community/GnuPrivacyGuardHowto)
 - [GPG - OpenPGP Best Practices](https://riseup.net/en/security/message-security/openpgp/gpg-best-practices)
+- [GPG - Ubuntu Security Team](https://wiki.ubuntu.com/SecurityTeam/GPGMigration)
 - [GPSD Bluetooth](https://ubuntuforums.org/showthread.php?t=200142)
 - [GPSD Troubleshooting](http://www.catb.org/gpsd/troubleshooting.html)
 - [GPSD cannot create rfcomm0 - SO](https://stackoverflow.com/questions/33892280/debian-cannot-create-rfcomm0)
