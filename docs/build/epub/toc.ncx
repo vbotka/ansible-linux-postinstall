@@ -1,0 +1,488 @@
+<?xml version="1.0"?>
+<ncx version="2005-1" xmlns="http://www.daisy.org/z3986/2005/ncx/">
+  <head>
+    <meta name="dtb:uid" content="unknown"/>
+    <meta name="dtb:depth" content="3"/>
+    <meta name="dtb:totalPageCount" content="0"/>
+    <meta name="dtb:maxPageNumber" content="0"/>
+  </head>
+  <docTitle>
+    <text>ansible-role-linux-postinstall 1.14.2 documentation</text>
+  </docTitle>
+  <navMap>    
+    <navPoint id="navPoint1" playOrder="1">
+      <navLabel>
+        <text>Ansible role Linux postinstall</text>
+      </navLabel>
+      <content src="index.xhtml" />  
+    </navPoint>
+    <navPoint id="navPoint2" playOrder="2">
+      <navLabel>
+        <text>Quick start guide</text>
+      </navLabel>
+      <content src="qsg.xhtml" />  
+    </navPoint>
+    <navPoint id="navPoint3" playOrder="3">
+      <navLabel>
+        <text>User’s guide</text>
+      </navLabel>
+      <content src="guide.xhtml" />  
+      <navPoint id="navPoint4" playOrder="3">
+        <navLabel>
+          <text>User’s guide</text>
+        </navLabel>
+        <content src="guide.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint5" playOrder="4">
+        <navLabel>
+          <text>Introduction</text>
+        </navLabel>
+        <content src="guide.xhtml#introduction" />  
+      </navPoint>
+      <navPoint id="navPoint6" playOrder="5">
+        <navLabel>
+          <text>Installation</text>
+        </navLabel>
+        <content src="guide.xhtml#installation" />  
+      </navPoint>
+      <navPoint id="navPoint7" playOrder="6">
+        <navLabel>
+          <text>Playbook</text>
+        </navLabel>
+        <content src="guide.xhtml#playbook" />  
+      </navPoint>
+      <navPoint id="navPoint8" playOrder="7">
+        <navLabel>
+          <text>Debug</text>
+        </navLabel>
+        <content src="guide.xhtml#debug" />  
+      </navPoint>
+      <navPoint id="navPoint9" playOrder="8">
+        <navLabel>
+          <text>Tags</text>
+        </navLabel>
+        <content src="guide.xhtml#tags" />  
+      </navPoint>
+      <navPoint id="navPoint10" playOrder="9">
+        <navLabel>
+          <text>Tasks</text>
+        </navLabel>
+        <content src="guide.xhtml#tasks" />  
+        <navPoint id="navPoint11" playOrder="9">
+          <navLabel>
+            <text>Tasks</text>
+          </navLabel>
+          <content src="guide.xhtml#tasks" />  
+        </navPoint>
+        <navPoint id="navPoint12" playOrder="10">
+          <navLabel>
+            <text>Passwords</text>
+          </navLabel>
+          <content src="guide.xhtml#passwords" />  
+        </navPoint>
+      </navPoint>
+      <navPoint id="navPoint13" playOrder="11">
+        <navLabel>
+          <text>Variables</text>
+        </navLabel>
+        <content src="guide.xhtml#variables" />  
+      </navPoint>
+      <navPoint id="navPoint14" playOrder="12">
+        <navLabel>
+          <text>Default variables</text>
+        </navLabel>
+        <content src="guide.xhtml#default-variables" />  
+      </navPoint>
+      <navPoint id="navPoint15" playOrder="13">
+        <navLabel>
+          <text>Best practice</text>
+        </navLabel>
+        <content src="guide.xhtml#best-practice" />  
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint16" playOrder="14">
+      <navLabel>
+        <text>Annotated source code</text>
+      </navLabel>
+      <content src="annotation.xhtml" />  
+      <navPoint id="navPoint17" playOrder="14">
+        <navLabel>
+          <text>Annotated source code</text>
+        </navLabel>
+        <content src="annotation.xhtml" />  
+      </navPoint>
+      <navPoint id="navPoint18" playOrder="15">
+        <navLabel>
+          <text>Tasks</text>
+        </navLabel>
+        <content src="annotation.xhtml#tasks" />  
+        <navPoint id="navPoint19" playOrder="15">
+          <navLabel>
+            <text>Tasks</text>
+          </navLabel>
+          <content src="annotation.xhtml#tasks" />  
+        </navPoint>
+        <navPoint id="navPoint20" playOrder="16">
+          <navLabel>
+            <text>main.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#main-yml" />  
+        </navPoint>
+        <navPoint id="navPoint21" playOrder="17">
+          <navLabel>
+            <text>acpi.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#acpi-yml" />  
+        </navPoint>
+        <navPoint id="navPoint22" playOrder="18">
+          <navLabel>
+            <text>aliases.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#aliases-yml" />  
+        </navPoint>
+        <navPoint id="navPoint23" playOrder="19">
+          <navLabel>
+            <text>apparmor.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#apparmor-yml" />  
+        </navPoint>
+        <navPoint id="navPoint24" playOrder="20">
+          <navLabel>
+            <text>authorized_keys.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#authorized-keys-yml" />  
+        </navPoint>
+        <navPoint id="navPoint25" playOrder="21">
+          <navLabel>
+            <text>autofs.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#autofs-yml" />  
+        </navPoint>
+        <navPoint id="navPoint26" playOrder="22">
+          <navLabel>
+            <text>auto_upgrades.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#auto-upgrades-yml" />  
+        </navPoint>
+        <navPoint id="navPoint27" playOrder="23">
+          <navLabel>
+            <text>bluetooth.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#bluetooth-yml" />  
+        </navPoint>
+        <navPoint id="navPoint28" playOrder="24">
+          <navLabel>
+            <text>cron.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#cron-yml" />  
+        </navPoint>
+        <navPoint id="navPoint29" playOrder="25">
+          <navLabel>
+            <text>debsums.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#debsums-yml" />  
+        </navPoint>
+        <navPoint id="navPoint30" playOrder="26">
+          <navLabel>
+            <text>debug.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#debug-yml" />  
+        </navPoint>
+        <navPoint id="navPoint31" playOrder="27">
+          <navLabel>
+            <text>fstab.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#fstab-yml" />  
+        </navPoint>
+        <navPoint id="navPoint32" playOrder="28">
+          <navLabel>
+            <text>gpg.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#gpg-yml" />  
+        </navPoint>
+        <navPoint id="navPoint33" playOrder="29">
+          <navLabel>
+            <text>gpsd.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#gpsd-yml" />  
+        </navPoint>
+        <navPoint id="navPoint34" playOrder="30">
+          <navLabel>
+            <text>grub.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#grub-yml" />  
+        </navPoint>
+        <navPoint id="navPoint35" playOrder="31">
+          <navLabel>
+            <text>hostname.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#hostname-yml" />  
+        </navPoint>
+        <navPoint id="navPoint36" playOrder="32">
+          <navLabel>
+            <text>hosts.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#hosts-yml" />  
+        </navPoint>
+        <navPoint id="navPoint37" playOrder="33">
+          <navLabel>
+            <text>iptables.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#iptables-yml" />  
+        </navPoint>
+        <navPoint id="navPoint38" playOrder="34">
+          <navLabel>
+            <text>kvm.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#kvm-yml" />  
+        </navPoint>
+        <navPoint id="navPoint39" playOrder="35">
+          <navLabel>
+            <text>latex.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#latex-yml" />  
+        </navPoint>
+        <navPoint id="navPoint40" playOrder="36">
+          <navLabel>
+            <text>libvirt-conf.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#libvirt-conf-yml" />  
+        </navPoint>
+        <navPoint id="navPoint41" playOrder="37">
+          <navLabel>
+            <text>libvirt.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#libvirt-yml" />  
+        </navPoint>
+        <navPoint id="navPoint42" playOrder="38">
+          <navLabel>
+            <text>lid.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#lid-yml" />  
+        </navPoint>
+        <navPoint id="navPoint43" playOrder="39">
+          <navLabel>
+            <text>logrotate.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#logrotate-yml" />  
+        </navPoint>
+        <navPoint id="navPoint44" playOrder="40">
+          <navLabel>
+            <text>modemmanager.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#modemmanager-yml" />  
+        </navPoint>
+        <navPoint id="navPoint45" playOrder="41">
+          <navLabel>
+            <text>modules.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#modules-yml" />  
+        </navPoint>
+        <navPoint id="navPoint46" playOrder="42">
+          <navLabel>
+            <text>netplan.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#netplan-yml" />  
+        </navPoint>
+        <navPoint id="navPoint47" playOrder="43">
+          <navLabel>
+            <text>nfsd.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#nfsd-yml" />  
+        </navPoint>
+        <navPoint id="navPoint48" playOrder="44">
+          <navLabel>
+            <text>packages-auto.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#packages-auto-yml" />  
+        </navPoint>
+        <navPoint id="navPoint49" playOrder="45">
+          <navLabel>
+            <text>packages.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#packages-yml" />  
+        </navPoint>
+        <navPoint id="navPoint50" playOrder="46">
+          <navLabel>
+            <text>passwords.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#passwords-yml" />  
+        </navPoint>
+        <navPoint id="navPoint51" playOrder="47">
+          <navLabel>
+            <text>pm-utils.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#pm-utils-yml" />  
+        </navPoint>
+        <navPoint id="navPoint52" playOrder="48">
+          <navLabel>
+            <text>postfix.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#postfix-yml" />  
+        </navPoint>
+        <navPoint id="navPoint53" playOrder="49">
+          <navLabel>
+            <text>reboot.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#reboot-yml" />  
+        </navPoint>
+        <navPoint id="navPoint54" playOrder="50">
+          <navLabel>
+            <text>repos.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#repos-yml" />  
+        </navPoint>
+        <navPoint id="navPoint55" playOrder="51">
+          <navLabel>
+            <text>resolvconf.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#resolvconf-yml" />  
+        </navPoint>
+        <navPoint id="navPoint56" playOrder="52">
+          <navLabel>
+            <text>service.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#service-yml" />  
+        </navPoint>
+        <navPoint id="navPoint57" playOrder="53">
+          <navLabel>
+            <text>smart.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#smart-yml" />  
+        </navPoint>
+        <navPoint id="navPoint58" playOrder="54">
+          <navLabel>
+            <text>speechd.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#speechd-yml" />  
+        </navPoint>
+        <navPoint id="navPoint59" playOrder="55">
+          <navLabel>
+            <text>sshd.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#sshd-yml" />  
+        </navPoint>
+        <navPoint id="navPoint60" playOrder="56">
+          <navLabel>
+            <text>ssh.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#ssh-yml" />  
+        </navPoint>
+        <navPoint id="navPoint61" playOrder="57">
+          <navLabel>
+            <text>sudoers.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#sudoers-yml" />  
+        </navPoint>
+        <navPoint id="navPoint62" playOrder="58">
+          <navLabel>
+            <text>swap.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#swap-yml" />  
+        </navPoint>
+        <navPoint id="navPoint63" playOrder="59">
+          <navLabel>
+            <text>sysctl.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#sysctl-yml" />  
+        </navPoint>
+        <navPoint id="navPoint64" playOrder="60">
+          <navLabel>
+            <text>timesyncd.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#timesyncd-yml" />  
+        </navPoint>
+        <navPoint id="navPoint65" playOrder="61">
+          <navLabel>
+            <text>timezone.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#timezone-yml" />  
+        </navPoint>
+        <navPoint id="navPoint66" playOrder="62">
+          <navLabel>
+            <text>tlp.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#tlp-yml" />  
+        </navPoint>
+        <navPoint id="navPoint67" playOrder="63">
+          <navLabel>
+            <text>udev.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#udev-yml" />  
+        </navPoint>
+        <navPoint id="navPoint68" playOrder="64">
+          <navLabel>
+            <text>ufw.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#ufw-yml" />  
+        </navPoint>
+        <navPoint id="navPoint69" playOrder="65">
+          <navLabel>
+            <text>users.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#users-yml" />  
+        </navPoint>
+        <navPoint id="navPoint70" playOrder="66">
+          <navLabel>
+            <text>vars.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#vars-yml" />  
+        </navPoint>
+        <navPoint id="navPoint71" playOrder="67">
+          <navLabel>
+            <text>virtualbox.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#virtualbox-yml" />  
+        </navPoint>
+        <navPoint id="navPoint72" playOrder="68">
+          <navLabel>
+            <text>wpagui.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#wpagui-yml" />  
+        </navPoint>
+        <navPoint id="navPoint73" playOrder="69">
+          <navLabel>
+            <text>wpasupplicant.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#wpasupplicant-yml" />  
+        </navPoint>
+        <navPoint id="navPoint74" playOrder="70">
+          <navLabel>
+            <text>xen.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#xen-yml" />  
+        </navPoint>
+        <navPoint id="navPoint75" playOrder="71">
+          <navLabel>
+            <text>xorg.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#xorg-yml" />  
+        </navPoint>
+        <navPoint id="navPoint76" playOrder="72">
+          <navLabel>
+            <text>zeitgeist.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#zeitgeist-yml" />  
+        </navPoint>
+        <navPoint id="navPoint77" playOrder="73">
+          <navLabel>
+            <text>zfs.yml</text>
+          </navLabel>
+          <content src="annotation.xhtml#zfs-yml" />  
+        </navPoint>
+      </navPoint>
+    </navPoint>
+    <navPoint id="navPoint78" playOrder="74">
+      <navLabel>
+        <text>Copyright</text>
+      </navLabel>
+      <content src="copyright.xhtml" />  
+    </navPoint>
+    <navPoint id="navPoint79" playOrder="75">
+      <navLabel>
+        <text>Legal Notice</text>
+      </navLabel>
+      <content src="legalnotice.xhtml" />  
+    </navPoint>
+  </navMap>
+</ncx>

@@ -1,0 +1,84 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Quick start guide}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}User’s guide}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduction}{3}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Installation}{3}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Playbook}{4}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Debug}{4}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Tags}{5}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Tasks}{6}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Passwords}{6}{subsection.2.6.1}%
+\contentsline {subsubsection}{Synopsis}{6}{subsubsection*.16}%
+\contentsline {paragraph}{Passwordstore}{6}{paragraph*.17}%
+\contentsline {paragraph}{Example 1: Update userpass, or create it if does not exists}{6}{paragraph*.18}%
+\contentsline {paragraph}{Example 2: Update passwords submitted in the variable}{8}{paragraph*.19}%
+\contentsline {subsubsection}{Passwordstore}{9}{subsubsection*.21}%
+\contentsline {paragraph}{Example 1: Update userpass, or create it if does not exists}{9}{paragraph*.22}%
+\contentsline {paragraph}{Example 2: Update passwords submitted in the variable}{11}{paragraph*.23}%
+\contentsline {section}{\numberline {2.7}Variables}{12}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Default variables}{12}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Best practice}{19}{section.2.9}%
+\contentsline {chapter}{\numberline {3}Annotated source code}{21}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Tasks}{23}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}main.yml}{23}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}acpi.yml}{27}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}aliases.yml}{28}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}apparmor.yml}{28}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}authorized\_keys.yml}{30}{subsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.1.6}autofs.yml}{30}{subsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.1.7}auto\_upgrades.yml}{31}{subsection.3.1.7}%
+\contentsline {subsection}{\numberline {3.1.8}bluetooth.yml}{32}{subsection.3.1.8}%
+\contentsline {subsection}{\numberline {3.1.9}cron.yml}{33}{subsection.3.1.9}%
+\contentsline {subsection}{\numberline {3.1.10}debsums.yml}{33}{subsection.3.1.10}%
+\contentsline {subsection}{\numberline {3.1.11}debug.yml}{34}{subsection.3.1.11}%
+\contentsline {subsection}{\numberline {3.1.12}fstab.yml}{36}{subsection.3.1.12}%
+\contentsline {subsection}{\numberline {3.1.13}gpg.yml}{36}{subsection.3.1.13}%
+\contentsline {subsection}{\numberline {3.1.14}gpsd.yml}{38}{subsection.3.1.14}%
+\contentsline {subsection}{\numberline {3.1.15}grub.yml}{39}{subsection.3.1.15}%
+\contentsline {subsection}{\numberline {3.1.16}hostname.yml}{40}{subsection.3.1.16}%
+\contentsline {subsection}{\numberline {3.1.17}hosts.yml}{41}{subsection.3.1.17}%
+\contentsline {subsection}{\numberline {3.1.18}iptables.yml}{41}{subsection.3.1.18}%
+\contentsline {subsection}{\numberline {3.1.19}kvm.yml}{42}{subsection.3.1.19}%
+\contentsline {subsection}{\numberline {3.1.20}latex.yml}{42}{subsection.3.1.20}%
+\contentsline {subsection}{\numberline {3.1.21}libvirt-conf.yml}{43}{subsection.3.1.21}%
+\contentsline {subsection}{\numberline {3.1.22}libvirt.yml}{44}{subsection.3.1.22}%
+\contentsline {subsection}{\numberline {3.1.23}lid.yml}{45}{subsection.3.1.23}%
+\contentsline {subsection}{\numberline {3.1.24}logrotate.yml}{46}{subsection.3.1.24}%
+\contentsline {subsection}{\numberline {3.1.25}modemmanager.yml}{46}{subsection.3.1.25}%
+\contentsline {subsection}{\numberline {3.1.26}modules.yml}{47}{subsection.3.1.26}%
+\contentsline {subsection}{\numberline {3.1.27}netplan.yml}{48}{subsection.3.1.27}%
+\contentsline {subsection}{\numberline {3.1.28}nfsd.yml}{49}{subsection.3.1.28}%
+\contentsline {subsection}{\numberline {3.1.29}packages-auto.yml}{50}{subsection.3.1.29}%
+\contentsline {subsection}{\numberline {3.1.30}packages.yml}{51}{subsection.3.1.30}%
+\contentsline {subsection}{\numberline {3.1.31}passwords.yml}{52}{subsection.3.1.31}%
+\contentsline {subsection}{\numberline {3.1.32}pm-utils.yml}{54}{subsection.3.1.32}%
+\contentsline {subsection}{\numberline {3.1.33}postfix.yml}{55}{subsection.3.1.33}%
+\contentsline {subsection}{\numberline {3.1.34}reboot.yml}{56}{subsection.3.1.34}%
+\contentsline {subsection}{\numberline {3.1.35}repos.yml}{57}{subsection.3.1.35}%
+\contentsline {subsection}{\numberline {3.1.36}resolvconf.yml}{58}{subsection.3.1.36}%
+\contentsline {subsection}{\numberline {3.1.37}service.yml}{59}{subsection.3.1.37}%
+\contentsline {subsection}{\numberline {3.1.38}smart.yml}{61}{subsection.3.1.38}%
+\contentsline {subsection}{\numberline {3.1.39}speechd.yml}{62}{subsection.3.1.39}%
+\contentsline {subsection}{\numberline {3.1.40}sshd.yml}{63}{subsection.3.1.40}%
+\contentsline {subsection}{\numberline {3.1.41}ssh.yml}{63}{subsection.3.1.41}%
+\contentsline {subsection}{\numberline {3.1.42}sudoers.yml}{64}{subsection.3.1.42}%
+\contentsline {subsection}{\numberline {3.1.43}swap.yml}{65}{subsection.3.1.43}%
+\contentsline {subsection}{\numberline {3.1.44}sysctl.yml}{66}{subsection.3.1.44}%
+\contentsline {subsection}{\numberline {3.1.45}timesyncd.yml}{67}{subsection.3.1.45}%
+\contentsline {subsection}{\numberline {3.1.46}timezone.yml}{68}{subsection.3.1.46}%
+\contentsline {subsection}{\numberline {3.1.47}tlp.yml}{68}{subsection.3.1.47}%
+\contentsline {subsection}{\numberline {3.1.48}udev.yml}{70}{subsection.3.1.48}%
+\contentsline {subsection}{\numberline {3.1.49}ufw.yml}{71}{subsection.3.1.49}%
+\contentsline {subsection}{\numberline {3.1.50}users.yml}{74}{subsection.3.1.50}%
+\contentsline {subsection}{\numberline {3.1.51}vars.yml}{75}{subsection.3.1.51}%
+\contentsline {subsection}{\numberline {3.1.52}virtualbox.yml}{76}{subsection.3.1.52}%
+\contentsline {subsection}{\numberline {3.1.53}wpagui.yml}{77}{subsection.3.1.53}%
+\contentsline {subsection}{\numberline {3.1.54}wpasupplicant.yml}{79}{subsection.3.1.54}%
+\contentsline {subsection}{\numberline {3.1.55}xen.yml}{81}{subsection.3.1.55}%
+\contentsline {subsection}{\numberline {3.1.56}xorg.yml}{82}{subsection.3.1.56}%
+\contentsline {subsection}{\numberline {3.1.57}zeitgeist.yml}{82}{subsection.3.1.57}%
+\contentsline {subsection}{\numberline {3.1.58}zfs.yml}{83}{subsection.3.1.58}%
+\contentsline {chapter}{\numberline {4}Copyright}{85}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Legal Notice}{87}{chapter.5}%
+\contentsline {chapter}{\numberline {6}Indices and tables}{89}{chapter.6}%
+\contentsline {chapter}{Index}{91}{section*.84}%
