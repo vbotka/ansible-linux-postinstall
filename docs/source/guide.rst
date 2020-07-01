@@ -205,6 +205,7 @@ Tasks
    task-passwords-passwordstore
    task-passwords-passwordstore-ex1
    task-passwords-passwordstore-ex2
+   task-passwords-passwordstore-ex3
 
 .. _ug_task_passwords_passwordstore:
 .. include:: task-passwords-passwordstore.rst
@@ -212,8 +213,8 @@ Tasks
 .. _ug_task_passwords_passwordstore_ex1:
 .. include:: task-passwords-passwordstore-ex1.rst
 
-.. _ug_task_passwords_passwordstore_ex2:
-.. include:: task-passwords-passwordstore-ex2.rst
+.. _ug_task_passwords_passwordstore_ex3:
+.. include:: task-passwords-passwordstore-ex3.rst
 
 
 .. _ug_vars:

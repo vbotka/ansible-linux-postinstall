@@ -1,5 +1,5 @@
-Example 1: Update userpass, or create it if does not exists
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example 1: Update passwords or create them if do not exist
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Let's start with no passwords stored in :index:`passwordstore <single:
 password; passwordstore>` for users at host *test_01*. The command

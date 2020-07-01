@@ -1,7 +1,0 @@
-This is makeindex, version 2.15 [TeX Live 2019] (kpathsea + Thai support).
-Scanning style file ./python.ist.......done (7 attributes redefined, 0 ignored).
-Scanning input file ansible-role-linux-postinstall.idx....done (18 entries accepted, 0 rejected).
-Sorting entries....done (74 comparisons).
-Generating output file ansible-role-linux-postinstall.ind....done (32 lines written, 0 warnings).
-Output written in ansible-role-linux-postinstall.ind.
-Transcript written in ansible-role-linux-postinstall.ilg.
