@@ -128,45 +128,7 @@ The tags provide the user with a very useful tool to run selected
 tasks of the role. To see what tags are available list the tags of the
 role with the command
 
-.. code-block:: bash
-   :emphasize-lines: 1
-
-    shell> ansible-playbook linux-postinstall.yml --list-tags
-
-    playbook: linux-postinstall.yml
-
-    play #1 (srv.example.com): srv.example.com TAGS: []
-    TASK TAGS: [always, lp_acpi, lp_acpi_actions, lp_acpi_events, lp_aliases,
-    apparmor, lp_apparmor_disable, lp_apparmor_enforce, lp_apparmor_packages,
-    lp_apparmor_profiles, lp_apparmor_service, lp_authorized_keys, lp_auto_upgrades,
-    lp_autofs, lp_bluetooth, lp_cron, lp_cron_tab, lp_cron_var, lp_debsums,
-    lp_debsums_debug, lp_debsums_default_conf, lp_debsums_ignore_conf,
-    lp_debsums_packages, lp_debug, lp_fstab, lp_gpg, lp_gpsd, lp_gpsd_bt_rfcom,
-    lp_gpsd_config, lp_gpsd_group, lp_gpsd_packages, lp_gpsd_service, lp_grub,
-    lp_hostname, lp_hosts, lp_iptables, lp_kvm, lp_kvm_packages, lp_latex,
-    lp_latex_dir, lp_latex_labels, lp_latex_macros, lp_latex_packages, lp_libvirt,
-    lp_libvirt_conf, lp_libvirt_debug, lp_libvirt_guests_service,
-    lp_libvirt_libvirtd_service, lp_libvirt_pkg, lp_lid, lp_logrotate, lp_modemmanager,
-    lp_modules, lp_netplan, lp_nfsd, lp_nfsd_exports, lp_nfsd_packages, lp_nfsd_service,
-    lp_packages, lp_packages_auto, lp_packages_install, lp_packages_remove,
-    lp_packages_selections_postinstall, lp_packages_selections_preinstall,
-    lp_passwords, lp_pm, lp_postfix, lp_postfix_conf, lp_postfix_service, lp_reboot,
-    lp_repos, lp_repos_keys_manage, lp_repos_manage, lp_resolvconf,
-    lp_resolvconf_confd_head, lp_resolvconf_debug, lp_resolvconf_packages,
-    lp_resolvconf_service, lp_service, lp_service_auto, lp_service_debug,
-    lp_service_general, lp_smart, lp_smart_conf, lp_smart_packages, lp_smart_service,
-    lp_speechd, lp_ssh, lp_sshd, lp_sshd_config, lp_sshd_service, lp_sudoers, lp_swap,
-    lp_swap_fstab, lp_swap_swapfile, lp_sysctl, lp_timesyncd, lp_timesyncd_conf,
-    lp_timesyncd_debug, lp_timesyncd_service, lp_timezone, lp_tlp, lp_tlp_conf,
-    lp_tlp_packages, lp_tlp_service, lp_udev, lp_udev_service, lp_ufw, lp_ufw_conf,
-    lp_ufw_debug, lp_ufw_packages, lp_ufw_reload, lp_ufw_reset, lp_ufw_service,
-    lp_users, lp_vars, lp_virtualbox, lp_virtualbox_keys, lp_virtualbox_pkg,
-    lp_virtualbox_repos, lp_virtualbox_services, lp_wpa_action_script_dir,
-    lp_wpa_action_script_file, lp_wpagui, lp_wpagui_disableNM, lp_wpagui_mask_NM,
-    lp_wpagui_packages, lp_wpasupplicant, lp_wpasupplicant_conf, lp_wpasupplicant_debug,
-    lp_wpasupplicant_packages, lp_xen, lp_xen_default_grub, lp_xen_global,
-    lp_xen_packages, lp_xorg, lp_xorg_conf, lp_zeitgeist, lp_zfs, lp_zfs_debug,
-    lp_zfs_manage, lp_zfs_mountpoints, lp_zfs_packages]
+.. include:: tags-list.rst
 
 For example, display the list of the variables and their values with
 the tag ``lp_debug`` (when the debug is enabled ``lp_debug: true``)
@@ -197,10 +159,54 @@ Install packages and exit the play
 Tasks
 *****
 
+Test single tasks at single remote host *test_01*. Create a playbook
+
+.. code-block:: yaml
+   :emphasize-lines: 1
+
+   shell> cat linux-postinstall.yml
+   - hosts: test_01
+     become: true
+     roles:
+       - vbotka.linux_postinstall
+
+Customize configuration in ``host_vars/test_01/lp-*.yml`` and check the syntax
+
+.. code-block:: sh
+   :emphasize-lines: 1
+
+   shell> ansible-playbook linux-postinstall.yml --syntax-check
+
+Then dry-run the selected task and see what will be changed
+
+.. code-block:: sh
+   :emphasize-lines: 1
+
+   shell> ansible-playbook linux-postinstall.yml -t lp_task --syntax-check --diff
+
+When all seems to be ready run the command. Run the command twice and
+make sure the playbook and the configuration is idempotent
+
+.. code-block:: sh
+   :emphasize-lines: 1
+
+   shell> ansible-playbook linux-postinstall.yml -t lp_task
+
+
+.. _ug_task_netplan:
+.. include:: task-netplan.rst
+.. toctree::
+   :name: netplan_toc
+
+   task-netplan-ex1
+
+.. _ug_task_netplan_ex1:
+.. include:: task-netplan-ex1.rst
+
 .. _ug_task_passwords:
 .. include:: task-passwords.rst
-
 .. toctree::
+   :name: passwords_toc
 
    task-passwords-passwordstore
    task-passwords-passwordstore-ex1
@@ -209,16 +215,25 @@ Tasks
 
 .. _ug_task_passwords_passwordstore:
 .. include:: task-passwords-passwordstore.rst
-	     
 .. _ug_task_passwords_passwordstore_ex1:
 .. include:: task-passwords-passwordstore-ex1.rst
-
 .. _ug_task_passwords_passwordstore_ex2:
 .. include:: task-passwords-passwordstore-ex2.rst
-
 .. _ug_task_passwords_passwordstore_ex3:
 .. include:: task-passwords-passwordstore-ex3.rst
 
+.. _ug_task_zfs:
+.. include:: task-zfs.rst
+.. toctree::
+   :name: zfs_toc
+
+   task-zfs-ex1
+   task-zfs-ex2
+
+.. _ug_zfs_ex1:
+.. include:: task-zfs-ex1.rst
+.. _ug_zfs_ex2:
+.. include:: task-zfs-ex2.rst
 
 .. _ug_vars:
 
