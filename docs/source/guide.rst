@@ -17,8 +17,6 @@ Introduction
 * Supported systems: `Ubuntu <http://releases.ubuntu.com/>`_
 * Requirements: `ansible_lib <https://galaxy.ansible.com/vbotka/ansible_lib>`_
 
-  <TBD>
-
 
 .. _ug_installation:
 
@@ -81,9 +79,9 @@ srv.example.com (2)
        - vbotka.linux_postinstall
 
 .. note:: ``gather_facts: true`` (3) must be set to gather facts
-          needed to evaluate OS-specific options of the role. For
-          example to install packages the variable ``ansible_os_family``
-          is needed to select the appropriate Ansible module.
+   needed to evaluate OS-specific options of the role. For example to
+   install packages the variable ``ansible_os_family`` is needed to
+   select the appropriate Ansible module.
 
 .. seealso::
    * For details see `Connection Plugins <https://docs.ansible.com/ansible/latest/plugins/connection.html>`__ (4-5)
@@ -182,7 +180,7 @@ Then dry-run the selected task and see what will be changed
 .. code-block:: sh
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_task --syntax-check --diff
+   shell> ansible-playbook linux-postinstall.yml -t lp_task --check --diff
 
 When all seems to be ready run the command. Run the command twice and
 make sure the playbook and the configuration is idempotent
@@ -205,16 +203,15 @@ make sure the playbook and the configuration is idempotent
 
 .. _ug_task_passwords:
 .. include:: task-passwords.rst
+.. _ug_task_passwords_passwordstore:
+.. include:: task-passwords-passwordstore.rst
 .. toctree::
-   :name: passwords_toc
+   :name: passwords_passwordstore_toc
 
-   task-passwords-passwordstore
    task-passwords-passwordstore-ex1
    task-passwords-passwordstore-ex2
    task-passwords-passwordstore-ex3
 
-.. _ug_task_passwords_passwordstore:
-.. include:: task-passwords-passwordstore.rst
 .. _ug_task_passwords_passwordstore_ex1:
 .. include:: task-passwords-passwordstore-ex1.rst
 .. _ug_task_passwords_passwordstore_ex2:

@@ -4,4 +4,11 @@ Netplan
 Synopsis
 --------
 
-`Netplan <https://netplan.io/>`_. The network configuration abstraction renderer.
+The network configuration abstraction renderer.
+
+.. seealso::
+   * Annotated Source code :ref:`as_netplan.yml`
+   * Project website `netplan.io <https://netplan.io/>`_
+
+Examples
+--------
