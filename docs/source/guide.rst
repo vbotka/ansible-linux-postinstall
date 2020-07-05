@@ -141,7 +141,7 @@ See what packages will be installed
 .. code-block:: sh
    :emphasize-lines: 1
 
-    shell> ansible-playbook linux_postinstall -t lp_packages --check
+    shell> ansible-playbook linux_postinstall.yml -t lp_packages --check
 
 Install packages and exit the play
 
@@ -175,12 +175,13 @@ Customize configuration in ``host_vars/test_01/lp-*.yml`` and check the syntax
 
    shell> ansible-playbook linux-postinstall.yml --syntax-check
 
-Then dry-run the selected task and see what will be changed
+Then dry-run the selected task and see what will be changed. Replace
+<tag> with valid tag.
 
 .. code-block:: sh
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_task --check --diff
+   shell> ansible-playbook linux-postinstall.yml -t <tag> --check --diff
 
 When all seems to be ready run the command. Run the command twice and
 make sure the playbook and the configuration is idempotent
@@ -188,7 +189,7 @@ make sure the playbook and the configuration is idempotent
 .. code-block:: sh
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_task
+   shell> ansible-playbook linux-postinstall.yml -t <tag>
 
 
 .. _ug_task_netplan:
