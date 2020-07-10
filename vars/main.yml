@@ -75,10 +75,10 @@
 #     run: "/bin/hciconfig hci1 up auth encrypt"}
 
 # lp_users:
-#  - {name: "admin",
-#     shell: "/bin/bash",
+#  - {name: admin,
+#     shell: /bin/bash,
 #     password: "",
-#     update_password: "on_create"}
+#     update_password: on_create}
 # SEE: How do I generate crypted passwords for the user module?
 # http://docs.ansible.com/ansible/
 #        faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
@@ -86,12 +86,12 @@
 # SALT can be created with: pwgen -s 16 1
 #
 # lp_users_groups:
-#  - {name: "admin", groups: "adm"}
+#  - {name: admin, groups: adm}
 # groups must not comprise primary group
 
 # lp_aliases:
-# - {alias: "root", users: ["admin", "user1"]}
-# - {alias: "admin", users: ["user1",]}
+# - {alias: root, users: [admin, user1]}
+# - {alias: admin, users: [user1]}
 
 # Copy authorized keys
 # lp_authorized_keys:
@@ -100,22 +100,22 @@
 #     '~/.ansible/copy/ssh-pub-keys/admin/id_rsa.pub') }}" }
 
 # Configure /etc/hostname and /etc/hosts
-# lp_hostname: "host"
-# lp_fqdn: "host.example.com"
-# lp_fqdn_ip: "127.0.1.1"
+# lp_hostname: host
+# lp_fqdn: host.example.com
+# lp_fqdn_ip: 127.0.1.1
 # lp_hosts:
-#  - { ip: "10.1.0.10", fqdn: "srv.example.com", hostname: "srv" }
+#  - {ip: 10.1.0.10, fqdn: srv.example.com, hostname: srv}
 
 # lp_grub_default:
-#  - {var: "GRUB_SAVEDEFAULT", value: "false"}
-#  - {var: "GRUB_DEFAULT", value: "0"}
-#  - {var: "GRUB_TIMEOUT", value: "10"}
-#  - {var: "GRUB_HIDDEN_TIMEOUT", value: "0"}
-#  - {var: "GRUB_HIDDEN_TIMEOUT_QUIET", value: "true"}
-#  - {var: "GRUB_DISTRIBUTOR",
+#  - {var: GRUB_SAVEDEFAULT, value: "false"}
+#  - {var: GRUB_DEFAULT, value: "0"}
+#  - {var: GRUB_TIMEOUT, value: "10"}
+#  - {var: GRUB_HIDDEN_TIMEOUT, value: "0"}
+#  - {var: GRUB_HIDDEN_TIMEOUT_QUIET, value: "true"}
+#  - {var: GRUB_DISTRIBUTOR,
 #            value: "`lsb_release -i -s 2> /dev/null || echo Debian`"}
-#  - {var: "GRUB_CMDLINE_LINUX_DEFAULT", value: "\"quiet splash\""}
-#  - {var: "GRUB_CMDLINE_LINUX", value: "\"\""}
+#  - {var: GRUB_CMDLINE_LINUX_DEFAULT, value: '"quiet splash"'}
+#  - {var: GRUB_CMDLINE_LINUX, value: '""'}
 
 # Configure XEN
 # lp_xen: true
@@ -347,7 +347,7 @@
 
 # swap
 # lp_swap: true
-# lp_swap_file: "/usr/swap0"
+# lp_swap_file: /usr/swap0
 # lp_swap_size: 4096
 # lp_swap_size: 2048
 # lp_swap_size: 1536
@@ -386,23 +386,23 @@
 # lp_ssh_config:
 #  - host: "*"
 #    conf:
-#      - {key: "key1", value: "value1"}
-#      - {key: "key2", value: "value2"}
+#      - {key: key1, value: value1}
+#      - {key: key2, value: value2}
 
 # lp_wpasupplicant_conf_global:
-#  - {key: "ctrl_interface", value: "/run/wpa_supplicant"}
-#  - {key: "ctrl_interface_group", value: "adm"}
-#  - {key: "fast_reauth", value: "0"}
-#  - {key: "update_config", value: "1"}
+#  - {key: ctrl_interface, value: /run/wpa_supplicant}
+#  - {key: ctrl_interface_group, value: adm}
+#  - {key: fast_reauth, value: "0"}
+#  - {key: update_config, value: "1"}
 # lp_wpasupplicant_conf:
 #  - dev: "wlan1"
 #    network:
 #      - conf:
-#        - {key: "ssid", value: "\"MYSSID01\""}
-#        - {key: "psk", value: "\"my-wifi-password\""}
+#        - {key: ssid, value: '"MYSSID01"'}
+#        - {key: psk, value: '"my-wifi-password"'}
 #      - conf:
-#        - {key: "ssid", value: "\"MYSSID02\""}
-#        - {key: "psk", value: "\"my-wifi-password\""}
+#        - {key: ssid, value: '"MYSSID02"'}
+#        - {key: psk, value: '"my-wifi-password"'}
 
 # lp_logrotate_confd:
 #  - path: "ansible"
@@ -416,23 +416,22 @@
 #      }
 
 # lp_iptables_INPUT_if:
-#  - {if: "xenbr0", proto: "tcp", port: "22", policy: "ACCEPT"}
+#  - {if: xenbr0, proto: tcp, port: "22", policy: ACCEPT}
 
 # lp_libvirt: true
 # lp_libvirt_guests_enable: true
 # lp_libvirt_libvirtd_enable: true
-# lp_libvirt_backup: no
 # lp_libvirt_packages:
 #  - libvirt-daemon-driver-storage-zfs
 # lp_libvirt_conf:
 #   libvirt-admin.conf: []
 #   libvirt.conf: []
 #   libvirtd.conf:
-#     - ["unix_sock_group", "\"libvirt\""]
-#     - ["unix_sock_ro_perms", "\"0777\""]
-#     - ["unix_sock_rw_perms", "\"0770\""]
-#     - ["auth_unix_ro", "\"none\""]
-#     - ["auth_unix_rw", "\"none\""]
+#     - [unix_sock_group, '"libvirt"']
+#     - [unix_sock_ro_perms, '"0777"']
+#     - [unix_sock_rw_perms, '"0770"']
+#     - [auth_unix_ro, '"none"']
+#     - [auth_unix_rw, '"none"']
 #   libxl.conf: []
 #   libxl-lockd.conf: []
 #   lxc.conf: []

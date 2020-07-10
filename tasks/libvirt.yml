@@ -27,7 +27,7 @@
 
 - name: "libvirt: Configure"
   include_tasks: libvirt-conf.yml
-  loop: "{{ lp_libvirt_conf | dict2items }}"
+  loop: "{{ lp_libvirt_conf|dict2items }}"
   tags: lp_libvirt_conf
 
 - name: "libvirt: Start and enable {{ lp_libvirt_libvirtd_service }}"

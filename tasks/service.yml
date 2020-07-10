@@ -4,17 +4,17 @@
 - name: "service: Set my_service_name_vars"
   set_fact:
     my_service_name_vars: "{{ my_service_name_vars|default([]) +
-                              [{item: lookup('vars', 'lp_' + item + '_service')}] }}"
+                              [{item: lookup('vars', 'lp_' ~ item ~ '_service')}] }}"
   loop: "{{ lp_service_enable }}"
-  when: lookup('vars', 'lp_' + item, default='false')
+  when: lookup('vars', 'lp_' ~ item, default='false')
   tags: lp_service_debug
 
 - name: "service: Set my_service_enable_vars"
   set_fact:
     my_service_enable_vars: "{{ my_service_enable_vars|default([]) +
-                                [{item: lookup('vars', 'lp_' + item + '_enable')}] }}"
+                                [{item: lookup('vars', 'lp_' ~ item ~ '_enable')}] }}"
   loop: "{{ lp_service_enable }}"
-  when: lookup('vars', 'lp_' + item, default='false')
+  when: lookup('vars', 'lp_' ~ item, default='false')
   tags: lp_service_debug
 
 - name: "service: Debug"
@@ -35,10 +35,10 @@
 
 - name: "service: Automaticaly enable or disable services managed by this role"
   service:
-    name: "{{ lookup('vars', 'lp_' + item + '_service') }}"
-    enabled: "{{ lookup('vars', 'lp_' + item + '_enable') }}"
+    name: "{{ lookup('vars', 'lp_' ~ item ~ '_service') }}"
+    enabled: "{{ lookup('vars', 'lp_' ~ item ~ '_enable') }}"
   loop: "{{ lp_service_enable }}"
-  when: lookup('vars', 'lp_' + item, default='false')
+  when: lookup('vars', 'lp_' ~ item, default='false')
   tags: lp_service_auto
 
 - name: "service: General managent of services"
