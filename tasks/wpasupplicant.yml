@@ -56,6 +56,8 @@
   register: lp_wpasupplicant_conf_changes
   notify: reconfigure wpa_supplicant
   loop: "{{ lp_wpasupplicant_conf }}"
+  loop_control:
+    label: "{{ item.dev }}"
   no_log: "{{ not lp_wpasupplicant_debug_classified }}"
   tags: lp_wpasupplicant_conf
 
