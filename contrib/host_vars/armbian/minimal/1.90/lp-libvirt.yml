@@ -2,7 +2,6 @@
 lp_libvirt: false
 lp_libvirt_guests_enable: false
 lp_libvirt_libvirtd_enable: false
-lp_libvirt_backup: false
 
 lp_libvirt_packages:
   - libvirt0
