@@ -1,4 +1,5 @@
 ---
+# linux-postinstall aliases
 
 - name: "aliases: Configure /etc/aliases"
   template:

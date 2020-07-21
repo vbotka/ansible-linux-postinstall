@@ -28,7 +28,7 @@
 - name: "modules: Configure {{ lp_modules_conf }} in Debian"
   lineinfile:
     dest: "{{ lp_modules_conf }}"
-    regexp: "^\\s*{{ item.name }}\\s*(.*)$"
+    regexp: '^\s*{{ item.name }}\s*(.*)$'
     line: "{{ item.name }} {{ item.params }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules }}"
@@ -40,7 +40,7 @@
 - name: "modules: Configure {{ lp_modules_conf }} in RedHat"
   lineinfile:
     dest: "{{ lp_modules_conf }}"
-    regexp: "^\\s*modprobe\\s+{{ item.name }}\\s*(.*)$"
+    regexp: '^\s*modprobe\s+{{ item.name }}\s*(.*)$'
     line: "modprobe {{ item.name }} {{ item.params }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules }}"

@@ -1,0 +1,15 @@
+---
+# Ubuntu 18.04 Bionic vars linux-postinstall incremental
+
+lp_virtualbox_repos:
+  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/bionic contrib"
+# - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
+#                     {{ ansible_lsb.codename }} contrib"
+
+# Note 1.
+# Netplan in 18.04 does not support wpa_supplicant.conf
+# https://bugs.launchpad.net/netplan/+bug/1735288
+# status: New → Triaged/Wishlist
+
+# EOF
+...

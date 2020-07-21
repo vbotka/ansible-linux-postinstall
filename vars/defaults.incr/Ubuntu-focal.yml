@@ -1,0 +1,42 @@
+---
+# Ubuntu 20.04 Focal vars linux-postinstall incremental
+
+lp_udev_path: /usr/bin/udevadm
+
+lp_kvm_packages:
+  - qemu
+  - qemu-kvm
+  - libvirt-daemon
+  - libvirt-daemon-system
+  - libvirt-clients
+  - bridge-utils
+# - ubuntu-vm-builder
+
+lp_xen_version: "4.11"
+lp_xen_packages:
+  - "xen-hypervisor-4.11-amd64"
+  - "xen-utils-4.11"
+  - "xen-utils-common"
+  - "xenstore-utils"
+# - "xen-hypervisor-{{ lp_xen_version }}-amd64"
+# - "xen-utils-{{ lp_xen_version }}"
+# - ubuntu-virt-server
+
+lp_virtualbox_repos:
+  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/focal contrib"
+# - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
+#                     {{ ansible_lsb.codename }} contrib"
+
+# TODO: Not tested in 20.04 yet
+lp_libvirt_libvirtd_service: libvirtd
+lp_libvirt_guests_service: libvirt-guests
+lp_libvirt_packages:
+  - libvirt0
+  - libvirt-daemon
+  - libvirt-daemon-driver-storage-rbd
+  - libvirt-daemon-system
+  - libvirt-clients
+  - virtinst
+
+# EOF
+...

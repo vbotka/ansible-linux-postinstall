@@ -1,5 +1,5 @@
 ---
-# Ubuntu 19.04 Bionic vars linux-postinstall
+# Ubuntu 20.04 Focal vars linux-postinstall
 
 # lp_ssh: True
 # lp_ssh_config:

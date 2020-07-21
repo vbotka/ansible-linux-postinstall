@@ -1,0 +1,82 @@
+---
+# RedHat vars linux-postinstall
+
+# lp_ssh: True
+# lp_ssh_config:
+#  - host: "*"
+#    conf:
+#      - { key: "GSSAPIAuthentication", val: "yes" }
+#      - { key: "ForwardX11Trusted", val: "yes" }
+#      - { key: "SendEnv",
+#          val: "LANG LC_CTYPE LC_NUMERIC LC_TIME
+#                LC_COLLATE LC_MONETARY LC_MESSAGES" }
+#      - { key: "SendEnv",
+#          val: "LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT" }
+#      - { key: "SendEnv", val: "LC_IDENTIFICATION LC_ALL LANGUAGE" }
+#      - { key: "SendEnv", val: "XMODIFIERS" }
+
+lp_autofs_service: autofs
+lp_timesyncd_service: systemd-timesyncd.service
+lp_postfix_service: postfix
+lp_gpsd_service: gpsd
+lp_bluetooth_service: bluetooth
+lp_udev_service: udev
+
+lp_sshd_service: sshd
+lp_sshd_path: /sbin/sshd
+
+lp_modules_conf: /etc/rc.modules
+
+lp_hosts_default:
+  - ip: "127.0.0.1"
+    name1: "localhost"
+    name2: "localhost.localdomain"
+    name3: "localhost4"
+    name4: "localhost4.localdomain4"
+  - ip: "::1"
+    name1: "localhost"
+    name2: "localhost.localdomain"
+    name3: "localhost6"
+    name4: "localhost6.localdomain6"
+
+lp_nfsd_packages:
+  - nfs-utils
+lp_nfsd_services:
+  - nfs
+  - nfslock
+lp_nfsd_reload_service: nfs
+
+lp_wpasupplicant_packages:
+  - wpa_supplicant
+lp_wpasupplicant_conf_ctrl_interface: /run/wpa_supplicant
+# lp_wpasupplicant_conf_ctrl_interface: "/var/run/wpa_supplicant"
+# lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
+
+lp_logrotate_packages:
+  - logrotate
+
+lp_gpsd_packages: []
+#  - gpsd
+#  - gpsd-clients
+
+lp_latex_packages: []
+#  - texlive-full
+
+lp_smart_packages: []
+#  - smartmontools
+
+lp_xen_packages: []
+
+# apparmor not implemented
+lp_apparmor: false
+lp_apparmor_packages: []
+lp_apparmor_profile_dir: /etc/apparmor.d
+
+# userland paths
+# lp_dhclient: "/sbin/dhclient"
+
+lp_passwordstore_packages:
+  - pass
+
+# EOF
+...

@@ -1,4 +1,5 @@
 ---
+# linux-postinstall auto_upgrades
 
 - name: "auto_upgrades: Configure /etc/apt/apt.conf.d/20auto-upgrades"
   template:

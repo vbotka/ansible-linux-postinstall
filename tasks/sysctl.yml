@@ -14,7 +14,7 @@
 - name: "sysctl: Configure /etc/sysctl.conf"
   lineinfile:
     dest: /etc/sysctl.conf
-    regexp: "^\\s*{{ item.var }}\\s*=(.*)$"
+    regexp: '^\s*{{ item.var }}\s*=(.*)$'
     line: "{{ item.var }} = {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_sysctl_vars }}"

@@ -1,4 +1,5 @@
 ---
+# linux-postinstall hostname
 
 # TODO:
 # 1) SET/DONT_SET hostname via DHCP

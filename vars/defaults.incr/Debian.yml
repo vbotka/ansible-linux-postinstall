@@ -18,6 +18,7 @@ lp_gpsd_service: gpsd
 lp_bluetooth_service: bluetooth
 
 lp_udev_service: udev
+lp_udev_path: /bin/udevadm
 
 lp_sshd_service: ssh
 lp_sshd_path: /usr/sbin/sshd
@@ -95,6 +96,8 @@ lp_xen_packages:
 # - "xen-utils-{{ lp_xen_version }}"
 # - ubuntu-virt-server
 
+lp_tlp_config_file: /etc/tlp.conf
+lp_tlp_path: /usr/sbin/tlp
 lp_tlp_packages:
   - tlp
   - tlp-rdw
@@ -135,11 +138,6 @@ lp_zfs_packages:
 lp_netplan_default: 01-network-manager-all.yaml
 lp_netplan_mode: "0644"
 
-# Note 1.
-# Netplan in 18.04 does not support wpa_supplicant.conf
-# https://bugs.launchpad.net/netplan/+bug/1735288
-# status: New → Triaged/Wishlist
-
 lp_apparmor_packages:
   - apparmor
   - apparmor-utils
@@ -164,6 +162,9 @@ lp_resolvconf_confd_head: []
 
 lp_passwordstore_packages:
   - pass
+
+lp_ufw_packages:
+  - ufw
 
 # EOF
 ...

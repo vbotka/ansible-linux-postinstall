@@ -1,0 +1,29 @@
+---
+# Ubuntu 19.04 Bionic vars linux-postinstall incremental
+
+lp_kvm_packages:
+  - qemu
+  - qemu-kvm
+  - libvirt-daemon
+  - libvirt-daemon-system
+  - libvirt-clients
+  - bridge-utils
+# - ubuntu-vm-builder
+
+lp_tlp_path: /sbin/tlp
+
+lp_virtualbox_repos:
+  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/disco contrib"
+# - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
+#                     {{ ansible_lsb.codename }} contrib"
+
+lp_libvirt_packages:
+  - libvirt0
+  - libvirt-daemon
+  - libvirt-daemon-driver-storage-rbd
+  - libvirt-daemon-system
+  - libvirt-clients
+  - virtinst
+
+# EOF
+...

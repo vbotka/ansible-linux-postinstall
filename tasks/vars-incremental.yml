@@ -1,0 +1,49 @@
+---
+# linux-postinstall vars-incremental
+
+- name: "vars-incemental: Include default vars for
+              [{{ ansible_os_family }},
+               {{ ansible_distribution }},
+               {{ ansible_distribution_release }}]"
+  include_vars: "{{ item }}"
+  register: result
+  loop:
+    - "{{ my_path }}/defaults.yml"
+    - "{{ my_path }}/default.yml"
+    - "{{ my_path }}/{{ ansible_os_family }}.yml"
+    - "{{ my_path }}/{{ ansible_distribution }}.yml"
+    - "{{ my_path }}/{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
+  vars:
+    my_path: "{{ role_path }}/vars/defaults.incr"
+
+- name: "vars-incemental: Debug include default vars"
+  debug:
+    var: result
+  when: lp_debug|bool
+
+- name: "vars-incemental: Include default vars for various flavors"
+  when: lp_flavors_enable|bool
+  include_tasks: sub/vars-flavors.yml
+
+- name: "vars-incemental: Include custom vars for
+              [{{ ansible_os_family }},
+               {{ ansible_distribution }},
+               {{ ansible_distribution_release }}]"
+  include_vars: "{{ item }}"
+  register: result
+  loop:
+    - "{{ my_path }}/defaults.yml"
+    - "{{ my_path }}/default.yml"
+    - "{{ my_path }}/{{ ansible_os_family }}.yml"
+    - "{{ my_path }}/{{ ansible_distribution }}.yml"
+    - "{{ my_path }}/{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
+  vars:
+    my_path: "{{ role_path }}/vars"
+
+- name: "vars-incemental: Debug include custom vars"
+  debug:
+    var: result
+  when: lp_debug|bool
+
+# EOF
+...

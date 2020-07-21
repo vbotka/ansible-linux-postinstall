@@ -12,6 +12,7 @@
       ansible_distribution_release [{{ ansible_distribution_release }}]
       ansible_python_version [{{ ansible_python_version }}]
 
+      lp_vars_distro [{{ lp_vars_distro }}]
       lp_flavors_enable [{{ lp_flavors_enable }}]
       {{ my_release|default([])|to_nice_yaml }}
 
@@ -60,7 +61,7 @@
       lp_zfs [{{ lp_zfs }}]
 
       lp_service
-      {{ lp_service | to_yaml }}
+      {{ lp_service|to_yaml }}
       lp_package_state [{{ lp_package_state }}]
       lp_package_state_remove [{{ lp_package_state_remove }}]
 

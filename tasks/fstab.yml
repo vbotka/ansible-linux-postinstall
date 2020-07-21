@@ -1,4 +1,5 @@
 ---
+# linux-postinstall fstab
 
 - name: "fstab: Configure fstab entries"
   mount:
