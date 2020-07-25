@@ -1030,6 +1030,46 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+.. _as_vars-firstfound.yml:
+
+vars-firstfound.yml
+-------------------
+
+Synopsis: Configure OS specific default vars. Method first_found.
+
+
+Description of the task.
+
+
+[`vars-firstfound.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars-firstfound.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/vars-firstfound.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+.. _as_vars-incremental.yml:
+
+vars-incremental.yml
+--------------------
+
+Synopsis: Configure OS specific default vars. Method incremental.
+
+
+Description of the task.
+
+
+[`vars-incremental.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars-incremental.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/vars-incremental.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
 .. _as_virtualbox.yml:
 
 virtualbox.yml
@@ -1166,6 +1206,46 @@ Description of the task.
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/zfs.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+.. _as_sub-vars-flavors.yml:
+
+sub/vars-flavors.yml
+--------------------
+
+Synopsis: Configure flavor specific variables.
+
+
+Description of the task.
+
+
+[`sub/vars-flavors.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sub/vars-flavors.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/sub/vars-flavors.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+.. _as_sub-vars-flavors-common.yml:
+
+sub/vars-flavors-common.yml
+---------------------------
+
+Synopsis: Configure common flavor specific variables.
+
+
+Description of the task.
+
+
+[`sub/vars-flavors-common.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sub/vars-flavors-common.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/sub/vars-flavors-common.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:

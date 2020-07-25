@@ -510,6 +510,26 @@ mytasks:
     seealso: []
     note: []
     warning: []
+  - file: vars-firstfound.yml
+    link: vars-firstfound.yml
+    synopsis: |
+      Configure OS specific default vars. Method first_found.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+  - file: vars-incremental.yml
+    link: vars-incremental.yml
+    synopsis: |
+      Configure OS specific default vars. Method incremental.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
   - file: virtualbox.yml
     link: virtualbox.yml
     synopsis: |
@@ -574,6 +594,26 @@ mytasks:
     link: zfs.yml
     synopsis: |
       Configure zfs.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+  - file: sub/vars-flavors.yml
+    link: sub-vars-flavors.yml
+    synopsis: |
+      Configure flavor specific variables.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+  - file: sub/vars-flavors-common.yml
+    link: sub-vars-flavors-common.yml
+    synopsis: |
+      Configure common flavor specific variables.
     description: |
       Description of the task.
     lines: 1,2

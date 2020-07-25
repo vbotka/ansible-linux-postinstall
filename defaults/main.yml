@@ -6,6 +6,8 @@
 # directory.
 
 lp_vars_distro: firstfound
+lp_vars_distro_firstfound_skip: true  # issue #43833
+lp_vars_flavors: firstfound
 
 lp_hostname: ""
 lp_fqdn: ""

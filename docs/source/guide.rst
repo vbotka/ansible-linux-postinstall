@@ -233,38 +233,25 @@ make sure the playbook and the configuration is idempotent
 .. _ug_zfs_ex2:
 .. include:: task-zfs-ex2.rst
 
+
 .. _ug_vars:
 
 *********
 Variables
 *********
 
-In this chapter we describe role's default variables stored in the
-directory **defaults**.
+.. seealso::
+   * `Ansible variable precedence: Where should I put a variable?
+     <https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable>`_
 
-.. seealso:: * `Ansible variable precedence: Where should I put a variable? <https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#variable-precedence-where-should-i-put-a-variable>`_
-
-
-.. _ug_defaults:
-
-*****************
-Default variables
-*****************
-
-  <TBD>
-
-[`defaults/main.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/defaults/main.yml>`_]
-
-.. highlight:: yaml
-    :linenothreshold: 5
-.. literalinclude:: ../../defaults/main.yml
-    :language: yaml
-    :emphasize-lines: 2
-    :linenos:
-
-.. warning:: Default value of **lp_passwords_debug_classified** and
-   **lp_wpasupplicant_debug_classified** is **False**. Passwords will be
-   displayed if these variables are enabled.
+.. _ug_vars_defaults:
+.. include:: vars-defaults.rst
+.. _ug_vars_os_defaults:
+.. include:: vars-os-defaults.rst
+.. _ug_vars_os_custom:
+.. include:: vars-os-custom.rst
+.. _ug_vars_flavors:
+.. include:: vars-flavors.rst
 
 
 .. _ug_bp:
@@ -273,30 +260,91 @@ Default variables
 Best practice
 *************
 
-Display the variables for debug if needed. Then disable this task
-``lp_debug: false`` to speedup the playbook
+.. _ug_bp_firstboot:
+
+Recommended configuration after the installation of OS
+======================================================
+
+Check syntax of the playbook
 
 .. code-block:: sh
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_debug
+   shell> ansible-playbook linux-postinstall.yml --syntax-check
 
-Install packages automatically. Then disable this task
-``lp_packages_auto: false`` to speedup the playbook
+See what variables will be included
+
+.. code-block:: sh
+   :emphasize-lines: 1-2
+
+   shell> ansible-playbook linux-postinstall.yml -t lp_debug \
+          -e "lp_debug=True"
+
+Dry-run, display differences and display variables
+
+.. code-block:: sh
+   :emphasize-lines: 1-2
+
+   shell> ansible-playbook linux-postinstall.yml \
+          -e "lp_debug=True" --check --diff
+
+Configure hostname, users, sudoers, network and reboot
+
+.. code-block:: sh
+   :emphasize-lines: 1-8
+
+   shell> ansible-playbook linux-postinstall.yml -t lp_hostname
+   shell> ansible-playbook linux-postinstall.yml -t lp_users
+   shell> ansible-playbook linux-postinstall.yml -t lp_sudoers
+   shell> ansible-playbook linux-postinstall.yml -t lp_udev
+   shell> ansible-playbook linux-postinstall.yml -t lp_netplan
+   shell> ansible-playbook linux-postinstall.yml -t lp_wpasupplicant
+   shell> ansible-playbook linux-postinstall.yml -t lp_reboot \
+          -e "lp_reboot=true lp_reboot_force=true"
+
+Configure firewall
+
+.. code-block:: sh
+   :emphasize-lines: 1
+
+   shell> ansible-playbook linux-postinstall.yml -t lp_iptables
+
+Test the installation of packages
 
 .. code-block:: sh
    :emphasize-lines: 1-2
 
    shell> ansible-playbook linux-postinstall.yml -t cl_packages \
-                                                 -e 'lp_packages_auto=true'
+          -e "lp_package_install_dryrun=True"
 
-The role and the configuration data in the examples are
+Install packages
+
+.. code-block:: sh
+   :emphasize-lines: 1
+
+   shell> ansible-playbook linux-postinstall.yml -t cl_packages
+
+Run the playbook
+
+.. code-block:: sh
+   :emphasize-lines: 1
+
+   shell> ansible-playbook linux-postinstall.yml
+
+Test the idem-potency. The role and the configuration data shall be
 idempotent. Once the installation and configuration have passed there
 should be no changes reported by *ansible-playbook* when running the
 playbook repeatedly. Disable debug, and install to speedup the
-playbook
+playbook and run the playbook again.
 
 .. code-block:: sh
    :emphasize-lines: 1
 
     shell> ansible-playbook linux-postinstall.yml
+
+.. _ug_bp_flavors:
+
+Flavors
+=======
+
+ <TBD>

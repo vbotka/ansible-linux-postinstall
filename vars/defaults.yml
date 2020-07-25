@@ -1,17 +1,3 @@
----
-# Variables in var/defaults.yml override variables in var/defaults/*
-#
-# linux-postinstall vars
-
-# apparmor
-# lp_apparmor: true
-# lp_apparmor_disable:
-#  - firefox
-#  - rsyslogd
-# lp_apparmor_enforce:
-#  - evince
-# lp_apparmor_complain:
-#  - evince
-
-# EOF
-...
+# skip doesn't work with first_found lookup #43833
+# https://github.com/ansible/ansible/issues/43833
+# workaround: Create empty defaults.yml

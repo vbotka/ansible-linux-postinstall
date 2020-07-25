@@ -1,0 +1,3 @@
+# skip doesn't work with first_found lookup #43833
+# https://github.com/ansible/ansible/issues/43833
+# workaround: Create empty defaults.yml

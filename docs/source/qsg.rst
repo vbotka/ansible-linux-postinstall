@@ -3,7 +3,9 @@
 Quick start guide
 *****************
 
-For those users who want to quickly try the role this guide provides an example of how to create users, install packages and configure services.
+For those users who want to quickly try the role this guide provides
+an example of how to create users, install packages and configure
+services.
 
 
 * Install the role ``vbotka.linux_postinstall`` ::
@@ -29,7 +31,7 @@ For those users who want to quickly try the role this guide provides an example 
        - vbotka.linux_postinstall
 
 
-* Create ``host_vars`` with customized variables.
+* Create ``host_vars`` with customized variables
 
 .. code-block:: bash
    :emphasize-lines: 2-6
@@ -43,7 +45,7 @@ For those users who want to quickly try the role this guide provides an example 
    host_vars/srv.example.com/lp-service.yml
 
 
-* To speedup the execution let's set some variables (2-4) to *false*.
+* To speedup the execution let's set some variables (2-4) to *false*
 
 .. code-block:: bash
    :emphasize-lines: 2-4
@@ -55,7 +57,7 @@ For those users who want to quickly try the role this guide provides an example 
    lp_flavors_enable: false
 
 
-* Create users.
+* Create users
 
 .. code-block:: bash
    :emphasize-lines: 3,5
@@ -72,7 +74,7 @@ For those users who want to quickly try the role this guide provides an example 
         groups: "adm, dialout"}
 
 
-* Configure passwords.
+* Configure passwords
 
 .. code-block:: bash
    :emphasize-lines: 2-5
@@ -85,7 +87,7 @@ For those users who want to quickly try the role this guide provides an example 
    lp_passwordstore_overwrite: false
 
 
-* Install packages and enable autoremove.
+* Install packages and enable autoremove
 
 .. code-block:: bash
    :emphasize-lines: 2-3
@@ -99,7 +101,7 @@ For those users who want to quickly try the role this guide provides an example 
      - ansible-tower-cli
 
 
-* Configure services.
+* Configure services
 
 .. code-block:: bash
    :emphasize-lines: 2-3

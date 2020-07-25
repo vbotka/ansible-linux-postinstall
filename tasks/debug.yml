@@ -13,6 +13,8 @@
       ansible_python_version [{{ ansible_python_version }}]
 
       lp_vars_distro [{{ lp_vars_distro }}]
+      lp_vars_distro_firstfound_skip [{{ lp_vars_distro_firstfound_skip }}]
+      lp_vars_flavors [{{ lp_vars_flavors }}]
       lp_flavors_enable [{{ lp_flavors_enable }}]
       {{ my_release|default([])|to_nice_yaml }}
 
