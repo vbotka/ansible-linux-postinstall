@@ -312,7 +312,7 @@ Test the installation of packages
 .. code-block:: sh
    :emphasize-lines: 1-2
 
-   shell> ansible-playbook linux-postinstall.yml -t cl_packages \
+   shell> ansible-playbook linux-postinstall.yml -t lp_packages \
           -e "lp_package_install_dryrun=True"
 
 Install packages
@@ -320,7 +320,7 @@ Install packages
 .. code-block:: sh
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t cl_packages
+   shell> ansible-playbook linux-postinstall.yml -t lp_packages
 
 Run the playbook
 
