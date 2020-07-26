@@ -65,13 +65,13 @@ services.
 
    shell> cat host_vars/srv.example.com/lp-users.yml
    lp_users:
-     - {name: ansible,
-        shell: /bin/sh}
-     - {name: admin,
-        shell: /bin/bash}
+     - name: ansible
+       shell: /bin/sh
+     - name: admin
+       shell: /bin/bash
    lp_users_groups:
-     - {name: admin,
-        groups: "adm, dialout"}
+     - name: admin
+       groups: "adm, dialout"
 
 
 * Configure passwords
