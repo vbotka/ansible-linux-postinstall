@@ -13,8 +13,8 @@
         - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
-        - defaults.yml
         - default.yml
+        - defaults.yml
       paths:
         - "{{ role_path }}/vars/defaults"
 # [TODO]
@@ -40,8 +40,8 @@
         - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
         - "{{ ansible_distribution }}.yml"
         - "{{ ansible_os_family }}.yml"
-        - defaults.yml
         - default.yml
+        - defaults.yml
       paths:
         - "{{ role_path }}/vars"
 # [TODO]

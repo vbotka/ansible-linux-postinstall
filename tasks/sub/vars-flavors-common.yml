@@ -26,10 +26,8 @@
 # my_release_file_fetch
 - name: 'sub: vars-flavors-common: Set my_release_file_fetch'
   set_fact:
-    my_release_file_fetch: "{{ lp_flavors_dir ~
-                               '/' ~
-                               inventory_hostname ~
-                               '-' ~
+    my_release_file_fetch: "{{ lp_flavors_dir ~ '/' ~
+                               inventory_hostname ~ '-' ~
                                my_flavor }}"
 - name: 'sub: vars-flavors-common: Fetch {{ my_release_file }} to
                                          {{ my_release_file_fetch }}'
@@ -103,7 +101,8 @@
         - '{{ my_flavor }}_{{ my_labels.0 }}_{{ my_labels.1 }}.yml'
         - '{{ my_flavor }}_{{ my_labels.0 }}.yml'
         - '{{ my_flavor }}.yml'
-        - 'defaults.yml'
+        - default.yml
+        - defaults.yml
       paths:
         - '{{ role_path }}/vars/flavors'
 # [TODO]
