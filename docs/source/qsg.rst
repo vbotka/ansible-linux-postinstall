@@ -113,9 +113,14 @@ services.
      - {name: ssh, state: started, enabled: true}
   
 
-* Text syntax and review variables ::
+* Test syntax ::
 
-    shell> ansible-playbook linux-postinstall.yml -e 'lp_debug=true' -CD
+    shell> ansible-playbook linux-postinstall.yml --syntax-check
+
+
+* See what variables will be included ::
+
+    shell> ansible-playbook linux-postinstall.yml -t lp_debug -e 'lp_debug=True'
 
 
 * Install packages ::
@@ -123,11 +128,15 @@ services.
     shell> ansible-playbook linux-postinstall.yml -t lp_packages
 
 
-* Display variables ::
+* Dry-run, display differencies and display variables ::
 
-    shell> ansible-playbook linux-postinstall.yml -t lp_debug -e 'lp_debug=true'
+    shell> ansible-playbook linux-postinstall.yml -e 'lp_debug=True' --check --diff
 
 
 * Run the playbook ::
 
     shell> ansible-playbook linux-postinstall.yml
+
+
+.. warning:: The host has not been secured by this playbook and should
+             be used for testing only.

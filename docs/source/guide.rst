@@ -265,7 +265,7 @@ Best practice
 Recommended configuration after the installation of OS
 ======================================================
 
-Check syntax of the playbook
+Test syntax
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -275,18 +275,16 @@ Check syntax of the playbook
 See what variables will be included
 
 .. code-block:: sh
-   :emphasize-lines: 1-2
+   :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_debug \
-          -e "lp_debug=True"
+   shell> ansible-playbook linux-postinstall.yml -t lp_debug -e 'lp_debug=True'
 
 Dry-run, display differences and display variables
 
 .. code-block:: sh
-   :emphasize-lines: 1-2
+   :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml \
-          -e "lp_debug=True" --check --diff
+   shell> ansible-playbook linux-postinstall.yml -e 'lp_debug=True' --check --diff
 
 Configure hostname, users, sudoers, network and reboot
 
