@@ -2,7 +2,7 @@ Flavors specific variables (WIP)
 ================================
 
 The files in the directories ``vars/flavors`` and
-``vars/flavors.incr`` keep flavors specific variables. The difference
+``vars/flavors.incr`` keep :index:`flavors` specific variables. The difference
 between them is the method how the files are included.
 
   * **firstfound**: A file in the directory ``vars/flavors`` in the

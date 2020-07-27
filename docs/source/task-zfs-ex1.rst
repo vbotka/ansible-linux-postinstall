@@ -38,7 +38,7 @@ Create *host_vars/test_01/lp-zfs.yml*
        group: root
        mode: "0711"
 		     
-Mount the ZFS filesystems
+Mount the :index:`ZFS` filesystems
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -56,7 +56,7 @@ Mount the ZFS filesystems
    changed: [test_01] => (item={u'owner': u'root', u'mountpoint': u'/var/lib/libvirt/images',
                               u'group': u'root', u'mode': u'0711'})
 
-The command is idempotent
+The command is :index:`idempotent`
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -67,7 +67,7 @@ The command is idempotent
    test_01: ok=11 changed=0 unreachable=0 failed=0 skipped=3 rescued=0 ignored=0
 
    
-Show the ZFS mountpoints at the remote host
+Show the :index:`ZFS` mountpoints at the remote host
    
 .. code-block:: sh
    :emphasize-lines: 1

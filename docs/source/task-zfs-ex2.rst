@@ -27,7 +27,7 @@ Create *host_vars/test_01/lp-zfs.yml*
      - {name: zfs-zed, enabled: true, state: started}
 
 
-Show status of ZFS services at the remote host
+Show status of :index:`ZFS` services at the remote host
 
 .. code-block:: yaml
    :emphasize-lines: 1
@@ -38,7 +38,7 @@ Show status of ZFS services at the remote host
     [ - ]  zfs-share
     [ - ]  zfs-zed
 
-Enable ZFS services
+Enable :index:`ZFS` services
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -60,7 +60,7 @@ The command is idempotent
    PLAY RECAP ******************************************************************
    test_01: ok=6 changed=0 unreachable=0 failed=0 skipped=8 rescued=0 ignored=0
 
-Show status of ZFS services at the remote host
+Show status of :index:`ZFS` services at the remote host
 
 .. code-block:: yaml
    :emphasize-lines: 1

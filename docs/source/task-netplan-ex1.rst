@@ -32,7 +32,7 @@ Create *host_vars/test_01/lp-netplan.yml*
            match:
            macaddress: "<sanitized>"
 
-Configure network
+Configure :index:`network`
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -45,7 +45,7 @@ Configure network
                                     dhcp4: true  dhcp6: false  match:
                                     macaddress: "<sanitized>"'})
 
-The command is idempotent
+The command is :index:`idempotent`
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -56,7 +56,7 @@ The command is idempotent
    test_01: ok=6 changed=0 unreachable=0 failed=0 skipped=4 rescued=0 ignored=0
 
    
-Show the configuration of netplan at the remote host
+Show the configuration of :index:`netplan` at the remote host
    
 .. code-block:: sh
    :emphasize-lines: 1,6,12

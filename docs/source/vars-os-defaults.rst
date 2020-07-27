@@ -2,7 +2,7 @@ Default OS specific variables
 =============================
 
 The files in the directories ``vars/defaults`` and
-``vars/defaults.incr`` keep OS specific variables. The difference
+``vars/defaults.incr`` keep :index:`OS specific variables`. The difference
 between them is the method how the files are included.
 
   * **firstfound**: A file in the directory ``vars/defaults`` in the

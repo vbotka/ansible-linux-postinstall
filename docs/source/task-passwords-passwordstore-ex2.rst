@@ -25,7 +25,7 @@ Update the passwords
    changed: [test_01] => (item=user1)
    changed: [test_01] => (item=user2)
 
-The command is idempotent
+The command is :index:`idempotent`
 
 .. code-block:: sh
    :emphasize-lines: 1

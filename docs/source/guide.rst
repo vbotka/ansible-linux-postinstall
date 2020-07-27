@@ -25,7 +25,7 @@ Installation
 ************
 
 The most convenient way how to install an Ansible role is to use
-Ansible Galaxy CLI ``ansible-galaxy``. The utility comes with the
+:index:`Ansible Galaxy` CLI ``ansible-galaxy``. The utility comes with the
 standard Ansible package and provides the user with a simple interface
 to the Ansible Galaxy's services. For example, take a look at the
 current status of the role
@@ -79,7 +79,7 @@ srv.example.com (2)
        - vbotka.linux_postinstall
 
 .. note:: ``gather_facts: true`` (3) must be set to gather facts
-   needed to evaluate OS-specific options of the role. For example to
+   needed to evaluate :index:`OS-specific options` of the role. For example to
    install packages the variable ``ansible_os_family`` is needed to
    select the appropriate Ansible module.
 
@@ -122,14 +122,14 @@ configuration
 Tags
 ****
 
-The tags provide the user with a very useful tool to run selected
+The :index:`tags` provide the user with a very useful tool to run selected
 tasks of the role. To see what tags are available list the tags of the
 role with the command
 
 .. include:: tags-list.rst
 
 For example, display the list of the variables and their values with
-the tag ``lp_debug`` (when the debug is enabled ``lp_debug: true``)
+the tag ``lp_debug`` (when the :index:`debug` is enabled ``lp_debug: true``)
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -168,14 +168,14 @@ Test single tasks at single remote host *test_01*. Create a playbook
      roles:
        - vbotka.linux_postinstall
 
-Customize configuration in ``host_vars/test_01/lp-*.yml`` and check the syntax
+Customize configuration in ``host_vars/test_01/lp-*.yml`` and :index:`check the syntax`
 
 .. code-block:: sh
    :emphasize-lines: 1
 
    shell> ansible-playbook linux-postinstall.yml --syntax-check
 
-Then dry-run the selected task and see what will be changed. Replace
+Then :index:`dry-run` the selected task and see what will be changed. Replace
 <tag> with valid tag.
 
 .. code-block:: sh
@@ -184,7 +184,7 @@ Then dry-run the selected task and see what will be changed. Replace
    shell> ansible-playbook linux-postinstall.yml -t <tag> --check --diff
 
 When all seems to be ready run the command. Run the command twice and
-make sure the playbook and the configuration is idempotent
+make sure the playbook and the configuration is :index:`idempotent`
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -279,7 +279,7 @@ See what variables will be included
 
    shell> ansible-playbook linux-postinstall.yml -t lp_debug -e 'lp_debug=True'
 
-Dry-run, display differences and display variables
+:index:`Dry-run`, display differences and display variables
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -329,7 +329,7 @@ Run the playbook
 
    shell> ansible-playbook linux-postinstall.yml
 
-Test the idem-potency. The role and the configuration data shall be
+Test the :index:`idem-potency`. The role and the configuration data shall be
 idempotent. Once the installation and configuration have passed there
 should be no changes reported by *ansible-playbook* when running the
 playbook repeatedly. Disable debug, and install to speedup the

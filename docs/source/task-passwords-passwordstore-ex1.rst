@@ -34,8 +34,9 @@ Create *host_vars/test_01/lp-users.yml* with two users *user1* and
       - {name: user3, shell: /bin/bash, disabled_password: true}
 
 .. note::
-   If set ``disabled_password: true`` the password won't be created,
-   but login is still possible (for example with SSH RSA keys).
+   * If :index:`disabled_password` is set *true (default: false)* the
+     password won't be created, but login is still possible (for
+     example with SSH RSA keys).
 
 Create users. This step will create these two users and configure
 their login shell. Other paramteres of the Annsible module `user
@@ -66,7 +67,15 @@ Create *host_vars/test_01/lp-passwords.yml*
     lp_passwordstore_create: false
     lp_passwordstore_overwrite: false
 
-Create passwords. This step will use *passwordstore* to create the passwords and configure them. New passwords will be created only if allowed by the configuration of *lp_passwordstore_create*. We set this variable to *True* in this command but keep it *False* in the configuration to keep the passwords once created. The value of *lp_passwordstore_overwrite* is *False*. New passwords will be assigned to the users if no passwords have been assigned to the users before. To change the passwords in the future set both variables *True* on the commandline.
+Create passwords. This step will use *passwordstore* to create the
+passwords and configure them. New passwords will be created only if
+allowed by the configuration of *lp_passwordstore_create*. We set this
+variable to *True* in this command but keep it *False* in the
+configuration to keep the passwords once created. The value of
+*lp_passwordstore_overwrite* is *False*. New passwords will be
+assigned to the users if no passwords have been assigned to the users
+before. To change the passwords in the future set both variables
+*True* on the commandline.
 
 .. code-block:: yaml
    :emphasize-lines: 1-2
@@ -83,7 +92,7 @@ Create passwords. This step will use *passwordstore* to create the passwords and
    changed: [test_01] => (item=user1)
    changed: [test_01] => (item=user2)
 
-The command is idempotent
+The command is :index:`idempotent`
 
 .. code-block:: sh
    :emphasize-lines: 1
