@@ -31,6 +31,11 @@ Create *host_vars/test_01/lp-users.yml* with two users *user1* and
     lp_users:
       - {name: user1, shell: /bin/sh}
       - {name: user2, shell: /bin/bash}
+      - {name: user3, shell: /bin/bash, disabled_password: true}
+
+.. note::
+   If set ``disabled_password: true`` the password won't be created,
+   but login is still possible (for example with SSH RSA keys).
 
 Create users. This step will create these two users and configure
 their login shell. Other paramteres of the Annsible module `user
