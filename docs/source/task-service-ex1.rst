@@ -13,8 +13,8 @@ Create a playbook
        - vbotka.linux_postinstall
 
 Create the file *host_vars/test_01/lp-service.yml* and create the list
-of services that shall be managed by this task
-:index:`lp_service_enable`
+of services :index:`lp_service_enable` that shall be managed by this
+task
 
 .. code-block:: yaml
    :emphasize-lines: 1
@@ -29,7 +29,12 @@ of services that shall be managed by this task
      - smart
      - timesyncd
 
+.. note:: Name of the variable ``lp_service_enable`` means **enable
+   management** of these services.
 
+.. hint:: Use the variable ``lp_service`` to create list of **enabled
+          services**. See the next example.
+   
 Show what services will be managed
 
 .. code-block:: sh
