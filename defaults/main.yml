@@ -195,7 +195,8 @@ lp_virtualbox_keys:
 lp_virtualbox_packages:
   - "virtualbox-{{ lp_virtualbox_version }}"
 
-lp_zeitgeist: true
+lp_zeitgeist: false
+lp_zeitgeist_install: true
 
 lp_lid: false
 lp_lid_logind_conf: /etc/systemd/logind.conf

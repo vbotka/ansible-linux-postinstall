@@ -84,8 +84,8 @@
   # equivalent-of-update-grub-for-rhel-fedora-centos-systems
 
 - import_tasks: users.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
   tags: lp_users
 
 - import_tasks: gpg.yml
@@ -93,23 +93,23 @@
   tags: lp_gpg
 
 - import_tasks: passwords.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" ) and lp_passwords|bool
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian") and lp_passwords|bool
   tags: lp_passwords
 
 - import_tasks: sudoers.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
   tags: lp_sudoers
 
 - import_tasks: authorized_keys.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
   tags: lp_authorized_keys
 
 - import_tasks: aliases.yml
-  when: ((ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )) and lp_aliases|bool
+  when: ((ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")) and lp_aliases|bool
   tags: lp_aliases
 
 - import_tasks: pm-utils.yml
@@ -117,13 +117,13 @@
   tags: lp_pm
 
 - import_tasks: ssh.yml
-  when: ((ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )) and lp_ssh|bool
+  when: ((ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")) and lp_ssh|bool
   tags: lp_ssh
 
 - import_tasks: sshd.yml
-  when: ((ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )) and lp_sshd|bool
+  when: ((ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")) and lp_sshd|bool
   tags: lp_sshd
 
 - import_tasks: bluetooth.yml
@@ -135,8 +135,8 @@
   tags: lp_xorg
 
 - import_tasks: cron.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
   tags: lp_cron
 
 - import_tasks: modemmanager.yml
@@ -148,8 +148,8 @@
   tags: lp_gpsd
 
 - import_tasks: postfix.yml
-  when: ((ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )) and lp_postfix|bool
+  when: ((ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")) and lp_postfix|bool
   tags: lp_postfix
 
 - import_tasks: smart.yml
@@ -163,7 +163,7 @@
 - meta: flush_handlers
 
 - import_tasks: zeitgeist.yml
-  when: ansible_os_family == "Debian"
+  when: (ansible_os_family == "Debian") and lp_zeitgeist|bool
   tags: lp_zeitgeist
 
 - import_tasks: lid.yml
@@ -205,13 +205,13 @@
   tags: lp_wpagui
 
 - import_tasks: wpasupplicant.yml
-  when: ((ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )) and lp_wpasupplicant|bool
+  when: ((ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")) and lp_wpasupplicant|bool
   tags: lp_wpasupplicant
 
 - import_tasks: logrotate.yml
-  when: (ansible_os_family == "RedHat" ) or
-        (ansible_os_family == "Debian" )
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
   tags: lp_logrotate
 
 - import_tasks: tlp.yml
@@ -244,7 +244,7 @@
   tags: lp_resolvconf
 
 - import_tasks: reboot.yml
-  when: ((ansible_os_family == "RedHat" ) or
+  when: ((ansible_os_family == "RedHat") or
          (ansible_os_family == "Debian")) and lp_reboot|bool
   tags: lp_reboot
 

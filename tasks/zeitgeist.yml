@@ -2,23 +2,19 @@
 # linux-postinstall zeitgeist
 
 # One-way atm
-- name: Remove zeitgeist
+- name: "zeitgeist: Remove zeitgeist"
   apt:
     state: absent
     name: zeitgeist
     purge: true
-  when:
-    - not lp_zeitgeist|bool
-    - ansible_os_family == "Debian"
+  when: not lp_zeitgeist_install|bool
 
-- name: Remove zeitgeist-*
+- name: "zeitgeist: Remove zeitgeist-*"
   apt:
     state: absent
     name: zeitgeist-*
     purge: true
-  when:
-    - not lp_zeitgeist|bool
-    - ansible_os_family == "Debian"
+  when: not lp_zeitgeist_install|bool
 
 # - name: Disable zeitgeist
 #   service:
