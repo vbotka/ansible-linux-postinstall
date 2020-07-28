@@ -18,6 +18,7 @@
 - name: "ufw: Debug"
   vars:
     msg: |
+      lp_ufw_install [{{ lp_ufw_install }}]
       lp_ufw_enable [{{ lp_ufw_enable }}]
       lp_ufw_reset [{{ lp_ufw_reset }}]
       lp_ufw_reload [{{ lp_ufw_reload }}]
@@ -33,6 +34,7 @@
 - name: "ufw: Install packages"
   include_tasks: fn/install-package.yml
   loop: "{{ lp_ufw_packages }}"
+  when: lp_ufw_install|bool
   tags: lp_ufw_packages
 
 - name: "ufw: Disable and reset firewall to installation defaults"
