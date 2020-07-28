@@ -363,10 +363,36 @@ mytasks:
   - file: service.yml
     link: service.yml
     synopsis: |
-      Configure service.
+      Configure services.
     description: |
-      Description of the task.
-    lines: 1,2
+
+      The task will iterate the list ``lp_service_enable`` (8) and
+      look for variables ``lp_<item>`` (9). If the variable exists and
+      is ``True`` *(default='false')* an item will be added to the
+      list ``my_service_name_vars`` (6). The item is a *{key: value}*
+      hash where the *key* is the name of the service in this role and
+      the *value* is the OS specific name of the service stored in the
+      variable ``lp_<item>_service`` (7). The best practice is to
+      configure variables ``lp_<item>_service`` in files placed in the
+      directory ``vars/defaults``.
+
+      The next task will iterate the same list ``lp_service_enable``
+      (16) and condition (17). The created list
+      ``my_service_enable_vars`` (14) will keep the *{key: value}* hashes
+      with the *value* of the variable ``lp_<item>_enable`` (15).
+
+      To debug the first 3 tasks and see what services (25,27,29,31)
+      will be managed run the playbook with options ``-t
+      lp_service_debug -e "lp_service_debug=True"``.
+
+      To configure the services listed in the variable
+      *lp_service_enable* run the playbook with the tag
+      ``-t lp_service_auto`` (42).
+
+      To configure the services listed in the variable *lp_service*
+      run the playbook with the tag ``-t lp_service_general`` (57).
+
+    lines: 1,2,6-9,14-17,25,27,29,31,42,57
     seealso: []
     note: []
     warning: []

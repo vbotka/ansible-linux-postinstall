@@ -41,7 +41,7 @@
   when: lookup('vars', 'lp_' ~ item, default='false')
   tags: lp_service_auto
 
-- name: "service: General managent of services"
+- name: "service: General management of services"
   service:
     name: "{{ item.name }}"
     state: "{{ item.state|default(omit) }}"

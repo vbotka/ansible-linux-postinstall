@@ -220,6 +220,19 @@ make sure the playbook and the configuration is :index:`idempotent`
 .. _ug_task_passwords_passwordstore_ex3:
 .. include:: task-passwords-passwordstore-ex3.rst
 
+.. _ug_task_service:
+.. include:: task-service.rst
+.. toctree::
+   :name: service_toc
+
+   task-service-ex1
+   task-service-ex2
+
+.. _ug_service_ex1:
+.. include:: task-service-ex1.rst
+.. _ug_service_ex2:
+.. include:: task-service-ex2.rst
+
 .. _ug_task_zfs:
 .. include:: task-zfs.rst
 .. toctree::

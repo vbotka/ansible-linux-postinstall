@@ -16,9 +16,13 @@
       lp_vars_distro_firstfound_skip [{{ lp_vars_distro_firstfound_skip }}]
       lp_vars_flavors [{{ lp_vars_flavors }}]
       lp_flavors_enable [{{ lp_flavors_enable }}]
+      my_release
       {{ my_release|default([])|to_nice_yaml }}
-
+      lp_package_state [{{ lp_package_state }}]
+      lp_package_state_remove [{{ lp_package_state_remove }}]
       lp_backup_conf [{{ lp_backup_conf }}]
+      lp_service
+      {{ lp_service|to_yaml }}
 
       lp_acpi [{{ lp_acpi }}]
       lp_aliases [{{ lp_aliases }}]
@@ -62,12 +66,6 @@
       lp_xen [{{ lp_xen }}]
       lp_zeitgeist [{{ lp_zeitgeist }}]
       lp_zfs [{{ lp_zfs }}]
-
-      lp_service
-      {{ lp_service|to_yaml }}
-      lp_package_state [{{ lp_package_state }}]
-      lp_package_state_remove [{{ lp_package_state_remove }}]
-
   debug:
     msg: "{{ msg.split('\n')[:-1] }}"
 
