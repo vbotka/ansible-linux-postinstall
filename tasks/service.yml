@@ -21,15 +21,16 @@
   block:
     - name: "service: Get service_facts"
       service_facts:
+      when: not ansible_check_mode
     - name: "service: Create dictionary my_services"
       set_fact:
         my_services: "{{ {}|combine({'sysv': my_services_sysv})|
                             combine({'systemd': my_services_systemd}) }}"
       vars:
-        my_services_sysv: "{{ ansible_facts.services|dict2items|
+        my_services_sysv: "{{ ansible_facts.services|default({})|dict2items|
         json_query('[?value.source==`sysv`].{name: value.name, state: value.service}')|
         sort(attribute='name') }}"
-        my_services_systemd: "{{ ansible_facts.services|dict2items|
+        my_services_systemd: "{{ ansible_facts.services|default({})|dict2items|
         json_query('[?value.source==`systemd`].{name: value.name, state: value.service}')|
         sort(attribute='name') }}"
   when: lp_service_sanity|bool
@@ -69,6 +70,7 @@
   fail:
     msg: "[ERROR] Undefined services: {{ my_services_undef }}"
   when:
+    - not ansible_check_mode
     - lp_service_sanity|bool
     - my_services_undef|length > 0
   vars:
