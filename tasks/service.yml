@@ -3,40 +3,85 @@
 
 - name: "service: Set my_service_name_vars"
   set_fact:
-    my_service_name_vars: "{{ my_service_name_vars|default([]) +
-                              [{item: lookup('vars', 'lp_' ~ item ~ '_service')}] }}"
+    my_service_name_vars: "{{ my_service_name_vars|default({})|
+                              combine({item: lookup('vars', 'lp_' ~ item ~ '_service')}) }}"
   loop: "{{ lp_service_enable }}"
   when: lookup('vars', 'lp_' ~ item, default='false')
-  tags: lp_service_debug
+  tags: [lp_service_debug, lp_service_sanity, lp_service_auto]
 
 - name: "service: Set my_service_enable_vars"
   set_fact:
-    my_service_enable_vars: "{{ my_service_enable_vars|default([]) +
-                                [{item: lookup('vars', 'lp_' ~ item ~ '_enable')}] }}"
+    my_service_enable_vars: "{{ my_service_enable_vars|default([])|
+                                combine({item: lookup('vars', 'lp_' ~ item ~ '_enable')}) }}"
   loop: "{{ lp_service_enable }}"
   when: lookup('vars', 'lp_' ~ item, default='false')
-  tags: lp_service_debug
+  tags: [lp_service_debug, lp_service_sanity, lp_service_auto]
+
+- name: "service: Get service_facts and create dict my_services"
+  block:
+    - name: "service: Get service_facts"
+      service_facts:
+    - name: "service: Create dictionary my_services"
+      set_fact:
+        my_services: "{{ {}|combine({'sysv': my_services_sysv})|
+                            combine({'systemd': my_services_systemd}) }}"
+      vars:
+        my_services_sysv: "{{ ansible_facts.services|dict2items|
+        json_query('[?value.source==`sysv`].{name: value.name, state: value.service}')|
+        sort(attribute='name') }}"
+        my_services_systemd: "{{ ansible_facts.services|dict2items|
+        json_query('[?value.source==`systemd`].{name: value.name, state: value.service}')|
+        sort(attribute='name') }}"
+  when: lp_service_sanity|bool
+  tags: [lp_service_sanity, lp_service_auto]
 
 - name: "service: Debug"
   debug:
     msg: "{{ my_msg.split('\n')[:-1] }}"
   vars:
     my_msg: |
+      lp_service_sanity [{{ lp_service_sanity }}]
+      my_services
+      {{ my_services|default({})|to_yaml }}
       lp_service
       {{ lp_service|to_nice_yaml }}
       lp_service_enable
       {{ lp_service_enable|to_nice_yaml }}
       my_service_name_vars
-      {{ my_service_name_vars|default([])|to_nice_yaml }}
+      {{ my_service_name_vars|default({})|to_nice_yaml }}
       my_service_enable_vars
-      {{ my_service_enable_vars|default([])|to_nice_yaml }}
+      {{ my_service_enable_vars|default({})|to_nice_yaml }}
   when: lp_service_debug|bool
   tags: lp_service_debug
 
-- name: "service: Automaticaly enable or disable services managed by this role"
+- name: "service: Debug sanity lp_service_enable"
+  debug:
+    msg:
+      - "{{ my_services|dict2items|json_query('[].value')|flatten|
+            map(attribute='name')|list|sort }}"
+      - "{{ my_service_name_vars.values()|list|sort }}"
+  when:
+    - lp_service_sanity|bool
+    - lp_service_debug|bool
+  tags: lp_service_debug
+
+- name: "service: Sanity lp_service_enable"
+  fail:
+    msg: "[ERROR] Undefined services: {{ my_services_undef }}"
+  when:
+    - lp_service_sanity|bool
+    - my_services_undef|length > 0
+  vars:
+    my_services_undef: "{{ my_service_name_vars.values()|list|
+                           difference(my_services|dict2items|
+                                      json_query('[].value')|flatten|
+                                      map(attribute='name')|list) }}"
+  tags: [lp_service_sanity, lp_service_auto]
+
+- name: "service: Automatically enable or disable services managed by this role"
   service:
-    name: "{{ lookup('vars', 'lp_' ~ item ~ '_service') }}"
-    enabled: "{{ lookup('vars', 'lp_' ~ item ~ '_enable') }}"
+    name: "{{ my_service_name_vars[item] }}"
+    enabled: "{{ my_service_enable_vars[item] }}"
   loop: "{{ lp_service_enable }}"
   when: lookup('vars', 'lp_' ~ item, default='false')
   tags: lp_service_auto
@@ -56,7 +101,7 @@
         (item.enabled is defined)
   tags: lp_service_general
 
-# TODO: Mask a service. Do not allow any servce to activate a masked
+# TODO: Mask a service. Do not allow any service to activate a masked
 # service. See tasks/wpagui.yml
 
 # EOF
