@@ -367,9 +367,16 @@ lp_debsums_ignore_conf: []
 lp_fstab_entries: []
 
 lp_resolvconf: false
+lp_resolvconf_install: true
 lp_resolvconf_enable: false
 lp_resolvconf_debug: false
 lp_resolvconf_confd_head: []
+lp_resolvconf_conf: []
+#  - src: resolvconf-confd-head.j2
+#    dest: "{{ lp_resolvconf_confd_head_path }}"
+#    owner: "{{ lp_resolvconf_conf_owner }}"
+#    group: "{{ lp_resolvconf_conf_group }}"
+#    mode: "{{ lp_resolvconf_conf_mode }}"
 
 lp_reboot: false
 lp_reboot_debug: false

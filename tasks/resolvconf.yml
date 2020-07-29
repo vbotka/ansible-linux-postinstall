@@ -7,14 +7,15 @@
       lp_resolvconf_service [{{ lp_resolvconf_service }}]
       lp_resolvconf_enable [{{ lp_resolvconf_enable }}]
       lp_package_state [{{ lp_package_state }}]
+      lp_resolvconf_install [{{ lp_resolvconf_install }}]
       lp_resolvconf_packages
       {{ lp_resolvconf_packages|to_nice_yaml }}
       lp_resolvconf_confd_head_path [{{ lp_resolvconf_confd_head_path }}]
       lp_resolvconf_conf_owner [{{ lp_resolvconf_conf_owner }}]
       lp_resolvconf_conf_group [{{ lp_resolvconf_conf_group }}]
       lp_resolvconf_conf_mode [{{ lp_resolvconf_conf_mode }}]
-      lp_resolvconf_confd_head
-      {{ lp_resolvconf_confd_head|to_yaml }}
+      lp_resolvconf_conf
+      {{ lp_resolvconf_conf|to_yaml }}
   debug:
     msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_resolvconf_debug|bool
@@ -23,16 +24,18 @@
 - name: "resolvconf: Install packages"
   include_tasks: fn/install-package.yml
   loop: "{{ lp_resolvconf_packages }}"
+  when: lp_resolvconf_install|bool
   tags: lp_resolvconf_packages
 
-- name: "resolvconf: Configure {{ lp_resolvconf_confd_head_path }}"
+- name: "resolvconf: Configure lp_resolvconf_conf"
   template:
-    src: resolvconf-confd-head.j2
-    dest: "{{ lp_resolvconf_confd_head_path }}"
-    owner: "{{ lp_resolvconf_conf_owner }}"
-    group: "{{ lp_resolvconf_conf_group }}"
-    mode: "{{ lp_resolvconf_conf_mode }}"
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
     backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_resolvconf_conf }}"
   notify: restart resolvconf
   tags: lp_resolvconf_confd_head
 
