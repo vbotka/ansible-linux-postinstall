@@ -438,6 +438,16 @@ mytasks:
     seealso: []
     note: []
     warning: []
+  - file: snap.yml
+    link: snap.yml
+    synopsis: |
+      Configure snap.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
   - file: speechd.yml
     link: speechd.yml
     synopsis: |

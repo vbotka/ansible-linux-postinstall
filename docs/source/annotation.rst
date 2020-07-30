@@ -825,6 +825,26 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+.. _as_snap.yml:
+
+snap.yml
+--------
+
+Synopsis: Configure snap.
+
+
+Description of the task.
+
+
+[`snap.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/snap.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/snap.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
 .. _as_speechd.yml:
 
 speechd.yml
