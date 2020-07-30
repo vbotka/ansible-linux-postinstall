@@ -51,6 +51,7 @@
       lp_reboot [{{ lp_reboot }}]
       lp_resolvconf [{{ lp_resolvconf }}]
       lp_smart [{{ lp_smart }}] lp_smart_enable [{{ lp_smart_enable }}]
+      [WIP] lp_snap [{{ lp_snap }}] lp_snap_install [{{ lp_snap_install }}] lp_snap_enable [{{ lp_snap_enable }}]
       lp_speechd [{{ lp_speechd }}] lp_speechd_enable [{{ lp_speechd_enable }}]
       lp_ssh [{{ lp_ssh }}]
       lp_sshd [{{ lp_sshd }}] lp_sshd_enable [{{ lp_sshd_enable }}]

@@ -41,6 +41,10 @@
   when: (ansible_os_family == "Debian") and lp_timesyncd|bool
   tags: lp_timesyncd
 
+- import_tasks: snap.yml
+  when: ansible_os_family == "Debian" and lp_snap|bool
+  tags: lp_snap
+
 - import_tasks: repos.yml
   when: ansible_os_family == "Debian"
   tags: lp_repos

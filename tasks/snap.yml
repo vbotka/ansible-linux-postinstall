@@ -1,0 +1,16 @@
+---
+# linux-postinstall snap
+
+- name: "snap: Debug"
+  debug:
+    msg: Not implemented yet.
+
+# [TODO]
+#
+# https://snapcraft.io/docs/getting-started
+# https://www.osnews.com/story/131714/disabling-snaps-in-ubuntu-20-04/
+# https://www.kevin-custer.com/blog/disabling-snaps-in-ubuntu-20-04/
+# https://askubuntu.com/questions/1204571/chromium-without-snap
+
+# EOF
+...

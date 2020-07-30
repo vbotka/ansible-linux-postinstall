@@ -6,6 +6,8 @@
 
 [Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io)
 
+This role and the documentation is work in progress. if the documentation of a task is missing it's necessary to review the [source code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks) to learn how to use it.
+
 Feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-linux-postinstall/issues). Contributions are welcome.
 
 
@@ -91,7 +93,7 @@ Check syntax of the playbook
 shell> ansible-playbook linux-postinstall.yml --syntax-check
 ```
 
-Review variables. Optionaly detect and store flavors
+Review variables. Optionally detect and store flavors
 
 ```
 shell> ansible-playbook linux-postinstall.yml -t lp_vars
@@ -238,7 +240,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [Lid - Ubuntu Ask](https://askubuntu.com/questions/85705/stop-laptop-from-suspending-when-closing-lid-in-lightdm)
 - [Logrotate - How to Setup and Manage Log Rotation](https://www.tecmint.com/install-logrotate-to-manage-log-rotation-in-linux/)
 - [ModemManager - FreeDesktop Wiki](https://www.freedesktop.org/wiki/Software/ModemManager/)
-- [ModemManager. Remove from boot - Ubunut Ask](https://askubuntu.com/questions/216114/how-can-i-remove-modem-manager-from-boot)
+- [ModemManager. Remove from boot - Ubuntu Ask](https://askubuntu.com/questions/216114/how-can-i-remove-modem-manager-from-boot)
 - [modules - CentOS Persistent Module Loading](https://www.centos.org/docs/5/html/Deployment_Guide-en-US/s1-kernel-modules-persistant.html)
 - [modules - Disable and blacklist Linux modules](https://linux-audit.com/kernel-hardening-disable-and-blacklist-linux-modules/)
 - [NTP - Ubuntu Help](https://help.ubuntu.com/lts/serverguide/NTP.html)
@@ -247,7 +249,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [NFS - Centos](https://www.centos.org/docs/5/html/5.2/Deployment_Guide/ch-nfs.html)
 - [NFS - Ubuntu](https://help.ubuntu.com/lts/serverguide/network-file-system.html)
 - [Packages - How to prevent updating of a specific package? - Ubuntu Ask](https://askubuntu.com/questions/18654/how-to-prevent-updating-of-a-specific-package)
-- [Password(store) - pass the standard unix password manager](https://www.passwordstore.org/)
+- [Password(store) - pass the standard Unix password manager](https://www.passwordstore.org/)
 - [PM pm-utils - ArchLinux Wiki](https://wiki.archlinux.org/index.php/pm-utils)
 - [Postfix Basic Setup Howto - Ubuntu Help](https://help.ubuntu.com/community/PostfixBasicSetupHowto)
 - [Smartmontools](https://www.smartmontools.org/)

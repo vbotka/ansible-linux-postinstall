@@ -378,6 +378,11 @@ lp_resolvconf_conf: []
 #    group: "{{ lp_resolvconf_conf_group }}"
 #    mode: "{{ lp_resolvconf_conf_mode }}"
 
+lp_snap: false  # WIP
+lp_snap_install: false
+lp_snap_enable: false
+lp_snap_debuig: false
+
 lp_reboot: false
 lp_reboot_debug: false
 lp_reboot_force: false
@@ -419,7 +424,7 @@ lp_flavors:
     release_file: /etc/armbian-release
     file_labels: [VERSION, BOARD]
 
-# userland paths
+# userland paths [TODO] move to vars/defaults
 lp_dhclient: /sbin/dhclient
 
 # TODO:
