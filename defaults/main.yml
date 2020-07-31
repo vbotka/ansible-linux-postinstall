@@ -271,6 +271,7 @@ lp_gpg_dirmngr_conf_default: []
 lp_gpg_dirmngr_conf: []
 
 lp_wpasupplicant: true
+lp_wpasupplicant_install: true
 lp_wpasupplicant_debug: false
 lp_wpasupplicant_debug_classified: false
 lp_wpasupplicant_conf_only: false

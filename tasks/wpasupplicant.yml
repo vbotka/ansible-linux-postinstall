@@ -5,6 +5,7 @@
   vars:
     msg: |
       lp_package_state [{{ lp_package_state }}]
+      lp_wpasupplicant_install [{{ lp_wpasupplicant_install }}]
       lp_wpasupplicant_packages
       {{ lp_wpasupplicant_packages|to_nice_yaml }}
       lp_wpasupplicant_conf_only [{{ lp_wpasupplicant_conf_only }}]
@@ -41,6 +42,7 @@
 - name: "wpasupplicant: Install packages"
   include_tasks: fn/install-package.yml
   loop: "{{ lp_wpasupplicant_packages }}"
+  when: lp_wpasupplicant_install|bool
   tags: lp_wpasupplicant_packages
 
 - name: "wpasupplicant: Configure {{ lp_wpasupplicant_conf_dir }}/{{
