@@ -98,6 +98,7 @@ lp_aliases_config: []
 lp_authorized_key: []
 
 lp_hosts_debug: false
+lp_hosts_sanity: true
 lp_hosts: []
 
 lp_grub: true
