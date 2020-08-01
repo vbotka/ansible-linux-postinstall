@@ -99,6 +99,7 @@ lp_authorized_key: []
 
 lp_hosts_debug: false
 lp_hosts_sanity: true
+lp_hosts_template: hosts.j2
 lp_hosts: []
 
 lp_grub: true
