@@ -35,7 +35,7 @@ Disable :index:`NetworkManager`
    TASK [vbotka.linux_postinstall : nm: Create /etc/init/network-manager.override]
    ok: [plana]
 
-   TASK [vbotka.linux_postinstall : nm: remove /etc/init/network-manager.override]
+   TASK [vbotka.linux_postinstall : nm: Remove /etc/init/network-manager.override]
    skipping: [plana]
 
    TASK [vbotka.linux_postinstall : nm: Configure /etc/NetworkManager/NetworkManager.conf]
