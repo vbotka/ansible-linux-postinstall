@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)[![Documentation Status](https://readthedocs.org/projects/docs/badge/?version=latest)](https://ansible-linux-postinstall.readthedocs.io/en/latest/)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi, aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums, fstab, gpg, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, networkd, nfsd, packages, passwords, pm-utils, postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
+[Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi, aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums, fstab, gpg, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, networkd, networkmanager, nfsd, packages, passwords, pm-utils, postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 [Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io)
 
@@ -247,7 +247,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [Netplan](https://netplan.io/)
 - [Networkd - ArchLinux Wiki](https://wiki.archlinux.org/index.php/Systemd-networkd)
 - [Networkd - Freedesktop.org](https://www.freedesktop.org/software/systemd/man/systemd-networkd.service.html)
-- [NetworkManager disabling - Ubuntu Help](https://help.ubuntu.com/community/NetworkManager#Disabling_NetworkManager)
+- [NetworkManager disabling - Ubuntu Help](https://help.ubuntu.com/community/NetworkManager#Stopping_and_Disabling_NetworkManager)
 - [NFS - Centos](https://www.centos.org/docs/5/html/5.2/Deployment_Guide/ch-nfs.html)
 - [NFS - Ubuntu](https://help.ubuntu.com/lts/serverguide/network-file-system.html)
 - [Packages - How to prevent updating of a specific package? - Ubuntu Ask](https://askubuntu.com/questions/18654/how-to-prevent-updating-of-a-specific-package)

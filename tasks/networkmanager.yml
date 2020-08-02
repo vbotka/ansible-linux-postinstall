@@ -1,0 +1,96 @@
+---
+# linux-postinstall networkmanager
+
+- debug:
+    var: lp_nm_service
+  tags: lp_nm_debug
+
+- name: "nm: Debug"
+  vars:
+    msg: |
+      lp_nm_install [{{ lp_nm_install }}]
+      lp_nm_packages
+      {{ lp_nm_packages|to_nice_yaml }}
+      lp_nm_enable [{{ lp_nm_enable }}]
+      lp_nm_override [{{ lp_nm_override }}]
+      lp_nm_conf
+      {{ lp_nm_conf|to_yaml }}
+      lp_nm_service
+      {{ lp_nm_service|to_nice_yaml }}
+      lp_nm_mask [{{ lp_nm_mask }}]
+      lp_nm_service_mask
+      {{ lp_nm_service_mask|to_nice_yaml }}
+  debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_nm_debug|bool
+  tags: lp_nm_debug
+
+- name: "nm: Install packages"
+  include_tasks: fn/install-package.yml
+  loop: "{{ lp_nm_packages }}"
+  when: lp_nm_install
+  tags: lp_nm_packages
+
+- name: "nm: Create /etc/init/network-manager.override"
+  template:
+    src: network-manager-override.j2
+    dest: /etc/init/network-manager.override
+    owner: root
+    group: root
+    mode: "0644"
+  when: not lp_nm_enable|bool
+  tags: lp_nm_override
+
+- name: "nm: Remove /etc/init/network-manager.override"
+  file:
+    state: absent
+    dest: /etc/init/network-manager.override
+  when: lp_nm_enable|bool
+  tags: lp_nm_override
+
+- name: "nm: Configure /etc/NetworkManager/NetworkManager.conf"
+  lineinfile:
+    dest: /etc/NetworkManager/NetworkManager.conf
+    regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
+    line: '{{ item.key }}={{ item.val }}'
+  loop: "{{ lp_nm_conf }}"
+  tags: lp_nm_conf
+
+- name: "nm: Start and enable NM services"
+  service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop: "{{ lp_nm_service }}"
+  when: lp_nm_enable|bool
+  tags: lp_nm_start
+
+- name: "nm: Stop and disable NM services"
+  service:
+    name: "{{ item }}"
+    state: stopped
+    enabled: false
+  loop: "{{ lp_nm_service }}"
+  when: not lp_nm_enable|bool
+  tags: lp_nm_stop
+
+- name: "nm: Unmask NM services"
+  command: "systemctl unmask {{ item }}"
+  args:
+    warn: false
+  loop: "{{ lp_nm_service_mask }}"
+  changed_when: false
+  when: not lp_nm_mask|bool
+  tags: lp_nm_mask
+
+- name: "nm: Mask NM services"
+  command: "systemctl mask {{ item }}"
+  args:
+    warn: false
+  loop: "{{ lp_nm_service_mask }}"
+  changed_when: false
+  when: lp_nm_mask|bool
+  tags: lp_nm_mask
+
+# EOF
+...

@@ -550,6 +550,46 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+.. _as_networkd.yml:
+
+networkd.yml
+------------
+
+Synopsis: Configure networkd.
+
+
+Description of the task.
+
+
+[`networkd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/networkd.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/networkd.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+.. _as_networkmanager.yml:
+
+networkmanager.yml
+------------------
+
+Synopsis: Configure Networkmanager.
+
+
+Description of the task.
+
+
+[`networkmanager.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/networkmanager.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/networkmanager.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
 .. _as_nfsd.yml:
 
 nfsd.yml

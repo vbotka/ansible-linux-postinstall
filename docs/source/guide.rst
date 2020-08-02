@@ -202,6 +202,17 @@ make sure the playbook and the configuration is :index:`idempotent`
 .. _ug_task_netplan_ex1:
 .. include:: task-netplan-ex1.rst
 
+
+.. _ug_task_networkmanager:
+.. include:: task-networkmanager.rst
+.. toctree::
+   :name: networkmanager_toc
+
+   task-networkmanager-ex1
+
+.. _ug_task_networkmanager_ex1:
+.. include:: task-networkmanager-ex1.rst
+
 .. _ug_task_passwords:
 .. include:: task-passwords.rst
 .. _ug_task_passwords_passwordstore:

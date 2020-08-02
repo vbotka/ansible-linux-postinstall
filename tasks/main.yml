@@ -28,6 +28,10 @@
         (ansible_os_family == "Debian"))
   tags: lp_fstab
 
+- import_tasks: networkmanager.yml
+  when: (ansible_os_family == "Debian") and lp_nm|bool
+  tags: lp_nm
+
 - import_tasks: netplan.yml
   when: (ansible_os_family == "Debian") and lp_netplan|bool
   tags: lp_netplan

@@ -16,6 +16,7 @@ lp_timesyncd_service: systemd-timesyncd.service
 lp_postfix_service: postfix
 lp_gpsd_service: gpsd
 lp_bluetooth_service: bluetooth
+lp_auto_upgrades_service: unattended-upgrades
 
 lp_udev_service: udev
 lp_udev_path: /bin/udevadm
@@ -50,14 +51,16 @@ lp_wpagui_packages:
   - net-tools
   - ifupdown
   - wireless-tools
-lp_wpagui_systemd:
+
+lp_nm_packages:
   - network-manager
-lp_wpagui_service:
+lp_nm_service:
   - NetworkManager.service
-  - NetworkManager-dispatcher.service
   - NetworkManager-wait-online.service
+  - NetworkManager-dispatcher.service
+  - network-manager.service
   - wpa_supplicant.service
-lp_wpagui_service_mask:
+lp_nm_service_mask:
   - NetworkManager.service
 
 lp_wpasupplicant_packages:

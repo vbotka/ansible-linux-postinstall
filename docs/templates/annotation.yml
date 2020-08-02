@@ -270,6 +270,26 @@ mytasks:
     seealso: []
     note: []
     warning: []
+  - file: networkd.yml
+    link: networkd.yml
+    synopsis: |
+      Configure networkd.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+  - file: networkmanager.yml
+    link: networkmanager.yml
+    synopsis: |
+      Configure Networkmanager.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
   - file: nfsd.yml
     link: nfsd.yml
     synopsis: |

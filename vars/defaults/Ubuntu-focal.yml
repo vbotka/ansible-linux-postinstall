@@ -51,14 +51,16 @@ lp_wpagui_packages:
   - net-tools
   - ifupdown
   - wireless-tools
-lp_wpagui_systemd:
+
+lp_nm_packages:
   - network-manager
-lp_wpagui_service:
+lp_nm_service:
   - NetworkManager.service
-  - NetworkManager-dispatcher.service
   - NetworkManager-wait-online.service
+  - NetworkManager-dispatcher.service
+  - network-manager.service
   - wpa_supplicant.service
-lp_wpagui_service_mask:
+lp_nm_service_mask:
   - NetworkManager.service
 
 lp_wpasupplicant_packages:

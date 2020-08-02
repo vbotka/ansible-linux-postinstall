@@ -1,18 +1,23 @@
 ---
 # linux-postinstall wpa_gui
-# Install wpa_gui and disable NetworkManager
+
+# Note: Disable NetworkManager before installing wpagui
+#
+# Example:
+#
+# lp_nm: true
+# lp_nm_install: false
+# lp_nm_enable: false
+# lp_nm_conf:
+#     - {key: managed, val: 'false'}
+# lp_nm_mask: true
 
 - name: "wpagui: Debug"
   vars:
     msg: |
+      lp_wpagui_install [{{ lp_wpagui_install }}]
       lp_wpagui_packages
       {{ lp_wpagui_packages|to_nice_yaml }}
-      lp_wpagui_systemd
-      {{ lp_wpagui_systemd|to_nice_yaml }}
-      lp_wpagui_service
-      {{ lp_wpagui_service|to_nice_yaml }}
-      lp_wpagui_service_mask
-      {{ lp_wpagui_service_mask|to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_wpagui_debug|bool
@@ -21,57 +26,8 @@
 - name: "wpagui: Install packages"
   include_tasks: fn/install-package.yml
   loop: "{{ lp_wpagui_packages }}"
+  when: lp_wpagui_install|bool
   tags: lp_wpagui_packages
-
-- name: "wpagui: Disable NM /etc/init/network-manager.override"
-  template:
-    src: network-manager-override.j2
-    dest: /etc/init/network-manager.override
-    owner: root
-    group: root
-    mode: "0644"
-  tags: lp_wpagui_disableNM
-
-- name: "wpagui: Configure managed=false
-                 in /etc/NetworkManager/NetworkManager.conf"
-  lineinfile:
-    dest: /etc/NetworkManager/NetworkManager.conf
-    regexp: '^\s*managed\s*=\s*(.*)$'
-    line: "managed=false"
-  tags: lp_wpagui_disableNM
-
-# NetworkManager.service will be stopped and disabled in the next task
-# - name: "wpagui: Stop and disable NM"
-#  systemd:
-#    name: "{{ item }}"
-#    state: stopped
-#    enabled: false
-#  loop: "{{ lp_wpagui_systemd }}"
-#  tags: lp_wpagui_disableNM
-
-- name: "wpagui: Stop and disable all NM services"
-  service:
-    name: "{{ item }}"
-    state: stopped
-    enabled: false
-  loop: "{{ lp_wpagui_service }}"
-  tags: lp_wpagui_disableNM
-
-- name: "wpagui: Mask NM services"
-  command: "systemctl mask {{ item }}"
-  args:
-    warn: false
-  loop: "{{ lp_wpagui_service_mask }}"
-  changed_when: false
-  tags: lp_wpagui_mask_NM
-  #
-  # False Positives: Skipping Rules
-  # https://github.com/ansible/ansible-lint#false-positives-skipping-rules
-  # noqa 303 does not work
-  #
-  # ansible-lint "systemctl used in place of systemd module" No
-  # systemctl / systemd module. #48848
-  # https://github.com/ansible/ansible/issues/48848
 
 # EOF
 ...
