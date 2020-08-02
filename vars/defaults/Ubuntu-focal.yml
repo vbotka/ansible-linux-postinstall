@@ -144,6 +144,13 @@ lp_zfs_packages:
 lp_ufw_packages:
   - ufw
 
+lp_systemd_owner: root
+lp_systemd_group: root
+lp_systemd_mode: "0644"
+
+lp_networkd_service: systemd-networkd.service
+lp_networkd_packages: []
+
 lp_netplan_default: 01-network-manager-all.yaml
 lp_netplan_mode: "0644"
 

@@ -381,6 +381,12 @@ lp_resolvconf_conf: []
 #    group: "{{ lp_resolvconf_conf_group }}"
 #    mode: "{{ lp_resolvconf_conf_mode }}"
 
+lp_networkd: true
+lp_networkd_install: true
+lp_networkd_enable: true
+lp_networkd_debug: false
+lp_networkd_conf: []
+
 lp_snap: false  # WIP
 lp_snap_install: false
 lp_snap_enable: false

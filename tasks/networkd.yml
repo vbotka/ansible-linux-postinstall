@@ -1,0 +1,63 @@
+---
+# linux-postinstall networkd
+
+- name: "networkd: Debug"
+  vars:
+    msg: |
+      lp_networkd_install [{{ lp_networkd_install }}]
+      lp_networkd_packages
+      {{ lp_networkd_packages|to_nice_yaml }}
+      lp_networkd_enable [{{ lp_networkd_enable }}]
+      lp_networkd_service [{{ lp_networkd_service }}]
+
+      lp_networkd_conf
+      {{ lp_networkd_conf|to_yaml }}
+      lp_systemd_owner [{{ lp_systemd_owner }}]
+      lp_systemd_group [{{ lp_systemd_group }}]
+      lp_systemd_mode [{{ lp_systemd_mode }}]
+  debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_networkd_debug|bool
+  tags: lp_networkd_debug
+
+# Packages
+- name: "networkd: Install packages"
+  include_tasks: fn/install-package.yml
+  loop: "{{ lp_networkd_packages }}"
+  when: lp_networkd_install|bool
+  tags: lp_networkd_packages
+
+# Conf
+- name: "networkd: Configure networkd"
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner|default(lp_systemd_owner) }}"
+    group: "{{ item.group|default(lp_systemd_group) }}"
+    mode: "{{ item.mode|default(lp_systemd_mode) }}"
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_networkd_conf }}"
+  loop_control:
+    label: "{{ item.dest }}"
+  notify: restart networkd
+  tags: lp_networkd_conf
+
+# Service
+- name: "networkd: Start and enable networkd"
+  service:
+    name: "{{ lp_networkd_service }}"
+    state: started
+    enabled: true
+  when: lp_networkd_enable|bool
+  tags: lp_networkd_service
+
+- name: "networkd: Stop and disable networkd"
+  service:
+    name: "{{ lp_networkd_service }}"
+    state: stopped
+    enabled: false
+  when: not lp_networkd_enable|bool
+  tags: lp_networkd_service
+
+# EOF
+...

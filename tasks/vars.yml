@@ -7,7 +7,7 @@
 
 - name: "vars: Include incremental default vars"
   when: lp_vars_distro == "incremental"
-  include_tasks: vars-firstfound.yml
+  include_tasks: vars-incremental.yml
 
 - name: "vars: Include firstfound default vars for various flavors"
   when: lp_flavors_enable|bool

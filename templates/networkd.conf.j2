@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+{% for section in item.conf %}
+[{{ section.section }}]
+{% for line in section.conf %}
+{{ line.key }}={{ line.val }}
+{% endfor %}
+{% endfor %}

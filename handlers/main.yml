@@ -175,6 +175,12 @@
   loop: "{{ lp_wpasupplicant_conf_changes.results }}"
   # TODO: Wait for OK result. Error: 'RECONFIGURE' command timed out.
 
+- name: restart networkd
+  service:
+    name: "{{ lp_networkd_service }}"
+    state: restarted
+  when: lp_networkd_enable|bool
+
 # MESSAGES -------------------------------------------------------------
 - name: logind message reboot
   debug: msg="[MESSAGE] Reboot to activate configuration in logind.conf"

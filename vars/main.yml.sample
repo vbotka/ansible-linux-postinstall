@@ -269,6 +269,18 @@
 # lp_sudoers_01:
 #   - "admin ALL=(ALL) NOPASSWD: ALL"
 
+# lp_networkd_conf:
+#   - src: networkd.conf.j2
+#     dest: /etc/systemd/networkd.conf
+#     conf:
+#       - section: Network
+#         conf:
+#           - {key: SpeedMeter, val: 'no'}
+#           - {key: SpeedMeterIntervalSec, val: 10sec}
+#       - section: DHCP
+#         conf:
+#           - {key: DUIDType, val: vendor}
+
 # lp_netplan: true
 # lp_netplan_renderer: "networkd"
 # lp_netplan_conf:

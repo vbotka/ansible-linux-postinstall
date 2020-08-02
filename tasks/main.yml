@@ -32,6 +32,10 @@
   when: (ansible_os_family == "Debian") and lp_netplan|bool
   tags: lp_netplan
 
+- import_tasks: networkd.yml
+  when: (ansible_os_family == "Debian") and lp_networkd|bool
+  tags: lp_networkd
+
 - import_tasks: timezone.yml
   when: ((ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")) and lp_timezone|bool
