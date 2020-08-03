@@ -69,7 +69,7 @@ lp_nm_debug: false
 lp_nm_mask: false
 lp_nm_override: manual
 lp_nm_conf: []
-# - {key: managed, val: 'false'}
+lp_nm_conf_no_extra_spaces: true
 
 lp_iptables: false
 lp_iptables_type: default
@@ -344,18 +344,23 @@ lp_service_debug: false
 lp_service_sanity: true
 lp_service: []
 lp_service_enable:
-  - udev
   - auto_upgrades
-  - sshd
+  - autofs
   - bluetooth
   - gpsd
+  - libvirt_guests
+  - libvirt_libvirtd
   - postfix
+  - resolvconf
   - smart
   - speechd
+  - sshd
   - timesyncd
-  - autofs
-  - libvirt_libvirtd
-  - libvirt_guests
+  - udev
+  - ufw
+# - snap  WIP
+# - tlp   [TODO] add list of services
+# - nm    [TODO] add list of services
 
 lp_ufw: true
 lp_ufw_install: true

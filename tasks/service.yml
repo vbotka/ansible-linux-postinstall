@@ -1,7 +1,11 @@
 ---
 # linux-postinstall service
 
-- name: "service: Set my_service_name_vars"
+# [TODO] add list of services, e.g. tlp and nm
+# 'lp_' ~ item ~ '_services'
+
+# Collect vars and facts
+- name: "service: Set dict my_service_name_vars. Collect lp_<item>_service."
   set_fact:
     my_service_name_vars: "{{ my_service_name_vars|default({})|
                               combine({item: lookup('vars', 'lp_' ~ item ~ '_service')}) }}"
@@ -9,20 +13,20 @@
   when: lookup('vars', 'lp_' ~ item, default='false')
   tags: [lp_service_debug, lp_service_sanity, lp_service_auto]
 
-- name: "service: Set my_service_enable_vars"
+- name: "service: Set dict my_service_enable_vars. Collect lp_<item>_enable."
   set_fact:
-    my_service_enable_vars: "{{ my_service_enable_vars|default([])|
+    my_service_enable_vars: "{{ my_service_enable_vars|default({})|
                                 combine({item: lookup('vars', 'lp_' ~ item ~ '_enable')}) }}"
   loop: "{{ lp_service_enable }}"
   when: lookup('vars', 'lp_' ~ item, default='false')
   tags: [lp_service_debug, lp_service_sanity, lp_service_auto]
 
-- name: "service: Get service_facts and create dict my_services"
+- name: "service: Get service_facts and set dict my_services"
   block:
     - name: "service: Get service_facts"
       service_facts:
       when: not ansible_check_mode
-    - name: "service: Create dictionary my_services"
+    - name: "service: Set dict my_services"
       set_fact:
         my_services: "{{ {}|combine({'sysv': my_services_sysv})|
                             combine({'systemd': my_services_systemd}) }}"
@@ -55,6 +59,7 @@
   when: lp_service_debug|bool
   tags: lp_service_debug
 
+# Sanity
 - name: "service: Debug sanity lp_service_enable"
   debug:
     msg:
@@ -66,7 +71,7 @@
     - lp_service_debug|bool
   tags: lp_service_debug
 
-- name: "service: Sanity lp_service_enable"
+- name: "service: Sanity lp_service_enable. Service(s) undefined in the system."
   fail:
     msg: "[ERROR] Undefined services: {{ my_services_undef }}"
   when:
@@ -80,7 +85,8 @@
                                       map(attribute='name')|list) }}"
   tags: [lp_service_sanity, lp_service_auto]
 
-- name: "service: Automatically enable or disable services managed by this role"
+# Manage services
+- name: "service: Manage services listed in lp_service_enable"
   service:
     name: "{{ my_service_name_vars[item] }}"
     enabled: "{{ my_service_enable_vars[item] }}"
@@ -88,7 +94,7 @@
   when: lookup('vars', 'lp_' ~ item, default='false')
   tags: lp_service_auto
 
-- name: "service: General management of services"
+- name: "service: Manage services listed in lp_service"
   service:
     name: "{{ item.name }}"
     state: "{{ item.state|default(omit) }}"
@@ -103,8 +109,8 @@
         (item.enabled is defined)
   tags: lp_service_general
 
-# TODO: Mask a service. Do not allow any service to activate a masked
-# service. See tasks/wpagui.yml
+# [TODO] Mask a service. Do not allow any service to activate a masked
+# service. See tasks/networkmanager.yml
 
 # EOF
 ...

@@ -54,14 +54,15 @@ lp_wpagui_packages:
 
 lp_nm_packages:
   - network-manager
-lp_nm_service:
+lp_nm_services:
   - NetworkManager.service
   - NetworkManager-wait-online.service
   - NetworkManager-dispatcher.service
   - network-manager.service
   - wpa_supplicant.service
-lp_nm_service_mask:
+lp_nm_services_mask:
   - NetworkManager.service
+lp_nm_conf_path: /etc/NetworkManager/NetworkManager.conf
 
 lp_wpasupplicant_packages:
   - wpasupplicant

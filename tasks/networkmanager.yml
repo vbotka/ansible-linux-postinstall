@@ -1,10 +1,6 @@
 ---
 # linux-postinstall networkmanager
 
-- debug:
-    var: lp_nm_service
-  tags: lp_nm_debug
-
 - name: "nm: Debug"
   vars:
     msg: |
@@ -13,13 +9,15 @@
       {{ lp_nm_packages|to_nice_yaml }}
       lp_nm_enable [{{ lp_nm_enable }}]
       lp_nm_override [{{ lp_nm_override }}]
+      lp_nm_conf_path [{{ lp_nm_conf_path }}]
+      lp_nm_conf_no_extra_spaces [{{ lp_nm_conf_no_extra_spaces }}]
       lp_nm_conf
       {{ lp_nm_conf|to_yaml }}
-      lp_nm_service
-      {{ lp_nm_service|to_nice_yaml }}
+      lp_nm_services
+      {{ lp_nm_services|to_nice_yaml }}
       lp_nm_mask [{{ lp_nm_mask }}]
       lp_nm_service_mask
-      {{ lp_nm_service_mask|to_nice_yaml }}
+      {{ lp_nm_services_mask|to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_nm_debug|bool
@@ -48,11 +46,14 @@
   when: lp_nm_enable|bool
   tags: lp_nm_override
 
-- name: "nm: Configure /etc/NetworkManager/NetworkManager.conf"
-  lineinfile:
-    dest: /etc/NetworkManager/NetworkManager.conf
-    regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
-    line: '{{ item.key }}={{ item.val }}'
+- name: "nm: Configure {{ lp_nm_conf_path }}"
+  ini_file:
+    path: "{{ lp_nm_conf_path }}"
+    section: "{{ item.section }}"
+    option: "{{ item.key }}"
+    value: "{{ item.val }}"
+    no_extra_spaces: "{{ lp_nm_conf_no_extra_spaces }}"
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_nm_conf }}"
   tags: lp_nm_conf
 
@@ -61,7 +62,7 @@
     name: "{{ item }}"
     state: started
     enabled: true
-  loop: "{{ lp_nm_service }}"
+  loop: "{{ lp_nm_services }}"
   when: lp_nm_enable|bool
   tags: lp_nm_start
 
@@ -70,7 +71,7 @@
     name: "{{ item }}"
     state: stopped
     enabled: false
-  loop: "{{ lp_nm_service }}"
+  loop: "{{ lp_nm_services }}"
   when: not lp_nm_enable|bool
   tags: lp_nm_stop
 
@@ -78,7 +79,7 @@
   command: "systemctl unmask {{ item }}"
   args:
     warn: false
-  loop: "{{ lp_nm_service_mask }}"
+  loop: "{{ lp_nm_services_mask }}"
   changed_when: false
   when: not lp_nm_mask|bool
   tags: lp_nm_mask
@@ -87,7 +88,7 @@
   command: "systemctl mask {{ item }}"
   args:
     warn: false
-  loop: "{{ lp_nm_service_mask }}"
+  loop: "{{ lp_nm_services_mask }}"
   changed_when: false
   when: lp_nm_mask|bool
   tags: lp_nm_mask
