@@ -23,12 +23,14 @@
   when: lp_nm_debug|bool
   tags: lp_nm_debug
 
+# Packages
 - name: "nm: Install packages"
   include_tasks: fn/install-package.yml
   loop: "{{ lp_nm_packages }}"
   when: lp_nm_install
   tags: lp_nm_packages
 
+# Override
 - name: "nm: Create /etc/init/network-manager.override"
   template:
     src: network-manager-override.j2
@@ -46,6 +48,7 @@
   when: lp_nm_enable|bool
   tags: lp_nm_override
 
+# Conf
 - name: "nm: Configure {{ lp_nm_conf_path }}"
   ini_file:
     path: "{{ lp_nm_conf_path }}"
@@ -57,6 +60,7 @@
   loop: "{{ lp_nm_conf }}"
   tags: lp_nm_conf
 
+# Service
 - name: "nm: Start and enable NM services"
   service:
     name: "{{ item }}"
@@ -75,6 +79,7 @@
   when: not lp_nm_enable|bool
   tags: lp_nm_stop
 
+# Mask service
 - name: "nm: Unmask NM services"
   command: "systemctl unmask {{ item }}"
   args:

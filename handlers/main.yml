@@ -164,16 +164,25 @@
   when: item.changed|bool
 
 - name: reconfigure wpa_supplicant
-  shell: >
-    [ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ item.item.dev }} ] &&
-    wpa_cli -p {{ lp_wpasupplicant_conf_ctrl_interface }}
-            -i {{ item.item.dev }} reconfigure ||
-    exit 0
+  service:
+    name: "{{ my_service }}"
+    state: "{{ item.item.state|default('started') }}"
+    enabled: "{{ item.item.enabled|default('true') }}"
   when:
     - item.changed|bool
     - not lp_wpasupplicant_conf_only|bool
   loop: "{{ lp_wpasupplicant_conf_changes.results }}"
-  # TODO: Wait for OK result. Error: 'RECONFIGURE' command timed out.
+  loop_control:
+    label: "{{ my_service }}"
+  vars:
+    my_dev: "{{ item.item.dev }}"
+    my_service: "{{ lp_wpasupplicant_service[item.item.type|default('default')] }}"
+# [TODO] Wait for OK result. Error: 'RECONFIGURE' command timed out.
+# shell: >
+#    [ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ item.item.dev }} ] &&
+#    wpa_cli -p {{ lp_wpasupplicant_conf_ctrl_interface }}
+#            -i {{ item.item.dev }} reconfigure ||
+#    exit 0
 
 - name: restart networkd
   service:
