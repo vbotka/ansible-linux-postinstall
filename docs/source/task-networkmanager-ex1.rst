@@ -28,7 +28,7 @@ Create *host_vars/test_01/lp-nm.yml*
 Disable :index:`NetworkManager`
 
 .. code-block:: sh
-   :emphasize-lines: 1
+   :emphasize-lines: 1,3-4,9-10,19-24,29-30
 
    shell> ansible-playbook linux-postinstall.yml -t lp_nm
 

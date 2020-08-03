@@ -55,9 +55,9 @@ The command is :index:`idempotent`
    PLAY RECAP ******************************************************************
    test_01: ok=6 changed=0 unreachable=0 failed=0 skipped=4 rescued=0 ignored=0
 
-   
+
 Show the configuration of :index:`netplan` at the remote host
-   
+
 .. code-block:: sh
    :emphasize-lines: 1,6,12
 
@@ -89,3 +89,40 @@ Show the configuration of :index:`netplan` at the remote host
            "set-name": "eth0"
        }
      }
+
+Show the configuration of :index:`networkd` at the remote host
+
+.. code-block:: sh
+   :emphasize-lines: 1,17,25
+
+   test_01> cat /run/systemd/network/10-netplan-eth0.network
+   [Match]
+   MACAddress=d0:63:b4:00:4d:7f
+   Name=eth0
+
+   [Link]
+   RequiredForOnline=no
+
+   [Network]
+   DHCP=ipv4
+   LinkLocalAddressing=ipv6
+
+   [DHCP]
+   RouteMetric=100
+   UseMTU=true
+
+   test_01> cat /run/systemd/network/10-netplan-eth0.link
+   [Match]
+   MACAddress=d0:63:b4:00:4d:7f
+
+   [Link]
+   Name=eth0
+   WakeOnLan=off
+
+   test_01> networkctl
+   IDX LINK             TYPE               OPERATIONAL SETUP
+     1 lo               loopback           carrier     unmanaged
+     2 eth0             ether              routable    configured
+     3 wlan0            wlan               off         unmanaged
+
+   3 links listed.
