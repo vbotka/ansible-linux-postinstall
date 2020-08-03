@@ -198,9 +198,12 @@ make sure the playbook and the configuration is :index:`idempotent`
    :name: netplan_toc
 
    task-netplan-ex1
+   task-netplan-ex2
 
 .. _ug_task_netplan_ex1:
 .. include:: task-netplan-ex1.rst
+.. _ug_task_netplan_ex2:
+.. include:: task-netplan-ex2.rst
 
 
 .. _ug_task_networkmanager:

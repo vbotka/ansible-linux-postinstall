@@ -166,17 +166,17 @@
 - name: reconfigure wpa_supplicant
   service:
     name: "{{ my_service }}"
-    state: "{{ item.item.state|default('started') }}"
-    enabled: "{{ item.item.enabled|default('true') }}"
-  when:
-    - item.changed|bool
-    - not lp_wpasupplicant_conf_only|bool
+    state: restarted
   loop: "{{ lp_wpasupplicant_conf_changes.results }}"
   loop_control:
     label: "{{ my_service }}"
   vars:
     my_dev: "{{ item.item.dev }}"
     my_service: "{{ lp_wpasupplicant_service[item.item.type|default('default')] }}"
+  when:
+    - item.changed|bool
+    - not lp_wpasupplicant_conf_only|bool
+    - item.item.enabled|default('true')
 # [TODO] Wait for OK result. Error: 'RECONFIGURE' command timed out.
 # shell: >
 #    [ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ item.item.dev }} ] &&

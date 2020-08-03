@@ -21,8 +21,8 @@ Create *host_vars/test_01/lp-netplan.yml*
    lp_netplan: true
    lp_netplan_renderer: "networkd"
    lp_netplan_conf:
-     - file: "10-ethernet.yaml"
-       category: "ethernets"
+     - file: 10-ethernet.yaml
+       category: ethernets
        conf: |
          eth0:
            optional: true
@@ -97,7 +97,7 @@ Show the configuration of :index:`networkd` at the remote host
 
    test_01> cat /run/systemd/network/10-netplan-eth0.network
    [Match]
-   MACAddress=d0:63:b4:00:4d:7f
+   MACAddress=<sanitized>
    Name=eth0
 
    [Link]
@@ -113,7 +113,7 @@ Show the configuration of :index:`networkd` at the remote host
 
    test_01> cat /run/systemd/network/10-netplan-eth0.link
    [Match]
-   MACAddress=d0:63:b4:00:4d:7f
+   MACAddress=<sanitized>
 
    [Link]
    Name=eth0
