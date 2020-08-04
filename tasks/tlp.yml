@@ -5,9 +5,10 @@
   vars:
     msg: |
       lp_tlp_enable [{{ lp_tlp_enable }}]
-      lp_tlp_thinkpad [{{ lp_tlp_thinkpad }}]
+      lp_tlp_install [{{ lp_tlp_install }}]
       lp_tlp_packages
       {{ lp_tlp_packages|to_nice_yaml }}
+      lp_tlp_thinkpad [{{ lp_tlp_thinkpad }}]
       lp_tlp_packages_tp
       {{ lp_tlp_packages_tp|to_nice_yaml }}
       lp_tlp_config_file [{{ lp_tlp_config_file }}]
@@ -24,6 +25,7 @@
 - name: "tlp: Install packages"
   include_tasks: fn/install-package.yml
   loop: "{{ lp_tlp_packages }}"
+  when: lp_tlp_install|bool
   tags: lp_tlp_packages
 
 - name: "tlp: Install packages for ThinkPad"

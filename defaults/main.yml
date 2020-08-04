@@ -322,6 +322,7 @@ lp_logrotate_conf_blocks: []
 lp_logrotate_confd: []
 
 lp_tlp: false
+lp_tlp_install: true
 lp_tlp_debug: false
 lp_tlp_enable: false
 lp_tlp_thinkpad: false

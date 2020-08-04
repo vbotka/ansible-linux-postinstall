@@ -60,7 +60,7 @@
       lp_swap [{{ lp_swap }}] lp_swap_enable [{{ lp_swap_enable }}]
       lp_timesyncd [{{ lp_timesyncd }}] lp_timesyncd_enable [{{ lp_timesyncd_enable }}]
       lp_timezone [{{ lp_timezone }}]
-      lp_tlp [{{ lp_tlp }}] lp_tlp_enable [{{ lp_tlp_enable }}]
+      lp_tlp [{{ lp_tlp }}] lp_tlp_install [{{ lp_tlp_install }}] lp_tlp_enable [{{ lp_tlp_enable }}]
       lp_udev [{{ lp_udev }}]
       lp_ufw [{{ lp_ufw }}] lp_ufw_install [{{ lp_ufw_install }}] lp_ufw_enable [{{ lp_ufw_enable }}]
       lp_virtualbox [{{ lp_virtualbox }}] lp_virtualbox_enable [{{ lp_virtualbox_enable }}]
