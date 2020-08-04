@@ -216,6 +216,7 @@ make sure the playbook and the configuration is :index:`idempotent`
 .. _ug_task_networkmanager_ex1:
 .. include:: task-networkmanager-ex1.rst
 
+
 .. _ug_task_passwords:
 .. include:: task-passwords.rst
 .. _ug_task_passwords_passwordstore:
@@ -234,6 +235,7 @@ make sure the playbook and the configuration is :index:`idempotent`
 .. _ug_task_passwords_passwordstore_ex3:
 .. include:: task-passwords-passwordstore-ex3.rst
 
+
 .. _ug_task_service:
 .. include:: task-service.rst
 .. toctree::
@@ -246,6 +248,18 @@ make sure the playbook and the configuration is :index:`idempotent`
 .. include:: task-service-ex1.rst
 .. _ug_service_ex2:
 .. include:: task-service-ex2.rst
+
+
+.. _ug_task_wpasupplicant:
+.. include:: task-wpasupplicant.rst
+.. toctree::
+   :name: wpasupplicant_toc
+
+   task-wpasupplicant-ex1
+
+.. _ug_wpasupplicant_ex1:
+.. include:: task-wpasupplicant-ex1.rst
+
 
 .. _ug_task_zfs:
 .. include:: task-zfs.rst
