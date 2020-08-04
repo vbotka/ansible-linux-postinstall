@@ -87,7 +87,7 @@ Show the configuration of the :index:`wifi` interface
 .. code-block:: sh
    :emphasize-lines: 1,9
 
-   shell> tree /etc/netplan/
+   test_01> tree /etc/netplan/
    /etc/netplan/
    |-- 10-ethernet.yaml
    |-- 10-wlan0-dhcp.yaml
@@ -95,7 +95,7 @@ Show the configuration of the :index:`wifi` interface
 
    0 directories, 3 files
 
-   shell> cat /etc/netplan/10-wlan0-dhcp.yaml 
+   test_01> cat /etc/netplan/10-wlan0-dhcp.yaml
    # Ansible managed
    network:
      version: 2
@@ -134,7 +134,7 @@ Show the configuration of :index:`networkd` at the remote host
    RouteMetric=100
    UseMTU=true
 
-   root@hb1:/home/admin# cat /run/systemd/network/10-netplan-wlan0.link    
+   test_01> cat /run/systemd/network/10-netplan-wlan0.link
    [Match]
    MACAddress=<sanitized>
 
