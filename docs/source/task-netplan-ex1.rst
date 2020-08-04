@@ -1,5 +1,5 @@
-Example 1: Enable ethernet interface by Netplan
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example 1: Configure ethernet interface by Netplan
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a playbook
 
@@ -15,11 +15,11 @@ Create a playbook
 Create *host_vars/test_01/lp-netplan.yml*
 
 .. code-block:: yaml
-   :emphasize-lines: 1
+   :emphasize-lines: 1,3
 
    shell> cat host_vars/test_01/lp-netplan.yml 
    lp_netplan: true
-   lp_netplan_renderer: "networkd"
+   lp_netplan_renderer: networkd
    lp_netplan_conf:
      - file: 10-ethernet.yaml
        category: ethernets
@@ -31,6 +31,12 @@ Create *host_vars/test_01/lp-netplan.yml*
            dhcp6: false
            match:
            macaddress: "<sanitized>"
+
+
+.. note::
+   * When :index:`networkd` renderer is used disable
+     Neworkmanager. See :ref:`ug_task_networkmanager_ex1`.
+
 
 Configure :index:`network`
 

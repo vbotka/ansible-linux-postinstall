@@ -1,5 +1,5 @@
-Example 2: Enable wifi interface by Netplan
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Example 2: Configure wifi interface by Netplan
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Create a playbook
 
@@ -16,11 +16,11 @@ Add the configuration of the wireless interface to the file
 *host_vars/test_01/lp-netplan.yml*
 
 .. code-block:: yaml
-   :emphasize-lines: 1,5,15
+   :emphasize-lines: 1,3,5,15,16
 
    shell> cat host_vars/test_01/lp-netplan.yml 
    lp_netplan: true
-   lp_netplan_renderer: "networkd"
+   lp_netplan_renderer: networkd
    lp_netplan_conf:
      - file: 10-ethernet.yaml
        category: ethernets
@@ -44,6 +44,8 @@ Add the configuration of the wireless interface to the file
              macaddress: "<sanitized>"
 
 .. note::
+   * When :index:`networkd` renderer is used disable
+     Neworkmanager. See :ref:`ug_task_networkmanager_ex1`.
    * ``category: ethernets`` is used for *wlan0* instead of
      ``category: wifis`` because wpa_supplicant will authenticate the
      client to the access point.
