@@ -60,7 +60,7 @@ Install the library of tasks
 Playbook
 ********
 
-Below is a simple playbook that calls this role at a single host
+Below is a simple playbook that calls this role (10) at a single host
 srv.example.com (2)
 
 .. code-block:: bash
@@ -79,8 +79,8 @@ srv.example.com (2)
        - vbotka.linux_postinstall
 
 .. note:: ``gather_facts: true`` (3) must be set to gather facts
-   needed to evaluate :index:`OS-specific options` of the role. For example to
-   install packages the variable ``ansible_os_family`` is needed to
+   needed to evaluate :index:`OS-specific options` of the role. For example, to
+   install packages, the variable ``ansible_os_family`` is needed to
    select the appropriate Ansible module.
 
 .. seealso::
@@ -94,7 +94,8 @@ srv.example.com (2)
 Debug
 *****
 
-To see additional debug information enable debug output in the
+Many tasks will display additional information when the variable
+:index:`lp_debug` is enabled. Enable debug output either in the
 configuration
 
 .. code-block:: yaml
@@ -107,7 +108,7 @@ configuration
 .. code-block:: sh
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux_postinstall.yml -e 'lp_debug=true'
+   shell> ansible-playbook linux_postinstall.yml -e "lp_debug=true"
 
 .. note:: The debug output of this role is optimized for the **yaml**
    callback plugin. Set this plugin for example in the environment
@@ -128,22 +129,26 @@ role with the command
 
 .. include:: tags-list.rst
 
-For example, display the list of the variables and their values with
-the tag ``lp_debug`` (when the :index:`debug` is enabled ``lp_debug: true``)
+
+Examples
+========
+
+* Display the list of the variables and their values with the tag
+  ``lp_debug`` (when the :index:`debug` is enabled ``lp_debug: true``)
 
 .. code-block:: sh
    :emphasize-lines: 1
 
     shell> ansible-playbook linux_postinstall.yml -t lp_debug
 
-See what packages will be installed
+* See what packages will be installed
 
 .. code-block:: sh
    :emphasize-lines: 1
 
     shell> ansible-playbook linux_postinstall.yml -t lp_packages --check
 
-Install packages and exit the play
+* Install packages and exit the play
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -157,7 +162,16 @@ Install packages and exit the play
 Tasks
 *****
 
-Test single tasks at single remote host *test_01*. Create a playbook
+.. seealso::
+   * Source code :ref:`as_main.yml`
+
+Development and testing
+=======================
+
+In order to deliver an Ansible project it's necessary to test the code
+and configuration. The tags provide the administrators with a tool to
+test single tasks' files and single tasks. For example, to test single
+tasks at single remote host *test_01*, create a playbook
 
 .. code-block:: yaml
    :emphasize-lines: 1
@@ -175,8 +189,9 @@ Customize configuration in ``host_vars/test_01/lp-*.yml`` and :index:`check the 
 
    shell> ansible-playbook linux-postinstall.yml --syntax-check
 
-Then :index:`dry-run` the selected task and see what will be changed. Replace
-<tag> with valid tag.
+Then :index:`dry-run` the selected task and see what will be
+changed. Replace <tag> with valid tag or with a comma-separated list
+of tags
 
 .. code-block:: sh
    :emphasize-lines: 1
@@ -191,6 +206,12 @@ make sure the playbook and the configuration is :index:`idempotent`
 
    shell> ansible-playbook linux-postinstall.yml -t <tag>
 
+.. seealso::
+   * Periodically run playbooks from cron by *ansible-runner*
+     `ansible-cron-audit.bash <https://github.com/vbotka/ansible-runner/blob/master/contrib/ansible-cron-audit.bash>`_
+   * *ansible-runner* wrapper
+     `arwrapper.bash <https://github.com/vbotka/ansible-runner/blob/master/contrib/arwrapper.bash>`_
+   
 
 .. _ug_task_netplan:
 .. include:: task-netplan.rst
