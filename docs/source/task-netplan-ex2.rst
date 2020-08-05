@@ -154,4 +154,4 @@ Show the configuration of :index:`networkd` at the remote host
 
 .. note::
    * wlan0 is *configuring* and *no-carrier* because wpa_supplicant
-     has not been started yet. See the example of wpa_supplicant.
+     has not been started yet. See :ref:`ug_wpasupplicant_ex1` .

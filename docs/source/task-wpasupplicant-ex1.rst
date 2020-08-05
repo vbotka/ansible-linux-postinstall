@@ -28,7 +28,7 @@ host
    * ``wpa_supplicant.service`` uses :index:`D-Bus`, recommended for
      :index:`NetworkManager`.
 
-   * When :index:`systemd-networkd` is used disable Neworkmanager. See
+   * When :index:`systemd-networkd` is used disable NetworkManager. See
      :ref:`ug_task_networkmanager_ex1`.
 
 .. warning::

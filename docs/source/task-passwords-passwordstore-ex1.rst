@@ -38,10 +38,10 @@ Create *host_vars/test_01/lp-users.yml* with two users *user1* and
      password won't be created, but login is still possible (for
      example with SSH RSA keys).
 
-Create users. This step will create these two users and configure
-their login shell. Other paramteres of the Annsible module `user
+Create users. This step will create the users and configure
+their login shell. Other parameters of the Ansible module `user
 <https://docs.ansible.com/ansible/latest/modules/user_module.html>`_
-will be ommited because the only required parameter is *name*. It's a
+will be omitted because the only required parameter is *name*. It's a
 good idea to create one account with the login shell */bin/sh* and use
 it as Ansible `remote_user
 <https://docs.ansible.com/ansible/2.4/become.html#become>`_.
@@ -75,7 +75,7 @@ configuration to keep the passwords once created. The value of
 *lp_passwordstore_overwrite* is *False*. New passwords will be
 assigned to the users if no passwords have been assigned to the users
 before. To change the passwords in the future set both variables
-*True* on the commandline.
+*True* on the command-line.
 
 .. code-block:: yaml
    :emphasize-lines: 1-2
