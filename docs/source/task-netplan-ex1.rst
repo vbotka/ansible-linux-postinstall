@@ -35,7 +35,8 @@ Create *host_vars/test_01/lp-netplan.yml*
 
 .. note::
    * When :index:`networkd` renderer is used disable
-     Neworkmanager. See :ref:`ug_task_networkmanager_ex1`.
+     Neworkmanager.
+   * See :ref:`ug_task_networkmanager_ex1`
 
 
 Configure :index:`network`

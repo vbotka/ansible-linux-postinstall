@@ -45,7 +45,8 @@ Add the configuration of the wireless interface to the file
 
 .. note::
    * When :index:`networkd` renderer is used disable
-     Neworkmanager. See :ref:`ug_task_networkmanager_ex1`.
+     Neworkmanager.
+   * See :ref:`ug_task_networkmanager_ex1`.
    * ``category: ethernets`` is used for *wlan0* instead of
      ``category: wifis`` because wpa_supplicant will authenticate the
      client to the access point.
@@ -118,7 +119,7 @@ Show the configuration of the :index:`wifi` interface
 Show the configuration of :index:`networkd` at the remote host
 
 .. code-block:: sh
-   :emphasize-lines: 1,17,25
+   :emphasize-lines: 1,17,25,29
 
    test_01> cat /run/systemd/network/10-netplan-wlan0.network 
    [Match]
@@ -154,4 +155,5 @@ Show the configuration of :index:`networkd` at the remote host
 
 .. note::
    * wlan0 is *configuring* and *no-carrier* because wpa_supplicant
-     has not been started yet. See :ref:`ug_wpasupplicant_ex1` .
+     has not been started yet.
+   * See :ref:`ug_wpasupplicant_ex1`

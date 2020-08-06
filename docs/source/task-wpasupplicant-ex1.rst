@@ -28,8 +28,8 @@ host
    * ``wpa_supplicant.service`` uses :index:`D-Bus`, recommended for
      :index:`NetworkManager`.
 
-   * When :index:`systemd-networkd` is used disable NetworkManager. See
-     :ref:`ug_task_networkmanager_ex1`.
+   * When :index:`systemd-networkd` is used disable NetworkManager.
+   * See :ref:`ug_task_networkmanager_ex1`
 
 .. warning::
    * This role doesn't test whether a service is already used by other
@@ -195,3 +195,16 @@ completed. Display the link and address
        inet 10.1.0.21/24 brd 10.1.0.255 scope global dynamic wlan0
           valid_lft 3068841540sec preferred_lft 3068841540sec
    ...
+
+Show the configuration of :index:`networkd`.
+
+.. code-block:: sh
+   :emphasize-lines: 1
+
+   test_01> networkctl
+   IDX LINK             TYPE               OPERATIONAL SETUP
+     1 lo               loopback           carrier     unmanaged
+     2 eth0             ether              routable    configured
+     3 wlan0            wlan               routable    configured
+
+   3 links listed.
