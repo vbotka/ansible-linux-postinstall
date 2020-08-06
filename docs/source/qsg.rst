@@ -3,8 +3,8 @@
 Quick start guide
 *****************
 
-For those users who want to quickly try the role this guide provides
-an example of how to create users, install packages and configure
+For the users who want to try the role quickly, this guide provides
+an example of how to create users, install packages, and configure
 services.
 
 
@@ -57,7 +57,7 @@ services.
    lp_flavors_enable: false
 
 
-* Create users
+* Create users. The passwords will not be created.
 
 .. code-block:: bash
    :emphasize-lines: 3,5
@@ -67,8 +67,10 @@ services.
    lp_users:
      - name: ansible
        shell: /bin/sh
+       disabled_password: true
      - name: admin
        shell: /bin/bash
+       disabled_password: true
    lp_users_groups:
      - name: admin
        groups: "adm, dialout"
@@ -120,7 +122,8 @@ services.
 
 * See what variables will be included ::
 
-    shell> ansible-playbook linux-postinstall.yml -t lp_debug -e 'lp_debug=True'
+    shell> ansible-playbook linux-postinstall.yml -t lp_debug \
+           -e "lp_debug=True"
 
 
 * Install packages ::
@@ -128,9 +131,10 @@ services.
     shell> ansible-playbook linux-postinstall.yml -t lp_packages
 
 
-* Dry-run, display differencies and display variables ::
+* Dry-run, display differences and display variables ::
 
-    shell> ansible-playbook linux-postinstall.yml -e 'lp_debug=True' --check --diff
+    shell> ansible-playbook linux-postinstall.yml \
+           -e "lp_debug=True" --check --diff
 
 
 * Run the playbook ::
