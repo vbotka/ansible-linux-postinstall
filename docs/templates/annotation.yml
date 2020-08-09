@@ -528,6 +528,88 @@ mytasks:
     seealso: []
     note: []
     warning: []
+  - file: systemd.yml
+    link: systemd.yml
+    synopsis: |
+      Configure systemd.
+    description: |
+      Set my_services (10)
+      ^^^^^^^^^^^^^^^^^^^^
+      Iterate ``lp_systemd_unit`` (15) and create dictionary
+      ``my_services``. It will be used by handlers to decide if and
+      how to reload or restart services
+
+      .. code-block:: yaml
+
+         my_services:
+           <name>.<type|default(lp_systemd_unit_type)>:
+             state: <control.state|default('started')>
+             restart_or_reload: <control.restart_or_reload|default('reload')>
+         ...
+
+      Debug (25)
+      ^^^^^^^^^^
+      To see the values of the variables run the playbook with
+      options ``-t lp_systemd_debug -e "lp_systemd_debug=True"`` (46).
+
+      Packages (50)
+      ^^^^^^^^^^^^^
+      Install packages when enabled (53).
+
+      Configure systemd (57)
+      ^^^^^^^^^^^^^^^^^^^^^^
+
+      Use ``ini_file`` (58) to configure files (59) in loop
+      ``with_subelements`` (69-71). Register
+      ``lp_systemd_conf_changes`` (68) and notify handler ``reload
+      systemd conf`` (74).
+
+      .. code-block:: yaml
+
+         lp_systemd_conf:
+           <path>:
+             owner: <owner|default(lp_systemd_owner)>
+             group: <group|default(lp_systemd_group)>
+             mode: <mode|default(lp_systemd_mode)>
+             reload_service: <service to be reloaded or restarted by handler>
+             conf:
+               - {section: <section>, key: <option>, val: <value>}
+           ...
+
+      Create units (98)
+      ^^^^^^^^^^^^^^^^^
+
+      Use ``template`` (99) to create units (101) in loop (107) when
+      ``state == 'create'`` (111). Register
+      ``lp_systemd_unit_create_changes`` (106) and notify handler
+      ``reload systemd units`` (110).
+
+      .. code-block:: yaml
+
+         lp_systemd_unit:
+           - name: <name of the service>
+             type: <type of the service|default(lp_systemd_unit_type)>
+             path: <directory of the units|default(lp_systemd_unit_dir)>
+             owner: <owner|default(lp_systemd_owner)>
+             group: <group|default(lp_systemd_group)>
+             mode: <mode|default(lp_systemd_mode)>
+             state: <'create' or 'absent'|default('noop')>
+           ...
+
+      Remove units (120)
+      ^^^^^^^^^^^^^^^^^^
+
+      <TBD>
+
+      Control units (137)
+      ^^^^^^^^^^^^^^^^^^^
+
+      <TBD>
+
+    lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,98-99,106-107,110,111,120,137
+    seealso: []
+    note: []
+    warning: []
   - file: timesyncd.yml
     link: timesyncd.yml
     synopsis: |

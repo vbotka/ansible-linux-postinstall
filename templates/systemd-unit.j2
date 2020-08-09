@@ -1,0 +1,22 @@
+{{ ansible_managed }}
+
+{% if "Unit" in item %}
+[Unit]
+{% for key, val in item["Unit"].items() %}
+{{ key }}={{ val }}
+{% endfor %}
+{% endif %}
+
+{% if item.type|default(lp_systemd_unit_type)|title in item %}
+[{{ item.type|default(lp_systemd_unit_type)|title }}]
+{% for key, val in item[item.type|default(lp_systemd_unit_type)|title].items() %}
+{{ key }}={{ val }}
+{% endfor %}
+{% endif %}
+
+{% if "Install" in item %}
+[Install]
+{% for key, val in item["Install"].items() %}
+{{ key }}={{ val }}
+{% endfor %}
+{% endif %}

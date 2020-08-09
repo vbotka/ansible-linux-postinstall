@@ -190,6 +190,40 @@
     state: restarted
   when: lp_networkd_enable|bool
 
+- name: reload systemd conf
+  systemd:
+    name: "{{ my_service }}"
+    state: "{{ my_restart_or_reload }}"
+    daemon_reload: true
+  loop: "{{ lp_systemd_conf_changes.results }}"
+  loop_control:
+    label: "{{ my_service }}"
+  vars:
+    my_service: "{{ item.item.0.value.reload_service }}"
+    my_state: "{{ my_services[my_service].state|default('started') }}"
+    my_restart_or_reload: "{{ my_services[my_service].restart_or_reload|default('reloaded') }}"
+  when:
+    - my_service != 'noop'
+    - item.changed|bool
+    - my_state == 'started'
+
+- name: reload systemd units
+  systemd:
+    name: "{{ my_service }}"
+    state: "{{ my_restart_or_reload }}"
+    daemon_reload: true
+  loop: "{{ lp_systemd_unit_create_changes.results }}"
+  loop_control:
+    label: "{{ my_service }}"
+  vars:
+    my_service: "{{ item.dest|basename }}"
+    my_state: "{{ my_services[my_service].state|default('started') }}"
+    my_restart_or_reload: "{{ my_services[my_service].restart_or_reload|default('reloaded') }}"
+  when:
+    - not (my_service|regex_search('^(.*)@\.\w+$'))
+    - item.changed|bool
+    - my_state == 'started'
+
 # MESSAGES -------------------------------------------------------------
 - name: logind message reboot
   debug: msg="[MESSAGE] Reboot to activate configuration in logind.conf"

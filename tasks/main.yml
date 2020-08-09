@@ -36,6 +36,10 @@
   when: (ansible_os_family == "Debian") and lp_netplan|bool
   tags: lp_netplan
 
+- import_tasks: systemd.yml
+  when: (ansible_os_family == "Debian") and lp_systemd|bool
+  tags: lp_systemd
+
 - import_tasks: networkd.yml
   when: (ansible_os_family == "Debian") and lp_networkd|bool
   tags: lp_networkd

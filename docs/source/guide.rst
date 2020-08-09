@@ -271,6 +271,23 @@ make sure the playbook and the configuration is :index:`idempotent`
 .. include:: task-service-ex2.rst
 
 
+.. _ug_task_systemd:
+.. include:: task-systemd.rst
+.. toctree::
+   :name: systemd_toc
+
+   task-systemd-ex1
+   task-systemd-ex2
+   task-systemd-ex3
+
+.. _ug_ssytemd_ex1:
+.. include:: task-systemd-ex1.rst
+.. _ug_ssytemd_ex2:
+.. include:: task-systemd-ex2.rst
+.. _ug_ssytemd_ex3:
+.. include:: task-systemd-ex3.rst
+
+
 .. _ug_task_wpasupplicant:
 .. include:: task-wpasupplicant.rst
 .. toctree::
