@@ -95,7 +95,7 @@ task_systemd_description: |
 
      * Description of Parameters `Ansible module systemd
        <https://docs.ansible.com/ansible/latest/modules/systemd_module.html#systemd-manage-services>`_
-  
+
   <TBD>
 
 task_systemd_lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,100-101,108-109,112,113,122,139
