@@ -74,10 +74,9 @@
   notify: reload systemd conf
   tags: lp_systemd_conf
 
-# [TODO] run handler only once for a changed file
 - name: "systemd: Debug conf results"
   debug:
-    msg: "{{ lp_systemd_conf_changes.results|groupby('path') }}"
+    msg: "{{ lp_systemd_conf_changes.results }}"
   when: lp_systemd_debug|bool
   tags: lp_systemd_conf
 
@@ -86,12 +85,14 @@
     msg: "{{ my_service }} {{ my_state }} {{ my_restart_or_reload }}"
   loop: "{{ lp_systemd_conf_changes.results }}"
   loop_control:
-    label: "{{ item.path }}"
+    label: "{{ item.path|default('NA') }}"  # 'lp_systemd: false' complains "no attribute 'path'"
   vars:
     my_service: "{{ item.item.0.value.reload_service }}"
     my_state: "{{ my_services[my_service].state|default('started') }}"
     my_restart_or_reload: "{{ my_services[my_service].restart_or_reload|default('reloaded') }}"
-  when: lp_systemd_debug|bool
+  when:
+    - lp_systemd_debug|bool
+    - lp_systemd_conf_changes.results|default([])|length > 0
   tags: lp_systemd_conf
 
 # Units
@@ -139,7 +140,7 @@
     name: "{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
     daemon_reexec: "{{ item.control.daemon_reexec|default(omit) }}"
     daemon_reload: "{{ item.control.daemon_reload|default(omit) }}"
-    enabled: "{{ item.control.enabled|default(systemd_units_enabled) }}"
+    enabled: "{{ item.control.enabled|default(omit) }}"
     force: "{{ item.control.force|default(omit) }}"
     masked: "{{ item.control.masked|default(omit) }}"
     no_block: "{{ item.control.no_block|default(omit) }}"

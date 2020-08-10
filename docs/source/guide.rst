@@ -279,6 +279,7 @@ make sure the playbook and the configuration is :index:`idempotent`
    task-systemd-ex1
    task-systemd-ex2
    task-systemd-ex3
+   task-systemd-ex4
 
 .. _ug_ssytemd_ex1:
 .. include:: task-systemd-ex1.rst
@@ -286,6 +287,8 @@ make sure the playbook and the configuration is :index:`idempotent`
 .. include:: task-systemd-ex2.rst
 .. _ug_ssytemd_ex3:
 .. include:: task-systemd-ex3.rst
+.. _ug_ssytemd_ex4:
+.. include:: task-systemd-ex4.rst
 
 
 .. _ug_task_wpasupplicant:

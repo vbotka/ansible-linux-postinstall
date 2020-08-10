@@ -12,11 +12,11 @@ Create a playbook
      roles:
        - vbotka.linux_postinstall
 
-Create the file *host_vars/test_01/lp-systemd.yml* (1). Enable the
+Create the file ``host_vars/test_01/lp-systemd.yml`` (1). Enable the
 import of the tasks (2). Configure the file (5). The ownership and
-mode (6-8) use the default values `lp_systemd_*` and can be
-omitted. The attribute `reload_service` (9) is needed to reload or
-restart the service when the configuration file changes.
+mode (6-8) use the default values ``lp_systemd_*`` and can be
+omitted. The attribute ``reload_service`` (9) is needed to reload or
+restart the service when the configuration file changes
 
 .. code-block:: yaml
    :linenos:
@@ -45,14 +45,25 @@ restart the service when the configuration file changes.
 
 .. note::
 
-   * The service which shall be reloaded when the configuration changes
-     ``reload_service`` (9) must be configured in `lp_systemd_unit`
-     (16). The handler needs to know if and how to reload or restart
-     the service.
+   * The service, which shall be reloaded or restarted when the
+     configuration changes, ``reload_service`` (9) can be configured
+     in ``lp_systemd_unit`` (16). The handler ``reload systemd conf``
+     needs to know if and how to reload or restart the service.
+
+   * If the attribute ``reload_service`` is missing in
+     ``lp_systemd_unit`` the handler ``reload systemd conf`` will
+     crash.
      
-   * If no service needs to be reloaded or restart set
-     ``reload_service: 'noop'`` (9). ``noop`` does not have to be
-     configured in ``lp_systemd_unit``.
+   * If the ``reload_service`` is not configured in
+     ``lp_systemd_unit`` the handler ``reload systemd conf`` will
+     reload the service by default.
+     
+   * If no service needs to be reloaded or restarted set
+     ``reload_service: noop`` (9).
+
+.. seealso::
+     
+   * See the handler ``reload systemd conf``.
 
 
 Run the playbook with the tag ``-t lp_systemd_conf`` to limit the

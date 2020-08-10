@@ -12,7 +12,7 @@ Create a playbook
      roles:
        - vbotka.linux_postinstall
 
-Create the file *host_vars/test_01/lp-systemd.yml* (1)
+Create the file ``host_vars/test_01/lp-systemd.yml`` (1)
 
 .. code-block:: yaml
    :linenos:

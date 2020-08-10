@@ -1,0 +1,102 @@
+---
+
+task_systemd_synopsis: |
+  Configure systemd.
+
+task_systemd_description: |
+  Set my_services (10)
+  ^^^^^^^^^^^^^^^^^^^^
+  Iterate ``lp_systemd_unit`` (15) and create dictionary
+  ``my_services``. It will be used by handlers to decide if and
+  how to reload or restart services
+
+  .. code-block:: yaml
+
+     my_services:
+       <name>.<type|default(lp_systemd_unit_type)>:
+         state: <control.state|default('started')>
+         restart_or_reload: <control.restart_or_reload|default('reload')>
+     ...
+
+  Debug (25)
+  ^^^^^^^^^^
+  To see the values of the variables run the playbook with
+  options ``-t lp_systemd_debug -e "lp_systemd_debug=True"`` (46).
+
+  Packages (50)
+  ^^^^^^^^^^^^^
+  Install packages when enabled (53).
+
+  Configure systemd (57)
+  ^^^^^^^^^^^^^^^^^^^^^^
+
+  Use ``ini_file`` (58) to configure files (59) in loop
+  ``with_subelements`` (69-71). Register
+  ``lp_systemd_conf_changes`` (68) and notify handler ``reload
+  systemd conf`` (74).
+
+  .. code-block:: yaml
+
+     lp_systemd_conf:
+       <path>:
+         owner: <owner|default(lp_systemd_owner)>
+         group: <group|default(lp_systemd_group)>
+         mode: <mode|default(lp_systemd_mode)>
+         reload_service: <service to be reloaded or restarted by handler>
+         conf:
+           - {section: <section>, key: <option>, val: <value>}
+       ...
+
+  Create units (100)
+  ^^^^^^^^^^^^^^^^^^
+
+  Use ``template`` (101) to create units (101) in loop (107) when
+  ``state == 'create'`` (113). Register
+  ``lp_systemd_unit_create_changes`` (108) and notify handler
+  ``reload systemd units`` (112).
+
+  .. code-block:: yaml
+
+     lp_systemd_unit:
+       - name: <name of the service>
+         type: <type of the service|default(lp_systemd_unit_type)>
+         path: <directory of the units|default(lp_systemd_unit_dir)>
+         owner: <owner|default(lp_systemd_owner)>
+         group: <group|default(lp_systemd_group)>
+         mode: <mode|default(lp_systemd_mode)>
+         state: <'create' or 'absent'|default('noop')>
+       ...
+
+  Remove units (122)
+  ^^^^^^^^^^^^^^^^^^
+
+  <TBD>
+
+  Control units (139)
+  ^^^^^^^^^^^^^^^^^^^
+
+  .. code-block:: yaml
+
+     lp_systemd_unit:
+       - name: <name of the service>
+         type: <type of the service|default(lp_systemd_unit_type)>
+         control:
+           daemon_reexec: <daemon_reexec|default(omit)>
+           daemon_reload: <daemon_reload|default(omit)>
+           enabled: <enabled|default(systemd_units_enabled)>
+           force: <force|default(omit)>
+           masked: <masked|default(omit)>
+           no_block: <no_block|default(omit)>
+           scope: <scope|default(omit)>
+           state: <state|default(omit)>
+
+
+  .. seealso::
+
+     * Description of Parameters `Ansible module systemd
+       <https://docs.ansible.com/ansible/latest/modules/systemd_module.html#systemd-manage-services>`_
+  
+  <TBD>
+
+task_systemd_lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,100-101,108-109,112,113,122,139
+...

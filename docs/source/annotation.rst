@@ -1056,13 +1056,13 @@ systemd conf`` (74).
          - {section: <section>, key: <option>, val: <value>}
      ...
 
-Create units (98)
-^^^^^^^^^^^^^^^^^
+Create units (100)
+^^^^^^^^^^^^^^^^^^
 
-Use ``template`` (99) to create units (101) in loop (107) when
-``state == 'create'`` (111). Register
-``lp_systemd_unit_create_changes`` (106) and notify handler
-``reload systemd units`` (110).
+Use ``template`` (101) to create units (101) in loop (107) when
+``state == 'create'`` (113). Register
+``lp_systemd_unit_create_changes`` (108) and notify handler
+``reload systemd units`` (112).
 
 .. code-block:: yaml
 
@@ -1076,13 +1076,34 @@ Use ``template`` (99) to create units (101) in loop (107) when
        state: <'create' or 'absent'|default('noop')>
      ...
 
-Remove units (120)
+Remove units (122)
 ^^^^^^^^^^^^^^^^^^
 
 <TBD>
 
-Control units (137)
+Control units (139)
 ^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: yaml
+
+   lp_systemd_unit:
+     - name: <name of the service>
+       type: <type of the service|default(lp_systemd_unit_type)>
+       control:
+         daemon_reexec: <daemon_reexec|default(omit)>
+         daemon_reload: <daemon_reload|default(omit)>
+         enabled: <enabled|default(systemd_units_enabled)>
+         force: <force|default(omit)>
+         masked: <masked|default(omit)>
+         no_block: <no_block|default(omit)>
+         scope: <scope|default(omit)>
+         state: <state|default(omit)>
+
+
+.. seealso::
+
+   * Description of Parameters `Ansible module systemd
+     <https://docs.ansible.com/ansible/latest/modules/systemd_module.html#systemd-manage-services>`_
 
 <TBD>
 
@@ -1093,7 +1114,7 @@ Control units (137)
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/systemd.yml
     :language: Yaml
-    :emphasize-lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,98-99,106-107,110,111,120,137
+    :emphasize-lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,100-101,108-109,112,113,122,139
     :linenos:
 
 .. _as_timesyncd.yml:

@@ -1,0 +1,65 @@
+---
+
+task_service_synopsis: |
+  Configure services.
+
+task_service_description: |
+  Set my_service_name_vars (4)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  The task will iterate the list ``lp_service_enable`` (8) and
+  look for variables ``lp_<item>`` (9). If the variable exists and
+  is ``True`` *(default='false')* an item will be added to the
+  list ``my_service_name_vars`` (6). The item is a *{key: value}*
+  hash where the *key* is the name of the service in this role and
+  the *value* is the OS specific name of the service stored in the
+  variable ``lp_<item>_service`` (7). The best practice is to
+  configure variables ``lp_<item>_service`` in files placed in the
+  directory ``vars/defaults``.
+
+  Set my_service_enable_vars (12)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  The next task will iterate the same list ``lp_service_enable``
+  (16) and condition (17). The created list
+  ``my_service_enable_vars`` (14) will keep the *{key: value}* hashes
+  with the *value* of the variable ``lp_<item>_enable`` (15).
+
+  Get service_facts and create dict my_services (20)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  Run module ``service_facts`` (23) and combine dictionary
+  ``my_services`` (26). This dictionary will be used to test a
+  service is available when ``lp_service_sanity`` is enabled
+  *(default: True)*.
+
+  Debug (38)
+  ^^^^^^^^^^
+  To see what services (44,46,48,50,52) will be managed run the
+  playbook with options ``-t lp_service_debug -e
+  "lp_service_debug=True"``.
+
+  Debug sanity lp_service_enable (57)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  To see what services (60,62) will be tested when
+  ``lp_service_sanity`` is enabled (64) run playbook with options
+  ``-t lp_service_debug,lp_service_sanity -e
+  "lp_service_debug=True"``.
+
+  Sanity lp_service_enable (68)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  If ``lp_service_sanity`` is enabled (72) test if all services in
+  the list ``my_service_name_vars`` are available in the list of
+  installed services ``my_services`` (75). Fail (70) when there
+  are undefined services.
+
+  Automatically enable or disable services managed by this role (81)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  To configure the services listed in the variable
+  *lp_service_enable* run the playbook with the tag ``-t
+  lp_service_auto`` (87).
+
+  General management of services (89)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  To configure the services listed in the variable *lp_service*
+  run the playbook with the tag ``-t lp_service_general`` (102).
+
+task_service_lines: 1,2,4,6-9,12,14-17,20,23,26,38,44,46,48,50,52,57,64,68,70,72,75,81,87,89,102
+...

@@ -6,18 +6,19 @@
   tasks:
 
     - name: Read data
-      include_vars: templates/annotation.yml
-    - name: Create source
-      template:
-        src: templates/annotation.rst.j2
-        dest: source/annotation.rst
+      include_vars:
+        file: annotation/annotation.yml
+    - name: Read data
+      include_vars:
+        dir: annotation/vars
+        ignore_unknown_extensions: true
+        extensions:
+          - yml
 
-#    - name: Read data
-#      include_vars: templates/examples.yml
-#    - name: Create source
-#      template:
-#        src: templates/examples.rst.j2
-#        dest: source/examples.rst
+    - name: Create source/annotation.rst
+      template:
+        src: annotation/annotation.rst.j2
+        dest: source/annotation.rst
 
 # EOF
 ...

@@ -383,67 +383,9 @@ mytasks:
 
   - file: service.yml
     link: service.yml
-    synopsis: |
-      Configure services.
-    description: |
-      Set my_service_name_vars (4)
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      The task will iterate the list ``lp_service_enable`` (8) and
-      look for variables ``lp_<item>`` (9). If the variable exists and
-      is ``True`` *(default='false')* an item will be added to the
-      list ``my_service_name_vars`` (6). The item is a *{key: value}*
-      hash where the *key* is the name of the service in this role and
-      the *value* is the OS specific name of the service stored in the
-      variable ``lp_<item>_service`` (7). The best practice is to
-      configure variables ``lp_<item>_service`` in files placed in the
-      directory ``vars/defaults``.
-
-      Set my_service_enable_vars (12)
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      The next task will iterate the same list ``lp_service_enable``
-      (16) and condition (17). The created list
-      ``my_service_enable_vars`` (14) will keep the *{key: value}* hashes
-      with the *value* of the variable ``lp_<item>_enable`` (15).
-
-      Get service_facts and create dict my_services (20)
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      Run module ``service_facts`` (23) and combine dictionary
-      ``my_services`` (26). This dictionary will be used to test a
-      service is available when ``lp_service_sanity`` is enabled
-      *(default: True)*.
-
-      Debug (38)
-      ^^^^^^^^^^
-      To see what services (44,46,48,50,52) will be managed run the
-      playbook with options ``-t lp_service_debug -e
-      "lp_service_debug=True"``.
-
-      Debug sanity lp_service_enable (57)
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      To see what services (60,62) will be tested when
-      ``lp_service_sanity`` is enabled (64) run playbook with options
-      ``-t lp_service_debug,lp_service_sanity -e
-      "lp_service_debug=True"``.
-
-      Sanity lp_service_enable (68)
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      If ``lp_service_sanity`` is enabled (72) test if all services in
-      the list ``my_service_name_vars`` are available in the list of
-      installed services ``my_services`` (75). Fail (70) when there
-      are undefined services.
-
-      Automatically enable or disable services managed by this role (81)
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      To configure the services listed in the variable
-      *lp_service_enable* run the playbook with the tag ``-t
-      lp_service_auto`` (87).
-
-      General management of services (89)
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      To configure the services listed in the variable *lp_service*
-      run the playbook with the tag ``-t lp_service_general`` (102).
-
-    lines: 1,2,4,6-9,12,14-17,20,23,26,38,44,46,48,50,52,57,64,68,70,72,75,81,87,89,102
+    synopsis: "{{ task_service_synopsis }}"
+    description: "{{ task_service_description }}"
+    lines: "{{ task_service_lines }}"
     seealso: []
     note: []
     warning: []
@@ -530,83 +472,9 @@ mytasks:
     warning: []
   - file: systemd.yml
     link: systemd.yml
-    synopsis: |
-      Configure systemd.
-    description: |
-      Set my_services (10)
-      ^^^^^^^^^^^^^^^^^^^^
-      Iterate ``lp_systemd_unit`` (15) and create dictionary
-      ``my_services``. It will be used by handlers to decide if and
-      how to reload or restart services
-
-      .. code-block:: yaml
-
-         my_services:
-           <name>.<type|default(lp_systemd_unit_type)>:
-             state: <control.state|default('started')>
-             restart_or_reload: <control.restart_or_reload|default('reload')>
-         ...
-
-      Debug (25)
-      ^^^^^^^^^^
-      To see the values of the variables run the playbook with
-      options ``-t lp_systemd_debug -e "lp_systemd_debug=True"`` (46).
-
-      Packages (50)
-      ^^^^^^^^^^^^^
-      Install packages when enabled (53).
-
-      Configure systemd (57)
-      ^^^^^^^^^^^^^^^^^^^^^^
-
-      Use ``ini_file`` (58) to configure files (59) in loop
-      ``with_subelements`` (69-71). Register
-      ``lp_systemd_conf_changes`` (68) and notify handler ``reload
-      systemd conf`` (74).
-
-      .. code-block:: yaml
-
-         lp_systemd_conf:
-           <path>:
-             owner: <owner|default(lp_systemd_owner)>
-             group: <group|default(lp_systemd_group)>
-             mode: <mode|default(lp_systemd_mode)>
-             reload_service: <service to be reloaded or restarted by handler>
-             conf:
-               - {section: <section>, key: <option>, val: <value>}
-           ...
-
-      Create units (98)
-      ^^^^^^^^^^^^^^^^^
-
-      Use ``template`` (99) to create units (101) in loop (107) when
-      ``state == 'create'`` (111). Register
-      ``lp_systemd_unit_create_changes`` (106) and notify handler
-      ``reload systemd units`` (110).
-
-      .. code-block:: yaml
-
-         lp_systemd_unit:
-           - name: <name of the service>
-             type: <type of the service|default(lp_systemd_unit_type)>
-             path: <directory of the units|default(lp_systemd_unit_dir)>
-             owner: <owner|default(lp_systemd_owner)>
-             group: <group|default(lp_systemd_group)>
-             mode: <mode|default(lp_systemd_mode)>
-             state: <'create' or 'absent'|default('noop')>
-           ...
-
-      Remove units (120)
-      ^^^^^^^^^^^^^^^^^^
-
-      <TBD>
-
-      Control units (137)
-      ^^^^^^^^^^^^^^^^^^^
-
-      <TBD>
-
-    lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,98-99,106-107,110,111,120,137
+    synopsis: "{{ task_systemd_synopsis }}"
+    description: "{{ task_systemd_description }}"
+    lines: "{{ task_systemd_lines }}"
     seealso: []
     note: []
     warning: []
