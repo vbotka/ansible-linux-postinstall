@@ -24,6 +24,8 @@ logrotate.yml
 modemmanager.yml
 modules.yml
 netplan.yml
+networkd.yml
+networkmanager.yml
 nfsd.yml
 packages-auto.yml
 packages.yml
@@ -35,18 +37,22 @@ repos.yml
 resolvconf.yml
 service.yml
 smart.yml
+snap.yml
 speechd.yml
 sshd.yml
 ssh.yml
 sudoers.yml
 swap.yml
 sysctl.yml
+systemd.yml
 timesyncd.yml
 timezone.yml
 tlp.yml
 udev.yml
 ufw.yml
 users.yml
+vars-firstfound.yml
+vars-incremental.yml
 vars.yml
 virtualbox.yml
 wpagui.yml
@@ -55,3 +61,5 @@ xen.yml
 xorg.yml
 zeitgeist.yml
 zfs.yml
+sub/vars-flavors.yml
+sub/vars-flavors-common.yml

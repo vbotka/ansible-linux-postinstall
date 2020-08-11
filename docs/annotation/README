@@ -1,31 +1,3 @@
 
-Manage source/annotation.rst by Ansible
+Manage source/annotation-*.rst by Ansible
 =======================================
-
-
-1) Setup (run only once to create first source/annotation.rst)
---------------------------------------------------------------
-
-The following files are used to create first raw-annotation.yml
-
-* Ansible playbook create-raw-annotation.yml
-* List of files annotation-files.txt
-* Ansible template raw-annotation.yml.j2
-
-Copy created file raw-annotation.yml to annotation.yml
-
-Run the playbook.yml in the directory doc. This will create
-source/annotation.rst
-
-
-2) Update source/annotation.rst
--------------------------------
-
-Make changes in
-
-* datafile annotation.yml
-* Ansible template annotation.rst.j2
-
-Run the playbook.yml in the directory doc. This will update
-source/annotation.rst
---

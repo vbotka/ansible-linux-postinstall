@@ -2,16 +2,19 @@
 mytasks:
   - file: main.yml
     link: main.yml
+    path: main.yml
     synopsis: |
-      Tasks of the playbook.
+      Main task.
     description: |
-      Description of the task.
+      Import tasks if enabled.
     lines: 1,2
     seealso: []
     note: []
     warning: []
+
   - file: acpi.yml
     link: acpi.yml
+    path: acpi.yml
     synopsis: |
       Configure acpi.
     description: |
@@ -20,8 +23,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: aliases.yml
     link: aliases.yml
+    path: aliases.yml
     synopsis: |
       Configure aliases.
     description: |
@@ -30,8 +35,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: apparmor.yml
     link: apparmor.yml
+    path: apparmor.yml
     synopsis: |
       Configure apparmor.
     description: |
@@ -40,8 +47,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: authorized_keys.yml
     link: authorized_keys.yml
+    path: authorized_keys.yml
     synopsis: |
       Configure authorized_keys.
     description: |
@@ -50,8 +59,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: autofs.yml
     link: autofs.yml
+    path: autofs.yml
     synopsis: |
       Configure autofs.
     description: |
@@ -60,8 +71,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: auto_upgrades.yml
     link: auto_upgrades.yml
+    path: auto_upgrades.yml
     synopsis: |
       Configure auto_upgrades.
     description: |
@@ -70,8 +83,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: bluetooth.yml
     link: bluetooth.yml
+    path: bluetooth.yml
     synopsis: |
       Configure bluetooth.
     description: |
@@ -80,8 +95,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: cron.yml
     link: cron.yml
+    path: cron.yml
     synopsis: |
       Configure cron.
     description: |
@@ -90,8 +107,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: debsums.yml
     link: debsums.yml
+    path: debsums.yml
     synopsis: |
       Configure debsums.
     description: |
@@ -100,8 +119,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: debug.yml
     link: debug.yml
+    path: debug.yml
     synopsis: |
       Configure debug.
     description: |
@@ -110,8 +131,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: fstab.yml
     link: fstab.yml
+    path: fstab.yml
     synopsis: |
       Configure fstab.
     description: |
@@ -120,8 +143,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: gpg.yml
     link: gpg.yml
+    path: gpg.yml
     synopsis: |
       Configure gpg.
     description: |
@@ -130,8 +155,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: gpsd.yml
     link: gpsd.yml
+    path: gpsd.yml
     synopsis: |
       Configure gpsd.
     description: |
@@ -140,8 +167,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: grub.yml
     link: grub.yml
+    path: grub.yml
     synopsis: |
       Configure grub.
     description: |
@@ -150,8 +179,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: hostname.yml
     link: hostname.yml
+    path: hostname.yml
     synopsis: |
       Configure hostname.
     description: |
@@ -160,8 +191,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: hosts.yml
     link: hosts.yml
+    path: hosts.yml
     synopsis: |
       Configure hosts.
     description: |
@@ -170,8 +203,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: iptables.yml
     link: iptables.yml
+    path: iptables.yml
     synopsis: |
       Configure iptables.
     description: |
@@ -180,8 +215,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: kvm.yml
     link: kvm.yml
+    path: kvm.yml
     synopsis: |
       Configure kvm.
     description: |
@@ -190,8 +227,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: latex.yml
     link: latex.yml
+    path: latex.yml
     synopsis: |
       Configure latex.
     description: |
@@ -200,8 +239,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: libvirt-conf.yml
     link: libvirt-conf.yml
+    path: libvirt-conf.yml
     synopsis: |
       Configure libvirt-conf.
     description: |
@@ -210,8 +251,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: libvirt.yml
     link: libvirt.yml
+    path: libvirt.yml
     synopsis: |
       Configure libvirt.
     description: |
@@ -220,8 +263,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: lid.yml
     link: lid.yml
+    path: lid.yml
     synopsis: |
       Configure lid.
     description: |
@@ -230,8 +275,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: logrotate.yml
     link: logrotate.yml
+    path: logrotate.yml
     synopsis: |
       Configure logrotate.
     description: |
@@ -240,8 +287,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: modemmanager.yml
     link: modemmanager.yml
+    path: modemmanager.yml
     synopsis: |
       Configure modemmanager.
     description: |
@@ -250,8 +299,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: modules.yml
     link: modules.yml
+    path: modules.yml
     synopsis: |
       Configure modules.
     description: |
@@ -260,8 +311,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: netplan.yml
     link: netplan.yml
+    path: netplan.yml
     synopsis: |
       Configure netplan.
     description: |
@@ -270,8 +323,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: networkd.yml
     link: networkd.yml
+    path: networkd.yml
     synopsis: |
       Configure networkd.
     description: |
@@ -280,18 +335,22 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: networkmanager.yml
     link: networkmanager.yml
+    path: networkmanager.yml
     synopsis: |
-      Configure Networkmanager.
+      Configure networkmanager.
     description: |
       Description of the task.
     lines: 1,2
     seealso: []
     note: []
     warning: []
+
   - file: nfsd.yml
     link: nfsd.yml
+    path: nfsd.yml
     synopsis: |
       Configure nfsd.
     description: |
@@ -300,8 +359,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: packages-auto.yml
     link: packages-auto.yml
+    path: packages-auto.yml
     synopsis: |
       Configure packages-auto.
     description: |
@@ -310,8 +371,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: packages.yml
     link: packages.yml
+    path: packages.yml
     synopsis: |
       Configure packages.
     description: |
@@ -320,8 +383,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: passwords.yml
     link: passwords.yml
+    path: passwords.yml
     synopsis: |
       Configure passwords.
     description: |
@@ -330,8 +395,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: pm-utils.yml
     link: pm-utils.yml
+    path: pm-utils.yml
     synopsis: |
       Configure pm-utils.
     description: |
@@ -340,8 +407,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: postfix.yml
     link: postfix.yml
+    path: postfix.yml
     synopsis: |
       Configure postfix.
     description: |
@@ -350,8 +419,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: reboot.yml
     link: reboot.yml
+    path: reboot.yml
     synopsis: |
       Configure reboot.
     description: |
@@ -360,8 +431,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: repos.yml
     link: repos.yml
+    path: repos.yml
     synopsis: |
       Configure repos.
     description: |
@@ -370,8 +443,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: resolvconf.yml
     link: resolvconf.yml
+    path: resolvconf.yml
     synopsis: |
       Configure resolvconf.
     description: |
@@ -383,15 +458,76 @@ mytasks:
 
   - file: service.yml
     link: service.yml
-    synopsis: "{{ task_service_synopsis }}"
-    description: "{{ task_service_description }}"
-    lines: "{{ task_service_lines }}"
+    path: service.yml
+    synopsis: |
+      Configure services.
+
+    description: |
+      Set my_service_name_vars (4)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      The task will iterate the list ``lp_service_enable`` (8) and
+      look for variables ``lp_<item>`` (9). If the variable exists and
+      is ``True`` *(default='false')* an item will be added to the
+      list ``my_service_name_vars`` (6). The item is a *{key: value}*
+      hash where the *key* is the name of the service in this role and
+      the *value* is the OS specific name of the service stored in the
+      variable ``lp_<item>_service`` (7). The best practice is to
+      configure variables ``lp_<item>_service`` in files placed in the
+      directory ``vars/defaults``.
+
+      Set my_service_enable_vars (12)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      The next task will iterate the same list ``lp_service_enable``
+      (16) and condition (17). The created list
+      ``my_service_enable_vars`` (14) will keep the *{key: value}* hashes
+      with the *value* of the variable ``lp_<item>_enable`` (15).
+
+      Get service_facts and create dict my_services (20)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      Run module ``service_facts`` (23) and combine dictionary
+      ``my_services`` (26). This dictionary will be used to test a
+      service is available when ``lp_service_sanity`` is enabled
+      *(default: True)*.
+
+      Debug (38)
+      ^^^^^^^^^^
+      To see what services (44,46,48,50,52) will be managed run the
+      playbook with options ``-t lp_service_debug -e
+      "lp_service_debug=True"``.
+
+      Debug sanity lp_service_enable (57)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      To see what services (60,62) will be tested when
+      ``lp_service_sanity`` is enabled (64) run playbook with options
+      ``-t lp_service_debug,lp_service_sanity -e
+      "lp_service_debug=True"``.
+
+      Sanity lp_service_enable (68)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      If ``lp_service_sanity`` is enabled (72) test if all services in
+      the list ``my_service_name_vars`` are available in the list of
+      installed services ``my_services`` (75). Fail (70) when there
+      are undefined services.
+
+      Automatically enable or disable services managed by this role (81)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      To configure the services listed in the variable
+      *lp_service_enable* run the playbook with the tag ``-t
+      lp_service_auto`` (87).
+
+      General management of services (89)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      To configure the services listed in the variable *lp_service*
+      run the playbook with the tag ``-t lp_service_general`` (102).
+
+    lines: 1,2,4,6-9,12,14-17,20,23,26,38,44,46,48,50,52,57,64,68,70,72,75,81,87,89,102
     seealso: []
     note: []
     warning: []
 
   - file: smart.yml
     link: smart.yml
+    path: smart.yml
     synopsis: |
       Configure smart.
     description: |
@@ -400,8 +536,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: snap.yml
     link: snap.yml
+    path: snap.yml
     synopsis: |
       Configure snap.
     description: |
@@ -410,8 +548,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: speechd.yml
     link: speechd.yml
+    path: speechd.yml
     synopsis: |
       Configure speechd.
     description: |
@@ -420,8 +560,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: sshd.yml
     link: sshd.yml
+    path: sshd.yml
     synopsis: |
       Configure sshd.
     description: |
@@ -430,8 +572,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: ssh.yml
     link: ssh.yml
+    path: ssh.yml
     synopsis: |
       Configure ssh.
     description: |
@@ -440,8 +584,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: sudoers.yml
     link: sudoers.yml
+    path: sudoers.yml
     synopsis: |
       Configure sudoers.
     description: |
@@ -450,8 +596,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: swap.yml
     link: swap.yml
+    path: swap.yml
     synopsis: |
       Configure swap.
     description: |
@@ -460,8 +608,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: sysctl.yml
     link: sysctl.yml
+    path: sysctl.yml
     synopsis: |
       Configure sysctl.
     description: |
@@ -470,16 +620,116 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: systemd.yml
     link: systemd.yml
-    synopsis: "{{ task_systemd_synopsis }}"
-    description: "{{ task_systemd_description }}"
-    lines: "{{ task_systemd_lines }}"
+    path: systemd.yml
+    synopsis: |
+      Configure systemd.
+
+    description: |
+      Set my_services (10)
+      ^^^^^^^^^^^^^^^^^^^^
+      Iterate ``lp_systemd_unit`` (15) and create dictionary
+      ``my_services``. It will be used by handlers to decide if and
+      how to reload or restart services
+
+      .. code-block:: yaml
+
+         my_services:
+           <name>.<type|default(lp_systemd_unit_type)>:
+             state: <control.state|default('started')>
+             restart_or_reload: <control.restart_or_reload|default('reload')>
+         ...
+
+      Debug (25)
+      ^^^^^^^^^^
+      To see the values of the variables run the playbook with
+      options ``-t lp_systemd_debug -e "lp_systemd_debug=True"`` (46).
+
+      Packages (50)
+      ^^^^^^^^^^^^^
+      Install packages when enabled (53).
+
+      Configure systemd (57)
+      ^^^^^^^^^^^^^^^^^^^^^^
+
+      Use ``ini_file`` (58) to configure files (59) in loop
+      ``with_subelements`` (69-71). Register
+      ``lp_systemd_conf_changes`` (68) and notify handler ``reload
+      systemd conf`` (74).
+
+      .. code-block:: yaml
+
+         lp_systemd_conf:
+           <path>:
+             owner: <owner|default(lp_systemd_owner)>
+             group: <group|default(lp_systemd_group)>
+             mode: <mode|default(lp_systemd_mode)>
+             reload_service: <service to be reloaded or restarted by handler>
+             conf:
+               - {section: <section>, key: <option>, val: <value>}
+           ...
+
+      Create units (99)
+      ^^^^^^^^^^^^^^^^^^
+
+      Use ``template`` (100) to create units in the loop (108) when
+      ``state == 'create'`` (112. Register
+      ``lp_systemd_unit_create_changes`` (107) and notify handler
+      ``reload systemd units`` (111).
+
+      .. code-block:: yaml
+
+         lp_systemd_unit:
+           - name: <name of the service>
+             type: <type of the service|default(lp_systemd_unit_type)>
+             path: <directory of the units|default(lp_systemd_unit_dir)>
+             owner: <owner|default(lp_systemd_owner)>
+             group: <group|default(lp_systemd_group)>
+             mode: <mode|default(lp_systemd_mode)>
+             state: <'create' or 'absent'|default('noop')>
+           ...
+
+      Remove units (121)
+      ^^^^^^^^^^^^^^^^^^
+
+      <TBD>
+
+      Control units (138)
+      ^^^^^^^^^^^^^^^^^^^
+
+      .. code-block:: yaml
+
+         lp_systemd_unit:
+           - name: <name of the service>
+             type: <type of the service|default(lp_systemd_unit_type)>
+             control:
+               daemon_reexec: <daemon_reexec|default(omit)>
+               daemon_reload: <daemon_reload|default(omit)>
+               enabled: <enabled|default(systemd_units_enabled)>
+               force: <force|default(omit)>
+               masked: <masked|default(omit)>
+               no_block: <no_block|default(omit)>
+               scope: <scope|default(omit)>
+               state: <state|default(omit)>
+
+
+      .. seealso::
+
+         * Description of Parameters `Ansible module systemd
+           <https://docs.ansible.com/ansible/latest/modules/systemd_module.html#systemd-manage-services>`_
+
+      <TBD>
+
+    lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,99-100,107-108,111,112,121,138
     seealso: []
     note: []
     warning: []
+
   - file: timesyncd.yml
     link: timesyncd.yml
+    path: timesyncd.yml
     synopsis: |
       Configure timesyncd.
     description: |
@@ -488,8 +738,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: timezone.yml
     link: timezone.yml
+    path: timezone.yml
     synopsis: |
       Configure timezone.
     description: |
@@ -498,8 +750,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: tlp.yml
     link: tlp.yml
+    path: tlp.yml
     synopsis: |
       Configure tlp.
     description: |
@@ -508,8 +762,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: udev.yml
     link: udev.yml
+    path: udev.yml
     synopsis: |
       Configure udev.
     description: |
@@ -518,8 +774,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: ufw.yml
     link: ufw.yml
+    path: ufw.yml
     synopsis: |
       Configure ufw.
     description: |
@@ -528,8 +786,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: users.yml
     link: users.yml
+    path: users.yml
     synopsis: |
       Configure users.
     description: |
@@ -538,8 +798,34 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
+  - file: vars-firstfound.yml
+    link: vars-firstfound.yml
+    path: vars-firstfound.yml
+    synopsis: |
+      Configure vars-firstfound.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: vars-incremental.yml
+    link: vars-incremental.yml
+    path: vars-incremental.yml
+    synopsis: |
+      Configure vars-incremental.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
   - file: vars.yml
     link: vars.yml
+    path: vars.yml
     synopsis: |
       Configure vars.
     description: |
@@ -548,28 +834,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
-  - file: vars-firstfound.yml
-    link: vars-firstfound.yml
-    synopsis: |
-      Configure OS specific default vars. Method first_found.
-    description: |
-      Description of the task.
-    lines: 1,2
-    seealso: []
-    note: []
-    warning: []
-  - file: vars-incremental.yml
-    link: vars-incremental.yml
-    synopsis: |
-      Configure OS specific default vars. Method incremental.
-    description: |
-      Description of the task.
-    lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+
   - file: virtualbox.yml
     link: virtualbox.yml
+    path: virtualbox.yml
     synopsis: |
       Configure virtualbox.
     description: |
@@ -578,8 +846,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: wpagui.yml
     link: wpagui.yml
+    path: wpagui.yml
     synopsis: |
       Configure wpagui.
     description: |
@@ -588,8 +858,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: wpasupplicant.yml
     link: wpasupplicant.yml
+    path: wpasupplicant.yml
     synopsis: |
       Configure wpasupplicant.
     description: |
@@ -598,8 +870,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: xen.yml
     link: xen.yml
+    path: xen.yml
     synopsis: |
       Configure xen.
     description: |
@@ -608,8 +882,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: xorg.yml
     link: xorg.yml
+    path: xorg.yml
     synopsis: |
       Configure xorg.
     description: |
@@ -618,8 +894,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: zeitgeist.yml
     link: zeitgeist.yml
+    path: zeitgeist.yml
     synopsis: |
       Configure zeitgeist.
     description: |
@@ -628,8 +906,10 @@ mytasks:
     seealso: []
     note: []
     warning: []
+
   - file: zfs.yml
     link: zfs.yml
+    path: zfs.yml
     synopsis: |
       Configure zfs.
     description: |
@@ -638,24 +918,29 @@ mytasks:
     seealso: []
     note: []
     warning: []
-  - file: sub/vars-flavors.yml
-    link: sub-vars-flavors.yml
+
+  - file: vars-flavors.yml
+    link: vars-flavors.yml
+    path: sub/vars-flavors.yml
     synopsis: |
-      Configure flavor specific variables.
+      Configure vars-flavors.
     description: |
       Description of the task.
     lines: 1,2
     seealso: []
     note: []
     warning: []
-  - file: sub/vars-flavors-common.yml
-    link: sub-vars-flavors-common.yml
+
+  - file: vars-flavors-common.yml
+    link: vars-flavors-common.yml
+    path: sub/vars-flavors-common.yml
     synopsis: |
-      Configure common flavor specific variables.
+      Configure vars-flavors-common.
     description: |
       Description of the task.
     lines: 1,2
     seealso: []
     note: []
     warning: []
+
 ...

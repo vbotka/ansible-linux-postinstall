@@ -16,9 +16,9 @@ The network configuration abstraction renderer.
      itself as the default network renderer."
 
 .. seealso::
+   * Annotated Source code :ref:`as_netplan.yml`
    * Project website `netplan.io <https://netplan.io/>`_
    * See :ref:`ug_task_networkmanager_ex1`
-   * Annotated Source code :ref:`as_netplan.yml`
 
 Examples
 --------

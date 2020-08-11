@@ -47,13 +47,13 @@ task_systemd_description: |
            - {section: <section>, key: <option>, val: <value>}
        ...
 
-  Create units (100)
+  Create units (99)
   ^^^^^^^^^^^^^^^^^^
 
-  Use ``template`` (101) to create units (101) in loop (107) when
-  ``state == 'create'`` (113). Register
-  ``lp_systemd_unit_create_changes`` (108) and notify handler
-  ``reload systemd units`` (112).
+  Use ``template`` (100) to create units in the loop (108) when
+  ``state == 'create'`` (112. Register
+  ``lp_systemd_unit_create_changes`` (107) and notify handler
+  ``reload systemd units`` (111).
 
   .. code-block:: yaml
 
@@ -67,12 +67,12 @@ task_systemd_description: |
          state: <'create' or 'absent'|default('noop')>
        ...
 
-  Remove units (122)
+  Remove units (121)
   ^^^^^^^^^^^^^^^^^^
 
   <TBD>
 
-  Control units (139)
+  Control units (138)
   ^^^^^^^^^^^^^^^^^^^
 
   .. code-block:: yaml
@@ -98,5 +98,5 @@ task_systemd_description: |
 
   <TBD>
 
-task_systemd_lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,100-101,108-109,112,113,122,139
+task_systemd_lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,99-100,107-108,111,112,121,138
 ...

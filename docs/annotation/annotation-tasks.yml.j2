@@ -1,0 +1,36 @@
+#jinja2: trim_blocks:False
+---
+mytasks:
+  - file: main.yml
+    link: main.yml
+    path: main.yml
+    synopsis: |
+      Main task.
+    description: |
+      Import tasks if enabled.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+{% for file in my_files %}
+  - file: {{ file.0 ~ file.1 }}
+    link: {{ file.0  ~ file.1}}
+    path: {{ file.2 }}
+    synopsis: |
+    {%- if lookup('varnames', 'task_' ~ file.0 ~ '_synopsis')|length > 0 %}
+      {{ lookup('vars', 'task_' ~ file.0 ~ '_synopsis')|indent(width=6) }}
+    {%- else %}
+      Configure {{ file.0 }}.
+    {%- endif %}
+    description: |
+    {%- if lookup('varnames', 'task_' ~ file.0 ~ '_description')|length > 0 %}
+      {{ lookup('vars', 'task_' ~ file.0 ~ '_description')|indent(width=6) }}
+    {%- else %}
+      Description of the task.
+    {%- endif %}
+    lines: {% if lookup('varnames', 'task_' ~ file.0 ~ '_lines')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_lines') }}{% else %}1,2{% endif %}
+    seealso: {% if lookup('varnames', 'task_' ~ file.0 ~ '_seealso')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_seealso') }}{% else %}[]{% endif %}
+    note: {% if lookup('varnames', 'task_' ~ file.0 ~ '_note')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
+    warning: {% if lookup('varnames', 'task_' ~ file.0 ~ '_warning')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_warning') }}{% else %}[]{% endif %}
+{% endfor %}
+...

@@ -5,20 +5,13 @@
 
   tasks:
 
-    - name: Read data
+    - name: Include variables
       include_vars:
-        file: annotation/annotation.yml
-    - name: Read data
-      include_vars:
-        dir: annotation/vars
-        ignore_unknown_extensions: true
-        extensions:
-          - yml
-
-    - name: Create source/annotation.rst
+        file: annotation/annotation-tasks.yml
+    - name: Create rst file
       template:
-        src: annotation/annotation.rst.j2
-        dest: source/annotation.rst
+        src: annotation/annotation-tasks.rst.j2
+        dest: source/annotation-tasks.rst
 
 # EOF
 ...

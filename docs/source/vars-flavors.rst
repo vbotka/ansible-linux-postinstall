@@ -24,5 +24,5 @@ firstfound)*
    lp_vars_flavor: firstfound
    
 .. seealso::
-   * Annotated Source code :ref:`as_sub-vars-flavors.yml`
-   * Annotated Source code :ref:`as_sub-vars-flavors-common.yml`
+   * Annotated Source code :ref:`as_vars-flavors.yml`
+   * Annotated Source code :ref:`as_vars-flavors-common.yml`
