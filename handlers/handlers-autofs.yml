@@ -1,0 +1,13 @@
+---
+
+- name: restart autofs
+  systemd: name="{{ lp_autofs_service }}" state=restarted
+  when: lp_autofs_enable|bool
+
+
+- name: reload autofs
+  systemd: name="{{ lp_autofs_service }}" state=reloaded
+  when: lp_autofs_enable|bool
+
+# EOF
+...

@@ -1,3 +1,20 @@
 
 Manage source/annotation-*.rst by Ansible
-=======================================
+=========================================
+
+1) create lists of files: <types>-list.txt
+   where <types> is : tasks, handlers, templates
+
+2) create vars:
+   <type>_<file.0>_synopsis
+   <type>_<file.0>_description
+   <type>_<file.0>_lines
+   <type>_<file.0>_seealso
+   <type>_<file.0>_note
+   <type>_<file.0>_warning
+
+   where <type> is : task, handler, template
+   (see annotation-<type>.yml.j2)
+
+3) create annotation-<types>.yml
+   shell> ansible-playbook pb-annotations.yml

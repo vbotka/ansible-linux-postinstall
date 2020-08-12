@@ -1,0 +1,12 @@
+---
+
+- name: restart resolvconf
+  systemd: name="{{ lp_resolvconf_service }}" state=restarted
+  when: lp_resolvconf_enable|bool
+
+- name: reload resolvconf
+  systemd: name="{{ lp_resolvconf_service }}" state=reloaded
+  when: lp_resolvconf_enable|bool
+
+# EOF
+...

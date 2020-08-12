@@ -1,8 +1,8 @@
 ---
 mytasks:
   - file: main.yml
-    link: main.yml
-    path: main.yml
+    link: tasks-main.yml
+    path: tasks/main.yml
     synopsis: |
       Main task.
     description: |
@@ -14,7 +14,7 @@ mytasks:
 
   - file: acpi.yml
     link: acpi.yml
-    path: acpi.yml
+    path: tasks/acpi.yml
     synopsis: |
       Configure acpi.
     description: |
@@ -26,7 +26,7 @@ mytasks:
 
   - file: aliases.yml
     link: aliases.yml
-    path: aliases.yml
+    path: tasks/aliases.yml
     synopsis: |
       Configure aliases.
     description: |
@@ -38,7 +38,7 @@ mytasks:
 
   - file: apparmor.yml
     link: apparmor.yml
-    path: apparmor.yml
+    path: tasks/apparmor.yml
     synopsis: |
       Configure apparmor.
     description: |
@@ -50,7 +50,7 @@ mytasks:
 
   - file: authorized_keys.yml
     link: authorized_keys.yml
-    path: authorized_keys.yml
+    path: tasks/authorized_keys.yml
     synopsis: |
       Configure authorized_keys.
     description: |
@@ -62,7 +62,7 @@ mytasks:
 
   - file: autofs.yml
     link: autofs.yml
-    path: autofs.yml
+    path: tasks/autofs.yml
     synopsis: |
       Configure autofs.
     description: |
@@ -74,7 +74,7 @@ mytasks:
 
   - file: auto_upgrades.yml
     link: auto_upgrades.yml
-    path: auto_upgrades.yml
+    path: tasks/auto_upgrades.yml
     synopsis: |
       Configure auto_upgrades.
     description: |
@@ -86,7 +86,7 @@ mytasks:
 
   - file: bluetooth.yml
     link: bluetooth.yml
-    path: bluetooth.yml
+    path: tasks/bluetooth.yml
     synopsis: |
       Configure bluetooth.
     description: |
@@ -98,7 +98,7 @@ mytasks:
 
   - file: cron.yml
     link: cron.yml
-    path: cron.yml
+    path: tasks/cron.yml
     synopsis: |
       Configure cron.
     description: |
@@ -110,7 +110,7 @@ mytasks:
 
   - file: debsums.yml
     link: debsums.yml
-    path: debsums.yml
+    path: tasks/debsums.yml
     synopsis: |
       Configure debsums.
     description: |
@@ -122,7 +122,7 @@ mytasks:
 
   - file: debug.yml
     link: debug.yml
-    path: debug.yml
+    path: tasks/debug.yml
     synopsis: |
       Configure debug.
     description: |
@@ -134,7 +134,7 @@ mytasks:
 
   - file: fstab.yml
     link: fstab.yml
-    path: fstab.yml
+    path: tasks/fstab.yml
     synopsis: |
       Configure fstab.
     description: |
@@ -146,7 +146,7 @@ mytasks:
 
   - file: gpg.yml
     link: gpg.yml
-    path: gpg.yml
+    path: tasks/gpg.yml
     synopsis: |
       Configure gpg.
     description: |
@@ -158,7 +158,7 @@ mytasks:
 
   - file: gpsd.yml
     link: gpsd.yml
-    path: gpsd.yml
+    path: tasks/gpsd.yml
     synopsis: |
       Configure gpsd.
     description: |
@@ -170,7 +170,7 @@ mytasks:
 
   - file: grub.yml
     link: grub.yml
-    path: grub.yml
+    path: tasks/grub.yml
     synopsis: |
       Configure grub.
     description: |
@@ -182,7 +182,7 @@ mytasks:
 
   - file: hostname.yml
     link: hostname.yml
-    path: hostname.yml
+    path: tasks/hostname.yml
     synopsis: |
       Configure hostname.
     description: |
@@ -194,7 +194,7 @@ mytasks:
 
   - file: hosts.yml
     link: hosts.yml
-    path: hosts.yml
+    path: tasks/hosts.yml
     synopsis: |
       Configure hosts.
     description: |
@@ -206,7 +206,7 @@ mytasks:
 
   - file: iptables.yml
     link: iptables.yml
-    path: iptables.yml
+    path: tasks/iptables.yml
     synopsis: |
       Configure iptables.
     description: |
@@ -218,7 +218,7 @@ mytasks:
 
   - file: kvm.yml
     link: kvm.yml
-    path: kvm.yml
+    path: tasks/kvm.yml
     synopsis: |
       Configure kvm.
     description: |
@@ -230,7 +230,7 @@ mytasks:
 
   - file: latex.yml
     link: latex.yml
-    path: latex.yml
+    path: tasks/latex.yml
     synopsis: |
       Configure latex.
     description: |
@@ -242,7 +242,7 @@ mytasks:
 
   - file: libvirt-conf.yml
     link: libvirt-conf.yml
-    path: libvirt-conf.yml
+    path: tasks/libvirt-conf.yml
     synopsis: |
       Configure libvirt-conf.
     description: |
@@ -254,7 +254,7 @@ mytasks:
 
   - file: libvirt.yml
     link: libvirt.yml
-    path: libvirt.yml
+    path: tasks/libvirt.yml
     synopsis: |
       Configure libvirt.
     description: |
@@ -266,7 +266,7 @@ mytasks:
 
   - file: lid.yml
     link: lid.yml
-    path: lid.yml
+    path: tasks/lid.yml
     synopsis: |
       Configure lid.
     description: |
@@ -278,7 +278,7 @@ mytasks:
 
   - file: logrotate.yml
     link: logrotate.yml
-    path: logrotate.yml
+    path: tasks/logrotate.yml
     synopsis: |
       Configure logrotate.
     description: |
@@ -290,7 +290,7 @@ mytasks:
 
   - file: modemmanager.yml
     link: modemmanager.yml
-    path: modemmanager.yml
+    path: tasks/modemmanager.yml
     synopsis: |
       Configure modemmanager.
     description: |
@@ -302,7 +302,7 @@ mytasks:
 
   - file: modules.yml
     link: modules.yml
-    path: modules.yml
+    path: tasks/modules.yml
     synopsis: |
       Configure modules.
     description: |
@@ -314,7 +314,7 @@ mytasks:
 
   - file: netplan.yml
     link: netplan.yml
-    path: netplan.yml
+    path: tasks/netplan.yml
     synopsis: |
       Configure netplan.
     description: |
@@ -326,7 +326,7 @@ mytasks:
 
   - file: networkd.yml
     link: networkd.yml
-    path: networkd.yml
+    path: tasks/networkd.yml
     synopsis: |
       Configure networkd.
     description: |
@@ -338,7 +338,7 @@ mytasks:
 
   - file: networkmanager.yml
     link: networkmanager.yml
-    path: networkmanager.yml
+    path: tasks/networkmanager.yml
     synopsis: |
       Configure networkmanager.
     description: |
@@ -350,7 +350,7 @@ mytasks:
 
   - file: nfsd.yml
     link: nfsd.yml
-    path: nfsd.yml
+    path: tasks/nfsd.yml
     synopsis: |
       Configure nfsd.
     description: |
@@ -362,7 +362,7 @@ mytasks:
 
   - file: packages-auto.yml
     link: packages-auto.yml
-    path: packages-auto.yml
+    path: tasks/packages-auto.yml
     synopsis: |
       Configure packages-auto.
     description: |
@@ -374,7 +374,7 @@ mytasks:
 
   - file: packages.yml
     link: packages.yml
-    path: packages.yml
+    path: tasks/packages.yml
     synopsis: |
       Configure packages.
     description: |
@@ -386,7 +386,7 @@ mytasks:
 
   - file: passwords.yml
     link: passwords.yml
-    path: passwords.yml
+    path: tasks/passwords.yml
     synopsis: |
       Configure passwords.
     description: |
@@ -398,7 +398,7 @@ mytasks:
 
   - file: pm-utils.yml
     link: pm-utils.yml
-    path: pm-utils.yml
+    path: tasks/pm-utils.yml
     synopsis: |
       Configure pm-utils.
     description: |
@@ -410,7 +410,7 @@ mytasks:
 
   - file: postfix.yml
     link: postfix.yml
-    path: postfix.yml
+    path: tasks/postfix.yml
     synopsis: |
       Configure postfix.
     description: |
@@ -422,7 +422,7 @@ mytasks:
 
   - file: reboot.yml
     link: reboot.yml
-    path: reboot.yml
+    path: tasks/reboot.yml
     synopsis: |
       Configure reboot.
     description: |
@@ -434,7 +434,7 @@ mytasks:
 
   - file: repos.yml
     link: repos.yml
-    path: repos.yml
+    path: tasks/repos.yml
     synopsis: |
       Configure repos.
     description: |
@@ -446,7 +446,7 @@ mytasks:
 
   - file: resolvconf.yml
     link: resolvconf.yml
-    path: resolvconf.yml
+    path: tasks/resolvconf.yml
     synopsis: |
       Configure resolvconf.
     description: |
@@ -458,76 +458,76 @@ mytasks:
 
   - file: service.yml
     link: service.yml
-    path: service.yml
+    path: tasks/service.yml
     synopsis: |
       Configure services.
 
     description: |
-      Set my_service_name_vars (4)
+      Set my_service_name_vars (8)
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      The task will iterate the list ``lp_service_enable`` (8) and
-      look for variables ``lp_<item>`` (9). If the variable exists and
+      The task will iterate the list ``lp_service_enable`` (12) and
+      look for variables ``lp_<item>`` (13). If the variable exists and
       is ``True`` *(default='false')* an item will be added to the
-      list ``my_service_name_vars`` (6). The item is a *{key: value}*
+      list ``my_service_name_vars`` (10). The item is a *{key: value}*
       hash where the *key* is the name of the service in this role and
       the *value* is the OS specific name of the service stored in the
-      variable ``lp_<item>_service`` (7). The best practice is to
+      variable ``lp_<item>_service`` (11). The best practice is to
       configure variables ``lp_<item>_service`` in files placed in the
       directory ``vars/defaults``.
 
-      Set my_service_enable_vars (12)
+      Set my_service_enable_vars (16)
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       The next task will iterate the same list ``lp_service_enable``
-      (16) and condition (17). The created list
-      ``my_service_enable_vars`` (14) will keep the *{key: value}* hashes
-      with the *value* of the variable ``lp_<item>_enable`` (15).
+      (20) and condition (21). The created list
+      ``my_service_enable_vars`` (18) will keep the *{key: value}* hashes
+      with the *value* of the variable ``lp_<item>_enable`` (19).
 
-      Get service_facts and create dict my_services (20)
+      Get service_facts and create dict my_services (24)
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      Run module ``service_facts`` (23) and combine dictionary
-      ``my_services`` (26). This dictionary will be used to test a
+      Run module ``service_facts`` (27) and combine dictionary
+      ``my_services`` (31). This dictionary will be used to test a
       service is available when ``lp_service_sanity`` is enabled
       *(default: True)*.
 
-      Debug (38)
+      Debug (43)
       ^^^^^^^^^^
-      To see what services (44,46,48,50,52) will be managed run the
+      To see what services (49,51,53,55,57) will be managed run the
       playbook with options ``-t lp_service_debug -e
       "lp_service_debug=True"``.
 
-      Debug sanity lp_service_enable (57)
+      Debug sanity lp_service_enable (63)
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      To see what services (60,62) will be tested when
-      ``lp_service_sanity`` is enabled (64) run playbook with options
+      To see what services (66,68) will be tested when
+      ``lp_service_sanity`` is enabled (70) run playbook with options
       ``-t lp_service_debug,lp_service_sanity -e
       "lp_service_debug=True"``.
 
-      Sanity lp_service_enable (68)
+      Sanity lp_service_enable (74)
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      If ``lp_service_sanity`` is enabled (72) test if all services in
+      If ``lp_service_sanity`` is enabled (79) test if all services in
       the list ``my_service_name_vars`` are available in the list of
-      installed services ``my_services`` (75). Fail (70) when there
+      installed services ``my_services`` (82). Fail (80) when there
       are undefined services.
 
-      Automatically enable or disable services managed by this role (81)
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      Manage services listed in lp_service_enable (89)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       To configure the services listed in the variable
       *lp_service_enable* run the playbook with the tag ``-t
-      lp_service_auto`` (87).
+      lp_service_auto`` (95).
 
-      General management of services (89)
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      Manage services listed in lp_service (97)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
       To configure the services listed in the variable *lp_service*
-      run the playbook with the tag ``-t lp_service_general`` (102).
+      run the playbook with the tag ``-t lp_service_general`` (110).
 
-    lines: 1,2,4,6-9,12,14-17,20,23,26,38,44,46,48,50,52,57,64,68,70,72,75,81,87,89,102
+    lines: 8,10-13,16,18,19,21,24,27,31,43,49,51,53,55,57,63,66,68,74,79,80,82,89,95,97,110
     seealso: []
     note: []
     warning: []
 
   - file: smart.yml
     link: smart.yml
-    path: smart.yml
+    path: tasks/smart.yml
     synopsis: |
       Configure smart.
     description: |
@@ -539,7 +539,7 @@ mytasks:
 
   - file: snap.yml
     link: snap.yml
-    path: snap.yml
+    path: tasks/snap.yml
     synopsis: |
       Configure snap.
     description: |
@@ -551,7 +551,7 @@ mytasks:
 
   - file: speechd.yml
     link: speechd.yml
-    path: speechd.yml
+    path: tasks/speechd.yml
     synopsis: |
       Configure speechd.
     description: |
@@ -563,7 +563,7 @@ mytasks:
 
   - file: sshd.yml
     link: sshd.yml
-    path: sshd.yml
+    path: tasks/sshd.yml
     synopsis: |
       Configure sshd.
     description: |
@@ -575,7 +575,7 @@ mytasks:
 
   - file: ssh.yml
     link: ssh.yml
-    path: ssh.yml
+    path: tasks/ssh.yml
     synopsis: |
       Configure ssh.
     description: |
@@ -587,7 +587,7 @@ mytasks:
 
   - file: sudoers.yml
     link: sudoers.yml
-    path: sudoers.yml
+    path: tasks/sudoers.yml
     synopsis: |
       Configure sudoers.
     description: |
@@ -599,7 +599,7 @@ mytasks:
 
   - file: swap.yml
     link: swap.yml
-    path: swap.yml
+    path: tasks/swap.yml
     synopsis: |
       Configure swap.
     description: |
@@ -611,7 +611,7 @@ mytasks:
 
   - file: sysctl.yml
     link: sysctl.yml
-    path: sysctl.yml
+    path: tasks/sysctl.yml
     synopsis: |
       Configure sysctl.
     description: |
@@ -623,7 +623,7 @@ mytasks:
 
   - file: systemd.yml
     link: systemd.yml
-    path: systemd.yml
+    path: tasks/systemd.yml
     synopsis: |
       Configure systemd.
 
@@ -729,7 +729,7 @@ mytasks:
 
   - file: timesyncd.yml
     link: timesyncd.yml
-    path: timesyncd.yml
+    path: tasks/timesyncd.yml
     synopsis: |
       Configure timesyncd.
     description: |
@@ -741,7 +741,7 @@ mytasks:
 
   - file: timezone.yml
     link: timezone.yml
-    path: timezone.yml
+    path: tasks/timezone.yml
     synopsis: |
       Configure timezone.
     description: |
@@ -753,7 +753,7 @@ mytasks:
 
   - file: tlp.yml
     link: tlp.yml
-    path: tlp.yml
+    path: tasks/tlp.yml
     synopsis: |
       Configure tlp.
     description: |
@@ -765,7 +765,7 @@ mytasks:
 
   - file: udev.yml
     link: udev.yml
-    path: udev.yml
+    path: tasks/udev.yml
     synopsis: |
       Configure udev.
     description: |
@@ -777,7 +777,7 @@ mytasks:
 
   - file: ufw.yml
     link: ufw.yml
-    path: ufw.yml
+    path: tasks/ufw.yml
     synopsis: |
       Configure ufw.
     description: |
@@ -789,7 +789,7 @@ mytasks:
 
   - file: users.yml
     link: users.yml
-    path: users.yml
+    path: tasks/users.yml
     synopsis: |
       Configure users.
     description: |
@@ -801,7 +801,7 @@ mytasks:
 
   - file: vars-firstfound.yml
     link: vars-firstfound.yml
-    path: vars-firstfound.yml
+    path: tasks/vars-firstfound.yml
     synopsis: |
       Configure vars-firstfound.
     description: |
@@ -813,7 +813,7 @@ mytasks:
 
   - file: vars-incremental.yml
     link: vars-incremental.yml
-    path: vars-incremental.yml
+    path: tasks/vars-incremental.yml
     synopsis: |
       Configure vars-incremental.
     description: |
@@ -825,7 +825,7 @@ mytasks:
 
   - file: vars.yml
     link: vars.yml
-    path: vars.yml
+    path: tasks/vars.yml
     synopsis: |
       Configure vars.
     description: |
@@ -837,7 +837,7 @@ mytasks:
 
   - file: virtualbox.yml
     link: virtualbox.yml
-    path: virtualbox.yml
+    path: tasks/virtualbox.yml
     synopsis: |
       Configure virtualbox.
     description: |
@@ -849,7 +849,7 @@ mytasks:
 
   - file: wpagui.yml
     link: wpagui.yml
-    path: wpagui.yml
+    path: tasks/wpagui.yml
     synopsis: |
       Configure wpagui.
     description: |
@@ -861,7 +861,7 @@ mytasks:
 
   - file: wpasupplicant.yml
     link: wpasupplicant.yml
-    path: wpasupplicant.yml
+    path: tasks/wpasupplicant.yml
     synopsis: |
       Configure wpasupplicant.
     description: |
@@ -873,7 +873,7 @@ mytasks:
 
   - file: xen.yml
     link: xen.yml
-    path: xen.yml
+    path: tasks/xen.yml
     synopsis: |
       Configure xen.
     description: |
@@ -885,7 +885,7 @@ mytasks:
 
   - file: xorg.yml
     link: xorg.yml
-    path: xorg.yml
+    path: tasks/xorg.yml
     synopsis: |
       Configure xorg.
     description: |
@@ -897,7 +897,7 @@ mytasks:
 
   - file: zeitgeist.yml
     link: zeitgeist.yml
-    path: zeitgeist.yml
+    path: tasks/zeitgeist.yml
     synopsis: |
       Configure zeitgeist.
     description: |
@@ -909,7 +909,7 @@ mytasks:
 
   - file: zfs.yml
     link: zfs.yml
-    path: zfs.yml
+    path: tasks/zfs.yml
     synopsis: |
       Configure zfs.
     description: |
@@ -921,7 +921,7 @@ mytasks:
 
   - file: vars-flavors.yml
     link: vars-flavors.yml
-    path: sub/vars-flavors.yml
+    path: tasks/sub/vars-flavors.yml
     synopsis: |
       Configure vars-flavors.
     description: |
@@ -933,7 +933,7 @@ mytasks:
 
   - file: vars-flavors-common.yml
     link: vars-flavors-common.yml
-    path: sub/vars-flavors-common.yml
+    path: tasks/sub/vars-flavors-common.yml
     synopsis: |
       Configure vars-flavors-common.
     description: |

@@ -1,0 +1,11 @@
+---
+
+# MESSAGES - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+- name: logind message reboot
+  debug: msg="[MESSAGE] Reboot to activate configuration in logind.conf"
+
+# MESSAGES - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# EOF
+...

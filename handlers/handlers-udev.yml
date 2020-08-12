@@ -1,0 +1,19 @@
+---
+
+- name: reload udev
+  command: "{{ lp_udev_path }} control --reload-rules"
+  when: lp_udev_enable|bool
+#  Ubuntu 18.04 error: Failed to reload udev.service: Job type reload
+#  is not applicable for unit systemd-udevd.service
+#  systemd: name="udev" state="reloaded"
+# Ubuntu 18.04
+# command: "/sbin/udevadm control --reload-rules"
+# Ubuntu 20.04
+# command: "/usr/bin/udevadm control --reload-rules"
+
+- name: restart udev
+  systemd: name="{{ lp_service_udev }}" state=restarted
+  when: lp_udev_enable|bool
+
+# EOF
+...

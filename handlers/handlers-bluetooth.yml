@@ -1,0 +1,8 @@
+---
+
+- name: restart bluetooth
+  systemd: name="{{ lp_bluetooth_service }}" state=restarted
+  when: lp_bluetooth_enable|bool
+
+# EOF
+...

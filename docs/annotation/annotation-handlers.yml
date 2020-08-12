@@ -1,0 +1,327 @@
+---
+myhandlers:
+  - file: main.yml
+    link: handlers-main.yml
+    path: handlers/main.yml
+    synopsis: |
+      Main task.
+    description: |
+      Import handlers.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-apparmor.yml
+    link: handlers-apparmor.yml
+    path: handlers/handlers-apparmor.yml
+    synopsis: |
+      Handler apparmor.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-apply.yml
+    link: handlers-apply.yml
+    path: handlers/handlers-apply.yml
+    synopsis: |
+      Handler apply.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-autofs.yml
+    link: handlers-autofs.yml
+    path: handlers/handlers-autofs.yml
+    synopsis: |
+      Handler autofs.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-bluetooth.yml
+    link: handlers-bluetooth.yml
+    path: handlers/handlers-bluetooth.yml
+    synopsis: |
+      Handler bluetooth.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-gpg.yml
+    link: handlers-gpg.yml
+    path: handlers/handlers-gpg.yml
+    synopsis: |
+      Handler gpg.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-gpsd.yml
+    link: handlers-gpsd.yml
+    path: handlers/handlers-gpsd.yml
+    synopsis: |
+      Handler gpsd.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-grub.yml
+    link: handlers-grub.yml
+    path: handlers/handlers-grub.yml
+    synopsis: |
+      Handler grub.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-hostname.yml
+    link: handlers-hostname.yml
+    path: handlers/handlers-hostname.yml
+    synopsis: |
+      Handler hostname.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-initramfs.yml
+    link: handlers-initramfs.yml
+    path: handlers/handlers-initramfs.yml
+    synopsis: |
+      Handler initramfs.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-iptables.yml
+    link: handlers-iptables.yml
+    path: handlers/handlers-iptables.yml
+    synopsis: |
+      Handler iptables.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-libvirtd.yml
+    link: handlers-libvirtd.yml
+    path: handlers/handlers-libvirtd.yml
+    synopsis: |
+      Handler libvirtd.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-messages.yml
+    link: handlers-messages.yml
+    path: handlers/handlers-messages.yml
+    synopsis: |
+      Handler messages.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-networkd.yml
+    link: handlers-networkd.yml
+    path: handlers/handlers-networkd.yml
+    synopsis: |
+      Handler networkd.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-newaliases.yml
+    link: handlers-newaliases.yml
+    path: handlers/handlers-newaliases.yml
+    synopsis: |
+      Handler newaliases.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-nfsd.yml
+    link: handlers-nfsd.yml
+    path: handlers/handlers-nfsd.yml
+    synopsis: |
+      Handler nfsd.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-postfix.yml
+    link: handlers-postfix.yml
+    path: handlers/handlers-postfix.yml
+    synopsis: |
+      Handler postfix.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-resolvconf.yml
+    link: handlers-resolvconf.yml
+    path: handlers/handlers-resolvconf.yml
+    synopsis: |
+      Handler resolvconf.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-smart.yml
+    link: handlers-smart.yml
+    path: handlers/handlers-smart.yml
+    synopsis: |
+      Handler smart.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-sshd.yml
+    link: handlers-sshd.yml
+    path: handlers/handlers-sshd.yml
+    synopsis: |
+      Handler sshd.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-swap.yml
+    link: handlers-swap.yml
+    path: handlers/handlers-swap.yml
+    synopsis: |
+      Handler swap.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-sysctl.yml
+    link: handlers-sysctl.yml
+    path: handlers/handlers-sysctl.yml
+    synopsis: |
+      Handler sysctl.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-systemd.yml
+    link: handlers-systemd.yml
+    path: handlers/handlers-systemd.yml
+    synopsis: |
+      Handler systemd.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-timesyncd.yml
+    link: handlers-timesyncd.yml
+    path: handlers/handlers-timesyncd.yml
+    synopsis: |
+      Handler timesyncd.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-tlp.yml
+    link: handlers-tlp.yml
+    path: handlers/handlers-tlp.yml
+    synopsis: |
+      Handler tlp.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-udev.yml
+    link: handlers-udev.yml
+    path: handlers/handlers-udev.yml
+    synopsis: |
+      Handler udev.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-wpasupplicant.yml
+    link: handlers-wpasupplicant.yml
+    path: handlers/handlers-wpasupplicant.yml
+    synopsis: |
+      Handler wpasupplicant.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+...

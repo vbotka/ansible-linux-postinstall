@@ -2,6 +2,7 @@
 
 - hosts: localhost
   gather_facts: false
+  debugger: on_failed
 
   tasks:
 
@@ -11,21 +12,70 @@
         ignore_unknown_extensions: true
         extensions:
           - yml
+      tags: always
 
-    - name: Read list of files
-      set_fact:
-        my_files: "{{ my_files|default([]) + [[filename] + [ext] + [item]] }}"
-      loop: "{{ lookup('file', 'tasks-list.txt').splitlines() }}"
-      vars:
-        filename: "{{ (item|basename|splitext).0 }}"
-        ext: "{{ (item|basename|splitext).1 }}"
-    - name: Debug my_files
-      debug:
-        var: my_files
-    - name: Create annotation-tasks.yml
-      template:
-        src: annotation-tasks.yml.j2
-        dest: annotation-tasks.yml
+# Tasks
+    - block:
+        - name: Set empty list my_files
+          set_fact:
+            my_files: []
+        - name: Read list of files
+          set_fact:
+            my_files: "{{ my_files + [[filename] + [ext] + [item]] }}"
+          loop: "{{ lookup('file', 'tasks-list.txt').splitlines() }}"
+          vars:
+            filename: "{{ (item|basename|splitext).0 }}"
+            ext: "{{ (item|basename|splitext).1 }}"
+        - name: Debug my_files
+          debug:
+            var: my_files
+        - name: Create annotation-tasks.yml
+          template:
+            src: annotation-tasks.yml.j2
+            dest: annotation-tasks.yml
+      tags: tasks
+
+# Handlers
+    - block:
+        - name: Set empty list my_files
+          set_fact:
+            my_files: []
+        - name: Read list of files
+          set_fact:
+            my_files: "{{ my_files + [[filename] + [ext] + [item]] }}"
+          loop: "{{ lookup('file', 'handlers-list.txt').splitlines() }}"
+          vars:
+            filename: "{{ (item|basename|splitext).0 }}"
+            ext: "{{ (item|basename|splitext).1 }}"
+        - name: Debug my_files
+          debug:
+            var: my_files
+        - name: Create annotation-handlers.yml
+          template:
+            src: annotation-handlers.yml.j2
+            dest: annotation-handlers.yml
+      tags: handlers
+
+# Templates
+    - block:
+        - name: Set empty list my_files
+          set_fact:
+            my_files: []
+        - name: Read list of files
+          set_fact:
+            my_files: "{{ my_files + [[filename] + [ext] + [item]] }}"
+          loop: "{{ lookup('file', 'templates-list.txt').splitlines() }}"
+          vars:
+            filename: "{{ (item|basename|splitext).0 }}"
+            ext: "{{ (item|basename|splitext).1 }}"
+        - name: Debug my_files
+          debug:
+            var: my_files
+        - name: Create annotation-templates.yml
+          template:
+            src: annotation-templates.yml.j2
+            dest: annotation-templates.yml
+      tags: templates
 
 # EOF
 ...

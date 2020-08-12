@@ -1,0 +1,12 @@
+---
+
+- name: reload sshd
+  systemd: name="{{ lp_sshd_service }}" state=reloaded
+  when: lp_sshd_enable|bool
+
+- name: restart sshd
+  systemd: name="{{ lp_sshd_service }}" state=restarted
+  when: lp_sshd_enable|bool
+
+# EOF
+...

@@ -1,0 +1,7 @@
+---
+
+- name: newaliases
+  command: newaliases
+
+# EOF
+...

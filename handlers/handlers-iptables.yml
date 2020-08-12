@@ -1,0 +1,7 @@
+---
+
+- name: reload iptables
+  shell: "/sbin/iptables-restore < /etc/network/iptables"
+
+# EOF
+...

@@ -1,0 +1,424 @@
+---
+mytemplates:
+
+  - file: acpi-action-lid.sh.j2
+    link: template-acpi-action-lid.sh.j2
+    path: templates/acpi-action-lid.sh.j2
+    synopsis: |
+      Template acpi-action-lid.sh.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: acpi-event-default.j2
+    link: template-acpi-event-default.j2
+    path: templates/acpi-event-default.j2
+    synopsis: |
+      Template acpi-event-default.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: aliases.j2
+    link: template-aliases.j2
+    path: templates/aliases.j2
+    synopsis: |
+      Template aliases.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: auto-upgrades.j2
+    link: template-auto-upgrades.j2
+    path: templates/auto-upgrades.j2
+    synopsis: |
+      Template auto-upgrades.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: blacklist-module.j2
+    link: template-blacklist-module.j2
+    path: templates/blacklist-module.j2
+    synopsis: |
+      Template blacklist-module.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: bluetooth-rfcomm-conf.j2
+    link: template-bluetooth-rfcomm-conf.j2
+    path: templates/bluetooth-rfcomm-conf.j2
+    synopsis: |
+      Template bluetooth-rfcomm-conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: default-iptables.j2
+    link: template-default-iptables.j2
+    path: templates/default-iptables.j2
+    synopsis: |
+      Template default-iptables.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: exports.j2
+    link: template-exports.j2
+    path: templates/exports.j2
+    synopsis: |
+      Template exports.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: gpg-agent.conf.j2
+    link: template-gpg-agent.conf.j2
+    path: templates/gpg-agent.conf.j2
+    synopsis: |
+      Template gpg-agent.conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: gpg.conf.j2
+    link: template-gpg.conf.j2
+    path: templates/gpg.conf.j2
+    synopsis: |
+      Template gpg.conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: gpg-dirmngr.conf.j2
+    link: template-gpg-dirmngr.conf.j2
+    path: templates/gpg-dirmngr.conf.j2
+    synopsis: |
+      Template gpg-dirmngr.conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: gpsd.j2
+    link: template-gpsd.j2
+    path: templates/gpsd.j2
+    synopsis: |
+      Template gpsd.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: hci-name.rules.j2
+    link: template-hci-name.rules.j2
+    path: templates/hci-name.rules.j2
+    synopsis: |
+      Template hci-name.rules.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: hci-run.rules.j2
+    link: template-hci-run.rules.j2
+    path: templates/hci-run.rules.j2
+    synopsis: |
+      Template hci-run.rules.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: hostname.j2
+    link: template-hostname.j2
+    path: templates/hostname.j2
+    synopsis: |
+      Template hostname.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: hosts.j2
+    link: template-hosts.j2
+    path: templates/hosts.j2
+    synopsis: |
+      Template hosts.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: iptables-restore.j2
+    link: template-iptables-restore.j2
+    path: templates/iptables-restore.j2
+    synopsis: |
+      Template iptables-restore.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: modem-manager-override.j2
+    link: template-modem-manager-override.j2
+    path: templates/modem-manager-override.j2
+    synopsis: |
+      Template modem-manager-override.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: netplan-conf.j2
+    link: template-netplan-conf.j2
+    path: templates/netplan-conf.j2
+    synopsis: |
+      Template netplan-conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: netplan-default.j2
+    link: template-netplan-default.j2
+    path: templates/netplan-default.j2
+    synopsis: |
+      Template netplan-default.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: networkd.conf.j2
+    link: template-networkd.conf.j2
+    path: templates/networkd.conf.j2
+    synopsis: |
+      Template networkd.conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: network-manager-override.j2
+    link: template-network-manager-override.j2
+    path: templates/network-manager-override.j2
+    synopsis: |
+      Template network-manager-override.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: options-module.j2
+    link: template-options-module.j2
+    path: templates/options-module.j2
+    synopsis: |
+      Template options-module.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: persistent-net.rules2.j2
+    link: template-persistent-net.rules2.j2
+    path: templates/persistent-net.rules2.j2
+    synopsis: |
+      Template persistent-net.rules2.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: persistent-net.rules.j2
+    link: template-persistent-net.rules.j2
+    path: templates/persistent-net.rules.j2
+    synopsis: |
+      Template persistent-net.rules.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: pm-sleepd.j2
+    link: template-pm-sleepd.j2
+    path: templates/pm-sleepd.j2
+    synopsis: |
+      Template pm-sleepd.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: resolvconf-confd-head.j2
+    link: template-resolvconf-confd-head.j2
+    path: templates/resolvconf-confd-head.j2
+    synopsis: |
+      Template resolvconf-confd-head.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: router1-iptables.j2
+    link: template-router1-iptables.j2
+    path: templates/router1-iptables.j2
+    synopsis: |
+      Template router1-iptables.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: ssh_config.j2
+    link: template-ssh_config.j2
+    path: templates/ssh_config.j2
+    synopsis: |
+      Template ssh_config.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: systemd-unit.j2
+    link: template-systemd-unit.j2
+    path: templates/systemd-unit.j2
+    synopsis: |
+      Template systemd-unit.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: timesyncd.conf.j2
+    link: template-timesyncd.conf.j2
+    path: templates/timesyncd.conf.j2
+    synopsis: |
+      Template timesyncd.conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: udev-rules.j2
+    link: template-udev-rules.j2
+    path: templates/udev-rules.j2
+    synopsis: |
+      Template udev-rules.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: wpa_action.sh.j2
+    link: template-wpa_action.sh.j2
+    path: templates/wpa_action.sh.j2
+    synopsis: |
+      Template wpa_action.sh.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: wpa_supplicant.conf.j2
+    link: template-wpa_supplicant.conf.j2
+    path: templates/wpa_supplicant.conf.j2
+    synopsis: |
+      Template wpa_supplicant.conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: xorg.conf.j2
+    link: template-xorg.conf.j2
+    path: templates/xorg.conf.j2
+    synopsis: |
+      Template xorg.conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+...

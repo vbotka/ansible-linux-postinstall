@@ -1,0 +1,17 @@
+---
+
+- name: start tlp
+  systemd: name="{{ lp_tlp_restart_service }}" state=started
+
+- name: stop tlp
+  systemd: name="{{ lp_tlp_restart_service }}" state=stopped
+
+- name: restart tlp
+  shell: sh -c '{{ lp_tlp_path }} init stop && {{ lp_tlp_path }} init start'
+  when: lp_tlp_enable|bool
+
+# [TODO] "restarted" freeze 20.04
+# systemd: name="{{ lp_tlp_restart_service }}" state=restarted
+
+# EOF
+...

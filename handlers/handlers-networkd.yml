@@ -1,0 +1,10 @@
+---
+
+- name: restart networkd
+  service:
+    name: "{{ lp_networkd_service }}"
+    state: restarted
+  when: lp_networkd_enable|bool
+
+# EOF
+...

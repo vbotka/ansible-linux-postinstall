@@ -1,232 +1,32 @@
 ---
 # linux-postinstall handlers
 
-- name: restart timesyncd
-  service: name="{{ lp_timesyncd_service }}" state="restarted"
-
-- name: load sysctl settings
-  command: "/sbin/sysctl -p /etc/sysctl.conf"
-
-- name: reload iptables
-  shell: "/sbin/iptables-restore < /etc/network/iptables"
-
-- name: newaliases
-  command: newaliases
-
-- name: set hostname
-  command: "/sbin/sysctl kernel.hostname={{ hostname }}"
-
-- name: update grub
-  command: "/usr/sbin/update-grub"
-
-- name: reload udev
-  command: "{{ lp_udev_path }} control --reload-rules"
-  when: lp_udev_enable
-#  Ubuntu 18.04 error: Failed to reload udev.service: Job type reload
-#  is not applicable for unit systemd-udevd.service
-#  systemd: name="udev" state="reloaded"
-# Ubuntu 18.04
-# command: "/sbin/udevadm control --reload-rules"
-# Ubuntu 20.04
-# command: "/usr/bin/udevadm control --reload-rules"
-
-- name: restart udev
-  systemd: name="{{ lp_service_udev }}" state="restarted"
-  when: lp_udev_enable
-
-- name: reload sshd
-  systemd: name="{{ lp_sshd_service }}" state="reloaded"
-  when: lp_sshd_enable
-
-- name: reload sshd
-  systemd: name="{{ lp_sshd_service }}" state="restarted"
-  when: lp_sshd_enable
-
-- name: restart bluetooth
-  systemd: name="{{ lp_bluetooth_service }}" state="restarted"
-  when: lp_bluetooth_enable
-
-- name: restart gpsd
-  systemd: name="{{ lp_gpsd_service }}" state="restarted"
-  when: lp_gpsd_enable
-
-- name: restart postfix
-  systemd: name="{{ lp_postfix_service }}" state="restarted"
-  when: lp_postfix_enable
-
-- name: reload postfix
-  systemd: name="{{ lp_postfix_service }}" state="reloaded"
-  when: lp_postfix_enable
-
-- name: restart smart
-  systemd: name="{{ lp_smart_service }}" state="restarted"
-  when: lp_smart_enable
-
-- name: reload smart
-  systemd: name="{{ lp_smart_service }}" state="reloaded"
-  when: lp_smart_enable
-
-- name: apparmor disable profile
-  command: apparmor_parser -R /etc/apparmor.d/"{{ apparmor_item_path.stdout }}"
-
-- name: apparmor enforce profile
-  command: apparmor_parser -r /etc/apparmor.d/"{{ apparmor_item_path.stdout }}"
-
-- name: reload nfsd
-  systemd: name="{{ lp_nfsd_reload_service }}" state="reloaded"
-  when: lp_nfsd
-
-- name: netplan apply
-  command: netplan apply
-  when: lp_netplan
-
-- name: create and mount swap file
-  shell: >
-    sh -c
-    'dd if=/dev/zero of={{ lp_swap_file }} bs=1M count={{ lp_swap_size }} &&
-    chmod 0600 {{ lp_swap_file }} &&
-    mkswap {{ lp_swap_file }} &&
-    swapon {{ lp_swap_file }}'
-  when: lp_swap_enable
-
-- name: change and mount swap file
-  shell: >
-    sh -c
-    'swapoff {{ lp_swap_file }} &&
-    dd if=/dev/zero of={{ lp_swap_file }} bs=1M count={{ lp_swap_size }} &&
-    chmod 0600 {{ lp_swap_file }} &&
-    mkswap {{ lp_swap_file }} &&
-    swapon {{ lp_swap_file }}'
-  when: lp_swap_enable
-
-- name: remove swap file
-  shell: sh -c 'swapoff {{ lp_swap_file }} && rm {{ lp_swap_file }}'
-  when: not lp_swap_enable
-
-- name: start tlp
-  systemd: name="{{ lp_tlp_restart_service }}" state="started"
-  when: lp_tlp_enable
-
-- name: stop tlp
-  systemd: name="{{ lp_tlp_restart_service }}" state="stopped"
-
-- name: restart tlp
-  shell: sh -c '{{ lp_tlp_path }} init stop && {{ lp_tlp_path }} init start'
-# systemd: name="{{ lp_tlp_restart_service }}" state="restarted"
-# TODO: "restarted" freeze 20.04
-  when: lp_tlp_enable
-
-- name: restart autofs
-  systemd: name="{{ lp_autofs_service }}" state="restarted"
-  when: lp_autofs_enable
-
-- name: reload autofs
-  systemd: name="{{ lp_autofs_service }}" state="reloaded"
-  when: lp_autofs_enable
-
-- name: update initramfs
-  command: update-initramfs -u
-
-- name: restart libvirtd
-  systemd: name="{{ lp_libvirt_libvirtd_service }}" state="restarted"
-  when: lp_libvirt_libvirtd_enable
-
-- name: reload libvirtd
-  systemd: name="{{ lp_libvirt_libvirtd_service }}" state="reloaded"
-  when: lp_libvirt_libvirtd_enable
-
-- name: restart libvirt_guests
-  systemd: name="{{ lp_libvirt_guests_service }}" state="restarted"
-  when: lp_libvirt_libvirtd_enable
-
-- name: reload libvirt_guests
-  systemd: name="{{ lp_libvirt_guests_service }}" state="reloaded"
-  when: lp_libvirt_libvirtd_enable
-
-- name: restart resolvconf
-  systemd: name="{{ lp_resolvconf_service }}" state="restarted"
-  when: lp_resolvconf_enable
-
-- name: reload resolvconf
-  systemd: name="{{ lp_resolvconf_service }}" state="reloaded"
-  when: lp_resolvconf_enable
-
-- name: gpgconf kill gpg-agent
-  command: gpgconf --kill gpg-agent
-  loop: "{{ lp_gpg_agent_conf_changes.results }}"
-  become: "{{ item.item.owner }}"
-  when: item.changed|bool
-
-- name: gpgconf kill dirmngr
-  command: gpgconf --kill dirmngr
-  loop: "{{ lp_gpg_dirmngr_conf_changes.results }}"
-  become: "{{ item.item.owner }}"
-  when: item.changed|bool
-
-- name: reconfigure wpa_supplicant
-  service:
-    name: "{{ my_service }}"
-    state: restarted
-  loop: "{{ lp_wpasupplicant_conf_changes.results }}"
-  loop_control:
-    label: "{{ my_service }}"
-  vars:
-    my_dev: "{{ item.item.dev }}"
-    my_service: "{{ lp_wpasupplicant_service[item.item.type|default('default')] }}"
-  when:
-    - item.changed|bool
-    - not lp_wpasupplicant_conf_only|bool
-    - item.item.enabled|default('true')
-# [TODO] Wait for OK result. Error: 'RECONFIGURE' command timed out.
-# shell: >
-#    [ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ item.item.dev }} ] &&
-#    wpa_cli -p {{ lp_wpasupplicant_conf_ctrl_interface }}
-#            -i {{ item.item.dev }} reconfigure ||
-#    exit 0
-
-- name: restart networkd
-  service:
-    name: "{{ lp_networkd_service }}"
-    state: restarted
-  when: lp_networkd_enable|bool
-
-- name: reload systemd conf
-  systemd:
-    name: "{{ my_service }}"
-    state: "{{ my_restart_or_reload }}"
-    daemon_reload: true
-  loop: "{{ lp_systemd_conf_changes.results }}"
-  loop_control:
-    label: "{{ my_service }}"
-  vars:
-    my_service: "{{ item.item.0.value.reload_service }}"
-    my_state: "{{ my_services[my_service].state|default('started') }}"
-    my_restart_or_reload: "{{ my_services[my_service].restart_or_reload|default('reloaded') }}"
-  when:
-    - my_service != 'noop'
-    - item.changed|bool
-    - my_state == 'started'
-
-- name: reload systemd units
-  systemd:
-    name: "{{ my_service }}"
-    state: "{{ my_restart_or_reload }}"
-    daemon_reload: true
-  loop: "{{ lp_systemd_unit_create_changes.results }}"
-  loop_control:
-    label: "{{ my_service }}"
-  vars:
-    my_service: "{{ item.dest|basename }}"
-    my_state: "{{ my_services[my_service].state|default('started') }}"
-    my_restart_or_reload: "{{ my_services[my_service].restart_or_reload|default('reloaded') }}"
-  when:
-    - not (my_service|regex_search('^(.*)@\.\w+$'))
-    - item.changed|bool
-    - my_state == 'started'
-
-# MESSAGES -------------------------------------------------------------
-- name: logind message reboot
-  debug: msg="[MESSAGE] Reboot to activate configuration in logind.conf"
+- import_tasks: handlers-apparmor.yml
+- import_tasks: handlers-apply.yml
+- import_tasks: handlers-autofs.yml
+- import_tasks: handlers-bluetooth.yml
+- import_tasks: handlers-gpg.yml
+- import_tasks: handlers-gpsd.yml
+- import_tasks: handlers-grub.yml
+- import_tasks: handlers-hostname.yml
+- import_tasks: handlers-initramfs.yml
+- import_tasks: handlers-iptables.yml
+- import_tasks: handlers-libvirtd.yml
+- import_tasks: handlers-messages.yml
+- import_tasks: handlers-networkd.yml
+- import_tasks: handlers-newaliases.yml
+- import_tasks: handlers-nfsd.yml
+- import_tasks: handlers-postfix.yml
+- import_tasks: handlers-resolvconf.yml
+- import_tasks: handlers-smart.yml
+- import_tasks: handlers-sshd.yml
+- import_tasks: handlers-swap.yml
+- import_tasks: handlers-sysctl.yml
+- import_tasks: handlers-systemd.yml
+- import_tasks: handlers-timesyncd.yml
+- import_tasks: handlers-tlp.yml
+- import_tasks: handlers-udev.yml
+- import_tasks: handlers-wpasupplicant.yml
 
 # EOF
 ...

@@ -1,0 +1,20 @@
+---
+
+- name: restart libvirtd
+  systemd: name="{{ lp_libvirt_libvirtd_service }}" state=restarted
+  when: lp_libvirt_libvirtd_enable|bool
+
+- name: reload libvirtd
+  systemd: name="{{ lp_libvirt_libvirtd_service }}" state=reloaded
+  when: lp_libvirt_libvirtd_enable|bool
+
+- name: restart libvirt_guests
+  systemd: name="{{ lp_libvirt_guests_service }}" state=restarted
+  when: lp_libvirt_libvirtd_enable|bool
+
+- name: reload libvirt_guests
+  systemd: name="{{ lp_libvirt_guests_service }}" state=reloaded
+  when: lp_libvirt_libvirtd_enable|bool
+
+# EOF
+...

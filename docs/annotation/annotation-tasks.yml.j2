@@ -2,8 +2,8 @@
 ---
 mytasks:
   - file: main.yml
-    link: main.yml
-    path: main.yml
+    link: tasks-main.yml
+    path: tasks/main.yml
     synopsis: |
       Main task.
     description: |
@@ -14,8 +14,8 @@ mytasks:
     warning: []
 {% for file in my_files %}
   - file: {{ file.0 ~ file.1 }}
-    link: {{ file.0  ~ file.1}}
-    path: {{ file.2 }}
+    link: {{ file.0 ~ file.1 }}
+    path: tasks/{{ file.2 }}
     synopsis: |
     {%- if lookup('varnames', 'task_' ~ file.0 ~ '_synopsis')|length > 0 %}
       {{ lookup('vars', 'task_' ~ file.0 ~ '_synopsis')|indent(width=6) }}

@@ -7,3 +7,7 @@ Annotated source code
 
 .. _as_tasks:
 .. include:: annotation-tasks.rst
+.. _as_handlers:
+.. include:: annotation-handlers.rst
+.. _as_templates:
+.. include:: annotation-templates.rst

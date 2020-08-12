@@ -1,7 +1,7 @@
-Tasks
-=====
+Templates
+=========
 
-{% for i in mytasks %}
+{% for i in mytemplates %}
 .. _as_{{ i.link }}:
 
 {{ i.file }}
@@ -13,10 +13,10 @@ Synopsis: {{ i.synopsis }}
 
 [`{{ i.path }} <https://github.com/vbotka/ansible-linux-postinstall/blob/master/{{ i.path }}>`_]
 
-.. highlight:: yaml
+.. highlight:: jinja
     :linenothreshold: 5
 .. literalinclude:: ../../{{ i.path }}
-    :language: Yaml
+    :language: jinja
     :emphasize-lines: {{ i.lines }}
     :linenos:
 
