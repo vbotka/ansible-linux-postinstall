@@ -41,3 +41,7 @@ http://manpages.ubuntu.com/manpages/bionic/man1/firewalld.1.html
   the user. Services or applications already using D-Bus can request
   changes to the firewall with the D-Bus interface directly.
 
+docs
+====
+
+* Complete docs/annotation/vars

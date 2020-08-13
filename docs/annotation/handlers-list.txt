@@ -1,5 +1,4 @@
 handlers-apparmor.yml
-handlers-apply.yml
 handlers-autofs.yml
 handlers-bluetooth.yml
 handlers-gpg.yml
@@ -10,6 +9,7 @@ handlers-initramfs.yml
 handlers-iptables.yml
 handlers-libvirtd.yml
 handlers-messages.yml
+handlers-netplan.yml
 handlers-networkd.yml
 handlers-newaliases.yml
 handlers-nfsd.yml

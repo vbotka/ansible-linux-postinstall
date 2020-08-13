@@ -1,0 +1,7 @@
+---
+
+task_hosts_seealso:
+  templates:
+    - hosts.j2
+
+...

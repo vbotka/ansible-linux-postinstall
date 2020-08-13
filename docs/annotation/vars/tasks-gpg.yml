@@ -1,0 +1,11 @@
+---
+
+task_gpg_seealso:
+  handlers:
+    - gpg
+  templates:
+    - gpg.conf.j2
+    - gpg-agent.conf.j2
+    - gpg-dirmngr.conf.j2
+
+...

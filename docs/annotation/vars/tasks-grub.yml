@@ -1,0 +1,7 @@
+---
+
+task_grub_seealso:
+  handlers:
+    - grub
+
+...

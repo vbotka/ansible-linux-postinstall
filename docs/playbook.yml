@@ -2,6 +2,7 @@
 
 - hosts: localhost
   gather_facts: false
+  debugger: on_failed
 
   tasks:
 

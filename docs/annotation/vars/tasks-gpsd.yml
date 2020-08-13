@@ -1,0 +1,10 @@
+---
+
+task_gpsd_seealso:
+  handlers:
+    - gpsd
+    - bluetooth
+  templates:
+    - gpsd.j2
+
+...

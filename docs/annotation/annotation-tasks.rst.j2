@@ -20,16 +20,38 @@ Synopsis: {{ i.synopsis }}
     :emphasize-lines: {{ i.lines }}
     :linenos:
 
-{% if i.seealso|length > 0 %}
-.. seealso:: 
-
+{% if i.seealso|default([])|length > 0 %}
+.. seealso::
+{% for ii in i.seealso['handlers']|default([]) %}
+   * Handlers :ref:`as_handlers-{{ ii }}.yml`
+{% endfor %}
+{% for ii in i.seealso.templates|default([]) %}
+   * Template :ref:`as_template-{{ ii }}`
+{% endfor %}
+{% for ii in i.seealso.others|default([]) %}
+   * {{ ii }}
+{% endfor %}
 {% endif %}
-{% if i.note|length > 0 %}
+
+{% if i.notes|default([])|length > 0 %}
 .. note::
-
+{% for note in i.notes %}
+   * {{ ii }}
+{% endfor %}
 {% endif %}
-{% if i.warning|length > 0 %}
+
+{% if i.hints|default([])|length > 0 %}
+.. hint::
+{% for ii in i.hints %}
+   * {{ ii }}
+{% endfor %}
+{% endif %}
+
+{% if i.warnings|default([])|length > 0 %}
 .. warning::
-
+{% for ii in i.warnings %}
+   * {{ ii }}
+{% endfor %}
 {% endif %}
+
 {% endfor %}

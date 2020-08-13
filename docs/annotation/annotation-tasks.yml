@@ -21,8 +21,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: aliases.yml
     link: aliases.yml
@@ -32,9 +33,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'handlers': ['newaliases'], 'templates': ['aliases.j2']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: apparmor.yml
     link: apparmor.yml
@@ -45,8 +47,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: authorized_keys.yml
     link: authorized_keys.yml
@@ -57,8 +60,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: autofs.yml
     link: autofs.yml
@@ -68,9 +72,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'handlers': ['autofs']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: auto_upgrades.yml
     link: auto_upgrades.yml
@@ -81,8 +86,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: bluetooth.yml
     link: bluetooth.yml
@@ -92,9 +98,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'handlers': ['bluetooth']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: cron.yml
     link: cron.yml
@@ -105,8 +112,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: debsums.yml
     link: debsums.yml
@@ -117,8 +125,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: debug.yml
     link: debug.yml
@@ -129,8 +138,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: fstab.yml
     link: fstab.yml
@@ -141,8 +151,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: gpg.yml
     link: gpg.yml
@@ -152,9 +163,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'handlers': ['gpg'], 'templates': ['gpg.conf.j2', 'gpg-agent.conf.j2', 'gpg-dirmngr.conf.j2']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: gpsd.yml
     link: gpsd.yml
@@ -164,9 +176,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'handlers': ['gpsd', 'bluetooth'], 'templates': ['gpsd.j2']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: grub.yml
     link: grub.yml
@@ -176,9 +189,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'handlers': ['grub']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: hostname.yml
     link: hostname.yml
@@ -189,8 +203,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: hosts.yml
     link: hosts.yml
@@ -200,9 +215,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'templates': ['hosts.j2']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: iptables.yml
     link: iptables.yml
@@ -212,9 +228,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'handlers': ['iptables'], 'templates': ['iptables-restore.j2', 'default-iptables.j2', 'router1-iptables.j2']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: kvm.yml
     link: kvm.yml
@@ -225,8 +242,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: latex.yml
     link: latex.yml
@@ -237,8 +255,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: libvirt-conf.yml
     link: libvirt-conf.yml
@@ -248,9 +267,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'handlers': ['libvirtd']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: libvirt.yml
     link: libvirt.yml
@@ -261,8 +281,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: lid.yml
     link: lid.yml
@@ -272,9 +293,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'handlers': ['messages']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: logrotate.yml
     link: logrotate.yml
@@ -285,8 +307,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: modemmanager.yml
     link: modemmanager.yml
@@ -297,8 +320,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: modules.yml
     link: modules.yml
@@ -309,8 +333,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: netplan.yml
     link: netplan.yml
@@ -320,9 +345,10 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: []
-    note: []
-    warning: []
+    seealso: {'handlers': ['netplan'], 'templates': ['netplan-default.j2', 'netplan-conf.j2']}
+    notes: []
+    hints: []
+    warnings: []
 
   - file: networkd.yml
     link: networkd.yml
@@ -333,8 +359,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: networkmanager.yml
     link: networkmanager.yml
@@ -345,8 +372,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: nfsd.yml
     link: nfsd.yml
@@ -357,8 +385,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: packages-auto.yml
     link: packages-auto.yml
@@ -369,8 +398,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: packages.yml
     link: packages.yml
@@ -381,8 +411,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: passwords.yml
     link: passwords.yml
@@ -393,8 +424,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: pm-utils.yml
     link: pm-utils.yml
@@ -405,8 +437,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: postfix.yml
     link: postfix.yml
@@ -417,8 +450,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: reboot.yml
     link: reboot.yml
@@ -429,8 +463,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: repos.yml
     link: repos.yml
@@ -441,8 +476,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: resolvconf.yml
     link: resolvconf.yml
@@ -453,8 +489,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: service.yml
     link: service.yml
@@ -522,8 +559,9 @@ mytasks:
 
     lines: 8,10-13,16,18,19,21,24,27,31,43,49,51,53,55,57,63,66,68,74,79,80,82,89,95,97,110
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: smart.yml
     link: smart.yml
@@ -534,8 +572,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: snap.yml
     link: snap.yml
@@ -546,8 +585,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: speechd.yml
     link: speechd.yml
@@ -558,8 +598,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: sshd.yml
     link: sshd.yml
@@ -570,8 +611,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: ssh.yml
     link: ssh.yml
@@ -582,8 +624,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: sudoers.yml
     link: sudoers.yml
@@ -594,8 +637,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: swap.yml
     link: swap.yml
@@ -606,8 +650,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: sysctl.yml
     link: sysctl.yml
@@ -618,8 +663,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: systemd.yml
     link: systemd.yml
@@ -724,8 +770,9 @@ mytasks:
 
     lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,99-100,107-108,111,112,121,138
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: timesyncd.yml
     link: timesyncd.yml
@@ -736,8 +783,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: timezone.yml
     link: timezone.yml
@@ -748,8 +796,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: tlp.yml
     link: tlp.yml
@@ -760,8 +809,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: udev.yml
     link: udev.yml
@@ -772,8 +822,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: ufw.yml
     link: ufw.yml
@@ -784,8 +835,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: users.yml
     link: users.yml
@@ -796,8 +848,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: vars-firstfound.yml
     link: vars-firstfound.yml
@@ -808,8 +861,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: vars-incremental.yml
     link: vars-incremental.yml
@@ -820,8 +874,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: vars.yml
     link: vars.yml
@@ -832,8 +887,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: virtualbox.yml
     link: virtualbox.yml
@@ -844,8 +900,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: wpagui.yml
     link: wpagui.yml
@@ -856,8 +913,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: wpasupplicant.yml
     link: wpasupplicant.yml
@@ -868,8 +926,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: xen.yml
     link: xen.yml
@@ -880,8 +939,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: xorg.yml
     link: xorg.yml
@@ -892,8 +952,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: zeitgeist.yml
     link: zeitgeist.yml
@@ -904,8 +965,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: zfs.yml
     link: zfs.yml
@@ -916,8 +978,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: vars-flavors.yml
     link: vars-flavors.yml
@@ -928,8 +991,9 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: vars-flavors-common.yml
     link: vars-flavors-common.yml
@@ -940,7 +1004,8 @@ mytasks:
       Description of the task.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
 ...

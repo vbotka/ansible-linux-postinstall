@@ -2,7 +2,6 @@
 # linux-postinstall handlers
 
 - import_tasks: handlers-apparmor.yml
-- import_tasks: handlers-apply.yml
 - import_tasks: handlers-autofs.yml
 - import_tasks: handlers-bluetooth.yml
 - import_tasks: handlers-gpg.yml
@@ -13,6 +12,7 @@
 - import_tasks: handlers-iptables.yml
 - import_tasks: handlers-libvirtd.yml
 - import_tasks: handlers-messages.yml
+- import_tasks: handlers-netplan.yml
 - import_tasks: handlers-networkd.yml
 - import_tasks: handlers-newaliases.yml
 - import_tasks: handlers-nfsd.yml

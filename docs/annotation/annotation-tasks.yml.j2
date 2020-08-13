@@ -30,7 +30,8 @@ mytasks:
     {%- endif %}
     lines: {% if lookup('varnames', 'task_' ~ file.0 ~ '_lines')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_lines') }}{% else %}1,2{% endif %}
     seealso: {% if lookup('varnames', 'task_' ~ file.0 ~ '_seealso')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_seealso') }}{% else %}[]{% endif %}
-    note: {% if lookup('varnames', 'task_' ~ file.0 ~ '_note')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
-    warning: {% if lookup('varnames', 'task_' ~ file.0 ~ '_warning')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_warning') }}{% else %}[]{% endif %}
+    notes: {% if lookup('varnames', 'task_' ~ file.0 ~ '_note')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
+    hints: {% if lookup('varnames', 'task_' ~ file.0 ~ '_note')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
+    warnings: {% if lookup('varnames', 'task_' ~ file.0 ~ '_warning')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_warning') }}{% else %}[]{% endif %}
 {% endfor %}
 ...

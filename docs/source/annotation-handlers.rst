@@ -41,26 +41,6 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-apply.yml:
-
-handlers-apply.yml
-------------------
-
-Synopsis: Handler apply.
-
-
-Description of the handler.
-
-
-[`handlers/handlers-apply.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-apply.yml>`_]
-
-.. highlight:: yaml
-    :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-apply.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
-    :linenos:
-
 .. _as_handlers-autofs.yml:
 
 handlers-autofs.yml
@@ -257,6 +237,26 @@ Description of the handler.
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../handlers/handlers-messages.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+.. _as_handlers-netplan.yml:
+
+handlers-netplan.yml
+--------------------
+
+Synopsis: Handler netplan.
+
+
+Description of the handler.
+
+
+[`handlers/handlers-netplan.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-netplan.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../handlers/handlers-netplan.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:

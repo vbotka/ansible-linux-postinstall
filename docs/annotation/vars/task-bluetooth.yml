@@ -1,0 +1,7 @@
+---
+
+task_bluetooth_seealso:
+  handlers:
+    - bluetooth
+
+...

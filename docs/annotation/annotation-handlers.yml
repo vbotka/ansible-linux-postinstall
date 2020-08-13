@@ -24,18 +24,6 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-apply.yml
-    link: handlers-apply.yml
-    path: handlers/handlers-apply.yml
-    synopsis: |
-      Handler apply.
-    description: |
-      Description of the handler.
-    lines: 1,2
-    seealso: []
-    note: []
-    warning: []
-
   - file: handlers-autofs.yml
     link: handlers-autofs.yml
     path: handlers/handlers-autofs.yml
@@ -149,6 +137,18 @@ myhandlers:
     path: handlers/handlers-messages.yml
     synopsis: |
       Handler messages.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: handlers-netplan.yml
+    link: handlers-netplan.yml
+    path: handlers/handlers-netplan.yml
+    synopsis: |
+      Handler netplan.
     description: |
       Description of the handler.
     lines: 1,2

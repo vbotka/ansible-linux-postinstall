@@ -21,6 +21,10 @@ Import tasks if enabled.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_acpi.yml:
 
 acpi.yml
@@ -40,6 +44,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_aliases.yml:
 
@@ -61,6 +69,13 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+.. seealso::
+   * Handlers :ref:`as_handlers-newaliases.yml`
+   * Template :ref:`as_template-aliases.j2`
+
+
+
+
 .. _as_apparmor.yml:
 
 apparmor.yml
@@ -80,6 +95,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_authorized_keys.yml:
 
@@ -101,6 +120,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_autofs.yml:
 
 autofs.yml
@@ -120,6 +143,12 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+.. seealso::
+   * Handlers :ref:`as_handlers-autofs.yml`
+
+
+
 
 .. _as_auto_upgrades.yml:
 
@@ -141,6 +170,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_bluetooth.yml:
 
 bluetooth.yml
@@ -160,6 +193,12 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+.. seealso::
+   * Handlers :ref:`as_handlers-bluetooth.yml`
+
+
+
 
 .. _as_cron.yml:
 
@@ -181,6 +220,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_debsums.yml:
 
 debsums.yml
@@ -200,6 +243,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_debug.yml:
 
@@ -221,6 +268,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_fstab.yml:
 
 fstab.yml
@@ -240,6 +291,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_gpg.yml:
 
@@ -261,6 +316,15 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+.. seealso::
+   * Handlers :ref:`as_handlers-gpg.yml`
+   * Template :ref:`as_template-gpg.conf.j2`
+   * Template :ref:`as_template-gpg-agent.conf.j2`
+   * Template :ref:`as_template-gpg-dirmngr.conf.j2`
+
+
+
+
 .. _as_gpsd.yml:
 
 gpsd.yml
@@ -280,6 +344,14 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+.. seealso::
+   * Handlers :ref:`as_handlers-gpsd.yml`
+   * Handlers :ref:`as_handlers-bluetooth.yml`
+   * Template :ref:`as_template-gpsd.j2`
+
+
+
 
 .. _as_grub.yml:
 
@@ -301,6 +373,12 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+.. seealso::
+   * Handlers :ref:`as_handlers-grub.yml`
+
+
+
+
 .. _as_hostname.yml:
 
 hostname.yml
@@ -320,6 +398,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_hosts.yml:
 
@@ -341,6 +423,12 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+.. seealso::
+   * Template :ref:`as_template-hosts.j2`
+
+
+
+
 .. _as_iptables.yml:
 
 iptables.yml
@@ -360,6 +448,15 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+.. seealso::
+   * Handlers :ref:`as_handlers-iptables.yml`
+   * Template :ref:`as_template-iptables-restore.j2`
+   * Template :ref:`as_template-default-iptables.j2`
+   * Template :ref:`as_template-router1-iptables.j2`
+
+
+
 
 .. _as_kvm.yml:
 
@@ -381,6 +478,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_latex.yml:
 
 latex.yml
@@ -400,6 +501,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_libvirt-conf.yml:
 
@@ -421,6 +526,12 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+.. seealso::
+   * Handlers :ref:`as_handlers-libvirtd.yml`
+
+
+
+
 .. _as_libvirt.yml:
 
 libvirt.yml
@@ -440,6 +551,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_lid.yml:
 
@@ -461,6 +576,12 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+.. seealso::
+   * Handlers :ref:`as_handlers-messages.yml`
+
+
+
+
 .. _as_logrotate.yml:
 
 logrotate.yml
@@ -480,6 +601,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_modemmanager.yml:
 
@@ -501,6 +626,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_modules.yml:
 
 modules.yml
@@ -520,6 +649,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_netplan.yml:
 
@@ -541,6 +674,14 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+.. seealso::
+   * Handlers :ref:`as_handlers-netplan.yml`
+   * Template :ref:`as_template-netplan-default.j2`
+   * Template :ref:`as_template-netplan-conf.j2`
+
+
+
+
 .. _as_networkd.yml:
 
 networkd.yml
@@ -560,6 +701,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_networkmanager.yml:
 
@@ -581,6 +726,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_nfsd.yml:
 
 nfsd.yml
@@ -600,6 +749,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_packages-auto.yml:
 
@@ -621,6 +774,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_packages.yml:
 
 packages.yml
@@ -640,6 +797,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_passwords.yml:
 
@@ -661,6 +822,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_pm-utils.yml:
 
 pm-utils.yml
@@ -680,6 +845,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_postfix.yml:
 
@@ -701,6 +870,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_reboot.yml:
 
 reboot.yml
@@ -720,6 +893,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_repos.yml:
 
@@ -741,6 +918,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_resolvconf.yml:
 
 resolvconf.yml
@@ -760,6 +941,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_service.yml:
 
@@ -836,6 +1021,10 @@ run the playbook with the tag ``-t lp_service_general`` (110).
     :emphasize-lines: 8,10-13,16,18,19,21,24,27,31,43,49,51,53,55,57,63,66,68,74,79,80,82,89,95,97,110
     :linenos:
 
+
+
+
+
 .. _as_smart.yml:
 
 smart.yml
@@ -855,6 +1044,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_snap.yml:
 
@@ -876,6 +1069,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_speechd.yml:
 
 speechd.yml
@@ -895,6 +1092,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_sshd.yml:
 
@@ -916,6 +1117,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_ssh.yml:
 
 ssh.yml
@@ -935,6 +1140,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_sudoers.yml:
 
@@ -956,6 +1165,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_swap.yml:
 
 swap.yml
@@ -976,6 +1189,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_sysctl.yml:
 
 sysctl.yml
@@ -995,6 +1212,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_systemd.yml:
 
@@ -1108,6 +1329,10 @@ Control units (138)
     :emphasize-lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,99-100,107-108,111,112,121,138
     :linenos:
 
+
+
+
+
 .. _as_timesyncd.yml:
 
 timesyncd.yml
@@ -1127,6 +1352,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_timezone.yml:
 
@@ -1148,6 +1377,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_tlp.yml:
 
 tlp.yml
@@ -1167,6 +1400,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_udev.yml:
 
@@ -1188,6 +1425,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_ufw.yml:
 
 ufw.yml
@@ -1207,6 +1448,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_users.yml:
 
@@ -1228,6 +1473,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_vars-firstfound.yml:
 
 vars-firstfound.yml
@@ -1247,6 +1496,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_vars-incremental.yml:
 
@@ -1268,6 +1521,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_vars.yml:
 
 vars.yml
@@ -1287,6 +1544,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_virtualbox.yml:
 
@@ -1308,6 +1569,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_wpagui.yml:
 
 wpagui.yml
@@ -1327,6 +1592,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_wpasupplicant.yml:
 
@@ -1348,6 +1617,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_xen.yml:
 
 xen.yml
@@ -1367,6 +1640,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_xorg.yml:
 
@@ -1388,6 +1665,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_zeitgeist.yml:
 
 zeitgeist.yml
@@ -1407,6 +1688,10 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
 .. _as_zfs.yml:
 
@@ -1428,6 +1713,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_vars-flavors.yml:
 
 vars-flavors.yml
@@ -1448,6 +1737,10 @@ Description of the task.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
+
 .. _as_vars-flavors-common.yml:
 
 vars-flavors-common.yml
@@ -1467,4 +1760,8 @@ Description of the task.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
+
 
