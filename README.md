@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)[![Documentation Status](https://readthedocs.org/projects/docs/badge/?version=latest)](https://ansible-linux-postinstall.readthedocs.io/en/latest/)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi, aliases, apparmor, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums, fstab, gpg, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, networkd, networkmanager, nfsd, packages, passwords, pm-utils, postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, systemd, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
+[Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi, aliases, apparmor, apt, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums, fstab, gpg, gpsd, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, networkd, networkmanager, nfsd, packages, passwords, pm-utils, postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, systemd, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 [Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io)
 
@@ -212,6 +212,8 @@ shell> ansible-playbook linux-postinstall.yml
 - [Ubuntu Release Notes](https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes#New_features_in_18.04)
 
 - [ACPI - Ubuntu Wiki](https://wiki.ubuntu.com/DebuggingACPI)
+- [AptConfiguration - Debian Wiki](https://wiki.debian.org/AptConfiguration)
+- [apt.conf - Ubuntu man](http://manpages.ubuntu.com/manpages/focal/man5/apt.conf.5.html)
 - [AppArmor Wiki](https://gitlab.com/apparmor/apparmor/wikis/home)
 - [AppArmor - Ubuntu Wiki](https://wiki.ubuntu.com/AppArmor)
 - [AppArmor - Ubuntu Help community](https://help.ubuntu.com/community/AppArmor)
@@ -219,7 +221,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [Autofs - Ubuntu Help](https://help.ubuntu.com/community/Autofs)
 - [Bluetooth headphones](https://bbs.archlinux.org/viewtopic.php?id=212785)
 - [Cron Howto - Ubuntu Help](https://help.ubuntu.com/community/CronHowto)
-- [Debsums - man](https://manpages.debian.org/stretch/debsums/debsums.1.en.html)
+- [Debsums - Debian man](https://manpages.debian.org/stretch/debsums/debsums.1.en.html)
 - [GCP Configuring Imported Images](https://cloud.google.com/compute/docs/images/configuring-imported-images)
 - [GPG - GnuPG](https://gnupg.org/)
 - [GPG - GnuPG HowTo - Ubuntu Help community](https://help.ubuntu.com/community/GnuPrivacyGuardHowto)

@@ -514,5 +514,26 @@
 #   - {section: ifupdown, key: managed, val: 'false'}
 # lp_nm_mask: true
 
+# Configure apt
+# lp_apt: true
+# lp_apt_debug: true
+# lp_apt_conf:
+#   - file: 10periodic
+#     conf:
+#       'APT::Periodic::Update-Package-Lists': '"1"'
+#       'APT::Periodic::Download-Upgradeable-Packages': '"0"'
+#       'APT::Periodic::AutocleanInterval': '"0"'
+#   - file: 20auto-upgrades
+#     conf:
+#       'APT::Periodic::Update-Package-Lists': '"0"'
+#       'APT::Periodic::Unattended-Upgrade': '"0"'
+#   - file: 60icons
+#     conf:
+#       'Acquire::IndexTargets':
+#         'deb::DEP-11-icons-small':
+#           'DefaultEnabled': '"true"'
+#         'deb::DEP-11-icons':
+#           'DefaultEnabled': '"true"'
+
 # EOF
 ...

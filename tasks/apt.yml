@@ -1,0 +1,30 @@
+---
+# linux-postinstall apt
+
+- name: "apt: Debug"
+  vars:
+    msg: |
+      lp_backup_conf [{{ lp_backup_conf }}]
+      lp_apt_conf
+      {{ lp_apt_conf|to_nice_yaml }}
+  debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_apt_debug|bool
+  tags: lp_apt_debug
+
+- name: "apt: Configure /etc/apt/apt.conf.d"
+  template:
+    src: "{{ item.template|default('apt-confd.j2') }}"
+    dest: "/etc/apt/apt.conf.d/{{ item.file }}"
+    owner: "{{ item.owner|default('root') }}"
+    group: "{{ item.group|default('root') }}"
+    mode: "{{ item.mode|default('0644') }}"
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_apt_conf }}"
+  loop_control:
+    label: "{{ item.file }}"
+  notify: "{{ item.notify|default(omit) }}"
+  tags: lp_apt_conf
+
+# EOF
+...
