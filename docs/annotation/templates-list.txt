@@ -1,6 +1,7 @@
 acpi-action-lid.sh.j2
 acpi-event-default.j2
 aliases.j2
+apt-confd.j2
 auto-upgrades.j2
 blacklist-module.j2
 bluetooth-rfcomm-conf.j2

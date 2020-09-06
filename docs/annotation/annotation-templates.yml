@@ -37,6 +37,18 @@ mytemplates:
     note: []
     warning: []
 
+  - file: apt-confd.j2
+    link: template-apt-confd.j2
+    path: templates/apt-confd.j2
+    synopsis: |
+      Template apt-confd.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
   - file: auto-upgrades.j2
     link: template-auto-upgrades.j2
     path: templates/auto-upgrades.j2

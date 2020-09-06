@@ -76,6 +76,32 @@ Description of the task.
 
 
 
+.. _as_apt.yml:
+
+apt.yml
+-------
+
+Synopsis: Configure apt.
+
+
+Description of the task.
+
+
+[`tasks/apt.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/apt.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/apt.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+.. seealso::
+   * Template :ref:`as_template-apt-confd.j2`
+
+
+
+
 .. _as_apparmor.yml:
 
 apparmor.yml

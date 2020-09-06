@@ -1,5 +1,6 @@
 acpi.yml
 aliases.yml
+apt.yml
 apparmor.yml
 authorized_keys.yml
 autofs.yml

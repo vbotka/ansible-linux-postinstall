@@ -61,6 +61,26 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+.. _as_template-apt-confd.j2:
+
+apt-confd.j2
+------------
+
+Synopsis: Template apt-confd.
+
+
+Description of the template.
+
+
+[`templates/apt-confd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/apt-confd.j2>`_]
+
+.. highlight:: jinja
+    :linenothreshold: 5
+.. literalinclude:: ../../templates/apt-confd.j2
+    :language: jinja
+    :emphasize-lines: 1
+    :linenos:
+
 .. _as_template-auto-upgrades.j2:
 
 auto-upgrades.j2

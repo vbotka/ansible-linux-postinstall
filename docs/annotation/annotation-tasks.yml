@@ -38,6 +38,19 @@ mytasks:
     hints: []
     warnings: []
 
+  - file: apt.yml
+    link: apt.yml
+    path: tasks/apt.yml
+    synopsis: |
+      Configure apt.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: {'templates': ['apt-confd.j2']}
+    notes: []
+    hints: []
+    warnings: []
+
   - file: apparmor.yml
     link: apparmor.yml
     path: tasks/apparmor.yml
