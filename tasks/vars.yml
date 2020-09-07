@@ -3,15 +3,15 @@
 
 - name: "vars: Include firstfound default vars"
   when: lp_vars_distro == "firstfound"
-  include_tasks: vars-firstfound.yml
+  include_tasks: vars_firstfound.yml
 
 - name: "vars: Include incremental default vars"
   when: lp_vars_distro == "incremental"
-  include_tasks: vars-incremental.yml
+  include_tasks: vars_incremental.yml
 
 - name: "vars: Include firstfound default vars for various flavors"
   when: lp_flavors_enable|bool
-  include_tasks: sub/vars-flavors.yml
+  include_tasks: sub/vars_flavors.yml
 
 # TODO "vars: Include incremental default vars for various flavors"
 

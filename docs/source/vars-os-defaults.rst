@@ -33,5 +33,5 @@ firstfound)*
    
 .. seealso::
    * Annotated Source code :ref:`as_vars.yml`
-   * Annotated Source code :ref:`as_vars-firstfound.yml`
-   * Annotated Source code :ref:`as_vars-incremental.yml`
+   * Annotated Source code :ref:`as_vars_firstfound.yml`
+   * Annotated Source code :ref:`as_vars_incremental.yml`

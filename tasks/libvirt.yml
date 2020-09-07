@@ -25,7 +25,7 @@
   tags: lp_libvirt_pkg
 
 - name: "libvirt: Configure"
-  include_tasks: libvirt-conf.yml
+  include_tasks: libvirt_conf.yml
   loop: "{{ lp_libvirt_conf|dict2items }}"
   tags: lp_libvirt_conf
 

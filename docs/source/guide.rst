@@ -333,7 +333,7 @@ Variables
 .. _ug_vars_os_custom:
 .. include:: vars-os-custom.rst
 .. _ug_vars_flavors:
-.. include:: vars-flavors.rst
+.. include:: vars_flavors.rst
 
 
 .. _ug_bp:

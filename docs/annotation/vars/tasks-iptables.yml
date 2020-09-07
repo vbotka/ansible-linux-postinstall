@@ -4,8 +4,8 @@ task_iptables_seealso:
   handlers:
     - iptables
   templates:
-    - iptables-restore.j2
-    - default-iptables.j2
-    - router1-iptables.j2
+    - iptables_restore.j2
+    - default_iptables.j2
+    - router1_iptables.j2
 
 ...

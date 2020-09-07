@@ -1,7 +1,7 @@
 Tasks
 =====
 
-.. _as_tasks-main.yml:
+.. _as_main.yml:
 
 main.yml
 --------
@@ -70,8 +70,8 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers-newaliases.yml`
-   * Template :ref:`as_template-aliases.j2`
+   * Handlers :ref:`as_handlers_newaliases.yml`
+   * Template :ref:`as_template_aliases.j2`
 
 
 
@@ -97,7 +97,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Template :ref:`as_template-apt-confd.j2`
+   * Template :ref:`as_template_apt_confd.j2`
 
 
 
@@ -171,7 +171,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers-autofs.yml`
+   * Handlers :ref:`as_handlers_autofs.yml`
 
 
 
@@ -221,7 +221,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers-bluetooth.yml`
+   * Handlers :ref:`as_handlers_bluetooth.yml`
 
 
 
@@ -343,10 +343,10 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers-gpg.yml`
-   * Template :ref:`as_template-gpg.conf.j2`
-   * Template :ref:`as_template-gpg-agent.conf.j2`
-   * Template :ref:`as_template-gpg-dirmngr.conf.j2`
+   * Handlers :ref:`as_handlers_gpg.yml`
+   * Template :ref:`as_template_gpg.conf.j2`
+   * Template :ref:`as_template_gpg_agent.conf.j2`
+   * Template :ref:`as_template_gpg_dirmngr.conf.j2`
 
 
 
@@ -372,9 +372,9 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers-gpsd.yml`
-   * Handlers :ref:`as_handlers-bluetooth.yml`
-   * Template :ref:`as_template-gpsd.j2`
+   * Handlers :ref:`as_handlers_gpsd.yml`
+   * Handlers :ref:`as_handlers_bluetooth.yml`
+   * Template :ref:`as_template_gpsd.j2`
 
 
 
@@ -400,7 +400,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers-grub.yml`
+   * Handlers :ref:`as_handlers_grub.yml`
 
 
 
@@ -450,7 +450,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Template :ref:`as_template-hosts.j2`
+   * Template :ref:`as_template_hosts.j2`
 
 
 
@@ -476,10 +476,10 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers-iptables.yml`
-   * Template :ref:`as_template-iptables-restore.j2`
-   * Template :ref:`as_template-default-iptables.j2`
-   * Template :ref:`as_template-router1-iptables.j2`
+   * Handlers :ref:`as_handlers_iptables.yml`
+   * Template :ref:`as_template_iptables_restore.j2`
+   * Template :ref:`as_template_default_iptables.j2`
+   * Template :ref:`as_template_router1_iptables.j2`
 
 
 
@@ -532,28 +532,28 @@ Description of the task.
 
 
 
-.. _as_libvirt-conf.yml:
+.. _as_libvirt_conf.yml:
 
-libvirt-conf.yml
+libvirt_conf.yml
 ----------------
 
-Synopsis: Configure libvirt-conf.
+Synopsis: Configure libvirt_conf.
 
 
 Description of the task.
 
 
-[`tasks/libvirt-conf.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/libvirt-conf.yml>`_]
+[`tasks/libvirt_conf.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/libvirt_conf.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../tasks/libvirt-conf.yml
+.. literalinclude:: ../../tasks/libvirt_conf.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers-libvirtd.yml`
+   * Handlers :ref:`as_handlers_libvirtd.yml`
 
 
 
@@ -603,7 +603,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers-messages.yml`
+   * Handlers :ref:`as_handlers_messages.yml`
 
 
 
@@ -701,9 +701,9 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers-netplan.yml`
-   * Template :ref:`as_template-netplan-default.j2`
-   * Template :ref:`as_template-netplan-conf.j2`
+   * Handlers :ref:`as_handlers_netplan.yml`
+   * Template :ref:`as_template_netplan_default.j2`
+   * Template :ref:`as_template_netplan_conf.j2`
 
 
 
@@ -780,22 +780,22 @@ Description of the task.
 
 
 
-.. _as_packages-auto.yml:
+.. _as_packages_auto.yml:
 
-packages-auto.yml
+packages_auto.yml
 -----------------
 
-Synopsis: Configure packages-auto.
+Synopsis: Configure packages_auto.
 
 
 Description of the task.
 
 
-[`tasks/packages-auto.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/packages-auto.yml>`_]
+[`tasks/packages_auto.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/packages_auto.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../tasks/packages-auto.yml
+.. literalinclude:: ../../tasks/packages_auto.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
@@ -852,22 +852,22 @@ Description of the task.
 
 
 
-.. _as_pm-utils.yml:
+.. _as_pm_utils.yml:
 
-pm-utils.yml
+pm_utils.yml
 ------------
 
-Synopsis: Configure pm-utils.
+Synopsis: Configure pm_utils.
 
 
 Description of the task.
 
 
-[`tasks/pm-utils.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/pm-utils.yml>`_]
+[`tasks/pm_utils.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/pm_utils.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../tasks/pm-utils.yml
+.. literalinclude:: ../../tasks/pm_utils.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
@@ -1503,22 +1503,22 @@ Description of the task.
 
 
 
-.. _as_vars-firstfound.yml:
+.. _as_vars_firstfound.yml:
 
-vars-firstfound.yml
+vars_firstfound.yml
 -------------------
 
-Synopsis: Configure vars-firstfound.
+Synopsis: Configure vars_firstfound.
 
 
 Description of the task.
 
 
-[`tasks/vars-firstfound.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars-firstfound.yml>`_]
+[`tasks/vars_firstfound.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars_firstfound.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../tasks/vars-firstfound.yml
+.. literalinclude:: ../../tasks/vars_firstfound.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
@@ -1527,22 +1527,22 @@ Description of the task.
 
 
 
-.. _as_vars-incremental.yml:
+.. _as_vars_incremental.yml:
 
-vars-incremental.yml
+vars_incremental.yml
 --------------------
 
-Synopsis: Configure vars-incremental.
+Synopsis: Configure vars_incremental.
 
 
 Description of the task.
 
 
-[`tasks/vars-incremental.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars-incremental.yml>`_]
+[`tasks/vars_incremental.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars_incremental.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../tasks/vars-incremental.yml
+.. literalinclude:: ../../tasks/vars_incremental.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
@@ -1743,22 +1743,22 @@ Description of the task.
 
 
 
-.. _as_vars-flavors.yml:
+.. _as_vars_flavors.yml:
 
-vars-flavors.yml
+vars_flavors.yml
 ----------------
 
-Synopsis: Configure vars-flavors.
+Synopsis: Configure vars_flavors.
 
 
 Description of the task.
 
 
-[`tasks/sub/vars-flavors.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sub/vars-flavors.yml>`_]
+[`tasks/sub/vars_flavors.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sub/vars_flavors.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../tasks/sub/vars-flavors.yml
+.. literalinclude:: ../../tasks/sub/vars_flavors.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
@@ -1767,22 +1767,22 @@ Description of the task.
 
 
 
-.. _as_vars-flavors-common.yml:
+.. _as_vars_flavors_common.yml:
 
-vars-flavors-common.yml
+vars_flavors_common.yml
 -----------------------
 
-Synopsis: Configure vars-flavors-common.
+Synopsis: Configure vars_flavors_common.
 
 
 Description of the task.
 
 
-[`tasks/sub/vars-flavors-common.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sub/vars-flavors-common.yml>`_]
+[`tasks/sub/vars_flavors_common.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sub/vars_flavors_common.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../tasks/sub/vars-flavors-common.yml
+.. literalinclude:: ../../tasks/sub/vars_flavors_common.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:

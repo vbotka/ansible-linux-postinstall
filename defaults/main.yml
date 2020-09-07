@@ -449,9 +449,9 @@ lp_reboot_wait_timeout: 300
 #     vars/flavors/armbian.yml
 #     vars/defaults.yml
 #
-# 1) File with service tasks task/sub/vars-flavors-<flavor>.yml is
+# 1) File with service tasks task/sub/vars_flavors-<flavor>.yml is
 #    needed when new flavor is added to lp_flavors. See
-#    tasks/sub/vars-flavors-common.yml
+#    tasks/sub/vars_flavors_common.yml
 # 2) For precedence of vars see tasks/vars.yml
 
 lp_flavors_enable: true

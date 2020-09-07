@@ -23,10 +23,10 @@ Synopsis: {{ i.synopsis }}
 {% if i.seealso|default([])|length > 0 %}
 .. seealso::
 {% for ii in i.seealso['handlers']|default([]) %}
-   * Handlers :ref:`as_handlers-{{ ii }}.yml`
+   * Handlers :ref:`as_handlers_{{ ii }}.yml`
 {% endfor %}
 {% for ii in i.seealso.templates|default([]) %}
-   * Template :ref:`as_template-{{ ii }}`
+   * Template :ref:`as_template_{{ ii }}`
 {% endfor %}
 {% for ii in i.seealso.others|default([]) %}
    * {{ ii }}

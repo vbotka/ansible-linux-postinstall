@@ -21,9 +21,9 @@ Import handlers.
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-apparmor.yml:
+.. _as_handlers_apparmor.yml:
 
-handlers-apparmor.yml
+handlers_apparmor.yml
 ---------------------
 
 Synopsis: Handler apparmor.
@@ -32,18 +32,18 @@ Synopsis: Handler apparmor.
 Description of the handler.
 
 
-[`handlers/handlers-apparmor.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-apparmor.yml>`_]
+[`handlers/handlers_apparmor.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_apparmor.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-apparmor.yml
+.. literalinclude:: ../../handlers/handlers_apparmor.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-autofs.yml:
+.. _as_handlers_autofs.yml:
 
-handlers-autofs.yml
+handlers_autofs.yml
 -------------------
 
 Synopsis: Handler autofs.
@@ -52,18 +52,18 @@ Synopsis: Handler autofs.
 Description of the handler.
 
 
-[`handlers/handlers-autofs.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-autofs.yml>`_]
+[`handlers/handlers_autofs.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_autofs.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-autofs.yml
+.. literalinclude:: ../../handlers/handlers_autofs.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-bluetooth.yml:
+.. _as_handlers_bluetooth.yml:
 
-handlers-bluetooth.yml
+handlers_bluetooth.yml
 ----------------------
 
 Synopsis: Handler bluetooth.
@@ -72,18 +72,18 @@ Synopsis: Handler bluetooth.
 Description of the handler.
 
 
-[`handlers/handlers-bluetooth.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-bluetooth.yml>`_]
+[`handlers/handlers_bluetooth.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_bluetooth.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-bluetooth.yml
+.. literalinclude:: ../../handlers/handlers_bluetooth.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-gpg.yml:
+.. _as_handlers_gpg.yml:
 
-handlers-gpg.yml
+handlers_gpg.yml
 ----------------
 
 Synopsis: Handler gpg.
@@ -92,18 +92,18 @@ Synopsis: Handler gpg.
 Description of the handler.
 
 
-[`handlers/handlers-gpg.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-gpg.yml>`_]
+[`handlers/handlers_gpg.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_gpg.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-gpg.yml
+.. literalinclude:: ../../handlers/handlers_gpg.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-gpsd.yml:
+.. _as_handlers_gpsd.yml:
 
-handlers-gpsd.yml
+handlers_gpsd.yml
 -----------------
 
 Synopsis: Handler gpsd.
@@ -112,18 +112,18 @@ Synopsis: Handler gpsd.
 Description of the handler.
 
 
-[`handlers/handlers-gpsd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-gpsd.yml>`_]
+[`handlers/handlers_gpsd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_gpsd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-gpsd.yml
+.. literalinclude:: ../../handlers/handlers_gpsd.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-grub.yml:
+.. _as_handlers_grub.yml:
 
-handlers-grub.yml
+handlers_grub.yml
 -----------------
 
 Synopsis: Handler grub.
@@ -132,18 +132,18 @@ Synopsis: Handler grub.
 Description of the handler.
 
 
-[`handlers/handlers-grub.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-grub.yml>`_]
+[`handlers/handlers_grub.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_grub.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-grub.yml
+.. literalinclude:: ../../handlers/handlers_grub.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-hostname.yml:
+.. _as_handlers_hostname.yml:
 
-handlers-hostname.yml
+handlers_hostname.yml
 ---------------------
 
 Synopsis: Handler hostname.
@@ -152,18 +152,18 @@ Synopsis: Handler hostname.
 Description of the handler.
 
 
-[`handlers/handlers-hostname.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-hostname.yml>`_]
+[`handlers/handlers_hostname.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_hostname.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-hostname.yml
+.. literalinclude:: ../../handlers/handlers_hostname.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-initramfs.yml:
+.. _as_handlers_initramfs.yml:
 
-handlers-initramfs.yml
+handlers_initramfs.yml
 ----------------------
 
 Synopsis: Handler initramfs.
@@ -172,18 +172,18 @@ Synopsis: Handler initramfs.
 Description of the handler.
 
 
-[`handlers/handlers-initramfs.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-initramfs.yml>`_]
+[`handlers/handlers_initramfs.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_initramfs.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-initramfs.yml
+.. literalinclude:: ../../handlers/handlers_initramfs.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-iptables.yml:
+.. _as_handlers_iptables.yml:
 
-handlers-iptables.yml
+handlers_iptables.yml
 ---------------------
 
 Synopsis: Handler iptables.
@@ -192,18 +192,18 @@ Synopsis: Handler iptables.
 Description of the handler.
 
 
-[`handlers/handlers-iptables.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-iptables.yml>`_]
+[`handlers/handlers_iptables.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_iptables.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-iptables.yml
+.. literalinclude:: ../../handlers/handlers_iptables.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-libvirtd.yml:
+.. _as_handlers_libvirtd.yml:
 
-handlers-libvirtd.yml
+handlers_libvirtd.yml
 ---------------------
 
 Synopsis: Handler libvirtd.
@@ -212,18 +212,18 @@ Synopsis: Handler libvirtd.
 Description of the handler.
 
 
-[`handlers/handlers-libvirtd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-libvirtd.yml>`_]
+[`handlers/handlers_libvirtd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_libvirtd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-libvirtd.yml
+.. literalinclude:: ../../handlers/handlers_libvirtd.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-messages.yml:
+.. _as_handlers_messages.yml:
 
-handlers-messages.yml
+handlers_messages.yml
 ---------------------
 
 Synopsis: Handler messages.
@@ -232,18 +232,18 @@ Synopsis: Handler messages.
 Description of the handler.
 
 
-[`handlers/handlers-messages.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-messages.yml>`_]
+[`handlers/handlers_messages.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_messages.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-messages.yml
+.. literalinclude:: ../../handlers/handlers_messages.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-netplan.yml:
+.. _as_handlers_netplan.yml:
 
-handlers-netplan.yml
+handlers_netplan.yml
 --------------------
 
 Synopsis: Handler netplan.
@@ -252,18 +252,18 @@ Synopsis: Handler netplan.
 Description of the handler.
 
 
-[`handlers/handlers-netplan.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-netplan.yml>`_]
+[`handlers/handlers_netplan.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_netplan.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-netplan.yml
+.. literalinclude:: ../../handlers/handlers_netplan.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-networkd.yml:
+.. _as_handlers_networkd.yml:
 
-handlers-networkd.yml
+handlers_networkd.yml
 ---------------------
 
 Synopsis: Handler networkd.
@@ -272,18 +272,18 @@ Synopsis: Handler networkd.
 Description of the handler.
 
 
-[`handlers/handlers-networkd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-networkd.yml>`_]
+[`handlers/handlers_networkd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_networkd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-networkd.yml
+.. literalinclude:: ../../handlers/handlers_networkd.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-newaliases.yml:
+.. _as_handlers_newaliases.yml:
 
-handlers-newaliases.yml
+handlers_newaliases.yml
 -----------------------
 
 Synopsis: Handler newaliases.
@@ -292,18 +292,18 @@ Synopsis: Handler newaliases.
 Description of the handler.
 
 
-[`handlers/handlers-newaliases.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-newaliases.yml>`_]
+[`handlers/handlers_newaliases.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_newaliases.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-newaliases.yml
+.. literalinclude:: ../../handlers/handlers_newaliases.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-nfsd.yml:
+.. _as_handlers_nfsd.yml:
 
-handlers-nfsd.yml
+handlers_nfsd.yml
 -----------------
 
 Synopsis: Handler nfsd.
@@ -312,18 +312,18 @@ Synopsis: Handler nfsd.
 Description of the handler.
 
 
-[`handlers/handlers-nfsd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-nfsd.yml>`_]
+[`handlers/handlers_nfsd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_nfsd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-nfsd.yml
+.. literalinclude:: ../../handlers/handlers_nfsd.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-postfix.yml:
+.. _as_handlers_postfix.yml:
 
-handlers-postfix.yml
+handlers_postfix.yml
 --------------------
 
 Synopsis: Handler postfix.
@@ -332,18 +332,18 @@ Synopsis: Handler postfix.
 Description of the handler.
 
 
-[`handlers/handlers-postfix.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-postfix.yml>`_]
+[`handlers/handlers_postfix.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_postfix.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-postfix.yml
+.. literalinclude:: ../../handlers/handlers_postfix.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-resolvconf.yml:
+.. _as_handlers_resolvconf.yml:
 
-handlers-resolvconf.yml
+handlers_resolvconf.yml
 -----------------------
 
 Synopsis: Handler resolvconf.
@@ -352,18 +352,18 @@ Synopsis: Handler resolvconf.
 Description of the handler.
 
 
-[`handlers/handlers-resolvconf.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-resolvconf.yml>`_]
+[`handlers/handlers_resolvconf.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_resolvconf.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-resolvconf.yml
+.. literalinclude:: ../../handlers/handlers_resolvconf.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-smart.yml:
+.. _as_handlers_smart.yml:
 
-handlers-smart.yml
+handlers_smart.yml
 ------------------
 
 Synopsis: Handler smart.
@@ -372,18 +372,18 @@ Synopsis: Handler smart.
 Description of the handler.
 
 
-[`handlers/handlers-smart.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-smart.yml>`_]
+[`handlers/handlers_smart.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_smart.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-smart.yml
+.. literalinclude:: ../../handlers/handlers_smart.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-sshd.yml:
+.. _as_handlers_sshd.yml:
 
-handlers-sshd.yml
+handlers_sshd.yml
 -----------------
 
 Synopsis: Handler sshd.
@@ -392,18 +392,18 @@ Synopsis: Handler sshd.
 Description of the handler.
 
 
-[`handlers/handlers-sshd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-sshd.yml>`_]
+[`handlers/handlers_sshd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_sshd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-sshd.yml
+.. literalinclude:: ../../handlers/handlers_sshd.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-swap.yml:
+.. _as_handlers_swap.yml:
 
-handlers-swap.yml
+handlers_swap.yml
 -----------------
 
 Synopsis: Handler swap.
@@ -412,18 +412,18 @@ Synopsis: Handler swap.
 Description of the handler.
 
 
-[`handlers/handlers-swap.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-swap.yml>`_]
+[`handlers/handlers_swap.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_swap.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-swap.yml
+.. literalinclude:: ../../handlers/handlers_swap.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-sysctl.yml:
+.. _as_handlers_sysctl.yml:
 
-handlers-sysctl.yml
+handlers_sysctl.yml
 -------------------
 
 Synopsis: Handler sysctl.
@@ -432,18 +432,18 @@ Synopsis: Handler sysctl.
 Description of the handler.
 
 
-[`handlers/handlers-sysctl.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-sysctl.yml>`_]
+[`handlers/handlers_sysctl.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_sysctl.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-sysctl.yml
+.. literalinclude:: ../../handlers/handlers_sysctl.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-systemd.yml:
+.. _as_handlers_systemd.yml:
 
-handlers-systemd.yml
+handlers_systemd.yml
 --------------------
 
 Synopsis: Handler systemd.
@@ -452,18 +452,18 @@ Synopsis: Handler systemd.
 Description of the handler.
 
 
-[`handlers/handlers-systemd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-systemd.yml>`_]
+[`handlers/handlers_systemd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_systemd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-systemd.yml
+.. literalinclude:: ../../handlers/handlers_systemd.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-timesyncd.yml:
+.. _as_handlers_timesyncd.yml:
 
-handlers-timesyncd.yml
+handlers_timesyncd.yml
 ----------------------
 
 Synopsis: Handler timesyncd.
@@ -472,18 +472,18 @@ Synopsis: Handler timesyncd.
 Description of the handler.
 
 
-[`handlers/handlers-timesyncd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-timesyncd.yml>`_]
+[`handlers/handlers_timesyncd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_timesyncd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-timesyncd.yml
+.. literalinclude:: ../../handlers/handlers_timesyncd.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-tlp.yml:
+.. _as_handlers_tlp.yml:
 
-handlers-tlp.yml
+handlers_tlp.yml
 ----------------
 
 Synopsis: Handler tlp.
@@ -492,18 +492,18 @@ Synopsis: Handler tlp.
 Description of the handler.
 
 
-[`handlers/handlers-tlp.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-tlp.yml>`_]
+[`handlers/handlers_tlp.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_tlp.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-tlp.yml
+.. literalinclude:: ../../handlers/handlers_tlp.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-udev.yml:
+.. _as_handlers_udev.yml:
 
-handlers-udev.yml
+handlers_udev.yml
 -----------------
 
 Synopsis: Handler udev.
@@ -512,18 +512,18 @@ Synopsis: Handler udev.
 Description of the handler.
 
 
-[`handlers/handlers-udev.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-udev.yml>`_]
+[`handlers/handlers_udev.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_udev.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-udev.yml
+.. literalinclude:: ../../handlers/handlers_udev.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
 
-.. _as_handlers-wpasupplicant.yml:
+.. _as_handlers_wpasupplicant.yml:
 
-handlers-wpasupplicant.yml
+handlers_wpasupplicant.yml
 --------------------------
 
 Synopsis: Handler wpasupplicant.
@@ -532,11 +532,11 @@ Synopsis: Handler wpasupplicant.
 Description of the handler.
 
 
-[`handlers/handlers-wpasupplicant.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers-wpasupplicant.yml>`_]
+[`handlers/handlers_wpasupplicant.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/handlers_wpasupplicant.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../handlers/handlers-wpasupplicant.yml
+.. literalinclude:: ../../handlers/handlers_wpasupplicant.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:

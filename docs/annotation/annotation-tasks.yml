@@ -1,7 +1,7 @@
 ---
 mytasks:
   - file: main.yml
-    link: tasks-main.yml
+    link: main.yml
     path: tasks/main.yml
     synopsis: |
       Main task.
@@ -46,7 +46,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'templates': ['apt-confd.j2']}
+    seealso: {'templates': ['apt_confd.j2']}
     notes: []
     hints: []
     warnings: []
@@ -176,7 +176,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'handlers': ['gpg'], 'templates': ['gpg.conf.j2', 'gpg-agent.conf.j2', 'gpg-dirmngr.conf.j2']}
+    seealso: {'handlers': ['gpg'], 'templates': ['gpg.conf.j2', 'gpg_agent.conf.j2', 'gpg_dirmngr.conf.j2']}
     notes: []
     hints: []
     warnings: []
@@ -241,7 +241,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'handlers': ['iptables'], 'templates': ['iptables-restore.j2', 'default-iptables.j2', 'router1-iptables.j2']}
+    seealso: {'handlers': ['iptables'], 'templates': ['iptables_restore.j2', 'default_iptables.j2', 'router1_iptables.j2']}
     notes: []
     hints: []
     warnings: []
@@ -272,11 +272,11 @@ mytasks:
     hints: []
     warnings: []
 
-  - file: libvirt-conf.yml
-    link: libvirt-conf.yml
-    path: tasks/libvirt-conf.yml
+  - file: libvirt_conf.yml
+    link: libvirt_conf.yml
+    path: tasks/libvirt_conf.yml
     synopsis: |
-      Configure libvirt-conf.
+      Configure libvirt_conf.
     description: |
       Description of the task.
     lines: 1,2
@@ -358,7 +358,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'handlers': ['netplan'], 'templates': ['netplan-default.j2', 'netplan-conf.j2']}
+    seealso: {'handlers': ['netplan'], 'templates': ['netplan_default.j2', 'netplan_conf.j2']}
     notes: []
     hints: []
     warnings: []
@@ -402,11 +402,11 @@ mytasks:
     hints: []
     warnings: []
 
-  - file: packages-auto.yml
-    link: packages-auto.yml
-    path: tasks/packages-auto.yml
+  - file: packages_auto.yml
+    link: packages_auto.yml
+    path: tasks/packages_auto.yml
     synopsis: |
-      Configure packages-auto.
+      Configure packages_auto.
     description: |
       Description of the task.
     lines: 1,2
@@ -441,11 +441,11 @@ mytasks:
     hints: []
     warnings: []
 
-  - file: pm-utils.yml
-    link: pm-utils.yml
-    path: tasks/pm-utils.yml
+  - file: pm_utils.yml
+    link: pm_utils.yml
+    path: tasks/pm_utils.yml
     synopsis: |
-      Configure pm-utils.
+      Configure pm_utils.
     description: |
       Description of the task.
     lines: 1,2
@@ -865,11 +865,11 @@ mytasks:
     hints: []
     warnings: []
 
-  - file: vars-firstfound.yml
-    link: vars-firstfound.yml
-    path: tasks/vars-firstfound.yml
+  - file: vars_firstfound.yml
+    link: vars_firstfound.yml
+    path: tasks/vars_firstfound.yml
     synopsis: |
-      Configure vars-firstfound.
+      Configure vars_firstfound.
     description: |
       Description of the task.
     lines: 1,2
@@ -878,11 +878,11 @@ mytasks:
     hints: []
     warnings: []
 
-  - file: vars-incremental.yml
-    link: vars-incremental.yml
-    path: tasks/vars-incremental.yml
+  - file: vars_incremental.yml
+    link: vars_incremental.yml
+    path: tasks/vars_incremental.yml
     synopsis: |
-      Configure vars-incremental.
+      Configure vars_incremental.
     description: |
       Description of the task.
     lines: 1,2
@@ -995,11 +995,11 @@ mytasks:
     hints: []
     warnings: []
 
-  - file: vars-flavors.yml
-    link: vars-flavors.yml
-    path: tasks/sub/vars-flavors.yml
+  - file: vars_flavors.yml
+    link: vars_flavors.yml
+    path: tasks/sub/vars_flavors.yml
     synopsis: |
-      Configure vars-flavors.
+      Configure vars_flavors.
     description: |
       Description of the task.
     lines: 1,2
@@ -1008,11 +1008,11 @@ mytasks:
     hints: []
     warnings: []
 
-  - file: vars-flavors-common.yml
-    link: vars-flavors-common.yml
-    path: tasks/sub/vars-flavors-common.yml
+  - file: vars_flavors_common.yml
+    link: vars_flavors_common.yml
+    path: tasks/sub/vars_flavors_common.yml
     synopsis: |
-      Configure vars-flavors-common.
+      Configure vars_flavors_common.
     description: |
       Description of the task.
     lines: 1,2

@@ -1,47 +1,47 @@
 Templates
 =========
 
-.. _as_template-acpi-action-lid.sh.j2:
+.. _as_template_acpi_action_lid.sh.j2:
 
-acpi-action-lid.sh.j2
+acpi_action_lid.sh.j2
 ---------------------
 
-Synopsis: Template acpi-action-lid.sh.
+Synopsis: Template acpi_action_lid.sh.
 
 
 Description of the template.
 
 
-[`templates/acpi-action-lid.sh.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/acpi-action-lid.sh.j2>`_]
+[`templates/acpi_action_lid.sh.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/acpi_action_lid.sh.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/acpi-action-lid.sh.j2
+.. literalinclude:: ../../templates/acpi_action_lid.sh.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-acpi-event-default.j2:
+.. _as_template_acpi_event_default.j2:
 
-acpi-event-default.j2
+acpi_event_default.j2
 ---------------------
 
-Synopsis: Template acpi-event-default.
+Synopsis: Template acpi_event_default.
 
 
 Description of the template.
 
 
-[`templates/acpi-event-default.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/acpi-event-default.j2>`_]
+[`templates/acpi_event_default.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/acpi_event_default.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/acpi-event-default.j2
+.. literalinclude:: ../../templates/acpi_event_default.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-aliases.j2:
+.. _as_template_aliases.j2:
 
 aliases.j2
 ----------
@@ -61,107 +61,107 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-apt-confd.j2:
+.. _as_template_apt_confd.j2:
 
-apt-confd.j2
+apt_confd.j2
 ------------
 
-Synopsis: Template apt-confd.
+Synopsis: Template apt_confd.
 
 
 Description of the template.
 
 
-[`templates/apt-confd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/apt-confd.j2>`_]
+[`templates/apt_confd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/apt_confd.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/apt-confd.j2
+.. literalinclude:: ../../templates/apt_confd.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-auto-upgrades.j2:
+.. _as_template_auto_upgrades.j2:
 
-auto-upgrades.j2
+auto_upgrades.j2
 ----------------
 
-Synopsis: Template auto-upgrades.
+Synopsis: Template auto_upgrades.
 
 
 Description of the template.
 
 
-[`templates/auto-upgrades.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/auto-upgrades.j2>`_]
+[`templates/auto_upgrades.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/auto_upgrades.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/auto-upgrades.j2
+.. literalinclude:: ../../templates/auto_upgrades.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-blacklist-module.j2:
+.. _as_template_blacklist_module.j2:
 
-blacklist-module.j2
+blacklist_module.j2
 -------------------
 
-Synopsis: Template blacklist-module.
+Synopsis: Template blacklist_module.
 
 
 Description of the template.
 
 
-[`templates/blacklist-module.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/blacklist-module.j2>`_]
+[`templates/blacklist_module.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/blacklist_module.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/blacklist-module.j2
+.. literalinclude:: ../../templates/blacklist_module.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-bluetooth-rfcomm-conf.j2:
+.. _as_template_bluetooth_rfcomm_conf.j2:
 
-bluetooth-rfcomm-conf.j2
+bluetooth_rfcomm_conf.j2
 ------------------------
 
-Synopsis: Template bluetooth-rfcomm-conf.
+Synopsis: Template bluetooth_rfcomm_conf.
 
 
 Description of the template.
 
 
-[`templates/bluetooth-rfcomm-conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/bluetooth-rfcomm-conf.j2>`_]
+[`templates/bluetooth_rfcomm_conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/bluetooth_rfcomm_conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/bluetooth-rfcomm-conf.j2
+.. literalinclude:: ../../templates/bluetooth_rfcomm_conf.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-default-iptables.j2:
+.. _as_template_default_iptables.j2:
 
-default-iptables.j2
+default_iptables.j2
 -------------------
 
-Synopsis: Template default-iptables.
+Synopsis: Template default_iptables.
 
 
 Description of the template.
 
 
-[`templates/default-iptables.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/default-iptables.j2>`_]
+[`templates/default_iptables.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/default_iptables.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/default-iptables.j2
+.. literalinclude:: ../../templates/default_iptables.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-exports.j2:
+.. _as_template_exports.j2:
 
 exports.j2
 ----------
@@ -181,27 +181,27 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-gpg-agent.conf.j2:
+.. _as_template_gpg_agent.conf.j2:
 
-gpg-agent.conf.j2
+gpg_agent.conf.j2
 -----------------
 
-Synopsis: Template gpg-agent.conf.
+Synopsis: Template gpg_agent.conf.
 
 
 Description of the template.
 
 
-[`templates/gpg-agent.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpg-agent.conf.j2>`_]
+[`templates/gpg_agent.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpg_agent.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/gpg-agent.conf.j2
+.. literalinclude:: ../../templates/gpg_agent.conf.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-gpg.conf.j2:
+.. _as_template_gpg.conf.j2:
 
 gpg.conf.j2
 -----------
@@ -221,27 +221,27 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-gpg-dirmngr.conf.j2:
+.. _as_template_gpg_dirmngr.conf.j2:
 
-gpg-dirmngr.conf.j2
+gpg_dirmngr.conf.j2
 -------------------
 
-Synopsis: Template gpg-dirmngr.conf.
+Synopsis: Template gpg_dirmngr.conf.
 
 
 Description of the template.
 
 
-[`templates/gpg-dirmngr.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpg-dirmngr.conf.j2>`_]
+[`templates/gpg_dirmngr.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpg_dirmngr.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/gpg-dirmngr.conf.j2
+.. literalinclude:: ../../templates/gpg_dirmngr.conf.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-gpsd.j2:
+.. _as_template_gpsd.j2:
 
 gpsd.j2
 -------
@@ -261,47 +261,47 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-hci-name.rules.j2:
+.. _as_template_hci_name.rules.j2:
 
-hci-name.rules.j2
+hci_name.rules.j2
 -----------------
 
-Synopsis: Template hci-name.rules.
+Synopsis: Template hci_name.rules.
 
 
 Description of the template.
 
 
-[`templates/hci-name.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hci-name.rules.j2>`_]
+[`templates/hci_name.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hci_name.rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/hci-name.rules.j2
+.. literalinclude:: ../../templates/hci_name.rules.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-hci-run.rules.j2:
+.. _as_template_hci_run.rules.j2:
 
-hci-run.rules.j2
+hci_run.rules.j2
 ----------------
 
-Synopsis: Template hci-run.rules.
+Synopsis: Template hci_run.rules.
 
 
 Description of the template.
 
 
-[`templates/hci-run.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hci-run.rules.j2>`_]
+[`templates/hci_run.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hci_run.rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/hci-run.rules.j2
+.. literalinclude:: ../../templates/hci_run.rules.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-hostname.j2:
+.. _as_template_hostname.j2:
 
 hostname.j2
 -----------
@@ -321,7 +321,7 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-hosts.j2:
+.. _as_template_hosts.j2:
 
 hosts.j2
 --------
@@ -341,87 +341,87 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-iptables-restore.j2:
+.. _as_template_iptables_restore.j2:
 
-iptables-restore.j2
+iptables_restore.j2
 -------------------
 
-Synopsis: Template iptables-restore.
+Synopsis: Template iptables_restore.
 
 
 Description of the template.
 
 
-[`templates/iptables-restore.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/iptables-restore.j2>`_]
+[`templates/iptables_restore.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/iptables_restore.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/iptables-restore.j2
+.. literalinclude:: ../../templates/iptables_restore.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-modem-manager-override.j2:
+.. _as_template_modem_manager_override.j2:
 
-modem-manager-override.j2
+modem_manager_override.j2
 -------------------------
 
-Synopsis: Template modem-manager-override.
+Synopsis: Template modem_manager_override.
 
 
 Description of the template.
 
 
-[`templates/modem-manager-override.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/modem-manager-override.j2>`_]
+[`templates/modem_manager_override.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/modem_manager_override.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/modem-manager-override.j2
+.. literalinclude:: ../../templates/modem_manager_override.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-netplan-conf.j2:
+.. _as_template_netplan_conf.j2:
 
-netplan-conf.j2
+netplan_conf.j2
 ---------------
 
-Synopsis: Template netplan-conf.
+Synopsis: Template netplan_conf.
 
 
 Description of the template.
 
 
-[`templates/netplan-conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/netplan-conf.j2>`_]
+[`templates/netplan_conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/netplan_conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/netplan-conf.j2
+.. literalinclude:: ../../templates/netplan_conf.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-netplan-default.j2:
+.. _as_template_netplan_default.j2:
 
-netplan-default.j2
+netplan_default.j2
 ------------------
 
-Synopsis: Template netplan-default.
+Synopsis: Template netplan_default.
 
 
 Description of the template.
 
 
-[`templates/netplan-default.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/netplan-default.j2>`_]
+[`templates/netplan_default.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/netplan_default.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/netplan-default.j2
+.. literalinclude:: ../../templates/netplan_default.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-networkd.conf.j2:
+.. _as_template_networkd.conf.j2:
 
 networkd.conf.j2
 ----------------
@@ -441,147 +441,147 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-network-manager-override.j2:
+.. _as_template_network_manager_override.j2:
 
-network-manager-override.j2
+network_manager_override.j2
 ---------------------------
 
-Synopsis: Template network-manager-override.
+Synopsis: Template network_manager_override.
 
 
 Description of the template.
 
 
-[`templates/network-manager-override.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/network-manager-override.j2>`_]
+[`templates/network_manager_override.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/network_manager_override.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/network-manager-override.j2
+.. literalinclude:: ../../templates/network_manager_override.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-options-module.j2:
+.. _as_template_options_module.j2:
 
-options-module.j2
+options_module.j2
 -----------------
 
-Synopsis: Template options-module.
+Synopsis: Template options_module.
 
 
 Description of the template.
 
 
-[`templates/options-module.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/options-module.j2>`_]
+[`templates/options_module.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/options_module.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/options-module.j2
+.. literalinclude:: ../../templates/options_module.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-persistent-net.rules2.j2:
+.. _as_template_persistent_net.rules2.j2:
 
-persistent-net.rules2.j2
+persistent_net.rules2.j2
 ------------------------
 
-Synopsis: Template persistent-net.rules2.
+Synopsis: Template persistent_net.rules2.
 
 
 Description of the template.
 
 
-[`templates/persistent-net.rules2.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/persistent-net.rules2.j2>`_]
+[`templates/persistent_net.rules2.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/persistent_net.rules2.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/persistent-net.rules2.j2
+.. literalinclude:: ../../templates/persistent_net.rules2.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-persistent-net.rules.j2:
+.. _as_template_persistent_net.rules.j2:
 
-persistent-net.rules.j2
+persistent_net.rules.j2
 -----------------------
 
-Synopsis: Template persistent-net.rules.
+Synopsis: Template persistent_net.rules.
 
 
 Description of the template.
 
 
-[`templates/persistent-net.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/persistent-net.rules.j2>`_]
+[`templates/persistent_net.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/persistent_net.rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/persistent-net.rules.j2
+.. literalinclude:: ../../templates/persistent_net.rules.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-pm-sleepd.j2:
+.. _as_template_pm_sleepd.j2:
 
-pm-sleepd.j2
+pm_sleepd.j2
 ------------
 
-Synopsis: Template pm-sleepd.
+Synopsis: Template pm_sleepd.
 
 
 Description of the template.
 
 
-[`templates/pm-sleepd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/pm-sleepd.j2>`_]
+[`templates/pm_sleepd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/pm_sleepd.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/pm-sleepd.j2
+.. literalinclude:: ../../templates/pm_sleepd.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-resolvconf-confd-head.j2:
+.. _as_template_resolvconf_confd_head.j2:
 
-resolvconf-confd-head.j2
+resolvconf_confd_head.j2
 ------------------------
 
-Synopsis: Template resolvconf-confd-head.
+Synopsis: Template resolvconf_confd_head.
 
 
 Description of the template.
 
 
-[`templates/resolvconf-confd-head.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/resolvconf-confd-head.j2>`_]
+[`templates/resolvconf_confd_head.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/resolvconf_confd_head.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/resolvconf-confd-head.j2
+.. literalinclude:: ../../templates/resolvconf_confd_head.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-router1-iptables.j2:
+.. _as_template_router1_iptables.j2:
 
-router1-iptables.j2
+router1_iptables.j2
 -------------------
 
-Synopsis: Template router1-iptables.
+Synopsis: Template router1_iptables.
 
 
 Description of the template.
 
 
-[`templates/router1-iptables.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/router1-iptables.j2>`_]
+[`templates/router1_iptables.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/router1_iptables.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/router1-iptables.j2
+.. literalinclude:: ../../templates/router1_iptables.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-ssh_config.j2:
+.. _as_template_ssh_config.j2:
 
 ssh_config.j2
 -------------
@@ -601,27 +601,27 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-systemd-unit.j2:
+.. _as_template_systemd_unit.j2:
 
-systemd-unit.j2
+systemd_unit.j2
 ---------------
 
-Synopsis: Template systemd-unit.
+Synopsis: Template systemd_unit.
 
 
 Description of the template.
 
 
-[`templates/systemd-unit.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/systemd-unit.j2>`_]
+[`templates/systemd_unit.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/systemd_unit.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/systemd-unit.j2
+.. literalinclude:: ../../templates/systemd_unit.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-timesyncd.conf.j2:
+.. _as_template_timesyncd.conf.j2:
 
 timesyncd.conf.j2
 -----------------
@@ -641,27 +641,27 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-udev-rules.j2:
+.. _as_template_udev_rules.j2:
 
-udev-rules.j2
+udev_rules.j2
 -------------
 
-Synopsis: Template udev-rules.
+Synopsis: Template udev_rules.
 
 
 Description of the template.
 
 
-[`templates/udev-rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/udev-rules.j2>`_]
+[`templates/udev_rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/udev_rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
-.. literalinclude:: ../../templates/udev-rules.j2
+.. literalinclude:: ../../templates/udev_rules.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-wpa_action.sh.j2:
+.. _as_template_wpa_action.sh.j2:
 
 wpa_action.sh.j2
 ----------------
@@ -681,7 +681,7 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-wpa_supplicant.conf.j2:
+.. _as_template_wpa_supplicant.conf.j2:
 
 wpa_supplicant.conf.j2
 ----------------------
@@ -701,7 +701,7 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template-xorg.conf.j2:
+.. _as_template_xorg.conf.j2:
 
 xorg.conf.j2
 ------------

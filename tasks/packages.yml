@@ -29,7 +29,7 @@
   tags: lp_packages_selections_preinstall
 
 - name: "packages: Install packages listed in variables lp_*_packages"
-  include_tasks: packages-auto.yml
+  include_tasks: packages_auto.yml
   when: lp_packages_auto|bool
   tags: lp_packages_auto
 

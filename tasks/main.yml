@@ -132,7 +132,7 @@
         (ansible_os_family == "Debian")) and lp_aliases|bool
   tags: lp_aliases
 
-- import_tasks: pm-utils.yml
+- import_tasks: pm_utils.yml
   when: (ansible_os_family == "Debian") and lp_pm|bool
   tags: lp_pm
 

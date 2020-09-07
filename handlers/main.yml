@@ -1,32 +1,32 @@
 ---
 # linux-postinstall handlers
 
-- import_tasks: handlers-apparmor.yml
-- import_tasks: handlers-autofs.yml
-- import_tasks: handlers-bluetooth.yml
-- import_tasks: handlers-gpg.yml
-- import_tasks: handlers-gpsd.yml
-- import_tasks: handlers-grub.yml
-- import_tasks: handlers-hostname.yml
-- import_tasks: handlers-initramfs.yml
-- import_tasks: handlers-iptables.yml
-- import_tasks: handlers-libvirtd.yml
-- import_tasks: handlers-messages.yml
-- import_tasks: handlers-netplan.yml
-- import_tasks: handlers-networkd.yml
-- import_tasks: handlers-newaliases.yml
-- import_tasks: handlers-nfsd.yml
-- import_tasks: handlers-postfix.yml
-- import_tasks: handlers-resolvconf.yml
-- import_tasks: handlers-smart.yml
-- import_tasks: handlers-sshd.yml
-- import_tasks: handlers-swap.yml
-- import_tasks: handlers-sysctl.yml
-- import_tasks: handlers-systemd.yml
-- import_tasks: handlers-timesyncd.yml
-- import_tasks: handlers-tlp.yml
-- import_tasks: handlers-udev.yml
-- import_tasks: handlers-wpasupplicant.yml
+- import_tasks: handlers_apparmor.yml
+- import_tasks: handlers_autofs.yml
+- import_tasks: handlers_bluetooth.yml
+- import_tasks: handlers_gpg.yml
+- import_tasks: handlers_gpsd.yml
+- import_tasks: handlers_grub.yml
+- import_tasks: handlers_hostname.yml
+- import_tasks: handlers_initramfs.yml
+- import_tasks: handlers_iptables.yml
+- import_tasks: handlers_libvirtd.yml
+- import_tasks: handlers_messages.yml
+- import_tasks: handlers_netplan.yml
+- import_tasks: handlers_networkd.yml
+- import_tasks: handlers_newaliases.yml
+- import_tasks: handlers_nfsd.yml
+- import_tasks: handlers_postfix.yml
+- import_tasks: handlers_resolvconf.yml
+- import_tasks: handlers_smart.yml
+- import_tasks: handlers_sshd.yml
+- import_tasks: handlers_swap.yml
+- import_tasks: handlers_sysctl.yml
+- import_tasks: handlers_systemd.yml
+- import_tasks: handlers_timesyncd.yml
+- import_tasks: handlers_tlp.yml
+- import_tasks: handlers_udev.yml
+- import_tasks: handlers_wpasupplicant.yml
 
 # EOF
 ...

@@ -1,0 +1,25 @@
+---
+# linux-postinstall libvirt_conf
+
+- name: "libvirt_conf: Debug"
+  debug:
+    msg: "{{ item }}"
+  when: lp_libvirt_debug|bool
+
+- name: "libvirt_conf: Configure {{ lp_libvirt_conf_dir }}/{{ item.key }}"
+  lineinfile:
+    dest: "{{ lp_libvirt_conf_dir }}/{{ item.key }}"
+    regexp: '^{{ conf[0] }}(\s|=)(.*)$'
+    line: "{{ conf[0] }} = {{ conf[1] }}"
+    state: "{{ conf[2] | default('present') }}"
+    backup: "{{ lp_backup_conf }}"
+    create: true
+  loop: "{{ item.value }}"
+  loop_control:
+    loop_var: conf
+  notify:
+    - reload libvirtd
+    - reload libvirt_guests
+
+# EOF
+...

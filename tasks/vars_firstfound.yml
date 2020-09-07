@@ -1,0 +1,59 @@
+---
+# linux-postinstall vars_firstfound
+
+- name: "vars_firstfound: Include default vars for
+              [{{ ansible_distribution_release }},
+               {{ ansible_distribution }},
+               {{ ansible_os_family }}]"
+  include_vars: "{{ lookup('first_found', params) }}"
+  register: result
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+        - default.yml
+        - defaults.yml
+      paths:
+        - "{{ role_path }}/vars/defaults"
+# [TODO]
+#     skip: "{{ lp_vars_distro_firstfound_skip|bool }}"
+# skip doesn't work with first_found lookup #43833
+# https://github.com/ansible/ansible/issues/43833
+# workaround: Create empty defaults.yml
+
+- name: "vars_firstfound: Debug include default vars from"
+  debug:
+    var: result.ansible_included_var_files
+  when: lp_debug|bool
+
+- name: "vars_firstfound: Include custom vars for
+              [{{ ansible_distribution_release }},
+               {{ ansible_distribution }},
+               {{ ansible_os_family }}]"
+  register: result
+  include_vars: "{{ lookup('first_found', params) }}"
+  vars:
+    params:
+      files:
+        - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
+        - default.yml
+        - defaults.yml
+      paths:
+        - "{{ role_path }}/vars"
+# [TODO]
+#     skip: "{{ lp_vars_distro_firstfound_skip|bool }}"
+# skip doesn't work with first_found lookup #43833
+# https://github.com/ansible/ansible/issues/43833
+# workaround: Create empty defaults.yml
+
+- name: "vars_firstfound: Debug include custom vars from"
+  debug:
+    var: result.ansible_included_var_files
+  when: lp_debug|bool
+
+# EOF
+...

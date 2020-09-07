@@ -1,0 +1,10 @@
+---
+
+task_netplan_seealso:
+  handlers:
+    - netplan
+  templates:
+    - netplan_default.j2
+    - netplan_conf.j2
+
+...

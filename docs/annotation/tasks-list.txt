@@ -18,7 +18,7 @@ hosts.yml
 iptables.yml
 kvm.yml
 latex.yml
-libvirt-conf.yml
+libvirt_conf.yml
 libvirt.yml
 lid.yml
 logrotate.yml
@@ -28,10 +28,10 @@ netplan.yml
 networkd.yml
 networkmanager.yml
 nfsd.yml
-packages-auto.yml
+packages_auto.yml
 packages.yml
 passwords.yml
-pm-utils.yml
+pm_utils.yml
 postfix.yml
 reboot.yml
 repos.yml
@@ -52,8 +52,8 @@ tlp.yml
 udev.yml
 ufw.yml
 users.yml
-vars-firstfound.yml
-vars-incremental.yml
+vars_firstfound.yml
+vars_incremental.yml
 vars.yml
 virtualbox.yml
 wpagui.yml
@@ -62,5 +62,5 @@ xen.yml
 xorg.yml
 zeitgeist.yml
 zfs.yml
-sub/vars-flavors.yml
-sub/vars-flavors-common.yml
+sub/vars_flavors.yml
+sub/vars_flavors_common.yml

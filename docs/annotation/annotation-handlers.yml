@@ -12,9 +12,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-apparmor.yml
-    link: handlers-apparmor.yml
-    path: handlers/handlers-apparmor.yml
+  - file: handlers_apparmor.yml
+    link: handlers_apparmor.yml
+    path: handlers/handlers_apparmor.yml
     synopsis: |
       Handler apparmor.
     description: |
@@ -24,9 +24,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-autofs.yml
-    link: handlers-autofs.yml
-    path: handlers/handlers-autofs.yml
+  - file: handlers_autofs.yml
+    link: handlers_autofs.yml
+    path: handlers/handlers_autofs.yml
     synopsis: |
       Handler autofs.
     description: |
@@ -36,9 +36,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-bluetooth.yml
-    link: handlers-bluetooth.yml
-    path: handlers/handlers-bluetooth.yml
+  - file: handlers_bluetooth.yml
+    link: handlers_bluetooth.yml
+    path: handlers/handlers_bluetooth.yml
     synopsis: |
       Handler bluetooth.
     description: |
@@ -48,9 +48,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-gpg.yml
-    link: handlers-gpg.yml
-    path: handlers/handlers-gpg.yml
+  - file: handlers_gpg.yml
+    link: handlers_gpg.yml
+    path: handlers/handlers_gpg.yml
     synopsis: |
       Handler gpg.
     description: |
@@ -60,9 +60,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-gpsd.yml
-    link: handlers-gpsd.yml
-    path: handlers/handlers-gpsd.yml
+  - file: handlers_gpsd.yml
+    link: handlers_gpsd.yml
+    path: handlers/handlers_gpsd.yml
     synopsis: |
       Handler gpsd.
     description: |
@@ -72,9 +72,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-grub.yml
-    link: handlers-grub.yml
-    path: handlers/handlers-grub.yml
+  - file: handlers_grub.yml
+    link: handlers_grub.yml
+    path: handlers/handlers_grub.yml
     synopsis: |
       Handler grub.
     description: |
@@ -84,9 +84,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-hostname.yml
-    link: handlers-hostname.yml
-    path: handlers/handlers-hostname.yml
+  - file: handlers_hostname.yml
+    link: handlers_hostname.yml
+    path: handlers/handlers_hostname.yml
     synopsis: |
       Handler hostname.
     description: |
@@ -96,9 +96,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-initramfs.yml
-    link: handlers-initramfs.yml
-    path: handlers/handlers-initramfs.yml
+  - file: handlers_initramfs.yml
+    link: handlers_initramfs.yml
+    path: handlers/handlers_initramfs.yml
     synopsis: |
       Handler initramfs.
     description: |
@@ -108,9 +108,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-iptables.yml
-    link: handlers-iptables.yml
-    path: handlers/handlers-iptables.yml
+  - file: handlers_iptables.yml
+    link: handlers_iptables.yml
+    path: handlers/handlers_iptables.yml
     synopsis: |
       Handler iptables.
     description: |
@@ -120,9 +120,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-libvirtd.yml
-    link: handlers-libvirtd.yml
-    path: handlers/handlers-libvirtd.yml
+  - file: handlers_libvirtd.yml
+    link: handlers_libvirtd.yml
+    path: handlers/handlers_libvirtd.yml
     synopsis: |
       Handler libvirtd.
     description: |
@@ -132,9 +132,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-messages.yml
-    link: handlers-messages.yml
-    path: handlers/handlers-messages.yml
+  - file: handlers_messages.yml
+    link: handlers_messages.yml
+    path: handlers/handlers_messages.yml
     synopsis: |
       Handler messages.
     description: |
@@ -144,9 +144,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-netplan.yml
-    link: handlers-netplan.yml
-    path: handlers/handlers-netplan.yml
+  - file: handlers_netplan.yml
+    link: handlers_netplan.yml
+    path: handlers/handlers_netplan.yml
     synopsis: |
       Handler netplan.
     description: |
@@ -156,9 +156,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-networkd.yml
-    link: handlers-networkd.yml
-    path: handlers/handlers-networkd.yml
+  - file: handlers_networkd.yml
+    link: handlers_networkd.yml
+    path: handlers/handlers_networkd.yml
     synopsis: |
       Handler networkd.
     description: |
@@ -168,9 +168,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-newaliases.yml
-    link: handlers-newaliases.yml
-    path: handlers/handlers-newaliases.yml
+  - file: handlers_newaliases.yml
+    link: handlers_newaliases.yml
+    path: handlers/handlers_newaliases.yml
     synopsis: |
       Handler newaliases.
     description: |
@@ -180,9 +180,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-nfsd.yml
-    link: handlers-nfsd.yml
-    path: handlers/handlers-nfsd.yml
+  - file: handlers_nfsd.yml
+    link: handlers_nfsd.yml
+    path: handlers/handlers_nfsd.yml
     synopsis: |
       Handler nfsd.
     description: |
@@ -192,9 +192,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-postfix.yml
-    link: handlers-postfix.yml
-    path: handlers/handlers-postfix.yml
+  - file: handlers_postfix.yml
+    link: handlers_postfix.yml
+    path: handlers/handlers_postfix.yml
     synopsis: |
       Handler postfix.
     description: |
@@ -204,9 +204,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-resolvconf.yml
-    link: handlers-resolvconf.yml
-    path: handlers/handlers-resolvconf.yml
+  - file: handlers_resolvconf.yml
+    link: handlers_resolvconf.yml
+    path: handlers/handlers_resolvconf.yml
     synopsis: |
       Handler resolvconf.
     description: |
@@ -216,9 +216,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-smart.yml
-    link: handlers-smart.yml
-    path: handlers/handlers-smart.yml
+  - file: handlers_smart.yml
+    link: handlers_smart.yml
+    path: handlers/handlers_smart.yml
     synopsis: |
       Handler smart.
     description: |
@@ -228,9 +228,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-sshd.yml
-    link: handlers-sshd.yml
-    path: handlers/handlers-sshd.yml
+  - file: handlers_sshd.yml
+    link: handlers_sshd.yml
+    path: handlers/handlers_sshd.yml
     synopsis: |
       Handler sshd.
     description: |
@@ -240,9 +240,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-swap.yml
-    link: handlers-swap.yml
-    path: handlers/handlers-swap.yml
+  - file: handlers_swap.yml
+    link: handlers_swap.yml
+    path: handlers/handlers_swap.yml
     synopsis: |
       Handler swap.
     description: |
@@ -252,9 +252,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-sysctl.yml
-    link: handlers-sysctl.yml
-    path: handlers/handlers-sysctl.yml
+  - file: handlers_sysctl.yml
+    link: handlers_sysctl.yml
+    path: handlers/handlers_sysctl.yml
     synopsis: |
       Handler sysctl.
     description: |
@@ -264,9 +264,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-systemd.yml
-    link: handlers-systemd.yml
-    path: handlers/handlers-systemd.yml
+  - file: handlers_systemd.yml
+    link: handlers_systemd.yml
+    path: handlers/handlers_systemd.yml
     synopsis: |
       Handler systemd.
     description: |
@@ -276,9 +276,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-timesyncd.yml
-    link: handlers-timesyncd.yml
-    path: handlers/handlers-timesyncd.yml
+  - file: handlers_timesyncd.yml
+    link: handlers_timesyncd.yml
+    path: handlers/handlers_timesyncd.yml
     synopsis: |
       Handler timesyncd.
     description: |
@@ -288,9 +288,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-tlp.yml
-    link: handlers-tlp.yml
-    path: handlers/handlers-tlp.yml
+  - file: handlers_tlp.yml
+    link: handlers_tlp.yml
+    path: handlers/handlers_tlp.yml
     synopsis: |
       Handler tlp.
     description: |
@@ -300,9 +300,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-udev.yml
-    link: handlers-udev.yml
-    path: handlers/handlers-udev.yml
+  - file: handlers_udev.yml
+    link: handlers_udev.yml
+    path: handlers/handlers_udev.yml
     synopsis: |
       Handler udev.
     description: |
@@ -312,9 +312,9 @@ myhandlers:
     note: []
     warning: []
 
-  - file: handlers-wpasupplicant.yml
-    link: handlers-wpasupplicant.yml
-    path: handlers/handlers-wpasupplicant.yml
+  - file: handlers_wpasupplicant.yml
+    link: handlers_wpasupplicant.yml
+    path: handlers/handlers_wpasupplicant.yml
     synopsis: |
       Handler wpasupplicant.
     description: |

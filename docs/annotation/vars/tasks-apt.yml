@@ -2,6 +2,6 @@
 
 task_apt_seealso:
   templates:
-    - apt-confd.j2
+    - apt_confd.j2
 
 ...

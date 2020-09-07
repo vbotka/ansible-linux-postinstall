@@ -5,7 +5,7 @@ task_gpg_seealso:
     - gpg
   templates:
     - gpg.conf.j2
-    - gpg-agent.conf.j2
-    - gpg-dirmngr.conf.j2
+    - gpg_agent.conf.j2
+    - gpg_dirmngr.conf.j2
 
 ...

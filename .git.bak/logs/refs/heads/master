@@ -1,0 +1,78 @@
+0000000000000000000000000000000000000000 8d951b63cc233ca500b66e99297a03c2747de32b Vladimir Botka <vbotka@gmail.com> 1589757201 +0200	clone: from https://github.com/vbotka/ansible-linux-postinstall
+8d951b63cc233ca500b66e99297a03c2747de32b 9c8486215e0f97f21a78649aae3cb39a2480a869 Vladimir Botka <vbotka@gmail.com> 1590874679 +0200	commit: Updated users.yml
+9c8486215e0f97f21a78649aae3cb39a2480a869 9d9544adecbc4759b2b887f596dc0c156e5b7ded Vladimir Botka <vbotka@gmail.com> 1591024795 +0200	commit: Added default filters to pass inclusion withou the variable defined.
+9d9544adecbc4759b2b887f596dc0c156e5b7ded 1da599212d6c32902433d420d3282366e6d2e789 Vladimir Botka <vbotka@gmail.com> 1591394183 +0200	commit: Added tasks/passwords.yml
+1da599212d6c32902433d420d3282366e6d2e789 f85052bfb003e34d409cf53fcbbd90e899c736ac Vladimir Botka <vbotka@gmail.com> 1591441728 +0200	commit: Updated README.md
+f85052bfb003e34d409cf53fcbbd90e899c736ac f65c752d4051b70ff78eb0d0d9a2e5ed8f6da26c Vladimir Botka <vbotka@gmail.com> 1591442310 +0200	commit: Updated README.md
+f65c752d4051b70ff78eb0d0d9a2e5ed8f6da26c c2c55f62591755d5ee1907d280745d2df5471218 Vladimir Botka <vbotka@gmail.com> 1591478090 +0200	commit: Added docs. Updated README.
+c2c55f62591755d5ee1907d280745d2df5471218 c73b64ed575d1347d4d83d1c5b4bf194a5158cd9 Vladimir Botka <vbotka@gmail.com> 1591554004 +0200	commit: Updated zfs.yml. Fixed lint.
+c73b64ed575d1347d4d83d1c5b4bf194a5158cd9 67ec0f91ee2b10b59bc1511fb4321130957f4164 Vladimir Botka <vbotka@gmail.com> 1591590667 +0200	commit: Fix vars. See #69799
+67ec0f91ee2b10b59bc1511fb4321130957f4164 870b87e056b19d061e459e94a7b6dcf4639a3ec6 Vladimir Botka <vbotka@gmail.com> 1591833290 +0200	commit: Updated gpg.
+870b87e056b19d061e459e94a7b6dcf4639a3ec6 3f745200b1729609264bf49bb4b204b64af7a8b6 Vladimir Botka <vbotka@gmail.com> 1591896614 +0200	commit: Updated task passwords.
+3f745200b1729609264bf49bb4b204b64af7a8b6 989cb235d482a922e63856522d5cfa648a92a13f Vladimir Botka <vbotka@gmail.com> 1592028580 +0200	commit: Updated README
+989cb235d482a922e63856522d5cfa648a92a13f 7e9b540a6a7ff7404403ff65182c4cae3d45c572 Vladimir Botka <vbotka@gmail.com> 1592611667 +0200	commit: Fixed examples of zfs variables.
+7e9b540a6a7ff7404403ff65182c4cae3d45c572 f3053a10122d03247f2ccddd114f624decb2ba9c Vladimir Botka <vbotka@gmail.com> 1592784123 +0200	commit: Added configuration of dirmngr.conf. Added handlers.
+f3053a10122d03247f2ccddd114f624decb2ba9c caa302fe04738384dc45b169db0c3c03cff5735c Vladimir Botka <vbotka@gmail.com> 1593034149 +0200	commit: Updated debug tasks.
+caa302fe04738384dc45b169db0c3c03cff5735c f5a3f7569ec627f75a6258c8efe127e60458a1f8 Vladimir Botka <vbotka@gmail.com> 1593637430 +0200	commit: Added chapter Tasks passwords to docs.
+f5a3f7569ec627f75a6258c8efe127e60458a1f8 7f60142f3804d30c8beb234c54df64e705a0135c Vladimir Botka <vbotka@gmail.com> 1593640185 +0200	commit: Updated example gpg.conf in vars/main.yml
+7f60142f3804d30c8beb234c54df64e705a0135c 80ccefdd79550e10265183ca341eadb99c9bb018 Vladimir Botka <vbotka@gmail.com> 1593640519 +0200	commit: Updated GPG reference in README.
+80ccefdd79550e10265183ca341eadb99c9bb018 d49b96e54230fe8cc862e726b2c8965aaf527702 Vladimir Botka <vbotka@gmail.com> 1593643556 +0200	commit: Added Example 3. in Tasks passwords to docs.
+d49b96e54230fe8cc862e726b2c8965aaf527702 11f0d65325d92ef81da4b769da9fe65b28a0f78c Vladimir Botka <vbotka@gmail.com> 1593644323 +0200	commit: Fixed docs.
+11f0d65325d92ef81da4b769da9fe65b28a0f78c 5250e9e83cbc1de18e70fe9dabbc9ec829975e8d Vladimir Botka <vbotka@gmail.com> 1593695940 +0200	commit: Added tasks netplan and zfs to docs.
+5250e9e83cbc1de18e70fe9dabbc9ec829975e8d 1351d5c1396b2a930cdce3361d154c0d69fc2cd0 Vladimir Botka <vbotka@gmail.com> 1593837385 +0200	commit: Updated docs.
+1351d5c1396b2a930cdce3361d154c0d69fc2cd0 84494ddce4866852131a00a887a19845f3ebbee9 Vladimir Botka <vbotka@gmail.com> 1593837523 +0200	commit: Updated docs.
+84494ddce4866852131a00a887a19845f3ebbee9 44334661673b0f7cf931adc16e6ff72760cff129 Vladimir Botka <vbotka@gmail.com> 1593961037 +0200	commit: Fix docs.
+44334661673b0f7cf931adc16e6ff72760cff129 67fece7a1d8dc62b3d6acdc5ffc57b3f2fafc583 Vladimir Botka <vbotka@gmail.com> 1593976328 +0200	commit: READNE formatted.
+67fece7a1d8dc62b3d6acdc5ffc57b3f2fafc583 1500984577997f5171765994f0089c720c549dfb Vladimir Botka <vbotka@gmail.com> 1594114160 +0200	commit: README References updated with SSH.
+1500984577997f5171765994f0089c720c549dfb c4704e57682aed9409eeea47d2db1d2d4911810f Vladimir Botka <vbotka@gmail.com> 1594399245 +0200	commit: Fixes and cleanup.
+c4704e57682aed9409eeea47d2db1d2d4911810f 251a0c84c15ffdcb98aa1072f22e5bbdc9be1442 Vladimir Botka <vbotka@gmail.com> 1594482789 +0200	pull origin master: Fast-forward
+251a0c84c15ffdcb98aa1072f22e5bbdc9be1442 14c0d0258e7514aa8e528648f1e541974dcaf361 Vladimir Botka <vbotka@gmail.com> 1594758882 +0200	commit: Unused var lp_libvirt_backup removed.
+14c0d0258e7514aa8e528648f1e541974dcaf361 9a24d92be3d7273c6e6c4b97aa824065ba9aae57 Vladimir Botka <vbotka@gmail.com> 1595308343 +0200	commit: Added task vars-incremental.yml
+9a24d92be3d7273c6e6c4b97aa824065ba9aae57 8a5329f87864ae11f61a4f4fa96985005eb8fbb0 Vladimir Botka <vbotka@gmail.com> 1595690583 +0200	commit: Fixed first_found vars. Updated docs.
+8a5329f87864ae11f61a4f4fa96985005eb8fbb0 4bf68cd3413891a1f65920e1d12c0804935393f3 Vladimir Botka <vbotka@gmail.com> 1595749740 +0200	commit: Fix vars first_found. Put defaults.yml last. Formatting.
+4bf68cd3413891a1f65920e1d12c0804935393f3 67b0f79e9401f1ae61483f284a79c4c4db7be5ac Vladimir Botka <vbotka@gmail.com> 1595752808 +0200	commit: Updated docs.
+67b0f79e9401f1ae61483f284a79c4c4db7be5ac 34be907289723413d57857d5678ab8204d0ccb02 Vladimir Botka <vbotka@gmail.com> 1595754355 +0200	commit: Updated docs.
+34be907289723413d57857d5678ab8204d0ccb02 8d1247656c244fb2f7c2d329ffe4313e43db44da Vladimir Botka <vbotka@gmail.com> 1595754956 +0200	commit: Updated docs ver. 1.15.0
+8d1247656c244fb2f7c2d329ffe4313e43db44da dadccfc9b12b1ce5b9246057d6808a0f54603ef9 Vladimir Botka <vbotka@gmail.com> 1595771818 +0200	commit: Fix docs.
+dadccfc9b12b1ce5b9246057d6808a0f54603ef9 9f77e3d7c378c21164c9bf33510d180fa402f3ae Vladimir Botka <vbotka@gmail.com> 1595884694 +0200	commit: Parameter lp_users.disabled_password commented. Enabled empty my_passwords.
+9f77e3d7c378c21164c9bf33510d180fa402f3ae 40b3dab6aab3cb2b2e24d3a44c57aacc0483c9f3 Vladimir Botka <vbotka@gmail.com> 1595887092 +0200	commit: Updated docs. Items added to index.
+40b3dab6aab3cb2b2e24d3a44c57aacc0483c9f3 3a213052e687cc71e3f6cd3af8f03de874836829 Vladimir Botka <vbotka@gmail.com> 1595925537 +0200	commit: Fixed tasks/main.yml and tasks/debug.yml
+3a213052e687cc71e3f6cd3af8f03de874836829 4f07c9e76b382a46fb114e70bd6e53df9dcebdfa Vladimir Botka <vbotka@gmail.com> 1595941099 +0200	commit: Updated docs. Added task-service.rst and 2 examples.
+4f07c9e76b382a46fb114e70bd6e53df9dcebdfa 556769a9a5df0f7d300b8e970487ccdd95ae8067 Vladimir Botka <vbotka@gmail.com> 1595954745 +0200	commit: Updated docs.
+556769a9a5df0f7d300b8e970487ccdd95ae8067 bcea64047492126a97c973d096b3fd0f4f5ba26c Vladimir Botka <vbotka@gmail.com> 1595966918 +0200	commit: Added var lp_ufw_install (default: true)
+bcea64047492126a97c973d096b3fd0f4f5ba26c 0c2bd6a99c16e06ff0faffe9d0f9adc0943751ba Vladimir Botka <vbotka@gmail.com> 1596032813 +0200	commit: Updated task service. Updated docs.
+0c2bd6a99c16e06ff0faffe9d0f9adc0943751ba deaef74b2134fec6633070686b9ee67d110454b8 Vladimir Botka <vbotka@gmail.com> 1596048095 +0200	commit: Update task/resolvconf.yml
+deaef74b2134fec6633070686b9ee67d110454b8 f89f473d10fbb9544aa6b1c7dab6beeb5ae41b65 Vladimir Botka <vbotka@gmail.com> 1596053000 +0200	commit: Fixed ansible_check_mode
+f89f473d10fbb9544aa6b1c7dab6beeb5ae41b65 7ab88a1dabd2ab976d1728759cafa24fc1cc1c13 Vladimir Botka <vbotka@gmail.com> 1596097684 +0200	commit: Added tasks/snap WIP.
+7ab88a1dabd2ab976d1728759cafa24fc1cc1c13 4c2215587270fac6e38b7988fbe90cf7bcc957b7 Vladimir Botka <vbotka@gmail.com> 1596097899 +0200	commit: Updated docs with tasks/snap.yml
+4c2215587270fac6e38b7988fbe90cf7bcc957b7 bcfc51555f970ec6ccea03bbcbe493dedf4b972b Vladimir Botka <vbotka@gmail.com> 1596183336 +0200	commit: Added var lp_wpasupplicant_install (default: true)
+bcfc51555f970ec6ccea03bbcbe493dedf4b972b 13bea61c6ebe04f653f20e03f3a162b22e16c705 Vladimir Botka <vbotka@gmail.com> 1596306327 +0200	commit: Added test sanity tasks/hosts.yml
+13bea61c6ebe04f653f20e03f3a162b22e16c705 2c21b99ca565a52525e44861a0082f5604195202 Vladimir Botka <vbotka@gmail.com> 1596308619 +0200	commit: Added var lp_hosts_template
+2c21b99ca565a52525e44861a0082f5604195202 2a64857a812e0d45070e22c15de33d01a1d108a6 Vladimir Botka <vbotka@gmail.com> 1596395655 +0200	commit: Added task/networkd.yml
+2a64857a812e0d45070e22c15de33d01a1d108a6 8d6acc6c20fe6ee2cfec35a3adb6a208caea8aae Vladimir Botka <vbotka@gmail.com> 1596406916 +0200	commit: Added tasks/networkmanager.yml
+8d6acc6c20fe6ee2cfec35a3adb6a208caea8aae aa26936f8f8b6dbc2a8ec5ab72add9d5a9d926d5 Vladimir Botka <vbotka@gmail.com> 1596408227 +0200	commit: Updated docs. Spelling.
+aa26936f8f8b6dbc2a8ec5ab72add9d5a9d926d5 cb3dd6712065a2c19877d5d38a31011fbecb2cf3 Vladimir Botka <vbotka@gmail.com> 1596441702 +0200	commit: Fixed tasks/networkmanager.yml
+cb3dd6712065a2c19877d5d38a31011fbecb2cf3 2919bf63b4209063d1c53e96c56c4f9c8fa2e01e Vladimir Botka <vbotka@gmail.com> 1596451646 +0200	commit: Updated docs.
+2919bf63b4209063d1c53e96c56c4f9c8fa2e01e 54677f8223c583835bf9f7a274a10991965b8dad Vladimir Botka <vbotka@gmail.com> 1596484214 +0200	commit: Updated tasks/wpasupplicant.yml
+54677f8223c583835bf9f7a274a10991965b8dad 53a5c6db1cc92d6c0561bd15acdc358a9358b7d5 Vladimir Botka <vbotka@gmail.com> 1596492226 +0200	commit: Fixed wpa_supplicant handler and defaults
+53a5c6db1cc92d6c0561bd15acdc358a9358b7d5 89902d991fe09c6846de5b7139a8fc7de4dc543d Vladimir Botka <vbotka@gmail.com> 1596503756 +0200	commit: Updated docs.
+89902d991fe09c6846de5b7139a8fc7de4dc543d 932164c7667373d051484b9eaea1a706b5e60e40 Vladimir Botka <vbotka@gmail.com> 1596513483 +0200	commit: Updated docs. Added task-wpasupplicant.rst
+932164c7667373d051484b9eaea1a706b5e60e40 f945c25ce2f10f01d941147bc009dd16a9719427 Vladimir Botka <vbotka@gmail.com> 1596538831 +0200	commit: Updated docs.
+f945c25ce2f10f01d941147bc009dd16a9719427 8388d0b636a99c36e4c07161e10517cfaca63dab Vladimir Botka <vbotka@gmail.com> 1596573324 +0200	commit: Added var lp_tlp_install (default: true)
+8388d0b636a99c36e4c07161e10517cfaca63dab afa1cc559824c760fb8c58880ac55de1446568ad Vladimir Botka <vbotka@gmail.com> 1596621704 +0200	commit: Updated docs.
+afa1cc559824c760fb8c58880ac55de1446568ad b13ec401b8032aeba014075a049698f08a202156 Vladimir Botka <vbotka@gmail.com> 1596652517 +0200	commit: Updated docs.
+b13ec401b8032aeba014075a049698f08a202156 3c4c2ebc0b280bf00402ff0b52c0c2379cdf8363 Vladimir Botka <vbotka@gmail.com> 1596688514 +0200	commit: Updated docs.
+3c4c2ebc0b280bf00402ff0b52c0c2379cdf8363 6ec89733c3b8a93174395d72b84220a3aee750f0 Vladimir Botka <vbotka@gmail.com> 1596706818 +0200	commit: Updated docs.
+6ec89733c3b8a93174395d72b84220a3aee750f0 58a1105dea78adebc3fd1a905fdca14d589ddac2 Vladimir Botka <vbotka@gmail.com> 1597011751 +0200	commit: Added tasks/systemd.yml; Updated docs.
+58a1105dea78adebc3fd1a905fdca14d589ddac2 54f6b62cb75b23d41d758a9ded802c6d10b593db Vladimir Botka <vbotka@gmail.com> 1597096530 +0200	commit: Updated tasks/systemd.yml incl. docs.
+54f6b62cb75b23d41d758a9ded802c6d10b593db 88ecfecc6cc5c6fad62e4944cd96f579c9cb5e7c Vladimir Botka <vbotka@gmail.com> 1597099808 +0200	commit: Fixed lint.
+88ecfecc6cc5c6fad62e4944cd96f579c9cb5e7c 46cad14b9c7b49269095fd40cbd7bfeb31e3b6c6 Vladimir Botka <vbotka@gmail.com> 1597185717 +0200	commit: Updated docs.
+46cad14b9c7b49269095fd40cbd7bfeb31e3b6c6 1e4668ec33cb1c00410cd6ebb50a7e13f02fb599 Vladimir Botka <vbotka@gmail.com> 1597249838 +0200	commit: Handlers split to files
+1e4668ec33cb1c00410cd6ebb50a7e13f02fb599 bb5a6edf94c218b9e954c70f19f43abf4fc4b815 Vladimir Botka <vbotka@gmail.com> 1597250519 +0200	commit: Updated docs release = 1.16.0
+bb5a6edf94c218b9e954c70f19f43abf4fc4b815 9aeaf4938d5326f03fd4746e8e0eeb70e0480acb Vladimir Botka <vbotka@gmail.com> 1597344645 +0200	commit: Added docs/annotation/vars and attributes to annotation-tasks.*
+9aeaf4938d5326f03fd4746e8e0eeb70e0480acb 76da7fe7bc8aaca8e0159a05b426922b2d74fbd3 Vladimir Botka <vbotka@gmail.com> 1598296714 +0200	commit: Fixed lint.
+76da7fe7bc8aaca8e0159a05b426922b2d74fbd3 54b704c1b63d848bb8e9acd8e57d0b1e3bbe6ec4 Vladimir Botka <vbotka@gmail.com> 1599417276 +0200	commit: Added tasks/apt.yml and templates/apt-confd.j2
+54b704c1b63d848bb8e9acd8e57d0b1e3bbe6ec4 925adf10abcb302735970a1f3567deaf5d63a0ae Vladimir Botka <vbotka@gmail.com> 1599418966 +0200	commit: Docs udpated with apt.yml
+925adf10abcb302735970a1f3567deaf5d63a0ae 2e54e08a095525e430922d7dbb3a865076d80f46 Vladimir Botka <vbotka@gmail.com> 1599465701 +0200	commit: Dashes replaced by underscores in filenames.
+2e54e08a095525e430922d7dbb3a865076d80f46 2cc044726b817e2d6f206b33373ad83c25b877bd Vladimir Botka <vbotka@gmail.com> 1599466324 +0200	commit: Updated docs.
+2cc044726b817e2d6f206b33373ad83c25b877bd b3ba53f8d1c6ed05559a5ee9f7c8de30d5cd3fdb Vladimir Botka <vbotka@gmail.com> 1599466399 +0200	commit: Updated docs
