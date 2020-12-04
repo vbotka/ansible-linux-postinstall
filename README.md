@@ -232,6 +232,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [GPSD cannot create rfcomm0 - SO](https://stackoverflow.com/questions/33892280/debian-cannot-create-rfcomm0)
 - [GRUB - Ubuntu Help](https://help.ubuntu.com/community/Grub2)
 - [Iptables HowTo - Ubuntu Help community](https://help.ubuntu.com/community/IptablesHowTo)
+- [How To Implement a Basic Firewall Template with Iptables on Ubuntu 14.04 - DO tutorial](https://www.digitalocean.com/community/tutorials/how-to-implement-a-basic-firewall-template-with-iptables-on-ubuntu-14-04)
 - [KVM Ubuntu - Ubuntu Help community](https://help.ubuntu.com/community/KVM)
 - [LaTeX - Ubuntu Help community](https://help.ubuntu.com/community/LaTeX)
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
