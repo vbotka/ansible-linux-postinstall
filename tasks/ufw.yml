@@ -3,17 +3,20 @@
 
 #   Notes
 #
-# * Aliases of parameters in ufw module not implemented in task
+# 1.Aliases of parameters in ufw module not implemented in task
 #   "Configure ufw".
-# * It's not necessary to reload ufs after configuration has
+# 2.It's not necessary to reload ufs after configuration has
 #   changed. Module ufw automatically updates the rules.
-# * Best practice: First time 'lp_ufw_reset: true'; configure and enable
+# 3.Best practice: First time 'lp_ufw_reset: true'; configure and enable
 #   ufs (configuration item {state: 'enabled'} reloads firewall and
 #   enables firewall on boot); 'lp_ufw_enable: true' start and enable ufw
 #   service.
-# * Configuration on the fly: configure and enable ufs.
-# * The last configuration item should be {state: 'enabled'}.
-# * See: man ufw.
+# 4.Configuration on the fly: configure and enable ufs.
+# 5.The last configuration item should be {state: 'enabled'}.
+# 6.ufw is not starting on boot despite ENABLED=yes in /etc/ufw/ufw.conf
+#   See: How do I get ufw to start on boot?
+#   https://askubuntu.com/questions/1040539/how-do-i-get-ufw-to-start-on-boot
+# 7.See: man ufw.
 
 - name: "ufw: Debug"
   vars:
@@ -26,6 +29,8 @@
       {{ lp_ufw_packages|to_nice_yaml }}
       lp_ufw_conf
       {{ lp_ufw_conf|to_yaml }}
+      lp_ufw_service_conf
+      {{ lp_ufw_service_conf|to_yaml }}
   debug:
     msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_ufw_debug|bool
@@ -71,6 +76,25 @@
     to_port: "{{ item.to_port|default(omit) }}"
   loop: "{{ lp_ufw_conf }}"
   tags: lp_ufw_conf
+
+- name: "ufw: Configure service"
+  ini_file:
+    path: "{{ item.0.path }}"
+    owner: "{{ item.0.owner|default(omit) }}"
+    group: "{{ item.0.group|default(omit) }}"
+    mode: "{{ item.0.mode|default(omit) }}"
+    create: "{{ item.0.create|default(omit) }}"
+    no_extra_spaces: "{{ item.0.no_extra_spaces|default(omit) }}"
+    section: "{{ item.1.section }}"
+    state: "{{ item.1.state|default(omit) }}"
+    option: "{{ item.1.option|default(omit) }}"
+    value: "{{ item.1.value|default(omit) }}"
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_ufw_service_conf|subelements('ini', {'skip_missing': True}) }}"
+  loop_control:
+    label: "{{ item.0.path }}"
+  notify: "{{ item.0.handlers|default(omit) }}"
+  tags: lp_ufw_service_conf
 
 - name: "ufw: Start and enable ufw"
   service:

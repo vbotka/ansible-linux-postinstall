@@ -477,6 +477,14 @@
 #   - {rule: 'allow', to_port: '8080', proto: 'tcp', from_ip: '{{ lp_ufw_src_lan }}'}
 #   - {logging: 'on'}
 #   - {state: 'enabled'}
+# lp_ufw_service_conf:
+#   - path: /lib/systemd/system/ufw.service
+#     no_extra_spaces: true
+#     handlers:
+#       - 'restart ufw'
+#     ini:
+#       - {section: Unit, option: Before, state: absent}
+#       - {section: Unit, option: After, value: 'network-pre.target', state: present}
 
 # lp_zfs: true
 # lp_zfs_debug: true

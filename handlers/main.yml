@@ -26,6 +26,7 @@
 - import_tasks: handlers_timesyncd.yml
 - import_tasks: handlers_tlp.yml
 - import_tasks: handlers_udev.yml
+- import_tasks: handlers_ufw.yml
 - import_tasks: handlers_wpasupplicant.yml
 
 # EOF

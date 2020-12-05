@@ -1,0 +1,10 @@
+---
+
+- name: restart ufw
+  service:
+    name: "{{ lp_ufw_service }}"
+    state: restarted
+  when: lp_ufw_enable|bool
+
+# EOF
+...

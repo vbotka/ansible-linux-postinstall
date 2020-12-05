@@ -384,6 +384,7 @@ lp_ufw_service: ufw
 lp_ufw_conf:
   - {state: enabled, policy: allow}
   - {logging: "on"}
+lp_ufw_service_conf: []
 
 lp_debsums: false
 lp_debsums_debug: false
