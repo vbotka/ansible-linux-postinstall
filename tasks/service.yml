@@ -103,7 +103,7 @@
     pattern: "{{ item.pattern|default(omit) }}"
     runlevel: "{{ item.runlevel|default(omit) }}"
     sleep: "{{ item.sleep|default(omit) }}"
-    use: "{{ item.use|default('omit') }}"
+    use: "{{ item.use|default(omit) }}"
   loop: "{{ lp_service }}"
   when: (item.state is defined) or
         (item.enabled is defined)

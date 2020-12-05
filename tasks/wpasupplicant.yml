@@ -95,7 +95,7 @@
   service:
     name: "{{ my_service }}"
     state: "{{ item.state|default('started') }}"
-    enabled: "{{ item.enabled|default('true') }}"
+    enabled: "{{ item.enabled|default(true) }}"
   register: lp_wpasupplicant_service_result
   loop: "{{ lp_wpasupplicant_conf }}"
   loop_control:

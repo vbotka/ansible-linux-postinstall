@@ -13,7 +13,7 @@
   when:
     - item.changed|bool
     - not lp_wpasupplicant_conf_only|bool
-    - item.item.enabled|default('true')
+    - item.item.enabled|default(true)
 
 # [TODO] Wait for OK result. Error: 'RECONFIGURE' command timed out.
 # shell: >
