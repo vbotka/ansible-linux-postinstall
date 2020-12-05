@@ -1,7 +1,7 @@
 ---
 # linux-postinstall vars_incremental
 
-- name: "vars-incemental: Include default vars for
+- name: "vars_incemental: Include default vars for
               [{{ ansible_os_family }},
                {{ ansible_distribution }},
                {{ ansible_distribution_release }}]"
@@ -17,12 +17,12 @@
   vars:
     my_path: "{{ role_path }}/vars/defaults.incr"
 
-- name: "vars-incemental: Debug include default vars"
+- name: "vars_incemental: Debug include default vars"
   debug:
     var: result
   when: lp_debug|bool
 
-- name: "vars-incemental: Include custom vars for
+- name: "vars_incemental: Include custom vars for
               [{{ ansible_os_family }},
                {{ ansible_distribution }},
                {{ ansible_distribution_release }}]"
@@ -38,7 +38,7 @@
   vars:
     my_path: "{{ role_path }}/vars"
 
-- name: "vars-incemental: Debug include custom vars"
+- name: "vars_incemental: Debug include custom vars"
   debug:
     var: result
   when: lp_debug|bool
