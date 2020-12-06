@@ -22,5 +22,17 @@
 #            -i {{ item.item.dev }} reconfigure ||
 #    exit 0
 
+- name: reload wpa_supplicant service
+  service:
+    name: "{{ item.item.0.service }}"
+    state: reloaded
+  loop: "{{ lp_wpasupplicant_service_conf_changes.results }}"
+  loop_control:
+    label: "{{ item.item.0.path }}/{{ item.item.0.service }}"
+  when:
+    - item.changed|bool
+    - not lp_wpasupplicant_service_conf_only|bool
+    - item.item.enabled|default(true)
+
 # EOF
 ...

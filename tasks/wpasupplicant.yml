@@ -8,6 +8,7 @@
       lp_wpasupplicant_install [{{ lp_wpasupplicant_install }}]
       lp_wpasupplicant_packages
       {{ lp_wpasupplicant_packages|to_nice_yaml }}
+      lp_wpasupplicant_bin [{{ lp_wpasupplicant_bin }}]
       lp_wpasupplicant_conf_only [{{ lp_wpasupplicant_conf_only }}]
       lp_wpasupplicant_conf_dir [{{ lp_wpasupplicant_conf_dir }}]
       lp_wpasupplicant_conf_owner [{{ lp_wpasupplicant_conf_owner }}]
@@ -27,6 +28,8 @@
       lp_wpa_action_script_options_connect [{{ lp_wpa_action_script_options_connect }}]
       lp_wpa_action_script_options_disconnect [{{ lp_wpa_action_script_options_disconnect }}]
       lp_wpa_action_script_logfile [{{ lp_wpa_action_script_logfile }}]
+      lp_wpasupplicant_service_conf
+      {{ lp_wpasupplicant_service_conf|to_yaml }}
 
       {% if lp_wpasupplicant_debug_classified|bool %}
       lp_wpasupplicant_conf
@@ -66,7 +69,7 @@
   tags: lp_wpa_action_script
 
 # Conf
-- name: "wpasupplicant: Create wpasupplicant configuration file"
+- name: "wpasupplicant: Create wpasupplicant configuration"
   template:
     src: wpa_supplicant.conf.j2
     dest: "{{ lp_wpasupplicant_conf_dir }}/{{ my_filename }}"
@@ -84,19 +87,50 @@
     my_filename: "{{ lp_wpasupplicant_conf_file[item.type|default('default')] }}"
   tags: lp_wpasupplicant_conf
 
-- name: "wpasupplicant: Debug: Configuration"
+- name: "wpasupplicant: Debug: Create wpasupplicant configuration"
   debug:
     var: lp_wpasupplicant_conf_changes
   when: lp_wpasupplicant_debug_classified|bool
   tags: lp_wpasupplicant_conf
 
 # Service
+- name: "wpasupplicant: Configure wpa_supplicant services"
+  ini_file:
+    path: "{{ item.0.path }}/{{ item.0.service }}"
+    owner: "{{ item.0.owner|default(omit) }}"
+    group: "{{ item.0.group|default(omit) }}"
+    mode: "{{ item.0.mode|default(omit) }}"
+    create: "{{ item.0.create|default(omit) }}"
+    no_extra_spaces: "{{ item.0.no_extra_spaces|default(omit) }}"
+    section: "{{ item.1.section }}"
+    state: "{{ item.1.state|default(omit) }}"
+    option: "{{ item.1.option|default(omit) }}"
+    value: "{{ item.1.value|default(omit) }}"
+    backup: "{{ lp_backup_conf }}"
+  register: lp_wpasupplicant_service_conf_changes
+# notify: "{{ item.0.handlers|default(omit) }}"  # TODO: reload running services
+  loop: "{{ lp_wpasupplicant_service_conf|subelements('ini', {'skip_missing': True}) }}"
+  loop_control:
+    label: "{{ item.0.path }}/{{ item.0.service }}"
+  tags: lp_wpasupplicant_service_conf
+
+- name: "wpasupplicant: Debug: Configure wpasupplicant services"
+  debug:
+    var: lp_wpasupplicant_service_conf_changes
+  when: lp_wpasupplicant_debug|bool
+  tags: lp_wpasupplicant_service_conf
+
 - name: "wpasupplicant: Manage wpa_supplicant services"
   service:
     name: "{{ my_service }}"
     state: "{{ item.state|default('started') }}"
     enabled: "{{ item.enabled|default(true) }}"
-  register: lp_wpasupplicant_service_result
+    arguments: "{{ item.arguments|default(omit) }}"
+    pattern: "{{ item.pattern|default(omit) }}"
+    runlevel: "{{ item.runlevel|default(omit) }}"
+    sleep: "{{ item.sleep|default(omit) }}"
+    use: "{{ item.use|default(omit) }}"
+  register: lp_wpasupplicant_service_changes
   loop: "{{ lp_wpasupplicant_conf }}"
   loop_control:
     label: "{{ my_service }}"
@@ -105,10 +139,10 @@
     my_service: "{{ lp_wpasupplicant_service[item.type|default('default')] }}"
   tags: lp_wpasupplicant_service
 
-- name: "wpasupplicant: Debug: Services"
+- name: "wpasupplicant: Debug: Manage wpa_supplicant services"
   debug:
-    var: lp_wpasupplicant_service_result
-  when: lp_wpasupplicant_debug_classified|bool
+    var: lp_wpasupplicant_service_changes
+  when: lp_wpasupplicant_debug|bool
   tags: lp_wpasupplicant_service
 
 # EOF
