@@ -108,7 +108,7 @@
     value: "{{ item.1.value|default(omit) }}"
     backup: "{{ lp_backup_conf }}"
   register: lp_wpasupplicant_service_conf_changes
-# notify: "{{ item.0.handlers|default(omit) }}"  # TODO: reload running services
+  notify: "{{ item.0.handlers|default(omit) }}"  # TODO: see handlers
   loop: "{{ lp_wpasupplicant_service_conf|subelements('ini', {'skip_missing': True}) }}"
   loop_control:
     label: "{{ item.0.path }}/{{ item.0.service }}"

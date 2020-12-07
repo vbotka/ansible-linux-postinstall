@@ -34,5 +34,9 @@
     - not lp_wpasupplicant_service_conf_only|bool
     - item.item.enabled|default(true)
 
+# [TODO] Restart running wpa_supplicant-*.service services
+# The command below successfully restarts the service in 20.04
+# shell> systemctl restart wpa_supplicant-nl80211@wlan0.service
+
 # EOF
 ...

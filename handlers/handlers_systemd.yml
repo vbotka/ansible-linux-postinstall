@@ -1,5 +1,9 @@
 ---
 
+- name: reload systemd daemon
+  systemd:
+    daemon_reload: true
+
 - name: reload systemd conf
   systemd:
     name: "{{ my_service }}"

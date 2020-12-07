@@ -420,6 +420,7 @@
 #     service: wpa_supplicant@.service
 #     no_extra_spaces: true
 #     handlers:
+#       - 'reload systemd daemon'
 #       - 'reload wpa_supplicant service'
 #     ini:
 #       - section: Service
