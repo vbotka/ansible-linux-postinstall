@@ -5,9 +5,9 @@
   vars:
     msg: |
       lp_users
-      {{ lp_users|default(['UNDEFINED'])|to_nice_yaml }}
+      {{ lp_users|to_nice_yaml }}
       lp_users_groups
-      {{ lp_users_groups|default(['UNDEFINED'])|to_nice_yaml }}
+      {{ lp_users_groups|to_nice_yaml }}
   debug:
     msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_users_debug|bool
@@ -46,7 +46,7 @@
     system: "{{ item.system|default(omit) }}"
     uid: "{{ item.uid|default(omit) }}"
     update_password: "{{ item.update_password|default(omit) }}"
-  loop: "{{ lp_users|default([]) }}"
+  loop: "{{ lp_users }}"
   loop_control:
     label: "{{ item.name }}"
   tags: lp_users_accounts
@@ -56,7 +56,7 @@
     name: "{{ item.name }}"
     groups: "{{ item.groups }}"
     append: "{{ item.append|default(true) }}"
-  loop: "{{ lp_users_groups|default([]) }}"
+  loop: "{{ lp_users_groups }}"
   tags: lp_users_groups
 
 #  EOF

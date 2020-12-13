@@ -81,6 +81,7 @@ lp_iptables_INPUT_net: []
 
 lp_users_debug: false
 lp_users: []
+lp_groups: []
 lp_users_groups: []
 
 lp_passwords: false

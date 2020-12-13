@@ -103,6 +103,11 @@
   # https://unix.stackexchange.com/questions/152222/
   # equivalent-of-update-grub-for-rhel-fedora-centos-systems
 
+- import_tasks: groups.yml
+  when: (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
+  tags: lp_groups
+
 - import_tasks: users.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")

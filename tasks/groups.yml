@@ -1,0 +1,22 @@
+---
+# linux-postinstall groups
+
+- name: "groups: Debug"
+  vars:
+    msg: |
+      lp_groups
+      {{ lp_groups|to_nice_yaml }}
+  debug:
+    msg: "{{ msg.split('\n')[:-1] }}"
+  when: lp_debug|bool
+
+- name: "groups: Manage groups"
+  group:
+    name: "{{ item.name }}"
+    gid: "{{ item.gid|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
+    system: "{{ item.system|default(omit) }}"
+  loop: "{{ lp_groups }}"
+
+# EOF
+...
