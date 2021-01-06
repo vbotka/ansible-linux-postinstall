@@ -1,7 +1,7 @@
 Ansible role Linux postinstall
 ==============================
 
-This `role <https://galaxy.ansible.com/vbotka/ansible/>`_ and the
+This `role <https://galaxy.ansible.com/vbotka/linux_postinstall/>`_ and the
 documentation is work in progess. Feel free to `share your feedback
 and report issues
 <https://github.com/vbotka/ansible-linux-postinstall/issues>`_. Contributions
