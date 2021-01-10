@@ -1,9 +1,1 @@
-# {{ ansible_managed }}
-{% for item  in lp_ssh_config %}
-Host {{ item.host }}
-{% for conf  in item.conf %}
-    {{ conf.key }} {{ conf.val }}
-{% endfor %}
-{% endfor %}
-
-# EOF
+ssh-config.j2

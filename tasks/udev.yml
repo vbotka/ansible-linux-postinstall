@@ -39,7 +39,7 @@
   notify: reload udev
   tags: lp_udev_rules
 
-# persistent_net
+# persistent_net (deprecated, use lp_udev_rules instead)
 - name: "udev: Configure {{ lp_udev_rules_dir }}/
                          {{ lp_udev_persistent_net_rules_file }}"
   template:
