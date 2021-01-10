@@ -50,7 +50,9 @@
 #  - {var: net.ipv4.conf.eth0.proxy_arp, value: '1' }
 
 # linux-postinstall udev
-#
+# lp_udev_conf:
+#   - {key: udev_log, val: debug}
+
 # lp_udev_rules_template: udev-rules.j2
 # lp_udev_rules:
 #   70-persistent-net.rules:
@@ -60,7 +62,6 @@
 #       - {key: 'DRIVERS', value: '?*', operator: '=='}
 #       - {key: 'ATTR{address}', value: '80:3f:5d:14:b1:d3', operator: '=='}
 #       - {key: 'ATTR{type}', value: '1', operator: '=='}
-
 # lp_udev_hci_name_rules:
 #  - {product: "Broadcom Bluetooth Device", name: "hci0"}
 #  - {product: "CSR8510 A10", name: "hci1"}

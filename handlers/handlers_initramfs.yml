@@ -1,7 +1,8 @@
 ---
 
 - name: update initramfs
-  command: update-initramfs -u
+  listen: update initrd
+  command: update-initramfs -k all -u
 
 # EOF
 ...

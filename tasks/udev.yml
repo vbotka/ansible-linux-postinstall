@@ -4,10 +4,15 @@
 - name: "udev: Debug"
   vars:
     msg: |
+      lp_udev_enable [{{ lp_udev_enable }}]
+      lp_udev_conf_file [{{ lp_udev_conf_file }}]
+      lp_udev_conf
+      {{ lp_udev_conf|to_yaml }}
+
       lp_udev_rules_dir [{{ lp_udev_rules_dir }}]
       lp_udev_rules_template [{{ lp_udev_rules_template }}]
       lp_udev_rules
-      {{ lp_udev_rules|to_nice_yaml }}
+      {{ lp_udev_rules|to_yaml }}
 
       lp_udev_persistent_net_template [{{ lp_udev_persistent_net_template }}]
       lp_udev_persistent_net_rules_file [{{ lp_udev_persistent_net_rules_file }}]
@@ -25,6 +30,15 @@
     msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_udev_debug|bool
   tags: lp_udev_debug
+
+- name: "udev: Configure {{ lp_udev_conf_file }}"
+  lineinfile:
+    dest: "{{ lp_udev_conf_file }}"
+    regexp: '^\s*{{ item.key }}\s*=(.*)$'
+    line: "{{ item.key }}={{ item.val }}"
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_udev_conf }}"
+  notify: update initrd
 
 # udev rules
 - name: "udev: Configure {{ lp_udev_rules_dir }}"
