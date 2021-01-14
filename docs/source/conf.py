@@ -32,7 +32,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'ansible-role-linux-postinstall'
-copyright = '2020, Vladimir Botka'
+copyright = '2020-2021, Vladimir Botka'
 author = 'Vladimir Botka'
 
 # The version info for the project you're documenting, acts as replacement for
