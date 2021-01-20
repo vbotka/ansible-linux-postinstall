@@ -1,3 +1,5 @@
+.. _as_tasks:
+
 Tasks
 =====
 
