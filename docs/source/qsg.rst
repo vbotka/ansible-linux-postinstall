@@ -57,10 +57,10 @@ services.
    lp_flavors_enable: false
 
 
-* Create users. The passwords will not be created.
+* Create users. The passwords will not be created. See `details <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_
 
 .. code-block:: bash
-   :emphasize-lines: 3,5
+   :emphasize-lines: 3,5,8
    :linenos:
 
    shell> cat host_vars/srv.example.com/lp-users.yml
@@ -76,7 +76,7 @@ services.
        groups: "adm, dialout"
 
 
-* Configure passwords
+* Configure passwords. See `details <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_
 
 .. code-block:: bash
    :emphasize-lines: 2-5

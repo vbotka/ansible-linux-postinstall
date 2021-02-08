@@ -2,13 +2,26 @@
 
 [![quality](https://img.shields.io/ansible/quality/27914)](https://galaxy.ansible.com/vbotka/linux_postinstall)[![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)[![Documentation Status](https://readthedocs.org/projects/docs/badge/?version=latest)](https://ansible-linux-postinstall.readthedocs.io/en/latest/)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi, aliases, apparmor, apt, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums, fstab, gpg, gpsd, groups, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate, modem manager, modules, netplan, networkd, networkmanager, nfsd, packages, passwords, pm-utils, postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl, systemd, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
+[Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi,
+aliases, apparmor, apt, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums,
+fstab, gpg, gpsd, groups, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate,
+modem manager, modules, netplan, networkd, networkmanager, nfsd, packages, passwords, pm-utils,
+postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl,
+systemd, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen,
+xorg.conf.d, zfs, (wip ...)
 
 [Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io)
 
-This role and the documentation is work in progress. if the documentation of a task is missing it's necessary to review the [source code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks) to learn how to use it. If a functionality is missing consider role [config_light](https://galaxy.ansible.com/vbotka/config_light). See various [examples](https://github.com/vbotka/ansible-config-light/tree/master/contrib). If *config_light* is not able to do what you want create new tasks.
+This role and the documentation is work in progress. If the documentation of a task is missing it's
+necessary to review the [source code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks) to learn how to use
+it. If a functionality is missing consider role
+[config_light](https://galaxy.ansible.com/vbotka/config_light). See various
+[examples](https://github.com/vbotka/ansible-config-light/tree/master/contrib). If *config_light* is
+not able to do what you want create new tasks.
 
-Feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-linux-postinstall/issues). Contributions are welcome.
+Feel free to [share your feedback and report
+issues](https://github.com/vbotka/ansible-linux-postinstall/issues). [Contributions are
+welcome](https://github.com/firstcontributions/first-contributions).
 
 
 ## Supported platforms
