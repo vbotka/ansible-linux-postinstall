@@ -1,5 +1,5 @@
 ---
-# linux-postinstall users
+# linux_postinstall users
 
 - name: "users: Debug"
   vars:

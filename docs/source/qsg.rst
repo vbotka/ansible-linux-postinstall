@@ -3,9 +3,8 @@
 Quick start guide
 *****************
 
-For the users who want to try the role quickly, this guide provides
-an example of how to create users, install packages, and configure
-services.
+For the users who want to try the role quickly, this guide provides an example of how to create
+users, install packages, and configure services.
 
 
 * Install the role ``vbotka.linux_postinstall`` ::
@@ -13,13 +12,13 @@ services.
     shell> ansible-galaxy install vbotka.linux_postinstall
 
 
-* Create the playbook ``linux-postinstall.yml`` for single host srv.example.com (2)
+* Create the playbook ``playbook.yml`` for single host srv.example.com (2)
 
 .. code-block:: bash
    :emphasize-lines: 2
    :linenos:
 
-   shell> cat linux-postinstall.yml
+   shell> cat playbook.yml
    - hosts: srv.example.com
      gather_facts: true
      connection: ssh
@@ -45,7 +44,7 @@ services.
    host_vars/srv.example.com/lp-service.yml
 
 
-* To speedup the execution let's set some variables (2-4) to *false*
+* To speedup the execution set some variables (2-4) to *false*
 
 .. code-block:: bash
    :emphasize-lines: 2-4
@@ -57,10 +56,10 @@ services.
    lp_flavors_enable: false
 
 
-* Create users. The passwords will not be created. See `details <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_
+* Create users. The passwords will not be created (5,8). See `details <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_
 
 .. code-block:: bash
-   :emphasize-lines: 3,5,8
+   :emphasize-lines: 5,8
    :linenos:
 
    shell> cat host_vars/srv.example.com/lp-users.yml
@@ -73,7 +72,7 @@ services.
        disabled_password: true
    lp_users_groups:
      - name: admin
-       groups: "adm, dialout"
+       groups: [adm, dialout]
 
 
 * Configure passwords. See `details <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_
@@ -117,29 +116,27 @@ services.
 
 * Test syntax ::
 
-    shell> ansible-playbook linux-postinstall.yml --syntax-check
+    shell> ansible-playbook playbook.yml --syntax-check
 
 
 * See what variables will be included ::
 
-    shell> ansible-playbook linux-postinstall.yml -t lp_debug \
-           -e "lp_debug=True"
+    shell> ansible-playbook playbook.yml -t lp_debug -e lp_debug=true
 
 
 * Install packages ::
 
-    shell> ansible-playbook linux-postinstall.yml -t lp_packages
+    shell> ansible-playbook playbook.yml -t lp_packages
 
 
 * Dry-run, display differences and display variables ::
 
-    shell> ansible-playbook linux-postinstall.yml \
-           -e "lp_debug=True" --check --diff
+    shell> ansible-playbook playbook.yml -e lp_debug=true --check --diff
 
 
 * Run the playbook ::
 
-    shell> ansible-playbook linux-postinstall.yml
+    shell> ansible-playbook playbook.yml
 
 
 .. warning:: The host has not been secured by this playbook and should
