@@ -19,9 +19,9 @@ it. If a functionality is missing consider role
 [examples](https://github.com/vbotka/ansible-config-light/tree/master/contrib). If *config_light* is
 not able to do what you want create new tasks.
 
-Feel free to [share your feedback and report
-issues](https://github.com/vbotka/ansible-linux-postinstall/issues). [Contributions are
-welcome](https://github.com/firstcontributions/first-contributions).
+Feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-linux-postinstall/issues).
+
+[Contributions are welcome](https://github.com/firstcontributions/first-contributions).
 
 
 ## Supported platforms
