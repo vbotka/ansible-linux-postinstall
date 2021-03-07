@@ -142,7 +142,7 @@
 - name: "wpasupplicant: Debug: Manage wpa_supplicant services"
   debug:
     var: lp_wpasupplicant_service_changes
-  when: lp_wpasupplicant_debug|bool
+  when: lp_wpasupplicant_debug_classified|bool
   tags: lp_wpasupplicant_service
 
 # EOF
