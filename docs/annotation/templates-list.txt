@@ -15,6 +15,7 @@ hci_name.rules.j2
 hci_run.rules.j2
 hostname.j2
 hosts.j2
+hosts-aliases-list.j2
 iptables_restore.j2
 modem_manager_override.j2
 netplan_conf.j2
