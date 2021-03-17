@@ -10,12 +10,13 @@
       lp_resolvconf_install [{{ lp_resolvconf_install }}]
       lp_resolvconf_packages
       {{ lp_resolvconf_packages|to_nice_yaml }}
-      lp_resolvconf_confd_head_path [{{ lp_resolvconf_confd_head_path }}]
       lp_resolvconf_conf_owner [{{ lp_resolvconf_conf_owner }}]
       lp_resolvconf_conf_group [{{ lp_resolvconf_conf_group }}]
       lp_resolvconf_conf_mode [{{ lp_resolvconf_conf_mode }}]
       lp_resolvconf_conf
-      {{ lp_resolvconf_conf|to_yaml }}
+      {{ lp_resolvconf_conf|to_nice_yaml }}
+      lp_resolvconf_confd_head
+      {{ lp_resolvconf_confd_head|to_yaml }}
   debug:
     msg: "{{ msg.split('\n')[:-1] }}"
   when: lp_resolvconf_debug|bool

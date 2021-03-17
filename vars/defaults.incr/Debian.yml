@@ -162,11 +162,10 @@ lp_debsums_packages:
 lp_resolvconf_service: resolvconf
 lp_resolvconf_packages:
   - resolvconf
-lp_resolvconf_confd_head_path: /etc/resolvconf/resolv.conf.d/head
 lp_resolvconf_conf_owner: root
 lp_resolvconf_conf_group: root
 lp_resolvconf_conf_mode: "0644"
-lp_resolvconf_confd_head: []
+lp_resolvconf_confd_head_path: /etc/resolvconf/resolv.conf.d/head
 
 # userland paths
 # lp_dhclient: "/sbin/dhclient"
