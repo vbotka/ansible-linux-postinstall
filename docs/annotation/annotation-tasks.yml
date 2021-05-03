@@ -33,7 +33,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'handlers': ['newaliases'], 'templates': ['aliases.j2']}
+    seealso: {'handlers': ['newaliases'], 'templates': ['aliases']}
     notes: []
     hints: []
     warnings: []
@@ -46,7 +46,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'templates': ['apt_confd.j2']}
+    seealso: {'templates': ['apt_confd']}
     notes: []
     hints: []
     warnings: []
@@ -176,7 +176,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'handlers': ['gpg'], 'templates': ['gpg.conf.j2', 'gpg_agent.conf.j2', 'gpg_dirmngr.conf.j2']}
+    seealso: {'handlers': ['gpg'], 'templates': ['gpg.conf', 'gpg_agent.conf', 'gpg_dirmngr.conf']}
     notes: []
     hints: []
     warnings: []
@@ -189,7 +189,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'handlers': ['gpsd', 'bluetooth'], 'templates': ['gpsd.j2']}
+    seealso: {'handlers': ['gpsd', 'bluetooth'], 'templates': ['gpsd']}
     notes: []
     hints: []
     warnings: []
@@ -228,7 +228,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'templates': ['hosts.j2']}
+    seealso: {'templates': ['hosts']}
     notes: []
     hints: []
     warnings: []
@@ -241,7 +241,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'handlers': ['iptables'], 'templates': ['iptables_restore.j2', 'default_iptables.j2', 'router1_iptables.j2']}
+    seealso: {'handlers': ['iptables'], 'templates': ['iptables_restore', 'default_iptables', 'router1_iptables']}
     notes: []
     hints: []
     warnings: []
@@ -358,7 +358,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'handlers': ['netplan'], 'templates': ['netplan_default.j2', 'netplan_conf.j2']}
+    seealso: {'handlers': ['netplan'], 'templates': ['netplan_default', 'netplan_conf']}
     notes: []
     hints: []
     warnings: []

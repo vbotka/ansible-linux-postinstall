@@ -1,10 +1,8 @@
-.. _as_templates:
-
 Templates
 =========
 
 {% for i in mytemplates %}
-.. _as_{{ i.link }}:
+.. _as_template_{{ i.link }}:
 
 {{ i.file }}
 {{ '-' * i.file|length }}
@@ -13,7 +11,7 @@ Synopsis: {{ i.synopsis }}
 
 {{ i.description }}
 
-[`{{ i.path }} <https://github.com/vbotka/ansible-linux-postinstall/blob/master/{{ i.path }}>`_]
+[`{{ i.path }} <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/{{ i.path }}>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5

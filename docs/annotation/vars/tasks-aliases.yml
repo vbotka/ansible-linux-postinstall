@@ -4,6 +4,6 @@ task_aliases_seealso:
   handlers:
     - newaliases
   templates:
-    - aliases.j2
+    - aliases
 
 ...

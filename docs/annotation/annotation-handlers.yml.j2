@@ -20,7 +20,7 @@ myhandlers:
     {%- if lookup('varnames', 'handler_' ~ file.0 ~ '_synopsis')|length > 0 %}
       {{ lookup('vars', 'handler_' ~ file.0 ~ '_synopsis')|indent(width=6) }}
     {%- else %}
-      Handler {{ file.0.split('_').1 }}.
+      Handler {{ file.0 }}.
     {%- endif %}
     description: |
     {%- if lookup('varnames', 'handler_' ~ file.0 ~ '_description')|length > 0 %}

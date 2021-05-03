@@ -1,6 +1,7 @@
 ---
 
-- hosts: localhost
+- name: Crreate source/annotation-[tasks,handlers,templates].rst
+  hosts: localhost
   gather_facts: false
   debugger: on_failed
 

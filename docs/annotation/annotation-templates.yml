@@ -2,7 +2,7 @@
 mytemplates:
 
   - file: acpi_action_lid.sh.j2
-    link: template_acpi_action_lid.sh.j2
+    link: acpi_action_lid.sh.j2
     path: templates/acpi_action_lid.sh.j2
     synopsis: |
       Template acpi_action_lid.sh.
@@ -14,7 +14,7 @@ mytemplates:
     warning: []
 
   - file: acpi_event_default.j2
-    link: template_acpi_event_default.j2
+    link: acpi_event_default.j2
     path: templates/acpi_event_default.j2
     synopsis: |
       Template acpi_event_default.
@@ -26,7 +26,7 @@ mytemplates:
     warning: []
 
   - file: aliases.j2
-    link: template_aliases.j2
+    link: aliases.j2
     path: templates/aliases.j2
     synopsis: |
       Template aliases.
@@ -38,7 +38,7 @@ mytemplates:
     warning: []
 
   - file: apt_confd.j2
-    link: template_apt_confd.j2
+    link: apt_confd.j2
     path: templates/apt_confd.j2
     synopsis: |
       Template apt_confd.
@@ -50,7 +50,7 @@ mytemplates:
     warning: []
 
   - file: auto_upgrades.j2
-    link: template_auto_upgrades.j2
+    link: auto_upgrades.j2
     path: templates/auto_upgrades.j2
     synopsis: |
       Template auto_upgrades.
@@ -62,7 +62,7 @@ mytemplates:
     warning: []
 
   - file: blacklist_module.j2
-    link: template_blacklist_module.j2
+    link: blacklist_module.j2
     path: templates/blacklist_module.j2
     synopsis: |
       Template blacklist_module.
@@ -74,7 +74,7 @@ mytemplates:
     warning: []
 
   - file: bluetooth_rfcomm_conf.j2
-    link: template_bluetooth_rfcomm_conf.j2
+    link: bluetooth_rfcomm_conf.j2
     path: templates/bluetooth_rfcomm_conf.j2
     synopsis: |
       Template bluetooth_rfcomm_conf.
@@ -86,7 +86,7 @@ mytemplates:
     warning: []
 
   - file: default_iptables.j2
-    link: template_default_iptables.j2
+    link: default_iptables.j2
     path: templates/default_iptables.j2
     synopsis: |
       Template default_iptables.
@@ -98,7 +98,7 @@ mytemplates:
     warning: []
 
   - file: exports.j2
-    link: template_exports.j2
+    link: exports.j2
     path: templates/exports.j2
     synopsis: |
       Template exports.
@@ -110,7 +110,7 @@ mytemplates:
     warning: []
 
   - file: gpg_agent.conf.j2
-    link: template_gpg_agent.conf.j2
+    link: gpg_agent.conf.j2
     path: templates/gpg_agent.conf.j2
     synopsis: |
       Template gpg_agent.conf.
@@ -122,7 +122,7 @@ mytemplates:
     warning: []
 
   - file: gpg.conf.j2
-    link: template_gpg.conf.j2
+    link: gpg.conf.j2
     path: templates/gpg.conf.j2
     synopsis: |
       Template gpg.conf.
@@ -134,7 +134,7 @@ mytemplates:
     warning: []
 
   - file: gpg_dirmngr.conf.j2
-    link: template_gpg_dirmngr.conf.j2
+    link: gpg_dirmngr.conf.j2
     path: templates/gpg_dirmngr.conf.j2
     synopsis: |
       Template gpg_dirmngr.conf.
@@ -146,7 +146,7 @@ mytemplates:
     warning: []
 
   - file: gpsd.j2
-    link: template_gpsd.j2
+    link: gpsd.j2
     path: templates/gpsd.j2
     synopsis: |
       Template gpsd.
@@ -158,7 +158,7 @@ mytemplates:
     warning: []
 
   - file: hci_name.rules.j2
-    link: template_hci_name.rules.j2
+    link: hci_name.rules.j2
     path: templates/hci_name.rules.j2
     synopsis: |
       Template hci_name.rules.
@@ -170,7 +170,7 @@ mytemplates:
     warning: []
 
   - file: hci_run.rules.j2
-    link: template_hci_run.rules.j2
+    link: hci_run.rules.j2
     path: templates/hci_run.rules.j2
     synopsis: |
       Template hci_run.rules.
@@ -182,7 +182,7 @@ mytemplates:
     warning: []
 
   - file: hostname.j2
-    link: template_hostname.j2
+    link: hostname.j2
     path: templates/hostname.j2
     synopsis: |
       Template hostname.
@@ -194,7 +194,7 @@ mytemplates:
     warning: []
 
   - file: hosts.j2
-    link: template_hosts.j2
+    link: hosts.j2
     path: templates/hosts.j2
     synopsis: |
       Template hosts.
@@ -206,7 +206,7 @@ mytemplates:
     warning: []
 
   - file: hosts-aliases-list.j2
-    link: template_hosts-aliases-list.j2
+    link: hosts-aliases-list.j2
     path: templates/hosts-aliases-list.j2
     synopsis: |
       Template hosts-aliases-list.
@@ -218,7 +218,7 @@ mytemplates:
     warning: []
 
   - file: iptables_restore.j2
-    link: template_iptables_restore.j2
+    link: iptables_restore.j2
     path: templates/iptables_restore.j2
     synopsis: |
       Template iptables_restore.
@@ -230,7 +230,7 @@ mytemplates:
     warning: []
 
   - file: modem_manager_override.j2
-    link: template_modem_manager_override.j2
+    link: modem_manager_override.j2
     path: templates/modem_manager_override.j2
     synopsis: |
       Template modem_manager_override.
@@ -242,7 +242,7 @@ mytemplates:
     warning: []
 
   - file: netplan_conf.j2
-    link: template_netplan_conf.j2
+    link: netplan_conf.j2
     path: templates/netplan_conf.j2
     synopsis: |
       Template netplan_conf.
@@ -254,7 +254,7 @@ mytemplates:
     warning: []
 
   - file: netplan_default.j2
-    link: template_netplan_default.j2
+    link: netplan_default.j2
     path: templates/netplan_default.j2
     synopsis: |
       Template netplan_default.
@@ -266,7 +266,7 @@ mytemplates:
     warning: []
 
   - file: networkd.conf.j2
-    link: template_networkd.conf.j2
+    link: networkd.conf.j2
     path: templates/networkd.conf.j2
     synopsis: |
       Template networkd.conf.
@@ -278,7 +278,7 @@ mytemplates:
     warning: []
 
   - file: network_manager_override.j2
-    link: template_network_manager_override.j2
+    link: network_manager_override.j2
     path: templates/network_manager_override.j2
     synopsis: |
       Template network_manager_override.
@@ -290,7 +290,7 @@ mytemplates:
     warning: []
 
   - file: options_module.j2
-    link: template_options_module.j2
+    link: options_module.j2
     path: templates/options_module.j2
     synopsis: |
       Template options_module.
@@ -302,7 +302,7 @@ mytemplates:
     warning: []
 
   - file: persistent_net.rules2.j2
-    link: template_persistent_net.rules2.j2
+    link: persistent_net.rules2.j2
     path: templates/persistent_net.rules2.j2
     synopsis: |
       Template persistent_net.rules2.
@@ -314,7 +314,7 @@ mytemplates:
     warning: []
 
   - file: persistent_net.rules.j2
-    link: template_persistent_net.rules.j2
+    link: persistent_net.rules.j2
     path: templates/persistent_net.rules.j2
     synopsis: |
       Template persistent_net.rules.
@@ -326,7 +326,7 @@ mytemplates:
     warning: []
 
   - file: pm_sleepd.j2
-    link: template_pm_sleepd.j2
+    link: pm_sleepd.j2
     path: templates/pm_sleepd.j2
     synopsis: |
       Template pm_sleepd.
@@ -338,7 +338,7 @@ mytemplates:
     warning: []
 
   - file: resolvconf_confd_head.j2
-    link: template_resolvconf_confd_head.j2
+    link: resolvconf_confd_head.j2
     path: templates/resolvconf_confd_head.j2
     synopsis: |
       Template resolvconf_confd_head.
@@ -350,7 +350,7 @@ mytemplates:
     warning: []
 
   - file: router1_iptables.j2
-    link: template_router1_iptables.j2
+    link: router1_iptables.j2
     path: templates/router1_iptables.j2
     synopsis: |
       Template router1_iptables.
@@ -362,7 +362,7 @@ mytemplates:
     warning: []
 
   - file: ssh_config.j2
-    link: template_ssh_config.j2
+    link: ssh_config.j2
     path: templates/ssh_config.j2
     synopsis: |
       Template ssh_config.
@@ -374,7 +374,7 @@ mytemplates:
     warning: []
 
   - file: systemd_unit.j2
-    link: template_systemd_unit.j2
+    link: systemd_unit.j2
     path: templates/systemd_unit.j2
     synopsis: |
       Template systemd_unit.
@@ -386,7 +386,7 @@ mytemplates:
     warning: []
 
   - file: timesyncd.conf.j2
-    link: template_timesyncd.conf.j2
+    link: timesyncd.conf.j2
     path: templates/timesyncd.conf.j2
     synopsis: |
       Template timesyncd.conf.
@@ -398,7 +398,7 @@ mytemplates:
     warning: []
 
   - file: udev_rules.j2
-    link: template_udev_rules.j2
+    link: udev_rules.j2
     path: templates/udev_rules.j2
     synopsis: |
       Template udev_rules.
@@ -410,7 +410,7 @@ mytemplates:
     warning: []
 
   - file: wpa_action.sh.j2
-    link: template_wpa_action.sh.j2
+    link: wpa_action.sh.j2
     path: templates/wpa_action.sh.j2
     synopsis: |
       Template wpa_action.sh.
@@ -422,7 +422,7 @@ mytemplates:
     warning: []
 
   - file: wpa_supplicant.conf.j2
-    link: template_wpa_supplicant.conf.j2
+    link: wpa_supplicant.conf.j2
     path: templates/wpa_supplicant.conf.j2
     synopsis: |
       Template wpa_supplicant.conf.
@@ -434,7 +434,7 @@ mytemplates:
     warning: []
 
   - file: xorg.conf.j2
-    link: template_xorg.conf.j2
+    link: xorg.conf.j2
     path: templates/xorg.conf.j2
     synopsis: |
       Template xorg.conf.

@@ -5,6 +5,6 @@ task_gpsd_seealso:
     - gpsd
     - bluetooth
   templates:
-    - gpsd.j2
+    - gpsd
 
 ...

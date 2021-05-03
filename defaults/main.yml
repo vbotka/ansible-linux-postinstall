@@ -163,6 +163,7 @@ lp_bluetooth: false
 lp_bluetooth_debug: false
 lp_bluetooth_enable: false
 lp_bluetooth_main_conf: []
+lp_bluetooth_ini: []
 
 lp_xorg_debug: false
 lp_xorg_conf_dir: /usr/share/X11/xorg.conf.d

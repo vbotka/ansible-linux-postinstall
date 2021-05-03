@@ -1,5 +1,3 @@
-.. _as_templates:
-
 Templates
 =========
 
@@ -14,7 +12,7 @@ Synopsis: Template acpi_action_lid.sh.
 Description of the template.
 
 
-[`templates/acpi_action_lid.sh.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/acpi_action_lid.sh.j2>`_]
+[`templates/acpi_action_lid.sh.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/acpi_action_lid.sh.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -34,7 +32,7 @@ Synopsis: Template acpi_event_default.
 Description of the template.
 
 
-[`templates/acpi_event_default.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/acpi_event_default.j2>`_]
+[`templates/acpi_event_default.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/acpi_event_default.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -54,7 +52,7 @@ Synopsis: Template aliases.
 Description of the template.
 
 
-[`templates/aliases.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/aliases.j2>`_]
+[`templates/aliases.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/aliases.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -74,7 +72,7 @@ Synopsis: Template apt_confd.
 Description of the template.
 
 
-[`templates/apt_confd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/apt_confd.j2>`_]
+[`templates/apt_confd.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/apt_confd.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -94,7 +92,7 @@ Synopsis: Template auto_upgrades.
 Description of the template.
 
 
-[`templates/auto_upgrades.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/auto_upgrades.j2>`_]
+[`templates/auto_upgrades.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/auto_upgrades.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -114,7 +112,7 @@ Synopsis: Template blacklist_module.
 Description of the template.
 
 
-[`templates/blacklist_module.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/blacklist_module.j2>`_]
+[`templates/blacklist_module.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/blacklist_module.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -134,7 +132,7 @@ Synopsis: Template bluetooth_rfcomm_conf.
 Description of the template.
 
 
-[`templates/bluetooth_rfcomm_conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/bluetooth_rfcomm_conf.j2>`_]
+[`templates/bluetooth_rfcomm_conf.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/bluetooth_rfcomm_conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -154,7 +152,7 @@ Synopsis: Template default_iptables.
 Description of the template.
 
 
-[`templates/default_iptables.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/default_iptables.j2>`_]
+[`templates/default_iptables.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/default_iptables.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -174,7 +172,7 @@ Synopsis: Template exports.
 Description of the template.
 
 
-[`templates/exports.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/exports.j2>`_]
+[`templates/exports.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/exports.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -194,7 +192,7 @@ Synopsis: Template gpg_agent.conf.
 Description of the template.
 
 
-[`templates/gpg_agent.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpg_agent.conf.j2>`_]
+[`templates/gpg_agent.conf.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/gpg_agent.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -214,7 +212,7 @@ Synopsis: Template gpg.conf.
 Description of the template.
 
 
-[`templates/gpg.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpg.conf.j2>`_]
+[`templates/gpg.conf.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/gpg.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -234,7 +232,7 @@ Synopsis: Template gpg_dirmngr.conf.
 Description of the template.
 
 
-[`templates/gpg_dirmngr.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpg_dirmngr.conf.j2>`_]
+[`templates/gpg_dirmngr.conf.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/gpg_dirmngr.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -254,7 +252,7 @@ Synopsis: Template gpsd.
 Description of the template.
 
 
-[`templates/gpsd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpsd.j2>`_]
+[`templates/gpsd.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/gpsd.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -274,7 +272,7 @@ Synopsis: Template hci_name.rules.
 Description of the template.
 
 
-[`templates/hci_name.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hci_name.rules.j2>`_]
+[`templates/hci_name.rules.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/hci_name.rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -294,7 +292,7 @@ Synopsis: Template hci_run.rules.
 Description of the template.
 
 
-[`templates/hci_run.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hci_run.rules.j2>`_]
+[`templates/hci_run.rules.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/hci_run.rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -314,7 +312,7 @@ Synopsis: Template hostname.
 Description of the template.
 
 
-[`templates/hostname.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hostname.j2>`_]
+[`templates/hostname.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/hostname.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -334,7 +332,7 @@ Synopsis: Template hosts.
 Description of the template.
 
 
-[`templates/hosts.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hosts.j2>`_]
+[`templates/hosts.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/hosts.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -354,7 +352,7 @@ Synopsis: Template hosts-aliases-list.
 Description of the template.
 
 
-[`templates/hosts-aliases-list.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hosts-aliases-list.j2>`_]
+[`templates/hosts-aliases-list.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/hosts-aliases-list.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -374,7 +372,7 @@ Synopsis: Template iptables_restore.
 Description of the template.
 
 
-[`templates/iptables_restore.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/iptables_restore.j2>`_]
+[`templates/iptables_restore.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/iptables_restore.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -394,7 +392,7 @@ Synopsis: Template modem_manager_override.
 Description of the template.
 
 
-[`templates/modem_manager_override.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/modem_manager_override.j2>`_]
+[`templates/modem_manager_override.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/modem_manager_override.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -414,7 +412,7 @@ Synopsis: Template netplan_conf.
 Description of the template.
 
 
-[`templates/netplan_conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/netplan_conf.j2>`_]
+[`templates/netplan_conf.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/netplan_conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -434,7 +432,7 @@ Synopsis: Template netplan_default.
 Description of the template.
 
 
-[`templates/netplan_default.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/netplan_default.j2>`_]
+[`templates/netplan_default.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/netplan_default.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -454,7 +452,7 @@ Synopsis: Template networkd.conf.
 Description of the template.
 
 
-[`templates/networkd.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/networkd.conf.j2>`_]
+[`templates/networkd.conf.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/networkd.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -474,7 +472,7 @@ Synopsis: Template network_manager_override.
 Description of the template.
 
 
-[`templates/network_manager_override.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/network_manager_override.j2>`_]
+[`templates/network_manager_override.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/network_manager_override.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -494,7 +492,7 @@ Synopsis: Template options_module.
 Description of the template.
 
 
-[`templates/options_module.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/options_module.j2>`_]
+[`templates/options_module.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/options_module.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -514,7 +512,7 @@ Synopsis: Template persistent_net.rules2.
 Description of the template.
 
 
-[`templates/persistent_net.rules2.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/persistent_net.rules2.j2>`_]
+[`templates/persistent_net.rules2.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/persistent_net.rules2.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -534,7 +532,7 @@ Synopsis: Template persistent_net.rules.
 Description of the template.
 
 
-[`templates/persistent_net.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/persistent_net.rules.j2>`_]
+[`templates/persistent_net.rules.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/persistent_net.rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -554,7 +552,7 @@ Synopsis: Template pm_sleepd.
 Description of the template.
 
 
-[`templates/pm_sleepd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/pm_sleepd.j2>`_]
+[`templates/pm_sleepd.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/pm_sleepd.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -574,7 +572,7 @@ Synopsis: Template resolvconf_confd_head.
 Description of the template.
 
 
-[`templates/resolvconf_confd_head.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/resolvconf_confd_head.j2>`_]
+[`templates/resolvconf_confd_head.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/resolvconf_confd_head.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -594,7 +592,7 @@ Synopsis: Template router1_iptables.
 Description of the template.
 
 
-[`templates/router1_iptables.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/router1_iptables.j2>`_]
+[`templates/router1_iptables.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/router1_iptables.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -614,7 +612,7 @@ Synopsis: Template ssh_config.
 Description of the template.
 
 
-[`templates/ssh_config.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/ssh_config.j2>`_]
+[`templates/ssh_config.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/ssh_config.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -634,7 +632,7 @@ Synopsis: Template systemd_unit.
 Description of the template.
 
 
-[`templates/systemd_unit.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/systemd_unit.j2>`_]
+[`templates/systemd_unit.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/systemd_unit.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -654,7 +652,7 @@ Synopsis: Template timesyncd.conf.
 Description of the template.
 
 
-[`templates/timesyncd.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/timesyncd.conf.j2>`_]
+[`templates/timesyncd.conf.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/timesyncd.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -674,7 +672,7 @@ Synopsis: Template udev_rules.
 Description of the template.
 
 
-[`templates/udev_rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/udev_rules.j2>`_]
+[`templates/udev_rules.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/udev_rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -694,7 +692,7 @@ Synopsis: Template wpa_action.sh.
 Description of the template.
 
 
-[`templates/wpa_action.sh.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/wpa_action.sh.j2>`_]
+[`templates/wpa_action.sh.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/wpa_action.sh.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -714,7 +712,7 @@ Synopsis: Template wpa_supplicant.conf.
 Description of the template.
 
 
-[`templates/wpa_supplicant.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/wpa_supplicant.conf.j2>`_]
+[`templates/wpa_supplicant.conf.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/wpa_supplicant.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -734,7 +732,7 @@ Synopsis: Template xorg.conf.
 Description of the template.
 
 
-[`templates/xorg.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/xorg.conf.j2>`_]
+[`templates/xorg.conf.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/xorg.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5

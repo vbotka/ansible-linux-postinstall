@@ -1,5 +1,3 @@
-.. _as_tasks:
-
 Tasks
 =====
 
@@ -14,7 +12,7 @@ Synopsis: Main task.
 Import tasks if enabled.
 
 
-[`tasks/main.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/main.yml>`_]
+[`tasks/main.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/main.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -38,7 +36,7 @@ Synopsis: Configure acpi.
 Description of the task.
 
 
-[`tasks/acpi.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/acpi.yml>`_]
+[`tasks/acpi.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/acpi.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -62,7 +60,7 @@ Synopsis: Configure aliases.
 Description of the task.
 
 
-[`tasks/aliases.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/aliases.yml>`_]
+[`tasks/aliases.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/aliases.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -72,7 +70,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers_newaliases.yml`
+   * Handler :ref:`as_handler_newaliases.yml`
    * Template :ref:`as_template_aliases.j2`
 
 
@@ -89,7 +87,7 @@ Synopsis: Configure apt.
 Description of the task.
 
 
-[`tasks/apt.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/apt.yml>`_]
+[`tasks/apt.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/apt.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -115,7 +113,7 @@ Synopsis: Configure apparmor.
 Description of the task.
 
 
-[`tasks/apparmor.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/apparmor.yml>`_]
+[`tasks/apparmor.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/apparmor.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -139,7 +137,7 @@ Synopsis: Configure authorized_keys.
 Description of the task.
 
 
-[`tasks/authorized_keys.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/authorized_keys.yml>`_]
+[`tasks/authorized_keys.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/authorized_keys.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -163,7 +161,7 @@ Synopsis: Configure autofs.
 Description of the task.
 
 
-[`tasks/autofs.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/autofs.yml>`_]
+[`tasks/autofs.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/autofs.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -173,7 +171,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers_autofs.yml`
+   * Handler :ref:`as_handler_autofs.yml`
 
 
 
@@ -189,7 +187,7 @@ Synopsis: Configure auto_upgrades.
 Description of the task.
 
 
-[`tasks/auto_upgrades.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/auto_upgrades.yml>`_]
+[`tasks/auto_upgrades.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/auto_upgrades.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -213,7 +211,7 @@ Synopsis: Configure bluetooth.
 Description of the task.
 
 
-[`tasks/bluetooth.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/bluetooth.yml>`_]
+[`tasks/bluetooth.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/bluetooth.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -223,7 +221,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers_bluetooth.yml`
+   * Handler :ref:`as_handler_bluetooth.yml`
 
 
 
@@ -239,7 +237,7 @@ Synopsis: Configure cron.
 Description of the task.
 
 
-[`tasks/cron.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/cron.yml>`_]
+[`tasks/cron.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/cron.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -263,7 +261,7 @@ Synopsis: Configure debsums.
 Description of the task.
 
 
-[`tasks/debsums.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/debsums.yml>`_]
+[`tasks/debsums.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/debsums.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -287,7 +285,7 @@ Synopsis: Configure debug.
 Description of the task.
 
 
-[`tasks/debug.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/debug.yml>`_]
+[`tasks/debug.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/debug.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -311,7 +309,7 @@ Synopsis: Configure fstab.
 Description of the task.
 
 
-[`tasks/fstab.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fstab.yml>`_]
+[`tasks/fstab.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/fstab.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -335,7 +333,7 @@ Synopsis: Configure gpg.
 Description of the task.
 
 
-[`tasks/gpg.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/gpg.yml>`_]
+[`tasks/gpg.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/gpg.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -345,7 +343,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers_gpg.yml`
+   * Handler :ref:`as_handler_gpg.yml`
    * Template :ref:`as_template_gpg.conf.j2`
    * Template :ref:`as_template_gpg_agent.conf.j2`
    * Template :ref:`as_template_gpg_dirmngr.conf.j2`
@@ -364,7 +362,7 @@ Synopsis: Configure gpsd.
 Description of the task.
 
 
-[`tasks/gpsd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/gpsd.yml>`_]
+[`tasks/gpsd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/gpsd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -374,8 +372,8 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers_gpsd.yml`
-   * Handlers :ref:`as_handlers_bluetooth.yml`
+   * Handler :ref:`as_handler_gpsd.yml`
+   * Handler :ref:`as_handler_bluetooth.yml`
    * Template :ref:`as_template_gpsd.j2`
 
 
@@ -392,7 +390,7 @@ Synopsis: Configure grub.
 Description of the task.
 
 
-[`tasks/grub.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/grub.yml>`_]
+[`tasks/grub.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/grub.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -402,7 +400,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers_grub.yml`
+   * Handler :ref:`as_handler_grub.yml`
 
 
 
@@ -418,7 +416,7 @@ Synopsis: Configure hostname.
 Description of the task.
 
 
-[`tasks/hostname.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/hostname.yml>`_]
+[`tasks/hostname.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/hostname.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -442,7 +440,7 @@ Synopsis: Configure hosts.
 Description of the task.
 
 
-[`tasks/hosts.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/hosts.yml>`_]
+[`tasks/hosts.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/hosts.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -468,7 +466,7 @@ Synopsis: Configure iptables.
 Description of the task.
 
 
-[`tasks/iptables.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/iptables.yml>`_]
+[`tasks/iptables.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/iptables.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -478,7 +476,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers_iptables.yml`
+   * Handler :ref:`as_handler_iptables.yml`
    * Template :ref:`as_template_iptables_restore.j2`
    * Template :ref:`as_template_default_iptables.j2`
    * Template :ref:`as_template_router1_iptables.j2`
@@ -497,7 +495,7 @@ Synopsis: Configure kvm.
 Description of the task.
 
 
-[`tasks/kvm.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/kvm.yml>`_]
+[`tasks/kvm.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/kvm.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -521,7 +519,7 @@ Synopsis: Configure latex.
 Description of the task.
 
 
-[`tasks/latex.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/latex.yml>`_]
+[`tasks/latex.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/latex.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -545,7 +543,7 @@ Synopsis: Configure libvirt_conf.
 Description of the task.
 
 
-[`tasks/libvirt_conf.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/libvirt_conf.yml>`_]
+[`tasks/libvirt_conf.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/libvirt_conf.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -555,7 +553,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers_libvirtd.yml`
+   * Handler :ref:`as_handler_libvirtd.yml`
 
 
 
@@ -571,7 +569,7 @@ Synopsis: Configure libvirt.
 Description of the task.
 
 
-[`tasks/libvirt.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/libvirt.yml>`_]
+[`tasks/libvirt.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/libvirt.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -595,7 +593,7 @@ Synopsis: Configure lid.
 Description of the task.
 
 
-[`tasks/lid.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/lid.yml>`_]
+[`tasks/lid.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/lid.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -605,7 +603,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers_messages.yml`
+   * Handler :ref:`as_handler_messages.yml`
 
 
 
@@ -621,7 +619,7 @@ Synopsis: Configure logrotate.
 Description of the task.
 
 
-[`tasks/logrotate.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/logrotate.yml>`_]
+[`tasks/logrotate.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/logrotate.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -645,7 +643,7 @@ Synopsis: Configure modemmanager.
 Description of the task.
 
 
-[`tasks/modemmanager.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/modemmanager.yml>`_]
+[`tasks/modemmanager.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/modemmanager.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -669,7 +667,7 @@ Synopsis: Configure modules.
 Description of the task.
 
 
-[`tasks/modules.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/modules.yml>`_]
+[`tasks/modules.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/modules.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -693,7 +691,7 @@ Synopsis: Configure netplan.
 Description of the task.
 
 
-[`tasks/netplan.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/netplan.yml>`_]
+[`tasks/netplan.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/netplan.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -703,7 +701,7 @@ Description of the task.
     :linenos:
 
 .. seealso::
-   * Handlers :ref:`as_handlers_netplan.yml`
+   * Handler :ref:`as_handler_netplan.yml`
    * Template :ref:`as_template_netplan_default.j2`
    * Template :ref:`as_template_netplan_conf.j2`
 
@@ -721,7 +719,7 @@ Synopsis: Configure networkd.
 Description of the task.
 
 
-[`tasks/networkd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/networkd.yml>`_]
+[`tasks/networkd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/networkd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -745,7 +743,7 @@ Synopsis: Configure networkmanager.
 Description of the task.
 
 
-[`tasks/networkmanager.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/networkmanager.yml>`_]
+[`tasks/networkmanager.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/networkmanager.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -769,7 +767,7 @@ Synopsis: Configure nfsd.
 Description of the task.
 
 
-[`tasks/nfsd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/nfsd.yml>`_]
+[`tasks/nfsd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/nfsd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -793,7 +791,7 @@ Synopsis: Configure packages_auto.
 Description of the task.
 
 
-[`tasks/packages_auto.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/packages_auto.yml>`_]
+[`tasks/packages_auto.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/packages_auto.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -817,7 +815,7 @@ Synopsis: Configure packages.
 Description of the task.
 
 
-[`tasks/packages.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/packages.yml>`_]
+[`tasks/packages.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/packages.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -841,7 +839,7 @@ Synopsis: Configure passwords.
 Description of the task.
 
 
-[`tasks/passwords.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/passwords.yml>`_]
+[`tasks/passwords.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/passwords.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -865,7 +863,7 @@ Synopsis: Configure pm_utils.
 Description of the task.
 
 
-[`tasks/pm_utils.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/pm_utils.yml>`_]
+[`tasks/pm_utils.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/pm_utils.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -889,7 +887,7 @@ Synopsis: Configure postfix.
 Description of the task.
 
 
-[`tasks/postfix.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/postfix.yml>`_]
+[`tasks/postfix.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/postfix.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -913,7 +911,7 @@ Synopsis: Configure reboot.
 Description of the task.
 
 
-[`tasks/reboot.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/reboot.yml>`_]
+[`tasks/reboot.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/reboot.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -937,7 +935,7 @@ Synopsis: Configure repos.
 Description of the task.
 
 
-[`tasks/repos.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/repos.yml>`_]
+[`tasks/repos.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/repos.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -961,7 +959,7 @@ Synopsis: Configure resolvconf.
 Description of the task.
 
 
-[`tasks/resolvconf.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/resolvconf.yml>`_]
+[`tasks/resolvconf.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/resolvconf.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1040,7 +1038,7 @@ To configure the services listed in the variable *lp_service*
 run the playbook with the tag ``-t lp_service_general`` (110).
 
 
-[`tasks/service.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/service.yml>`_]
+[`tasks/service.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/service.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1064,7 +1062,7 @@ Synopsis: Configure smart.
 Description of the task.
 
 
-[`tasks/smart.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/smart.yml>`_]
+[`tasks/smart.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/smart.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1088,7 +1086,7 @@ Synopsis: Configure snap.
 Description of the task.
 
 
-[`tasks/snap.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/snap.yml>`_]
+[`tasks/snap.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/snap.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1112,7 +1110,7 @@ Synopsis: Configure speechd.
 Description of the task.
 
 
-[`tasks/speechd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/speechd.yml>`_]
+[`tasks/speechd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/speechd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1136,7 +1134,7 @@ Synopsis: Configure sshd.
 Description of the task.
 
 
-[`tasks/sshd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sshd.yml>`_]
+[`tasks/sshd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/sshd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1160,7 +1158,7 @@ Synopsis: Configure ssh.
 Description of the task.
 
 
-[`tasks/ssh.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/ssh.yml>`_]
+[`tasks/ssh.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/ssh.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1184,7 +1182,7 @@ Synopsis: Configure sudoers.
 Description of the task.
 
 
-[`tasks/sudoers.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sudoers.yml>`_]
+[`tasks/sudoers.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/sudoers.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1208,7 +1206,7 @@ Synopsis: Configure swap.
 Description of the task.
 
 
-[`tasks/swap.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/swap.yml>`_]
+[`tasks/swap.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/swap.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1232,7 +1230,7 @@ Synopsis: Configure sysctl.
 Description of the task.
 
 
-[`tasks/sysctl.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sysctl.yml>`_]
+[`tasks/sysctl.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/sysctl.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1348,7 +1346,7 @@ Control units (138)
 <TBD>
 
 
-[`tasks/systemd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/systemd.yml>`_]
+[`tasks/systemd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/systemd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1372,7 +1370,7 @@ Synopsis: Configure timesyncd.
 Description of the task.
 
 
-[`tasks/timesyncd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/timesyncd.yml>`_]
+[`tasks/timesyncd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/timesyncd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1396,7 +1394,7 @@ Synopsis: Configure timezone.
 Description of the task.
 
 
-[`tasks/timezone.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/timezone.yml>`_]
+[`tasks/timezone.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/timezone.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1420,7 +1418,7 @@ Synopsis: Configure tlp.
 Description of the task.
 
 
-[`tasks/tlp.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/tlp.yml>`_]
+[`tasks/tlp.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/tlp.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1444,7 +1442,7 @@ Synopsis: Configure udev.
 Description of the task.
 
 
-[`tasks/udev.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/udev.yml>`_]
+[`tasks/udev.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/udev.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1468,7 +1466,7 @@ Synopsis: Configure ufw.
 Description of the task.
 
 
-[`tasks/ufw.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/ufw.yml>`_]
+[`tasks/ufw.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/ufw.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1492,7 +1490,7 @@ Synopsis: Configure users.
 Description of the task.
 
 
-[`tasks/users.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/users.yml>`_]
+[`tasks/users.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/users.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1516,7 +1514,7 @@ Synopsis: Configure vars_firstfound.
 Description of the task.
 
 
-[`tasks/vars_firstfound.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars_firstfound.yml>`_]
+[`tasks/vars_firstfound.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/vars_firstfound.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1540,7 +1538,7 @@ Synopsis: Configure vars_incremental.
 Description of the task.
 
 
-[`tasks/vars_incremental.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars_incremental.yml>`_]
+[`tasks/vars_incremental.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/vars_incremental.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1564,7 +1562,7 @@ Synopsis: Configure vars.
 Description of the task.
 
 
-[`tasks/vars.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars.yml>`_]
+[`tasks/vars.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/vars.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1588,7 +1586,7 @@ Synopsis: Configure virtualbox.
 Description of the task.
 
 
-[`tasks/virtualbox.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/virtualbox.yml>`_]
+[`tasks/virtualbox.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/virtualbox.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1612,7 +1610,7 @@ Synopsis: Configure wpagui.
 Description of the task.
 
 
-[`tasks/wpagui.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/wpagui.yml>`_]
+[`tasks/wpagui.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/wpagui.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1636,7 +1634,7 @@ Synopsis: Configure wpasupplicant.
 Description of the task.
 
 
-[`tasks/wpasupplicant.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/wpasupplicant.yml>`_]
+[`tasks/wpasupplicant.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/wpasupplicant.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1660,7 +1658,7 @@ Synopsis: Configure xen.
 Description of the task.
 
 
-[`tasks/xen.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/xen.yml>`_]
+[`tasks/xen.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/xen.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1684,7 +1682,7 @@ Synopsis: Configure xorg.
 Description of the task.
 
 
-[`tasks/xorg.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/xorg.yml>`_]
+[`tasks/xorg.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/xorg.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1708,7 +1706,7 @@ Synopsis: Configure zeitgeist.
 Description of the task.
 
 
-[`tasks/zeitgeist.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/zeitgeist.yml>`_]
+[`tasks/zeitgeist.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/zeitgeist.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1732,7 +1730,7 @@ Synopsis: Configure zfs.
 Description of the task.
 
 
-[`tasks/zfs.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/zfs.yml>`_]
+[`tasks/zfs.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/zfs.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1756,7 +1754,7 @@ Synopsis: Configure vars_flavors.
 Description of the task.
 
 
-[`tasks/sub/vars_flavors.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sub/vars_flavors.yml>`_]
+[`tasks/sub/vars_flavors.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/sub/vars_flavors.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -1780,7 +1778,7 @@ Synopsis: Configure vars_flavors_common.
 Description of the task.
 
 
-[`tasks/sub/vars_flavors_common.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sub/vars_flavors_common.yml>`_]
+[`tasks/sub/vars_flavors_common.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/sub/vars_flavors_common.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5

@@ -1,33 +1,33 @@
 ---
 # linux-postinstall handlers
 
-- import_tasks: handlers_apparmor.yml
-- import_tasks: handlers_autofs.yml
-- import_tasks: handlers_bluetooth.yml
-- import_tasks: handlers_gpg.yml
-- import_tasks: handlers_gpsd.yml
-- import_tasks: handlers_grub.yml
-- import_tasks: handlers_hostname.yml
-- import_tasks: handlers_initramfs.yml
-- import_tasks: handlers_iptables.yml
-- import_tasks: handlers_libvirtd.yml
-- import_tasks: handlers_messages.yml
-- import_tasks: handlers_netplan.yml
-- import_tasks: handlers_networkd.yml
-- import_tasks: handlers_newaliases.yml
-- import_tasks: handlers_nfsd.yml
-- import_tasks: handlers_postfix.yml
-- import_tasks: handlers_resolvconf.yml
-- import_tasks: handlers_smart.yml
-- import_tasks: handlers_sshd.yml
-- import_tasks: handlers_swap.yml
-- import_tasks: handlers_sysctl.yml
-- import_tasks: handlers_systemd.yml
-- import_tasks: handlers_timesyncd.yml
-- import_tasks: handlers_tlp.yml
-- import_tasks: handlers_udev.yml
-- import_tasks: handlers_ufw.yml
-- import_tasks: handlers_wpasupplicant.yml
+- import_tasks: apparmor.yml
+- import_tasks: autofs.yml
+- import_tasks: bluetooth.yml
+- import_tasks: gpg.yml
+- import_tasks: gpsd.yml
+- import_tasks: grub.yml
+- import_tasks: hostname.yml
+- import_tasks: initramfs.yml
+- import_tasks: iptables.yml
+- import_tasks: libvirtd.yml
+- import_tasks: messages.yml
+- import_tasks: netplan.yml
+- import_tasks: networkd.yml
+- import_tasks: newaliases.yml
+- import_tasks: nfsd.yml
+- import_tasks: postfix.yml
+- import_tasks: resolvconf.yml
+- import_tasks: smart.yml
+- import_tasks: sshd.yml
+- import_tasks: swap.yml
+- import_tasks: sysctl.yml
+- import_tasks: systemd.yml
+- import_tasks: timesyncd.yml
+- import_tasks: tlp.yml
+- import_tasks: udev.yml
+- import_tasks: ufw.yml
+- import_tasks: wpasupplicant.yml
 
 # EOF
 ...

@@ -1,5 +1,3 @@
-.. _as_tasks:
-
 Tasks
 =====
 
@@ -13,7 +11,7 @@ Synopsis: {{ i.synopsis }}
 
 {{ i.description }}
 
-[`{{ i.path }} <https://github.com/vbotka/ansible-linux-postinstall/blob/master/{{ i.path }}>`_]
+[`{{ i.path }} <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/{{ i.path }}>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -24,11 +22,11 @@ Synopsis: {{ i.synopsis }}
 
 {% if i.seealso|default([])|length > 0 %}
 .. seealso::
-{% for ii in i.seealso['handlers']|default([]) %}
-   * Handlers :ref:`as_handlers_{{ ii }}.yml`
+{% for ii in i.seealso.handlers|default([]) %}
+   * Handler :ref:`as_handler_{{ ii }}.yml`
 {% endfor %}
 {% for ii in i.seealso.templates|default([]) %}
-   * Template :ref:`as_template_{{ ii }}`
+   * Template :ref:`as_template_{{ ii }}.j2`
 {% endfor %}
 {% for ii in i.seealso.others|default([]) %}
    * {{ ii }}
@@ -38,21 +36,21 @@ Synopsis: {{ i.synopsis }}
 {% if i.notes|default([])|length > 0 %}
 .. note::
 {% for note in i.notes %}
-   * {{ ii }}
+   * {{ note }}
 {% endfor %}
 {% endif %}
 
 {% if i.hints|default([])|length > 0 %}
 .. hint::
-{% for ii in i.hints %}
-   * {{ ii }}
+{% for hint in i.hints %}
+   * {{ hint }}
 {% endfor %}
 {% endif %}
 
 {% if i.warnings|default([])|length > 0 %}
 .. warning::
-{% for ii in i.warnings %}
-   * {{ ii }}
+{% for warning in i.warnings %}
+   * {{ warning }}
 {% endfor %}
 {% endif %}
 

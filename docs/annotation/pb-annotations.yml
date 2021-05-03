@@ -1,6 +1,7 @@
 ---
 
-- hosts: localhost
+- name: Create annotation-[tasks,handlers,templates].yml
+  hosts: localhost
   gather_facts: false
   debugger: on_failed
 
@@ -49,7 +50,10 @@
             ext: "{{ (item|basename|splitext).1 }}"
         - name: Debug my_files
           debug:
-            var: my_files
+            msg: "{{ item.0 }}{{ item.1 }} {{ item.2 }}"
+          loop: "{{ my_files }}"
+          loop_control:
+            label: "{{ item.0 }}"
         - name: Create annotation-handlers.yml
           template:
             src: annotation-handlers.yml.j2

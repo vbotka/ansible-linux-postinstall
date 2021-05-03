@@ -3,7 +3,7 @@
 
 - name: "Debug"
   vars:
-    msg: |
+    msg: |-
       ansible_architecture [{{ ansible_architecture }}]
       ansible_os_family [{{ ansible_os_family }}]
       ansible_distribution [{{ ansible_distribution }}]
@@ -71,7 +71,7 @@
       lp_zeitgeist [{{ lp_zeitgeist }}] lp_zeitgeist_install [{{ lp_zeitgeist_install }}]
       lp_zfs [{{ lp_zfs }}] lp_zfs_install [{{ lp_zfs_install }}]
   debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+    msg: "{{ msg.split('\n') }}"
 
 # EOF
 ...

@@ -1,9 +1,9 @@
 #jinja2: trim_blocks:False
 ---
-mytemplates:
+mytemplates:{% if not my_files %}[]{% endif %}
 {% for file in my_files %}
   - file: {{ file.0 ~ file.1 }}
-    link: template_{{ file.0 ~ file.1 }}
+    link: {{ file.0 ~ file.1 }}
     path: templates/{{ file.2 }}
     synopsis: |
     {%- if lookup('varnames', 'template_' ~ file.0 ~ '_synopsis')|length > 0 %}
