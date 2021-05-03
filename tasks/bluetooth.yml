@@ -30,7 +30,7 @@
     path: "{{ item.0.path }}"
     mode: "{{ item.0.mode }}"
     section: "{{ item.1.section }}"
-    option: "{{ item.1.option|default('0644') }}"
+    option: "{{ item.1.option|default(omit) }}"
     value: "{{ item.1.value }}"
     backup: "{{ lp_backup_conf }}"
   with_subelements:
