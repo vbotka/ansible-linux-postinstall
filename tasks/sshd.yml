@@ -3,19 +3,34 @@
 
 - name: "sshd: Debug"
   vars:
-    msg: |
+    msg: |-
+      lp_sshd_enable [{{ lp_sshd_enable }}]
+      lp_sshd_config_remove_duplicates [{{ lp_sshd_config_remove_duplicates }}]
       lp_sshd_config
       {{ lp_sshd_config|to_yaml }}
   debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+    msg: "{{ msg.split('\n') }}"
   when: lp_sshd_debug|bool
   tags: lp_sshd_debug
+
+- name: "sshd: Remove duplicate parameters from /etc/ssh/sshd_config"
+  replace:
+    dest: /etc/ssh/sshd_config
+    after: '^\s*{{ item.key }}(?!\S)'
+    regexp: '^\s*{{ item.key }}(?!\S).*$'
+    backup: "{{ lp_backup_conf }}"
+    validate: "{{ lp_sshd_path }} -t -f %s"
+  loop: "{{ lp_sshd_config }}"
+  loop_control:
+    label: "{{ item.key }}"
+  notify: reload sshd
+  when: lp_sshd_config_remove_duplicates|bool
+  tags: lp_sshd_config
 
 - name: "sshd: Configure /etc/ssh/sshd_config"
   lineinfile:
     dest: /etc/ssh/sshd_config
-    regexp: "^\\s*{{ item.key }}\\s*(.*)$"
-    insertbefore: "^{{ '#' }}{{ item.key }}\\s*(.*)$"
+    regexp: '^\s*{{ item.key }}(?!\S).*$'
     line: "{{ item.key }} {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
     validate: "{{ lp_sshd_path }} -t -f %s"
@@ -24,7 +39,7 @@
   tags: lp_sshd_config
 
 - name: "sshd: Enable and start sshd"
-  systemd:
+  service:
     name: "{{ lp_sshd_service }}"
     enabled: true
     state: started
@@ -32,7 +47,7 @@
   tags: lp_sshd_service
 
 - name: "sshd: Disable and stop sshd"
-  systemd:
+  service:
     name: "{{ lp_sshd_service }}"
     enabled: false
     state: stopped
