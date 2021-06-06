@@ -1,7 +1,9 @@
 ---
 
 - name: gpgconf kill gpg-agent
-  command: gpgconf --kill gpg-agent
+  command:
+    cmd: >
+      gpgconf --kill gpg-agent
   loop: "{{ lp_gpg_agent_conf_changes.results }}"
   loop_control:
     label: "{{ item.item.owner }}"
@@ -9,7 +11,9 @@
   when: item.changed|bool
 
 - name: gpgconf kill dirmngr
-  command: gpgconf --kill dirmngr
+  command:
+    cmd: >
+      gpgconf --kill dirmngr
   loop: "{{ lp_gpg_dirmngr_conf_changes.results }}"
   loop_control:
     label: "{{ item.item.owner }}"

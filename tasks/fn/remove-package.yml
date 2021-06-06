@@ -1,8 +1,8 @@
 ---
-# linux-postinstall function remove-package
+# linux_postinstall function remove-package
 
 - name: "fn remove-package: {{ lp_package_state_remove }} package: {{ item }}"
-  package:
+  ansible.builtin.package:
     name: "{{ item }}"
     state: "{{ lp_package_state_remove }}"
   register: result
@@ -11,7 +11,7 @@
   delay: "{{ lp_install_delay }}"
 
 - name: "function: Autoremove packages"
-  apt:
+  ansible.builtin.apt:
     autoremove: true
   register: result
   retries: "{{ lp_install_retries }}"

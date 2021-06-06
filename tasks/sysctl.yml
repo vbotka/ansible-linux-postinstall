@@ -1,18 +1,18 @@
 ---
-# linux-postinstall sysctl
+# linux_postinstall sysctl
 
 - name: "sysctl: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_sysctl_vars
       {{ lp_sysctl_vars|to_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_sysctl_debug|bool
   tags: lp_sysctl_debug
 
 - name: "sysctl: Configure /etc/sysctl.conf"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/sysctl.conf
     regexp: '^\s*{{ item.var }}\s*=(.*)$'
     line: "{{ item.var }} = {{ item.value }}"

@@ -1,7 +1,9 @@
 ---
 
 - name: update grub
-  command: "/usr/sbin/update-grub"
+  command:
+    cmd: >
+      /usr/sbin/update-grub
 
 # EOF
 ...

@@ -1,22 +1,22 @@
 ---
-# linux-postinstall timesyncd
+# linux_postinstall timesyncd
 
 - name: "timesyncd: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_timesyncd [{{ lp_timesyncd }}]
-      lp_timesyncd_NTP [{{ lp_timesyncd_NTP }}]
-      lp_timesyncd_FallbackNTP [{{ lp_timesyncd_FallbackNTP }}]
-      lp_timesyncd_RootDistanceMaxSec [{{ lp_timesyncd_RootDistanceMaxSec }}]
-      lp_timesyncd_PollIntervalMinSec [{{ lp_timesyncd_PollIntervalMinSec }}]
-      lp_timesyncd_PollIntervalMaxSec [{{ lp_timesyncd_PollIntervalMaxSec }}]
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+      lp_timesyncd_ntp [{{ lp_timesyncd_ntp }}]
+      lp_timesyncd_fallbackntp [{{ lp_timesyncd_fallbackntp }}]
+      lp_timesyncd_rootdistancemaxsec [{{ lp_timesyncd_rootdistancemaxsec }}]
+      lp_timesyncd_pollintervalminsec [{{ lp_timesyncd_pollintervalminsec }}]
+      lp_timesyncd_pollintervalmaxsec [{{ lp_timesyncd_pollintervalmaxsec }}]
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_timesyncd_debug|bool
   tags: lp_timesyncd_debug
 
 - name: "timesyncd: Configure /etc/systemd/timesyncd.conf"
-  template:
+  ansible.builtin.template:
     src: timesyncd.conf.j2
     dest: /etc/systemd/timesyncd.conf
     owner: root
@@ -27,7 +27,7 @@
   tags: lp_timesyncd_conf
 
 - name: "timesyncd: Enable and start timesyncd"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_timesyncd_service }}"
     state: started
     enabled: true
@@ -35,7 +35,7 @@
   tags: lp_timesyncd_service
 
 - name: "timesyncd: Disable and stop timesyncd"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_timesyncd_service }}"
     state: stopped
     enabled: false

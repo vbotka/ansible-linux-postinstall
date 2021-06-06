@@ -1,8 +1,8 @@
 ---
-# linux-postinstall auto_upgrades
+# linux_postinstall auto_upgrades
 
 - name: "auto_upgrades: Configure /etc/apt/apt.conf.d/20auto-upgrades"
-  template:
+  ansible.builtin.template:
     src: auto-upgrades.j2
     dest: /etc/apt/apt.conf.d/20auto-upgrades
     owner: root
@@ -11,14 +11,14 @@
     backup: "{{ lp_backup_conf }}"
 
 - name: "auto_upgrades: Disable and stop unattended-upgrades"
-  systemd:
+  ansible.builtin.service:
     name: "{{ lp_auto_upgrades_service }}"
     state: stopped
     enabled: false
   when: not lp_auto_upgrades_enable|bool
 
 - name: "auto_upgrades: Enable and start unattended-upgrades"
-  systemd:
+  ansible.builtin.service:
     name: "{{ lp_auto_upgrades_service }}"
     state: started
     enabled: true

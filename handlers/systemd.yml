@@ -1,11 +1,11 @@
 ---
 
 - name: reload systemd daemon
-  systemd:
+  ansible.builtin.systemd:
     daemon_reload: true
 
 - name: reload systemd conf
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ my_service }}"
     state: "{{ my_restart_or_reload }}"
     daemon_reload: true
@@ -22,7 +22,7 @@
     - my_state == 'started'
 
 - name: reload systemd units
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ my_service }}"
     state: "{{ my_restart_or_reload }}"
     daemon_reload: true

@@ -1,9 +1,9 @@
 ---
-# linux-postinstall wpasupplicant
+# linux_postinstall wpasupplicant
 
 - name: "wpasupplicant: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_package_state [{{ lp_package_state }}]
       lp_wpasupplicant_install [{{ lp_wpasupplicant_install }}]
       lp_wpasupplicant_packages
@@ -19,6 +19,9 @@
       {{ lp_wpasupplicant_conf_global|to_yaml }}
       lp_wpa_action_script [{{ lp_wpa_action_script }}]
       lp_wpa_action_script_dir [{{ lp_wpa_action_script_dir }}]
+      lp_wpa_action_script_dir_owner [{{ lp_wpa_action_script_dir_owner }}]
+      lp_wpa_action_script_dir_group [{{ lp_wpa_action_script_dir_group }}]
+      lp_wpa_action_script_dir_mode [{{ lp_wpa_action_script_dir_mode }}]
       lp_wpa_action_script_file [{{ lp_wpa_action_script_file }}]
       lp_wpa_action_script_owner [{{ lp_wpa_action_script_owner }}]
       lp_wpa_action_script_group [{{ lp_wpa_action_script_group }}]
@@ -35,30 +38,31 @@
       lp_wpasupplicant_conf
       {{ lp_wpasupplicant_conf|to_yaml }}
       {% endif %}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_wpasupplicant_debug|bool
   tags: lp_wpasupplicant_debug
 
 # Packages
 - name: "wpasupplicant: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_wpasupplicant_packages }}"
   when: lp_wpasupplicant_install|bool
   tags: lp_wpasupplicant_packages
 
 # Action script for wpa_cli
 - name: "wpasupplicant: Create dir {{ lp_wpa_action_script_dir }}"
-  file:
+  ansible.builtin.file:
     state: directory
     path: "{{ lp_wpa_action_script_dir }}"
-    owner: "{{ lp_wpa_action_script_owner }}"
-    group: "{{ lp_wpa_action_script_group }}"
+    owner: "{{ lp_wpa_action_script_dir_owner }}"
+    group: "{{ lp_wpa_action_script_dir_group }}"
+    mode: "{{ lp_wpa_action_script_dir_mode }}"
   when: lp_wpa_action_script|bool
   tags: lp_wpa_action_script_dir
 
 - name: "wpasupplicant: Create script {{ lp_wpa_action_script_file }}"
-  template:
+  ansible.builtin.template:
     src: wpa_action.sh.j2
     dest: "{{ lp_wpa_action_script_file }}"
     owner: "{{ lp_wpa_action_script_owner }}"
@@ -70,7 +74,7 @@
 
 # Conf
 - name: "wpasupplicant: Create wpasupplicant configuration"
-  template:
+  ansible.builtin.template:
     src: wpa_supplicant.conf.j2
     dest: "{{ lp_wpasupplicant_conf_dir }}/{{ my_filename }}"
     owner: "{{ lp_wpasupplicant_conf_owner }}"
@@ -88,14 +92,14 @@
   tags: lp_wpasupplicant_conf
 
 - name: "wpasupplicant: Debug: Create wpasupplicant configuration"
-  debug:
+  ansible.builtin.debug:
     var: lp_wpasupplicant_conf_changes
   when: lp_wpasupplicant_debug_classified|bool
   tags: lp_wpasupplicant_conf
 
 # Service
 - name: "wpasupplicant: Configure wpa_supplicant services"
-  ini_file:
+  community.general.ini_file:
     path: "{{ item.0.path }}/{{ item.0.service }}"
     owner: "{{ item.0.owner|default(omit) }}"
     group: "{{ item.0.group|default(omit) }}"
@@ -115,13 +119,13 @@
   tags: lp_wpasupplicant_service_conf
 
 - name: "wpasupplicant: Debug: Configure wpasupplicant services"
-  debug:
+  ansible.builtin.debug:
     var: lp_wpasupplicant_service_conf_changes
   when: lp_wpasupplicant_debug|bool
   tags: lp_wpasupplicant_service_conf
 
 - name: "wpasupplicant: Manage wpa_supplicant services"
-  service:
+  ansible.builtin.service:
     name: "{{ my_service }}"
     state: "{{ item.state|default('started') }}"
     enabled: "{{ item.enabled|default(true) }}"
@@ -140,7 +144,7 @@
   tags: lp_wpasupplicant_service
 
 - name: "wpasupplicant: Debug: Manage wpa_supplicant services"
-  debug:
+  ansible.builtin.debug:
     var: lp_wpasupplicant_service_changes
   when: lp_wpasupplicant_debug_classified|bool
   tags: lp_wpasupplicant_service

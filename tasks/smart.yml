@@ -1,41 +1,41 @@
 ---
-# linux-postinstall smart
+# linux_postinstall smart
 
 - name: "smart: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_smart_packages }}"
   tags: lp_smart_packages
 
 - name: "smart: Configure {{ lp_smart_conf_file }}. Do not scan for devices"
-  lineinfile:
+  ansible.builtin.lineinfile:
     state: absent
     dest: "{{ lp_smart_conf_file }}"
     regexp: '^\s*DEVICESCAN\s*(.*)$'
     owner: "{{ lp_smart_conf_owner }}"
     group: "{{ lp_smart_conf_group }}"
     mode: "{{ lp_smart_conf_mode }}"
-    create: true
     backup: "{{ lp_backup_conf }}"
+    create: true
   when: not lp_smart_devicescan|bool
   notify: reload smart
   tags: lp_smart_conf
 
 - name: "smart: Configure devices in {{ lp_smart_conf_file }}"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ lp_smart_conf_file }}"
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     owner: "{{ lp_smart_conf_owner }}"
     group: "{{ lp_smart_conf_group }}"
     mode: "{{ lp_smart_conf_mode }}"
-    create: true
     backup: "{{ lp_backup_conf }}"
+    create: true
   loop: "{{ lp_smart_devices }}"
   notify: reload smart
   tags: lp_smart_conf
 
 - name: "smart: Start and enable smart"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_smart_service }}"
     state: started
     enabled: true
@@ -44,12 +44,12 @@
   tags: lp_smart_service
 
 - name: "smart: Debug service"
-  debug:
+  ansible.builtin.debug:
     var: result
   when: lp_smart_debug|bool
 
 - name: "smart: Stop and disable smart"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_smart_service }}"
     state: stopped
     enabled: false
@@ -58,7 +58,7 @@
   tags: lp_smart_service
 
 - name: "smart: Debug service"
-  debug:
+  ansible.builtin.debug:
     var: result
   when: lp_smart_debug|bool
 

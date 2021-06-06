@@ -1,9 +1,9 @@
 ---
-# linux-postinstall tlp
+# linux_postinstall tlp
 
 - name: "tlp: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_tlp_enable [{{ lp_tlp_enable }}]
       lp_tlp_install [{{ lp_tlp_install }}]
       lp_tlp_packages
@@ -17,35 +17,36 @@
       lp_tlp_services
       {{ lp_tlp_services|to_nice_yaml }}
       lp_tlp_restart_service [{{ lp_tlp_restart_service }}]
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_tlp_debug|bool
   tags: lp_tlp_debug
 
 - name: "tlp: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_tlp_packages }}"
   when: lp_tlp_install|bool
   tags: lp_tlp_packages
 
 - name: "tlp: Install packages for ThinkPad"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_tlp_packages_tp }}"
   when: lp_tlp_thinkpad|bool
   tags: lp_tlp_packages
 
 - name: "tlp: Configure {{ lp_tlp_config_file }}"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ lp_tlp_config_file }}"
     regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
     line: "{{ item.key }}={{ item.value }}"
     create: true
+    mode: "0644"
   loop: "{{ lp_tlp_config }}"
   notify: restart tlp
   tags: lp_tlp_conf
 
 - name: "tlp: Start and enable tlp"
-  systemd:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: started
     enabled: true
@@ -54,7 +55,7 @@
   tags: lp_tlp_service
 
 - name: "tlp: Stop and disable tlp"
-  systemd:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: stopped
     enabled: false

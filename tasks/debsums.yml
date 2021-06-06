@@ -1,43 +1,45 @@
 ---
-# linux-postinstall debsums
+# linux_postinstall debsums
 
 - name: "debsums: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_debsums_default_file [{{ lp_debsums_default_file }}]
       lp_debsums_default_conf
       {{ lp_debsums_default_conf|to_yaml }}
       lp_debsums_ignore_file [{{ lp_debsums_ignore_file }}]
       lp_debsums_ignore_conf
       {{ lp_debsums_ignore_conf|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_debsums_debug|bool
   tags: lp_debsums_debug
 
 - name: "debsums: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_debsums_packages }}"
   tags: lp_debsums_packages
 
 - name: "debsums: Configure {{ lp_debsums_default_file }}"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ lp_debsums_default_file }}"
     state: "{{ item.state|default(omit) }}"
     regexp: '^\s*{{ item.key }}\s*=(.*)$'
     line: "{{ item.key }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
     create: true
+    mode: "0644"
   loop: "{{ lp_debsums_default_conf }}"
   tags: lp_debsums_default_conf
 
 - name: "debsums: Configure {{ lp_debsums_ignore_file }}"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ lp_debsums_ignore_file }}"
     state: "{{ item.state|default(omit) }}"
     line: "{{ item }}"
     backup: "{{ lp_backup_conf }}"
     create: true
+    mode: "0644"
   loop: "{{ lp_debsums_ignore_conf }}"
   tags: lp_debsums_ignore_conf
 

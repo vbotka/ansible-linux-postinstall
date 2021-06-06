@@ -1,7 +1,9 @@
 ---
 
 - name: netplan apply
-  command: netplan apply
+  command:
+    cmd: >
+      netplan apply
   when: lp_netplan|bool
 
 # EOF

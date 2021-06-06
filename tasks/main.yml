@@ -1,274 +1,338 @@
 ---
-# tasks linux-postinstall
+# linux_postinstall tasks
 
-- import_tasks: vars.yml
+- name: Import vars.yml
+  ansible.builtin.import_tasks: vars.yml
   tags: [lp_vars, always]
 
-- import_tasks: debug.yml
+- name: Import debug.yml
+  ansible.builtin.import_tasks: debug.yml
   when: lp_debug|bool
   tags: [lp_debug, always]
 
-- import_tasks: swap.yml
+- name: Import swap.yml
+  ansible.builtin.import_tasks: swap.yml
   when: ((ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")) and lp_swap|bool
   tags: lp_swap
 
-- import_tasks: modules.yml
+- name: Import modules.yml
+  ansible.builtin.import_tasks: modules.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_modules
 
-- import_tasks: udev.yml
+- name: Import udev.yml
+  ansible.builtin.import_tasks: udev.yml
   when: ((ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")) and lp_udev|bool
   tags: lp_udev
 
-- import_tasks: fstab.yml
+- name: Import fstab.yml
+  ansible.builtin.import_tasks: fstab.yml
   when: ((ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian"))
   tags: lp_fstab
 
-- import_tasks: networkmanager.yml
+- name: Import networkmanager.yml
+  ansible.builtin.import_tasks: networkmanager.yml
   when: (ansible_os_family == "Debian") and lp_nm|bool
   tags: lp_nm
 
-- import_tasks: netplan.yml
+- name: Import netplan.yml
+  ansible.builtin.import_tasks: netplan.yml
   when: (ansible_os_family == "Debian") and lp_netplan|bool
   tags: lp_netplan
 
-- import_tasks: systemd.yml
+- name: Import systemd.yml
+  ansible.builtin.import_tasks: systemd.yml
   when: (ansible_os_family == "Debian") and lp_systemd|bool
   tags: lp_systemd
 
-- import_tasks: networkd.yml
+- name: Import networkd.yml
+  ansible.builtin.import_tasks: networkd.yml
   when: (ansible_os_family == "Debian") and lp_networkd|bool
   tags: lp_networkd
 
-- import_tasks: timezone.yml
+- name: Import timezone.yml
+  ansible.builtin.import_tasks: timezone.yml
   when: ((ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")) and lp_timezone|bool
   tags: lp_timezone
 
-- import_tasks: timesyncd.yml
+- name: Import timesyncd.yml
+  ansible.builtin.import_tasks: timesyncd.yml
   when: (ansible_os_family == "Debian") and lp_timesyncd|bool
   tags: lp_timesyncd
 
-- import_tasks: apt.yml
+- name: Import apt.yml
+  ansible.builtin.import_tasks: apt.yml
   when: ansible_os_family == "Debian" and lp_apt|bool
   tags: lp_apt
 
-- import_tasks: snap.yml
+- name: Import snap.yml
+  ansible.builtin.import_tasks: snap.yml
   when: ansible_os_family == "Debian" and lp_snap|bool
   tags: lp_snap
 
-- import_tasks: repos.yml
+- name: Import repos.yml
+  ansible.builtin.import_tasks: repos.yml
   when: ansible_os_family == "Debian"
   tags: lp_repos
 
-- import_tasks: packages.yml
+- name: Import packages.yml
+  ansible.builtin.import_tasks: packages.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_packages
 
-- import_tasks: auto_upgrades.yml
+- name: Import upgrades.yml
+  ansible.builtin.import_tasks: auto_upgrades.yml
   when: (ansible_os_family == "Debian") and lp_auto_upgrades|bool
   tags: lp_auto_upgrades
 
-- import_tasks: sysctl.yml
+- name: Import sysctl.yml
+  ansible.builtin.import_tasks: sysctl.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_sysctl
 
-- import_tasks: zfs.yml
+- name: Import zfs.yml
+  ansible.builtin.import_tasks: zfs.yml
   when: (ansible_os_family == "Debian") and lp_zfs|bool
   tags: lp_zfs
 
-- import_tasks: hostname.yml
+- name: Import hostname.yml
+  ansible.builtin.import_tasks: hostname.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_hostname
 
-- import_tasks: hosts.yml
+- name: Import hosts.yml
+  ansible.builtin.import_tasks: hosts.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_hosts
 
-- import_tasks: iptables.yml
+- name: Import iptables.yml
+  ansible.builtin.import_tasks: iptables.yml
   when: (ansible_os_family == "Debian") and lp_iptables|bool
   tags: lp_iptables
 
-- import_tasks: grub.yml
+- name: Import grub.yml
+  ansible.builtin.import_tasks: grub.yml
   when: (ansible_os_family == "Debian") and lp_grub|bool
   tags: lp_grub
   # https://unix.stackexchange.com/questions/152222/
   # equivalent-of-update-grub-for-rhel-fedora-centos-systems
 
-- import_tasks: groups.yml
+- name: Import groups.yml
+  ansible.builtin.import_tasks: groups.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_groups
 
-- import_tasks: users.yml
+- name: Import users.yml
+  ansible.builtin.import_tasks: users.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_users
 
-- import_tasks: gpg.yml
+- name: Import gpg.yml
+  ansible.builtin.import_tasks: gpg.yml
   when: (ansible_os_family == "Debian") and lp_gpg|bool
   tags: lp_gpg
 
-- import_tasks: passwords.yml
+- name: Import passwords.yml
+  ansible.builtin.import_tasks: passwords.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian") and lp_passwords|bool
   tags: lp_passwords
 
-- import_tasks: sudoers.yml
+- name: Import sudoers.yml
+  ansible.builtin.import_tasks: sudoers.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_sudoers
 
-- import_tasks: authorized_keys.yml
+- name: Import keys.yml
+  ansible.builtin.import_tasks: authorized_keys.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_authorized_keys
 
-- import_tasks: aliases.yml
+- name: Import aliases.yml
+  ansible.builtin.import_tasks: aliases.yml
   when: ((ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")) and lp_aliases|bool
   tags: lp_aliases
 
-- import_tasks: pm_utils.yml
+- name: Import utils.yml
+  ansible.builtin.import_tasks: pm_utils.yml
   when: (ansible_os_family == "Debian") and lp_pm|bool
   tags: lp_pm
 
-- import_tasks: ssh.yml
+- name: Import ssh.yml
+  ansible.builtin.import_tasks: ssh.yml
   when: ((ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")) and lp_ssh|bool
   tags: lp_ssh
 
-- import_tasks: sshd.yml
+- name: Import sshd.yml
+  ansible.builtin.import_tasks: sshd.yml
   when: ((ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")) and lp_sshd|bool
   tags: lp_sshd
 
-- import_tasks: bluetooth.yml
+- name: Import bluetooth.yml
+  ansible.builtin.import_tasks: bluetooth.yml
   when: (ansible_os_family == "Debian") and lp_bluetooth|bool
   tags: lp_bluetooth
 
-- import_tasks: xorg.yml
+- name: Import xorg.yml
+  ansible.builtin.import_tasks: xorg.yml
   when: ansible_os_family == "Debian"
   tags: lp_xorg
 
-- import_tasks: cron.yml
+- name: Import cron.yml
+  ansible.builtin.import_tasks: cron.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_cron
 
-- import_tasks: modemmanager.yml
+- name: Import modemmanager.yml
+  ansible.builtin.import_tasks: modemmanager.yml
   when: (ansible_os_family == "Debian") and lp_modemmanager|bool
   tags: lp_modemmanager
 
-- import_tasks: gpsd.yml
+- name: Import gpsd.yml
+  ansible.builtin.import_tasks: gpsd.yml
   when: (ansible_os_family == "Debian") and lp_gpsd|bool
   tags: lp_gpsd
 
-- import_tasks: postfix.yml
+- name: Import postfix.yml
+  ansible.builtin.import_tasks: postfix.yml
   when: ((ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")) and lp_postfix|bool
   tags: lp_postfix
 
-- import_tasks: smart.yml
+- name: Import smart.yml
+  ansible.builtin.import_tasks: smart.yml
   when: (ansible_os_family == "Debian") and lp_smart|bool
   tags: lp_smart
 
-- import_tasks: apparmor.yml
+- name: Import apparmor.yml
+  ansible.builtin.import_tasks: apparmor.yml
   when: (ansible_os_family == "Debian") and lp_apparmor|bool
   tags: lp_apparmor
 
-- meta: flush_handlers
+- name: Flush handlers
+  ansible.builtin.meta: flush_handlers
 
-- import_tasks: zeitgeist.yml
+- name: Import zeitgeist.yml
+  ansible.builtin.import_tasks: zeitgeist.yml
   when: (ansible_os_family == "Debian") and lp_zeitgeist|bool
   tags: lp_zeitgeist
 
-- import_tasks: lid.yml
+- name: Import lid.yml
+  ansible.builtin.import_tasks: lid.yml
   when: (ansible_os_family == "Debian") and lp_lid|bool
   tags: lp_lid
 
-- import_tasks: acpi.yml
+- name: Import acpi.yml
+  ansible.builtin.import_tasks: acpi.yml
   when: (ansible_os_family == "Debian") and lp_acpi|bool
   tags: lp_acpi
 
-- import_tasks: speechd.yml
+- name: Import speechd.yml
+  ansible.builtin.import_tasks: speechd.yml
   when: (ansible_os_family == "Debian") and lp_speechd|bool
   tags: lp_speechd
 
-- import_tasks: nfsd.yml
+- name: Import nfsd.yml
+  ansible.builtin.import_tasks: nfsd.yml
   when: (ansible_os_family == "Debian") and lp_nfsd|bool
   tags: lp_nfsd
 
-- meta: flush_handlers
+- name: Flush handlers
+  meta: flush_handlers
 
-- import_tasks: latex.yml
+- name: Import latex.yml
+  ansible.builtin.import_tasks: latex.yml
   when: (ansible_os_family == "Debian") and lp_latex|bool
   tags: lp_latex
 
-- import_tasks: kvm.yml
+- name: Import kvm.yml
+  ansible.builtin.import_tasks: kvm.yml
   when: (ansible_os_family == "Debian") and lp_kvm|bool
   tags: lp_kvm
 
-- import_tasks: xen.yml
+- name: Import xen.yml
+  ansible.builtin.import_tasks: xen.yml
   when: (ansible_os_family == "Debian") and lp_xen|bool
   tags: lp_xen
 
-- import_tasks: virtualbox.yml
+- name: Import virtualbox.yml
+  ansible.builtin.import_tasks: virtualbox.yml
   when: (ansible_os_family == "Debian") and lp_virtualbox|bool
   tags: lp_virtualbox
 
-- import_tasks: wpagui.yml
+- name: Import wpagui.yml
+  ansible.builtin.import_tasks: wpagui.yml
   when: (ansible_os_family == "Debian") and lp_wpagui|bool
   tags: lp_wpagui
 
-- import_tasks: wpasupplicant.yml
+- name: Import wpasupplicant.yml
+  ansible.builtin.import_tasks: wpasupplicant.yml
   when: ((ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")) and lp_wpasupplicant|bool
   tags: lp_wpasupplicant
 
-- import_tasks: logrotate.yml
+- name: Import logrotate.yml
+  ansible.builtin.import_tasks: logrotate.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
   tags: lp_logrotate
 
-- import_tasks: tlp.yml
+- name: Import tlp.yml
+  ansible.builtin.import_tasks: tlp.yml
   when: (ansible_os_family == "Debian") and lp_tlp|bool
   tags: lp_tlp
 
-- import_tasks: autofs.yml
+- name: Import autofs.yml
+  ansible.builtin.import_tasks: autofs.yml
   when: (ansible_os_family == "Debian") and lp_autofs|bool
   tags: lp_autofs
 
-- import_tasks: libvirt.yml
+- name: Import libvirt.yml
+  ansible.builtin.import_tasks: libvirt.yml
   when: (ansible_os_family == "Debian") and lp_libvirt|bool
   tags: lp_libvirt
 
-- import_tasks: ufw.yml
+- name: Import ufw.yml
+  ansible.builtin.import_tasks: ufw.yml
   when: (ansible_os_family == "Debian") and lp_ufw|bool
   tags: lp_ufw
 
-- import_tasks: debsums.yml
+- name: Import debsums.yml
+  ansible.builtin.import_tasks: debsums.yml
   when: (ansible_os_family == "Debian") and lp_debsums|bool
   tags: lp_debsums
 
-- meta: flush_handlers
+- name: Flush handlers
+  meta: flush_handlers
 
-- import_tasks: service.yml
+- name: Import service.yml
+  ansible.builtin.import_tasks: service.yml
   tags: lp_service
 
-- import_tasks: resolvconf.yml
+- name: Import resolvconf.yml
+  ansible.builtin.import_tasks: resolvconf.yml
   when: (ansible_os_family == "Debian") and lp_resolvconf|bool
   tags: lp_resolvconf
 
-- import_tasks: reboot.yml
+- name: Import reboot.yml
+  ansible.builtin.import_tasks: reboot.yml
   when: ((ansible_os_family == "RedHat") or
          (ansible_os_family == "Debian")) and lp_reboot|bool
   tags: lp_reboot

@@ -1,17 +1,17 @@
 ---
-# linux-postinstall systemd
+# linux_postinstall systemd
 
 # Vars
 - name: "systemd: Create empty dictionary my_services"
-  set_fact:
+  ansible.builtin.set_fact:
     my_services: {}
   tags: always
 
 - name: "systemd: Set my_services"
-  set_fact:
+  ansible.builtin.set_fact:
     my_services: "{{ my_services|
                      combine({my_name: {'state': my_state,
-                                        'restart_or_reload': my_restart_or_reload}}) }}"
+                                        'restart_or_reload': my_restart_or_reload }}) }}"
   loop: "{{ lp_systemd_unit }}"
   loop_control:
     label: "{{ my_name }}"
@@ -24,7 +24,7 @@
 # Debug
 - name: "systemd: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_systemd_install [{{ lp_systemd_install }}]
       lp_systemd_packages
       {{ lp_systemd_packages|to_nice_yaml }}
@@ -41,21 +41,21 @@
       {{ lp_systemd_unit|to_nice_yaml }}
       my_services
       {{ my_services|to_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_systemd_debug|bool
   tags: lp_systemd_debug
 
 # Packages
 - name: "systemd: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_systemd_packages }}"
   when: lp_systemd_install|bool
   tags: lp_systemd_packages
 
 # Conf
 - name: "systemd: Configure systemd"
-  ini_file:
+  community.general.ini_file:
     path: "{{ item.0.key }}"
     section: "{{ item.1.section }}"
     option: "{{ item.1.key }}"
@@ -75,13 +75,13 @@
   tags: lp_systemd_conf
 
 - name: "systemd: Debug conf results"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ lp_systemd_conf_changes.results }}"
   when: lp_systemd_debug|bool
   tags: lp_systemd_conf
 
 - name: "systemd: Debug loop conf results"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ my_service }} {{ my_state }} {{ my_restart_or_reload }}"
   loop: "{{ lp_systemd_conf_changes.results }}"
   loop_control:
@@ -97,7 +97,7 @@
 
 # Units
 - name: "systemd: Create units"
-  template:
+  ansible.builtin.template:
     src: systemd-unit.j2
     dest: "{{ item.path|default(lp_systemd_unit_dir) }}/{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
     owner: "{{ item.owner|default(lp_systemd_owner) }}"
@@ -113,13 +113,13 @@
   tags: lp_systemd_unit_create
 
 - name: "systemd: Debug unit create results"
-  debug:
+  ansible.builtin.debug:
     var: lp_systemd_unit_create_changes
   when: lp_systemd_debug|bool
   tags: lp_systemd_unit_create
 
 - name: "systemd: Remove units"
-  file:
+  ansible.builtin.file:
     state: absent
     path: "{{ item.path|default(lp_systemd_unit_dir) }}/{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
   register: lp_systemd_unit_remove_changes
@@ -130,13 +130,13 @@
   tags: lp_systemd_unit_remove
 
 - name: "systemd: Debug unit remove results"
-  debug:
+  ansible.builtin.debug:
     var: lp_systemd_unit_remove_changes
   when: lp_systemd_debug|bool
   tags: lp_systemd_unit_remove
 
 - name: "systemd: Control units"
-  systemd:
+  ansible.builtin.systemd:
     name: "{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
     daemon_reexec: "{{ item.control.daemon_reexec|default(omit) }}"
     daemon_reload: "{{ item.control.daemon_reload|default(omit) }}"
@@ -156,7 +156,7 @@
   tags: lp_systemd_unit_control
 
 - name: "systemd: Debug unit control results"
-  debug:
+  ansible.builtin.debug:
     var: lp_systemd_unit_control_changes
   when: lp_systemd_debug|bool
   tags: lp_systemd_unit_control

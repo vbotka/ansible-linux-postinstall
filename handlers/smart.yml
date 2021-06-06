@@ -1,11 +1,15 @@
 ---
 
 - name: restart smart
-  systemd: name="{{ lp_smart_service }}" state="restarted"
+  ansible.builtin.service:
+    name: "{{ lp_smart_service }}"
+    state: restarted
   when: lp_smart_enable|bool
 
 - name: reload smart
-  systemd: name="{{ lp_smart_service }}" state="reloaded"
+  ansible.builtin.service:
+    name: "{{ lp_smart_service }}"
+    state: reloaded
   when: lp_smart_enable|bool
 
 # EOF

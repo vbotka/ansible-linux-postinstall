@@ -43,7 +43,7 @@ COMMIT
 -A INPUT -i {{ lp_iptables_lan_if }} -p udp --dport 67:68 -j ACCEPT
 
 # Additional interface policies for INPUT
-{% for item in lp_iptables_INPUT_if %}
+{% for item in lp_iptables_input_if %}
 -A INPUT -i {{ item.if }} -p {{ item.proto }} --dport {{ item.port }} -j {{ item.policy }}
 {% endfor %}
 

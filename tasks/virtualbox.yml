@@ -1,9 +1,9 @@
 ---
-# linux-postinstall virtualbox
+# linux_postinstall virtualbox
 
 - name: "virtualbox: Debug"
   vars:
-    msg: |
+    msg: |-
       ansible_lsb.description [{{ ansible_lsb.codename }}]
       lp_virtualbox [{{ lp_virtualbox }}]
       lp_virtualbox_ignore_errors [{{ lp_virtualbox_ignore_errors }}]
@@ -13,8 +13,8 @@
       {{ lp_virtualbox_install|to_nice_yaml }}
       lp_virtualbox_services
       {{ lp_virtualbox_services|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_virtualbox_debug|bool
   tags: lp_virtualbox_debug
 
@@ -22,7 +22,7 @@
 #       when: lp_virtualbox|bool
 
 - name: "virtualbox: Add signing key of VirtualBox"
-  apt_key:
+  ansible.builtin.apt_key:
     url: "{{ item }}"
     state: present
   loop: "{{ lp_virtualbox_keys }}"
@@ -30,25 +30,25 @@
   retries: "{{ lp_install_retries }}"
   until: result is succeeded
   delay: "{{ lp_install_delay }}"
-  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
+  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"  # noqa ignore-errors
   tags: lp_virtualbox_keys
 
 - name: "virtualbox: Add repository of VirtualBox"
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: "{{ item }}"
     state: present
   loop: "{{ lp_virtualbox_repos }}"
-  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
+  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"  # noqa ignore-errors
   tags: lp_virtualbox_repos
 
 - name: "virtualbox: Install VirtualBox packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_virtualbox_packages }}"
-  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"
+  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"  # noqa ignore-errors
   tags: lp_virtualbox_pkg
 
 - name: "virtualbox: Enable and start services"
-  service:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: started
     enabled: true
@@ -57,7 +57,7 @@
   tags: lp_virtualbox_services
 
 - name: "virtualbox: Disable and stop services"
-  service:
+  ansible.builtin.service:
     name: "{{ item }}"
     state: stopped
     enabled: false

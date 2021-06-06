@@ -1,9 +1,9 @@
 ---
-# linux-postinstall gpg
+# linux_postinstall gpg
 
 - name: "gpg: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_gpg_install [{{ lp_gpg_install }}]
       lp_gpg_packages
       {{ lp_gpg_packages|to_nice_yaml }}
@@ -24,13 +24,13 @@
       {{ lp_gpg_dirmngr_conf_default|to_yaml }}
       lp_gpg_dirmngr_conf
       {{ lp_gpg_dirmngr_conf|to_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_gpg_debug|bool
   tags: lp_gpg_debug
 
 - name: "gpg: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop:
     - "{{ lp_gpg_packages }}"
     - "{{ lp_gpg_packages_extra }}"
@@ -38,7 +38,7 @@
   tags: lp_gpg_packages
 
 - name: "gpg: Configure gpg.conf"
-  template:
+  ansible.builtin.template:
     src: gpg.conf.j2
     dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/gpg.conf') }}"
     owner: "{{ item.owner }}"
@@ -51,7 +51,7 @@
   tags: lp_gpg_conf
 
 - name: "gpg: Configure gpg-agent.conf"
-  template:
+  ansible.builtin.template:
     src: gpg-agent.conf.j2
     dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/gpg-agent.conf') }}"
     owner: "{{ item.owner }}"
@@ -66,7 +66,7 @@
   tags: lp_gpg_agent_conf
 
 - name: "gpg: Configure dirmngr.conf"
-  template:
+  ansible.builtin.template:
     src: gpg-dirmngr.conf.j2
     dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/dirmngr.conf') }}"
     owner: "{{ item.owner }}"

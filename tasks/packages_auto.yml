@@ -1,14 +1,14 @@
 ---
-# linux-postinstall packages_auto
+# linux_postinstall packages_auto
 
 - name: "packages_auto: Init variable local_pkg_lists"
-  set_fact:
+  ansible.builtin.set_fact:
     local_pkg_lists: []
     local_pkg_list: []
   tags: lp_packages_auto
 
 - name: "packages_auto: List variables ^lp_.*_packages$"
-  set_fact:
+  ansible.builtin.set_fact:
     local_pkg_lists: "{{ local_pkg_lists +
                      [{'install': item.split('_')[0] + '_' + item.split('_')[1],
                        'packages': item}] }}"
@@ -18,7 +18,7 @@
   tags: lp_packages_auto
 
 - name: "packages_auto: Debug local_pkg_lists"
-  debug:
+  ansible.builtin.debug:
     msg: "[{{ lookup('vars', item.install, default='false')|bool }}]
               packages {{ lookup('vars', item.packages) }}"
   loop: "{{ local_pkg_lists }}"
@@ -26,20 +26,20 @@
   tags: lp_packages_auto
 
 - name: "packages_auto: Create local_pkg_list"
-  set_fact:
+  ansible.builtin.set_fact:
     local_pkg_list: "{{ local_pkg_list + lookup('vars', item.packages) }}"
   loop: "{{ local_pkg_lists }}"
   when: lookup('vars', item.install, default='False')|bool
   tags: lp_packages_auto
 
 - name: "packages_auto: Debug local_pkg_list"
-  debug:
+  ansible.builtin.debug:
     var: local_pkg_list
   when: lp_packages_debug|bool
   tags: lp_packages_auto
 
 - name: "packages_auto: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ local_pkg_list }}"
   tags: lp_packages_auto
 

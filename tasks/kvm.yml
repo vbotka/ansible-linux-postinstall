@@ -1,18 +1,18 @@
 ---
-# linux-postinstall kvm
+# linux_postinstall kvm
 
 - name: "kvm: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_kvm_packages
       {{ lp_kvm_packages|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_kvm_debug|bool
   tags: lp_kvm_debug
 
 - name: "kvm: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_kvm_packages }}"
   tags: lp_kvm_packages
 

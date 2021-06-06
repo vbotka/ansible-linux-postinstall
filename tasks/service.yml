@@ -1,35 +1,36 @@
 ---
-# linux-postinstall service
+# linux_postinstall service
 
 # [TODO] add list of services, e.g. tlp and nm
 # 'lp_' ~ item ~ '_services'
+# [TODO] Mask a service. Do not allow any service to activate a masked
+# service. See tasks/networkmanager.yml
 
 # Collect vars and facts
 - name: "service: Set dict my_service_name_vars. Collect lp_<item>_service."
-  set_fact:
+  ansible.builtin.set_fact:
     my_service_name_vars: "{{ my_service_name_vars|default({})|
                               combine({item: lookup('vars', 'lp_' ~ item ~ '_service')}) }}"
   loop: "{{ lp_service_enable }}"
-  when: lookup('vars', 'lp_' ~ item, default='false')
+  when: lookup('vars', 'lp_' ~ item, default=false)
   tags: [lp_service_debug, lp_service_sanity, lp_service_auto]
 
 - name: "service: Set dict my_service_enable_vars. Collect lp_<item>_enable."
-  set_fact:
+  ansible.builtin.set_fact:
     my_service_enable_vars: "{{ my_service_enable_vars|default({})|
                                 combine({item: lookup('vars', 'lp_' ~ item ~ '_enable')}) }}"
   loop: "{{ lp_service_enable }}"
-  when: lookup('vars', 'lp_' ~ item, default='false')
+  when: lookup('vars', 'lp_' ~ item, default=false)
   tags: [lp_service_debug, lp_service_sanity, lp_service_auto]
 
 - name: "service: Get service_facts and set dict my_services"
   block:
     - name: "service: Get service_facts"
-      service_facts:
-      when: not ansible_check_mode
+      ansible.builtin.service_facts:
     - name: "service: Set dict my_services"
-      set_fact:
-        my_services: "{{ {}|combine({'sysv': my_services_sysv})|
-                            combine({'systemd': my_services_systemd}) }}"
+      ansible.builtin.set_fact:
+        my_services: "{{ {'sysv': my_services_sysv,
+                          'systemd': my_services_systemd} }}"
       vars:
         my_services_sysv: "{{ ansible_facts.services|default({})|dict2items|
         json_query('[?value.source==`sysv`].{name: value.name, state: value.service}')|
@@ -41,10 +42,10 @@
   tags: [lp_service_sanity, lp_service_auto]
 
 - name: "service: Debug"
-  debug:
-    msg: "{{ my_msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ my_msg.split('\n') }}"
   vars:
-    my_msg: |
+    my_msg: |-
       lp_service_sanity [{{ lp_service_sanity }}]
       my_services
       {{ my_services|default({})|to_yaml }}
@@ -61,7 +62,7 @@
 
 # Sanity
 - name: "service: Debug sanity lp_service_enable"
-  debug:
+  ansible.builtin.debug:
     msg:
       - "{{ my_services|dict2items|json_query('[].value')|flatten|
             map(attribute='name')|list|sort }}"
@@ -72,7 +73,7 @@
   tags: lp_service_debug
 
 - name: "service: Sanity lp_service_enable. Service(s) undefined in the system."
-  fail:
+  ansible.builtin.fail:
     msg: "[ERROR] Undefined services: {{ my_services_undef }}"
   when:
     - not ansible_check_mode
@@ -87,15 +88,15 @@
 
 # Manage services
 - name: "service: Manage services listed in lp_service_enable"
-  service:
+  ansible.builtin.service:
     name: "{{ my_service_name_vars[item] }}"
     enabled: "{{ my_service_enable_vars[item] }}"
   loop: "{{ lp_service_enable }}"
-  when: lookup('vars', 'lp_' ~ item, default='false')
+  when: lookup('vars', 'lp_' ~ item, default=false)
   tags: lp_service_auto
 
 - name: "service: Manage services listed in lp_service"
-  service:
+  ansible.builtin.service:
     name: "{{ item.name }}"
     state: "{{ item.state|default(omit) }}"
     enabled: "{{ item.enabled|default(omit) }}"
@@ -108,9 +109,6 @@
   when: (item.state is defined) or
         (item.enabled is defined)
   tags: lp_service_general
-
-# [TODO] Mask a service. Do not allow any service to activate a masked
-# service. See tasks/networkmanager.yml
 
 # EOF
 ...

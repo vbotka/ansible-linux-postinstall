@@ -1,9 +1,9 @@
 ---
-# linux-postinstall libvirt
+# linux_postinstall libvirt
 
 - name: "libvirt Debug"
   vars:
-    msg: |
+    msg: |-
       lp_libvirt_guests_enable [{{ lp_libvirt_guests_enable }}]
       lp_libvirt_libvirtd_enable [{{ lp_libvirt_libvirtd_enable }}]
       lp_libvirt_conf_owner [{{ lp_libvirt_conf_owner }}]
@@ -14,23 +14,23 @@
       {{ lp_libvirt_packages|to_nice_yaml }}
       lp_libvirt_conf
       {{ lp_libvirt_conf|to_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_libvirt_debug|bool
   tags: lp_libvirt_debug
 
 - name: "libvirt: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_libvirt_packages }}"
   tags: lp_libvirt_pkg
 
 - name: "libvirt: Configure"
-  include_tasks: libvirt_conf.yml
+  ansible.builtin.include_tasks: libvirt_conf.yml
   loop: "{{ lp_libvirt_conf|dict2items }}"
   tags: lp_libvirt_conf
 
 - name: "libvirt: Start and enable {{ lp_libvirt_libvirtd_service }}"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_libvirt_libvirtd_service }}"
     state: started
     enabled: true
@@ -38,7 +38,7 @@
   tags: lp_libvirt_libvirtd_service
 
 - name: "libvirt: Stop and disable {{ lp_libvirt_libvirtd_service }}"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_libvirt_libvirtd_service }}"
     state: stopped
     enabled: false
@@ -46,7 +46,7 @@
   tags: lp_libvirt_libvirtd_service
 
 - name: "libvirt: Start and enable {{ lp_libvirt_guests_service }}"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_libvirt_guests_service }}"
     state: started
     enabled: true
@@ -54,7 +54,7 @@
   tags: lp_libvirt_guests_service
 
 - name: "libvirt: Stop and disable {{ lp_libvirt_guests_service }}"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_libvirt_guests_service }}"
     state: stopped
     enabled: false

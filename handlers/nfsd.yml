@@ -1,7 +1,9 @@
 ---
 
 - name: reload nfsd
-  systemd: name="{{ lp_nfsd_reload_service }}" state=reloaded
+  ansible.builtin.systemd:
+    name: "{{ lp_nfsd_reload_service }}"
+    state: reloaded
   when: lp_nfsd|bool
 
 # EOF

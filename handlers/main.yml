@@ -1,5 +1,5 @@
 ---
-# linux-postinstall handlers
+# linux_postinstall handlers
 
 - import_tasks: apparmor.yml
 - import_tasks: autofs.yml

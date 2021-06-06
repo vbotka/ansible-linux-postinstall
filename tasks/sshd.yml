@@ -1,5 +1,5 @@
 ---
-# linux-postinstall sshd
+# linux_postinstall sshd
 
 - name: "sshd: Debug"
   vars:
@@ -8,13 +8,13 @@
       lp_sshd_config_remove_duplicates [{{ lp_sshd_config_remove_duplicates }}]
       lp_sshd_config
       {{ lp_sshd_config|to_yaml }}
-  debug:
+  ansible.builtin.debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_sshd_debug|bool
   tags: lp_sshd_debug
 
 - name: "sshd: Remove duplicate parameters from /etc/ssh/sshd_config"
-  replace:
+  ansible.builtin.replace:
     dest: /etc/ssh/sshd_config
     after: '^\s*{{ item.key }}(?!\S)'
     regexp: '^\s*{{ item.key }}(?!\S).*$'
@@ -28,7 +28,7 @@
   tags: lp_sshd_config
 
 - name: "sshd: Configure /etc/ssh/sshd_config"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/ssh/sshd_config
     regexp: '^\s*{{ item.key }}(?!\S).*$'
     line: "{{ item.key }} {{ item.value }}"
@@ -39,7 +39,7 @@
   tags: lp_sshd_config
 
 - name: "sshd: Enable and start sshd"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_sshd_service }}"
     enabled: true
     state: started
@@ -47,7 +47,7 @@
   tags: lp_sshd_service
 
 - name: "sshd: Disable and stop sshd"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_sshd_service }}"
     enabled: false
     state: stopped

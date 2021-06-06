@@ -1,5 +1,5 @@
 ---
-# linux-postinstall ufw
+# linux_postinstall ufw
 
 #   Notes
 #
@@ -20,7 +20,7 @@
 
 - name: "ufw: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_ufw_install [{{ lp_ufw_install }}]
       lp_ufw_enable [{{ lp_ufw_enable }}]
       lp_ufw_reset [{{ lp_ufw_reset }}]
@@ -31,31 +31,31 @@
       {{ lp_ufw_conf|to_yaml }}
       lp_ufw_service_conf
       {{ lp_ufw_service_conf|to_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_ufw_debug|bool
   tags: lp_ufw_debug
 
 - name: "ufw: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_ufw_packages }}"
   when: lp_ufw_install|bool
   tags: lp_ufw_packages
 
 - name: "ufw: Disable and reset firewall to installation defaults"
-  ufw:
+  community.general.ufw:
     state: reset
   when: lp_ufw_reset|bool
   tags: lp_ufw_reset
 
 - name: "ufw: Reload firewall"
-  ufw:
+  community.general.ufw:
     state: reloaded
   when: lp_ufw_reload|bool
   tags: lp_ufw_reload
 
 - name: "ufw: Configure ufw"
-  ufw:
+  community.general.ufw:
     comment: "{{ item.comment|default(omit) }}"
     default: "{{ item.default|default(omit) }}"
     delete: "{{ item.delete|default(omit) }}"
@@ -75,10 +75,12 @@
     to_ip: "{{ item.to_ip|default(omit) }}"
     to_port: "{{ item.to_port|default(omit) }}"
   loop: "{{ lp_ufw_conf }}"
+  loop_control:
+    label: "{{ item.comment|default('no comment') }}"
   tags: lp_ufw_conf
 
 - name: "ufw: Configure service"
-  ini_file:
+  community.general.ini_file:
     path: "{{ item.0.path }}"
     owner: "{{ item.0.owner|default(omit) }}"
     group: "{{ item.0.group|default(omit) }}"
@@ -92,42 +94,42 @@
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_ufw_service_conf|subelements('ini', {'skip_missing': True}) }}"
   loop_control:
-    label: "{{ item.0.path }}"
+    label: "{{ item.0.path }}
+            {{ item.1.section|default('none') }}
+            {{ item.1.option|default('none') }}
+            {{ item.1.value|default('none') }}
+            {{ item.1.state|default('none') }}"
   notify: "{{ item.0.handlers|default(omit) }}"
   tags: lp_ufw_service_conf
 
 - name: "ufw: Start and enable ufw"
-  service:
-    name: "{{ lp_ufw_service }}"
-    state: started
-    enabled: true
-  register: result
+  block:
+    - name: "ufw: Start and enable ufw"
+      ansible.builtin.service:
+        name: "{{ lp_ufw_service }}"
+        state: started
+        enabled: true
+      register: result
+    - name: "ufw: Debug enabled service"
+      ansible.builtin.debug:
+        var: result
+      when: lp_ufw_debug|bool
   when: lp_ufw_enable|bool
   tags: lp_ufw_service
 
-- name: "ufw: Debug enabled service"
-  debug:
-    var: result
-  when:
-    - lp_ufw_enable|bool
-    - lp_ufw_debug|bool
-  tags: lp_ufw_service
-
 - name: "ufw: Stop and disable ufw"
-  service:
-    name: "{{ lp_ufw_service }}"
-    state: stopped
-    enabled: false
-  register: result
+  block:
+    - name: "ufw: Stop and disable ufw"
+      ansible.builtin.service:
+        name: "{{ lp_ufw_service }}"
+        state: stopped
+        enabled: false
+      register: result
+    - name: "ufw: Debug disabled service"
+      ansible.builtin.debug:
+        var: result
+      when: lp_ufw_debug|bool
   when: not lp_ufw_enable|bool
-  tags: lp_ufw_service
-
-- name: "ufw: Debug disabled service"
-  debug:
-    var: result
-  when:
-    - not lp_ufw_enable|bool
-    - lp_ufw_debug|bool
   tags: lp_ufw_service
 
 # EOF
