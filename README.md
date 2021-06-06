@@ -12,12 +12,7 @@ xorg.conf.d, zfs, (wip ...)
 
 [Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io)
 
-This role and the documentation is work in progress. If the documentation of a task is missing it's
-necessary to review the [source code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks) to learn how to use
-it. If a functionality is missing consider role
-[config_light](https://galaxy.ansible.com/vbotka/config_light). See various
-[examples](https://github.com/vbotka/ansible-config-light/tree/master/contrib). If *config_light* is
-not able to do what you want create new tasks.
+This role and the documentation is work in progress. If the documentation of a task is missing it's necessary to review the [source code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks) to learn how to use it. If a functionality is missing consider role [config_light](https://galaxy.ansible.com/vbotka/config_light). See various [examples](https://github.com/vbotka/ansible-config-light/tree/master/contrib). If *config_light* is not able to do what you want create new tasks.
 
 Feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-linux-postinstall/issues).
 
@@ -37,7 +32,14 @@ released versions in time and would report an error. For example:
 
 ## Requirements
 
+### Roles
+
 * [ansible_lib](https://galaxy.ansible.com/vbotka/ansible_lib)
+
+### Collections
+
+* ansible.posix
+* community.general
 
 
 ## Role Variables
@@ -47,20 +49,23 @@ Read the defaults and examples in vars.
 
 ## Workflow
 
-1. Install the role
+1. Install the role and collections
 
 ```
-shell> ansible-galaxy install vbotka.linux_postinstall
+shell> ansible-galaxy role install vbotka.linux_postinstall
+shell> ansible-galaxy collection install ansible.posix
+shell> ansible-galaxy collection install community.general
 ```
 
-2. Change variables
+2. Change variables, e.g. in vars/main.yml
 
 ```
 shell> editor vbotka.linux_postinstall/vars/main.yml
 ```
 
-* Review OS specific variables in *vars/defaults*
-* Review, customize and/or add Flavor specific variables in *vars/flavors*
+* See OS specific variables in *vars/defaults*
+* See examples in *vars/main.yml.sample*
+* Customize and/or add Flavor specific variables in *vars/flavors*
 * Optionally disable *lp_flavors_enable: false*. This will speedup the playbook
 * Optionally put customized OS specific variables into the *vars* directory
 * See *tasks/vars.yml* for the naming conventions and precedence
@@ -70,9 +75,9 @@ shell> editor vbotka.linux_postinstall/vars/main.yml
 
 ```
 shell> cat hosts
-[host1]
+[group1]
 host1.example.com
-[host1:vars]
+[group1:vars]
 ansible_user: admin
 ansible_connection=ssh
 ansible_python_interpreter=/usr/bin/python3.7
@@ -83,7 +88,7 @@ ansible_perl_interpreter=/usr/bin/perl
 
 ```
 shell> cat linux-postinstall.yml
-- hosts: host1
+- hosts: group1
   become: yes
   become_user: root
   become_method: sudo
