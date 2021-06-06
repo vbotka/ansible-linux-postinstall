@@ -1,8 +1,8 @@
 ---
-# linux-postinstall aliases
+# linux_postinstall aliases
 
 - name: "aliases: Configure /etc/aliases"
-  template:
+  ansible.builtin.template:
     src: aliases.j2
     dest: /etc/aliases
     owner: root

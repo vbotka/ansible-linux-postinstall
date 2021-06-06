@@ -1,21 +1,22 @@
 ---
-# linux-postinstall ssh
+# linux_postinstall ssh
 
 - name: "ssh: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_ssh_config
       {{ lp_ssh_config|to_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_ssh_debug|bool
   tags: lp_ssh_debug
 
 - name: "ssh: Configure /etc/ssh/ssh_config"
-  template:
+  ansible.builtin.template:
     src: ssh_config.j2
     dest: /etc/ssh/ssh_config
     backup: "{{ lp_backup_conf }}"
+    mode: "0644"
   tags: lp_ssh_conf
 
 # EOF

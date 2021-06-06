@@ -1,20 +1,20 @@
 ---
-# linux-postinstall repos
+# linux_postinstall repos
 
 - name: "repos: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_repos_keys
       {{ lp_repos_keys|to_nice_yaml }}
       lp_repos
       {{ lp_repos|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_repos_debug|bool
   tags: lp_repos_debug
 
 - name: "repos: Manage repo signing keys"
-  apt_key:
+  ansible.builtin.apt_key:
     data: "{{ item.data|default(omit) }}"
     file: "{{ item.file|default(omit) }}"
     id: "{{ item.id|default(omit) }}"
@@ -31,7 +31,7 @@
   tags: lp_repos_keys_manage
 
 - name: "repos: Manage repositories"
-  apt_repository:
+  ansible.builtin.apt_repository:
     codename: "{{ item.codename|default(omit) }}"
     filename: "{{ item.filename|default(omit) }}"
     mode: "{{ item.mode|default(omit) }}"

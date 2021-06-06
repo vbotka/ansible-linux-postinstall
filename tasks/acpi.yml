@@ -1,8 +1,8 @@
 ---
-# linux-postinstall acpi
+# linux_postinstall acpi
 
 - name: "acpi: Configure {{ lp_acpi_dir }}/events"
-  template:
+  ansible.builtin.template:
     src: "{{ item.value.template }}"
     dest: "{{ lp_acpi_dir }}/events/{{ item.value.file }}"
     owner: "{{ lp_acpi_owner }}"
@@ -13,7 +13,7 @@
   tags: lp_acpi_events
 
 - name: "acpi: Create actions in {{ lp_acpi_dir }}"
-  template:
+  ansible.builtin.template:
     src: "{{ item.value.template }}"
     dest: "{{ lp_acpi_dir }}/{{ item.value.file }}"
     owner: "{{ lp_acpi_owner }}"

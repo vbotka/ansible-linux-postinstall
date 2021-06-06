@@ -1,7 +1,9 @@
 ---
 
 - name: set hostname
-  command: "/sbin/sysctl kernel.hostname={{ hostname }}"
+  command:
+    cmd: >
+      /sbin/sysctl kernel.hostname={{ hostname }}
 
 # EOF
 ...

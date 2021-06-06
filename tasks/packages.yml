@@ -1,9 +1,9 @@
 ---
-# linux-postinstall packages
+# linux_postinstall packages
 
 - name: "packages: Debug"
   vars:
-    msg: |
+    msg: |-
       ansible_os_family [{{ ansible_os_family }}]
       lp_packages_auto [{{ lp_packages_auto }}]
       lp_packages_autoremove [{{ lp_packages_autoremove }}]
@@ -15,13 +15,13 @@
       {{ lp_packages_remove|to_nice_yaml }}
       lp_packages_selections_postinstall
       {{ lp_packages_selections_postinstall|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_packages_debug|bool
   tags: lp_packages_debug
 
 - name: "packages: Configure package selections before Install/Remove"
-  dpkg_selections:
+  ansible.builtin.dpkg_selections:
     name: "{{ item.name }}"
     selection: "{{ item.selection }}"
   loop: "{{ lp_packages_selections_preinstall }}"
@@ -29,22 +29,22 @@
   tags: lp_packages_selections_preinstall
 
 - name: "packages: Install packages listed in variables lp_*_packages"
-  include_tasks: packages_auto.yml
+  ansible.builtin.include_tasks: packages_auto.yml
   when: lp_packages_auto|bool
   tags: lp_packages_auto
 
 - name: "packages: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_packages_install }}"
   tags: lp_packages_install
 
 - name: "packages: Remove packages"
-  include_tasks: fn/remove-package.yml
+  ansible.builtin.include_tasks: fn/remove-package.yml
   loop: "{{ lp_packages_remove }}"
   tags: lp_packages_remove
 
 - name: "packages: Configure package selections after Install/Remove"
-  dpkg_selections:
+  ansible.builtin.dpkg_selections:
     name: "{{ item.name }}"
     selection: "{{ item.selection }}"
   loop: "{{ lp_packages_selections_postinstall }}"

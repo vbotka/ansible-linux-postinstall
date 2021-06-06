@@ -1,7 +1,9 @@
 ---
 
 - name: restart postfix
-  systemd: name="{{ lp_postfix_service }}" state=restarted
+  ansible.builtin.service:
+    name: "{{ lp_postfix_service }}"
+    state: restarted
   when: lp_postfix_enable|bool
 
 # EOF

@@ -1,9 +1,9 @@
 ---
-# linux-postinstall resolvconf
+# linux_postinstall resolvconf
 
 - name: "resolvconf: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_resolvconf_service [{{ lp_resolvconf_service }}]
       lp_resolvconf_enable [{{ lp_resolvconf_enable }}]
       lp_package_state [{{ lp_package_state }}]
@@ -17,19 +17,19 @@
       {{ lp_resolvconf_conf|to_nice_yaml }}
       lp_resolvconf_confd_head
       {{ lp_resolvconf_confd_head|to_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_resolvconf_debug|bool
   tags: lp_resolvconf_debug
 
 - name: "resolvconf: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_resolvconf_packages }}"
   when: lp_resolvconf_install|bool
   tags: lp_resolvconf_packages
 
 - name: "resolvconf: Configure lp_resolvconf_conf"
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     owner: "{{ item.owner }}"
@@ -41,7 +41,7 @@
   tags: lp_resolvconf_confd_head
 
 - name: "resolvconf: Enable and start resolvconf"
-  systemd:
+  ansible.builtin.service:
     name: "{{ lp_resolvconf_service }}"
     enabled: true
     state: started
@@ -49,7 +49,7 @@
   tags: lp_resolvconf_service
 
 - name: "resolvconf: Disable and stop resolvconf"
-  systemd:
+  ansible.builtin.service:
     name: "{{ lp_resolvconf_service }}"
     enabled: false
     state: stopped

@@ -1,9 +1,9 @@
 ---
-# linux-postinstall networkd
+# linux_postinstall networkd
 
 - name: "networkd: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_networkd_install [{{ lp_networkd_install }}]
       lp_networkd_packages
       {{ lp_networkd_packages|to_nice_yaml }}
@@ -15,21 +15,21 @@
       lp_systemd_owner [{{ lp_systemd_owner }}]
       lp_systemd_group [{{ lp_systemd_group }}]
       lp_systemd_mode [{{ lp_systemd_mode }}]
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_networkd_debug|bool
   tags: lp_networkd_debug
 
 # Packages
 - name: "networkd: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_networkd_packages }}"
   when: lp_networkd_install|bool
   tags: lp_networkd_packages
 
 # Conf
 - name: "networkd: Configure networkd"
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     owner: "{{ item.owner|default(lp_systemd_owner) }}"
@@ -44,7 +44,7 @@
 
 # Service
 - name: "networkd: Start and enable networkd"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_networkd_service }}"
     state: started
     enabled: true
@@ -52,7 +52,7 @@
   tags: lp_networkd_service
 
 - name: "networkd: Stop and disable networkd"
-  service:
+  ansible.builtin.service:
     name: "{{ lp_networkd_service }}"
     state: stopped
     enabled: false

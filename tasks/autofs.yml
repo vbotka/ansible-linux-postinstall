@@ -1,47 +1,47 @@
 ---
-# linux-postinstall autofs
+# linux_postinstall autofs
 
 - name: "autofs: Debug"
-  debug:
-    msg: "lp_autofs_enable [ {{ lp_autofs_enable }} ]"
+  ansible.builtin.debug:
+    msg: "lp_autofs_enable [{{ lp_autofs_enable }}]"
   when: lp_debug|bool
 
 - name: "autofs: Configure {{ lp_autofs_conf_file }}"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ lp_autofs_conf_file }}"
-    regexp: "^{{ item.key }}\\s*=\\s*(.*)$"
+    regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
     line: "{{ item.key }} = {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_autofs_conf }}"
   notify: reload autofs
 
 - name: "autofs: Configure {{ lp_autofs_master_conf_file }}"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ lp_autofs_master_conf_file }}"
-    regexp: "^{{ item.key }}\\s*(.*)$"
+    regexp: '^\s*{{ item.key }}\s*(.*)$'
     line: "{{ item.key }} {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_autofs_master_conf }}"
   notify: reload autofs
 
 - name: "autofs: Configure {{ lp_autofs_misc_conf_file }}"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ lp_autofs_misc_conf_file }}"
-    regexp: "^{{ item.key }}\\s*(.*)$"
+    regexp: '^\s*{{ item.key }}\s*(.*)$'
     line: "{{ item.key }} {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_autofs_misc_conf }}"
   notify: reload autofs
 
 - name: "autofs: Enable and start autofs"
-  systemd:
+  ansible.builtin.service:
     name: "{{ lp_autofs_service }}"
     enabled: true
     state: started
   when: lp_autofs_enable|bool
 
 - name: "autofs: Stop and disable autofs"
-  systemd:
+  ansible.builtin.service:
     name: "{{ lp_autofs_service }}"
     enabled: false
     state: stopped

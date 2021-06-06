@@ -1,5 +1,5 @@
 ---
-# linux-postinstall pm_utils
+# linux_postinstall pm_utils
 
 # TODO:
 # 1) add variables: lp_pm_powerd, lp_pm_configd
@@ -8,7 +8,7 @@
 # 4) install pm_utils
 
 - name: "pm_utils: Configure /etc/pm/sleep.d"
-  template:
+  ansible.builtin.template:
     src: pm-sleepd.j2
     dest: "/etc/pm/sleep.d/{{ item.value.file }}"
     owner: root

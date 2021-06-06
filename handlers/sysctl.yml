@@ -1,7 +1,9 @@
 ---
 
 - name: load sysctl settings
-  command: "/sbin/sysctl -p /etc/sysctl.conf"
+  command:
+    cmd: >
+      /sbin/sysctl -p /etc/sysctl.conf
 
 # EOF
 ...

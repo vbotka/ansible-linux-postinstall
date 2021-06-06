@@ -1,13 +1,13 @@
 ---
-# linux-postinstall nfsd
+# linux_postinstall nfsd
 
 - name: "nfsd: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_nfsd_packages }}"
   tags: lp_nfsd_packages
 
 - name: "nfsd: Configure exports"
-  template:
+  ansible.builtin.template:
     src: exports.j2
     dest: /etc/exports
     owner: root
@@ -17,7 +17,7 @@
   tags: lp_nfsd_exports
 
 - name: "nfsd: Enable and start nfsd services"
-  systemd:
+  ansible.builtin.service:
     name: "{{ item }}"
     enabled: true
     state: started
@@ -28,7 +28,7 @@
   tags: lp_nfsd_service
 
 - name: "nfsd: Stop and disable nfsd services"
-  systemd:
+  ansible.builtin.service:
     name: "{{ item }}"
     enabled: false
     state: stopped

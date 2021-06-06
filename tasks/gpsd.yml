@@ -1,20 +1,20 @@
 ---
-# linux-postinstall gpsd
+# linux_postinstall gpsd
 
 - name: "gpsd: Install packages for gpsd"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_gpsd_packages }}"
   tags: lp_gpsd_packages
 
 - name: "gpsd: Add user gpsd to group dialout"
-  user:
+  ansible.builtin.user:
     name: gpsd
     groups: dialout
     append: true
   tags: lp_gpsd_group
 
 - name: "gpsd: Configure /etc/bluetooth/rfcomm.conf"
-  blockinfile:
+  ansible.builtin.blockinfile:
     dest: /etc/bluetooth/rfcomm.conf
     marker: "# {mark} ANSIBLE MANAGED BLOCK rfcomm{{ item.rfcomm }}"
     insertafter: EOF
@@ -34,7 +34,7 @@
   tags: lp_gpsd_bt_rfcom
 
 - name: "gpsd: Configure /etc/default/gpsd"
-  template:
+  ansible.builtin.template:
     src: gpsd.j2
     dest: /etc/default/gpsd
     owner: root
@@ -45,7 +45,7 @@
   tags: lp_gpsd_config
 
 - name: "gpsd: Stop and disable gpsd"
-  systemd:
+  ansible.builtin.service:
     name: "{{ lp_gpsd_service }}"
     state: stopped
     enabled: false
@@ -53,7 +53,7 @@
   tags: lp_gpsd_service
 
 - name: "gpsd: Start and enable gpsd"
-  systemd:
+  ansible.builtin.service:
     name: "{{ lp_gpsd_service }}"
     state: started
     enabled: true

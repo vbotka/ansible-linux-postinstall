@@ -1,9 +1,9 @@
 ---
-# linux-postinstall modules
+# linux_postinstall modules
 
 - name: "modules: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_modules_conf [{{ lp_modules_conf }}]
       lp_modules
       {{ lp_modules|to_yaml }}
@@ -13,12 +13,12 @@
       lp_modules_blacklist_path [{{ lp_modules_blacklist_path }}]
       lp_modules_blacklist
       {{ lp_modules_blacklist|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_modules_debug|bool
 
 - name: "modules: modprobe modules"
-  modprobe:
+  community.general.modprobe:
     name: "{{ item.name }}"
     params: "{{ item.params }}"
     state: "{{ item.state|default('present') }}"
@@ -26,7 +26,7 @@
 
 # Debian
 - name: "modules: Configure {{ lp_modules_conf }} in Debian"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ lp_modules_conf }}"
     regexp: '^\s*{{ item.name }}\s*(.*)$'
     line: "{{ item.name }} {{ item.params }}"
@@ -38,7 +38,7 @@
 
 # RedHat
 - name: "modules: Configure {{ lp_modules_conf }} in RedHat"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: "{{ lp_modules_conf }}"
     regexp: '^\s*modprobe\s+{{ item.name }}\s*(.*)$'
     line: "modprobe {{ item.name }} {{ item.params }}"
@@ -49,18 +49,20 @@
     - item.state|default("present") == "present"
 
 - name: "modules: Blacklist modules in {{ lp_modules_blacklist_path }}"
-  template:
+  ansible.builtin.template:
     src: blacklist-module.j2
     dest: "{{ lp_modules_blacklist_path }}/blacklist-{{ item }}.conf"
     backup: "{{ lp_backup_conf }}"
+    mode: "0644"
   loop: "{{ lp_modules_blacklist }}"
   notify: update initramfs
 
 - name: "modules: Set modules options in {{ lp_modules_options_path }}"
-  template:
+  ansible.builtin.template:
     src: options-module.j2
     dest: "{{ lp_modules_options_path }}/{{ item.module }}.conf"
     backup: "{{ lp_backup_conf }}"
+    mode: "0644"
   loop: "{{ lp_modules_options }}"
   notify: update initramfs
 

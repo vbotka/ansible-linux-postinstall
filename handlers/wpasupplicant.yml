@@ -1,7 +1,7 @@
 ---
 
 - name: reconfigure wpa_supplicant
-  service:
+  ansible.builtin.service:
     name: "{{ my_service }}"
     state: restarted
   loop: "{{ lp_wpasupplicant_conf_changes.results }}"
@@ -23,7 +23,7 @@
 #    exit 0
 
 - name: reload wpa_supplicant service
-  service:
+  ansible.builtin.service:
     name: "{{ item.item.0.service }}"
     state: reloaded
   loop: "{{ lp_wpasupplicant_service_conf_changes.results }}"

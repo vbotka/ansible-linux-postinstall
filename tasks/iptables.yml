@@ -1,8 +1,8 @@
 ---
-# linux-postinstall iptables
+# linux_postinstall iptables
 
 - name: "iptables: Create /etc/network/if-pre-up.d/iptables"
-  template:
+  ansible.builtin.template:
     src: iptables-restore.j2
     dest: /etc/network/if-pre-up.d/iptables
     owner: root
@@ -11,7 +11,7 @@
 
 - name: "iptables: Create /etc/network/iptables
                    using {{ lp_iptables_type }}-iptables.j2"
-  template:
+  ansible.builtin.template:
     src: "{{ lp_iptables_type }}-iptables.j2"
     dest: /etc/network/iptables
     owner: root

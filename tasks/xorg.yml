@@ -1,21 +1,22 @@
 ---
-# linux-postinstall xen
+# linux_postinstall xen
 
 - name: "xorg: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_xorg_conf
       {{ lp_xorg_conf|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_xorg_debug|bool
   tags: lp_xorg_debug
 
 - name: "xorg: Configure {{ lp_xorg_conf_dir }}"
-  template:
+  ansible.builtin.template:
     src: xorg.conf.j2
     dest: "{{ lp_xorg_conf_dir }}/{{ item.file }}"
     backup: "{{ lp_backup_conf }}"
+    mode: "0644"
   loop: "{{ lp_xorg_conf }}"
   tags: lp_xorg_conf
 

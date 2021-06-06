@@ -1,8 +1,8 @@
 ---
-# linux-postinstall fstab
+# linux_postinstall fstab
 
 - name: "fstab: Configure fstab entries"
-  mount:
+  ansible.posix.mount:
     name: "{{ item.name }}"
     state: "{{ item.state|default('mounted') }}"
     src: "{{ item.src|default(omit) }}"

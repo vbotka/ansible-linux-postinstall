@@ -1,17 +1,17 @@
 ---
-# linux-postinstall groups
+# linux_postinstall groups
 
 - name: "groups: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_groups
       {{ lp_groups|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
 
 - name: "groups: Manage groups"
-  group:
+  ansible.builtin.group:
     name: "{{ item.name }}"
     gid: "{{ item.gid|default(omit) }}"
     state: "{{ item.state|default(omit) }}"

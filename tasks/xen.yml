@@ -1,9 +1,9 @@
 ---
-# linux-postinstall xen
+# linux_postinstall xen
 
 - name: "xen: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_xen_packages
       {{ lp_xen_packages|to_nice_yaml }}
       lp_xen_dom0_mem
@@ -12,18 +12,18 @@
       {{ lp_xen_default_grub_conf|to_nice_yaml }}
       lp_xen_global
       {{ lp_xen_global|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_xen_debug|bool
   tags: lp_xen_debug
 
 - name: "xen: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_xen_packages }}"
   tags: lp_xen_packages
 
 - name: "xen: Configure /etc/default/grub"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/default/grub
     regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
     line: "{{ item.key }}={{ item.value }}"
@@ -33,12 +33,13 @@
   tags: lp_xen_default_grub
 
 - name: "xen: Configure /etc/xen/xl.conf"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/xen/xl.conf
     regexp: '^\s*{{ item.var }}\s*=\s*(.*)$'
     line: "{{ item.var }}={{ item.value }}"
-    create: true
     backup: "{{ lp_backup_conf }}"
+    create: true
+    mode: "0644"
   loop: "{{ lp_xen_global }}"
   tags: lp_xen_global
 

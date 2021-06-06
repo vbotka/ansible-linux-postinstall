@@ -1,5 +1,5 @@
 ---
-# linux-postinstall bluetooth
+# linux_postinstall bluetooth
 
 - name: "bluetooth: Debug"
   vars:
@@ -9,16 +9,16 @@
       {{ lp_bluetooth_main_conf|to_yaml }}
       lp_bluetooth_ini
       {{ lp_bluetooth_ini|to_yaml }}
-  debug:
+  ansible.builtin.debug:
     msg: "{{ msg.split('\n') }}"
   when: lp_bluetooth_debug|bool
   tags: lp_bluetooth_debug
 
 - name: "bluetooth: Configure /etc/bluetooth/main.conf"
-  lineinfile:
+  ansible.builtin.lineinfile:
     dest: /etc/bluetooth/main.conf
-    regexp: "^{{ item.key }}\\s*=(.*)$"
-    insertbefore: "^{{ '#' }}{{ item.key }}\\s*=(.*)$"
+    regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
+    insertbefore: '^[\s#]*{{ item.key }}(.*)$'
     line: "{{ item.key }} = {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_bluetooth_main_conf }}"
@@ -26,7 +26,7 @@
   tags: lp_bluetooth_conf
 
 - name: "bluetooth: Configure bluetooth"
-  ini_file:
+  community.general.ini_file:
     path: "{{ item.0.path }}"
     mode: "{{ item.0.mode }}"
     section: "{{ item.1.section }}"
@@ -40,7 +40,7 @@
   tags: lp_bluetooth_ini
 
 - name: "bluetooth: Enable and start bluetooth"
-  systemd:
+  ansible.builtin.service:
     name: "{{ lp_bluetooth_service }}"
     enabled: true
     state: started
@@ -48,7 +48,7 @@
   tags: lp_bluetooth_enable
 
 - name: "bluetooth: Stop and disable bluetooth"
-  systemd:
+  ansible.builtin.service:
     name: "{{ lp_bluetooth_service }}"
     enabled: false
     state: stopped

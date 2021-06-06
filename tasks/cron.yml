@@ -1,8 +1,8 @@
 ---
-# linux-postinstall cron
+# linux_postinstall cron
 
 - name: "cron: Configure cron variables"
-  cronvar:
+  community.general.cronvar:
     name: "{{ item.name }}"
     value: "{{ item.value }}"
     user: "{{ item.user }}"
@@ -10,7 +10,7 @@
   tags: lp_cron_var
 
 - name: "cron: Configure cron"
-  cron:
+  ansible.builtin.cron:
     state: "{{ item.state }}"
     user: "{{ item.user }}"
     name: "{{ item.name }}"

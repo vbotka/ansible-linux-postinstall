@@ -1,5 +1,5 @@
 ---
-# linux-postinstall vars: vars_flavors
+# linux_postinstall vars: vars_flavors
 
 # Create dir lp_flavors_dir. Loop lp_flavors and get stat of
 # release_file(s). If release_file exists include tasks specific to this
@@ -7,19 +7,19 @@
 
 - name: 'sub: vars_flavors: Debug'
   vars:
-    msg: |
+    msg: |-
       lp_flavors_dir [{{ lp_flavors_dir }}]
       lp_flavors_dir_owner [{{ lp_flavors_dir_owner }}]
       lp_flavors_dir_group [{{ lp_flavors_dir_group }}]
       lp_flavors_dir_mode [{{ lp_flavors_dir_mode }}]
       lp_flavors
       {{ lp_flavors|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_debug|bool
 
 - name: 'sub: vars_flavors: Create {{ lp_flavors_dir }}'
-  file:
+  ansible.builtin.file:
     state: directory
     path: '{{ lp_flavors_dir }}'
     owner: '{{ lp_flavors_dir_owner }}'
@@ -29,18 +29,18 @@
   run_once: true
 
 - name: 'sub: vars_flavors: Detect flavor'
-  stat:
+  ansible.builtin.stat:
     path: '{{ item.value.release_file }}'
   loop: '{{ lp_flavors|dict2items }}'
   register: result
 
 - name: 'sub: vars_flavors: Debug result'
-  when: lp_debug|bool
-  debug:
+  ansible.builtin.debug:
     msg: "{{ result.results|json_query('[?stat.exists].item') }}"
+  when: lp_debug|bool
 
 - name: 'sub: vars_flavors: Include tasks for flavor'
-  include_tasks: "{{ 'sub/vars_flavors-' ~ outer_item.key ~ '.yml' }}"
+  ansible.builtin.include_tasks: "{{ 'sub/vars_flavors-' ~ outer_item.key ~ '.yml' }}"
   loop: "{{ result.results|json_query('[?stat.exists].item') }}"
   loop_control:
     loop_var: outer_item

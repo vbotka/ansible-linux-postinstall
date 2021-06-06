@@ -1,8 +1,8 @@
 ---
-# linux-postinstall snap
+# linux_postinstall snap
 
 - name: "snap: Debug"
-  debug:
+  ansible.builtin.debug:
     msg: Not implemented yet.
 
 # [TODO]

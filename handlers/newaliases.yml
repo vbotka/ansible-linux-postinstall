@@ -1,7 +1,9 @@
 ---
 
 - name: newaliases
-  command: newaliases
+  command:
+    cmd: >
+      newaliases
 
 # EOF
 ...

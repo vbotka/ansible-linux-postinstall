@@ -2,7 +2,9 @@
 
 - name: update initramfs
   listen: update initrd
-  command: update-initramfs -k all -u
+  command:
+    cmd: >
+      update-initramfs -k all -u
 
 # EOF
 ...

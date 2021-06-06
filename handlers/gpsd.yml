@@ -1,7 +1,9 @@
 ---
 
 - name: restart gpsd
-  systemd: name="{{ lp_gpsd_service }}" state=restarted
+  ansible.builtin.service:
+    name: "{{ lp_gpsd_service }}"
+    state: restarted
   when: lp_gpsd_enable|bool
 
 # EOF

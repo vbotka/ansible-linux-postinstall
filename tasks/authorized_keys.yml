@@ -1,8 +1,8 @@
 ---
-# linux-postinstall authorized_keys
+# linux_postinstall authorized_keys
 
 - name: "authorized_key: Configure authorized_keys"
-  authorized_key:
+  ansible.builtin.authorized_key:
     user: "{{ item.user }}"
     key: "{{ item.key }}"
     manage_dir: true

@@ -3,18 +3,19 @@
 
 - name: "users: Debug"
   vars:
-    msg: |
+    msg: |-
+      lp_users_nolog [{{ lp_users_nolog }}]
       lp_users
       {{ lp_users|to_nice_yaml }}
       lp_users_groups
       {{ lp_users_groups|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_users_debug|bool
   tags: lp_users_debug
 
 - name: "users: Manage user accounts"
-  user:
+  ansible.builtin.user:
     name: "{{ item.name }}"
     authorization: "{{ item.authorization|default(omit) }}"
     comment: "{{ item.comment|default(omit) }}"
@@ -49,10 +50,11 @@
   loop: "{{ lp_users }}"
   loop_control:
     label: "{{ item.name }}"
+  no_log: "{{ lp_users_nolog }}"
   tags: lp_users_accounts
 
 - name: "users: Add users to additional groups"
-  user:
+  ansible.builtin.user:
     name: "{{ item.name }}"
     groups: "{{ item.groups }}"
     append: "{{ item.append|default(true) }}"

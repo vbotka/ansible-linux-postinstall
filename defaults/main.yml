@@ -78,13 +78,14 @@ lp_iptables_type: default
 lp_iptables_wan_if: eth0
 lp_iptables_lan_if: eth1
 lp_iptables_lan: 10.1.0.0/24
-lp_iptables_INPUT_if: []
-lp_iptables_INPUT_net: []
+lp_iptables_input_if: []
+lp_iptables_input_net: []
 
 lp_users_debug: false
 lp_users: []
 lp_groups: []
 lp_users_groups: []
+lp_users_nolog: true
 
 lp_passwords: false
 lp_passwords_debug: false
@@ -125,12 +126,12 @@ lp_xen: false
 lp_xen_debug: false
 lp_xen_dom0_mem: 512M
 lp_xen_dom0_mem_max: 512M
-lp_xen_XEN_OVERRIDE_GRUB_DEFAULT: 0
+lp_xen_xen_override_grub_default: 0
 lp_xen_default_grub_conf:
   - key: GRUB_CMDLINE_XEN_DEFAULT
     value: "\"dom0_mem={{ lp_xen_dom0_mem }}, max:{{ lp_xen_dom0_mem_max }}\""
   - key: XEN_OVERRIDE_GRUB_DEFAULT
-    value: "{{ lp_xen_XEN_OVERRIDE_GRUB_DEFAULT }}"
+    value: "{{ lp_xen_xen_override_grub_default }}"
 lp_xen_global: []
 
 lp_latex: false
@@ -144,8 +145,8 @@ lp_apt_conf: []
 
 lp_auto_upgrades: false
 lp_auto_upgrades_enable: false
-lp_auto_upgrades_Update_Package_Lists: 0
-lp_auto_upgrades_Unattended_Upgrade: 0
+lp_auto_upgrades_update_package_lists: 0
+lp_auto_upgrades_unattended_upgrade: 0
 
 lp_pm: false
 lp_pm_sleepd: {}
@@ -179,10 +180,10 @@ lp_modemmanager_override: ""
 
 lp_gpsd: false
 lp_gpsd_enable: false
-lp_gpsd_START_DAEMON: "true"
-lp_gpsd_USBAUTO: "true"
-lp_gpsd_DEVICES: /dev/rfcomm0
-lp_gpsd_GPSD_OPTIONS: -b
+lp_gpsd_start_daemon: "true"
+lp_gpsd_usbauto: "true"
+lp_gpsd_devices: /dev/rfcomm0
+lp_gpsd_gpsd_options: -b
 lp_gpsd_bt_rfcomm: []
 
 lp_postfix: true
@@ -272,11 +273,11 @@ lp_timezone_zoneinfo: UTC
 lp_timesyncd: true
 lp_timesyncd_debug: false
 lp_timesyncd_enable: true
-lp_timesyncd_NTP: ""
-lp_timesyncd_FallbackNTP: ntp.ubuntu.com
-lp_timesyncd_RootDistanceMaxSec: 5
-lp_timesyncd_PollIntervalMinSec: 32
-lp_timesyncd_PollIntervalMaxSec: 2048
+lp_timesyncd_ntp: ""
+lp_timesyncd_fallbackntp: ntp.ubuntu.com
+lp_timesyncd_rootdistancemaxsec: 5
+lp_timesyncd_pollintervalminsec: 32
+lp_timesyncd_pollintervalmaxsec: 2048
 
 lp_gpg: false
 lp_gpg_debug: false
@@ -315,6 +316,9 @@ lp_wpasupplicant_service_conf_only: false
 lp_wpasupplicant_service_conf: []
 lp_wpa_action_script: false
 lp_wpa_action_script_dir: /root/bin
+lp_wpa_action_script_dir_owner: root
+lp_wpa_action_script_dir_group: root
+lp_wpa_action_script_dir_mode: "0755"
 lp_wpa_action_script_file: "{{ lp_wpa_action_script_dir }}/wpa_action.sh"
 lp_wpa_action_script_owner: root
 lp_wpa_action_script_group: root

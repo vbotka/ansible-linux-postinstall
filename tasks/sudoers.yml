@@ -1,35 +1,36 @@
 ---
-# linux-postinstall sudoers
+# linux_postinstall sudoers
 
 - name: "sudoers: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_sudoers_conf
       {{ lp_sudoers_conf|to_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_sudoers_debug|bool
   tags: lp_sudoers_debug
 
 - name: "sudoers: Configure /etc/sudoers"
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/sudoers
     line: "{{ item.line }}"
     state: "{{ item.state|default('present') }}"
-    create: true
     backup: "{{ lp_backup_conf }}"
+    create: true
+    mode: "0440"
   loop: "{{ lp_sudoers_conf }}"
   tags: lp_sudoers_conf
 
 - name: "sudoers: Configure /etc/sudoers.d/01"
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/sudoers.d/01
     line: "{{ item }}"
     owner: "{{ lp_sudoers_owner }}"
     group: "{{ lp_sudoers_group }}"
     mode: "{{ lp_sudoers_mode }}"
-    create: true
     backup: "{{ lp_backup_conf }}"
+    create: true
   loop: "{{ lp_sudoers_01 }}"
   tags: lp_sudoers_dconf
 

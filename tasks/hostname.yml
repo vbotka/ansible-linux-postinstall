@@ -1,5 +1,5 @@
 ---
-# linux-postinstall hostname
+# linux_postinstall hostname
 
 # TODO:
 # 1) SET/DONT_SET hostname via DHCP
@@ -11,7 +11,7 @@
 # https://askubuntu.com/questions/757423/how-to-force-dhcp-client-to-allow-a-self-defined-domain-name
 
 - name: "hostname: Configure hostname in /etc/hostname"
-  template:
+  ansible.builtin.template:
     src: hostname.j2
     dest: /etc/hostname
     owner: root
@@ -24,7 +24,7 @@
 #  notify: set hostname
 
 - name: "hostname: Configure hostname"
-  hostname:
+  ansible.builtin.hostname:
     name: "{{ lp_hostname }}"
   when: lp_hostname|length > 0
 

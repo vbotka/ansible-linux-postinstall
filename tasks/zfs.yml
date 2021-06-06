@@ -1,9 +1,9 @@
 ---
-# linux-postinstall zfs
+# linux_postinstall zfs
 
 - name: "zfs: Debug"
   vars:
-    msg: |
+    msg: |-
       lp_zfs_install [{{ lp_zfs_install }}]
       lp_zfs_packages
       {{ lp_zfs_packages|to_nice_yaml }}
@@ -13,19 +13,19 @@
       {{ lp_zfs_manage|to_yaml }}
       lp_zfs_mountpoints
       {{ lp_zfs_mountpoints|to_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: lp_zfs_debug|bool
   tags: lp_zfs_debug
 
 - name: "zfs: Install packages"
-  include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks: fn/install-package.yml
   loop: "{{ lp_zfs_packages }}"
   when: lp_zfs_install|bool
   tags: lp_zfs_packages
 
 - name: "zfs: Manage zfs services"
-  systemd:
+  ansible.builtin.service:
     name: "{{ item.name }}"
     enabled: "{{ item.enabled|default(true) }}"
     state: "{{ item.state|default('started') }}"
@@ -33,22 +33,26 @@
   tags: lp_zfs_services
 
 - name: "zfs: Manage zfs"
-  zfs:
+  community.general.zfs:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
     origin: "{{ item.origin|default(omit) }}"
     extra_zfs_properties: "{{ item.extra_zfs_properties|default(omit) }}"
   loop: "{{ lp_zfs_manage }}"
+  loop_control:
+    label: "{{ item.name }}"
   tags: lp_zfs_manage
 
 - name: "zfs: Set mode and ownership of zfs mountpoints"
-  file:
+  ansible.builtin.file:
     state: directory
     path: "{{ item.mountpoint }}"
     owner: "{{ item.owner|default(omit) }}"
     group: "{{ item.group|default(omit) }}"
     mode: "{{ item.mode|default(omit) }}"
   loop: "{{ lp_zfs_mountpoints }}"
+  loop_control:
+    label: "{{ item.mountpoint }}"
   tags: lp_zfs_mountpoints
 
 # EOF

@@ -1,9 +1,10 @@
 ---
-# linux-postinstall function install-package
+# linux_postinstall function install-package
 
 - block:
+
     - name: "fn install-package: {{ lp_package_state }} package: {{ item }}"
-      package:
+      ansible.builtin.package:
         name: "{{ item }}"
         state: "{{ lp_package_state }}"
       register: result
@@ -13,7 +14,7 @@
       when: not my_delegate_to_localhost|default(false)|bool
 
     - name: "fn install-package: localhost {{ lp_package_state }} package: {{ item }}"
-      package:
+      ansible.builtin.package:
         name: "{{ item }}"
         state: "{{ lp_package_state }}"
       register: result
