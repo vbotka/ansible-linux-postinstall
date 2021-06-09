@@ -27,6 +27,8 @@
     mode: "{{ item.mode | default(lp_netplan_mode) }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_netplan_conf }}"
+  loop_control:
+    label: "{{ item.file }}"
   notify: netplan apply
 
 # EOF

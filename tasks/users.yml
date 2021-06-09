@@ -50,7 +50,7 @@
   loop: "{{ lp_users }}"
   loop_control:
     label: "{{ item.name }}"
-  no_log: "{{ lp_users_nolog }}"
+  no_log: "{{ lp_users_nolog|bool }}"
   tags: lp_users_accounts
 
 - name: "users: Add users to additional groups"
