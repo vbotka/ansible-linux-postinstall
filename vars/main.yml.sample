@@ -290,7 +290,7 @@
 # lp_netplan_conf:
 #  - file: "10-ethernet.yaml"
 #    category: "ethernets"
-#    conf: |
+#    conf:
 #      eth0:
 #        optional: true
 #        match:
@@ -308,7 +308,7 @@
 #    group: "root"
 #    mode: "0640"
 #    category: "wifis"
-#    conf: |
+#    conf:
 #      wlan2:
 #        optional: True
 #        dhcp6: False
@@ -328,7 +328,7 @@
 #            password: "**********"
 #  - file: "30-bond.yaml"
 #    category: "bonds"
-#    conf: |
+#    conf:
 #      bond0:
 #        dhcp4: yes
 #        interfaces:
@@ -339,7 +339,7 @@
 #          primary: enp3s0
 #  - file: "40-bridge.yaml"
 #    category: "bridges"
-#    conf: |
+#    conf:
 #      xenbr0:
 #        optional: true
 #        addresses:
@@ -348,7 +348,7 @@
 #          - eth0
 #  - file: "50-vlan.yaml"
 #    category: "vlans"
-#    conf: |
+#    conf:
 #      vlan15:
 #        id: 15
 #        link: eth0
