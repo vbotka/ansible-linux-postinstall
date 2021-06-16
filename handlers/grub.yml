@@ -1,7 +1,7 @@
 ---
 
 - name: update grub
-  command:
+  ansible.builtin.command:
     cmd: >
       /usr/sbin/update-grub
 

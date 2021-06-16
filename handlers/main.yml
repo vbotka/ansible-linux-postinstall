@@ -1,33 +1,86 @@
 ---
 # linux_postinstall handlers
 
-- import_tasks: apparmor.yml
-- import_tasks: autofs.yml
-- import_tasks: bluetooth.yml
-- import_tasks: gpg.yml
-- import_tasks: gpsd.yml
-- import_tasks: grub.yml
-- import_tasks: hostname.yml
-- import_tasks: initramfs.yml
-- import_tasks: iptables.yml
-- import_tasks: libvirtd.yml
-- import_tasks: messages.yml
-- import_tasks: netplan.yml
-- import_tasks: networkd.yml
-- import_tasks: newaliases.yml
-- import_tasks: nfsd.yml
-- import_tasks: postfix.yml
-- import_tasks: resolvconf.yml
-- import_tasks: smart.yml
-- import_tasks: sshd.yml
-- import_tasks: swap.yml
-- import_tasks: sysctl.yml
-- import_tasks: systemd.yml
-- import_tasks: timesyncd.yml
-- import_tasks: tlp.yml
-- import_tasks: udev.yml
-- import_tasks: ufw.yml
-- import_tasks: wpasupplicant.yml
+- name: Import apparmor.yml
+  ansible.builtin.import_tasks: apparmor.yml
+
+- name: Import autofs.yml
+  ansible.builtin.import_tasks: autofs.yml
+
+- name: Import bluetooth.yml
+  ansible.builtin.import_tasks: bluetooth.yml
+
+- name: Import gpg.yml
+  ansible.builtin.import_tasks: gpg.yml
+
+- name: Import gpsd.yml
+  ansible.builtin.import_tasks: gpsd.yml
+
+- name: Import grub.yml
+  ansible.builtin.import_tasks: grub.yml
+
+- name: Import hostname.yml
+  ansible.builtin.import_tasks: hostname.yml
+
+- name: Import initramfs.yml
+  ansible.builtin.import_tasks: initramfs.yml
+
+- name: Import iptables.yml
+  ansible.builtin.import_tasks: iptables.yml
+
+- name: Import libvirtd.yml
+  ansible.builtin.import_tasks: libvirtd.yml
+
+- name: Import messages.yml
+  ansible.builtin.import_tasks: messages.yml
+
+- name: Import netplan.yml
+  ansible.builtin.import_tasks: netplan.yml
+
+- name: Import networkd.yml
+  ansible.builtin.import_tasks: networkd.yml
+
+- name: Import newaliases.yml
+  ansible.builtin.import_tasks: newaliases.yml
+
+- name: Import nfsd.yml
+  ansible.builtin.import_tasks: nfsd.yml
+
+- name: Import postfix.yml
+  ansible.builtin.import_tasks: postfix.yml
+
+- name: Import resolvconf.yml
+  ansible.builtin.import_tasks: resolvconf.yml
+
+- name: Import smart.yml
+  ansible.builtin.import_tasks: smart.yml
+
+- name: Import sshd.yml
+  ansible.builtin.import_tasks: sshd.yml
+
+- name: Import swap.yml
+  ansible.builtin.import_tasks: swap.yml
+
+- name: Import sysctl.yml
+  ansible.builtin.import_tasks: sysctl.yml
+
+- name: Import systemd.yml
+  ansible.builtin.import_tasks: systemd.yml
+
+- name: Import timesyncd.yml
+  ansible.builtin.import_tasks: timesyncd.yml
+
+- name: Import tlp.yml
+  ansible.builtin.import_tasks: tlp.yml
+
+- name: Import udev.yml
+  ansible.builtin.import_tasks: udev.yml
+
+- name: Import ufw.yml
+  ansible.builtin.import_tasks: ufw.yml
+
+- name: Import wpasupplicant.yml
+  ansible.builtin.import_tasks: wpasupplicant.yml
 
 # EOF
 ...

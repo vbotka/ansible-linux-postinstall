@@ -1,7 +1,7 @@
 ---
 
 - name: create and mount swap file
-  shell:
+  ansible.builtin.shell:
     cmd: >
       sh -c
       'dd if=/dev/zero of={{ lp_swap_file }} bs=1M count={{ lp_swap_size }} &&
@@ -11,7 +11,7 @@
   when: lp_swap_enable|bool
 
 - name: change and mount swap file
-  shell:
+  ansible.builtin.shell:
     cmd: >
       sh -c
       'swapoff {{ lp_swap_file }} &&
@@ -22,7 +22,7 @@
   when: lp_swap_enable|bool
 
 - name: remove swap file
-  shell:
+  ansible.builtin.shell:
     cmd: >
       sh -c
       'swapoff {{ lp_swap_file }} && rm {{ lp_swap_file }}'

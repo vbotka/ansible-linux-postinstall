@@ -1,7 +1,7 @@
 ---
 
 - name: gpgconf kill gpg-agent
-  command:
+  ansible.builtin.command:
     cmd: >
       gpgconf --kill gpg-agent
   loop: "{{ lp_gpg_agent_conf_changes.results }}"
@@ -11,7 +11,7 @@
   when: item.changed|bool
 
 - name: gpgconf kill dirmngr
-  command:
+  ansible.builtin.command:
     cmd: >
       gpgconf --kill dirmngr
   loop: "{{ lp_gpg_dirmngr_conf_changes.results }}"

@@ -1,7 +1,7 @@
 ---
 
 - name: reload udev
-  command:
+  ansible.builtin.command:
     cmd: >
       {{ lp_udev_path }} control --reload-rules
   when: lp_udev_enable|bool
