@@ -44,7 +44,7 @@ released versions in time and would report an error. For example:
 
 ## Role Variables
 
-Read the defaults and examples in vars.
+See defaults and examples in vars.
 
 
 ## Workflow

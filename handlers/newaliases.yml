@@ -1,7 +1,7 @@
 ---
 
 - name: newaliases
-  command:
+  ansible.builtin.command:
     cmd: >
       newaliases
 

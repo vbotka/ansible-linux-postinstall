@@ -2,7 +2,7 @@
 
 - name: update initramfs
   listen: update initrd
-  command:
+  ansible.builtin.command:
     cmd: >
       update-initramfs -k all -u
 

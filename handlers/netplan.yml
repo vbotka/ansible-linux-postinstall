@@ -1,7 +1,7 @@
 ---
 
 - name: netplan apply
-  command:
+  ansible.builtin.command:
     cmd: >
       netplan apply
   when: lp_netplan|bool
