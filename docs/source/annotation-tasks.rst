@@ -532,32 +532,6 @@ Description of the task.
 
 
 
-.. _as_libvirt_conf.yml:
-
-libvirt_conf.yml
-----------------
-
-Synopsis: Configure libvirt_conf.
-
-
-Description of the task.
-
-
-[`tasks/libvirt_conf.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/libvirt_conf.yml>`_]
-
-.. highlight:: yaml
-    :linenothreshold: 5
-.. literalinclude:: ../../tasks/libvirt_conf.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
-    :linenos:
-
-.. seealso::
-   * Handler :ref:`as_handler_libvirtd.yml`
-
-
-
-
 .. _as_libvirt.yml:
 
 libvirt.yml

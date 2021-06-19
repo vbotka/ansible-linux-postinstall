@@ -272,19 +272,6 @@ mytasks:
     hints: []
     warnings: []
 
-  - file: libvirt_conf.yml
-    link: libvirt_conf.yml
-    path: tasks/libvirt_conf.yml
-    synopsis: |
-      Configure libvirt_conf.
-    description: |
-      Description of the task.
-    lines: 1,2
-    seealso: {'handlers': ['libvirtd']}
-    notes: []
-    hints: []
-    warnings: []
-
   - file: libvirt.yml
     link: libvirt.yml
     path: tasks/libvirt.yml
