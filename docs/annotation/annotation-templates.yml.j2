@@ -1,6 +1,6 @@
 #jinja2: trim_blocks:False
 ---
-mytemplates:{% if not my_files %}[]{% endif %}
+mytemplates:{% if not my_files %} []{% endif %}
 {% for file in my_files %}
   - file: {{ file.0 ~ file.1 }}
     link: {{ file.0 ~ file.1 }}

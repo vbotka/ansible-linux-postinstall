@@ -18,7 +18,6 @@ hosts.yml
 iptables.yml
 kvm.yml
 latex.yml
-libvirt_conf.yml
 libvirt.yml
 lid.yml
 logrotate.yml
