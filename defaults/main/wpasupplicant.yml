@@ -1,0 +1,40 @@
+---
+
+lp_wpasupplicant: true
+lp_wpasupplicant_install: true
+lp_wpasupplicant_debug: false
+lp_wpasupplicant_debug_classified: false
+lp_wpasupplicant_bin: /sbin/wpa_supplicant
+lp_wpasupplicant_conf_only: false
+lp_wpasupplicant_conf_owner: root
+lp_wpasupplicant_conf_group: root
+lp_wpasupplicant_conf_mode: "0600"
+lp_wpasupplicant_conf_dir: /etc/wpa_supplicant
+lp_wpasupplicant_conf_file:
+  managed: wpa_supplicant.conf
+  default: "{{ 'wpa_supplicant-' ~ item.dev ~ '.conf' }}"
+  nl80211: "{{ 'wpa_supplicant-nl80211-' ~ item.dev ~ '.conf' }}"
+  wired: "{{ 'wpa_supplicant-wired-' ~ item.dev ~ '.conf' }}"
+lp_wpasupplicant_conf_global:
+  - {key: ctrl_interface, value: "{{ lp_wpasupplicant_conf_ctrl_interface }}"}
+lp_wpasupplicant_conf: []
+lp_wpasupplicant_service:
+  default: "{{ 'wpa_supplicant@' ~ my_dev ~ '.service' }}"
+  nl80211: "{{ 'wpa_supplicant-nl80211@' ~ my_dev ~ '.service' }}"
+  wired: "{{ 'wpa_supplicant-wired@' ~ my_dev ~ '.service' }}"
+lp_wpasupplicant_service_conf_only: false
+lp_wpasupplicant_service_conf: []
+lp_wpa_action_script: false
+lp_wpa_action_script_dir: /root/bin
+lp_wpa_action_script_dir_owner: root
+lp_wpa_action_script_dir_group: root
+lp_wpa_action_script_dir_mode: "0755"
+lp_wpa_action_script_file: "{{ lp_wpa_action_script_dir }}/wpa_action.sh"
+lp_wpa_action_script_owner: root
+lp_wpa_action_script_group: root
+lp_wpa_action_script_mode: "0770"
+lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
+lp_wpa_action_script_pidfile: /var/run/dhclient.$ifname.pid
+lp_wpa_action_script_options_connect: "-4 -nw -pf $pidfile -v"
+lp_wpa_action_script_options_disconnect: "-4 -r -pf $pidfile -v"
+lp_wpa_action_script_logfile: "/tmp/wpa_action.$ifname"

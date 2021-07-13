@@ -1,0 +1,10 @@
+---
+
+lp_nm: false
+lp_nm_install: true
+lp_nm_enable: true
+lp_nm_debug: false
+lp_nm_mask: false
+lp_nm_override: manual
+lp_nm_conf: []
+lp_nm_conf_no_extra_spaces: true

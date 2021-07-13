@@ -1,0 +1,13 @@
+---
+
+lp_ufw: true
+lp_ufw_install: true
+lp_ufw_enable: true
+lp_ufw_debug: false
+lp_ufw_reset: false
+lp_ufw_reload: false
+lp_ufw_service: ufw
+lp_ufw_conf:
+  - {state: enabled, policy: allow}
+  - {logging: "on"}
+lp_ufw_service_conf: []

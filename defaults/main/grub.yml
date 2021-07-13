@@ -1,0 +1,5 @@
+---
+
+lp_grub: true
+lp_grub_debug: false
+lp_grub_default: []

@@ -1,0 +1,7 @@
+---
+
+lp_bluetooth: false
+lp_bluetooth_debug: false
+lp_bluetooth_enable: false
+lp_bluetooth_main_conf: []
+lp_bluetooth_ini: []

@@ -1,0 +1,30 @@
+---
+
+# Include default vars for various flavors. For example put vars into
+# one of the files below. First found will be included.
+#
+#     vars/flavors/armbian-<VERSION>-<BOARD>.yml
+#     vars/flavors/armbian-<VERSION>.yml
+#     vars/flavors/armbian.yml
+#     vars/defaults.yml
+#
+# 1) File with service tasks task/sub/vars_flavors-<flavor>.yml is
+#    needed when new flavor is added to lp_flavors. See
+#    tasks/sub/vars_flavors_common.yml
+# 2) For precedence of vars see tasks/vars.yml
+
+lp_flavors_enable: true
+lp_flavors_dir: "{{ inventory_dir ~ '/flavors' }}"
+lp_flavors_dir_owner: admin
+lp_flavors_dir_group: adm
+lp_flavors_dir_mode: "0775"
+lp_flavors:
+  lsb:
+    release_file: /etc/lsb-release
+    file_labels: [DISTRIB_ID, DISTRIB_CODENAME]
+  os:
+    release_file: /etc/os-release
+    file_labels: [ID, UBUNTU_CODENAME]
+  armbian:
+    release_file: /etc/armbian-release
+    file_labels: [VERSION, BOARD]

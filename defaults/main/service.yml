@@ -1,0 +1,23 @@
+---
+
+lp_service_debug: false
+lp_service_sanity: true
+lp_service: []
+lp_service_enable:
+  - auto_upgrades
+  - autofs
+  - bluetooth
+  - gpsd
+  - libvirt_guests
+  - libvirt_libvirtd
+  - postfix
+  - resolvconf
+  - smart
+  - speechd
+  - sshd
+  - timesyncd
+  - udev
+  - ufw
+# - snap  WIP
+# - tlp   [TODO] add list of services
+# - nm    [TODO] add list of services

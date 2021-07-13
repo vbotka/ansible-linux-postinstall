@@ -1,0 +1,7 @@
+---
+
+lp_networkd: true
+lp_networkd_install: true
+lp_networkd_enable: true
+lp_networkd_debug: false
+lp_networkd_conf: []
