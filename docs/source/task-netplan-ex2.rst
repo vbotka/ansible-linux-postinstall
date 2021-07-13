@@ -24,7 +24,7 @@ Add the configuration of the wireless interface to the file
    lp_netplan_conf:
      - file: 10-ethernet.yaml
        category: ethernets
-       conf: |
+       conf:
          eth0:
            optional: true
            set-name: eth0
@@ -34,7 +34,7 @@ Add the configuration of the wireless interface to the file
              macaddress: "<sanitized>"
      - file: 10-wlan0-dhcp.yaml
        category: ethernets
-       conf: |
+       conf:
          wlan0:
            optional: true
            set-name: wlan0
@@ -44,8 +44,7 @@ Add the configuration of the wireless interface to the file
              macaddress: "<sanitized>"
 
 .. note::
-   * When :index:`networkd` renderer is used disable
-     Neworkmanager.
+   * When :index:`networkd` renderer is used disable Neworkmanager.
    * See :ref:`ug_task_networkmanager_ex1`.
    * ``category: ethernets`` is used for *wlan0* instead of
      ``category: wifis`` because wpa_supplicant will authenticate the
@@ -60,12 +59,8 @@ Configure :index:`wifi` interface
    shell> ansible-playbook linux-postinstall.yml -t lp_netplan
 
    TASK [vbotka.linux_postinstall : netplan: Configure files in /etc/netplan] ******
-   ok: [test_01] => (item={'file': '10-ethernet.yaml', 'category':
-   'ethernets', 'conf': 'eth0:\n optional: true\n set-name: eth0\n dhcp4:
-   true\n dhcp6: false\n match:\n macaddress: "<sanitized>"\n'})
-   changed: [test_01] => (item={'file': '10-wlan0-dhcp.yaml', 'category':
-   'ethernets', 'conf': 'wlan0:\n optional: true\n set-name: wlan0\n
-   dhcp4: true\n dhcp6: false\n match:\n macaddress: "<sanitized>"\n'})
+   ok: [test_01] => (item=10-ethernet.yaml)
+   changed: [test_01] => (item=10-wlan0-dhcp.yaml)
 
    RUNNING HANDLER [vbotka.linux_postinstall : netplan apply] **********************
    changed: [test_01]
@@ -104,17 +99,12 @@ Show the configuration of the :index:`wifi` interface
      version: 2
      renderer: networkd
      ethernets:
-       {
-       "wlan0": {
-           "dhcp4": true,
-           "dhcp6": false,
-           "match": {
-               "macaddress": "<sanitized>"
-           },
-           "optional": true,
-           "set-name": "wlan0"
-       }
-   }
+       wlan0:
+         dhcp4: true
+         dhcp6: false
+         match: {macaddress: '<sanitized>'}
+         optional: true
+         set-name: wlan0
 
 Show the configuration of :index:`networkd` at the remote host
 
@@ -154,6 +144,5 @@ Show the configuration of :index:`networkd` at the remote host
    3 links listed.
 
 .. note::
-   * wlan0 is *configuring* and *no-carrier* because wpa_supplicant
-     has not been started yet.
+   * wlan0 is *configuring* and *no-carrier* because wpa_supplicant has not been started yet.
    * See :ref:`ug_wpasupplicant_ex1`

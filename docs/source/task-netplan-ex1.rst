@@ -23,7 +23,7 @@ Create *host_vars/test_01/lp-netplan.yml*
    lp_netplan_conf:
      - file: 10-ethernet.yaml
        category: ethernets
-       conf: |
+       conf:
          eth0:
            optional: true
            set-name: eth0
@@ -34,8 +34,7 @@ Create *host_vars/test_01/lp-netplan.yml*
 
 
 .. note::
-   * When :index:`networkd` renderer is used disable
-     Neworkmanager.
+   * When :index:`networkd` renderer is used disable Neworkmanager.
    * See :ref:`ug_task_networkmanager_ex1`
 
 
@@ -47,10 +46,7 @@ Configure :index:`network`
    shell> ansible-playbook linux-postinstall.yml -t lp_netplan
 
    TASK [vbotka.linux_postinstall : netplan: Configure files in /etc/netplan] **
-   ok: [test_01] => (item={'file': '10-ethernet.yaml', 'category': 'ethernets',
-                           'conf': 'eth0:  optional: true  set-name: eth0
-                                    dhcp4: true  dhcp6: false  match:
-                                    macaddress: "<sanitized>"'})
+   ok: [test_01] => (item=10-ethernet.yaml)
 
 The command is :index:`idempotent`
 
@@ -85,17 +81,12 @@ Show the configuration of :index:`netplan` at the remote host
      version: 2
      renderer: networkd
      ethernets:
-       {
-       "eth0": {
-           "dhcp4": true,
-           "dhcp6": false,
-           "match": {
-               "macaddress": "<sanitized>"
-           },
-           "optional": true,
-           "set-name": "eth0"
-       }
-     }
+       eth0:
+         dhcp4: true
+         dhcp6: false
+         match: {macaddress: '<sanitized>'}
+         optional: true
+         set-name: eth0
 
 Show the configuration of :index:`networkd` at the remote host
 

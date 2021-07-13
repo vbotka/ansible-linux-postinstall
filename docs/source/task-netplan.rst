@@ -17,6 +17,8 @@ The network configuration abstraction renderer.
 
 .. seealso::
    * Annotated Source code :ref:`as_netplan.yml`
+   * Annotated Template :ref:`as_template_netplan_default.j2`
+   * Annotated Template :ref:`as_template_netplan_conf.j2`
    * Project website `netplan.io <https://netplan.io/>`_
    * See :ref:`ug_task_networkmanager_ex1`
 
