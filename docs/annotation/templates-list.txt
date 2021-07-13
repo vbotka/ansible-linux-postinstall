@@ -5,6 +5,7 @@ apt_confd.j2
 auto_upgrades.j2
 blacklist_module.j2
 bluetooth_rfcomm_conf.j2
+chrony.conf.j2
 default_iptables.j2
 exports.j2
 gpg_agent.conf.j2

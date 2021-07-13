@@ -4,11 +4,11 @@
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi,
 aliases, apparmor, apt, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums,
-fstab, gpg, gpsd, groups, grub, hostname, hosts, iptables, kvm, latex, libvirt, lid, logrotate,
-modem manager, modules, netplan, networkd, networkmanager, nfsd, packages, passwords, pm-utils,
-postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap, sysctl,
-systemd, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant, xen,
-xorg.conf.d, zfs, (wip ...)
+fstab, gpg, gpsd, groups, grub, hostname, hosts, chrony, iptables, kvm, latex, libvirt, lid,
+logrotate, modem manager, modules, netplan, networkd, networkmanager, nfsd, packages, passwords,
+pm-utils, postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap,
+sysctl, systemd, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant,
+xen, xorg.conf.d, zfs, (wip ...)
 
 [Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io)
 
@@ -249,6 +249,11 @@ shell> ansible-playbook linux-postinstall.yml
 - [GPSD Troubleshooting](http://www.catb.org/gpsd/troubleshooting.html)
 - [GPSD cannot create rfcomm0 - SO](https://stackoverflow.com/questions/33892280/debian-cannot-create-rfcomm0)
 - [GRUB - Ubuntu Help](https://help.ubuntu.com/community/Grub2)
+- [Chrony - implementation of NTP](https://chrony.tuxfamily.org/)
+- [Chrony - ArchLinux Wiki](https://wiki.archlinux.org/title/Chrony)
+- [Chrony - Ubuntu Blog: Bionic: Using chrony to configure NTP](https://ubuntu.com/blog/ubuntu-bionic-using-chrony-to-configure-ntp)
+- [Chrony - RHEL 7 System Administrator's Guide: CHAPTER 18. CONFIGURING NTP USING THE CHRONY SUITE](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/ch-configuring_ntp_using_the_chrony_suite)
+- [Chrony - RHEL 7 System Administrator's Guide: CHAPTER 3. CONFIGURING THE DATE AND TIME](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system_administrators_guide/chap-configuring_the_date_and_time)
 - [Iptables HowTo - Ubuntu Help community](https://help.ubuntu.com/community/IptablesHowTo)
 - [How To Implement a Basic Firewall Template with Iptables on Ubuntu 14.04 - DO tutorial](https://www.digitalocean.com/community/tutorials/how-to-implement-a-basic-firewall-template-with-iptables-on-ubuntu-14-04)
 - [KVM Ubuntu - Ubuntu Help community](https://help.ubuntu.com/community/KVM)
@@ -292,6 +297,9 @@ shell> ansible-playbook linux-postinstall.yml
 - [systemd - Ubuntu Wiki](https://wiki.ubuntu.com/SystemdForUpstartUsers)
 - [TLP - Linux Advanced Power Management Tool](https://linrunner.de/en/tlp/tlp.html)
 - [timesyncd - FreeDesktop man](https://www.freedesktop.org/software/systemd/man/systemd-timesyncd.service.html#)
+- [timesyncd - ArchLinux Wiki](https://wiki.archlinux.org/title/systemd-timesyncd)
+- [timesyncd - AskUbuntu: NTP not supported](https://askubuntu.com/questions/1314479/ntp-not-supported)
+- [timesyncd - Centos Forum](https://forums.centos.org/viewtopic.php?t=54021)
 - [udev - ArchLinux Wiki](https://wiki.archlinux.org/index.php/Udev)
 - [udev - Debian Wiki](https://wiki.debian.org/udev)
 - [udev debugging - Ubuntu Wiki](https://wiki.ubuntu.com/DebuggingUdev)

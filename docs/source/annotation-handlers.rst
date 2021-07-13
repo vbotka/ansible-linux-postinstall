@@ -81,6 +81,26 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+.. _as_handler_chrony.yml:
+
+chrony.yml
+----------
+
+Synopsis: Handler chrony.
+
+
+Description of the handler.
+
+
+[`handlers/chrony.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/chrony.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../handlers/chrony.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
 .. _as_handler_gpg.yml:
 
 gpg.yml

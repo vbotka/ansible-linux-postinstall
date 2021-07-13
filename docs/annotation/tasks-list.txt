@@ -6,6 +6,7 @@ authorized_keys.yml
 autofs.yml
 auto_upgrades.yml
 bluetooth.yml
+chrony.yml
 cron.yml
 debsums.yml
 debug.yml

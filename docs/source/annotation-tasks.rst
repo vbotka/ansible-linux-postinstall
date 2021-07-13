@@ -226,6 +226,30 @@ Description of the task.
 
 
 
+.. _as_chrony.yml:
+
+chrony.yml
+----------
+
+Synopsis: Configure chrony.
+
+
+Description of the task.
+
+
+[`tasks/chrony.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/chrony.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/chrony.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
 .. _as_cron.yml:
 
 cron.yml

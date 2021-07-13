@@ -10,6 +10,9 @@
 - name: Import bluetooth.yml
   ansible.builtin.import_tasks: bluetooth.yml
 
+- name: Import chrony.yml
+  ansible.builtin.import_tasks: chrony.yml
+
 - name: Import gpg.yml
   ansible.builtin.import_tasks: gpg.yml
 

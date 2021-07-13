@@ -1,0 +1,67 @@
+---
+# linux_postinstall chrony
+
+- name: "chrony: Debug"
+  vars:
+    msg: |-
+      lp_chrony [{{ lp_chrony }}]
+      lp_chrony_install [{{ lp_chrony_install }}]
+      lp_chrony_enable [{{ lp_chrony_enable }}]
+      lp_chrony_sanity [{{ lp_chrony_sanity }}]
+      lp_chrony_service [{{ lp_chrony_service }}]
+      lp_chrony_conf_file [{{ lp_chrony_conf_file }}]
+      lp_chrony_conf
+      {{ lp_chrony_conf|to_nice_yaml }}
+      lp_chrony_packages
+      {{ lp_chrony_packages|to_nice_yaml }}
+      lp_backup_conf [{{ lp_backup_conf }}"
+      lp_timesyncd_enable [{{ lp_timesyncd_enable }}]
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
+  when: lp_chrony_debug|bool
+  tags: lp_chrony_debug
+
+- name: "chrony: sanity"
+  block:
+    - name: "chrony: sanity: Disabled timesyncd"
+      ansible.builtin.assert:
+        that: not lp_timesyncd_enable|bool
+        fail_msg: "[ERROR] Service {{ lp_timesyncd_service }} must be disabled."
+  when: lp_chrony_sanity|bool
+  tags: lp_chrony_sanity
+
+- name: "chrony: Install packages"
+  ansible.builtin.include_tasks: fn/install-package.yml
+  loop: "{{ lp_chrony_packages }}"
+  when: lp_chrony_install|bool
+  tags: lp_chrony_packages
+
+- name: "chrony: Configure {{ lp_chrony_conf_file }}"
+  ansible.builtin.template:
+    src: chrony.conf.j2
+    dest: "{{ lp_chrony_conf_file }}"
+    owner: root
+    group: root
+    mode: "0644"
+    backup: "{{ lp_backup_conf }}"
+  notify: restart chrony
+  tags: lp_chrony_conf
+
+- name: "chrony: Enable and start chrony"
+  ansible.builtin.service:
+    name: "{{ lp_chrony_service }}"
+    state: started
+    enabled: true
+  when: lp_chrony_enable|bool
+  tags: lp_chrony_service
+
+- name: "chrony: Disable and stop chrony"
+  ansible.builtin.service:
+    name: "{{ lp_chrony_service }}"
+    state: stopped
+    enabled: false
+  when: not lp_chrony_enable|bool
+  tags: lp_chrony_service
+
+# EOF
+...

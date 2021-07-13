@@ -176,5 +176,7 @@ lp_passwordstore_packages:
 lp_ufw_packages:
   - ufw
 
+lp_chrony_service: chrony
+
 # EOF
 ...

@@ -34,6 +34,7 @@
       lp_gpg [{{ lp_gpg }}] lp_gpg_install [{{ lp_gpg_install }}]
       lp_gpsd [{{ lp_gpsd }}] lp_gpsd_enable [{{ lp_gpsd_enable }}]
       lp_grub [{{ lp_grub }}]
+      lp_chrony [{{ lp_chrony }}] lp_chrony_install [{{ lp_chrony_install }}] lp_chrony_enable [{{ lp_chrony_enable }}]
       lp_iptables [{{ lp_iptables }}]
       lp_kvm [{{ lp_kvm }}]
       lp_latex [{{ lp_latex }}]
