@@ -7,6 +7,9 @@ lp_ufw_debug: false
 lp_ufw_reset: false
 lp_ufw_reload: false
 lp_ufw_service: ufw
+lp_ufw_default: []
+lp_ufw_sysctl: []
+lp_ufw_blocks: {}
 lp_ufw_conf:
   - {logging: "on"}
   - {state: enabled, policy: allow, comment: state enabled}

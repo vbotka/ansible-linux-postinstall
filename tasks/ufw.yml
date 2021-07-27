@@ -27,6 +27,12 @@
       lp_ufw_reload [{{ lp_ufw_reload }}]
       lp_ufw_packages
       {{ lp_ufw_packages|to_nice_yaml }}
+      lp_ufw_default
+      {{ lp_ufw_default|to_yaml }}
+      lp_ufw_sysctl
+      {{ lp_ufw_sysctl|to_yaml }}
+      lp_ufw_blocks
+      {{ lp_ufw_blocks|to_nice_yaml }}
       lp_ufw_conf
       {{ lp_ufw_conf|to_yaml }}
       lp_ufw_service_conf
@@ -53,6 +59,42 @@
     state: reloaded
   when: lp_ufw_reload|bool
   tags: lp_ufw_reload
+
+- name: "ufw: Configure /etc/default/ufw"
+  ansible.builtin.lineinfile:
+    path: /etc/default/ufw
+    regexp: '^\s*{{ item.key }}\s*=(.*)$'
+    line: '{{ item.key }}={{ item.val }}'
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_ufw_default }}"
+  notify: reload ufw
+  tags: lp_ufw_defaults
+
+- name: "ufw: Configure /etc/ufw/sysctl.conf"
+  ansible.builtin.lineinfile:
+    path: /etc/ufw/sysctl.conf
+    regexp: '^\s*{{ item.key }}\s*=(.*)$'
+    line: '{{ item.key }}={{ item.val }}'
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_ufw_sysctl }}"
+  notify: reload ufw
+  tags: lp_ufw_defaults
+
+- name: "ufw: Configure blocks"
+  ansible.builtin.blockinfile:
+    path: "/etc/ufw/{{ item.0.key }}"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.1.mark }}"
+    block: "{{ item.1.block }}"
+    insertbefore: "{{ item.1.insertbefore|default(omit) }}"
+    insertafter: "{{ item.1.insertafter|default(omit) }}"
+    backup: "{{ lp_backup_conf }}"
+  with_subelements:
+    - "{{ lp_ufw_blocks|dict2items }}"
+    - value
+  loop_control:
+    label: "{{ item.0.key }} {{ item.1.mark }}"
+  notify: reload ufw
+  tags: lp_ufw_defaults
 
 - name: "ufw: Configure ufw"
   community.general.ufw:
