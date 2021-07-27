@@ -8,6 +8,6 @@ lp_ufw_reset: false
 lp_ufw_reload: false
 lp_ufw_service: ufw
 lp_ufw_conf:
-  - {state: enabled, policy: allow}
   - {logging: "on"}
+  - {state: enabled, policy: allow, comment: state enabled}
 lp_ufw_service_conf: []
