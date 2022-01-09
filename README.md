@@ -1,6 +1,6 @@
 # linux_postinstall
 
-[![quality](https://img.shields.io/ansible/quality/27914)](https://galaxy.ansible.com/vbotka/linux_postinstall)[![Build Status](https://travis-ci.org/vbotka/ansible-linux-postinstall.svg?branch=master)](https://travis-ci.org/vbotka/ansible-linux-postinstall)[![Documentation Status](https://readthedocs.org/projects/docs/badge/?version=latest)](https://ansible-linux-postinstall.readthedocs.io/en/latest/)
+[![quality](https://img.shields.io/ansible/quality/27914)](https://galaxy.ansible.com/vbotka/linux_postinstall)[![Build Status](https://app.travis-ci.com/vbotka/ansible-linux-postinstall.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-linux-postinstall)[![Documentation Status](https://readthedocs.org/projects/docs/badge/?version=latest)](https://ansible-linux-postinstall.readthedocs.io/en/latest/)
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi,
 aliases, apparmor, apt, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums,
