@@ -4,10 +4,10 @@
 - name: "grub: Debug"
   vars:
     msg: |-
-      lp_grub_default
-      {{ lp_grub_default|to_yaml }}
+      lp_grub_default:
+        {{ lp_grub_default|to_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_grub_debug|bool
   tags: lp_grub_debug
 

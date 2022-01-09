@@ -4,13 +4,13 @@
 - name: "users: Debug"
   vars:
     msg: |-
-      lp_users_nolog [{{ lp_users_nolog }}]
-      lp_users
-      {{ lp_users|to_nice_yaml }}
-      lp_users_groups
-      {{ lp_users_groups|to_nice_yaml }}
+      lp_users_nolog: {{ lp_users_nolog }}
+      lp_users:
+        {{ lp_users|to_nice_yaml|indent(2) }}
+      lp_users_groups:
+        {{ lp_users_groups|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_users_debug|bool
   tags: lp_users_debug
 

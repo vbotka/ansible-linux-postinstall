@@ -43,20 +43,20 @@
 
 - name: "service: Debug"
   ansible.builtin.debug:
-    msg: "{{ my_msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   vars:
-    my_msg: |-
-      lp_service_sanity [{{ lp_service_sanity }}]
-      my_services
-      {{ my_services|default({})|to_yaml }}
-      lp_service
-      {{ lp_service|to_nice_yaml }}
-      lp_service_enable
-      {{ lp_service_enable|to_nice_yaml }}
-      my_service_name_vars
-      {{ my_service_name_vars|default({})|to_nice_yaml }}
-      my_service_enable_vars
-      {{ my_service_enable_vars|default({})|to_nice_yaml }}
+    msg: |-
+      lp_service_sanity: {{ lp_service_sanity }}
+      my_services:
+        {{ my_services|default({})|to_yaml|indent(2) }}
+      lp_service:
+        {{ lp_service|to_nice_yaml|indent(2) }}
+      lp_service_enable:
+        {{ lp_service_enable|to_nice_yaml|indent(2) }}
+      my_service_name_vars:
+        {{ my_service_name_vars|default({})|to_nice_yaml|indent(2) }}
+      my_service_enable_vars:
+        {{ my_service_enable_vars|default({})|to_nice_yaml|indent(2) }}
   when: lp_service_debug|bool
   tags: lp_service_debug
 

@@ -4,17 +4,17 @@
 - name: "virtualbox: Debug"
   vars:
     msg: |-
-      ansible_lsb.description [{{ ansible_lsb.codename }}]
-      lp_virtualbox [{{ lp_virtualbox }}]
-      lp_virtualbox_ignore_errors [{{ lp_virtualbox_ignore_errors }}]
-      lp_virtualbox_keys [{{ lp_virtualbox_keys }}]
-      lp_virtualbox_repos [{{ lp_virtualbox_repos }}]
-      lp_virtualbox_install
-      {{ lp_virtualbox_install|to_nice_yaml }}
-      lp_virtualbox_services
-      {{ lp_virtualbox_services|to_nice_yaml }}
+      ansible_lsb.description: {{ ansible_lsb.codename }}
+      lp_virtualbox: {{ lp_virtualbox }}
+      lp_virtualbox_ignore_errors: {{ lp_virtualbox_ignore_errors }}
+      lp_virtualbox_keys: {{ lp_virtualbox_keys }}
+      lp_virtualbox_repos: {{ lp_virtualbox_repos }}
+      lp_virtualbox_packages:
+        {{ lp_virtualbox_packages|to_nice_yaml|indent(2) }}
+      lp_virtualbox_services:
+        {{ lp_virtualbox_services|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_virtualbox_debug|bool
   tags: lp_virtualbox_debug
 

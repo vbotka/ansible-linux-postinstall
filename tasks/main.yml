@@ -197,7 +197,7 @@
 
 - name: Import xorg.yml
   ansible.builtin.import_tasks: xorg.yml
-  when: ansible_os_family == "Debian"
+  when: (ansible_os_family == "Debian") and lp_xorg|bool
   tags: lp_xorg
 
 - name: Import cron.yml

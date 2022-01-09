@@ -4,14 +4,14 @@
 - name: "debsums: Debug"
   vars:
     msg: |-
-      lp_debsums_default_file [{{ lp_debsums_default_file }}]
-      lp_debsums_default_conf
-      {{ lp_debsums_default_conf|to_yaml }}
-      lp_debsums_ignore_file [{{ lp_debsums_ignore_file }}]
-      lp_debsums_ignore_conf
-      {{ lp_debsums_ignore_conf|to_nice_yaml }}
+      lp_debsums_default_file: {{ lp_debsums_default_file }}
+      lp_debsums_default_conf:
+        {{ lp_debsums_default_conf|to_yaml|indent(2) }}
+      lp_debsums_ignore_file: {{ lp_debsums_ignore_file }}
+      lp_debsums_ignore_conf:
+        {{ lp_debsums_ignore_conf|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_debsums_debug|bool
   tags: lp_debsums_debug
 

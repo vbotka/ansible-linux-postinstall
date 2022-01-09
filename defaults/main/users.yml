@@ -2,6 +2,5 @@
 
 lp_users_debug: false
 lp_users: []
-lp_groups: []
 lp_users_groups: []
 lp_users_nolog: true

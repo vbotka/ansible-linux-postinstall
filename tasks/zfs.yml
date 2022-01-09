@@ -4,17 +4,17 @@
 - name: "zfs: Debug"
   vars:
     msg: |-
-      lp_zfs_install [{{ lp_zfs_install }}]
-      lp_zfs_packages
-      {{ lp_zfs_packages|to_nice_yaml }}
-      lp_zfs_services
-      {{ lp_zfs_services|default([])|to_yaml }}
-      lp_zfs_manage
-      {{ lp_zfs_manage|to_yaml }}
-      lp_zfs_mountpoints
-      {{ lp_zfs_mountpoints|to_yaml }}
+      lp_zfs_install: {{ lp_zfs_install }}
+      lp_zfs_packages:
+        {{ lp_zfs_packages|to_nice_yaml|indent(2) }}
+      lp_zfs_services:
+        {{ lp_zfs_services|default([])|to_yaml|indent(2) }}
+      lp_zfs_manage:
+        {{ lp_zfs_manage|to_yaml|indent(2) }}
+      lp_zfs_mountpoints:
+        {{ lp_zfs_mountpoints|to_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_zfs_debug|bool
   tags: lp_zfs_debug
 

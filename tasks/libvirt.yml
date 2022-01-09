@@ -4,18 +4,18 @@
 - name: "libvirt Debug"
   vars:
     msg: |-
-      lp_libvirt_guests_enable [{{ lp_libvirt_guests_enable }}]
-      lp_libvirt_libvirtd_enable [{{ lp_libvirt_libvirtd_enable }}]
-      lp_libvirt_conf_owner [{{ lp_libvirt_conf_owner }}]
-      lp_libvirt_conf_group [{{ lp_libvirt_conf_group }}]
-      lp_libvirt_conf_mode [{{ lp_libvirt_conf_mode }}]
-      lp_libvirt_conf_dir [{{ lp_libvirt_conf_dir }}]
-      lp_libvirt_packages
-      {{ lp_libvirt_packages|to_nice_yaml }}
-      lp_libvirt_conf
-      {{ lp_libvirt_conf|to_nice_yaml }}
+      lp_libvirt_guests_enable: {{ lp_libvirt_guests_enable }}
+      lp_libvirt_libvirtd_enable: {{ lp_libvirt_libvirtd_enable }}
+      lp_libvirt_conf_owner: {{ lp_libvirt_conf_owner }}
+      lp_libvirt_conf_group: {{ lp_libvirt_conf_group }}
+      lp_libvirt_conf_mode: {{ lp_libvirt_conf_mode }}
+      lp_libvirt_conf_dir: {{ lp_libvirt_conf_dir }}
+      lp_libvirt_packages:
+        {{ lp_libvirt_packages|to_nice_yaml|indent(2) }}
+      lp_libvirt_conf:
+        {{ lp_libvirt_conf|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_libvirt_debug|bool
   tags: lp_libvirt_debug
 

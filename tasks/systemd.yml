@@ -25,24 +25,24 @@
 - name: "systemd: Debug"
   vars:
     msg: |-
-      lp_systemd_install [{{ lp_systemd_install }}]
-      lp_systemd_packages
-      {{ lp_systemd_packages|to_nice_yaml }}
-      lp_systemd_dir [{{ lp_systemd_dir }}]
-      lp_systemd_owner [{{ lp_systemd_owner }}]
-      lp_systemd_group [{{ lp_systemd_group }}]
-      lp_systemd_mode [{{ lp_systemd_mode }}]
-      lp_systemd_conf_no_extra_spaces [{{ lp_systemd_conf_no_extra_spaces }}]
-      lp_systemd_conf
-      {{ lp_systemd_conf|to_yaml }}
-      lp_systemd_unit_dir [{{ lp_systemd_unit_dir }}]
-      lp_systemd_unit_type [{{ lp_systemd_unit_type }}]
-      lp_systemd_unit
-      {{ lp_systemd_unit|to_nice_yaml }}
-      my_services
-      {{ my_services|to_yaml }}
+      lp_systemd_install: {{ lp_systemd_install }}
+      lp_systemd_packages:
+        {{ lp_systemd_packages|to_nice_yaml|indent(2) }}
+      lp_systemd_dir: {{ lp_systemd_dir }}
+      lp_systemd_owner: {{ lp_systemd_owner }}
+      lp_systemd_group: {{ lp_systemd_group }}
+      lp_systemd_mode: {{ lp_systemd_mode }}
+      lp_systemd_conf_no_extra_spaces: {{ lp_systemd_conf_no_extra_spaces }}
+      lp_systemd_conf:
+        {{ lp_systemd_conf|to_yaml|indent(2) }}
+      lp_systemd_unit_dir: {{ lp_systemd_unit_dir }}
+      lp_systemd_unit_type: {{ lp_systemd_unit_type }}
+      lp_systemd_unit:
+        {{ lp_systemd_unit|to_nice_yaml|indent(2) }}
+      my_services:
+        {{ my_services|to_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_systemd_debug|bool
   tags: lp_systemd_debug
 

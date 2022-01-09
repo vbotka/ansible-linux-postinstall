@@ -4,16 +4,16 @@
 - name: "xen: Debug"
   vars:
     msg: |-
-      lp_xen_packages
-      {{ lp_xen_packages|to_nice_yaml }}
-      lp_xen_dom0_mem
-      {{ lp_xen_dom0_mem|to_nice_yaml }}
-      lp_xen_default_grub_conf
-      {{ lp_xen_default_grub_conf|to_nice_yaml }}
-      lp_xen_global
-      {{ lp_xen_global|to_nice_yaml }}
+      lp_xen_packages:
+        {{ lp_xen_packages|to_nice_yaml|indent(2) }}
+      lp_xen_dom0_mem:
+        {{ lp_xen_dom0_mem|to_nice_yaml|indent(2) }}
+      lp_xen_default_grub_conf:
+        {{ lp_xen_default_grub_conf|to_nice_yaml|indent(2) }}
+      lp_xen_global:
+        {{ lp_xen_global|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_xen_debug|bool
   tags: lp_xen_debug
 

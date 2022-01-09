@@ -4,10 +4,10 @@
 - name: "xorg: Debug"
   vars:
     msg: |-
-      lp_xorg_conf
-      {{ lp_xorg_conf|to_nice_yaml }}
+      lp_xorg_conf:
+        {{ lp_xorg_conf|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_xorg_debug|bool
   tags: lp_xorg_debug
 

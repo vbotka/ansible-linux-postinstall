@@ -4,20 +4,20 @@
 - name: "chrony: Debug"
   vars:
     msg: |-
-      lp_chrony [{{ lp_chrony }}]
-      lp_chrony_install [{{ lp_chrony_install }}]
-      lp_chrony_enable [{{ lp_chrony_enable }}]
-      lp_chrony_sanity [{{ lp_chrony_sanity }}]
-      lp_chrony_service [{{ lp_chrony_service }}]
-      lp_chrony_conf_file [{{ lp_chrony_conf_file }}]
-      lp_chrony_conf
-      {{ lp_chrony_conf|to_nice_yaml }}
-      lp_chrony_packages
-      {{ lp_chrony_packages|to_nice_yaml }}
-      lp_backup_conf [{{ lp_backup_conf }}"
-      lp_timesyncd_enable [{{ lp_timesyncd_enable }}]
+      lp_chrony: {{ lp_chrony }}
+      lp_chrony_install: {{ lp_chrony_install }}
+      lp_chrony_enable: {{ lp_chrony_enable }}
+      lp_chrony_sanity: {{ lp_chrony_sanity }}
+      lp_chrony_service: {{ lp_chrony_service }}
+      lp_chrony_conf_file: {{ lp_chrony_conf_file }}
+      lp_chrony_conf:
+        {{ lp_chrony_conf|to_nice_yaml|indent(2) }}
+      lp_chrony_packages:
+        {{ lp_chrony_packages|to_nice_yaml|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
+      lp_timesyncd_enable: {{ lp_timesyncd_enable }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_chrony_debug|bool
   tags: lp_chrony_debug
 
