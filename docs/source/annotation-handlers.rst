@@ -12,7 +12,7 @@ Synopsis: Main task.
 Import handlers.
 
 
-[`handlers/main.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/main.yml>`_]
+[`handlers/main.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/main.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -32,7 +32,7 @@ Synopsis: Handler apparmor.
 Description of the handler.
 
 
-[`handlers/apparmor.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/apparmor.yml>`_]
+[`handlers/apparmor.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/apparmor.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -52,7 +52,7 @@ Synopsis: Handler autofs.
 Description of the handler.
 
 
-[`handlers/autofs.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/autofs.yml>`_]
+[`handlers/autofs.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/autofs.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -72,7 +72,7 @@ Synopsis: Handler bluetooth.
 Description of the handler.
 
 
-[`handlers/bluetooth.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/bluetooth.yml>`_]
+[`handlers/bluetooth.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/bluetooth.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -92,7 +92,7 @@ Synopsis: Handler chrony.
 Description of the handler.
 
 
-[`handlers/chrony.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/chrony.yml>`_]
+[`handlers/chrony.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/chrony.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -112,7 +112,7 @@ Synopsis: Handler gpg.
 Description of the handler.
 
 
-[`handlers/gpg.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/gpg.yml>`_]
+[`handlers/gpg.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/gpg.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -132,7 +132,7 @@ Synopsis: Handler gpsd.
 Description of the handler.
 
 
-[`handlers/gpsd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/gpsd.yml>`_]
+[`handlers/gpsd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/gpsd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -152,7 +152,7 @@ Synopsis: Handler grub.
 Description of the handler.
 
 
-[`handlers/grub.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/grub.yml>`_]
+[`handlers/grub.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/grub.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -172,7 +172,7 @@ Synopsis: Handler hostname.
 Description of the handler.
 
 
-[`handlers/hostname.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/hostname.yml>`_]
+[`handlers/hostname.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/hostname.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -192,7 +192,7 @@ Synopsis: Handler initramfs.
 Description of the handler.
 
 
-[`handlers/initramfs.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/initramfs.yml>`_]
+[`handlers/initramfs.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/initramfs.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -212,7 +212,7 @@ Synopsis: Handler iptables.
 Description of the handler.
 
 
-[`handlers/iptables.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/iptables.yml>`_]
+[`handlers/iptables.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/iptables.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -232,7 +232,7 @@ Synopsis: Handler libvirtd.
 Description of the handler.
 
 
-[`handlers/libvirtd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/libvirtd.yml>`_]
+[`handlers/libvirtd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/libvirtd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -252,7 +252,7 @@ Synopsis: Handler messages.
 Description of the handler.
 
 
-[`handlers/messages.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/messages.yml>`_]
+[`handlers/messages.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/messages.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -272,7 +272,7 @@ Synopsis: Handler netplan.
 Description of the handler.
 
 
-[`handlers/netplan.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/netplan.yml>`_]
+[`handlers/netplan.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/netplan.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -292,7 +292,7 @@ Synopsis: Handler networkd.
 Description of the handler.
 
 
-[`handlers/networkd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/networkd.yml>`_]
+[`handlers/networkd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/networkd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -312,7 +312,7 @@ Synopsis: Handler newaliases.
 Description of the handler.
 
 
-[`handlers/newaliases.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/newaliases.yml>`_]
+[`handlers/newaliases.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/newaliases.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -332,7 +332,7 @@ Synopsis: Handler nfsd.
 Description of the handler.
 
 
-[`handlers/nfsd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/nfsd.yml>`_]
+[`handlers/nfsd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/nfsd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -352,7 +352,7 @@ Synopsis: Handler postfix.
 Description of the handler.
 
 
-[`handlers/postfix.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/postfix.yml>`_]
+[`handlers/postfix.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/postfix.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -372,7 +372,7 @@ Synopsis: Handler rc_local.
 Description of the handler.
 
 
-[`handlers/rc_local.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/rc_local.yml>`_]
+[`handlers/rc_local.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/rc_local.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -392,7 +392,7 @@ Synopsis: Handler resolvconf.
 Description of the handler.
 
 
-[`handlers/resolvconf.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/resolvconf.yml>`_]
+[`handlers/resolvconf.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/resolvconf.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -412,7 +412,7 @@ Synopsis: Handler smart.
 Description of the handler.
 
 
-[`handlers/smart.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/smart.yml>`_]
+[`handlers/smart.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/smart.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -432,7 +432,7 @@ Synopsis: Handler sshd.
 Description of the handler.
 
 
-[`handlers/sshd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/sshd.yml>`_]
+[`handlers/sshd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/sshd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -452,7 +452,7 @@ Synopsis: Handler swap.
 Description of the handler.
 
 
-[`handlers/swap.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/swap.yml>`_]
+[`handlers/swap.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/swap.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -472,7 +472,7 @@ Synopsis: Handler sysctl.
 Description of the handler.
 
 
-[`handlers/sysctl.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/sysctl.yml>`_]
+[`handlers/sysctl.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/sysctl.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -492,7 +492,7 @@ Synopsis: Handler systemd.
 Description of the handler.
 
 
-[`handlers/systemd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/systemd.yml>`_]
+[`handlers/systemd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/systemd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -512,7 +512,7 @@ Synopsis: Handler timesyncd.
 Description of the handler.
 
 
-[`handlers/timesyncd.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/timesyncd.yml>`_]
+[`handlers/timesyncd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/timesyncd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -532,7 +532,7 @@ Synopsis: Handler tlp.
 Description of the handler.
 
 
-[`handlers/tlp.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/tlp.yml>`_]
+[`handlers/tlp.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/tlp.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -552,7 +552,7 @@ Synopsis: Handler udev.
 Description of the handler.
 
 
-[`handlers/udev.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/udev.yml>`_]
+[`handlers/udev.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/udev.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
@@ -572,7 +572,7 @@ Synopsis: Handler wpasupplicant.
 Description of the handler.
 
 
-[`handlers/wpasupplicant.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/wpasupplicant.yml>`_]
+[`handlers/wpasupplicant.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/wpasupplicant.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
