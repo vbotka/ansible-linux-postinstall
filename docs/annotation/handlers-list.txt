@@ -15,6 +15,7 @@ networkd.yml
 newaliases.yml
 nfsd.yml
 postfix.yml
+rc_local.yml
 resolvconf.yml
 smart.yml
 sshd.yml

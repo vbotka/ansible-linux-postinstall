@@ -6,9 +6,9 @@
 aliases, apparmor, apt, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums,
 fstab, gpg, gpsd, groups, grub, hostname, hosts, chrony, iptables, kvm, latex, libvirt, lid,
 logrotate, modem manager, modules, netplan, networkd, networkmanager, nfsd, packages, passwords,
-pm-utils, postfix, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd, sudoers, swap,
-sysctl, systemd, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui, wpa_supplicant,
-xen, xorg.conf.d, zfs, (wip ...)
+pm-utils, postfix, rc.local, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd,
+sudoers, swap, sysctl, systemd, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui,
+wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 [Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io)
 
@@ -21,7 +21,7 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 
 ## Supported platforms
 
-This role has been developed and tested with
+This role has been developed and tested in
 * [Ubuntu Supported Releases](http://releases.ubuntu.com/)
 * Armbian 5.90
 
@@ -80,7 +80,7 @@ host1.example.com
 [group1:vars]
 ansible_user: admin
 ansible_connection=ssh
-ansible_python_interpreter=/usr/bin/python3.7
+ansible_python_interpreter=/usr/bin/python3.8
 ansible_perl_interpreter=/usr/bin/perl
 ```
 

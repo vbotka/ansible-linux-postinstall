@@ -216,6 +216,18 @@ myhandlers:
     note: []
     warning: []
 
+  - file: rc_local.yml
+    link: rc_local.yml
+    path: handlers/rc_local.yml
+    synopsis: |
+      Handler rc_local.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
   - file: resolvconf.yml
     link: resolvconf.yml
     path: handlers/resolvconf.yml

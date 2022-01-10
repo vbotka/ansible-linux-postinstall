@@ -467,6 +467,19 @@ mytasks:
     hints: []
     warnings: []
 
+  - file: rc_local.yml
+    link: rc_local.yml
+    path: tasks/rc_local.yml
+    synopsis: |
+      Configure rc_local.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    notes: []
+    hints: []
+    warnings: []
+
   - file: reboot.yml
     link: reboot.yml
     path: tasks/reboot.yml

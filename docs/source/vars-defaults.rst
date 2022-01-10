@@ -1,9 +1,8 @@
 Default variables
 =================
 
-The common variables for all distributions are in the file
-``defaults/main.yml``. These variables can be customized in the file
-``vars/main.yml``. The file ``vars/main.yml`` will be preserved by the
+The common variables for all distributions are in the directory ``defaults/main/``. These variables
+can be customized in the file ``vars/main.yml``. The file ``vars/main.yml`` will be preserved by the
 update of the role.
 
 .. warning::
@@ -17,12 +16,13 @@ update of the role.
 
 .. seealso::
    * The examples of the customization ``vars/main.yml.sample``
+   * Defaults of *lp_vars_* ``defaults/main/vars.yml``
 
-[`defaults/main.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/defaults/main.yml>`_]
+[`defaults/main/vars.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/defaults/main/vars.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
-.. literalinclude:: ../../defaults/main.yml
+.. literalinclude:: ../../defaults/main/vars.yml
     :language: yaml
     :emphasize-lines: 2
     :linenos:

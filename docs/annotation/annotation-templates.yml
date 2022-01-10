@@ -349,6 +349,18 @@ mytemplates:
     note: []
     warning: []
 
+  - file: rc.local.j2
+    link: rc.local.j2
+    path: templates/rc.local.j2
+    synopsis: |
+      Template rc.local.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
   - file: resolvconf_confd_head.j2
     link: resolvconf_confd_head.j2
     path: templates/resolvconf_confd_head.j2

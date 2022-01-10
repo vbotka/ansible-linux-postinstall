@@ -361,6 +361,26 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+.. _as_handler_rc_local.yml:
+
+rc_local.yml
+------------
+
+Synopsis: Handler rc_local.
+
+
+Description of the handler.
+
+
+[`handlers/rc_local.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/handlers/rc_local.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../handlers/rc_local.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
 .. _as_handler_resolvconf.yml:
 
 resolvconf.yml

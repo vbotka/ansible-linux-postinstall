@@ -581,6 +581,26 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+.. _as_template_rc.local.j2:
+
+rc.local.j2
+-----------
+
+Synopsis: Template rc.local.
+
+
+Description of the template.
+
+
+[`templates/rc.local.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/rc.local.j2>`_]
+
+.. highlight:: jinja
+    :linenothreshold: 5
+.. literalinclude:: ../../templates/rc.local.j2
+    :language: jinja
+    :emphasize-lines: 1
+    :linenos:
+
 .. _as_template_resolvconf_confd_head.j2:
 
 resolvconf_confd_head.j2

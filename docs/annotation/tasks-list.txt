@@ -33,6 +33,7 @@ packages.yml
 passwords.yml
 pm_utils.yml
 postfix.yml
+rc_local.yml
 reboot.yml
 repos.yml
 resolvconf.yml

@@ -898,6 +898,30 @@ Description of the task.
 
 
 
+.. _as_rc_local.yml:
+
+rc_local.yml
+------------
+
+Synopsis: Configure rc_local.
+
+
+Description of the task.
+
+
+[`tasks/rc_local.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/rc_local.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/rc_local.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
 .. _as_reboot.yml:
 
 reboot.yml
