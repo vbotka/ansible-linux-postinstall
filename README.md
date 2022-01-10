@@ -283,6 +283,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [Password(store) - pass the standard Unix password manager](https://www.passwordstore.org/)
 - [PM pm-utils - ArchLinux Wiki](https://wiki.archlinux.org/index.php/pm-utils)
 - [Postfix Basic Setup Howto - Ubuntu Help](https://help.ubuntu.com/community/PostfixBasicSetupHowto)
+- [rc.local - AskUbuntu: How can I make /etc/rc.local run on startup?](https://askubuntu.com/questions/9853/how-can-i-make-etc-rc-local-run-on-startup)
 - [Smartmontools](https://www.smartmontools.org/)
 - [Smartmontools - Ubuntu Help](https://help.ubuntu.com/community/Smartmontools)
 - [SMART - Wikipedia](https://en.wikipedia.org/wiki/S.M.A.R.T.)

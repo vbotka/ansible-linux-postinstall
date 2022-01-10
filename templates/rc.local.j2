@@ -1,0 +1,10 @@
+#!/bin/bash
+# {{ ansible_managed }}
+
+# Note: To debug /etc/rc.local run
+# shell> sudo SYSTEMD_LOG_LEVEL=debug \
+# /usr/lib/systemd/system-generators/systemd-rc-local-generator
+
+{{ lp_rc_local_content }}
+
+exit 0

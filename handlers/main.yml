@@ -52,6 +52,9 @@
 - name: Import postfix.yml
   ansible.builtin.import_tasks: postfix.yml
 
+- name: Import rc_local.yml
+  ansible.builtin.import_tasks: rc_local.yml
+
 - name: Import resolvconf.yml
   ansible.builtin.import_tasks: resolvconf.yml
 

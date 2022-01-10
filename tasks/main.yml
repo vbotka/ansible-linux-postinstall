@@ -328,6 +328,11 @@
 - name: Flush handlers
   meta: flush_handlers
 
+- name: Import rc_local.yml
+  ansible.builtin.import_tasks: rc_local.yml
+  when: (ansible_os_family == "Debian") and lp_rc_local|bool
+  tags: lp_rc_local
+
 - name: Import service.yml
   ansible.builtin.import_tasks: service.yml
   tags: lp_service
