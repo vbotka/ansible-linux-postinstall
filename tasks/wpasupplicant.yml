@@ -4,42 +4,41 @@
 - name: "wpasupplicant: Debug"
   vars:
     msg: |-
-      lp_package_state [{{ lp_package_state }}]
-      lp_wpasupplicant_install [{{ lp_wpasupplicant_install }}]
-      lp_wpasupplicant_packages
-      {{ lp_wpasupplicant_packages|to_nice_yaml }}
-      lp_wpasupplicant_bin [{{ lp_wpasupplicant_bin }}]
-      lp_wpasupplicant_conf_only [{{ lp_wpasupplicant_conf_only }}]
-      lp_wpasupplicant_conf_dir [{{ lp_wpasupplicant_conf_dir }}]
-      lp_wpasupplicant_conf_owner [{{ lp_wpasupplicant_conf_owner }}]
-      lp_wpasupplicant_conf_group [{{ lp_wpasupplicant_conf_group }}]
-      lp_wpasupplicant_conf_mode [{{ lp_wpasupplicant_conf_mode }}]
-      lp_wpasupplicant_conf_ctrl_interface [{{ lp_wpasupplicant_conf_ctrl_interface }}]
-      lp_wpasupplicant_conf_global
-      {{ lp_wpasupplicant_conf_global|to_yaml }}
-      lp_wpa_action_script [{{ lp_wpa_action_script }}]
-      lp_wpa_action_script_dir [{{ lp_wpa_action_script_dir }}]
-      lp_wpa_action_script_dir_owner [{{ lp_wpa_action_script_dir_owner }}]
-      lp_wpa_action_script_dir_group [{{ lp_wpa_action_script_dir_group }}]
-      lp_wpa_action_script_dir_mode [{{ lp_wpa_action_script_dir_mode }}]
-      lp_wpa_action_script_file [{{ lp_wpa_action_script_file }}]
-      lp_wpa_action_script_owner [{{ lp_wpa_action_script_owner }}]
-      lp_wpa_action_script_group [{{ lp_wpa_action_script_group }}]
-      lp_wpa_action_script_mode [{{ lp_wpa_action_script_mode }}]
-      lp_wpa_action_script_dhclient [{{ lp_wpa_action_script_dhclient }}]
-      lp_wpa_action_script_pidfile [{{ lp_wpa_action_script_pidfile }}]
-      lp_wpa_action_script_options_connect [{{ lp_wpa_action_script_options_connect }}]
-      lp_wpa_action_script_options_disconnect [{{ lp_wpa_action_script_options_disconnect }}]
-      lp_wpa_action_script_logfile [{{ lp_wpa_action_script_logfile }}]
-      lp_wpasupplicant_service_conf
-      {{ lp_wpasupplicant_service_conf|to_yaml }}
-
+      lp_package_state: {{ lp_package_state }}
+      lp_wpasupplicant_install: {{ lp_wpasupplicant_install }}
+      lp_wpasupplicant_packages:
+        {{ lp_wpasupplicant_packages|to_nice_yaml|indent(2) }}
+      lp_wpasupplicant_bin: {{ lp_wpasupplicant_bin }}
+      lp_wpasupplicant_conf_only: {{ lp_wpasupplicant_conf_only }}
+      lp_wpasupplicant_conf_dir: {{ lp_wpasupplicant_conf_dir }}
+      lp_wpasupplicant_conf_owner: {{ lp_wpasupplicant_conf_owner }}
+      lp_wpasupplicant_conf_group: {{ lp_wpasupplicant_conf_group }}
+      lp_wpasupplicant_conf_mode: {{ lp_wpasupplicant_conf_mode }}
+      lp_wpasupplicant_conf_ctrl_interface: {{ lp_wpasupplicant_conf_ctrl_interface }}
+      lp_wpasupplicant_conf_global:
+        {{ lp_wpasupplicant_conf_global|to_yaml|indent(2) }}
+      lp_wpa_action_script: {{ lp_wpa_action_script }}
+      lp_wpa_action_script_dir: {{ lp_wpa_action_script_dir }}
+      lp_wpa_action_script_dir_owner: {{ lp_wpa_action_script_dir_owner }}
+      lp_wpa_action_script_dir_group: {{ lp_wpa_action_script_dir_group }}
+      lp_wpa_action_script_dir_mode: {{ lp_wpa_action_script_dir_mode }}
+      lp_wpa_action_script_file: {{ lp_wpa_action_script_file }}
+      lp_wpa_action_script_owner: {{ lp_wpa_action_script_owner }}
+      lp_wpa_action_script_group: {{ lp_wpa_action_script_group }}
+      lp_wpa_action_script_mode: {{ lp_wpa_action_script_mode }}
+      lp_wpa_action_script_dhclient: {{ lp_wpa_action_script_dhclient }}
+      lp_wpa_action_script_pidfile: {{ lp_wpa_action_script_pidfile }}
+      lp_wpa_action_script_options_connect: {{ lp_wpa_action_script_options_connect }}
+      lp_wpa_action_script_options_disconnect: {{ lp_wpa_action_script_options_disconnect }}
+      lp_wpa_action_script_logfile: {{ lp_wpa_action_script_logfile }}
+      lp_wpasupplicant_service_conf:
+        {{ lp_wpasupplicant_service_conf|to_yaml|indent(2) }}
       {% if lp_wpasupplicant_debug_classified|bool %}
-      lp_wpasupplicant_conf
-      {{ lp_wpasupplicant_conf|to_yaml }}
+      lp_wpasupplicant_conf:
+        {{ lp_wpasupplicant_conf|to_yaml|indent(2) }}
       {% endif %}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_wpasupplicant_debug|bool
   tags: lp_wpasupplicant_debug
 

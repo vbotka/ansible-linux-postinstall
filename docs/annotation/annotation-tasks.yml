@@ -116,6 +116,19 @@ mytasks:
     hints: []
     warnings: []
 
+  - file: chrony.yml
+    link: chrony.yml
+    path: tasks/chrony.yml
+    synopsis: |
+      Configure chrony.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    notes: []
+    hints: []
+    warnings: []
+
   - file: cron.yml
     link: cron.yml
     path: tasks/cron.yml
@@ -446,6 +459,19 @@ mytasks:
     path: tasks/postfix.yml
     synopsis: |
       Configure postfix.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    notes: []
+    hints: []
+    warnings: []
+
+  - file: rc_local.yml
+    link: rc_local.yml
+    path: tasks/rc_local.yml
+    synopsis: |
+      Configure rc_local.
     description: |
       Description of the task.
     lines: 1,2

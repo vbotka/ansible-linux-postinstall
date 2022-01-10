@@ -1,0 +1,6 @@
+---
+
+lp_xorg: false
+lp_xorg_debug: false
+lp_xorg_conf_dir: /usr/share/X11/xorg.conf.d
+lp_xorg_conf: []

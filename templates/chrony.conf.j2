@@ -1,0 +1,17 @@
+# {{ ansible_managed }}
+
+{% for i in lp_chrony_conf %}
+{% if i.val is string %}
+{{ i.key }} {{ i.val }}
+{% elif i.val is boolean %}
+{{ i.key }}
+{% elif i.val is iterable %}
+{% for j in i.val %}
+{{ i.key }} {{ j }}
+{% endfor %}
+{% else %}
+{{ i.key }} {{ i.val }}
+{% endif %}
+{% endfor %}
+
+# EOF

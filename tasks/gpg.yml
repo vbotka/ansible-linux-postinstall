@@ -4,28 +4,25 @@
 - name: "gpg: Debug"
   vars:
     msg: |-
-      lp_gpg_install [{{ lp_gpg_install }}]
-      lp_gpg_packages
-      {{ lp_gpg_packages|to_nice_yaml }}
-      lp_gpg_packages_extra
-      {{ lp_gpg_packages_extra|to_nice_yaml }}
-
-      lp_gpg_conf_default
-      {{ lp_gpg_conf_default|to_yaml }}
-      lp_gpg_conf
-      {{ lp_gpg_conf|to_yaml }}
-
-      lp_gpg_agent_conf_default
-      {{ lp_gpg_agent_conf_default|to_yaml }}
-      lp_gpg_agent_conf
-      {{ lp_gpg_agent_conf|to_yaml }}
-
-      lp_gpg_dirmngr_conf_default
-      {{ lp_gpg_dirmngr_conf_default|to_yaml }}
-      lp_gpg_dirmngr_conf
-      {{ lp_gpg_dirmngr_conf|to_yaml }}
+      lp_gpg_install: {{ lp_gpg_install }}
+      lp_gpg_packages:
+        {{ lp_gpg_packages|to_nice_yaml|indent(2) }}
+      lp_gpg_packages_extra:
+        {{ lp_gpg_packages_extra|to_nice_yaml|indent(2) }}
+      lp_gpg_conf_default:
+        {{ lp_gpg_conf_default|to_yaml|indent(2) }}
+      lp_gpg_conf:
+        {{ lp_gpg_conf|to_yaml|indent(2) }}
+      lp_gpg_agent_conf_default:
+        {{ lp_gpg_agent_conf_default|to_yaml|indent(2) }}
+      lp_gpg_agent_conf:
+        {{ lp_gpg_agent_conf|to_yaml|indent(2) }}
+      lp_gpg_dirmngr_conf_default:
+        {{ lp_gpg_dirmngr_conf_default|to_yaml|indent(2) }}
+      lp_gpg_dirmngr_conf:
+      {{ lp_gpg_dirmngr_conf|to_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_gpg_debug|bool
   tags: lp_gpg_debug
 

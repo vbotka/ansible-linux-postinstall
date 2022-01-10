@@ -4,12 +4,12 @@
 - name: "sshd: Debug"
   vars:
     msg: |-
-      lp_sshd_enable [{{ lp_sshd_enable }}]
-      lp_sshd_config_remove_duplicates [{{ lp_sshd_config_remove_duplicates }}]
-      lp_sshd_config
-      {{ lp_sshd_config|to_yaml }}
+      lp_sshd_enable: {{ lp_sshd_enable }}
+      lp_sshd_config_remove_duplicates: {{ lp_sshd_config_remove_duplicates }}
+      lp_sshd_config:
+        {{ lp_sshd_config|to_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_sshd_debug|bool
   tags: lp_sshd_debug
 

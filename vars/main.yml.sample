@@ -484,6 +484,20 @@
 # lp_ufw_debug: true
 # lp_ufw_reset: false
 # lp_ufw_reload: false
+# lp_ufw_default:                                      # 1,2
+#   - {key: IPV6, val: 'no'}
+#   - {key: DEFAULT_FORWARD_POLICY, val: '"ACCEPT"'}
+# lp_ufw_sysctl:                                       # 1,2
+#   - {key: net/ipv4/ip_forward, val: 1}
+# lp_ufw_blocks:                                       # 1,2
+#   before.rules:
+#     - mark: nat
+#       insertbefore: BOF
+#       block: |-
+#         *nat
+#         :POSTROUTING ACCEPT [0:0]
+#         -A POSTROUTING -s 192.168.1.0/24 -o eth0 -j MASQUERADE
+#         COMMIT
 # lp_ufw_src_lan: '10.1.0.0/24'
 # lp_ufw_conf:
 #   - {default: 'deny', direction: 'incoming'}
@@ -502,6 +516,11 @@
 #     ini:
 #       - {section: Unit, option: Before, state: absent}
 #       - {section: Unit, option: After, value: 'network-pre.target', state: present}
+# SEE
+# * 1) How to Masquerade / NAT IPv4 traffic
+#   https://securitynetworkinglinux.wordpress.com/2019/07/03/how-to-masquerade-nat-ipv4-traffic-using-ufw-on-ubuntu-cli/
+# * 2) Network Configuration Examples (Xen 4.1+)
+#   https://wiki.xenproject.org/wiki/Network_Configuration_Examples_(Xen_4.1%2B)#Network_Address_Translation_.28NAT.29
 
 # lp_zfs: true
 # lp_zfs_debug: true

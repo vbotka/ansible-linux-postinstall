@@ -1,0 +1,7 @@
+---
+
+lp_sshd: false
+lp_sshd_debug: false
+lp_sshd_enable: false
+lp_sshd_config: []
+lp_sshd_config_remove_duplicates: false

@@ -15,11 +15,11 @@
 - name: "wpagui: Debug"
   vars:
     msg: |-
-      lp_wpagui_install [{{ lp_wpagui_install }}]
-      lp_wpagui_packages
-      {{ lp_wpagui_packages|to_nice_yaml }}
+      lp_wpagui_install: {{ lp_wpagui_install }}
+      lp_wpagui_packages:
+        {{ lp_wpagui_packages|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_wpagui_debug|bool
   tags: lp_wpagui_debug
 

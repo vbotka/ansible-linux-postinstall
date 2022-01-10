@@ -4,11 +4,12 @@
 - name: "groups: Debug"
   vars:
     msg: |-
-      lp_groups
-      {{ lp_groups|to_nice_yaml }}
+      lp_groups:
+        {{ lp_groups|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
-  when: lp_debug|bool
+    msg: "{{ '{}'.format(msg) }}"
+  when: lp_groups_debug|bool
+  tags: lp_groups_debug
 
 - name: "groups: Manage groups"
   ansible.builtin.group:

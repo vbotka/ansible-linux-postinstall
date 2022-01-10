@@ -1,0 +1,10 @@
+---
+
+lp_autofs: false
+lp_autofs_enable: false
+lp_autofs_conf_file: /etc/autofs.conf
+lp_autofs_conf: []
+lp_autofs_master_conf_file: /etc/auto.master
+lp_autofs_master_conf: []
+lp_autofs_misc_conf_file: /etc/auto.misc
+lp_autofs_misc_conf: []

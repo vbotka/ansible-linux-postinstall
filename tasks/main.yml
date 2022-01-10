@@ -60,6 +60,12 @@
         (ansible_os_family == "Debian")) and lp_timezone|bool
   tags: lp_timezone
 
+- name: Import chrony.yml
+  ansible.builtin.import_tasks: chrony.yml
+  when: ((ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")) and lp_chrony|bool
+  tags: lp_chrony
+
 - name: Import timesyncd.yml
   ansible.builtin.import_tasks: timesyncd.yml
   when: (ansible_os_family == "Debian") and lp_timesyncd|bool
@@ -191,7 +197,7 @@
 
 - name: Import xorg.yml
   ansible.builtin.import_tasks: xorg.yml
-  when: ansible_os_family == "Debian"
+  when: (ansible_os_family == "Debian") and lp_xorg|bool
   tags: lp_xorg
 
 - name: Import cron.yml
@@ -321,6 +327,11 @@
 
 - name: Flush handlers
   meta: flush_handlers
+
+- name: Import rc_local.yml
+  ansible.builtin.import_tasks: rc_local.yml
+  when: (ansible_os_family == "Debian") and lp_rc_local|bool
+  tags: lp_rc_local
 
 - name: Import service.yml
   ansible.builtin.import_tasks: service.yml

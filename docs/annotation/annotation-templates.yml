@@ -85,6 +85,18 @@ mytemplates:
     note: []
     warning: []
 
+  - file: chrony.conf.j2
+    link: chrony.conf.j2
+    path: templates/chrony.conf.j2
+    synopsis: |
+      Template chrony.conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
   - file: default_iptables.j2
     link: default_iptables.j2
     path: templates/default_iptables.j2
@@ -330,6 +342,18 @@ mytemplates:
     path: templates/pm_sleepd.j2
     synopsis: |
       Template pm_sleepd.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: rc.local.j2
+    link: rc.local.j2
+    path: templates/rc.local.j2
+    synopsis: |
+      Template rc.local.
     description: |
       Description of the template.
     lines: 1

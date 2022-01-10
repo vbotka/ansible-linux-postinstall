@@ -4,6 +4,7 @@
   ansible.builtin.service:
     name: "{{ lp_timesyncd_service }}"
     state: restarted
+  when: lp_timesyncd_enable|bool
 
 # EOF
 ...

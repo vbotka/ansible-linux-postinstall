@@ -4,19 +4,18 @@
 - name: "networkd: Debug"
   vars:
     msg: |-
-      lp_networkd_install [{{ lp_networkd_install }}]
-      lp_networkd_packages
-      {{ lp_networkd_packages|to_nice_yaml }}
-      lp_networkd_enable [{{ lp_networkd_enable }}]
-      lp_networkd_service [{{ lp_networkd_service }}]
-
-      lp_networkd_conf
-      {{ lp_networkd_conf|to_yaml }}
-      lp_systemd_owner [{{ lp_systemd_owner }}]
-      lp_systemd_group [{{ lp_systemd_group }}]
-      lp_systemd_mode [{{ lp_systemd_mode }}]
+      lp_networkd_install: {{ lp_networkd_install }}
+      lp_networkd_packages:
+        {{ lp_networkd_packages|to_nice_yaml|indent(2) }}
+      lp_networkd_enable: {{ lp_networkd_enable }}
+      lp_networkd_service: {{ lp_networkd_service }}
+      lp_networkd_conf:
+      {{ lp_networkd_conf|to_yaml|indent(2) }}
+      lp_systemd_owner: {{ lp_systemd_owner }}
+      lp_systemd_group: {{ lp_systemd_group }}
+      lp_systemd_mode: {{ lp_systemd_mode }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_networkd_debug|bool
   tags: lp_networkd_debug
 

@@ -1,0 +1,40 @@
+---
+# linux_postinstall rc_local
+
+- name: "rc_local: Debug"
+  vars:
+    msg: |-
+      lp_backup_conf: {{ lp_backup_conf }}
+      lp_rc_local_service: {{ lp_rc_local_service }}
+      lp_rc_local_state: {{ lp_rc_local_state }}
+      lp_rc_local_template: {{ lp_rc_local_template }}
+      lp_rc_local_file: {{ lp_rc_local_file }}
+      lp_rc_local_owner: {{ lp_rc_local_owner }}
+      lp_rc_local_group: {{ lp_rc_local_group }}
+      lp_rc_local_mode: {{ lp_rc_local_mode }}
+      lp_rc_local_content:
+      {{ lp_rc_local_content }}
+  ansible.builtin.debug:
+    msg: "{{ '{}'.format(msg) }}"
+  when: lp_rc_local_debug|bool
+  tags: lp_rc_local_debug
+
+- name: "rc_local: Manage service {{ lp_rc_local_service }}.service"
+  ansible.builtin.service:
+    name: "{{ lp_rc_local_service }}"
+    state: "{{ lp_rc_local_state }}"
+  tags: lp_rc_local_service
+
+- name: "rc_local: Create /etc/rc.local"
+  ansible.builtin.template:
+    src: "{{ lp_rc_local_template }}"
+    dest: "{{ lp_rc_local_file }}"
+    owner: "{{ lp_rc_local_owner }}"
+    group: "{{ lp_rc_local_group }}"
+    mode: "{{ lp_rc_local_mode }}"
+    backup: "{{ lp_backup_conf }}"
+  notify: restart rc-local
+  tags: lp_rc_local_file
+
+# EOF
+...

@@ -1,0 +1,6 @@
+---
+
+lp_apparmor: true
+lp_apparmor_disable: []
+lp_apparmor_complain: []
+lp_apparmor_enforce: []

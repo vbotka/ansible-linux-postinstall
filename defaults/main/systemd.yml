@@ -1,0 +1,12 @@
+---
+
+lp_systemd: false
+lp_systemd_debug: false
+lp_systemd_install: true
+lp_systemd_packages: []
+lp_systemd_dir: /etc/systemd
+lp_systemd_conf_no_extra_spaces: true
+lp_systemd_conf: {}
+lp_systemd_unit_dir: "{{ lp_systemd_dir }}/system"
+lp_systemd_unit_type: service
+lp_systemd_unit: []

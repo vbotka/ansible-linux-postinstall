@@ -1,0 +1,15 @@
+---
+
+lp_rc_local: false
+lp_rc_local_debug: false
+
+lp_rc_local_service: rc-local
+lp_rc_local_state: stopped
+
+lp_rc_local_template: rc.local.j2
+lp_rc_local_file: /etc/rc.local
+lp_rc_local_owner: root
+lp_rc_local_group: root
+lp_rc_local_mode: "0755"
+lp_rc_local_content: |
+  {{ '#' }} Perform this command

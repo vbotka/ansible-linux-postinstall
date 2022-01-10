@@ -141,6 +141,26 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+.. _as_template_chrony.conf.j2:
+
+chrony.conf.j2
+--------------
+
+Synopsis: Template chrony.conf.
+
+
+Description of the template.
+
+
+[`templates/chrony.conf.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/chrony.conf.j2>`_]
+
+.. highlight:: jinja
+    :linenothreshold: 5
+.. literalinclude:: ../../templates/chrony.conf.j2
+    :language: jinja
+    :emphasize-lines: 1
+    :linenos:
+
 .. _as_template_default_iptables.j2:
 
 default_iptables.j2
@@ -557,6 +577,26 @@ Description of the template.
 .. highlight:: jinja
     :linenothreshold: 5
 .. literalinclude:: ../../templates/pm_sleepd.j2
+    :language: jinja
+    :emphasize-lines: 1
+    :linenos:
+
+.. _as_template_rc.local.j2:
+
+rc.local.j2
+-----------
+
+Synopsis: Template rc.local.
+
+
+Description of the template.
+
+
+[`templates/rc.local.j2 <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/templates/rc.local.j2>`_]
+
+.. highlight:: jinja
+    :linenothreshold: 5
+.. literalinclude:: ../../templates/rc.local.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:

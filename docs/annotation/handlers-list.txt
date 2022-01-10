@@ -1,6 +1,7 @@
 apparmor.yml
 autofs.yml
 bluetooth.yml
+chrony.yml
 gpg.yml
 gpsd.yml
 grub.yml
@@ -14,6 +15,7 @@ networkd.yml
 newaliases.yml
 nfsd.yml
 postfix.yml
+rc_local.yml
 resolvconf.yml
 smart.yml
 sshd.yml

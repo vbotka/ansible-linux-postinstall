@@ -4,11 +4,11 @@
 - name: "apt: Debug"
   vars:
     msg: |-
-      lp_backup_conf [{{ lp_backup_conf }}]
-      lp_apt_conf
-      {{ lp_apt_conf|to_nice_yaml }}
+      lp_backup_conf: {{ lp_backup_conf }}
+      lp_apt_conf:
+        {{ lp_apt_conf|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_apt_debug|bool
   tags: lp_apt_debug
 

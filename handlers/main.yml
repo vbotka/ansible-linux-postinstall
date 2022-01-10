@@ -10,6 +10,9 @@
 - name: Import bluetooth.yml
   ansible.builtin.import_tasks: bluetooth.yml
 
+- name: Import chrony.yml
+  ansible.builtin.import_tasks: chrony.yml
+
 - name: Import gpg.yml
   ansible.builtin.import_tasks: gpg.yml
 
@@ -48,6 +51,9 @@
 
 - name: Import postfix.yml
   ansible.builtin.import_tasks: postfix.yml
+
+- name: Import rc_local.yml
+  ansible.builtin.import_tasks: rc_local.yml
 
 - name: Import resolvconf.yml
   ansible.builtin.import_tasks: resolvconf.yml

@@ -6,6 +6,7 @@ authorized_keys.yml
 autofs.yml
 auto_upgrades.yml
 bluetooth.yml
+chrony.yml
 cron.yml
 debsums.yml
 debug.yml
@@ -32,6 +33,7 @@ packages.yml
 passwords.yml
 pm_utils.yml
 postfix.yml
+rc_local.yml
 reboot.yml
 repos.yml
 resolvconf.yml

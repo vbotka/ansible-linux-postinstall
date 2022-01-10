@@ -48,6 +48,18 @@ myhandlers:
     note: []
     warning: []
 
+  - file: chrony.yml
+    link: chrony.yml
+    path: handlers/chrony.yml
+    synopsis: |
+      Handler chrony.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
   - file: gpg.yml
     link: gpg.yml
     path: handlers/gpg.yml
@@ -197,6 +209,18 @@ myhandlers:
     path: handlers/postfix.yml
     synopsis: |
       Handler postfix.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
+  - file: rc_local.yml
+    link: rc_local.yml
+    path: handlers/rc_local.yml
+    synopsis: |
+      Handler rc_local.
     description: |
       Description of the handler.
     lines: 1,2

@@ -4,13 +4,13 @@
 - name: "postfix: Debug"
   vars:
     msg: |-
-      ansible_os_family [{{ ansible_os_family }}]
-      lp_postfix_service [{{ lp_postfix_service }}]
-      lp_postfix_enable [{{ lp_postfix_enable }}]
-      lp_postfix_main_conf
-      {{ lp_postfix_main_conf|to_yaml }}
+      ansible_os_family: {{ ansible_os_family }}
+      lp_postfix_service: {{ lp_postfix_service }}
+      lp_postfix_enable: {{ lp_postfix_enable }}
+      lp_postfix_main_conf:
+        {{ lp_postfix_main_conf|to_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_postfix_debug|bool
   tags: lp_postfix_debug
 

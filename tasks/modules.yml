@@ -4,18 +4,19 @@
 - name: "modules: Debug"
   vars:
     msg: |-
-      lp_modules_conf [{{ lp_modules_conf }}]
-      lp_modules
-      {{ lp_modules|to_yaml }}
-      lp_modules_options_path [ {{ lp_modules_options_path }}]
-      lp_modules_options
-      {{ lp_modules_options|to_nice_yaml }}
-      lp_modules_blacklist_path [{{ lp_modules_blacklist_path }}]
-      lp_modules_blacklist
-      {{ lp_modules_blacklist|to_nice_yaml }}
+      lp_modules_conf: {{ lp_modules_conf }}
+      lp_modules:
+        {{ lp_modules|to_yaml|indent(2) }}
+      lp_modules_options_path:  {{ lp_modules_options_path }}
+      lp_modules_options:
+        {{ lp_modules_options|to_nice_yaml|indent(2) }}
+      lp_modules_blacklist_path: {{ lp_modules_blacklist_path }}
+      lp_modules_blacklist:
+        {{ lp_modules_blacklist|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_modules_debug|bool
+  tags: lp_modules_debug
 
 - name: "modules: modprobe modules"
   community.general.modprobe:

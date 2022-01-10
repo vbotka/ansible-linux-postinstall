@@ -1,0 +1,6 @@
+---
+
+lp_postfix: true
+lp_postfix_debug: false
+lp_postfix_enable: true
+lp_postfix_main_conf: []

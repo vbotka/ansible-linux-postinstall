@@ -5,6 +5,7 @@ apt_confd.j2
 auto_upgrades.j2
 blacklist_module.j2
 bluetooth_rfcomm_conf.j2
+chrony.conf.j2
 default_iptables.j2
 exports.j2
 gpg_agent.conf.j2
@@ -26,6 +27,7 @@ options_module.j2
 persistent_net.rules2.j2
 persistent_net.rules.j2
 pm_sleepd.j2
+rc.local.j2
 resolvconf_confd_head.j2
 router1_iptables.j2
 ssh_config.j2

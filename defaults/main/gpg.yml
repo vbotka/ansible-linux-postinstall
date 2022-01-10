@@ -1,0 +1,12 @@
+---
+
+lp_gpg: false
+lp_gpg_debug: false
+lp_gpg_install: true
+lp_gpg_packages_extra: []
+lp_gpg_conf_default: []
+lp_gpg_conf: []
+lp_gpg_agent_conf_default: []
+lp_gpg_agent_conf: []
+lp_gpg_dirmngr_conf_default: []
+lp_gpg_dirmngr_conf: []

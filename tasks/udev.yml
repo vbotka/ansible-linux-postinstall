@@ -4,28 +4,26 @@
 - name: "udev: Debug"
   vars:
     msg: |-
-      lp_udev_enable [{{ lp_udev_enable }}]
-      lp_udev_conf_file [{{ lp_udev_conf_file }}]
-      lp_udev_conf
-      {{ lp_udev_conf|to_yaml }}
-
-      lp_udev_rules_dir [{{ lp_udev_rules_dir }}]
-      lp_udev_rules_template [{{ lp_udev_rules_template }}]
-      lp_udev_rules
-      {{ lp_udev_rules|to_yaml }}
-
-      lp_udev_persistent_net_template [{{ lp_udev_persistent_net_template }}]
-      lp_udev_persistent_net_rules_file [{{ lp_udev_persistent_net_rules_file }}]
-      lp_udev_persistent_net_rules
-      {{ lp_udev_persistent_net_rules|to_nice_yaml }}
-      lp_udev_hci_name_rules_file [{{ lp_udev_hci_name_rules_file }}]
-      lp_udev_hci_name_rules
-      {{ lp_udev_hci_name_rules|to_nice_yaml }}
-      lp_udev_hci_run_rules_file [{{ lp_udev_hci_run_rules_file }}]
-      lp_udev_hci_run_rules
-      {{ lp_udev_hci_run_rules|to_nice_yaml }}
+      lp_udev_enable: {{ lp_udev_enable }}
+      lp_udev_conf_file: {{ lp_udev_conf_file }}
+      lp_udev_conf:
+        {{ lp_udev_conf|to_yaml|indent(2) }}
+      lp_udev_rules_dir: {{ lp_udev_rules_dir }}
+      lp_udev_rules_template: {{ lp_udev_rules_template }}
+      lp_udev_rules:
+        {{ lp_udev_rules|to_yaml|indent(2) }}
+      lp_udev_persistent_net_template: {{ lp_udev_persistent_net_template }}
+      lp_udev_persistent_net_rules_file: {{ lp_udev_persistent_net_rules_file }}
+      lp_udev_persistent_net_rules:
+        {{ lp_udev_persistent_net_rules|to_nice_yaml|indent(2) }}
+      lp_udev_hci_name_rules_file: {{ lp_udev_hci_name_rules_file }}
+      lp_udev_hci_name_rules:
+        {{ lp_udev_hci_name_rules|to_nice_yaml|indent(2) }}
+      lp_udev_hci_run_rules_file: {{ lp_udev_hci_run_rules_file }}
+      lp_udev_hci_run_rules:
+        {{ lp_udev_hci_run_rules|to_nice_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_udev_debug|bool
   tags: lp_udev_debug
 

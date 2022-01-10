@@ -4,14 +4,14 @@
 - name: "timesyncd: Debug"
   vars:
     msg: |-
-      lp_timesyncd [{{ lp_timesyncd }}]
-      lp_timesyncd_ntp [{{ lp_timesyncd_ntp }}]
-      lp_timesyncd_fallbackntp [{{ lp_timesyncd_fallbackntp }}]
-      lp_timesyncd_rootdistancemaxsec [{{ lp_timesyncd_rootdistancemaxsec }}]
-      lp_timesyncd_pollintervalminsec [{{ lp_timesyncd_pollintervalminsec }}]
-      lp_timesyncd_pollintervalmaxsec [{{ lp_timesyncd_pollintervalmaxsec }}]
+      lp_timesyncd: {{ lp_timesyncd }}
+      lp_timesyncd_ntp: {{ lp_timesyncd_ntp }}
+      lp_timesyncd_fallbackntp: {{ lp_timesyncd_fallbackntp }}
+      lp_timesyncd_rootdistancemaxsec: {{ lp_timesyncd_rootdistancemaxsec }}
+      lp_timesyncd_pollintervalminsec: {{ lp_timesyncd_pollintervalminsec }}
+      lp_timesyncd_pollintervalmaxsec: {{ lp_timesyncd_pollintervalmaxsec }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_timesyncd_debug|bool
   tags: lp_timesyncd_debug
 

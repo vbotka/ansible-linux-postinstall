@@ -1,0 +1,14 @@
+---
+
+lp_smart: false
+lp_smart_debug: false
+lp_smart_enable: false
+lp_smart_packages:
+  - smartmontools
+lp_smart_service: smartmontools
+lp_smart_devicescan: false
+lp_smart_conf_file: /etc/smartd.conf
+lp_smart_conf_owner: root
+lp_smart_conf_group: root
+lp_smart_conf_mode: "0644"
+lp_smart_devices: []

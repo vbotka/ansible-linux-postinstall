@@ -4,17 +4,18 @@
 - name: "reboot Debug"
   vars:
     msg: |-
-      lp_reboot_force [{{ lp_reboot_force }}]
-      lp_reboot_required_ignore [{{ lp_reboot_required_ignore }}]
-      lp_reboot_required_file [{{ lp_reboot_required_file }}]
-      lp_reboot_command [{{ lp_reboot_command }}]
-      lp_reboot_wait_connect_timeout [{{ lp_reboot_wait_connect_timeout }}]
-      lp_reboot_wait_sleep [{{ lp_reboot_wait_sleep }}]
-      lp_reboot_wait_delay [{{ lp_reboot_wait_delay }}]
-      lp_reboot_wait_timeout [{{ lp_reboot_wait_timeout }}]
+      lp_reboot_force: {{ lp_reboot_force }}
+      lp_reboot_required_ignore: {{ lp_reboot_required_ignore }}
+      lp_reboot_required_file: {{ lp_reboot_required_file }}
+      lp_reboot_command: {{ lp_reboot_command }}
+      lp_reboot_wait_connect_timeout: {{ lp_reboot_wait_connect_timeout }}
+      lp_reboot_wait_sleep: {{ lp_reboot_wait_sleep }}
+      lp_reboot_wait_delay: {{ lp_reboot_wait_delay }}
+      lp_reboot_wait_timeout: {{ lp_reboot_wait_timeout }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_reboot_debug|bool
+  tags: lp_reboot_debug
 
 - name: "reboot: Debian test {{ lp_reboot_required_file }}"
   block:

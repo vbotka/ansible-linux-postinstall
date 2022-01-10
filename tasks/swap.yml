@@ -4,13 +4,13 @@
 - name: "swap: Debug"
   vars:
     msg: |-
-      lp_swap [{{ lp_swap }}]
-      lp_swap_enable [{{ lp_swap_enable }}]
-      lp_swap_file [{{ lp_swap_file|default("UNDEFINED") }}]
-      lp_swap_size [{{ lp_swap_size|default("UNDEFINED") }}]
-      lp_swap_stsize [{{ lp_swap_stsize|default("UNDEFINED") }}]
+      lp_swap: {{ lp_swap }}
+      lp_swap_enable: {{ lp_swap_enable }}
+      lp_swap_file: {{ lp_swap_file|default("UNDEFINED") }}
+      lp_swap_size: {{ lp_swap_size|default("UNDEFINED") }}
+      lp_swap_stsize: {{ lp_swap_stsize|default("UNDEFINED") }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_swap_debug|bool
   tags: lp_swap_debug
 

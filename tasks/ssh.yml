@@ -4,10 +4,10 @@
 - name: "ssh: Debug"
   vars:
     msg: |-
-      lp_ssh_config
-      {{ lp_ssh_config|to_yaml }}
+      lp_ssh_config:
+        {{ lp_ssh_config|to_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_ssh_debug|bool
   tags: lp_ssh_debug
 

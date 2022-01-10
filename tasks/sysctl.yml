@@ -4,10 +4,10 @@
 - name: "sysctl: Debug"
   vars:
     msg: |-
-      lp_sysctl_vars
-      {{ lp_sysctl_vars|to_yaml }}
+      lp_sysctl_vars:
+        {{ lp_sysctl_vars|to_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_sysctl_debug|bool
   tags: lp_sysctl_debug
 

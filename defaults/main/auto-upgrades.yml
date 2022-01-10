@@ -1,0 +1,6 @@
+---
+
+lp_auto_upgrades: false
+lp_auto_upgrades_enable: false
+lp_auto_upgrades_update_package_lists: 0
+lp_auto_upgrades_unattended_upgrade: 0

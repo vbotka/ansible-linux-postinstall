@@ -226,6 +226,30 @@ Description of the task.
 
 
 
+.. _as_chrony.yml:
+
+chrony.yml
+----------
+
+Synopsis: Configure chrony.
+
+
+Description of the task.
+
+
+[`tasks/chrony.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/chrony.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/chrony.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
 .. _as_cron.yml:
 
 cron.yml
@@ -866,6 +890,30 @@ Description of the task.
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/postfix.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
+.. _as_rc_local.yml:
+
+rc_local.yml
+------------
+
+Synopsis: Configure rc_local.
+
+
+Description of the task.
+
+
+[`tasks/rc_local.yml <https://github.com/vbotka/ansible-freebsd-postinstall/blob/2.0-stable/tasks/rc_local.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/rc_local.yml
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:

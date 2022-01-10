@@ -78,5 +78,7 @@ lp_apparmor_profile_dir: /etc/apparmor.d
 lp_passwordstore_packages:
   - pass
 
+lp_chrony_service: chronyd
+
 # EOF
 ...

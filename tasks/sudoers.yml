@@ -4,10 +4,10 @@
 - name: "sudoers: Debug"
   vars:
     msg: |-
-      lp_sudoers_conf
-      {{ lp_sudoers_conf|to_yaml }}
+      lp_sudoers_conf:
+        {{ lp_sudoers_conf|to_yaml|indent(2) }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_sudoers_debug|bool
   tags: lp_sudoers_debug
 

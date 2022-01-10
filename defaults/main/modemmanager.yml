@@ -1,0 +1,5 @@
+---
+
+lp_modemmanager: true
+lp_modemmanager_enable: true
+lp_modemmanager_override: ""

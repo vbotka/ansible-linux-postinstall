@@ -1,0 +1,9 @@
+---
+
+lp_gpsd: false
+lp_gpsd_enable: false
+lp_gpsd_start_daemon: "true"
+lp_gpsd_usbauto: "true"
+lp_gpsd_devices: /dev/rfcomm0
+lp_gpsd_gpsd_options: -b
+lp_gpsd_bt_rfcomm: []

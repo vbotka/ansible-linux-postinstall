@@ -1,0 +1,12 @@
+---
+
+lp_virtualbox: false
+lp_virtualbox_debug: false
+lp_virtualbox_enable: false
+lp_virtualbox_ignore_errors: false
+lp_virtualbox_version: 5.2
+lp_virtualbox_keys:
+  - https://www.virtualbox.org/download/oracle_vbox_2016.asc
+  - https://www.virtualbox.org/download/oracle_vbox.asc
+lp_virtualbox_packages:
+  - "virtualbox-{{ lp_virtualbox_version }}"
