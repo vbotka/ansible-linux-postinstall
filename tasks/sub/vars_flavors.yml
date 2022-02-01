@@ -15,7 +15,7 @@
       lp_flavors
       {{ lp_flavors|to_nice_yaml }}
   ansible.builtin.debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_debug|bool
 
 - name: 'sub: vars_flavors: Create {{ lp_flavors_dir }}'
