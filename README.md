@@ -218,7 +218,7 @@ shell> ansible-playbook linux-postinstall.yml
 
 ## Author Information
 
-[Vladimir Botka](https://botka.link)
+[Vladimir Botka](https://botka.info)
 
 
 ## References
