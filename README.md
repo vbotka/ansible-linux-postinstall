@@ -4,11 +4,11 @@
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi,
 aliases, apparmor, apt, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums,
-fstab, gpg, gpsd, groups, grub, hostname, hosts, chrony, iptables, kvm, latex, libvirt, lid,
-logrotate, modem manager, modules, netplan, networkd, networkmanager, nfsd, packages, passwords,
-pm-utils, postfix, rc.local, repos, resolvconf, service, smart, speech-dispatcher, ssh, sshd,
-sudoers, swap, sysctl, systemd, timesyncd, timezone, tlp, udev, ufw, users, virtualbox, wpa_gui,
-wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
+dnsmasq, fstab, gpg, gpsd, groups, grub, hostname, hosts, chrony, iptables, kvm, latex, libvirt,
+lid, logrotate, modem manager, modules, netplan, networkd, networkmanager, nfsd, packages,
+passwords, pm-utils, postfix, rc.local, repos, resolvconf, service, smart, speech-dispatcher, ssh,
+sshd, sudoers, swap, sysctl, systemd, timesyncd, timezone, tlp, udev, ufw, users, virtualbox,
+wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 [Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io)
 
@@ -240,6 +240,8 @@ shell> ansible-playbook linux-postinstall.yml
 - [Bluetooth headphones](https://bbs.archlinux.org/viewtopic.php?id=212785)
 - [Cron Howto - Ubuntu Help](https://help.ubuntu.com/community/CronHowto)
 - [Debsums - Debian man](https://manpages.debian.org/stretch/debsums/debsums.1.en.html)
+- [Dnsmasq - DNS, DHCP, router advertisement and network boot](https://thekelleys.org.uk/dnsmasq/doc.html)
+- [Dnsmasq - Ubuntu Help](https://help.ubuntu.com/community/Dnsmasq)
 - [GCP Configuring Imported Images](https://cloud.google.com/compute/docs/images/configuring-imported-images)
 - [GPG - GnuPG](https://gnupg.org/)
 - [GPG - GnuPG HowTo - Ubuntu Help community](https://help.ubuntu.com/community/GnuPrivacyGuardHowto)

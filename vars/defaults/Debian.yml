@@ -175,5 +175,8 @@ lp_resolvconf_conf_mode: "0644"
 lp_passwordstore_packages:
   - pass
 
+lp_dnsmasq_packages:
+  - dnsmasq
+
 # EOF
 ...
