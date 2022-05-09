@@ -342,6 +342,11 @@
   when: (ansible_os_family == "Debian") and lp_resolvconf|bool
   tags: lp_resolvconf
 
+- name: Import dnsmasq.yml
+  ansible.builtin.import_tasks: dnsmasq.yml
+  when: (ansible_os_family == "Debian") and lp_dnsmasq|bool
+  tags: lp_dnsmasq
+
 - name: Import reboot.yml
   ansible.builtin.import_tasks: reboot.yml
   when: ((ansible_os_family == "RedHat") or

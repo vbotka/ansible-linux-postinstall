@@ -13,6 +13,9 @@
 - name: Import chrony.yml
   ansible.builtin.import_tasks: chrony.yml
 
+- name: Import dnsmasq.yml
+  ansible.builtin.import_tasks: dnsmasq.yml
+
 - name: Import gpg.yml
   ansible.builtin.import_tasks: gpg.yml
 
