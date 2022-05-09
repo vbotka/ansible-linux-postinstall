@@ -1,0 +1,8 @@
+---
+
+lp_dnsmasq: false
+lp_dnsmasq_debug: false
+lp_dnsmasq_install: false
+lp_dnsmasq_enable: false
+lp_dnsmasq_config: []
+lp_dnsmasq_hosts: []

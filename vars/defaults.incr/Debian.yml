@@ -178,5 +178,8 @@ lp_ufw_packages:
 
 lp_chrony_service: chrony
 
+lp_dnsmasq_packages:
+  - dnsmasq
+
 # EOF
 ...

@@ -1,0 +1,55 @@
+---
+
+lp_dnsmasq: true
+lp_dnsmasq_debug: false
+lp_dnsmasq_install: false
+lp_dnsmasq_enable: false
+
+lp_dnsmasq_config:
+  - dest: /etc/dnsmasq.conf
+    src: dnsmasq.conf.j2
+    config: []
+  - dest: /etc/config/dhcp
+    src: dnsmasq-openwrt-dhcp.j2
+    config:
+      - name: dnsmasq
+        options:
+          - domainneeded '1'
+          - localise_queries '1'
+          - rebind_protection '1'
+          - rebind_localhost '1'
+          - expandhosts '1'
+          - authoritative '1'
+          - readethers '1'
+          - leasefile '/tmp/dhcp.leases'
+          - resolvfile '/tmp/resolv.conf.auto'
+          - nonwildcard '1'
+          - localservice '1'
+          - domain 'example.com'
+        lists:
+          - server '8.8.8.8'
+          - server '8.8.4.4'
+      - name: dhcp 'lan'
+        options:
+          - interface 'lan'
+          - start '100'
+          - limit '150'
+          - leasetime '12h'
+          - dhcpv6 'server'
+          - ra 'server'
+          - ra_management '1'
+        lists:
+          - dhcp_option '3,10.1.0.10'
+      - name: dhcp 'wan'
+        options:
+          - interface 'wan'
+          - ignore '1'
+      - name: odhcpd 'odhcpd'
+        options:
+          - maindhcp '0'
+          - leasefile '/tmp/hosts/odhcpd'
+          - leasetrigger '/usr/sbin/odhcpd-update'
+          - loglevel '4'
+
+lp_dnsmasq_hosts:
+  - {ip: 10.1.0.10, mac: '01:23:45:67:89:0A', name: srv1}

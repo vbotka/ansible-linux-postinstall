@@ -1,0 +1,56 @@
+---
+# linux_postinstall dnsmasq
+
+- name: "dnsmasq: Debug"
+  vars:
+    msg: |-
+      lp_dnsmasq_install: {{ lp_dnsmasq_install }}
+      lp_dnsmasq_enable: {{ lp_dnsmasq_enable }}
+      lp_dnsmasq_packages:
+      {{ lp_dnsmasq_packages|to_nice_yaml }}
+      lp_dnsmasq_config:
+      {{ lp_dnsmasq_config|to_nice_yaml }}
+      lp_dnsmasq_hosts:
+      {{ lp_dnsmasq_hosts|to_yaml }}
+  ansible.builtin.debug:
+    msg: "{{ '{}'.format(msg) }}"
+  when: lp_dnsmasq_debug|bool
+  tags: lp_dnsmasq_debug
+
+- name: "dnsmasq: Install packages"
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_dnsmasq_packages
+  loop: "{{ lp_dnsmasq_packages }}"
+  when: lp_dnsmasq_install|bool
+  tags: lp_dnsmasq_packages
+
+- name: "dnsmasq: Create directories"
+  ansible.builtin.file:
+    state: directory
+    path: "{{ item.dest|dirname }}"
+    owner: "{{ item.downer|d('root') }}"
+    group: "{{ item.dgroup|d('root') }}"
+    mode: "{{ item.dmode|d('0755') }}"
+  loop: "{{ lp_dnsmasq_config }}"
+  loop_control:
+    label: "{{ item.dest|dirname }}"
+  tags: lp_dnsmasq_directories
+
+- name: "dnsmasq: Configure"
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ item.owner|d('root') }}"
+    group: "{{ item.group|d('root') }}"
+    mode: "{{ item.mode|d('0600') }}"
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_dnsmasq_config }}"
+  loop_control:
+    label: "{{ item.dest }}"
+  notify: restart dnsmasq
+  tags: lp_dnsmasq_config
+
+# EOF
+...

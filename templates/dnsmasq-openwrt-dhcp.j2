@@ -1,0 +1,19 @@
+# {{ ansible_managed }}
+{% for section in item.config %}
+
+config {{ section.name }}
+{% for option in section.options|d([]) %}
+	option {{ option }}
+{% endfor %}
+{% for list in section.lists|d([]) %}
+	list {{ list }}
+{% endfor %}
+{% endfor %}
+{% for host in lp_dnsmasq_hosts %}
+
+config host
+	option name '{{ host.name }}'
+	option dns '{{ host.dns|d(1) }}'
+	option mac '{{ host.mac }}'
+	option ip '{{ host.ip }}'
+{% endfor %}
