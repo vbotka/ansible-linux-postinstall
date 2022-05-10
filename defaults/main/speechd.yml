@@ -1,5 +1,5 @@
 ---
 
-lp_speechd: true
+lp_speechd: false
 lp_speechd_debug: false
 lp_speechd_enable: true

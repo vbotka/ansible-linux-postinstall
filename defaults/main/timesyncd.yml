@@ -1,6 +1,6 @@
 ---
 
-lp_timesyncd: true
+lp_timesyncd: false
 lp_timesyncd_debug: false
 lp_timesyncd_enable: true
 lp_timesyncd_ntp: ""
