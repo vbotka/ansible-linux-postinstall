@@ -1,12 +1,14 @@
+.. _ug_task_systemd_ex1:
+
 Example 1: Configure netpland
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""
 
 Create a playbook
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
-   shell> cat linux-postinstall.yml
+   shell> cat lp.yml
    - hosts: test_01
      become: true
      roles:
@@ -18,7 +20,7 @@ mode (6-8) use the default values ``lp_systemd_*`` and can be
 omitted. The attribute ``reload_service`` (9) is needed to reload or
 restart the service when the configuration file changes
 
-.. code-block:: yaml
+.. code-block:: YAML
    :linenos:
    :emphasize-lines: 1,2,5,6-8,9,16
 
@@ -69,10 +71,10 @@ restart the service when the configuration file changes
 Run the playbook with the tag ``-t lp_systemd_conf`` to limit the
 tasks and configure the files from the dictionary ``lp_systemd_conf``
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_systemd_conf
+   shell> ansible-playbook lp.yml -t lp_systemd_conf
 
    TASK [vbotka.linux_postinstall : systemd: Configure systemd] *****************
    changed: [test_01] => (item=/etc/systemd/networkd.conf Network SpeedMeter no)
@@ -98,7 +100,7 @@ tasks and configure the files from the dictionary ``lp_systemd_conf``
 
 Display the configuration file
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
    test_01> cat /etc/systemd/networkd.conf

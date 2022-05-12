@@ -1,21 +1,23 @@
-Example 1: Update passwords or create them if do not exist
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _ug_task_passwords_passwordstore_ex1:
 
-Let's start with no passwords stored in :index:`passwordstore <single:
+Example 1: Update passwords or create them if do not exist
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Let's start with no passwords stored in `passwordstore <single:
 password; passwordstore>` for users at host *test_01*. The command
 shows no results
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
    shell> pass test_01
 
 Create a playbook
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
-   shell> cat linux-postinstall.yml
+   shell> cat lp.yml
    - hosts: test_01
      become: true
      roles:
@@ -24,7 +26,7 @@ Create a playbook
 Create *host_vars/test_01/lp-users.yml* with two users *user1* and
 *user2*
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
     shell> cat host_vars/test_01/lp-users.yml
@@ -34,7 +36,7 @@ Create *host_vars/test_01/lp-users.yml* with two users *user1* and
       - {name: user3, shell: /bin/bash, disabled_password: true}
 
 .. note::
-   * If :index:`disabled_password` is set *true (default: false)* the
+   * If `disabled_password` is set *true (default: false)* the
      password won't be created, but login is still possible (for
      example with SSH RSA keys).
 
@@ -46,10 +48,10 @@ good idea to create one account with the login shell */bin/sh* and use
 it as Ansible `remote_user
 <https://docs.ansible.com/ansible/2.4/become.html#become>`_.
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
-    shell> ansible-playbook linux-postinstall.yml -t lp_users
+    shell> ansible-playbook lp.yml -t lp_users
     ...
     TASK [vbotka.linux_postinstall : users: Manage user accounts] *********
     changed: [test_01] => (item=user1)
@@ -58,7 +60,7 @@ it as Ansible `remote_user
 
 Create *host_vars/test_01/lp-passwords.yml*
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
     shell> cat host_vars/test_01/lp-passwords.yml
@@ -77,11 +79,11 @@ assigned to the users if no passwords have been assigned to the users
 before. To change the passwords in the future set both variables
 *True* on the command-line.
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1-2
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_passwords \
-                                          -e 'lp_passwordstore_create=True'
+   shell> ansible-playbook lp.yml -t lp_passwords \
+                                  -e lp_passwordstore_create=True
    ...
   
    TASK [vbotka.ansible_lib : al_pws_user_host: Retrieve, create or update ...]
@@ -92,12 +94,12 @@ before. To change the passwords in the future set both variables
    changed: [test_01] => (item=user1)
    changed: [test_01] => (item=user2)
 
-The command is :index:`idempotent`
+The command is `idempotent`
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_passwords
+   shell> ansible-playbook lp.yml -t lp_passwords
    ...
    PLAY RECAP *************************************************************
    test_01: ok=18 changed=0 unreachable=0 failed=0 skipped=20 rescued=0 ...
@@ -105,7 +107,7 @@ The command is :index:`idempotent`
    
 Show the passwords stored in *passwordstore* at the controller
    
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,6,10
 
    shell> pass test_01
@@ -123,7 +125,7 @@ Show the passwords stored in *passwordstore* at the controller
 
 Show the *passwordstore* log at the controller
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,2
 
    shell> cd ~/.password-store
@@ -143,10 +145,9 @@ Show the *passwordstore* log at the controller
    
 Show the created users at the remote host
    
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
    test_01> grep user /etc/passwd
    user1:x:1003:1003::/home/user1:/bin/sh
    user2:x:1004:1004::/home/user2:/bin/bash
- 

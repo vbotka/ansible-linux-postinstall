@@ -322,6 +322,30 @@ Description of the task.
 
 
 
+.. _as_dnsmasq.yml:
+
+dnsmasq.yml
+-----------
+
+Synopsis: Configure dnsmasq.
+
+
+Description of the task.
+
+
+[`tasks/dnsmasq.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/dnsmasq.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/dnsmasq.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
 .. _as_fstab.yml:
 
 fstab.yml

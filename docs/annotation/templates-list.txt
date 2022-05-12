@@ -7,6 +7,8 @@ blacklist_module.j2
 bluetooth_rfcomm_conf.j2
 chrony.conf.j2
 default_iptables.j2
+dnsmasq.conf.j2
+dnsmasq-openwrt-dhcp.j2
 exports.j2
 gpg_agent.conf.j2
 gpg.conf.j2

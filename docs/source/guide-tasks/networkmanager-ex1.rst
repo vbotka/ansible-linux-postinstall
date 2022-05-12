@@ -1,12 +1,14 @@
+.. _ug_task_networkmanager_ex1:
+
 Example 1: Disable NetworkManager
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""""""
 
 Create a playbook
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
-   shell> cat linux-postinstall.yml
+   shell> cat lp.yml
    - hosts: test_01
      become: true
      roles:
@@ -14,7 +16,7 @@ Create a playbook
 
 Create *host_vars/test_01/lp-nm.yml*
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
    shell> cat host_vars/test_01/lp-nm.yml 
@@ -25,12 +27,12 @@ Create *host_vars/test_01/lp-nm.yml*
      - {section: ifupdown, key: managed, val: 'false'}
    lp_nm_mask: true
 
-Disable :index:`NetworkManager`
+Disable `NetworkManager`
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,3-4,9-10,19-24,29-30
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_nm
+   shell> ansible-playbook lp.yml -t lp_nm
 
    TASK [vbotka.linux_postinstall : nm: Create /etc/init/network-manager.override]
    ok: [test_01]
@@ -64,7 +66,7 @@ Disable :index:`NetworkManager`
    
 Show the status of *NetworkManager.service*
    
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
    test_01> systemctl status NetworkManager.service

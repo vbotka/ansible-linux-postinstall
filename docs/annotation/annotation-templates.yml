@@ -109,6 +109,30 @@ mytemplates:
     note: []
     warning: []
 
+  - file: dnsmasq.conf.j2
+    link: dnsmasq.conf.j2
+    path: templates/dnsmasq.conf.j2
+    synopsis: |
+      Template dnsmasq.conf.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
+  - file: dnsmasq-openwrt-dhcp.j2
+    link: dnsmasq-openwrt-dhcp.j2
+    path: templates/dnsmasq-openwrt-dhcp.j2
+    synopsis: |
+      Template dnsmasq-openwrt-dhcp.
+    description: |
+      Description of the template.
+    lines: 1
+    seealso: []
+    note: []
+    warning: []
+
   - file: exports.j2
     link: exports.j2
     path: templates/exports.j2

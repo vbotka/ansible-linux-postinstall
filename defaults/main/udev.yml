@@ -1,6 +1,6 @@
 ---
 
-lp_udev: true
+lp_udev: false
 lp_udev_debug: false
 lp_udev_enable: true
 lp_udev_conf_file: /etc/udev/udev.conf

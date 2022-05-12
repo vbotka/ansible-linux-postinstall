@@ -1,6 +1,6 @@
 ---
 
-lp_wpasupplicant: true
+lp_wpasupplicant: false
 lp_wpasupplicant_install: true
 lp_wpasupplicant_debug: false
 lp_wpasupplicant_debug_classified: false

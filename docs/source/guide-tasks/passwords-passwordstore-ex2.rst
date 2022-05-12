@@ -1,11 +1,13 @@
+.. _ug_task_passwords_passwordstore_ex2:
+
 Example 2: Update passwords submitted in the variable
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Update passwords of users at host *test_01*. Use the same playbook and
 variables as in Example 1. Update the variable *lp_users* with the new
 passwords stored in the attribute ``userpass``
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
     shell> cat host_vars/test_01/lp-users.yml
@@ -15,23 +17,23 @@ passwords stored in the attribute ``userpass``
 
 Update the passwords
 
-.. code-block:: sh
-   :emphasize-lines: 1
+.. code-block:: Bash
+   :emphasize-lines: 1-2
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_passwords \
-                                       -e 'lp_passwordstore_overwrite=True'
+   shell> ansible-playbook lp.yml -t lp_passwords \
+                                  -e lp_passwordstore_overwrite=True
    ...
    TASK [vbotka.linux_postinstall : users: Manage user accounts] **********
    changed: [test_01] => (item=user1)
    changed: [test_01] => (item=user2)
 
-The command is :index:`idempotent`
+The command is idempotent
 
-.. code-block:: sh
-   :emphasize-lines: 1
+.. code-block:: Bash
+   :emphasize-lines: 1-2
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_passwords \
-                                       -e 'lp_passwordstore_overwrite=True'
+   shell> ansible-playbook lp.yml -t lp_passwords \
+                                  -e lp_passwordstore_overwrite=True
    ...
    
    PLAY RECAP *************************************************************
@@ -40,7 +42,7 @@ The command is :index:`idempotent`
    
 Show the passwords stored in *passwordstore* at the controller
    
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,6,10
 
    shell> pass test_01

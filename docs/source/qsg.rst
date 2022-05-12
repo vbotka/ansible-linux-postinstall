@@ -3,8 +3,9 @@
 Quick start guide
 *****************
 
-For the users who want to try the role quickly, this guide provides an example of how to create
-users, install packages, and configure services.
+For the users who want to try the role quickly, this guide provides an
+example of how to create users, install packages, and configure
+services.
 
 
 * Install the role ``vbotka.linux_postinstall`` ::
@@ -14,7 +15,7 @@ users, install packages, and configure services.
 
 * Create the playbook ``playbook.yml`` for single host srv.example.com (2)
 
-.. code-block:: bash
+.. code-block:: Bash
    :emphasize-lines: 2
    :linenos:
 
@@ -32,7 +33,7 @@ users, install packages, and configure services.
 
 * Create ``host_vars`` with customized variables
 
-.. code-block:: bash
+.. code-block:: Bash
    :emphasize-lines: 2-6
    :linenos:
 
@@ -46,7 +47,7 @@ users, install packages, and configure services.
 
 * To speedup the execution set some variables (2-4) to *false*
 
-.. code-block:: bash
+.. code-block:: Bash
    :emphasize-lines: 2-4
    :linenos:
 
@@ -58,7 +59,7 @@ users, install packages, and configure services.
 
 * Create users. The passwords will not be created (5,8). See `details <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_
 
-.. code-block:: bash
+.. code-block:: Bash
    :emphasize-lines: 5,8
    :linenos:
 
@@ -77,7 +78,7 @@ users, install packages, and configure services.
 
 * Configure passwords. See `details <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_
 
-.. code-block:: bash
+.. code-block:: Bash
    :emphasize-lines: 2-5
    :linenos:
 
@@ -90,7 +91,7 @@ users, install packages, and configure services.
 
 * Install packages and enable autoremove
 
-.. code-block:: bash
+.. code-block:: Bash
    :emphasize-lines: 2-3
    :linenos:
 
@@ -104,7 +105,7 @@ users, install packages, and configure services.
 
 * Configure services
 
-.. code-block:: bash
+.. code-block:: Bash
    :emphasize-lines: 2-3
    :linenos:
 

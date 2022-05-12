@@ -2,6 +2,7 @@ apparmor.yml
 autofs.yml
 bluetooth.yml
 chrony.yml
+dnsmasq.yml
 gpg.yml
 gpsd.yml
 grub.yml

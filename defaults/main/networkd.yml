@@ -1,6 +1,6 @@
 ---
 
-lp_networkd: true
+lp_networkd: false
 lp_networkd_install: true
 lp_networkd_enable: true
 lp_networkd_debug: false

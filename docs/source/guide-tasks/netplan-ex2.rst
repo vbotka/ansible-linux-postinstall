@@ -1,12 +1,14 @@
+.. _ug_task_netplan_ex2:
+
 Example 2: Configure wifi interface by Netplan
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""""""""
 
 Create a playbook
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
-   shell> cat linux-postinstall.yml
+   shell> cat lp.yml
    - hosts: test_01
      become: true
      roles:
@@ -15,7 +17,7 @@ Create a playbook
 Add the configuration of the wireless interface to the file
 *host_vars/test_01/lp-netplan.yml*
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1,3,5,15,16
 
    shell> cat host_vars/test_01/lp-netplan.yml 
@@ -44,19 +46,19 @@ Add the configuration of the wireless interface to the file
              macaddress: "<sanitized>"
 
 .. note::
-   * When :index:`networkd` renderer is used disable Neworkmanager.
+   * When `networkd` renderer is used disable Neworkmanager.
    * See :ref:`ug_task_networkmanager_ex1`.
    * ``category: ethernets`` is used for *wlan0* instead of
      ``category: wifis`` because wpa_supplicant will authenticate the
      client to the access point.
 
 
-Configure :index:`wifi` interface
+Configure `wifi` interface
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_netplan
+   shell> ansible-playbook lp.yml -t lp_netplan
 
    TASK [vbotka.linux_postinstall : netplan: Configure files in /etc/netplan] ******
    ok: [test_01] => (item=10-ethernet.yaml)
@@ -69,20 +71,20 @@ Configure :index:`wifi` interface
    test_01: ok=46 changed=2 unreachable=0 failed=0 skipped=25 rescued=0 ignored=0
 
 
-The command is :index:`idempotent`
+The command is `idempotent`
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_netplan
+   shell> ansible-playbook lp.yml -t lp_netplan
    ...
    PLAY RECAP ******************************************************************
    test_01: ok=45 changed=0 unreachable=0 failed=0 skipped=25 rescued=0 ignored=0
 
 
-Show the configuration of the :index:`wifi` interface
+Show the configuration of the `wifi` interface
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,9
 
    test_01> tree /etc/netplan/
@@ -106,9 +108,9 @@ Show the configuration of the :index:`wifi` interface
          optional: true
          set-name: wlan0
 
-Show the configuration of :index:`networkd` at the remote host
+Show the configuration of `networkd` at the remote host
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,17,25,29
 
    test_01> cat /run/systemd/network/10-netplan-wlan0.network 
@@ -145,4 +147,4 @@ Show the configuration of :index:`networkd` at the remote host
 
 .. note::
    * wlan0 is *configuring* and *no-carrier* because wpa_supplicant has not been started yet.
-   * See :ref:`ug_wpasupplicant_ex1`
+   * See :ref:`ug_task_wpasupplicant_ex1`

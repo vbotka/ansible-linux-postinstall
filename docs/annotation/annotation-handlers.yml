@@ -60,6 +60,18 @@ myhandlers:
     note: []
     warning: []
 
+  - file: dnsmasq.yml
+    link: dnsmasq.yml
+    path: handlers/dnsmasq.yml
+    synopsis: |
+      Handler dnsmasq.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
   - file: gpg.yml
     link: gpg.yml
     path: handlers/gpg.yml

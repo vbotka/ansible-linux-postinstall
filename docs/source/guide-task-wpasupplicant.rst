@@ -1,8 +1,10 @@
+.. _ug_task_wpasupplicant:
+
 wpa_supplicant
-==============
+--------------
 
 Synopsis
---------
+^^^^^^^^
 
 Configure wireless interfaces.
 
@@ -12,4 +14,8 @@ Configure wireless interfaces.
    * `ArchLinux Wiki wpa_supplicant <https://wiki.archlinux.org/index.php/wpa_supplicant>`_
 
 Examples
---------
+^^^^^^^^
+
+.. toctree::
+
+   guide-tasks/wpasupplicant-ex1

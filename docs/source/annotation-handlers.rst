@@ -101,6 +101,26 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+.. _as_handler_dnsmasq.yml:
+
+dnsmasq.yml
+-----------
+
+Synopsis: Handler dnsmasq.
+
+
+Description of the handler.
+
+
+[`handlers/dnsmasq.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/dnsmasq.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../handlers/dnsmasq.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
 .. _as_handler_gpg.yml:
 
 gpg.yml

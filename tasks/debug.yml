@@ -23,6 +23,9 @@
       lp_backup_conf: {{ lp_backup_conf }}
       lp_service:
         {{ lp_service|to_yaml|indent(2) }}
+      lp_tasks_enabled: {{ lp_tasks_enabled_print|ternary(lp_tasks_enabled, 'Disabled') }}
+      lp_tasks_disabled: {{ lp_tasks_disabled_print|ternary(lp_tasks_disabled, 'Disabled') }}
+
       lp_acpi: {{ lp_acpi }}
       lp_aliases: {{ lp_aliases }}
       lp_apparmor: {{ lp_apparmor }}
@@ -45,7 +48,7 @@
       lp_lid: {{ lp_lid }}
       lp_modemmanager: {{ lp_modemmanager }} lp_modemmanager_enable: {{ lp_modemmanager_enable }}
       lp_netplan: {{ lp_netplan }}
-      lp_neworkd: {{ lp_networkd }} lp_neworkd_install: {{ lp_networkd_install }} lp_neworkd_enable: {{ lp_networkd_enable }}
+      lp_networkd: {{ lp_networkd }} lp_neworkd_install: {{ lp_networkd_install }} lp_neworkd_enable: {{ lp_networkd_enable }}
       lp_nfsd: {{ lp_nfsd }} lp_nfsd_enable: {{ lp_nfsd_enable }}
       lp_nm: {{ lp_nm }} lp_nm_install: {{ lp_nm_install }} lp_nm_enable: {{ lp_nm_enable }}
       lp_packages_autoremove: {{ lp_packages_autoremove }}
