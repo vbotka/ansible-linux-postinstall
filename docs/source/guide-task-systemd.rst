@@ -1,10 +1,12 @@
+.. _ug_task_systemd:
+
 Systemd
-=======
+-------
 
 Synopsis
---------
+^^^^^^^^
 
-Manage :index:`systemd`.
+Manage systemd.
 
 .. seealso::
    * Annotated Source code :ref:`as_systemd.yml`
@@ -12,4 +14,11 @@ Manage :index:`systemd`.
    * Project website `Systemd freedesktop.org <https://freedesktop.org/wiki/Software/systemd/>`_
 
 Examples
---------
+^^^^^^^^
+
+.. toctree::
+
+   guide-tasks/systemd-ex1
+   guide-tasks/systemd-ex2
+   guide-tasks/systemd-ex3
+   guide-tasks/systemd-ex4

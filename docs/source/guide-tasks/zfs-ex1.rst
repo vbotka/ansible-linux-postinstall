@@ -1,12 +1,14 @@
+.. _ug_task_zfs_ex1:
+
 Example 1: Mount ZFS filesystems
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""
 
 Create a playbook
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
-   shell> cat linux-postinstall.yml
+   shell> cat lp.yml
    - hosts: test_01
      become: true
      roles:
@@ -14,7 +16,7 @@ Create a playbook
 
 Create *host_vars/test_01/lp-zfs.yml*
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
    shell> cat host_vars/test_01/lp-zfs.yml 
@@ -38,12 +40,12 @@ Create *host_vars/test_01/lp-zfs.yml*
        group: root
        mode: "0711"
 		     
-Mount the :index:`ZFS` filesystems
+Mount the ZFS filesystems
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_zfs
+   shell> ansible-playbook lp.yml -t lp_zfs
 
    TASK [vbotka.linux_postinstall : zfs: Manage zfs] ***************************
    ok: [test_01] => (item={u'state': u'present', u'extra_zfs_properties':
@@ -56,20 +58,20 @@ Mount the :index:`ZFS` filesystems
    changed: [test_01] => (item={u'owner': u'root', u'mountpoint': u'/var/lib/libvirt/images',
                               u'group': u'root', u'mode': u'0711'})
 
-The command is :index:`idempotent`
+The command is idempotent
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_zfs
+   shell> ansible-playbook lp.yml -t lp_zfs
    ...
    PLAY RECAP ******************************************************************
    test_01: ok=11 changed=0 unreachable=0 failed=0 skipped=3 rescued=0 ignored=0
 
    
-Show the :index:`ZFS` mountpoints at the remote host
+Show the ZFS mountpoints at the remote host
    
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
    test_01> zfs list

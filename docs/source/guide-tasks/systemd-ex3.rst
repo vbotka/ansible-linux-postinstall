@@ -1,12 +1,14 @@
-Example 2: Create units (WIP)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. _ug_task_systemd_ex3:
+
+Example 3: Remove units (WIP)
+"""""""""""""""""""""""""""""
 
 Create a playbook
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
-   shell> cat linux-postinstall.yml
+   shell> cat lp.yml
    - hosts: test_01
      become: true
      roles:
@@ -14,7 +16,7 @@ Create a playbook
 
 Create the file ``host_vars/test_01/lp-systemd.yml`` (1)
 
-.. code-block:: yaml
+.. code-block:: YAML
    :linenos:
    :emphasize-lines: 1
 

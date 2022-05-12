@@ -1,0 +1,76 @@
+TASK [vbotka.linux_postinstall : Debug] ****************************************
+ok: [srv.example.com] => 
+  msg: |-
+    ansible_architecture: x86_64
+    ansible_os_family: Debian
+    ansible_distribution: Ubuntu
+    ansible_distribution_major_version: 20
+    ansible_distribution_version: 20.04
+    ansible_distribution_release: focal
+    ansible_python_version: 3.8.5
+  
+    lp_vars_distro: firstfound
+    lp_vars_distro_firstfound_skip: True
+    lp_vars_flavors: firstfound
+    lp_flavors_enable: False
+    my_release:
+      []
+  
+    lp_package_state: present
+    lp_package_state_remove: absent
+    lp_backup_conf: False
+    lp_service:
+      []
+  
+    lp_tasks_enabled: Disabled
+    lp_tasks_disabled: Disabled
+  
+    lp_acpi: False
+    lp_aliases: False
+    lp_apparmor: False
+    lp_apt: False
+    lp_autofs: False lp_autofs_enable: False
+    lp_auto_upgrades: False lp_auto_upgrades_enable: False
+    lp_bluetooth: False lp_bluetooth_enable: False
+    lp_debsums: False
+    lp_dnsmasq: False lp_dnsmasq_install: False lp_dnsmasq_enable: False
+    lp_gpg: False lp_gpg_install: True
+    lp_gpsd: False lp_gpsd_enable: False
+    lp_grub: False
+    lp_chrony: False lp_chrony_install: False lp_chrony_enable: False
+    lp_iptables: False
+    lp_kvm: False
+    lp_latex: False
+    lp_libvirt: False
+    lp_libvirt_guests_enable: False
+    lp_libvirt_libvirtd_enable: False
+    lp_lid: False
+    lp_modemmanager: False lp_modemmanager_enable: True
+    lp_netplan: False
+    lp_networkd: False lp_neworkd_install: True lp_neworkd_enable: True
+    lp_nfsd: False lp_nfsd_enable: False
+    lp_nm: False lp_nm_install: True lp_nm_enable: True
+    lp_packages_autoremove: False
+    lp_passwords: False
+    lp_pm: False
+    lp_postfix: False lp_postfix_enable: True
+    lp_reboot: False
+    lp_resolvconf: False lp_resolvconf_install: True lp_resolvconf_enable: False
+    lp_smart: False lp_smart_enable: False
+    [WIP] lp_snap: False lp_snap_install: False lp_snap_enable: False
+    lp_speechd: False lp_speechd_enable: True
+    lp_ssh: False
+    lp_sshd: False lp_sshd_enable: False
+    lp_systemd: False lp_systemd_install: True
+    lp_swap: False lp_swap_enable: False
+    lp_timesyncd: False lp_timesyncd_enable: True
+    lp_timezone: False
+    lp_tlp: False lp_tlp_install: True lp_tlp_enable: False
+    lp_udev: False
+    lp_ufw: False lp_ufw_install: True lp_ufw_enable: True
+    lp_virtualbox: False lp_virtualbox_enable: False
+    lp_wpagui: False lp_wpagui_install: False
+    lp_wpasupplicant: False lp_wpasupplicant_install: True
+    lp_xen: False
+    lp_zeitgeist: False lp_zeitgeist_install: True
+    lp_zfs: False lp_zfs_install: True

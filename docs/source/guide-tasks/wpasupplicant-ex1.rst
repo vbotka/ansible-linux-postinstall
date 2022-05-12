@@ -1,12 +1,14 @@
+.. _ug_task_wpasupplicant_ex1:
+
 Example 1: Configure wpa_supplicant by networkd
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+"""""""""""""""""""""""""""""""""""""""""""""""
 
 Create a playbook
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
-   shell> cat linux-postinstall.yml
+   shell> cat lp.yml
    - hosts: test_01
      become: true
      roles:
@@ -16,7 +18,7 @@ Create a playbook
 Take a look at the wpa_supplicant services available at the remote
 host
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
    test_01> systemctl list-unit-files | grep wpa
@@ -25,15 +27,13 @@ host
    wpa_supplicant@.service                disabled
 
 .. note::
-   * ``wpa_supplicant.service`` uses :index:`D-Bus`, recommended for
-     :index:`NetworkManager`.
-
-   * When :index:`systemd-networkd` is used disable NetworkManager.
+   * ``wpa_supplicant.service`` uses D-Bus, recommended for NetworkManager.
+   * When *systemd-networkd* is used disable NetworkManager.
    * See :ref:`ug_task_networkmanager_ex1`
 
 .. warning::
    * This role doesn't test whether a service is already used by other
-     interface or not. It's necessary to disable such services and
+     interfaces or not. It's necessary to disable such services and
      make sure corresponding wpa_supplicants are not
      running. Otherwise the restart of such service will crash.
 
@@ -41,14 +41,17 @@ The *nl80211* service ``wpa_supplicant-nl80211@.service`` is not
 available. Therefor, in the configuration, we use the default type
 ``type: default`` (21). This will enable and start the service
 ``wpa_supplicant@wlan0.service``. This service will start
-*wpa_supplicant* with both *nl80211* and *wext* driver ::
+*wpa_supplicant* with both *nl80211* and *wext* driver
 
-   /sbin/wpa_supplicant -c/etc/wpa_supplicant/wpa_supplicant-wlan0.conf -Dnl80211,wext -iwlan0
+.. code-block:: Bash
+   :emphasize-lines: 1
+
+   shell> /sbin/wpa_supplicant -c/etc/wpa_supplicant/wpa_supplicant-wlan0.conf -Dnl80211,wext -iwlan0
 
 
 Create *host_vars/test_01/lp-wpasupplicant.yml*
 
-.. code-block:: yaml
+.. code-block:: YAML
    :linenos:
    :emphasize-lines: 1,8,21,26,30
 
@@ -94,12 +97,12 @@ Create *host_vars/test_01/lp-wpasupplicant.yml*
    * ``lp_wpasupplicant_debug_classified: true`` (5) will display also
      the passwords.
 
-Configure :index:`wpa_supplicant`
+Configure wpa_supplicant
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_wpasupplicant
+   shell> ansible-playbook lp.yml -t lp_wpasupplicant
 
    TASK [vbotka.linux_postinstall : wpasupplicant: Create wpasupplicant configuration file]
    changed: [test_01] => (item=None)
@@ -124,12 +127,12 @@ Configure :index:`wpa_supplicant`
      ``no_log: "{{ not lp_wpasupplicant_debug_classified }}"``
 
 
-The command is :index:`idempotent`
+The command is idempotent
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_wpasupplicant
+   shell> ansible-playbook lp.yml -t lp_wpasupplicant
    ...
    PLAY RECAP ******************************************************************
    test_01: ok=49 changed=0 unreachable=0 failed=0 skipped=28 rescued=0 ignored=0
@@ -137,7 +140,7 @@ The command is :index:`idempotent`
 
 Show the process at the remote host
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
    test_01> pgrep -a wpa_supplicant
@@ -146,7 +149,7 @@ Show the process at the remote host
 
 Show the status of the service at the remote host
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,4,19
 
    test_01> systemctl status wpa_supplicant@wlan0.service
@@ -172,7 +175,7 @@ Show the status of the service at the remote host
 The service is *active* and the connection to the access-point
 completed. Display the link and address
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,14
 
    test_01> iw wlan0 link
@@ -196,9 +199,9 @@ completed. Display the link and address
           valid_lft 3068841540sec preferred_lft 3068841540sec
    ...
 
-Show the configuration of :index:`networkd`.
+Show the configuration of networkd.
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
    test_01> networkctl

@@ -1,0 +1,7 @@
+TASK [vbotka.linux_postinstall : sshd: Debug] ************************
+ok: [srv.example.com] => 
+  msg: |-
+    lp_sshd_enable: False
+    lp_sshd_config_remove_duplicates: False
+    lp_sshd_config:
+      []

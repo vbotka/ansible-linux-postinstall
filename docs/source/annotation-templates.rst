@@ -181,6 +181,46 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+.. _as_template_dnsmasq.conf.j2:
+
+dnsmasq.conf.j2
+---------------
+
+Synopsis: Template dnsmasq.conf.
+
+
+Description of the template.
+
+
+[`templates/dnsmasq.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/dnsmasq.conf.j2>`_]
+
+.. highlight:: jinja
+    :linenothreshold: 5
+.. literalinclude:: ../../templates/dnsmasq.conf.j2
+    :language: jinja
+    :emphasize-lines: 1
+    :linenos:
+
+.. _as_template_dnsmasq-openwrt-dhcp.j2:
+
+dnsmasq-openwrt-dhcp.j2
+-----------------------
+
+Synopsis: Template dnsmasq-openwrt-dhcp.
+
+
+Description of the template.
+
+
+[`templates/dnsmasq-openwrt-dhcp.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/dnsmasq-openwrt-dhcp.j2>`_]
+
+.. highlight:: jinja
+    :linenothreshold: 5
+.. literalinclude:: ../../templates/dnsmasq-openwrt-dhcp.j2
+    :language: jinja
+    :emphasize-lines: 1
+    :linenos:
+
 .. _as_template_exports.j2:
 
 exports.j2

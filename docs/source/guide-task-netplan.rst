@@ -1,8 +1,10 @@
+.. _ug_task_netplan:
+
 Netplan
-=======
+-------
 
 Synopsis
---------
+^^^^^^^^
 
 The network configuration abstraction renderer.
 
@@ -23,4 +25,9 @@ The network configuration abstraction renderer.
    * See :ref:`ug_task_networkmanager_ex1`
 
 Examples
---------
+^^^^^^^^
+
+.. toctree::
+
+   guide-tasks/netplan-ex1
+   guide-tasks/netplan-ex2

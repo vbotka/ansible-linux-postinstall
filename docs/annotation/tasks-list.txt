@@ -10,6 +10,7 @@ chrony.yml
 cron.yml
 debsums.yml
 debug.yml
+dnsmasq.yml
 fstab.yml
 gpg.yml
 gpsd.yml

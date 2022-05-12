@@ -1,5 +1,7 @@
+.. _ug_task_passwords_passwordstore_ex3:
+
 Example 3: Update passwords by passwordstore
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""""""
 
 Update passwords of users at host *test_01*. New passwords will be
 created by the ``pass`` utility and will be stored in
@@ -7,7 +9,7 @@ created by the ``pass`` utility and will be stored in
 Example 1. Remove the attributes ``userpass`` from the variable
 *lp_users*. The only required attribute is the ``name`` of the user.
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
     shell> cat host_vars/test_01/lp-users.yml
@@ -17,12 +19,12 @@ Example 1. Remove the attributes ``userpass`` from the variable
 
 Update the passwords
 
-.. code-block:: sh
-   :emphasize-lines: 1
+.. code-block:: Bash
+   :emphasize-lines: 1-3
 
-   shell> ansible-playbook linux-postinstall.yml \
-          -t lp_passwords \
-	  -e 'lp_passwordstore_create=True lp_passwordstore_overwrite=True'
+   shell> ansible-playbook lp.yml -t lp_passwords \
+                                  -e lp_passwordstore_create=True \
+                                  -e lp_passwordstore_overwrite=True
    ...
    TASK [vbotka.linux_postinstall : users: Manage user accounts] **********
    changed: [test_01] => (item=user1)
@@ -30,10 +32,10 @@ Update the passwords
 
 The command is idempotent
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_passwords
+   shell> ansible-playbook lp.yml -t lp_passwords
    ...
    
    PLAY RECAP *************************************************************
@@ -42,7 +44,7 @@ The command is idempotent
    
 Show the passwords stored in *passwordstore* at the controller
    
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,6,10
 
    shell> pass test_01

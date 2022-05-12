@@ -1,12 +1,14 @@
+.. _ug_task_netplan_ex1:
+
 Example 1: Configure ethernet interface by Netplan
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""""""""""""""""""""""""""""
 
 Create a playbook
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
-   shell> cat linux-postinstall.yml
+   shell> cat lp.yml
    - hosts: test_01
      become: true
      roles:
@@ -14,7 +16,7 @@ Create a playbook
 
 Create *host_vars/test_01/lp-netplan.yml*
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1,3
 
    shell> cat host_vars/test_01/lp-netplan.yml 
@@ -34,34 +36,34 @@ Create *host_vars/test_01/lp-netplan.yml*
 
 
 .. note::
-   * When :index:`networkd` renderer is used disable Neworkmanager.
+   * When `networkd` renderer is used disable Neworkmanager.
    * See :ref:`ug_task_networkmanager_ex1`
 
 
-Configure :index:`network`
+Configure `network`
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_netplan
+   shell> ansible-playbook lp.yml -t lp_netplan
 
    TASK [vbotka.linux_postinstall : netplan: Configure files in /etc/netplan] **
    ok: [test_01] => (item=10-ethernet.yaml)
 
-The command is :index:`idempotent`
+The command is `idempotent`
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_netplan
+   shell> ansible-playbook lp.yml -t lp_netplan
    ...
    PLAY RECAP ******************************************************************
    test_01: ok=6 changed=0 unreachable=0 failed=0 skipped=4 rescued=0 ignored=0
 
 
-Show the configuration of :index:`netplan` at the remote host
+Show the configuration of `netplan` at the remote host
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,6,12
 
    test_01> tree /etc/netplan/
@@ -88,9 +90,9 @@ Show the configuration of :index:`netplan` at the remote host
          optional: true
          set-name: eth0
 
-Show the configuration of :index:`networkd` at the remote host
+Show the configuration of `networkd` at the remote host
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1,17,25
 
    test_01> cat /run/systemd/network/10-netplan-eth0.network

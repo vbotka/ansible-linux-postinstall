@@ -1,12 +1,14 @@
+.. _ug_task_systemd_ex4:
+
 Example 4: Control units
-^^^^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""""""
 
 Create a playbook
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
-   shell> cat linux-postinstall.yml
+   shell> cat lp.yml
    - hosts: test_01
      become: true
      roles:
@@ -15,7 +17,7 @@ Create a playbook
 Create the file ``host_vars/test_01/lp-systemd.yml`` (1). Enable the
 import of the tasks (2). Configure the units (3).
 
-.. code-block:: yaml
+.. code-block:: YAML
    :linenos:
    :emphasize-lines: 1,2,3
 
@@ -41,10 +43,10 @@ import of the tasks (2). Configure the units (3).
 Run the playbook with the tag ``-t lp_systemd_unit_control`` to limit the
 tasks and control the units only
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
-   shell> ansible-playbook linux-postinstall.yml -t lp_systemd_unit_control
+   shell> ansible-playbook lp.yml -t lp_systemd_unit_control
 
    TASK [vbotka.linux_postinstall : systemd: Control units] *********************
    changed: [test_01] => (item=zfs-mount.service)
@@ -57,7 +59,7 @@ tasks and control the units only
 
 Display the status of ``zfs-mount.service``
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
    shell> systemctl status zfs-mount.service
@@ -71,7 +73,7 @@ Display the status of ``zfs-mount.service``
 
 Display System V status of ``zfs-*`` scripts
 
-.. code-block:: sh
+.. code-block:: Bash
    :emphasize-lines: 1
 
    shell> service --status-all | grep zfs

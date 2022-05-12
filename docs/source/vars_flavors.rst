@@ -1,8 +1,8 @@
 Flavors specific variables (WIP)
-================================
+--------------------------------
 
 The files in the directories ``vars/flavors`` and
-``vars/flavors.incr`` keep :index:`flavors` specific variables. The difference
+``vars/flavors.incr`` keep flavors specific variables. The difference
 between them is the method how the files are included.
 
   * **firstfound**: A file in the directory ``vars/flavors`` in the
@@ -18,7 +18,7 @@ included.
 The method is determined by the variable ``lp_vars_flavor`` *(default:
 firstfound)*
 
-.. code-block:: yaml
+.. code-block:: YAML
    :emphasize-lines: 1
 
    lp_vars_flavor: firstfound

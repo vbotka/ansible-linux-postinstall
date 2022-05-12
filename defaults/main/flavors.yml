@@ -13,7 +13,7 @@
 #    tasks/sub/vars_flavors_common.yml
 # 2) For precedence of vars see tasks/vars.yml
 
-lp_flavors_enable: true
+lp_flavors_enable: false
 lp_flavors_dir: "{{ inventory_dir ~ '/flavors' }}"
 lp_flavors_dir_owner: admin
 lp_flavors_dir_group: adm

@@ -168,6 +168,19 @@ mytasks:
     hints: []
     warnings: []
 
+  - file: dnsmasq.yml
+    link: dnsmasq.yml
+    path: tasks/dnsmasq.yml
+    synopsis: |
+      Configure dnsmasq.
+    description: |
+      Description of the task.
+    lines: 1,2
+    seealso: []
+    notes: []
+    hints: []
+    warnings: []
+
   - file: fstab.yml
     link: fstab.yml
     path: tasks/fstab.yml

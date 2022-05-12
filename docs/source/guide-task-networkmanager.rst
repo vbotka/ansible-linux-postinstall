@@ -1,8 +1,10 @@
+.. _ug_task_networkmanager:
+
 NetworkManager
-==============
+--------------
 
 Synopsis
---------
+^^^^^^^^
 
 Configure NetworkManager.
 
@@ -12,4 +14,8 @@ Configure NetworkManager.
    * Article `Becoming friends with NetworkManager <https://www.redhat.com/sysadmin/becoming-friends-networkmanager>`_
 
 Examples
---------
+^^^^^^^^
+
+.. toctree::
+
+   guide-tasks/networkmanager-ex1
