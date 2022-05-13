@@ -66,7 +66,7 @@ shell> editor vbotka.linux_postinstall/vars/main.yml
 * See OS specific variables in *vars/defaults*
 * See examples in *vars/main.yml.sample*
 * Customize and/or add Flavor specific variables in *vars/flavors*
-* Optionally disable *lp_flavors_enable: false*. This will speedup the playbook
+* Optionally enable *lp_flavors_enable: true*. This will slowdown the playbook
 * Optionally put customized OS specific variables into the *vars* directory
 * See *tasks/vars.yml* for the naming conventions and precedence
 * Os specific variables will overwrite variables in *var/main.yml*
