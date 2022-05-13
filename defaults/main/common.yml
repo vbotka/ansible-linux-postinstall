@@ -18,7 +18,16 @@ lp_install_delay: 2
 # Display lists of enabled and disabled tasks in debug
 lp_tasks_enabled_print: false
 lp_tasks_disabled_print: false
-lp_tasks_keys: [lp_acpi, lp_aliases, lp_apparmor, lp_apt, lp_autofs, lp_auto_upgrades, lp_bluetooth, lp_debsums, lp_dnsmasq, lp_gpg, lp_gpsd, lp_grub, lp_chrony, lp_iptables, lp_kvm, lp_latex, lp_libvirt, lp_libvirt_guests_enable, lp_libvirt_libvirtd_enable, lp_lid, lp_modemmanager, lp_netplan, lp_networkd, lp_nfsd, lp_nm, lp_packages_autoremove, lp_passwords, lp_pm, lp_postfix, lp_reboot, lp_resolvconf, lp_smart, lp_snap, lp_speechd, lp_ssh, lp_sshd, lp_systemd, lp_swap, lp_timesyncd, lp_timezone, lp_tlp, lp_udev, lp_ufw, lp_virtualbox, lp_wpagui, lp_wpasupplicant, lp_xen, lp_zeitgeist, lp_zfs]
+lp_tasks_keys_dict:
+  lp_tk1: [lp_acpi, lp_aliases, lp_apparmor, lp_apt, lp_autofs, lp_auto_upgrades]
+  lp_tk2: [lp_bluetooth, lp_debsums, lp_dnsmasq, lp_gpg, lp_gpsd, lp_grub, lp_chrony]
+  lp_tk3: [lp_iptables, lp_kvm, lp_latex, lp_libvirt, lp_libvirt_guests_enable, lp_libvirt_libvirtd_enable]
+  lp_tk4: [lp_lid, lp_modemmanager, lp_netplan, lp_networkd, lp_nfsd, lp_nm]
+  lp_tk5: [lp_packages_autoremove, lp_passwords, lp_pm, lp_postfix]
+  lp_tk6: [lp_reboot, lp_resolvconf, lp_smart, lp_snap, lp_speechd, lp_ssh, lp_sshd, lp_systemd, lp_swap]
+  lp_tk7: [lp_timesyncd, lp_timezone, lp_tlp, lp_udev, lp_ufw, lp_virtualbox]
+  lp_tk8: [lp_wpagui, lp_wpasupplicant, lp_xen, lp_zeitgeist, lp_zfs]
+lp_tasks_keys: "{{ lp_tasks_keys_dict.values()|list|flatten }}"
 lp_tasks_vals_str: |-
   {% for i in lp_tasks_keys %}
   - {{ lookup('vars', i) }}

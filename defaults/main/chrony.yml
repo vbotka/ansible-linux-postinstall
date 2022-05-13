@@ -20,10 +20,10 @@ lp_chrony_rtcsync: true
 lp_chrony_makestep: 1 3
 lp_chrony_conf_file: /etc/chrony/chrony.conf
 lp_chrony_conf:
-  - {key: pool, val: "{{ lp_chrony_pool }}" }
-  - {key: keyfile, val: "{{ lp_chrony_keyfile }}" }
-  - {key: driftfile, val: "{{ lp_chrony_driftfile }}" }
-  - {key: logdir, val: "{{ lp_chrony_logdir  }}" }
-  - {key: maxupdateskew, val: "{{ lp_chrony_maxupdateskew }}" }
-  - {key: rtcsync, val: true }
-  - {key: makestep, val: "{{ lp_chrony_makestep }}" }
+  - {key: pool, val: "{{ lp_chrony_pool }}"}
+  - {key: keyfile, val: "{{ lp_chrony_keyfile }}"}
+  - {key: driftfile, val: "{{ lp_chrony_driftfile }}"}
+  - {key: logdir, val: "{{ lp_chrony_logdir  }}"}
+  - {key: maxupdateskew, val: "{{ lp_chrony_maxupdateskew }}"}
+  - {key: rtcsync, val: true}
+  - {key: makestep, val: "{{ lp_chrony_makestep }}"}

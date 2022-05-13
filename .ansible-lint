@@ -1,8 +1,8 @@
 ---
 verbosity: 1
-quiet: False
-parseable: True
-use_default_rules: True
+quiet: false
+parseable: true
+use_default_rules: true
 rulesdir:
   - $HOME/.ansible/ansible-lint-rules
 # skip_list:
