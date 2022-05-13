@@ -8,7 +8,7 @@ tasks of the role. To see what tags are available list the tags of the
 role by the command
 
 
-.. literalinclude:: guide-tags/code01.yaml
+.. literalinclude:: guide-tags/code01.yaml.example
    :language: YAML
    :emphasize-lines: 1
 
