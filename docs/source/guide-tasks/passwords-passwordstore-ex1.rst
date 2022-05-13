@@ -46,7 +46,7 @@ their login shell. Other parameters of the Ansible module `user
 will be omitted because the only required parameter is *name*. It's a
 good idea to create one account with the login shell */bin/sh* and use
 it as Ansible `remote_user
-<https://docs.ansible.com/ansible/2.4/become.html#become>`_.
+<https://docs.ansible.com/ansible/latest/user_guide/connection_details.html#setting-a-remote-user>`_.
 
 .. code-block:: YAML
    :emphasize-lines: 1
