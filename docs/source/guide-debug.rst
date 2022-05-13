@@ -30,7 +30,7 @@ The above command will run the single task and, in the last section,
 display in alphabetical order the values of all variables that enable
 the subsystems
 
-.. literalinclude:: guide-debug/code04.yaml
+.. literalinclude:: guide-debug/code04.yaml.example
    :language: YAML
    :emphasize-lines: 1,28-76
 
@@ -55,7 +55,7 @@ If you enable the variables below either in the configuration or in the command
 the output will include the lists of enabled and disabled
 subsystems. By default, all subsystems are disabled
 
-.. literalinclude:: guide-debug/code05.yaml
+.. literalinclude:: guide-debug/code05.yaml.example
    :language: YAML
    :emphasize-lines: 1
 
@@ -72,20 +72,20 @@ Most of the subsystems will display additional information when debug
 is enabled. For example, enable both the *sshd* subsystem and its
 debug output either in the configuration,
 
-.. literalinclude:: guide-debug/code01.yaml
+.. literalinclude:: guide-debug/code01.yaml.example
    :language: YAML
    :emphasize-lines: 1-2
 
 , or in the command by setting the extra variables 
 
-.. literalinclude:: guide-debug/code02.bash
+.. literalinclude:: guide-debug/code02.bash.example
    :language: Bash
    :emphasize-lines: 1
 
 The above command, limited by the tag ``-t lp_sshd_debug``, will run the
 single task and display the values of the *lp_sshd_\** variables
 
-.. literalinclude:: guide-debug/code03.yaml
+.. literalinclude:: guide-debug/code03.yaml.example
    :language: YAML
    :emphasize-lines: 1
 
