@@ -4,6 +4,7 @@
 - name: "sysctl: Debug"
   vars:
     msg: |-
+      lp_sysctl_no_extra_spaces: {{ lp_sysctl_no_extra_spaces }}
       lp_sysctl_vars:
         {{ lp_sysctl_vars|to_yaml|indent(2) }}
   ansible.builtin.debug:
@@ -15,7 +16,7 @@
   ansible.builtin.lineinfile:
     dest: /etc/sysctl.conf
     regexp: '^\s*{{ item.var }}\s*=(.*)$'
-    line: "{{ item.var }} = {{ item.value }}"
+    line: "{{ item.var }}{{ lp_sysctl_extra_space }}={{ lp_sysctl_extra_space }}{{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_sysctl_vars }}"
   notify: load sysctl settings
