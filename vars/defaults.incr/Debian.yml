@@ -11,14 +11,15 @@
 
 lp_speechd_service: speech-dispatcher
 
-lp_autofs_service: autofs
-lp_timesyncd_service: systemd-timesyncd.service
-lp_postfix_service: postfix
-lp_gpsd_service: gpsd
-lp_bluetooth_service: bluetooth
 lp_auto_upgrades_service: unattended-upgrades
-
+lp_autofs_service: autofs
+lp_bluetooth_service: bluetooth
+lp_gpsd_service: gpsd
+lp_postfix_service: postfix
+lp_timesyncd_service: systemd-timesyncd.service
 lp_udev_service: udev
+lp_ufw_service: ufw
+
 lp_udev_path: /bin/udevadm
 
 lp_sshd_service: ssh
