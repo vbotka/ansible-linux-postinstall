@@ -14,6 +14,7 @@ lp_speechd_service: speech-dispatcher
 lp_auto_upgrades_service: unattended-upgrades
 lp_autofs_service: autofs
 lp_bluetooth_service: bluetooth
+lp_chrony_service: chrony
 lp_gpsd_service: gpsd
 lp_postfix_service: postfix
 lp_timesyncd_service: systemd-timesyncd.service
@@ -176,8 +177,6 @@ lp_passwordstore_packages:
 
 lp_ufw_packages:
   - ufw
-
-lp_chrony_service: chrony
 
 lp_dnsmasq_packages:
   - dnsmasq

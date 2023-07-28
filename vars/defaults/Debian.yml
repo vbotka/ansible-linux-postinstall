@@ -12,6 +12,7 @@
 lp_auto_upgrades_service: unattended-upgrades
 lp_autofs_service: autofs
 lp_bluetooth_service: bluetooth
+lp_chrony_service: chrony
 lp_gpsd_service: gpsd
 lp_postfix_service: postfix
 lp_speechd_service: speech-dispatcher
@@ -173,6 +174,9 @@ lp_resolvconf_conf_mode: "0644"
 
 lp_passwordstore_packages:
   - pass
+
+lp_ufw_packages:
+  - ufw
 
 lp_dnsmasq_packages:
   - dnsmasq
