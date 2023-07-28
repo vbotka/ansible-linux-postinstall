@@ -29,6 +29,7 @@ This may be different from the platforms in Ansible Galaxy which does not offer 
 released versions in time and would report an error. For example:
 `IMPORTER101: Invalid platform: "Ubuntu focal", skipping.`
 
+Support for other platforms is work in progress. Some tasks are supported also by Centos. You're encouraged to fit the variables in *vars/defaults* and test the tasks on your own.
 
 ## Requirements
 
