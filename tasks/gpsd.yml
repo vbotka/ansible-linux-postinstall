@@ -16,6 +16,7 @@
 - name: "gpsd: Configure /etc/bluetooth/rfcomm.conf"
   ansible.builtin.blockinfile:
     dest: /etc/bluetooth/rfcomm.conf
+    create: true
     marker: "# {mark} ANSIBLE MANAGED BLOCK rfcomm{{ item.rfcomm }}"
     insertafter: EOF
     owner: root
