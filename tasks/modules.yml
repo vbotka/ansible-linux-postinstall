@@ -34,8 +34,8 @@
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules }}"
   when:
-    - ansible_os_family == "Debian"
-    - item.state|default("present") == "present"
+    - ansible_os_family == 'Debian'
+    - item.state|default("present") == 'present'
 
 # RedHat
 - name: "modules: Configure {{ lp_modules_conf }} in RedHat"
@@ -46,15 +46,15 @@
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules }}"
   when:
-    - ansible_os_family == "RedHat"
-    - item.state|default("present") == "present"
+    - ansible_os_family == 'RedHat'
+    - item.state|default("present") == 'present'
 
 - name: "modules: Blacklist modules in {{ lp_modules_blacklist_path }}"
   ansible.builtin.template:
     src: blacklist-module.j2
     dest: "{{ lp_modules_blacklist_path }}/blacklist-{{ item }}.conf"
     backup: "{{ lp_backup_conf }}"
-    mode: "0644"
+    mode: '0644'
   loop: "{{ lp_modules_blacklist }}"
   notify: update initramfs
 
@@ -63,7 +63,7 @@
     src: options-module.j2
     dest: "{{ lp_modules_options_path }}/{{ item.module }}.conf"
     backup: "{{ lp_backup_conf }}"
-    mode: "0644"
+    mode: '0644'
   loop: "{{ lp_modules_options }}"
   notify: update initramfs
 
