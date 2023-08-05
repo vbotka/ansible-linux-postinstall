@@ -6,7 +6,7 @@
     msg: |-
       lp_sysctl_no_extra_spaces: {{ lp_sysctl_no_extra_spaces }}
       lp_sysctl_vars:
-        {{ lp_sysctl_vars|to_yaml|indent(2) }}
+        {{ lp_sysctl_vars|to_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_sysctl_debug|bool
