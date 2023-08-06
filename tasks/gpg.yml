@@ -6,21 +6,21 @@
     msg: |-
       lp_gpg_install: {{ lp_gpg_install }}
       lp_gpg_packages:
-        {{ lp_gpg_packages|to_nice_yaml|indent(2) }}
+        {{ lp_gpg_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_gpg_packages_extra:
-        {{ lp_gpg_packages_extra|to_nice_yaml|indent(2) }}
+        {{ lp_gpg_packages_extra|to_nice_yaml(indent=2)|indent(2) }}
       lp_gpg_conf_default:
-        {{ lp_gpg_conf_default|to_yaml|indent(2) }}
+        {{ lp_gpg_conf_default|to_yaml(indent=2)|indent(2) }}
       lp_gpg_conf:
-        {{ lp_gpg_conf|to_yaml|indent(2) }}
+        {{ lp_gpg_conf|to_yaml(indent=2)|indent(2) }}
       lp_gpg_agent_conf_default:
-        {{ lp_gpg_agent_conf_default|to_yaml|indent(2) }}
+        {{ lp_gpg_agent_conf_default|to_yaml(indent=2)|indent(2) }}
       lp_gpg_agent_conf:
-        {{ lp_gpg_agent_conf|to_yaml|indent(2) }}
+        {{ lp_gpg_agent_conf|to_yaml(indent=2)|indent(2) }}
       lp_gpg_dirmngr_conf_default:
-        {{ lp_gpg_dirmngr_conf_default|to_yaml|indent(2) }}
+        {{ lp_gpg_dirmngr_conf_default|to_yaml(indent=2)|indent(2) }}
       lp_gpg_dirmngr_conf:
-      {{ lp_gpg_dirmngr_conf|to_yaml|indent(2) }}
+      {{ lp_gpg_dirmngr_conf|to_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_gpg_debug|bool
@@ -40,7 +40,7 @@
     dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/gpg.conf') }}"
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"
-    mode: "0600"
+    mode: '0600'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_gpg_conf }}"
   loop_control:
@@ -53,7 +53,7 @@
     dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/gpg-agent.conf') }}"
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"
-    mode: "0600"
+    mode: '0600'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_gpg_agent_conf }}"
   loop_control:
@@ -68,7 +68,7 @@
     dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/dirmngr.conf') }}"
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"
-    mode: "0600"
+    mode: '0600'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_gpg_dirmngr_conf }}"
   loop_control:
