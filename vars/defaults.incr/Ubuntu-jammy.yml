@@ -1,5 +1,5 @@
 ---
-# Ubuntu 20.04 Focal vars linux-postinstall incremental
+# Ubuntu 22.04 Jammy vars linux-postinstall incremental
 
 lp_dhclient: /usr/sbin/dhclient
 lp_wpasupplicant_bin: /usr/sbin/wpa_supplicant
@@ -15,7 +15,7 @@ lp_kvm_packages:
   - bridge-utils
 # - ubuntu-vm-builder
 
-lp_xen_version: '4.11'
+lp_xen_version: '4.16'
 lp_xen_packages:
   - "xen-hypervisor-{{ lp_xen_version }}-amd64"
   - "xen-utils-{{ lp_xen_version }}"
@@ -28,7 +28,7 @@ lp_virtualbox_repos:
 # - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
 #                     {{ ansible_lsb.codename }} contrib"
 
-# TODO: Not tested in 20.04 yet
+# TODO: Not tested in 22.04 yet
 lp_libvirt_libvirtd_service: libvirtd
 lp_libvirt_guests_service: libvirt-guests
 lp_libvirt_packages:

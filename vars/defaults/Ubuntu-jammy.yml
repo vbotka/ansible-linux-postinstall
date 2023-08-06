@@ -1,13 +1,13 @@
 ---
-# Ubuntu 20.04 Focal vars linux-postinstall
+# Ubuntu 22.04 Jammy vars linux-postinstall
 
 # lp_ssh: True
 # lp_ssh_config:
 #  - host: '*'
 #    conf:
-#      - { key: 'SendEnv', val: 'LANG LC_*' }
-#      - { key: 'HashKnownHosts', val: 'yes' }
-#      - { key: 'GSSAPIAuthentication', val: 'yes' }
+#      - {key: 'SendEnv', val: 'LANG LC_*'}
+#      - {key: 'HashKnownHosts', val: 'yes'}
+#      - {key: 'GSSAPIAuthentication', val: 'yes'}
 
 lp_speechd_service: speech-dispatcher
 
@@ -93,7 +93,7 @@ lp_kvm_packages:
   - bridge-utils
 # - ubuntu-vm-builder
 
-lp_xen_version: '4.11'
+lp_xen_version: '4.16'
 lp_xen_packages:
   - "xen-hypervisor-{{ lp_xen_version }}-amd64"
   - "xen-utils-{{ lp_xen_version }}"
@@ -125,7 +125,7 @@ lp_virtualbox_services:
   - vboxdrv.service
   - vboxweb-service
 
-# TODO: Not tested in 20.04 yet
+# TODO: Not tested in 22.04 yet
 lp_libvirt_libvirtd_service: libvirtd
 lp_libvirt_guests_service: libvirt-guests
 lp_libvirt_packages:
@@ -155,11 +155,6 @@ lp_networkd_packages: []
 
 lp_netplan_default: 01-network-manager-all.yaml
 lp_netplan_mode: '0644'
-
-# Note 1.
-# Netplan in 18.04 does not support wpa_supplicant.conf
-# https://bugs.launchpad.net/netplan/+bug/1735288
-# status: New → Triaged/Wishlist
 
 lp_apparmor_packages:
   - apparmor
