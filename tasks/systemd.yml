@@ -5,7 +5,10 @@
 - name: "systemd: Create empty dictionary my_services"
   ansible.builtin.set_fact:
     my_services: {}
-  tags: always
+  tags:
+    - lp_systemd_debug
+    - lp_systemd_packages
+    - lp_systemd_conf
 
 - name: "systemd: Set my_services"
   ansible.builtin.set_fact:
@@ -19,7 +22,10 @@
     my_name: "{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
     my_state: "{{ item.control.state|default('started') }}"
     my_restart_or_reload: "{{ item.control.restart_or_reload|default('reloaded') }}"
-  tags: always
+  tags:
+    - lp_systemd_debug
+    - lp_systemd_packages
+    - lp_systemd_conf
 
 # Debug
 - name: "systemd: Debug"
