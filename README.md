@@ -178,6 +178,7 @@ See [service.yml](tasks/service.yml) for details.
 ```
 ansible-playbook linux-postinstall.yml -t lp_vars
 ansible-playbook linux-postinstall.yml -t lp_hostname                                              
+ansible-playbook linux-postinstall.yml -t lp_groups
 ansible-playbook linux-postinstall.yml -t lp_users
 ansible-playbook linux-postinstall.yml -t lp_sudoers
 ansible-playbook linux-postinstall.yml -t lp_udev                                                  

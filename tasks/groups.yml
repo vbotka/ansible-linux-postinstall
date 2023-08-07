@@ -5,7 +5,7 @@
   vars:
     msg: |-
       lp_groups:
-        {{ lp_groups|to_nice_yaml|indent(2) }}
+        {{ lp_groups|to_nice_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_groups_debug|bool
