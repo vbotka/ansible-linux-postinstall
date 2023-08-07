@@ -59,7 +59,7 @@
   loop_control:
     label: "{{ item.owner }}"
   register: lp_gpg_agent_conf_changes
-  notify: gpgconf kill gpg-agent
+  notify: gpgconf reload gpg-agent
   tags: lp_gpg_agent_conf
 
 - name: "gpg: Configure dirmngr.conf"
@@ -74,7 +74,7 @@
   loop_control:
     label: "{{ item.owner }}"
   register: lp_gpg_dirmngr_conf_changes
-  notify: gpgconf kill dirmngr
+  notify: gpgconf reload dirmngr
   tags: lp_gpg_dirmngr_conf
 
 # TODO: import keys
