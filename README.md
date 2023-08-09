@@ -70,7 +70,7 @@ shell> editor vbotka.linux_postinstall/vars/main.yml
 * Optionally enable *lp_flavors_enable: true*. This will slowdown the playbook
 * Optionally put customized OS specific variables into the *vars* directory
 * See *tasks/vars.yml* for the naming conventions and precedence
-* Os specific variables will overwrite variables in *var/main.yml*
+* OS specific variables will overwrite variables in *var/main.yml*
 
 3. Create the inventory
 
