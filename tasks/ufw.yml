@@ -26,17 +26,17 @@
       lp_ufw_reset: {{ lp_ufw_reset }}
       lp_ufw_reload: {{ lp_ufw_reload }}
       lp_ufw_packages:
-        {{ lp_ufw_packages|to_nice_yaml|indent(2) }}
+        {{ lp_ufw_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_ufw_default:
-        {{ lp_ufw_default|to_yaml|indent(2) }}
+        {{ lp_ufw_default|to_yaml(indent=2)|indent(2) }}
       lp_ufw_sysctl:
-        {{ lp_ufw_sysctl|to_yaml|indent(2) }}
+        {{ lp_ufw_sysctl|to_yaml(indent=2)|indent(2) }}
       lp_ufw_blocks:
-        {{ lp_ufw_blocks|to_nice_yaml|indent(2) }}
+        {{ lp_ufw_blocks|to_nice_yaml(indent=2)|indent(2) }}
       lp_ufw_conf:
-        {{ lp_ufw_conf|to_yaml|indent(2) }}
+        {{ lp_ufw_conf|to_yaml(indent=2)|indent(2) }}
       lp_ufw_service_conf:
-        {{ lp_ufw_service_conf|to_yaml|indent(2) }}
+        {{ lp_ufw_service_conf|to_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_ufw_debug|bool
