@@ -58,7 +58,6 @@ lp_nm_services:
   - NetworkManager.service
   - NetworkManager-wait-online.service
   - NetworkManager-dispatcher.service
-  - network-manager.service
   - wpa_supplicant.service
 lp_nm_services_mask:
   - NetworkManager.service

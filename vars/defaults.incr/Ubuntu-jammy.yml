@@ -4,6 +4,12 @@
 lp_dhclient: /usr/sbin/dhclient
 lp_wpasupplicant_bin: /usr/sbin/wpa_supplicant
 
+lp_nm_services:
+  - NetworkManager.service
+  - NetworkManager-wait-online.service
+  - NetworkManager-dispatcher.service
+  - wpa_supplicant.service
+
 lp_udev_path: /usr/bin/udevadm
 
 lp_kvm_packages:
