@@ -264,6 +264,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [LaTeX - Ubuntu Help community](https://help.ubuntu.com/community/LaTeX)
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
 - [LaTeX CTAN: macros/latex/contrib/](https://www.ctan.org/tex-archive/macros/latex/contrib/)
+- [LaTex - LinuxConfig][How to install LaTex on Ubuntu 22.04 Jammy Jellyfish](https://linuxconfig.org/how-to-install-latex-on-ubuntu-22-04-jammy-jellyfish-linux)
 - [libvirt](https://libvirt.org/)
 - [libvirt - Ubuntu Help](https://help.ubuntu.com/lts/serverguide/libvirt.html.en)
 - [libvirt Xen4 - CentOS Wiki](https://wiki.centos.org/HowTos/Xen/Xen4QuickStart/Xen4Libvirt)

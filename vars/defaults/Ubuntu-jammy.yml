@@ -78,7 +78,11 @@ lp_gpsd_packages:
   - gpsd-clients
 
 lp_latex_packages:
-  - texlive-full
+  - texlive
+  # - texlive-base
+  # - texlive-latex-recommended
+  # - texlive-latex-extra
+  # - texlive-full
 
 lp_smart_packages:
   - smartmontools
