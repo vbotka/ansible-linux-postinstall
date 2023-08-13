@@ -4,6 +4,7 @@
 - name: "packages_auto: Init variable local_pkg_lists"
   ansible.builtin.set_fact:
     local_pkg_lists: []
+    local_pkg_list_all: []
     local_pkg_list: []
   tags: lp_packages_auto
 
@@ -13,7 +14,7 @@
                                              'packages': item}] }}"
   loop: "{{ hostvars[inventory_hostname].keys()|
             select('regex', '^lp_.*_packages$')|
-            list }}"
+            list|sort }}"
   vars:
     arr: "{{ item.split('_') }}"
     install_var: "{{ arr.0 + '_' + arr.1 + '_install' }}"
@@ -21,21 +22,26 @@
 
 - name: "packages_auto: Debug local_pkg_lists"
   ansible.builtin.debug:
-    msg: "[{{ lookup('vars', item.install, default='false')|bool }}]
-           {{ lookup('vars', item.packages)|join(',') }}"
+    msg: "[{{ install }}] {{ pkgs }}"
   loop: "{{ local_pkg_lists }}"
   loop_control:
     label: "{{ label }}"
-  when: lp_packages_debug|bool
   vars:
     label: "{{ item.install.split('_').1 }}"
+    install: "{{ lookup('vars', item.install, default='false')|bool }}"
+    pkgl: "{{ lookup('vars', item.packages) }}"
+    pkgs: "{{ ( pkgl|length > 0)|ternary(pkgl|join(','), 'none') }}"
+  when: lp_packages_debug|bool
   tags: lp_packages_auto
 
 - name: "packages_auto: Create local_pkg_list"
-  ansible.builtin.set_fact:
-    local_pkg_list: "{{ local_pkg_list + lookup('vars', item.packages) }}"
-  loop: "{{ local_pkg_lists }}"
-  when: lookup('vars', item.install, default='False')|bool
+  block:
+    - ansible.builtin.set_fact:
+        local_pkg_list_all: "{{ local_pkg_list_all + lookup('vars', item.packages) }}"
+      loop: "{{ local_pkg_lists }}"
+      when: lookup('vars', item.install, default=False)|bool
+    - ansible.builtin.set_fact:
+        local_pkg_list: "{{ local_pkg_list_all|unique|sort }}"
   tags: lp_packages_auto
 
 - name: "packages_auto: Debug local_pkg_list"
@@ -45,8 +51,13 @@
   tags: lp_packages_auto
 
 - name: "packages_auto: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
-  loop: "{{ local_pkg_list }}"
+  ansible.builtin.package:
+    name: "{{ local_pkg_list }}"
+  register: result
+  retries: "{{ lp_install_retries }}"
+  until: result is succeeded
+  delay: "{{ lp_install_delay }}"
+  when: not lp_package_install_dryrun|bool
   tags: lp_packages_auto
 
 # EOF
