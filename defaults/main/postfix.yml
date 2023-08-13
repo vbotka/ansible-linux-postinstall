@@ -2,5 +2,10 @@
 
 lp_postfix: false
 lp_postfix_debug: false
-lp_postfix_enable: true
+lp_postfix_install: false
+lp_postfix_enable: false
+lp_postfix_flush_handlers: true
+lp_postfix_rescue_end_host: true
+lp_postfix_packages:
+  - postfix
 lp_postfix_main_conf: []
