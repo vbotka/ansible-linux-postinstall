@@ -4,7 +4,7 @@
 - name: "chrony: Debug"
   vars:
     msg: |-
-      lp_chrony: {{ lp_chrony }}
+      ansible_os_family: {{ ansible_os_family }}
       lp_chrony_install: {{ lp_chrony_install }}
       lp_chrony_enable: {{ lp_chrony_enable }}
       lp_chrony_sanity: {{ lp_chrony_sanity }}
