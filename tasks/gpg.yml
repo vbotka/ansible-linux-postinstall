@@ -20,7 +20,7 @@
       lp_gpg_dirmngr_conf_default:
         {{ lp_gpg_dirmngr_conf_default|to_yaml(indent=2)|indent(2) }}
       lp_gpg_dirmngr_conf:
-      {{ lp_gpg_dirmngr_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_gpg_dirmngr_conf|to_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_gpg_debug|bool
@@ -33,6 +33,20 @@
     - "{{ lp_gpg_packages_extra }}"
   when: lp_gpg_install|bool
   tags: lp_gpg_packages
+
+- name: "gpg: Create directories .gnupg"
+  ansible.builtin.file:
+    state: directory
+    dest: "/home/{{ item }}/.gnupg"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: '0700'
+  loop: "{{ owners|unique|sort }}"
+  vars:
+    owners: "{{ lp_gpg_conf|map(attribute='owner') +
+                lp_gpg_agent_conf|map(attribute='owner') +
+                lp_gpg_dirmngr_conf|map(attribute='owner') }}"
+  tags: lp_gpg_dir
 
 - name: "gpg: Configure gpg.conf"
   ansible.builtin.template:
