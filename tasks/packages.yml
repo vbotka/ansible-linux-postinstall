@@ -7,6 +7,7 @@
       ansible_os_family: {{ ansible_os_family }}
       lp_packages_auto: {{ lp_packages_auto }}
       lp_packages_autoremove: {{ lp_packages_autoremove }}
+      lp_packages_rescue_end_host: {{ lp_packages_rescue_end_host }}
       lp_packages_selections_preinstall:
         {{ lp_packages_selections_preinstall|to_nice_yaml(indent=2)|indent(2) }}
       lp_packages_install:

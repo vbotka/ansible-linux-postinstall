@@ -34,27 +34,41 @@
 
 - name: "packages_auto: Create local_pkg_list"
   block:
-    - ansible.builtin.set_fact:
+    - name: "packages_auto: Create local_pkg_list_all"
+      ansible.builtin.set_fact:
         local_pkg_list_all: "{{ local_pkg_list_all + lookup('vars', item.packages) }}"
       loop: "{{ local_pkg_lists }}"
       when: lookup('vars', item.install, default=False)|bool
-    - ansible.builtin.set_fact:
+    - name: "packages_auto: Create local_pkg_list"
+      ansible.builtin.set_fact:
         local_pkg_list: "{{ local_pkg_list_all|unique|sort }}"
-  tags: lp_packages_auto
-
-- name: "packages_auto: Debug local_pkg_list"
-  ansible.builtin.debug:
-    var: local_pkg_list
-  when: lp_packages_debug|bool
+    - name: "packages_auto: Debug local_pkg_list"
+      ansible.builtin.debug:
+        var: local_pkg_list
+      when: lp_packages_debug|bool
   tags: lp_packages_auto
 
 - name: "packages_auto: Install packages"
-  ansible.builtin.package:
-    name: "{{ local_pkg_list }}"
-  register: result
-  retries: "{{ lp_install_retries }}"
-  until: result is succeeded
-  delay: "{{ lp_install_delay }}"
+  block:
+    - name: "packages_auto: Install packages"
+      ansible.builtin.package:
+        name: "{{ local_pkg_list }}"
+      register: result
+      retries: "{{ lp_install_retries }}"
+      until: result is succeeded
+      delay: "{{ lp_install_delay }}"
+  rescue:
+    - name: "packages_auto: Print errors"
+      ansible.builtin.debug:
+        msg: |
+          [ERROR] task {{ ansible_failed_task.name }} failed. End host.
+          ansible_failed_task:
+            {{ ansible_failed_task|to_yaml(indent=2)|indent(2)
+          ansible_failed_result:
+            {{ ansible_failed_result|to_yaml(indent=2)|indent(2)
+    - name: "packages_auto: End host"
+      ansible.builtin.meta: end_host
+      when: lp_packages_rescue_end_host|bool
   when: not lp_package_install_dryrun|bool
   tags: lp_packages_auto
 
