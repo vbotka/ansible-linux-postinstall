@@ -12,7 +12,7 @@
       lp_postfix_service: {{ lp_postfix_service }}
       lp_postfix_main_conf:
         {{ lp_postfix_main_conf|to_yaml(indent=2)|indent(2) }}
-      lp_chrony_packages:
+      lp_postfix_packages:
         {{ lp_postfix_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
