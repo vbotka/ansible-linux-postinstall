@@ -27,10 +27,11 @@
   tags: lp_gpg_debug
 
 - name: "gpg: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
-  loop:
-    - "{{ lp_gpg_packages }}"
-    - "{{ lp_gpg_packages_extra }}"
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_gpg_packages
+  loop: "{{ lp_gpg_packages + lp_gpg_packages_extra }}"
   when: lp_gpg_install|bool
   tags: lp_gpg_packages
 

@@ -2,8 +2,12 @@
 # linux_postinstall LaTeX
 
 - name: "latex: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_latex_packages
   loop: "{{ lp_latex_packages }}"
+  when: lp_latex_install|bool
   tags: lp_latex_packages
 
 - name: "latex: Create directory /usr/share/texmf/tex/latex"

@@ -24,7 +24,10 @@
   tags: lp_wpagui_debug
 
 - name: "wpagui: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_wpagui_packages
   loop: "{{ lp_wpagui_packages }}"
   when: lp_wpagui_install|bool
   tags: lp_wpagui_packages

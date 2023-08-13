@@ -44,7 +44,10 @@
 
 # Packages
 - name: "wpasupplicant: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_wpasupplicant_packages
   loop: "{{ lp_wpasupplicant_packages }}"
   when: lp_wpasupplicant_install|bool
   tags: lp_wpasupplicant_packages

@@ -2,8 +2,13 @@
 # linux_postinstall logrotate
 
 - name: "logrotate: Install packages for logrotate"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_logrotate_packages
   loop: "{{ lp_logrotate_packages }}"
+  when: lp_logrotate_install|bool
+  tags: lp_logrotate_packages
 
 - name: "logrotate: Configure blocks in {{ lp_logrotate_conf_file }}"
   ansible.builtin.blockinfile:
@@ -13,6 +18,7 @@
     state: "{{ item.state }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_logrotate_conf_blocks }}"
+  tags: lp_logrotate_conf_blocks
 
 - name: "logrotate: Configure lines in {{ lp_logrotate_conf_file }}"
   ansible.builtin.lineinfile:
@@ -21,6 +27,7 @@
     state: "{{ item.state }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_logrotate_conf_lines }}"
+  tags: lp_logrotate_conf_lines
 
 - name: "logrotate: Configure {{ lp_logrotate_conf_dir }}"
   ansible.builtin.blockinfile:
@@ -32,6 +39,7 @@
     group: "{{ item.group|default('root') }}"
     mode: "{{ item.mode|default('0644') }}"
   loop: "{{ lp_logrotate_confd }}"
+  tags: lp_logrotate_confd
 
 # EOF
 ...

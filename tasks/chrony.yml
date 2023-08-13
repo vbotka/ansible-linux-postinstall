@@ -33,7 +33,10 @@
   tags: lp_chrony_sanity
 
 - name: "chrony: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_chrony_packages
   loop: "{{ lp_chrony_packages }}"
   when: lp_chrony_install|bool
   tags: lp_chrony_packages

@@ -2,8 +2,12 @@
 # linux_postinstall gpsd
 
 - name: "gpsd: Install packages for gpsd"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_gpsd_packages
   loop: "{{ lp_gpsd_packages }}"
+  when: lp_gpsd_isntall|bool
   tags: lp_gpsd_packages
 
 - name: "gpsd: Add user gpsd to group dialout"

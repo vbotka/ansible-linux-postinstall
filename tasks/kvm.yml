@@ -12,8 +12,12 @@
   tags: lp_kvm_debug
 
 - name: "kvm: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_kvm_packages
   loop: "{{ lp_kvm_packages }}"
+  when: lp_kvm_install|bool
   tags: lp_kvm_packages
 
 # EOF

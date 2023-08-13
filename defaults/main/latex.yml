@@ -1,6 +1,7 @@
 ---
 
 lp_latex: false
+lp_latex_install: false
 lp_latex_download_timeout: 20
 lp_latex_macros: []
 lp_latex_get_url_ignore_errors: false

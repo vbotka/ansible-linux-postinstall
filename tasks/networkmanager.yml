@@ -25,7 +25,10 @@
 
 # Packages
 - name: "nm: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_nm_packages
   loop: "{{ lp_nm_packages }}"
   when: lp_nm_install|bool
   tags: lp_nm_packages

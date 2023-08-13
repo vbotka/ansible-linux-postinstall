@@ -6,7 +6,6 @@
     local_pkg_lists: []
     local_pkg_list_all: []
     local_pkg_list: []
-  tags: lp_packages_auto
 
 - name: "packages_auto: List variables ^lp_.*_packages$"
   ansible.builtin.set_fact:
@@ -16,7 +15,6 @@
   vars:
     arr: "{{ item.split('_') }}"
     install_var: "{{ arr.0 + '_' + arr.1 + '_install' }}"
-  tags: lp_packages_auto
 
 - name: "packages_auto: Debug local_pkg_lists"
   ansible.builtin.debug:
@@ -30,7 +28,6 @@
     pkgl: "{{ lookup('vars', item.packages) }}"
     pkgs: "{{ ( pkgl|length > 0)|ternary(pkgl|join(','), 'none') }}"
   when: lp_packages_debug|bool
-  tags: lp_packages_auto
 
 - name: "packages_auto: Create local_pkg_list"
   block:
@@ -46,7 +43,6 @@
       ansible.builtin.debug:
         var: local_pkg_list
       when: lp_packages_debug|bool
-  tags: lp_packages_auto
 
 - name: "packages_auto: Install packages"
   block:
@@ -70,7 +66,6 @@
       ansible.builtin.meta: end_host
       when: lp_packages_rescue_end_host|bool
   when: not lp_package_install_dryrun|bool
-  tags: lp_packages_auto
 
 # EOF
 ...

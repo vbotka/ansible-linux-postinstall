@@ -21,7 +21,10 @@
 
 # Packages
 - name: "networkd: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_networkd_packages
   loop: "{{ lp_networkd_packages }}"
   when: lp_networkd_install|bool
   tags: lp_networkd_packages

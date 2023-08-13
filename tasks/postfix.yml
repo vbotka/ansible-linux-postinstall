@@ -21,7 +21,10 @@
   tags: lp_postfix_debug
 
 - name: "postfix: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_postfix_packages
   loop: "{{ lp_postfix_packages }}"
   when: lp_postfix_install|bool
   tags: lp_postfix_packages

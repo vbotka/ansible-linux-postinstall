@@ -20,9 +20,13 @@
   tags: lp_libvirt_debug
 
 - name: "libvirt: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_libvirt_packages
   loop: "{{ lp_libvirt_packages }}"
-  tags: lp_libvirt_pkg
+  when: lp_libvirt_packages|bool
+  tags: lp_libvirt_packages
 
 - name: "libvirt: Configure {{ lp_libvirt_conf_dir }}"
   ansible.builtin.lineinfile:

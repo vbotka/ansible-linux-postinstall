@@ -23,7 +23,10 @@
   tags: lp_tlp_debug
 
 - name: "tlp: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_tlp_packages
   loop: "{{ lp_tlp_packages }}"
   when: lp_tlp_install|bool
   tags: lp_tlp_packages

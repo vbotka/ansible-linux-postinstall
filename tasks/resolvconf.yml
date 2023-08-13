@@ -23,7 +23,10 @@
   tags: lp_resolvconf_debug
 
 - name: "resolvconf: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_resolvconf_packages
   loop: "{{ lp_resolvconf_packages }}"
   when: lp_resolvconf_install|bool
   tags: lp_resolvconf_packages

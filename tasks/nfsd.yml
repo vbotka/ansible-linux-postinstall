@@ -2,8 +2,12 @@
 # linux_postinstall nfsd
 
 - name: "nfsd: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_nfsd_packages
   loop: "{{ lp_nfsd_packages }}"
+  when: lp_nfsd_install|bool
   tags: lp_nfsd_packages
 
 - name: "nfsd: Configure exports"

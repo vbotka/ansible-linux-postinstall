@@ -1,5 +1,7 @@
 ---
 
+lp_logrotate: false
+lp_logrotate_install: false
 lp_logrotate_conf_file: /etc/logrotate.conf
 lp_logrotate_conf_dir: /etc/logrotate.d
 lp_logrotate_conf_lines:

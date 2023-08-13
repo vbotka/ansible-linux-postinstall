@@ -296,8 +296,8 @@
 
 - name: Import logrotate.yml
   ansible.builtin.import_tasks: logrotate.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: ((ansible_os_family == 'RedHat') or
+        (ansible_os_family == 'Debian')) and lp_logrotate|bool
   tags: lp_logrotate
 
 - name: Import tlp.yml

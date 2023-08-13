@@ -42,10 +42,14 @@
   tags: lp_virtualbox_repos
 
 - name: "virtualbox: Install VirtualBox packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_virtualbox_packages
   loop: "{{ lp_virtualbox_packages }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}"  # noqa ignore-errors
-  tags: lp_virtualbox_pkg
+  when: lp_virtualbox_install|bool
+  tags: lp_virtualbox_packages
 
 - name: "virtualbox: Enable and start services"
   ansible.builtin.service:

@@ -18,8 +18,12 @@
   tags: lp_xen_debug
 
 - name: "xen: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_xen_packages
   loop: "{{ lp_xen_packages }}"
+  when: lp_xen_install|bool
   tags: lp_xen_packages
 
 - name: "xen: Configure /etc/default/grub"

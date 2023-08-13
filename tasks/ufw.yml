@@ -43,7 +43,10 @@
   tags: lp_ufw_debug
 
 - name: "ufw: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_ufw_packages
   loop: "{{ lp_ufw_packages }}"
   when: lp_ufw_install|bool
   tags: lp_ufw_packages

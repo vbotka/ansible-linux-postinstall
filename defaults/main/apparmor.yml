@@ -1,6 +1,7 @@
 ---
 
 lp_apparmor: false
+lp_apparmor_install: false
 lp_apparmor_disable: []
 lp_apparmor_complain: []
 lp_apparmor_enforce: []

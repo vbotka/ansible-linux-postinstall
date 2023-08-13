@@ -19,7 +19,10 @@
   tags: lp_zfs_debug
 
 - name: "zfs: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_zfs_packages
   loop: "{{ lp_zfs_packages }}"
   when: lp_zfs_install|bool
   tags: lp_zfs_packages

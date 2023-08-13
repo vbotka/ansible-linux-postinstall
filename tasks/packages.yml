@@ -30,17 +30,26 @@
   tags: lp_packages_selections_preinstall
 
 - name: "packages: Install packages listed in variables lp_*_packages"
-  ansible.builtin.include_tasks: packages_auto.yml
+  ansible.builtin.include_tasks:
+    file: packages_auto.yml
+    apply:
+      tags: lp_packages_auto
   when: lp_packages_auto|bool
   tags: lp_packages_auto
 
 - name: "packages: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_packages_install
   loop: "{{ lp_packages_install }}"
   tags: lp_packages_install
 
 - name: "packages: Remove packages"
-  ansible.builtin.include_tasks: fn/remove-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/remove-package.yml
+    apply:
+      tags: lp_packages_remove
   loop: "{{ lp_packages_remove }}"
   tags: lp_packages_remove
 

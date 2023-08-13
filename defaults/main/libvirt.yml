@@ -1,6 +1,7 @@
 ---
 
 lp_libvirt: false
+lp_libvirt_install: false
 lp_libvirt_debug: false
 lp_libvirt_guests_enable: false
 lp_libvirt_libvirtd_enable: false
