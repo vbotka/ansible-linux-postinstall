@@ -12,9 +12,7 @@
   ansible.builtin.set_fact:
     local_pkg_lists: "{{ local_pkg_lists + [{'install': install_var,
                                              'packages': item}] }}"
-  loop: "{{ hostvars[inventory_hostname].keys()|
-            select('regex', '^lp_.*_packages$')|
-            list|sort }}"
+  loop: "{{ query('ansible.builtin.varnames', '^lp_.*_packages$')|sort }}"
   vars:
     arr: "{{ item.split('_') }}"
     install_var: "{{ arr.0 + '_' + arr.1 + '_install' }}"
