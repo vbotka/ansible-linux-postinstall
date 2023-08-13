@@ -75,13 +75,18 @@
         msg: |
           [ERROR] task {{ ansible_failed_task.name }} failed. End host.
           ansible_failed_task:
-            {{ ansible_failed_task|to_yaml(indent=2)|indent(2)
+            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
           ansible_failed_result:
-            {{ ansible_failed_result|to_yaml(indent=2)|indent(2)
+            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
 
     - name: "chrony: End host"
       ansible.builtin.meta: end_host
-      when: lp_chrony_rescue_end_host|bool
+      when:
+        - lp_chrony_rescue_end_host|bool
+        - not ansible_check_mode
+
+    - name: "chrony: Clear host errors"
+      ansible.builtin.meta: clear_host_errors
 
 - name: "chrony: Flush handlers"
   ansible.builtin.meta: flush_handlers
