@@ -60,16 +60,16 @@
         (ansible_os_family == 'Debian')) and lp_timezone|bool
   tags: lp_timezone
 
+- name: Import timesyncd.yml
+  ansible.builtin.import_tasks: timesyncd.yml
+  when: (ansible_os_family == 'Debian') and lp_timesyncd|bool
+  tags: lp_timesyncd
+
 - name: Import chrony.yml
   ansible.builtin.import_tasks: chrony.yml
   when: ((ansible_os_family == 'RedHat') or
         (ansible_os_family == 'Debian')) and lp_chrony|bool
   tags: lp_chrony
-
-- name: Import timesyncd.yml
-  ansible.builtin.import_tasks: timesyncd.yml
-  when: (ansible_os_family == 'Debian') and lp_timesyncd|bool
-  tags: lp_timesyncd
 
 - name: Import apt.yml
   ansible.builtin.import_tasks: apt.yml
