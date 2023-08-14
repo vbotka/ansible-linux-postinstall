@@ -107,7 +107,7 @@
 - name: "udev: Debug service"
   ansible.builtin.debug:
     var: result
-  when: lp_udev_debug2|bool
+  when: lp_udev_debug2|d(false)|bool
   tags: lp_udev_service
 
 - name: "udev: Stop and disable udev"
@@ -122,7 +122,7 @@
 - name: "udev: Debug service"
   ansible.builtin.debug:
     var: result
-  when: lp_udev_debug2|bool
+  when: lp_udev_debug2|d(false)|bool
   tags: lp_udev_service
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
