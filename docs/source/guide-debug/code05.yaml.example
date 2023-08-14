@@ -6,16 +6,15 @@ ok: [srv.example.com] =>
     
     lp_tasks_enabled: []
     lp_tasks_disabled: ['lp_acpi', 'lp_aliases', 'lp_apparmor',
-    'lp_apt', 'lp_autofs', 'lp_auto_upgrades', 'lp_bluetooth',
-    'lp_debsums', 'lp_dnsmasq', 'lp_gpg', 'lp_gpsd', 'lp_grub',
-    'lp_chrony', 'lp_iptables', 'lp_kvm', 'lp_latex', 'lp_libvirt',
-    'lp_libvirt_guests_enable', 'lp_libvirt_libvirtd_enable',
-    'lp_lid', 'lp_modemmanager', 'lp_netplan', 'lp_networkd',
-    'lp_nfsd', 'lp_nm', 'lp_packages_autoremove', 'lp_passwords',
-    'lp_pm', 'lp_postfix', 'lp_reboot', 'lp_resolvconf', 'lp_smart',
-    'lp_snap', 'lp_speechd', 'lp_ssh', 'lp_sshd', 'lp_systemd',
-    'lp_swap', 'lp_timesyncd', 'lp_timezone', 'lp_tlp', 'lp_udev',
-    'lp_ufw', 'lp_virtualbox', 'lp_wpagui', 'lp_wpasupplicant',
-    'lp_xen', 'lp_zeitgeist', 'lp_zfs']
+    'lp_apt', 'lp_auto_upgrades', 'lp_autofs', 'lp_bluetooth',
+    'lp_chrony', 'lp_debsums', 'lp_dnsmasq', 'lp_gpg', 'lp_gpsd',
+    'lp_grub', 'lp_iptables', 'lp_kvm', 'lp_latex', 'lp_libvirt',
+    'lp_lid', 'lp_logrotate', 'lp_modemmanager', 'lp_netplan',
+    'lp_networkd', 'lp_nfsd', 'lp_packages_auto', 'lp_passwords',
+    'lp_postfix', 'lp_rc_local', 'lp_reboot', 'lp_resolvconf',
+    'lp_smart', 'lp_snap', 'lp_speechd', 'lp_ssh', 'lp_sshd',
+    'lp_swap', 'lp_systemd', 'lp_timesyncd', 'lp_timezone', 'lp_tlp',
+    'lp_udev', 'lp_ufw', 'lp_virtualbox', 'lp_wpagui',
+    'lp_wpasupplicant', 'lp_xen', 'lp_xorg', 'lp_zeitgeist', 'lp_zfs']
 
     ...

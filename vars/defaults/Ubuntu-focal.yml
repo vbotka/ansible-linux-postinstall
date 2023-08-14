@@ -3,11 +3,11 @@
 
 # lp_ssh: True
 # lp_ssh_config:
-#  - host: "*"
+#  - host: '*'
 #    conf:
-#      - { key: "SendEnv", val: "LANG LC_*" }
-#      - { key: "HashKnownHosts", val: "yes" }
-#      - { key: "GSSAPIAuthentication", val: "yes" }
+#      - { key: 'SendEnv', val: 'LANG LC_*' }
+#      - { key: 'HashKnownHosts', val: 'yes' }
+#      - { key: 'GSSAPIAuthentication', val: 'yes' }
 
 lp_speechd_service: speech-dispatcher
 
@@ -27,12 +27,12 @@ lp_sshd_path: /usr/sbin/sshd
 lp_modules_conf: /etc/modules
 
 lp_hosts_default:
-  - {ip: "127.0.0.1", name1: "localhost"}
-  - {ip: "::1", name1: "ip6-localhost", name2: "ip6-loopback"}
-  - {ip: "fe00::0", name1: "ip6-localnet"}
-  - {ip: "ff00::0", name1: "ip6-mcastprefix"}
-  - {ip: "ff02::1", name1: "ip6-allnodes"}
-  - {ip: "ff02::2", name1: "ip6-allrouters"}
+  - {ip: '127.0.0.1', name1: 'localhost'}
+  - {ip: '::1', name1: 'ip6-localhost', name2: 'ip6-loopback'}
+  - {ip: 'fe00::0', name1: 'ip6-localnet'}
+  - {ip: 'ff00::0', name1: 'ip6-mcastprefix'}
+  - {ip: 'ff02::1', name1: 'ip6-allnodes'}
+  - {ip: 'ff02::2', name1: 'ip6-allrouters'}
 
 lp_nfsd_packages:
   - nfs-kernel-server
@@ -66,6 +66,7 @@ lp_nm_conf_path: /etc/NetworkManager/NetworkManager.conf
 
 lp_wpasupplicant_packages:
   - wpasupplicant
+lp_wpasupplicant_bin: /usr/sbin/wpa_supplicant
 lp_wpasupplicant_conf_ctrl_interface: /run/wpa_supplicant
 # lp_wpasupplicant_conf_ctrl_interface: /var/run/wpa_supplicant
 # lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
@@ -92,14 +93,12 @@ lp_kvm_packages:
   - bridge-utils
 # - ubuntu-vm-builder
 
-lp_xen_version: "4.11"
+lp_xen_version: '4.11'
 lp_xen_packages:
-  - "xen-hypervisor-4.11-amd64"
-  - "xen-utils-4.11"
-  - "xen-utils-common"
-  - "xenstore-utils"
-# - "xen-hypervisor-{{ lp_xen_version }}-amd64"
-# - "xen-utils-{{ lp_xen_version }}"
+  - "xen-hypervisor-{{ lp_xen_version }}-amd64"
+  - "xen-utils-{{ lp_xen_version }}"
+  - xen-utils-common
+  - xenstore-utils
 # - ubuntu-virt-server
 
 lp_tlp_packages:
@@ -117,9 +116,9 @@ lp_tlp_config_file: /etc/tlp.conf
 lp_tlp_path: /usr/sbin/tlp
 
 lp_virtualbox_repos:
-  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/focal contrib"
-# - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
-#                     {{ ansible_lsb.codename }} contrib"
+  - 'deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/focal contrib'
+# - 'deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
+#                     {{ ansible_lsb.codename }} contrib'
 lp_virtualbox_services:
   - vboxautostart-service
   - vboxballoonctrl-service
@@ -138,7 +137,7 @@ lp_libvirt_packages:
   - virtinst
 lp_libvirt_conf_owner: root
 lp_libvirt_conf_group: root
-lp_libvirt_conf_mode: "0644"
+lp_libvirt_conf_mode: '0644'
 lp_libvirt_conf_dir: /etc/libvirt
 
 lp_zfs_packages:
@@ -149,13 +148,13 @@ lp_ufw_packages:
 
 lp_systemd_owner: root
 lp_systemd_group: root
-lp_systemd_mode: "0644"
+lp_systemd_mode: '0644'
 
 lp_networkd_service: systemd-networkd.service
 lp_networkd_packages: []
 
 lp_netplan_default: 01-network-manager-all.yaml
-lp_netplan_mode: "0644"
+lp_netplan_mode: '0644'
 
 # Note 1.
 # Netplan in 18.04 does not support wpa_supplicant.conf
@@ -178,10 +177,10 @@ lp_resolvconf_packages:
 lp_resolvconf_confd_head_path: /etc/resolvconf/resolv.conf.d/head
 lp_resolvconf_conf_owner: root
 lp_resolvconf_conf_group: root
-lp_resolvconf_conf_mode: "0644"
+lp_resolvconf_conf_mode: '0644'
 
 # userland paths
-# lp_dhclient: /sbin/dhclient
+lp_dhclient: /usr/sbin/dhclient
 
 lp_passwordstore_packages:
   - pass

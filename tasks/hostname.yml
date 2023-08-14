@@ -16,11 +16,11 @@
     dest: /etc/hostname
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
   when:
     - lp_hostname|length > 0
-    - ansible_os_family == "Debian"
+    - ansible_os_family == 'Debian'
 #  notify: set hostname
 
 - name: "hostname: Configure hostname"

@@ -13,7 +13,7 @@
     dest: "/etc/pm/sleep.d/{{ item.value.file }}"
     owner: root
     group: root
-    mode: "0755"
+    mode: '0755'
     backup: "{{ lp_backup_conf }}"
   with_dict: "{{ lp_pm_sleepd|default({}) }}"
   when: item.value.file|length > 0

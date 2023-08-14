@@ -4,16 +4,21 @@
 - name: "kvm: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_kvm_packages:
-        {{ lp_kvm_packages|to_nice_yaml|indent(2) }}
+        {{ lp_kvm_packages|to_nice_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_kvm_debug|bool
   tags: lp_kvm_debug
 
 - name: "kvm: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_kvm_packages
   loop: "{{ lp_kvm_packages }}"
+  when: lp_kvm_install|bool
   tags: lp_kvm_packages
 
 # EOF

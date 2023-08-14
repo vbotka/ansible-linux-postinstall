@@ -4,35 +4,52 @@
 - name: "gpg: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_gpg_install: {{ lp_gpg_install }}
       lp_gpg_packages:
-        {{ lp_gpg_packages|to_nice_yaml|indent(2) }}
+        {{ lp_gpg_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_gpg_packages_extra:
-        {{ lp_gpg_packages_extra|to_nice_yaml|indent(2) }}
+        {{ lp_gpg_packages_extra|to_nice_yaml(indent=2)|indent(2) }}
       lp_gpg_conf_default:
-        {{ lp_gpg_conf_default|to_yaml|indent(2) }}
+        {{ lp_gpg_conf_default|to_yaml(indent=2)|indent(2) }}
       lp_gpg_conf:
-        {{ lp_gpg_conf|to_yaml|indent(2) }}
+        {{ lp_gpg_conf|to_yaml(indent=2)|indent(2) }}
       lp_gpg_agent_conf_default:
-        {{ lp_gpg_agent_conf_default|to_yaml|indent(2) }}
+        {{ lp_gpg_agent_conf_default|to_yaml(indent=2)|indent(2) }}
       lp_gpg_agent_conf:
-        {{ lp_gpg_agent_conf|to_yaml|indent(2) }}
+        {{ lp_gpg_agent_conf|to_yaml(indent=2)|indent(2) }}
       lp_gpg_dirmngr_conf_default:
-        {{ lp_gpg_dirmngr_conf_default|to_yaml|indent(2) }}
+        {{ lp_gpg_dirmngr_conf_default|to_yaml(indent=2)|indent(2) }}
       lp_gpg_dirmngr_conf:
-      {{ lp_gpg_dirmngr_conf|to_yaml|indent(2) }}
+        {{ lp_gpg_dirmngr_conf|to_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_gpg_debug|bool
   tags: lp_gpg_debug
 
 - name: "gpg: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
-  loop:
-    - "{{ lp_gpg_packages }}"
-    - "{{ lp_gpg_packages_extra }}"
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_gpg_packages
+  loop: "{{ lp_gpg_packages + lp_gpg_packages_extra }}"
   when: lp_gpg_install|bool
   tags: lp_gpg_packages
+
+- name: "gpg: Create directories .gnupg"
+  ansible.builtin.file:
+    state: directory
+    dest: "/home/{{ item }}/.gnupg"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+    mode: '0700'
+  loop: "{{ owners|unique|sort }}"
+  vars:
+    owners: "{{ lp_gpg_conf|map(attribute='owner') +
+                lp_gpg_agent_conf|map(attribute='owner') +
+                lp_gpg_dirmngr_conf|map(attribute='owner') }}"
+  tags: lp_gpg_dir
 
 - name: "gpg: Configure gpg.conf"
   ansible.builtin.template:
@@ -40,7 +57,7 @@
     dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/gpg.conf') }}"
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"
-    mode: "0600"
+    mode: '0600'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_gpg_conf }}"
   loop_control:
@@ -53,13 +70,13 @@
     dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/gpg-agent.conf') }}"
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"
-    mode: "0600"
+    mode: '0600'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_gpg_agent_conf }}"
   loop_control:
     label: "{{ item.owner }}"
   register: lp_gpg_agent_conf_changes
-  notify: gpgconf kill gpg-agent
+  notify: gpgconf reload gpg-agent
   tags: lp_gpg_agent_conf
 
 - name: "gpg: Configure dirmngr.conf"
@@ -68,13 +85,13 @@
     dest: "{{ item.dest|default('/home/' ~ item.owner ~ '/.gnupg/dirmngr.conf') }}"
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"
-    mode: "0600"
+    mode: '0600'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_gpg_dirmngr_conf }}"
   loop_control:
     label: "{{ item.owner }}"
   register: lp_gpg_dirmngr_conf_changes
-  notify: gpgconf kill dirmngr
+  notify: gpgconf reload dirmngr
   tags: lp_gpg_dirmngr_conf
 
 # TODO: import keys

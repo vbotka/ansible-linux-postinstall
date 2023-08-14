@@ -2,8 +2,12 @@
 # linux_postinstall apparmor
 
 - name: "apparmor: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_apparmor_packages
   loop: "{{ lp_apparmor_packages }}"
+  when: lp_apparmor_install|bool
   tags: lp_apparmor_packages
 
 - name: "apparmor: Create list of profiles"

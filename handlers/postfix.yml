@@ -6,5 +6,11 @@
     state: restarted
   when: lp_postfix_enable|bool
 
+- name: reload postfix
+  ansible.builtin.service:
+    name: "{{ lp_postfix_service }}"
+    state: reloaded
+  when: lp_postfix_enable|bool
+
 # EOF
 ...

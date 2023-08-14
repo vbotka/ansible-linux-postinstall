@@ -16,13 +16,15 @@
 #      - { key: "SendEnv", val: "XMODIFIERS" }
 
 lp_autofs_service: autofs
-lp_timesyncd_service: systemd-timesyncd.service
-lp_postfix_service: postfix
-lp_gpsd_service: gpsd
 lp_bluetooth_service: bluetooth
-lp_udev_service: udev
-
+lp_chrony_service: chronyd
+lp_gpsd_service: gpsd
+lp_postfix_service: postfix
 lp_sshd_service: sshd
+lp_timesyncd_service: systemd-timesyncd.service
+lp_udev_service: udev
+lp_ufw_service: ufw.service
+
 lp_sshd_path: /sbin/sshd
 
 lp_modules_conf: /etc/rc.modules
@@ -78,7 +80,8 @@ lp_apparmor_profile_dir: /etc/apparmor.d
 lp_passwordstore_packages:
   - pass
 
-lp_chrony_service: chronyd
+lp_ufw_packages:
+  - ufw
 
 # EOF
 ...

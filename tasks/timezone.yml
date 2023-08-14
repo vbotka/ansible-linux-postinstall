@@ -3,7 +3,7 @@
 
 - name: "timezone: Debug"
   ansible.builtin.debug:
-    msg: "lp_timezone_zoneinfo [{{ lp_timezone_zoneinfo }}]"
+    msg: "lp_timezone_zoneinfo: {{ lp_timezone_zoneinfo }}"
   when: lp_timezone_debug|bool
   tags: lp_timezone_debug
 

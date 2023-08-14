@@ -4,22 +4,28 @@
 - name: "xen: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_xen_packages:
-        {{ lp_xen_packages|to_nice_yaml|indent(2) }}
+        {{ lp_xen_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_xen_dom0_mem:
-        {{ lp_xen_dom0_mem|to_nice_yaml|indent(2) }}
+        {{ lp_xen_dom0_mem|to_nice_yaml(indent=2)|indent(2) }}
       lp_xen_default_grub_conf:
-        {{ lp_xen_default_grub_conf|to_nice_yaml|indent(2) }}
+        {{ lp_xen_default_grub_conf|to_nice_yaml(indent=2)|indent(2) }}
       lp_xen_global:
-        {{ lp_xen_global|to_nice_yaml|indent(2) }}
+        {{ lp_xen_global|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_xen_debug|bool
   tags: lp_xen_debug
 
 - name: "xen: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_xen_packages
   loop: "{{ lp_xen_packages }}"
+  when: lp_xen_install|bool
   tags: lp_xen_packages
 
 - name: "xen: Configure /etc/default/grub"

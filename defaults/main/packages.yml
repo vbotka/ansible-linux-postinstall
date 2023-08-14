@@ -2,6 +2,7 @@
 
 lp_packages_auto: false
 lp_packages_debug: false
+lp_packages_rescue_end_host: true
 lp_packages_install: []
 lp_packages_remove: []
 lp_packages_selections_preinstall: []

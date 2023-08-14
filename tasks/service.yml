@@ -42,21 +42,22 @@
   tags: [lp_service_sanity, lp_service_auto]
 
 - name: "service: Debug"
-  ansible.builtin.debug:
-    msg: "{{ '{}'.format(msg) }}"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_service_sanity: {{ lp_service_sanity }}
       my_services:
-        {{ my_services|default({})|to_yaml|indent(2) }}
+        {{ my_services|default({})|to_yaml(indent=2)|indent(2) }}
       lp_service:
-        {{ lp_service|to_nice_yaml|indent(2) }}
+        {{ lp_service|to_nice_yaml(indent=2)|indent(2) }}
       lp_service_enable:
-        {{ lp_service_enable|to_nice_yaml|indent(2) }}
+        {{ lp_service_enable|to_nice_yaml(indent=2)|indent(2) }}
       my_service_name_vars:
-        {{ my_service_name_vars|default({})|to_nice_yaml|indent(2) }}
+        {{ my_service_name_vars|default({})|to_nice_yaml(indent=2)|indent(2) }}
       my_service_enable_vars:
-        {{ my_service_enable_vars|default({})|to_nice_yaml|indent(2) }}
+        {{ my_service_enable_vars|default({})|to_nice_yaml(indent=2)|indent(2) }}
+  ansible.builtin.debug:
+    msg: "{{ '{}'.format(msg) }}"
   when: lp_service_debug|bool
   tags: lp_service_debug
 
@@ -106,8 +107,7 @@
     sleep: "{{ item.sleep|default(omit) }}"
     use: "{{ item.use|default(omit) }}"
   loop: "{{ lp_service }}"
-  when: (item.state is defined) or
-        (item.enabled is defined)
+  when: (item.state is defined) or (item.enabled is defined)
   tags: lp_service_general
 
 # EOF

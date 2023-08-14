@@ -48,7 +48,7 @@ COMMIT
 {% endfor %}
 
 # Additional subnet policies for INPUT
-{% for item in lp_iptables_INPUT_net %}
+{% for item in lp_iptables_input_net %}
 -A INPUT -s {{ item.net }} -p {{ item.proto }} --dport {{ item.port }} -j {{ item.policy }}
 {% endfor %}
 

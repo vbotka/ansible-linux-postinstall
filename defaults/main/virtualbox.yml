@@ -2,6 +2,7 @@
 
 lp_virtualbox: false
 lp_virtualbox_debug: false
+lp_virtualbox_install: false
 lp_virtualbox_enable: false
 lp_virtualbox_ignore_errors: false
 lp_virtualbox_version: 5.2

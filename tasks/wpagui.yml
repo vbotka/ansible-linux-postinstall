@@ -15,16 +15,20 @@
 - name: "wpagui: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_wpagui_install: {{ lp_wpagui_install }}
       lp_wpagui_packages:
-        {{ lp_wpagui_packages|to_nice_yaml|indent(2) }}
+        {{ lp_wpagui_packages|to_nice_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_wpagui_debug|bool
   tags: lp_wpagui_debug
 
 - name: "wpagui: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_wpagui_packages
   loop: "{{ lp_wpagui_packages }}"
   when: lp_wpagui_install|bool
   tags: lp_wpagui_packages

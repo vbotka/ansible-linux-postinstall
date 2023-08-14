@@ -4,6 +4,7 @@
 - name: "libvirt Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_libvirt_guests_enable: {{ lp_libvirt_guests_enable }}
       lp_libvirt_libvirtd_enable: {{ lp_libvirt_libvirtd_enable }}
       lp_libvirt_conf_owner: {{ lp_libvirt_conf_owner }}
@@ -14,15 +15,20 @@
         {{ lp_libvirt_packages|to_nice_yaml|indent(2) }}
       lp_libvirt_conf:
         {{ lp_libvirt_conf|to_nice_yaml|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_libvirt_debug|bool
   tags: lp_libvirt_debug
 
 - name: "libvirt: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_libvirt_packages
   loop: "{{ lp_libvirt_packages }}"
-  tags: lp_libvirt_pkg
+  when: lp_libvirt_packages|bool
+  tags: lp_libvirt_packages
 
 - name: "libvirt: Configure {{ lp_libvirt_conf_dir }}"
   ansible.builtin.lineinfile:

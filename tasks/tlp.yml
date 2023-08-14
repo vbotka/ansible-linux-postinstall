@@ -4,26 +4,31 @@
 - name: "tlp: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_tlp_enable: {{ lp_tlp_enable }}
       lp_tlp_install: {{ lp_tlp_install }}
       lp_tlp_packages:
-        {{ lp_tlp_packages|to_nice_yaml|indent(2) }}
+        {{ lp_tlp_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_tlp_thinkpad: {{ lp_tlp_thinkpad }}
       lp_tlp_packages_tp:
-        {{ lp_tlp_packages_tp|to_nice_yaml|indent(2) }}
+        {{ lp_tlp_packages_tp|to_nice_yaml(indent=2)|indent(2) }}
       lp_tlp_config_file: {{ lp_tlp_config_file }}
       lp_tlp_config:
-        {{ lp_tlp_config|to_nice_yaml|indent(2) }}
+        {{ lp_tlp_config|to_nice_yaml(indent=2)|indent(2) }}
       lp_tlp_services:
-        {{ lp_tlp_services|to_nice_yaml|indent(2) }}
+        {{ lp_tlp_services|to_nice_yaml(indent=2)|indent(2) }}
       lp_tlp_restart_service: {{ lp_tlp_restart_service }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_tlp_debug|bool
   tags: lp_tlp_debug
 
 - name: "tlp: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_tlp_packages
   loop: "{{ lp_tlp_packages }}"
   when: lp_tlp_install|bool
   tags: lp_tlp_packages
@@ -40,7 +45,8 @@
     regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
     line: "{{ item.key }}={{ item.value }}"
     create: true
-    mode: "0644"
+    mode: '0644'
+    backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_tlp_config }}"
   notify: restart tlp
   tags: lp_tlp_conf

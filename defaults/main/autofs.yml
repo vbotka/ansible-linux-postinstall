@@ -1,7 +1,13 @@
 ---
 
 lp_autofs: false
+lp_autofs_debug: false
+lp_autofs_install: false
 lp_autofs_enable: false
+lp_autofs_flush_handlers: true
+lp_autofs_rescue_end_host: true
+lp_autofs_packages:
+  - autofs
 lp_autofs_conf_file: /etc/autofs.conf
 lp_autofs_conf: []
 lp_autofs_master_conf_file: /etc/auto.master

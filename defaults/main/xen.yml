@@ -2,6 +2,7 @@
 
 lp_xen: false
 lp_xen_debug: false
+lp_xen_install: false
 lp_xen_dom0_mem: 512M
 lp_xen_dom0_mem_max: 512M
 lp_xen_xen_override_grub_default: 0

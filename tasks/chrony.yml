@@ -4,16 +4,18 @@
 - name: "chrony: Debug"
   vars:
     msg: |-
-      lp_chrony: {{ lp_chrony }}
+      ansible_os_family: {{ ansible_os_family }}
       lp_chrony_install: {{ lp_chrony_install }}
       lp_chrony_enable: {{ lp_chrony_enable }}
       lp_chrony_sanity: {{ lp_chrony_sanity }}
+      lp_chrony_flush_handlers: {{ lp_swap_flush_handlers }}
+      lp_chrony_rescue_end_host: {{ lp_swap_rescue_end_host }}
       lp_chrony_service: {{ lp_chrony_service }}
       lp_chrony_conf_file: {{ lp_chrony_conf_file }}
       lp_chrony_conf:
-        {{ lp_chrony_conf|to_nice_yaml|indent(2) }}
+        {{ lp_chrony_conf|to_nice_yaml(indent=2)|indent(2) }}
       lp_chrony_packages:
-        {{ lp_chrony_packages|to_nice_yaml|indent(2) }}
+        {{ lp_chrony_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
       lp_timesyncd_enable: {{ lp_timesyncd_enable }}
   ansible.builtin.debug:
@@ -31,37 +33,67 @@
   tags: lp_chrony_sanity
 
 - name: "chrony: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_chrony_packages
   loop: "{{ lp_chrony_packages }}"
   when: lp_chrony_install|bool
   tags: lp_chrony_packages
 
-- name: "chrony: Configure {{ lp_chrony_conf_file }}"
-  ansible.builtin.template:
-    src: chrony.conf.j2
-    dest: "{{ lp_chrony_conf_file }}"
-    owner: root
-    group: root
-    mode: "0644"
-    backup: "{{ lp_backup_conf }}"
-  notify: restart chrony
-  tags: lp_chrony_conf
+- name: "chrony: Configure, enable, start, or disable chrony"
+  block:
 
-- name: "chrony: Enable and start chrony"
-  ansible.builtin.service:
-    name: "{{ lp_chrony_service }}"
-    state: started
-    enabled: true
-  when: lp_chrony_enable|bool
-  tags: lp_chrony_service
+    - name: "chrony: Configure {{ lp_chrony_conf_file }}"
+      ansible.builtin.template:
+        src: chrony.conf.j2
+        dest: "{{ lp_chrony_conf_file }}"
+        owner: root
+        group: root
+        mode: "0644"
+        backup: "{{ lp_backup_conf }}"
+      notify: restart chrony
+      tags: lp_chrony_conf
 
-- name: "chrony: Disable and stop chrony"
-  ansible.builtin.service:
-    name: "{{ lp_chrony_service }}"
-    state: stopped
-    enabled: false
-  when: not lp_chrony_enable|bool
-  tags: lp_chrony_service
+    - name: "chrony: Enable and start chrony"
+      ansible.builtin.service:
+        name: "{{ lp_chrony_service }}"
+        state: started
+        enabled: true
+      when: lp_chrony_enable|bool
+      tags: lp_chrony_service
+
+    - name: "chrony: Disable and stop chrony"
+      ansible.builtin.service:
+        name: "{{ lp_chrony_service }}"
+        state: stopped
+        enabled: false
+      when: not lp_chrony_enable|bool
+      tags: lp_chrony_service
+
+  rescue:
+
+    - name: "chrony: Print errors"
+      ansible.builtin.debug:
+        msg: |
+          [ERROR] task {{ ansible_failed_task.name }} failed. End host.
+          ansible_failed_task:
+            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+          ansible_failed_result:
+            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+
+    - name: "chrony: End host"
+      ansible.builtin.meta: end_host
+      when:
+        - lp_chrony_rescue_end_host|bool
+        - not ansible_check_mode
+
+    - name: "chrony: Clear host errors"
+      ansible.builtin.meta: clear_host_errors
+
+- name: "chrony: Flush handlers"
+  ansible.builtin.meta: flush_handlers
+  when: lp_chrony_flush_handlers|bool
 
 # EOF
 ...

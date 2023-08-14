@@ -4,6 +4,8 @@ lp_chrony: false
 lp_chrony_debug: false
 lp_chrony_install: false
 lp_chrony_enable: false
+lp_chrony_flush_handlers: true
+lp_chrony_rescue_end_host: true
 lp_chrony_sanity: true
 lp_chrony_packages:
   - chrony

@@ -2,6 +2,7 @@
 
 lp_smart: false
 lp_smart_debug: false
+lp_smart_install: false
 lp_smart_enable: false
 lp_smart_packages:
   - smartmontools

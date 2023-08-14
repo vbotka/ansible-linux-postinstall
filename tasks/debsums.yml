@@ -4,20 +4,29 @@
 - name: "debsums: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
+      lp_debsums_install: {{ lp_chrony_install }}
       lp_debsums_default_file: {{ lp_debsums_default_file }}
       lp_debsums_default_conf:
-        {{ lp_debsums_default_conf|to_yaml|indent(2) }}
+        {{ lp_debsums_default_conf|to_yaml(indent=2)|indent(2) }}
       lp_debsums_ignore_file: {{ lp_debsums_ignore_file }}
       lp_debsums_ignore_conf:
-        {{ lp_debsums_ignore_conf|to_nice_yaml|indent(2) }}
+        {{ lp_debsums_ignore_conf|to_nice_yaml(indent=2)|indent(2) }}
+      lp_debsums_packages:
+        {{ lp_debsums_packages|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_debsums_debug|bool
   tags: lp_debsums_debug
 
 - name: "debsums: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_debsums_packages
   loop: "{{ lp_debsums_packages }}"
+  when: lp_debsums_install|bool
   tags: lp_debsums_packages
 
 - name: "debsums: Configure {{ lp_debsums_default_file }}"

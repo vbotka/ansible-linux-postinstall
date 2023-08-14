@@ -4,24 +4,27 @@
 - name: "udev: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_udev_enable: {{ lp_udev_enable }}
+      lp_udev_service: {{ lp_udev_service }}
       lp_udev_conf_file: {{ lp_udev_conf_file }}
       lp_udev_conf:
-        {{ lp_udev_conf|to_yaml|indent(2) }}
+        {{ lp_udev_conf|to_yaml(indent=2)|indent(2) }}
       lp_udev_rules_dir: {{ lp_udev_rules_dir }}
       lp_udev_rules_template: {{ lp_udev_rules_template }}
       lp_udev_rules:
-        {{ lp_udev_rules|to_yaml|indent(2) }}
+        {{ lp_udev_rules|to_yaml(indent=2)|indent(2) }}
       lp_udev_persistent_net_template: {{ lp_udev_persistent_net_template }}
       lp_udev_persistent_net_rules_file: {{ lp_udev_persistent_net_rules_file }}
       lp_udev_persistent_net_rules:
-        {{ lp_udev_persistent_net_rules|to_nice_yaml|indent(2) }}
+        {{ lp_udev_persistent_net_rules|to_nice_yaml(indent=2)|indent(2) }}
       lp_udev_hci_name_rules_file: {{ lp_udev_hci_name_rules_file }}
       lp_udev_hci_name_rules:
-        {{ lp_udev_hci_name_rules|to_nice_yaml|indent(2) }}
+        {{ lp_udev_hci_name_rules|to_nice_yaml(indent=2)|indent(2) }}
       lp_udev_hci_run_rules_file: {{ lp_udev_hci_run_rules_file }}
       lp_udev_hci_run_rules:
-        {{ lp_udev_hci_run_rules|to_nice_yaml|indent(2) }}
+        {{ lp_udev_hci_run_rules|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_udev_debug|bool
@@ -42,7 +45,7 @@
     dest: "{{ lp_udev_rules_dir }}/{{ item.key }}"
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_rules|dict2items }}"
   loop_control:
@@ -51,6 +54,7 @@
   tags: lp_udev_rules
 
 # > > > Deprecated, use lp_udev_rules instead - - - - - - - - - - - - - - - - - -
+
 - name: "udev: Configure {{ lp_udev_rules_dir }}/
                          {{ lp_udev_persistent_net_rules_file }}"
   ansible.builtin.template:
@@ -58,11 +62,12 @@
     dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_persistent_net_rules_file }}"
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_persistent_net_rules }}"
   notify: reload udev
   tags: lp_udev_persistentnet
+
 - name: "udev: Configure {{ lp_udev_rules_dir }}/
                          {{ lp_udev_hci_name_rules_file }}"
   ansible.builtin.template:
@@ -70,11 +75,12 @@
     dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_hci_name_rules_file }}"
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_hci_name_rules }}"
   notify: reload udev
   tags: lp_udev_hciname
+
 - name: "udev: Configure {{ lp_udev_rules_dir }}/
                          {{ lp_udev_hci_run_rules_file }}"
   ansible.builtin.template:
@@ -82,11 +88,12 @@
     dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_hci_run_rules_file }}"
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_hci_run_rules }}"
   notify: reload udev
   tags: lp_udev_hcirun
+
 # - - - - - - - - - - - - - - - - - - Deprecated, use lp_udev_rules instead < < <
 
 # Service
@@ -95,7 +102,14 @@
     name: "{{ lp_udev_service }}"
     state: started
     enabled: true
+  register: result
   when: lp_udev_enable|bool
+  tags: lp_udev_service
+
+- name: "udev: Debug service"
+  ansible.builtin.debug:
+    var: result
+  when: lp_udev_debug2|d(false)|bool
   tags: lp_udev_service
 
 - name: "udev: Stop and disable udev"
@@ -103,8 +117,22 @@
     name: "{{ lp_udev_service }}"
     state: stopped
     enabled: false
+  register: result
   when: not lp_udev_enable|bool
   tags: lp_udev_service
+
+- name: "udev: Debug service"
+  ansible.builtin.debug:
+    var: result
+  when: lp_udev_debug2|d(false)|bool
+  tags: lp_udev_service
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# NOTE: ansible.builtin.service not idempotent when 'enabled: true'
+# SEE: https://github.com/ansible/ansible/issues/75542
+#      systemd module reports changed every time disabling a service
+#      that is enabled-runtime #75542
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # EOF
 ...

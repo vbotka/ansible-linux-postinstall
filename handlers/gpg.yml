@@ -1,23 +1,25 @@
 ---
 
-- name: gpgconf kill gpg-agent
+- name: gpgconf reload gpg-agent
   ansible.builtin.command:
     cmd: >
-      gpgconf --kill gpg-agent
+      gpgconf --reload gpg-agent
   loop: "{{ lp_gpg_agent_conf_changes.results }}"
   loop_control:
     label: "{{ item.item.owner }}"
-  become: "{{ item.item.owner }}"
+  become: true
+  become_user: "{{ item.item.owner }}"
   when: item.changed|bool
 
-- name: gpgconf kill dirmngr
+- name: gpgconf reload dirmngr
   ansible.builtin.command:
     cmd: >
-      gpgconf --kill dirmngr
+      gpgconf --reload dirmngr
   loop: "{{ lp_gpg_dirmngr_conf_changes.results }}"
   loop_control:
     label: "{{ item.item.owner }}"
-  become: "{{ item.item.owner }}"
+  become: true
+  become_user: "{{ item.item.owner }}"
   when: item.changed|bool
 
 # EOF

@@ -2,50 +2,112 @@
 # linux_postinstall autofs
 
 - name: "autofs: Debug"
+  vars:
+    msg: |-
+      ansible_os_family: {{ ansible_os_family }}
+      lp_autofs_install: {{ lp_autofs_install }}
+      lp_autofs_enable: {{ lp_autofs_enable }}
+      lp_autofs_flush_handlers: {{ lp_swap_flush_handlers }}
+      lp_autofs_rescue_end_host: {{ lp_swap_rescue_end_host }}
+      lp_autofs_service: {{ lp_autofs_service }}
+      lp_autofs_conf_file: {{ lp_autofs_conf_file }}
+      lp_autofs_conf:
+        {{ lp_autofs_conf|to_nice_yaml(indent=2)|indent(2) }}
+      lp_autofs_master_conf_file: {{ lp_autofs_master_conf_file }}
+      lp_autofs_master_conf:
+        {{ lp_autofs_master_conf|to_nice_yaml(indent=2)|indent(2) }}
+      lp_autofs_misc_conf_file: {{ lp_autofs_misc_conf_file }}
+      lp_autofs_misc_conf:
+        {{ lp_autofs_misc_conf|to_nice_yaml(indent=2)|indent(2) }}
+      lp_autofs_packages:
+        {{ lp_autofs_packages|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
-    msg: "lp_autofs_enable [{{ lp_autofs_enable }}]"
-  when: lp_debug|bool
+    msg: "{{ '{}'.format(msg) }}"
+  when: lp_autofs_debug|bool
+  tags: lp_autofs_debug
 
-- name: "autofs: Configure {{ lp_autofs_conf_file }}"
-  ansible.builtin.lineinfile:
-    dest: "{{ lp_autofs_conf_file }}"
-    regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
-    line: "{{ item.key }} = {{ item.value }}"
-    backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_autofs_conf }}"
-  notify: reload autofs
+- name: "autofs: Install packages"
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_autofs_packages
+  loop: "{{ lp_autofs_packages }}"
+  when: lp_autofs_install|bool
+  tags: lp_autofs_packages
 
-- name: "autofs: Configure {{ lp_autofs_master_conf_file }}"
-  ansible.builtin.lineinfile:
-    dest: "{{ lp_autofs_master_conf_file }}"
-    regexp: '^\s*{{ item.key }}\s*(.*)$'
-    line: "{{ item.key }} {{ item.value }}"
-    backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_autofs_master_conf }}"
-  notify: reload autofs
+- name: "autofs: Configure, enable, start, or disable autofs"
+  block:
 
-- name: "autofs: Configure {{ lp_autofs_misc_conf_file }}"
-  ansible.builtin.lineinfile:
-    dest: "{{ lp_autofs_misc_conf_file }}"
-    regexp: '^\s*{{ item.key }}\s*(.*)$'
-    line: "{{ item.key }} {{ item.value }}"
-    backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_autofs_misc_conf }}"
-  notify: reload autofs
+    - name: "autofs: Configure {{ lp_autofs_conf_file }}"
+      ansible.builtin.lineinfile:
+        dest: "{{ lp_autofs_conf_file }}"
+        regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
+        line: "{{ item.key }} = {{ item.value }}"
+        backup: "{{ lp_backup_conf }}"
+      loop: "{{ lp_autofs_conf }}"
+      notify: reload autofs
+      tags: lp_autofs_conf
 
-- name: "autofs: Enable and start autofs"
-  ansible.builtin.service:
-    name: "{{ lp_autofs_service }}"
-    enabled: true
-    state: started
-  when: lp_autofs_enable|bool
+    - name: "autofs: Configure {{ lp_autofs_master_conf_file }}"
+      ansible.builtin.lineinfile:
+        dest: "{{ lp_autofs_master_conf_file }}"
+        regexp: '^\s*{{ item.key }}\s*(.*)$'
+        line: "{{ item.key }} {{ item.value }}"
+        backup: "{{ lp_backup_conf }}"
+      loop: "{{ lp_autofs_master_conf }}"
+      notify: reload autofs
+      tags: lp_autofs_master_conf
 
-- name: "autofs: Stop and disable autofs"
-  ansible.builtin.service:
-    name: "{{ lp_autofs_service }}"
-    enabled: false
-    state: stopped
-  when: not lp_autofs_enable|bool
+    - name: "autofs: Configure {{ lp_autofs_misc_conf_file }}"
+      ansible.builtin.lineinfile:
+        dest: "{{ lp_autofs_misc_conf_file }}"
+        regexp: '^\s*{{ item.key }}\s*(.*)$'
+        line: "{{ item.key }} {{ item.value }}"
+        backup: "{{ lp_backup_conf }}"
+      loop: "{{ lp_autofs_misc_conf }}"
+      notify: reload autofs
+      tags: lp_autofs_miscr_conf
+
+    - name: "autofs: Enable and start autofs"
+      ansible.builtin.service:
+        name: "{{ lp_autofs_service }}"
+        enabled: true
+        state: started
+      when: lp_autofs_enable|bool
+      tags: lp_autofs_service
+
+    - name: "autofs: Stop and disable autofs"
+      ansible.builtin.service:
+        name: "{{ lp_autofs_service }}"
+        enabled: false
+        state: stopped
+      when: not lp_autofs_enable|bool
+      tags: lp_autofs_service
+
+  rescue:
+
+    - name: "autofs: Print errors"
+      ansible.builtin.debug:
+        msg: |
+          [ERROR] task {{ ansible_failed_task.name }} failed. End host.
+          ansible_failed_task:
+            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+          ansible_failed_result:
+            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+
+    - name: "autofs: End host"
+      ansible.builtin.meta: end_host
+      when:
+        - lp_autofs_rescue_end_host|bool
+        - not ansible_check_mode
+
+    - name: "autofs: Clear host errors"
+      ansible.builtin.meta: clear_host_errors
+
+- name: "autofs: Flush handlers"
+  ansible.builtin.meta: flush_handlers
+  when: lp_autofs_flush_handlers|bool
 
 # EOF
 ...

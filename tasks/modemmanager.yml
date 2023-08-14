@@ -7,7 +7,7 @@
     dest: /etc/init/modemmanager.override
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
 
 - name: "modem_manager: Stop and disable ModemManager"
   ansible.builtin.service:

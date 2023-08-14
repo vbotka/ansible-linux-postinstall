@@ -3,3 +3,6 @@
 lp_swap: false
 lp_swap_debug: false
 lp_swap_enable: false
+lp_swap_sanity: true
+lp_swap_flush_handlers: true
+lp_swap_rescue_end_host: true

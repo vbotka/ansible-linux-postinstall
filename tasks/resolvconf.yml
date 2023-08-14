@@ -4,26 +4,31 @@
 - name: "resolvconf: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_resolvconf_service: {{ lp_resolvconf_service }}
       lp_resolvconf_enable: {{ lp_resolvconf_enable }}
       lp_package_state: {{ lp_package_state }}
       lp_resolvconf_install: {{ lp_resolvconf_install }}
       lp_resolvconf_packages:
-        {{ lp_resolvconf_packages|to_nice_yaml|indent(2) }}
+        {{ lp_resolvconf_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_resolvconf_conf_owner: {{ lp_resolvconf_conf_owner }}
       lp_resolvconf_conf_group: {{ lp_resolvconf_conf_group }}
       lp_resolvconf_conf_mode: {{ lp_resolvconf_conf_mode }}
       lp_resolvconf_conf:
-        {{ lp_resolvconf_conf|to_nice_yaml|indent(2) }}
+        {{ lp_resolvconf_conf|to_nice_yaml(indent=2)|indent(2) }}
       lp_resolvconf_confd_head:
-        {{ lp_resolvconf_confd_head|to_yaml|indent(2) }}
+        {{ lp_resolvconf_confd_head|to_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_resolvconf_debug|bool
   tags: lp_resolvconf_debug
 
 - name: "resolvconf: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_resolvconf_packages
   loop: "{{ lp_resolvconf_packages }}"
   when: lp_resolvconf_install|bool
   tags: lp_resolvconf_packages

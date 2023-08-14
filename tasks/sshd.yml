@@ -4,10 +4,12 @@
 - name: "sshd: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_sshd_enable: {{ lp_sshd_enable }}
       lp_sshd_config_remove_duplicates: {{ lp_sshd_config_remove_duplicates }}
       lp_sshd_config:
-        {{ lp_sshd_config|to_yaml|indent(2) }}
+        {{ lp_sshd_config|to_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_sshd_debug|bool

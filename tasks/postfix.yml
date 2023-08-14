@@ -5,42 +5,84 @@
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
-      lp_postfix_service: {{ lp_postfix_service }}
+      lp_postfix_install: {{ lp_postfix_install }}
       lp_postfix_enable: {{ lp_postfix_enable }}
+      lp_postfix_flush_handlers: {{ lp_postfix_flush_handlers }}
+      lp_postfix_rescue_end_host: {{ lp_postfix_rescue_end_host }}
+      lp_postfix_service: {{ lp_postfix_service }}
       lp_postfix_main_conf:
-        {{ lp_postfix_main_conf|to_yaml|indent(2) }}
+        {{ lp_postfix_main_conf|to_yaml(indent=2)|indent(2) }}
+      lp_postfix_packages:
+        {{ lp_postfix_packages|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_postfix_debug|bool
   tags: lp_postfix_debug
 
-- name: "postfix: Configure /etc/postfix/main.cf"
-  ansible.builtin.lineinfile:
-    dest: /etc/postfix/main.cf
-    regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
-    line: "{{ item.key }} = {{ item.value }}"
-    backup: "{{ lp_backup_conf }}"
-    create: true
-    mode: "0644"
-  loop: "{{ lp_postfix_main_conf }}"
-  notify: reload postfix
-  tags: lp_postfix_conf
+- name: "postfix: Install packages"
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_postfix_packages
+  loop: "{{ lp_postfix_packages }}"
+  when: lp_postfix_install|bool
+  tags: lp_postfix_packages
 
-- name: "postfix: Enable and start postfix"
-  ansible.builtin.service:
-    name: "{{ lp_postfix_service }}"
-    enabled: true
-    state: started
-  when: lp_postfix_enable|bool
-  tags: lp_postfix_service
+- name: "chrony: Configure, enable, start, or disable postfix"
+  block:
 
-- name: "postfix: Disable and stop postfix"
-  ansible.builtin.service:
-    name: "{{ lp_postfix_service }}"
-    enabled: false
-    state: stopped
-  when: not lp_postfix_enable|bool
-  tags: lp_postfix_service
+    - name: "postfix: Configure /etc/postfix/main.cf"
+      ansible.builtin.lineinfile:
+        dest: /etc/postfix/main.cf
+        regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
+        line: "{{ item.key }} = {{ item.value }}"
+        backup: "{{ lp_backup_conf }}"
+        create: true
+        mode: '0644'
+      loop: "{{ lp_postfix_main_conf }}"
+      notify: reload postfix
+      tags: lp_postfix_conf
+
+    - name: "postfix: Enable and start postfix"
+      ansible.builtin.service:
+        name: "{{ lp_postfix_service }}"
+        enabled: true
+        state: started
+      when: lp_postfix_enable|bool
+      tags: lp_postfix_service
+
+    - name: "postfix: Disable and stop postfix"
+      ansible.builtin.service:
+        name: "{{ lp_postfix_service }}"
+        enabled: false
+        state: stopped
+      when: not lp_postfix_enable|bool
+      tags: lp_postfix_service
+
+  rescue:
+
+    - name: "postfix: Print errors"
+      ansible.builtin.debug:
+        msg: |
+          [ERROR] task {{ ansible_failed_task.name }} failed. End host.
+          ansible_failed_task:
+            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+          ansible_failed_result:
+            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+
+    - name: "postfix: End host"
+      ansible.builtin.meta: end_host
+      when:
+        - lp_postfix_rescue_end_host|bool
+        - not ansible_check_mode
+
+    - name: "postfix: Clear host errors"
+      ansible.builtin.meta: clear_host_errors
+
+- name: "postfix: Flush handlers"
+  ansible.builtin.meta: flush_handlers
+  when: lp_postfix_flush_handlers|bool
 
 # EOF
 ...

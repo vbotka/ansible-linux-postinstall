@@ -26,13 +26,16 @@ output either in the configuration,
 
    shell> ansible-playbook lp.yml -e lp_debug=true -t lp_debug
 
-The above command will run the single task and, in the last section,
-display in alphabetical order the values of all variables that enable
-the subsystems
+The above command will run the single debug task. In the last section,
+the values of all variables that enable the subsystems are displayed
+in alphabetical order. See ``tasks/main.yml`` on how to enable
+particular imports. Some tasks need non-empty list only. For example
+non-empty lists *lp_users* or *lp_users_groups* iterate the *user*
+module in ``tasks/users.yml``.
 
 .. literalinclude:: guide-debug/code04.yaml.example
    :language: YAML
-   :emphasize-lines: 1,28-76
+   :emphasize-lines: 1,28-78
 
 .. note:: The debug output of this role is optimized for the **yaml**
    callback plugin. Set this plugin, for example, in the environment

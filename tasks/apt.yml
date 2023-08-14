@@ -4,9 +4,10 @@
 - name: "apt: Debug"
   vars:
     msg: |-
-      lp_backup_conf: {{ lp_backup_conf }}
+      ansible_os_family: {{ ansible_os_family }}
       lp_apt_conf:
-        {{ lp_apt_conf|to_nice_yaml|indent(2) }}
+        {{ lp_apt_conf|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_apt_debug|bool

@@ -4,16 +4,18 @@
 - name: "networkd: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_networkd_install: {{ lp_networkd_install }}
       lp_networkd_packages:
-        {{ lp_networkd_packages|to_nice_yaml|indent(2) }}
+        {{ lp_networkd_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_networkd_enable: {{ lp_networkd_enable }}
       lp_networkd_service: {{ lp_networkd_service }}
       lp_networkd_conf:
-      {{ lp_networkd_conf|to_yaml|indent(2) }}
+        {{ lp_networkd_conf|to_yaml(indent=2)|indent(2) }}
       lp_systemd_owner: {{ lp_systemd_owner }}
       lp_systemd_group: {{ lp_systemd_group }}
       lp_systemd_mode: {{ lp_systemd_mode }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_networkd_debug|bool
@@ -21,7 +23,10 @@
 
 # Packages
 - name: "networkd: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_networkd_packages
   loop: "{{ lp_networkd_packages }}"
   when: lp_networkd_install|bool
   tags: lp_networkd_packages

@@ -6,20 +6,23 @@
     msg: |-
       lp_zfs_install: {{ lp_zfs_install }}
       lp_zfs_packages:
-        {{ lp_zfs_packages|to_nice_yaml|indent(2) }}
+        {{ lp_zfs_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_zfs_services:
-        {{ lp_zfs_services|default([])|to_yaml|indent(2) }}
+        {{ lp_zfs_services|default([])|to_yaml(indent=2)|indent(2) }}
       lp_zfs_manage:
-        {{ lp_zfs_manage|to_yaml|indent(2) }}
+        {{ lp_zfs_manage|to_yaml(indent=2)|indent(2) }}
       lp_zfs_mountpoints:
-        {{ lp_zfs_mountpoints|to_yaml|indent(2) }}
+        {{ lp_zfs_mountpoints|to_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_zfs_debug|bool
   tags: lp_zfs_debug
 
 - name: "zfs: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_zfs_packages
   loop: "{{ lp_zfs_packages }}"
   when: lp_zfs_install|bool
   tags: lp_zfs_packages

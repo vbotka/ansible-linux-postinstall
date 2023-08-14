@@ -6,7 +6,7 @@ lp_ufw_enable: true
 lp_ufw_debug: false
 lp_ufw_reset: false
 lp_ufw_reload: false
-lp_ufw_service: ufw
+# lp_ufw_service: ufw  # Note 1.
 lp_ufw_default: []
 lp_ufw_sysctl: []
 lp_ufw_blocks: {}
@@ -14,3 +14,7 @@ lp_ufw_conf:
   - {logging: "on"}
   - {state: enabled, policy: allow, comment: state enabled}
 lp_ufw_service_conf: []
+
+# Notes:
+#
+# 1. lp_ufw_service moved to vars

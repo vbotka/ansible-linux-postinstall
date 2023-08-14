@@ -2,8 +2,12 @@
 # linux_postinstall smart
 
 - name: "smart: Install packages"
-  ansible.builtin.include_tasks: fn/install-package.yml
+  ansible.builtin.include_tasks:
+    file: fn/install-package.yml
+    apply:
+      tags: lp_smart_packages
   loop: "{{ lp_smart_packages }}"
+  when: lp_smart_install|bool
   tags: lp_smart_packages
 
 - name: "smart: Configure {{ lp_smart_conf_file }}. Do not scan for devices"

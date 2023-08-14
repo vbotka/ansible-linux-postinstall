@@ -1,4 +1,5 @@
 ---
 
 lp_kvm: false
+lp_kvm_install: false
 lp_kvm_debug: false
