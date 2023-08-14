@@ -7,7 +7,7 @@
     apply:
       tags: lp_gpsd_packages
   loop: "{{ lp_gpsd_packages }}"
-  when: lp_gpsd_isntall|bool
+  when: lp_gpsd_install|bool
   tags: lp_gpsd_packages
 
 - name: "gpsd: Add user gpsd to group dialout"
@@ -25,7 +25,7 @@
     insertafter: EOF
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
     block: |
       rfcomm{{ item.rfcomm }} {
@@ -44,7 +44,7 @@
     dest: /etc/default/gpsd
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
   notify: restart gpsd
   tags: lp_gpsd_config
