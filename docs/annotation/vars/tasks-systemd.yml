@@ -4,9 +4,9 @@ task_systemd_synopsis: |
   Configure systemd.
 
 task_systemd_description: |
-  Set my_services (10)
+  Set my_services (13)
   ^^^^^^^^^^^^^^^^^^^^
-  Iterate ``lp_systemd_unit`` (15) and create dictionary
+  Iterate ``lp_systemd_unit`` (18) and create dictionary
   ``my_services``. It will be used by handlers to decide if and
   how to reload or restart services
 
@@ -18,22 +18,22 @@ task_systemd_description: |
          restart_or_reload: <control.restart_or_reload|default('reload')>
      ...
 
-  Debug (25)
+  Debug (31)
   ^^^^^^^^^^
   To see the values of the variables run the playbook with
-  options ``-t lp_systemd_debug -e "lp_systemd_debug=True"`` (46).
+  options ``-t lp_systemd_debug -e lp_systemd_debug=True`` (54).
 
-  Packages (50)
+  Packages (58)
   ^^^^^^^^^^^^^
-  Install packages when enabled (53).
+  Install packages when enabled (64).
 
-  Configure systemd (57)
+  Configure systemd (68)
   ^^^^^^^^^^^^^^^^^^^^^^
 
-  Use ``ini_file`` (58) to configure files (59) in loop
-  ``with_subelements`` (69-71). Register
-  ``lp_systemd_conf_changes`` (68) and notify handler ``reload
-  systemd conf`` (74).
+  Use ``community.general.ini_file`` (69) to configure files (70) in loop
+  ``with_subelements`` (80-82). Register
+  ``lp_systemd_conf_changes`` (79) and notify handler ``reload
+  systemd conf`` (85).
 
   .. code-block:: yaml
 
@@ -47,13 +47,13 @@ task_systemd_description: |
            - {section: <section>, key: <option>, val: <value>}
        ...
 
-  Create units (99)
+  Create units (110)
   ^^^^^^^^^^^^^^^^^^
 
-  Use ``template`` (100) to create units in the loop (108) when
-  ``state == 'create'`` (112. Register
-  ``lp_systemd_unit_create_changes`` (107) and notify handler
-  ``reload systemd units`` (111).
+  Use `` ansible.builtin.template`` (111) to create units in the loop
+  (119) when ``state == 'create'`` (123). Register
+  ``lp_systemd_unit_create_changes`` (118) and notify handler ``reload
+  systemd units`` (122).
 
   .. code-block:: yaml
 
@@ -67,12 +67,12 @@ task_systemd_description: |
          state: <'create' or 'absent'|default('noop')>
        ...
 
-  Remove units (121)
+  Remove units (132)
   ^^^^^^^^^^^^^^^^^^
 
   <TBD>
 
-  Control units (138)
+  Control units (149)
   ^^^^^^^^^^^^^^^^^^^
 
   .. code-block:: yaml
@@ -98,5 +98,5 @@ task_systemd_description: |
 
   <TBD>
 
-task_systemd_lines: 1,2,10,15,25,46,50,53,57-59,68-71,74,99-100,107-108,111,112,121,138
+task_systemd_lines: 1,2,13,18,31,54,58,64,64,68,70,80-82,79,85,110,111,118,119,122,123,132,149
 ...
