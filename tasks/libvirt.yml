@@ -4,6 +4,7 @@
 - name: "libvirt Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_libvirt_guests_enable: {{ lp_libvirt_guests_enable }}
       lp_libvirt_libvirtd_enable: {{ lp_libvirt_libvirtd_enable }}
       lp_libvirt_conf_owner: {{ lp_libvirt_conf_owner }}
@@ -14,6 +15,7 @@
         {{ lp_libvirt_packages|to_nice_yaml|indent(2) }}
       lp_libvirt_conf:
         {{ lp_libvirt_conf|to_nice_yaml|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_libvirt_debug|bool

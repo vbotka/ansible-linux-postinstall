@@ -17,7 +17,7 @@ lp_flavors_enable: false
 lp_flavors_dir: "{{ inventory_dir ~ '/flavors' }}"
 lp_flavors_dir_owner: admin
 lp_flavors_dir_group: adm
-lp_flavors_dir_mode: "0775"
+lp_flavors_dir_mode: '0775'
 lp_flavors:
   lsb:
     release_file: /etc/lsb-release

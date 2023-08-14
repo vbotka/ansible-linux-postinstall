@@ -4,10 +4,11 @@
 - name: "wpasupplicant: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_package_state: {{ lp_package_state }}
       lp_wpasupplicant_install: {{ lp_wpasupplicant_install }}
       lp_wpasupplicant_packages:
-        {{ lp_wpasupplicant_packages|to_nice_yaml|indent(2) }}
+        {{ lp_wpasupplicant_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_wpasupplicant_bin: {{ lp_wpasupplicant_bin }}
       lp_wpasupplicant_conf_only: {{ lp_wpasupplicant_conf_only }}
       lp_wpasupplicant_conf_dir: {{ lp_wpasupplicant_conf_dir }}
@@ -16,7 +17,7 @@
       lp_wpasupplicant_conf_mode: {{ lp_wpasupplicant_conf_mode }}
       lp_wpasupplicant_conf_ctrl_interface: {{ lp_wpasupplicant_conf_ctrl_interface }}
       lp_wpasupplicant_conf_global:
-        {{ lp_wpasupplicant_conf_global|to_yaml|indent(2) }}
+        {{ lp_wpasupplicant_conf_global|to_yaml(indent=2)|indent(2) }}
       lp_wpa_action_script: {{ lp_wpa_action_script }}
       lp_wpa_action_script_dir: {{ lp_wpa_action_script_dir }}
       lp_wpa_action_script_dir_owner: {{ lp_wpa_action_script_dir_owner }}
@@ -32,11 +33,12 @@
       lp_wpa_action_script_options_disconnect: {{ lp_wpa_action_script_options_disconnect }}
       lp_wpa_action_script_logfile: {{ lp_wpa_action_script_logfile }}
       lp_wpasupplicant_service_conf:
-        {{ lp_wpasupplicant_service_conf|to_yaml|indent(2) }}
+        {{ lp_wpasupplicant_service_conf|to_yaml(indent=2)|indent(2) }}
       {% if lp_wpasupplicant_debug_classified|bool %}
       lp_wpasupplicant_conf:
-        {{ lp_wpasupplicant_conf|to_yaml|indent(2) }}
+        {{ lp_wpasupplicant_conf|to_yaml(indent=2)|indent(2) }}
       {% endif %}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_wpasupplicant_debug|bool

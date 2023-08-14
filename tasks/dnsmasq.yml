@@ -4,14 +4,16 @@
 - name: "dnsmasq: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_dnsmasq_install: {{ lp_dnsmasq_install }}
       lp_dnsmasq_enable: {{ lp_dnsmasq_enable }}
       lp_dnsmasq_packages:
-      {{ lp_dnsmasq_packages|to_nice_yaml }}
+        {{ lp_dnsmasq_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_dnsmasq_config:
-      {{ lp_dnsmasq_config|to_nice_yaml }}
+        {{ lp_dnsmasq_config|to_nice_yaml(indent=2)|indent(2) }}
       lp_dnsmasq_hosts:
-      {{ lp_dnsmasq_hosts|to_yaml }}
+        {{ lp_dnsmasq_hosts|to_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_dnsmasq_debug|bool

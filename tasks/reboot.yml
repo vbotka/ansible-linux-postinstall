@@ -4,6 +4,7 @@
 - name: "reboot Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_reboot_force: {{ lp_reboot_force }}
       lp_reboot_required_ignore: {{ lp_reboot_required_ignore }}
       lp_reboot_required_file: {{ lp_reboot_required_file }}
@@ -27,7 +28,7 @@
       ansible.builtin.set_fact:
         reboot_required: "{{ reboot_required_file_status.exists|
                              default(false) }}"
-  when: ansible_os_family == "Debian"
+  when: ansible_os_family == 'Debian'
 
 - name: "reboot: RedHat test {{ lp_reboot_required_command }}"
   block:
@@ -40,7 +41,7 @@
       ansible.builtin.set_fact:
         reboot_required: "{{ (reboot_required_cmd_status.rc != 0)|
                               ternary(true, false) }}"
-  when: ansible_os_family == "RedHat"
+  when: ansible_os_family == 'RedHat'
 
 - name: "reboot: Debug reboot_required"
   ansible.builtin.debug:

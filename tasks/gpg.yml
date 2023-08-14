@@ -4,6 +4,7 @@
 - name: "gpg: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_gpg_install: {{ lp_gpg_install }}
       lp_gpg_packages:
         {{ lp_gpg_packages|to_nice_yaml(indent=2)|indent(2) }}
@@ -21,6 +22,7 @@
         {{ lp_gpg_dirmngr_conf_default|to_yaml(indent=2)|indent(2) }}
       lp_gpg_dirmngr_conf:
         {{ lp_gpg_dirmngr_conf|to_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_gpg_debug|bool

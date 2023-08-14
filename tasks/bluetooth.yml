@@ -4,11 +4,13 @@
 - name: "bluetooth: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_bluetooth_enable: {{ lp_bluetooth_enable }}
       lp_bluetooth_main_conf:
-        {{ lp_bluetooth_main_conf|to_yaml|indent(2) }}
+        {{ lp_bluetooth_main_conf|to_yaml(indent=2)|indent(2) }}
       lp_bluetooth_ini:
-        {{ lp_bluetooth_ini|to_yaml|indent(2) }}
+        {{ lp_bluetooth_ini|to_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_bluetooth_debug|bool

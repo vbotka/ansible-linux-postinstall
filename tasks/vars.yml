@@ -3,11 +3,11 @@
 
 - name: "vars: Include firstfound default vars"
   ansible.builtin.include_tasks: vars_firstfound.yml
-  when: lp_vars_distro == "firstfound"
+  when: lp_vars_distro == 'firstfound'
 
 - name: "vars: Include incremental default vars"
   ansible.builtin.include_tasks: vars_incremental.yml
-  when: lp_vars_distro == "incremental"
+  when: lp_vars_distro == 'incremental'
 
 - name: "vars: Include firstfound default vars for various flavors"
   ansible.builtin.include_tasks: sub/vars_flavors.yml

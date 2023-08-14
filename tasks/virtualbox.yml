@@ -10,9 +10,9 @@
       lp_virtualbox_keys: {{ lp_virtualbox_keys }}
       lp_virtualbox_repos: {{ lp_virtualbox_repos }}
       lp_virtualbox_packages:
-        {{ lp_virtualbox_packages|to_nice_yaml|indent(2) }}
+        {{ lp_virtualbox_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_virtualbox_services:
-        {{ lp_virtualbox_services|to_nice_yaml|indent(2) }}
+        {{ lp_virtualbox_services|to_nice_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_virtualbox_debug|bool

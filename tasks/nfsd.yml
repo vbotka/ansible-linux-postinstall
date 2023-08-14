@@ -16,7 +16,7 @@
     dest: /etc/exports
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
   notify: reload nfsd
   tags: lp_nfsd_exports
 

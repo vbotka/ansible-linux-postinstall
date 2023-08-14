@@ -4,6 +4,7 @@
 - name: "udev: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_udev_enable: {{ lp_udev_enable }}
       lp_udev_service: {{ lp_udev_service }}
       lp_udev_conf_file: {{ lp_udev_conf_file }}
@@ -23,6 +24,7 @@
       lp_udev_hci_run_rules_file: {{ lp_udev_hci_run_rules_file }}
       lp_udev_hci_run_rules:
         {{ lp_udev_hci_run_rules|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_udev_debug|bool
@@ -60,7 +62,7 @@
     dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_persistent_net_rules_file }}"
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_persistent_net_rules }}"
   notify: reload udev
@@ -73,7 +75,7 @@
     dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_hci_name_rules_file }}"
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_hci_name_rules }}"
   notify: reload udev
@@ -86,7 +88,7 @@
     dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_hci_run_rules_file }}"
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_hci_run_rules }}"
   notify: reload udev

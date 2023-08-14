@@ -4,15 +4,17 @@
 - name: "modules: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_modules_conf: {{ lp_modules_conf }}
       lp_modules:
-        {{ lp_modules|to_yaml|indent(2) }}
+        {{ lp_modules|to_yaml(indent=2)|indent(2) }}
       lp_modules_options_path:  {{ lp_modules_options_path }}
       lp_modules_options:
-        {{ lp_modules_options|to_nice_yaml|indent(2) }}
+        {{ lp_modules_options|to_nice_yaml(indent=2)|indent(2) }}
       lp_modules_blacklist_path: {{ lp_modules_blacklist_path }}
       lp_modules_blacklist:
-        {{ lp_modules_blacklist|to_nice_yaml|indent(2) }}
+        {{ lp_modules_blacklist|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_modules_debug|bool

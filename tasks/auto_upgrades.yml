@@ -7,7 +7,7 @@
     dest: /etc/apt/apt.conf.d/20auto-upgrades
     owner: root
     group: root
-    mode: "0644"
+    mode: '0644'
     backup: "{{ lp_backup_conf }}"
 
 - name: "auto_upgrades: Disable and stop unattended-upgrades"

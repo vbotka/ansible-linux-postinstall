@@ -4,6 +4,7 @@
 - name: "nm: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_nm_install: {{ lp_nm_install }}
       lp_nm_packages:
         {{ lp_nm_packages|to_nice_yaml(indent=2)|indent(2) }}
@@ -18,6 +19,7 @@
       lp_nm_mask: {{ lp_nm_mask }}
       lp_nm_service_mask:
         {{ lp_nm_services_mask|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_nm_debug|bool

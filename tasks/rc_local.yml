@@ -4,7 +4,7 @@
 - name: "rc_local: Debug"
   vars:
     msg: |-
-      lp_backup_conf: {{ lp_backup_conf }}
+      ansible_os_family: {{ ansible_os_family }}
       lp_rc_local_service: {{ lp_rc_local_service }}
       lp_rc_local_state: {{ lp_rc_local_state }}
       lp_rc_local_template: {{ lp_rc_local_template }}
@@ -13,7 +13,8 @@
       lp_rc_local_group: {{ lp_rc_local_group }}
       lp_rc_local_mode: {{ lp_rc_local_mode }}
       lp_rc_local_content:
-      {{ lp_rc_local_content }}
+        {{ lp_rc_local_content|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_rc_local_debug|bool

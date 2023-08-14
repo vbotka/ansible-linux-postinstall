@@ -4,6 +4,7 @@
 - name: "repos: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_repos_keys:
         {{ lp_repos_keys|to_nice_yaml(indent=2)|indent(2) }}
       lp_repos:

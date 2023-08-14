@@ -14,14 +14,14 @@
   ansible.builtin.file:
     state: directory
     path: /usr/share/texmf/tex/latex
-    mode: "0755"
+    mode: '0755'
   tags: lp_latex_dir
 
 - name: "latex: Create directories for macros"
   ansible.builtin.file:
     state: directory
     path: "{{ item.dest }}"
-    mode: "0755"
+    mode: '0755'
   loop: "{{ lp_latex_macros }}"
   tags: lp_latex_macros
 

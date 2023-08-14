@@ -1,11 +1,11 @@
 ---
 # linux_postinstall ufw
 
-#   Notes
+# Notes
 #
 # 1.Aliases of parameters in ufw module not implemented in task
 #   "Configure ufw".
-# 2.It's not necessary to reload ufs after configuration has
+# 2.It's not necessary to reload ufw after configuration has
 #   changed. Module ufw automatically updates the rules.
 # 3.Best practice: First time 'lp_ufw_reset: true'; configure and enable
 #   ufs (configuration item {state: 'enabled'} reloads firewall and
@@ -21,6 +21,7 @@
 - name: "ufw: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_ufw_install: {{ lp_ufw_install }}
       lp_ufw_enable: {{ lp_ufw_enable }}
       lp_ufw_reset: {{ lp_ufw_reset }}
@@ -37,6 +38,7 @@
         {{ lp_ufw_conf|to_yaml(indent=2)|indent(2) }}
       lp_ufw_service_conf:
         {{ lp_ufw_service_conf|to_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_ufw_debug|bool
@@ -91,9 +93,7 @@
     insertbefore: "{{ item.1.insertbefore|default(omit) }}"
     insertafter: "{{ item.1.insertafter|default(omit) }}"
     backup: "{{ lp_backup_conf }}"
-  with_subelements:
-    - "{{ lp_ufw_blocks|dict2items }}"
-    - value
+  loop: "{{ lp_ufw_blocks|dict2items|subelements('value') }}"
   loop_control:
     label: "{{ item.0.key }} {{ item.1.mark }}"
   notify: reload ufw

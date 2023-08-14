@@ -4,8 +4,9 @@
 - name: "kvm: Debug"
   vars:
     msg: |-
+      ansible_os_family: {{ ansible_os_family }}
       lp_kvm_packages:
-        {{ lp_kvm_packages|to_nice_yaml|indent(2) }}
+        {{ lp_kvm_packages|to_nice_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_kvm_debug|bool
