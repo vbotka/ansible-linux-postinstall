@@ -12,7 +12,15 @@ wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 [Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io)
 
-This role and the documentation is work in progress. If the documentation of a task is missing it's necessary to review the [source code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks) to learn how to use it. If a functionality is missing consider role [config_light](https://galaxy.ansible.com/vbotka/config_light). See various [examples](https://github.com/vbotka/ansible-config-light/tree/master/contrib). If *config_light* is not able to do what you want create new tasks.
+This role and the documentation is work in progress. If the
+documentation of a task is missing it's necessary to review the
+[source
+code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks)
+to learn how to use it. If a functionality is missing consider role
+[config_light](https://galaxy.ansible.com/vbotka/config_light). See
+various
+[examples](https://github.com/vbotka/ansible-config-light/tree/master/contrib). If
+*config_light* is not able to do what you want create new tasks.
 
 Feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-linux-postinstall/issues).
 
@@ -29,7 +37,9 @@ This may be different from the platforms in Ansible Galaxy which does not offer 
 released versions in time and would report an error. For example:
 `IMPORTER101: Invalid platform: "Ubuntu focal", skipping.`
 
-Support for other platforms is work in progress. Some tasks are supported also by Centos. You're encouraged to fit the variables in *vars/defaults* and test the tasks on your own.
+Support for other platforms is work in progress. Some tasks are
+supported also by Centos. You're encouraged to fit the variables in
+*vars/defaults* and test the tasks on your own.
 
 ## Requirements
 
@@ -50,10 +60,16 @@ See defaults and examples in vars.
 
 ## Workflow
 
-1. Install the role and collections
+1. Install the role and collection vbotka.linux_postinstall
 
 ```
 shell> ansible-galaxy role install vbotka.linux_postinstall
+```
+
+The collections ansible.posix and community.general are included in
+the mainstream ansible packages. If they are missing install them
+
+```
 shell> ansible-galaxy collection install ansible.posix
 shell> ansible-galaxy collection install community.general
 ```
@@ -264,7 +280,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [LaTeX - Ubuntu Help community](https://help.ubuntu.com/community/LaTeX)
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
 - [LaTeX CTAN: macros/latex/contrib/](https://www.ctan.org/tex-archive/macros/latex/contrib/)
-- [LaTex - LinuxConfig][How to install LaTex on Ubuntu 22.04 Jammy Jellyfish](https://linuxconfig.org/how-to-install-latex-on-ubuntu-22-04-jammy-jellyfish-linux)
+- [LaTex How to install LaTex on Ubuntu 22.04 Jammy Jellyfish - LinuxConfig](https://linuxconfig.org/how-to-install-latex-on-ubuntu-22-04-jammy-jellyfish-linux)
 - [libvirt](https://libvirt.org/)
 - [libvirt - Ubuntu Help](https://help.ubuntu.com/lts/serverguide/libvirt.html.en)
 - [libvirt Xen4 - CentOS Wiki](https://wiki.centos.org/HowTos/Xen/Xen4QuickStart/Xen4Libvirt)
