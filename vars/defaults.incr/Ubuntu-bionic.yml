@@ -1,6 +1,9 @@
 ---
 # Ubuntu 18.04 Bionic vars linux-postinstall incremental
 
+lp_udev_enable_module: sysvinit
+lp_udev_path: /usr/bin/udevadm
+
 lp_virtualbox_repos:
   - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/bionic contrib"
 # - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/

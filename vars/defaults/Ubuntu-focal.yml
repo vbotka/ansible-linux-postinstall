@@ -19,6 +19,7 @@ lp_bluetooth_service: bluetooth
 lp_auto_upgrades_service: unattended-upgrades
 
 lp_udev_service: udev
+lp_udev_enable_module: sysvinit
 lp_udev_path: /usr/bin/udevadm
 
 lp_sshd_service: ssh
