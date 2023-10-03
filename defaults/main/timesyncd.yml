@@ -3,7 +3,7 @@
 lp_timesyncd: false
 lp_timesyncd_debug: false
 lp_timesyncd_enable: true
-lp_timesyncd_ntp: ""
+lp_timesyncd_ntp: ''
 lp_timesyncd_fallbackntp: ntp.ubuntu.com
 lp_timesyncd_rootdistancemaxsec: 5
 lp_timesyncd_pollintervalminsec: 32

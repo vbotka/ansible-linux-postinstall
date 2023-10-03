@@ -2,4 +2,4 @@
 
 lp_modemmanager: false
 lp_modemmanager_enable: true
-lp_modemmanager_override: ""
+lp_modemmanager_override: ''
