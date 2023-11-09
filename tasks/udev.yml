@@ -5,7 +5,7 @@
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
-      lp_udev_debug2: {{ lp_udev_debug2 }}
+      lp_udev_debug2: {{ lp_udev_debug2|d(false)|bool }}
       lp_udev_enable: {{ lp_udev_enable }}
       lp_udev_enable_module: {{ lp_udev_enable_module }}
       lp_udev_service: {{ lp_udev_service }}
