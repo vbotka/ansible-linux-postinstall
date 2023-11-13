@@ -1,6 +1,6 @@
 ---
 lp_service_debug: true
-lp_service_enable: []
+lp_service_auto: []
 lp_service: []
 #  - { name: apache2, state: stopped, enabled: no }
 #  - { name: apache-htcacheclean, state: stopped, enabled: no }

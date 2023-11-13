@@ -5,6 +5,14 @@ vbotka.linux_postinstall 2.4 Release Notes
 .. contents:: Topics
 
 
+2.4.3
+=====
+
+Release Summary
+---------------
+Rename lp_service_enable to lp_service_auto
+
+
 2.4.2
 =====
 

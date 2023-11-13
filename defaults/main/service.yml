@@ -14,7 +14,7 @@ lp_service: []
 
 # Automatic management
 # List of managed services
-lp_service_enable:
+lp_service_auto:
   - auto_upgrades
   - autofs
   - bluetooth

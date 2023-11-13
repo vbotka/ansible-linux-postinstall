@@ -15,7 +15,7 @@
 #     use: "{{ lookup('vars', 'lp_udev_module', default='auto') }}"
 
 # Automatic management
-lp_service_enable:
+lp_service_auto:
  - auto_upgrades
  - autofs
  - bluetooth
