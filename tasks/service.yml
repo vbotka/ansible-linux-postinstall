@@ -14,8 +14,8 @@
       lp_service_module_valid: {{ lp_service_module_valid }}
       lp_service:
         {{ lp_service|to_nice_yaml(indent=2)|indent(2) }}
-      lp_service_enable:
-        {{ lp_service_enable|to_nice_yaml(indent=2)|indent(2) }}
+      lp_service_auto:
+        {{ lp_service_auto|to_nice_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_service_debug|bool
@@ -27,14 +27,14 @@
     - name: "service: Get service facts"
       ansible.builtin.service_facts:
 
-    - name: "service: Sanity lp_service_enable items are defined"
+    - name: "service: Sanity lp_service_auto items are defined"
       ansible.builtin.assert:
         that: my_services_undef|length == 0
         fail_msg: "[ERR] Undefined services: {{ my_services_undef }}"
         quiet: "{{ lp_service_sanity_quiet }}"
-      when: lp_service_enable|length > 0
+      when: lp_service_auto|length > 0
       vars:
-        my_services_alias: "{{ lp_service_enable }}"
+        my_services_alias: "{{ lp_service_auto }}"
 
     - name: "service: Sanity lp_service names are defined"
       ansible.builtin.assert:
@@ -63,7 +63,7 @@
         state: "{{ srv_enbl|bool|ternary('started', 'stopped') }}"
         enabled: "{{ srv_enbl|bool }}"
         use: "{{ use_modl }}"
-      loop: "{{ lp_service_enable }}"
+      loop: "{{ lp_service_auto }}"
       loop_control:
         label: "{{ srv_name }} enabled: {{ srv_enbl }} use: {{ use_modl }}"
       register: result
@@ -78,7 +78,7 @@
     - name: "service: Debug"
       ansible.builtin.include_tasks: fn/service-debug.yml
 
-  when: lp_service_enable|length > 0
+  when: lp_service_auto|length > 0
   tags: lp_service_auto
 
 - name: Manual management of listed services

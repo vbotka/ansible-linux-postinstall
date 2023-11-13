@@ -174,19 +174,21 @@ shell> ansible-playbook linux-postinstall.yml -t lp_packages
 
 ## Auto-management of services
 
-Variable `lp_service_enable` contains a list of services automatically
+Variable `lp_service_auto` contains a list of services automatically
 managed by the task [service.yml](tasks/service.yml). A *service* will
 be manged by the task [service.yml](tasks/service.yml) if
 `lp_<service>: true`. Setting `lp_<service>: false` will disable
 management of the *service* by the task
-[service.yml](tasks/service.yml). Variable `lp_<service>_enable`
-controls the status of the *service*. For example service *udev* will
-be enabled, because it is listed among `lp_service_enable` and by
-default
+[service.yml](tasks/service.yml). Variables `lp_<service>_enable` and
+`lp_<service>_state` control the enablement and state of the
+*service*. For example, service *udev*, if set `lp_udev: true,` will
+be enabled and started because it is listed among `lp_service_auto`
+and by default ([precedence 2.](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_variables.html#understanding-variable-precedence)):
 
 ```yaml
-lp_udev: true
+lp_udev: false
 lp_udev_enable: true
+lp_udev_state: started
 ```
 
 Run the following command to see what services will be managed.
