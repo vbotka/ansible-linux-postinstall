@@ -41,6 +41,7 @@ Support for other platforms is work in progress. Some tasks are
 supported also by Centos. You're encouraged to fit the variables in
 *vars/defaults* and test the tasks on your own.
 
+
 ## Requirements
 
 ### Roles
@@ -50,6 +51,7 @@ supported also by Centos. You're encouraged to fit the variables in
 ### Collections
 
 * ansible.posix
+* ansible.utils
 * community.general
 
 
@@ -62,21 +64,22 @@ See defaults and examples in vars.
 
 1. Install the role and collection vbotka.linux_postinstall
 
-```
+```bash
 shell> ansible-galaxy role install vbotka.linux_postinstall
 ```
 
 The collections ansible.posix and community.general are included in
 the mainstream ansible packages. If they are missing install them
 
-```
+```bash
 shell> ansible-galaxy collection install ansible.posix
+shell> ansible-galaxy collection install ansible.utils
 shell> ansible-galaxy collection install community.general
 ```
 
 2. Change variables, e.g. in vars/main.yml
 
-```
+```bash
 shell> editor vbotka.linux_postinstall/vars/main.yml
 ```
 
@@ -90,7 +93,7 @@ shell> editor vbotka.linux_postinstall/vars/main.yml
 
 3. Create the inventory
 
-```
+```ini
 shell> cat hosts
 [group1]
 host1.example.com
@@ -103,7 +106,7 @@ ansible_perl_interpreter=/usr/bin/perl
 
 4. Create the playbook
 
-```
+```yaml
 shell> cat linux-postinstall.yml
 - hosts: group1
   become: yes
@@ -115,7 +118,7 @@ shell> cat linux-postinstall.yml
 
 5. Run the playbook
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml
 ```
 
@@ -124,25 +127,25 @@ shell> ansible-playbook linux-postinstall.yml
 
 Check syntax of the playbook
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml --syntax-check
 ```
 
 Review variables. Optionally detect and store flavors
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml -t lp_vars
 ```
 
 Run the playbook in check mode
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml --check
 ```
 
 If all is right run the playbook twice. In second run all tasks shall be OK and 0 changed, unreachable and failed.
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml
 ```
 
@@ -151,7 +154,7 @@ shell> ansible-playbook linux-postinstall.yml
 
 Packages listed in the variables ``lp_*_packages`` will be automatically installed by the tasks/packages.yml if enabled by variable ``lp_*`` . For example
 
-```
+```yaml
 lp_libvirt: true
 lp_libvirt_packages:
   - libvirt0
@@ -164,26 +167,35 @@ lp_libvirt_packages:
 
 The packages listed in ``lp_libvirt_packages`` will be included in the packages installed by
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml -t lp_packages
 ```
 
 
 ## Auto-management of services
 
-Variable `lp_service_enable` contains a list of services automatically managed by the task [service.yml](tasks/service.yml). A *service* will be manged by the task [service.yml](tasks/service.yml) if `lp_<service>: true`. Setting `lp_<service>: false` will disable management of the *service* by the task [service.yml](tasks/service.yml). Variable `lp_<service>_enable` controls the status of the *service*. For example service *udev* will be enabled, because it is listed among `lp_service_enable` and by default
+Variable `lp_service_enable` contains a list of services automatically
+managed by the task [service.yml](tasks/service.yml). A *service* will
+be manged by the task [service.yml](tasks/service.yml) if
+`lp_<service>: true`. Setting `lp_<service>: false` will disable
+management of the *service* by the task
+[service.yml](tasks/service.yml). Variable `lp_<service>_enable`
+controls the status of the *service*. For example service *udev* will
+be enabled, because it is listed among `lp_service_enable` and by
+default
 
-```
+```yaml
 lp_udev: true
 lp_udev_enable: true
 ```
 
 Run the following command to see what services will be managed.
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml -e lp_service_debug=true -t lp_service_debug
 
 ```
+
 See [service.yml](tasks/service.yml) for details.
 
 
@@ -191,7 +203,7 @@ See [service.yml](tasks/service.yml) for details.
 
 1. Configure users, sudoers and persistent network interfaces
 
-```
+```bash
 ansible-playbook linux-postinstall.yml -t lp_vars
 ansible-playbook linux-postinstall.yml -t lp_hostname                                              
 ansible-playbook linux-postinstall.yml -t lp_groups
@@ -205,25 +217,25 @@ ansible-playbook linux-postinstall.yml -t lp_reboot -e 'lp_reboot=true lp_reboot
 
 2. Configure the firewall. For example iptables
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml -t lp_iptables
 ```
 
 3. Test installation of the packages
 
-```
+```bash
 shell> ansible-playbook -t lp_packages -e 'lp_package_install_dryrun=true' linux-postinstall.yml
 ```
 
 4. Install packages
 
-```
+```bash
 shell> ansible-playbook -t lp_packages linux-postinstall.yml
 ```
 
 5. Check, install and configure other tasks
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml --check
 shell> ansible-playbook linux-postinstall.yml
 ```

@@ -10,7 +10,7 @@ vbotka.linux_postinstall 2.4 Release Notes
 
 Release Summary
 ---------------
-Update tasks/service.yml. Add changelog. Fixes.
+Update tasks/service.yml; Require collection ansible.utils; Add changelog. Fixes.
 
 Minor changes
 -------------
