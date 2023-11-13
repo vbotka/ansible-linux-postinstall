@@ -10,12 +10,24 @@ vbotka.linux_postinstall 2.4 Release Notes
 
 Release Summary
 ---------------
-Add changelog. Fixes.
+Update tasks/service.yml. Add changelog. Fixes.
 
 Minor changes
 -------------
 * Add changelog.
+* Update service.yml
 
+  * Update automatic and manual management of listed services
+  * Add sanity. Test lp_service names are defined,
+    lp_service_enable items are defined, and valid lp_service_module
+  * Add variables: lp_service_module, lp_service_module_valid; Add
+    dynamic variables: my_services_all, my_services_regex,
+    my_services_alias, my_services_names, my_services_undef
+  * Default lp_smart_state=stopped; lp_udev_state=started;
+  * Rename variable lp_udev_enable_module to lp_udev_module (default
+    service)
+  * Add handler reexec systemd daemon
+  
 Bufixes
 -------
 * Fix default lp_udev_debug2|d(false)|bool

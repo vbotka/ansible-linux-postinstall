@@ -224,7 +224,7 @@
 
 # smart
 # lp_smart: true
-# lp_smart_service_name: "smartmontools"
+# lp_smart_service: "smartmontools"
 # lp_smart_conf_file: "/etc/smartd.conf"
 # lp_smart_conf_owner: "root"
 # lp_smart_conf_group: "root"
@@ -469,9 +469,6 @@
 #   qemu-sanlock.conf: {}
 #   virtlockd.conf: {}
 #   virt-login-shell.conf: {}
-
-# lp_service:
-# - {name: apache2, state: stopped, enabled: false}
 
 # lp_fstab_entries:
 #   - name: /windows

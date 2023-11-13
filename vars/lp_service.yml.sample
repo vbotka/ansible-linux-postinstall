@@ -1,0 +1,32 @@
+---
+
+# Manual management
+# lp_service_module: service
+# lp_service:
+#   - name: apache2
+#     enabled: false
+#     state: stopped
+#   - name: "{{ lookup('vars', 'lp_smart_service') }}"
+#     enabled: "{{ lookup('vars', 'lp_smart_enable', default=false) }}"
+#     state: "{{ lookup('vars', 'lp_smart_state', default='stopped') }}"
+#   - name: "{{ lookup('vars', 'lp_udev_service') }}"
+#     enabled: "{{ lookup('vars', 'lp_udev_enable', default=false) }}"
+#     state: "{{ lookup('vars', 'lp_udev_state', default='stopped') }}"
+#     use: "{{ lookup('vars', 'lp_udev_module', default='auto') }}"
+
+# Automatic management
+lp_service_enable:
+ - auto_upgrades
+ - autofs
+ - bluetooth
+ - postfix
+ - resolvconf
+ - smart
+ - speechd
+ - sshd
+ - timesyncd
+ - udev
+ - ufw
+
+# EOF
+...
