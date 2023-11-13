@@ -1,0 +1,7 @@
+---
+# linux_postinstall function service-sysvinit
+
+- name: "service:sysvinit"
+  ansible.builtin.debug:
+    msg: "[WARNING] Not implemented yet. End host."
+- ansible.builtin.meta: end_host

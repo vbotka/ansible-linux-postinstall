@@ -1,0 +1,27 @@
+- name: "service:systemd: Debug Manual management full results"
+  ansible.builtin.debug:
+    var: result
+  when: lp_service_debug2|d(false)|bool
+
+- name: "service:systemd: Debug Manual management selected results"
+  ansible.builtin.debug:
+    msg: |
+      {% for i in result.results %}
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      changed: {{ i.changed }}
+      item:
+        {{ i.item|to_nice_yaml(indent=2)|indent(2) }}
+      {% if i.skipped|d(false) %}
+      skip_reason: {{ i.skip_reason }}
+      {% else %}
+      name: {{ i.name|d('UNDEFINED') }}
+      enabled: {{ i.enabled|d('UNDEFINED') }}
+      state: {{ i.state|d('UNDEFINED') }}
+      msg: {{ i.msg|d('UNDEFINED') }}
+      invocation:
+        {{ i.invocation.module_args|to_nice_yaml(indent=2)|indent(2) }}
+      {% endif %}
+      {% endfor %}
+  when: lp_service_debug|bool
+
+#       {{ i.invocation.module_args|to_nice_yaml(indent=2)|indent(2) }}

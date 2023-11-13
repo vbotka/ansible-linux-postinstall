@@ -8,7 +8,7 @@ lp_xen_dom0_mem_max: 512M
 lp_xen_xen_override_grub_default: 0
 lp_xen_default_grub_conf:
   - key: GRUB_CMDLINE_XEN_DEFAULT
-    value: "\"dom0_mem={{ lp_xen_dom0_mem }}, max:{{ lp_xen_dom0_mem_max }}\""
+    value: '"dom0_mem={{ lp_xen_dom0_mem }}, max:{{ lp_xen_dom0_mem_max }}"'
   - key: XEN_OVERRIDE_GRUB_DEFAULT
     value: "{{ lp_xen_xen_override_grub_default }}"
 lp_xen_global: []

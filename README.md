@@ -12,7 +12,15 @@ wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 [Documentation at readthedocs.io](https://ansible-linux-postinstall.readthedocs.io)
 
-This role and the documentation is work in progress. If the documentation of a task is missing it's necessary to review the [source code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks) to learn how to use it. If a functionality is missing consider role [config_light](https://galaxy.ansible.com/vbotka/config_light). See various [examples](https://github.com/vbotka/ansible-config-light/tree/master/contrib). If *config_light* is not able to do what you want create new tasks.
+This role and the documentation is work in progress. If the
+documentation of a task is missing it's necessary to review the
+[source
+code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks)
+to learn how to use it. If a functionality is missing consider role
+[config_light](https://galaxy.ansible.com/vbotka/config_light). See
+various
+[examples](https://github.com/vbotka/ansible-config-light/tree/master/contrib). If
+*config_light* is not able to do what you want create new tasks.
 
 Feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-linux-postinstall/issues).
 
@@ -29,7 +37,10 @@ This may be different from the platforms in Ansible Galaxy which does not offer 
 released versions in time and would report an error. For example:
 `IMPORTER101: Invalid platform: "Ubuntu focal", skipping.`
 
-Support for other platforms is work in progress. Some tasks are supported also by Centos. You're encouraged to fit the variables in *vars/defaults* and test the tasks on your own.
+Support for other platforms is work in progress. Some tasks are
+supported also by Centos. You're encouraged to fit the variables in
+*vars/defaults* and test the tasks on your own.
+
 
 ## Requirements
 
@@ -40,6 +51,7 @@ Support for other platforms is work in progress. Some tasks are supported also b
 ### Collections
 
 * ansible.posix
+* ansible.utils
 * community.general
 
 
@@ -50,17 +62,24 @@ See defaults and examples in vars.
 
 ## Workflow
 
-1. Install the role and collections
+1. Install the role and collection vbotka.linux_postinstall
 
-```
+```bash
 shell> ansible-galaxy role install vbotka.linux_postinstall
+```
+
+The collections ansible.posix and community.general are included in
+the mainstream ansible packages. If they are missing install them
+
+```bash
 shell> ansible-galaxy collection install ansible.posix
+shell> ansible-galaxy collection install ansible.utils
 shell> ansible-galaxy collection install community.general
 ```
 
 2. Change variables, e.g. in vars/main.yml
 
-```
+```bash
 shell> editor vbotka.linux_postinstall/vars/main.yml
 ```
 
@@ -74,7 +93,7 @@ shell> editor vbotka.linux_postinstall/vars/main.yml
 
 3. Create the inventory
 
-```
+```ini
 shell> cat hosts
 [group1]
 host1.example.com
@@ -87,7 +106,7 @@ ansible_perl_interpreter=/usr/bin/perl
 
 4. Create the playbook
 
-```
+```yaml
 shell> cat linux-postinstall.yml
 - hosts: group1
   become: yes
@@ -99,7 +118,7 @@ shell> cat linux-postinstall.yml
 
 5. Run the playbook
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml
 ```
 
@@ -108,25 +127,25 @@ shell> ansible-playbook linux-postinstall.yml
 
 Check syntax of the playbook
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml --syntax-check
 ```
 
 Review variables. Optionally detect and store flavors
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml -t lp_vars
 ```
 
 Run the playbook in check mode
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml --check
 ```
 
 If all is right run the playbook twice. In second run all tasks shall be OK and 0 changed, unreachable and failed.
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml
 ```
 
@@ -135,7 +154,7 @@ shell> ansible-playbook linux-postinstall.yml
 
 Packages listed in the variables ``lp_*_packages`` will be automatically installed by the tasks/packages.yml if enabled by variable ``lp_*`` . For example
 
-```
+```yaml
 lp_libvirt: true
 lp_libvirt_packages:
   - libvirt0
@@ -148,26 +167,35 @@ lp_libvirt_packages:
 
 The packages listed in ``lp_libvirt_packages`` will be included in the packages installed by
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml -t lp_packages
 ```
 
 
 ## Auto-management of services
 
-Variable `lp_service_enable` contains a list of services automatically managed by the task [service.yml](tasks/service.yml). A *service* will be manged by the task [service.yml](tasks/service.yml) if `lp_<service>: true`. Setting `lp_<service>: false` will disable management of the *service* by the task [service.yml](tasks/service.yml). Variable `lp_<service>_enable` controls the status of the *service*. For example service *udev* will be enabled, because it is listed among `lp_service_enable` and by default
+Variable `lp_service_enable` contains a list of services automatically
+managed by the task [service.yml](tasks/service.yml). A *service* will
+be manged by the task [service.yml](tasks/service.yml) if
+`lp_<service>: true`. Setting `lp_<service>: false` will disable
+management of the *service* by the task
+[service.yml](tasks/service.yml). Variable `lp_<service>_enable`
+controls the status of the *service*. For example service *udev* will
+be enabled, because it is listed among `lp_service_enable` and by
+default
 
-```
+```yaml
 lp_udev: true
 lp_udev_enable: true
 ```
 
 Run the following command to see what services will be managed.
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml -e lp_service_debug=true -t lp_service_debug
 
 ```
+
 See [service.yml](tasks/service.yml) for details.
 
 
@@ -175,7 +203,7 @@ See [service.yml](tasks/service.yml) for details.
 
 1. Configure users, sudoers and persistent network interfaces
 
-```
+```bash
 ansible-playbook linux-postinstall.yml -t lp_vars
 ansible-playbook linux-postinstall.yml -t lp_hostname                                              
 ansible-playbook linux-postinstall.yml -t lp_groups
@@ -189,25 +217,25 @@ ansible-playbook linux-postinstall.yml -t lp_reboot -e 'lp_reboot=true lp_reboot
 
 2. Configure the firewall. For example iptables
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml -t lp_iptables
 ```
 
 3. Test installation of the packages
 
-```
+```bash
 shell> ansible-playbook -t lp_packages -e 'lp_package_install_dryrun=true' linux-postinstall.yml
 ```
 
 4. Install packages
 
-```
+```bash
 shell> ansible-playbook -t lp_packages linux-postinstall.yml
 ```
 
 5. Check, install and configure other tasks
 
-```
+```bash
 shell> ansible-playbook linux-postinstall.yml --check
 shell> ansible-playbook linux-postinstall.yml
 ```
@@ -264,7 +292,7 @@ shell> ansible-playbook linux-postinstall.yml
 - [LaTeX - Ubuntu Help community](https://help.ubuntu.com/community/LaTeX)
 - [LaTeX CTAN: Comprehensive TEX Archive Network](https://ctan.org/)
 - [LaTeX CTAN: macros/latex/contrib/](https://www.ctan.org/tex-archive/macros/latex/contrib/)
-- [LaTex - LinuxConfig][How to install LaTex on Ubuntu 22.04 Jammy Jellyfish](https://linuxconfig.org/how-to-install-latex-on-ubuntu-22-04-jammy-jellyfish-linux)
+- [LaTex How to install LaTex on Ubuntu 22.04 Jammy Jellyfish - LinuxConfig](https://linuxconfig.org/how-to-install-latex-on-ubuntu-22-04-jammy-jellyfish-linux)
 - [libvirt](https://libvirt.org/)
 - [libvirt - Ubuntu Help](https://help.ubuntu.com/lts/serverguide/libvirt.html.en)
 - [libvirt Xen4 - CentOS Wiki](https://wiki.centos.org/HowTos/Xen/Xen4QuickStart/Xen4Libvirt)

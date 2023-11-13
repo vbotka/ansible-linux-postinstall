@@ -4,7 +4,7 @@ lp_acpi: false
 lp_acpi_dir: /etc/acpi
 lp_acpi_owner: root
 lp_acpi_group: root
-lp_acpi_event_mode: "0644"
-lp_acpi_action_mode: "0755"
+lp_acpi_event_mode: '0644'
+lp_acpi_action_mode: '0755'
 lp_acpi_events: {}
 lp_acpi_actions: {}

@@ -5,7 +5,9 @@
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
+      lp_udev_debug2: {{ lp_udev_debug2|d(false)|bool }}
       lp_udev_enable: {{ lp_udev_enable }}
+      lp_udev_enable_module: {{ lp_udev_enable_module }}
       lp_udev_service: {{ lp_udev_service }}
       lp_udev_conf_file: {{ lp_udev_conf_file }}
       lp_udev_conf:
@@ -53,7 +55,7 @@
   notify: reload udev
   tags: lp_udev_rules
 
-# > > > Deprecated, use lp_udev_rules instead - - - - - - - - - - - - - - - - - -
+  # > > > Deprecated, use lp_udev_rules instead - - - - - - - - - - - - - - - - - -
 
 - name: "udev: Configure {{ lp_udev_rules_dir }}/
                          {{ lp_udev_persistent_net_rules_file }}"
@@ -94,45 +96,79 @@
   notify: reload udev
   tags: lp_udev_hcirun
 
-# - - - - - - - - - - - - - - - - - - Deprecated, use lp_udev_rules instead < < <
+  # - - - - - - - - - - - - - - - - - - Deprecated, use lp_udev_rules instead < < <
 
-# Service
+  # Service
+
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  # NOTE: ansible.builtin.service not idempotent when 'enabled: true'
+  # SEE: https://github.com/ansible/ansible/issues/75542
+  #      systemd module reports changed every time disabling a service
+  #      that is enabled-runtime #75542
+  # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+- name: "udev: Debug ansible_facts.services"
+  block:
+    - name: "udev: Get ansible_facts.services"
+      ansible.builtin.service_facts:
+    - name: "udev: Debug ansible_facts.services"
+      ansible.builtin.debug:
+        var: ansible_facts.services
+  when: lp_udev_debug2|d(false)|bool
+
 - name: "udev: Start and enable udev"
-  ansible.builtin.service:
-    name: "{{ lp_udev_service }}"
-    state: started
-    enabled: true
-  register: result
+  block:
+
+    - name: "udev: Start and enable udev (sysvinit)"
+      ansible.builtin.sysvinit:
+        name: "{{ lp_udev_service }}"
+        state: started
+        enabled: true
+      register: result
+      when: lp_udev_enable_module == 'sysvinit'
+
+    - name: "udev: Start and enable udev (systemd)"
+      ansible.builtin.systemd:
+        name: "{{ lp_udev_service }}"
+        state: started
+        enabled: true
+      register: result
+      when: lp_udev_enable_module == 'systemd'
+
+    - name: "udev: Start and enable udev (service)"
+      ansible.builtin.service:
+        name: "{{ lp_udev_service }}"
+        state: started
+        enabled: true
+      register: result
+      when: lp_udev_enable_module == 'service'
+
+    - name: "udev: Debug result"
+      ansible.builtin.debug:
+        var: result
+      when: lp_udev_debug2|d(false)|bool
+
   when: lp_udev_enable|bool
   tags: lp_udev_service
 
-- name: "udev: Debug service"
-  ansible.builtin.debug:
-    var: result
-  when: lp_udev_debug2|d(false)|bool
-  tags: lp_udev_service
-
 - name: "udev: Stop and disable udev"
-  ansible.builtin.service:
-    name: "{{ lp_udev_service }}"
-    state: stopped
-    enabled: false
-  register: result
+  block:
+
+    - name: "udev: Stop and disable udev"
+      ansible.builtin.service:
+        name: "{{ lp_udev_service }}"
+        state: stopped
+        enabled: false
+      register: result
+
+    - name: "udev: Debug result"
+      ansible.builtin.debug:
+        var: result
+      when: lp_udev_debug2|d(false)|bool
+
   when: not lp_udev_enable|bool
   tags: lp_udev_service
 
-- name: "udev: Debug service"
-  ansible.builtin.debug:
-    var: result
-  when: lp_udev_debug2|d(false)|bool
-  tags: lp_udev_service
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# NOTE: ansible.builtin.service not idempotent when 'enabled: true'
-# SEE: https://github.com/ansible/ansible/issues/75542
-#      systemd module reports changed every time disabling a service
-#      that is enabled-runtime #75542
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # EOF
 ...

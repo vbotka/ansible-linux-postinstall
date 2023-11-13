@@ -1,6 +1,9 @@
 ---
 # Ubuntu 19.04 Bionic vars linux-postinstall incremental
 
+lp_udev_enable_module: sysvinit
+lp_udev_path: /usr/bin/udevadm
+
 lp_kvm_packages:
   - qemu
   - qemu-kvm

@@ -11,7 +11,7 @@ lp_ufw_default: []
 lp_ufw_sysctl: []
 lp_ufw_blocks: {}
 lp_ufw_conf:
-  - {logging: "on"}
+  - {logging: 'on'}
   - {state: enabled, policy: allow, comment: state enabled}
 lp_ufw_service_conf: []
 

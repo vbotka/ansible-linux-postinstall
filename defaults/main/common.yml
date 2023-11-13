@@ -5,8 +5,8 @@
 # Put distro and flavor specific vars and overrides to the vars
 # directory.
 
-lp_hostname: ""
-lp_fqdn: ""
+lp_hostname: ''
+lp_fqdn: ''
 
 lp_debug: false
 lp_backup_conf: false

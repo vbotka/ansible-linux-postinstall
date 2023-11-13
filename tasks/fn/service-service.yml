@@ -1,0 +1,48 @@
+---
+# linux_postinstall function service-service
+
+- name: "service: Manual management of listed services"
+  ansible.builtin.service:
+    name: "{{ item.name }}"
+    arguments: "{{ item.arguments|default(omit) }}"
+    enabled: "{{ item.enabled|default(omit) }}"
+    pattern: "{{ item.pattern|default(omit) }}"
+    runlevel: "{{ item.runlevel|default(omit) }}"
+    sleep: "{{ item.sleep|default(omit) }}"
+    state: "{{ item.state|default(omit) }}"
+    use: "{{ item.use|default(omit) }}"
+  loop: "{{ lp_service }}"
+  loop_control:
+    label: >-
+      {{ item.name }}
+      enabled: {{ item.enabled|d('UNDEFINED') }}
+      state: {{ item.state|d('UNDEFINED') }}
+      use: {{ item.use|d('UNDEFINED') }}
+  register: result
+  notify: "reload {{ ansible_service_mgr }} daemon"
+
+- name: "service: Debug Manual management full results"
+  ansible.builtin.debug:
+    var: result
+  when: lp_service_debug2|d(false)|bool
+
+- name: "service: Debug Manual management selected results"
+  ansible.builtin.debug:
+    msg: |
+      {% for i in result.results %}
+      # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+      changed: {{ i.changed }}
+      name: {{ i.name|d('UNDEFINED') }}
+      enabled: {{ i.enabled|d('UNDEFINED') }}
+      state: {{ i.state|d('UNDEFINED') }}
+      msg: {{ i.msg|d('UNDEFINED') }}
+
+      invocation:
+        {{ i.invocation.module_args|to_nice_yaml(indent=2)|indent(2) }}
+      item:
+        {{ i.item|to_nice_yaml(indent=2)|indent(2) }}
+      {% endfor %}
+  when: lp_service_debug|bool
+
+# EOF
+...

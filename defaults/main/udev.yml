@@ -3,6 +3,8 @@
 lp_udev: false
 lp_udev_debug: false
 lp_udev_enable: true
+lp_udev_state: started
+lp_udev_module: service  #75542 workaround; systemd not idempotent
 lp_udev_conf_file: /etc/udev/udev.conf
 lp_udev_conf: []
 lp_udev_rules_dir: /etc/udev/rules.d

@@ -2,14 +2,22 @@
 
 lp_service_debug: false
 lp_service_sanity: true
+lp_service_sanity_quiet: true
+
+# Manual management
+# Module to manage listed services
+lp_service_module: auto
+# List of valid modules
+lp_service_module_valid: [auto, service, systemd, sysvinit]
+# List of managed services
 lp_service: []
+
+# Automatic management
+# List of managed services
 lp_service_enable:
   - auto_upgrades
   - autofs
   - bluetooth
-  - gpsd
-  - libvirt_guests
-  - libvirt_libvirtd
   - postfix
   - resolvconf
   - smart
@@ -18,6 +26,18 @@ lp_service_enable:
   - timesyncd
   - udev
   - ufw
+# - gpsd
+# - libvirt_guests
+# - libvirt_libvirtd
 # - snap  WIP
 # - tlp   [TODO] add list of services
 # - nm    [TODO] add list of services
+
+# Dynamic variables my_services_*
+my_services_all: "{{ ansible_facts.services.keys() }}"
+my_services_regex: "({{ my_services_alias|join('|') }})"
+my_services_names: "{{ query('vars', *query('varnames', '^lp_' ~ my_services_regex ~ '_service$'))|sort }}"
+my_services_undef: "{{ my_services_names|difference(my_services_all) }}"
+
+# EOF
+...
