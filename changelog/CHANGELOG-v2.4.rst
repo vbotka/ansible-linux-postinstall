@@ -12,6 +12,11 @@ Release Summary
 ---------------
 Update docs.
 
+Minor cahnges
+-------------
+* Update docs. annotatioin lists, annotation service.yml, guide
+  service.
+
 
 2.4.3
 =====

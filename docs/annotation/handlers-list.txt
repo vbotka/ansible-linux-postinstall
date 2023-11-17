@@ -26,4 +26,5 @@ systemd.yml
 timesyncd.yml
 tlp.yml
 udev.yml
+ufw.yml
 wpasupplicant.yml

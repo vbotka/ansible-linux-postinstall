@@ -14,6 +14,7 @@ dnsmasq.yml
 fstab.yml
 gpg.yml
 gpsd.yml
+groups.yml
 grub.yml
 hostname.yml
 hosts.yml
@@ -31,6 +32,8 @@ networkmanager.yml
 nfsd.yml
 packages_auto.yml
 packages.yml
+fn/install-package.yml
+fn/remove-package.yml
 passwords.yml
 pm_utils.yml
 postfix.yml
@@ -39,6 +42,10 @@ reboot.yml
 repos.yml
 resolvconf.yml
 service.yml
+fn/service-service.yml
+fn/service-systemd.yml
+fn/service-sysvinit.yml
+fn/service-debug.yml
 smart.yml
 snap.yml
 speechd.yml

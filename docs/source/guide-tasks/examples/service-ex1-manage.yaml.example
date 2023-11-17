@@ -1,0 +1,73 @@
+shell> ansible-playbook lp.yml -t lp_service_auto -e lp_service_debug=true
+
+  ...
+
+TASK [vbotka.linux_postinstall : service: Automatic management of listed services] *************
+ok: [test_01] => (item=unattended-upgrades enabled: False use: auto)
+ok: [test_01] => (item=autofs enabled: False use: auto)
+ok: [test_01] => (item=bluetooth enabled: True use: auto)
+
+  ...
+
+TASK [vbotka.linux_postinstall : service:systemd: Debug Manual management selected results] ****
+ok: [test_01] => 
+  msg: |-
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    changed: False
+    item:
+      auto_upgrades
+  
+    name: unattended-upgrades
+    enabled: False
+    state: stopped
+    msg: UNDEFINED
+    invocation:
+      daemon_reexec: false
+      daemon_reload: false
+      enabled: false
+      force: null
+      masked: null
+      name: unattended-upgrades
+      no_block: false
+      scope: system
+      state: stopped
+  
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    changed: False
+    item:
+      autofs
+  
+    name: autofs
+    enabled: False
+    state: stopped
+    msg: UNDEFINED
+    invocation:
+      daemon_reexec: false
+      daemon_reload: false
+      enabled: false
+      force: null
+      masked: null
+      name: autofs
+      no_block: false
+      scope: system
+      state: stopped
+  
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    changed: False
+    item:
+      bluetooth
+  
+    name: bluetooth
+    enabled: True
+    state: started
+    msg: UNDEFINED
+    invocation:
+      daemon_reexec: false
+      daemon_reload: false
+      enabled: true
+      force: null
+      masked: null
+      name: bluetooth
+      no_block: false
+      scope: system
+      state: started

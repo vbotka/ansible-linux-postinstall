@@ -427,6 +427,30 @@ Description of the task.
 
 
 
+.. _as_groups.yml:
+
+groups.yml
+----------
+
+Synopsis: Configure groups.
+
+
+Description of the task.
+
+
+[`tasks/groups.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/groups.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/groups.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
 .. _as_grub.yml:
 
 grub.yml
@@ -850,6 +874,54 @@ Description of the task.
 
 
 
+.. _as_install-package.yml:
+
+install-package.yml
+-------------------
+
+Synopsis: Configure install-package.
+
+
+Description of the task.
+
+
+[`tasks/fn/install-package.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/install-package.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/fn/install-package.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
+.. _as_remove-package.yml:
+
+remove-package.yml
+------------------
+
+Synopsis: Configure remove-package.
+
+
+Description of the task.
+
+
+[`tasks/fn/remove-package.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/remove-package.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/fn/remove-package.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
 .. _as_passwords.yml:
 
 passwords.yml
@@ -1026,62 +1098,38 @@ service.yml
 Synopsis: Configure services.
 
 
-Set my_service_name_vars (10)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The task will iterate the list ``lp_service_enable`` (14) and
-look for variables ``lp_<item>`` (13). If the variable exists and
-is ``True`` *(default='false')* an item will be added to the
-list ``my_service_name_vars`` (12). The item is a *{key: value}*
-hash where the *key* is the name of the service in this role and
-the *value* is the OS specific name of the service stored in the
-variable ``lp_<item>_service`` (13). The best practice is to
-configure variables ``lp_<item>_service`` in files placed in the
-directory ``vars/defaults``.
+Debug (6)
+^^^^^^^^^
 
-Set my_service_enable_vars (18)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The next task will iterate the same list ``lp_service_enable``
-(22) and condition (23). The created list
-``my_service_enable_vars`` (20) will keep the *{key: value}* hashes
-with the *value* of the variable ``lp_<item>_enable`` (21).
+TBD
 
-Get service_facts and create dict my_services (26)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Run module ``service_facts`` (29) and combine dictionary
-``my_services`` (32). This dictionary will be used to test a
-service is available when ``lp_service_sanity`` is enabled
-*(default: True)*.
+Sanity (24)
+^^^^^^^^^^^
 
-Debug (44)
-^^^^^^^^^^
-To see what services (49,51,53,55,57) will be managed run the
-playbook with options ``-t lp_service_debug -e
-"lp_service_debug=True"``.
+TBD
 
-Debug sanity lp_service_enable (65)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To see what services (68,70) will be tested when
-``lp_service_sanity`` is enabled (72) run playbook with options
-``-t lp_service_debug,lp_service_sanity -e
-"lp_service_debug=True"``.
+Automatic management of listed services (57)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Sanity lp_service_enable (76)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-If ``lp_service_sanity`` is enabled (81) test if all services in
-the list ``my_service_name_vars`` are available in the list of
-installed services ``my_services`` (84). Fail (82) when there
-are undefined services.
+If not empty (81) iterate ``lp_service_auto`` (66). Skip when ``lp_
+~ item`` (73) is not *True* (70). Get (74) and use (62) the OS
+dependent name of the service. Get (75) and set (64) the service
+enablement. If enabled set state (63) *started*. Get (76) and use
+the module (65).
 
-Manage services listed in lp_service_enable (91)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To configure the services listed in the variable
-*lp_service_enable* run the playbook with the tag ``-t
-lp_service_auto`` (97).
-
-Manage services listed in lp_service (99)
+Manual management of listed services (84)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To configure the services listed in the variable *lp_service*
-run the playbook with the tag ``-t lp_service_general`` (111).
+
+If not empty (95) iterate ``lp_service`` in the included tasks
+(93). If *auto* (90) set the module (89) to ``ansible_service_mgr``
+(OS native service manager found by the *setup*). TBC
+
+Flush handlers (98)
+^^^^^^^^^^^^^^^^^^^
+
+Automatic management of listed services notifies
+``ansible_service_mgr`` (71). See the tasks service-\*.yml how manual
+management options notify handlers.
 
 
 [`tasks/service.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/service.yml>`_]
@@ -1090,7 +1138,103 @@ run the playbook with the tag ``-t lp_service_general`` (111).
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/service.yml
     :language: Yaml
-    :emphasize-lines: 10,12-14,18,20-23,26,29,32,44,49,51,53,55,57,65,68,70,72,76,81,82,84,91,97,99,111
+    :emphasize-lines: 6,24,57,62,63,64,65,66,70,71,73,74,75,76,81,84,89,90,93,95,98
+    :linenos:
+
+
+
+
+
+.. _as_service-service.yml:
+
+service-service.yml
+-------------------
+
+Synopsis: Configure service-service.
+
+
+Description of the task.
+
+
+[`tasks/fn/service-service.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/service-service.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/fn/service-service.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
+.. _as_service-systemd.yml:
+
+service-systemd.yml
+-------------------
+
+Synopsis: Configure service-systemd.
+
+
+Description of the task.
+
+
+[`tasks/fn/service-systemd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/service-systemd.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/fn/service-systemd.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
+.. _as_service-sysvinit.yml:
+
+service-sysvinit.yml
+--------------------
+
+Synopsis: Configure service-sysvinit.
+
+
+Description of the task.
+
+
+[`tasks/fn/service-sysvinit.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/service-sysvinit.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/fn/service-sysvinit.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
+
+
+
+
+.. _as_service-debug.yml:
+
+service-debug.yml
+-----------------
+
+Synopsis: Configure service-debug.
+
+
+Description of the task.
+
+
+[`tasks/fn/service-debug.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/service-debug.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../tasks/fn/service-debug.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
     :linenos:
 
 
