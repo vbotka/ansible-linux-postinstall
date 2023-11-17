@@ -10,13 +10,13 @@ vbotka.linux_postinstall 2.4 Release Notes
 
 Release Summary
 ---------------
-Update docs.
+Update docs. Fixes.
 
 Minor cahnges
 -------------
 * Update docs. annotatioin lists, annotation service.yml, guide
   service.
-
+* Fix tags in 'service: Flush handlers'
 
 2.4.3
 =====

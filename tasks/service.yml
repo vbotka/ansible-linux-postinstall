@@ -97,6 +97,9 @@
 
 - name: "service: Flush handlers"
   ansible.builtin.meta: flush_handlers
+  tags:
+    - lp_service_auto
+    - lp_service_manual
 
 # EOF
 ...
