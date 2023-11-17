@@ -1,13 +1,16 @@
 ---
+
 lp_smart: false
 lp_smart_enable: false
+lp_smart_state: stopped
+lp_smart_service: smartmontools
+
 lp_smart_packages:
   - smartmontools
-lp_smart_service_name: "smartmontools"
-lp_smart_conf_file: "/etc/smartd.conf"
-lp_smart_conf_owner: "root"
-lp_smart_conf_group: "root"
-lp_smart_conf_mode: "644"
+lp_smart_conf_file: /etc/smartd.conf
+lp_smart_conf_owner: root
+lp_smart_conf_group: root
+lp_smart_conf_mode: '0644'
 
 # man smartctl
 # -a Prints all SMART information about the disk. Equivalent to
@@ -30,7 +33,8 @@ lp_smart_conf_mode: "644"
 # Current_Pending_Sector count - no Attribute 197; can't monitor
 # Offline_Uncorrectable count - no Attribute 198; no SMART Self-test
 # Log, ignoring -l selftest; no SMART Error Log, ignoring -l error
+
 lp_smart_devices:
-  - {regexp: "^/dev/sda", line: "/dev/sda -H -f -t -o on -S on -s (S/../.././02|L/../../6/03) -m admin"}
-# - {regexp: "^/dev/sda", line: "/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin"}
-# - {regexp: "^/dev/sdb", line: "/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin"}
+  - {regexp: '^/dev/sda', line: '/dev/sda -H -f -t -o on -S on -s (S/../.././02|L/../../6/03) -m admin'}
+# - {regexp: '^/dev/sda', line: '/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin'}
+# - {regexp: '^/dev/sdb', line: '/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin'}
