@@ -147,38 +147,50 @@ automatic management of services
       - smart
       - udev
 
-See the tasks what services are implemented (acpi,
-apparmor, auto_upgrades, ..., zfs). For each service, there are four
-variables of the form
+See the tasks what services are implemented (acpi, apparmor,
+auto_upgrades, ..., zfs). For each service, there are five variables
+of the form
 
 .. code-block:: text
 
     lp_<service_name> ........... included if true (default=false)
-    lp_<service_name>_service ... OS specific name (see defaults and vars)
+    lp_<service_name>_service ... OS specific name (default=<service_name>)
     lp_<service_name>_enable .... enabled if true (default=false)
+    lp_<service_name>_state ..... started if true (default=<fn(enabled)>)
     lp_<service_name>_module .... module used (default=auto)
 
-where *service_name* is the name of the task. Only the variables
-*lp_<service_name>_service* are mandatory. The names of services may
-vary among the operating systems. The variable *lp_<service_name>* is
-used both to import the tasks in *tasks/main.yml* and to enable automatic
-management of the service. If this variable is *false* neither the
-tasks will be imported nor the service will be managed
-automatically. The default value of the variables *lp_<service_name>*
-is *false* (see defaults). For example, given the below variables, the
-service *udev* will be set enabled and started by the module *service*
-if *udev* is included in the list *lp_service_auto*
+where *service_name* is the name of the task.
+
+* lp_<service_name> is used both to import the tasks in
+  *tasks/main.yml* and to enable automatic management of the
+  service. If this variable is *false* neither the tasks will be
+  imported nor the service will be managed automatically. The default
+  value is *false* (see defaults).
+
+* lp_<service_name>_service is the name of the service. The names of
+  services may vary among the operating systems. The default is
+  <service_name>
+
+* lp_<service_name>_enable is what you think it is. The default is
+  false.
+
+* lp_<service_name>_state is also what you think it is. The default
+  state of the service is derived from the variable
+  *lp_<service_name>_enable*. If enabled the state is set *started*
+  otherwise it is set *stopped*.
+
+* lp_<service_name>_module is a name of Ansible module used in the
+  parameter *use* of the module *service. The default is *auto*.
+
+For example, given the below variables, the service *udev* will be set
+enabled and started by the module *service* if *udev* is included in
+the list *lp_service_auto*
 
 .. code-block:: yaml
 
     lp_udev: true
-    lp_udev_service: udev
     lp_udev_enable: true
     lp_udev_module: service
-
-The state of the service is derived from the variable
-*lp_<service_name>_enable*. If enabled the state is set *started*
-otherwise it is set *stopped*.
 
 .. seealso::
 

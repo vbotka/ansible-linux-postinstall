@@ -11,6 +11,7 @@ according the below variables
     lp_<service_name> ........... included if true (default=false)
     lp_<service_name>_service ... Os specific name (see defaults and vars)
     lp_<service_name>_enable .... enabled if true (default=false)
+    lp_<service_name>_state ..... started if true (default=<fn(enabled)>)
     lp_<service_name>_module .... module used (default=auto)
 
 For example, given the below variables, the service *udev* will be set
@@ -46,10 +47,6 @@ of services `lp_service_auto` that shall be managed by this task
    lp_service_auto:
      - smart
      - udev
-
-.. note:: It is possible to set only **state: started/stopped** and
-          **enabled: true/false** for services listed in
-          **lp_service_auto**.
 	  
 .. hint:: Use the variable **lp_service** to set other parameters.
    
