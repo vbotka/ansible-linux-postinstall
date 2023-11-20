@@ -31,6 +31,7 @@
       ansible.builtin.assert:
         that: my_services_undef|length == 0
         fail_msg: "[ERR] Undefined services: {{ my_services_undef }}"
+        success_msg: "[OK]  All service names in lp_service_auto are valid."
         quiet: "{{ lp_service_sanity_quiet }}"
       when: lp_service_auto|length > 0
       vars:
@@ -40,6 +41,7 @@
       ansible.builtin.assert:
         that: my_services_undef|length == 0
         fail_msg: "[ERR] Undefined services: {{ my_services_undef }}"
+        success_msg: "[OK]  All service names in lp_service are valid."
         quiet: "{{ lp_service_sanity_quiet }}"
       when: lp_service|length > 0
       vars:
@@ -49,6 +51,7 @@
       ansible.builtin.assert:
         that: lp_service_module in lp_service_module_valid
         fail_msg: "[ERR] {{ lp_service_module }} not in {{ lp_service_module_valid }}"
+        success_msg: "[OK]  {{ lp_service_module }} is valid value of lp_service_module."
         quiet: "{{ lp_service_sanity_quiet }}"
 
   when: lp_service_sanity|bool

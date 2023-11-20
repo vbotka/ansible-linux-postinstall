@@ -1,60 +1,67 @@
 .. _ug_task_service_ex2:
 
-Example 2: Manage services listed in lp_service
-"""""""""""""""""""""""""""""""""""""""""""""""
+Example 2: Manual management of services
+""""""""""""""""""""""""""""""""""""""""
 
-Create a playbook
+In the list *lp_service*, it is possible to set more parameters
+compared to the list *lp_service_auto*. What parameters can be used
+depends on the module that will be used
 
-.. code-block:: YAML
-   :emphasize-lines: 1
+.. code-block:: yaml
+    :emphasize-lines: 1,2
 
-   shell> cat lp.yml
-   - hosts: test_01
-     become: true
-     roles:
-       - vbotka.linux_postinstall
+    lp_service_module: auto
+    lp_service:
+      - enabled: true
+        name: smartmontools
+        state: stopped
+      - enabled: true
+        name: udev
+        state: stopped
+        use: service
+
+By default the variable *lp_service_module* is set to *auto*. In this
+case, the OS native service manager *ansible_service_mgr* is used.
+
+**Create a playbook**
+
+.. code-block:: yaml
+    :emphasize-lines: 1
+
+    shell> cat lp.yml
+    - hosts: test_01
+      become: true
+      roles:
+        - vbotka.linux_postinstal
+
+**Create variables**
 
 Create the file *host_vars/test_01/lp-service.yml* and create the list
-of services that shall be managed by this task `lp_service`
+of services `lp_service` that shall be managed by this task
 
-.. code-block:: YAML
-   :emphasize-lines: 1
+.. code-block:: yaml
+    :emphasize-lines: 1
 
-   shell> cat host_vars/test_01/lp-service.yml
-   lp_service_enable: []
-   lp_service:
-      < TBD>
+    shell> cat host_vars/test_01/lp-service.yml
+    lp_service: []
+      - enabled: true
+        name: smartmontools
+        state: started
+        use: auto
+      - enabled: true
+        name: udev
+        state: started
+        use: service
+   
+**Show variables**
 
-Show what services will be managed
-
-.. code-block:: Bash
-   :emphasize-lines: 1-2
-
-   shell> ansible-playbook lp.yml -t lp_service_debug \
-                                  -e lp_service_debug=True
-		     
-   TASK [vbotka.linux_postinstall : service: Debug] ***************************
-   ok: [test_01] => {
-       "msg": [
-           "lp_service",
-           <TBD>
-           "",
-           "lp_service_enable",
-           "[]",
-       ]
-   }
+.. literalinclude:: examples/service-ex2-debug.yaml.example
+    :language: yaml
+    :emphasize-lines: 1
 
 
-Manage the services
+**Manage the services and show the results**
 
-.. code-block:: Bash
-   :emphasize-lines: 1
-
-   shell> ansible-playbook linux-postinstall.yml -t lp_service_general
-
-   TASK [vbotka.linux_postinstall : service: General management of services]
-   ok: [test_01] => <TBD>
-
-Show the status of the services ::
-
-   test_01> service --status-all
+.. literalinclude:: examples/service-ex2-manage.yaml.example
+    :language: yaml
+    :emphasize-lines: 1

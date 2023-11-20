@@ -1,9 +1,12 @@
-- name: "service:systemd: Debug Manual management full results"
+---
+# linux_postinstall function service-debug
+
+- name: "service: Debug management full results"
   ansible.builtin.debug:
     var: result
   when: lp_service_debug2|d(false)|bool
 
-- name: "service:systemd: Debug Manual management selected results"
+- name: "service: Debug management selected results"
   ansible.builtin.debug:
     msg: |
       {% for i in result.results %}
@@ -24,4 +27,5 @@
       {% endfor %}
   when: lp_service_debug|bool
 
-#       {{ i.invocation.module_args|to_nice_yaml(indent=2)|indent(2) }}
+# EOF
+...

@@ -1,0 +1,139 @@
+shell> ansible-playbook lp.yml -t lp_service_manual -e lp_service_debug=true
+
+  ...
+
+TASK [vbotka.linux_postinstall : service: Manual management set module auto] *******************
+ok: [test_01]
+
+TASK [vbotka.linux_postinstall : service: Include systemd] *************************************
+included: /export/home/admin/.ansible/roles/vbotka.linux_postinstall/tasks/fn/service-systemd.yml for test_01
+
+TASK [vbotka.linux_postinstall : service:systemd: enable/disable] ******************************
+ok: [test_01] => (item=smartmontools enabled: True)
+ok: [test_01] => (item=udev enabled: True)
+
+TASK [vbotka.linux_postinstall : service:systemd: Debug] ***************************************
+included: /export/home/admin/.ansible/roles/vbotka.linux_postinstall/tasks/fn/service-debug.yml for test_01
+
+TASK [vbotka.linux_postinstall : service: Debug management full results] ***********************
+skipping: [test_01]
+
+TASK [vbotka.linux_postinstall : service: Debug management selected results] *******************
+ok: [test_01] => 
+  msg: |-
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    changed: False
+    item:
+      enabled: true
+      name: smartmontools
+      use: auto
+  
+    name: smartmontools
+    enabled: True
+    state: UNDEFINED
+    msg: UNDEFINED
+    invocation:
+      daemon_reexec: false
+      daemon_reload: false
+      enabled: true
+      force: null
+      masked: null
+      name: smartmontools
+      no_block: false
+      scope: system
+      state: null
+  
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    changed: False
+    item:
+      enabled: true
+      name: udev
+      use: service
+  
+    name: udev
+    enabled: True
+    state: UNDEFINED
+    msg: UNDEFINED
+    invocation:
+      daemon_reexec: false
+      daemon_reload: false
+      enabled: true
+      force: null
+      masked: null
+      name: udev
+      no_block: false
+      scope: system
+      state: null
+
+TASK [vbotka.linux_postinstall : service:systemd: Flush handlers] ******************************
+
+TASK [vbotka.linux_postinstall : service:systemd: mask/unmask] *********************************
+skipping: [test_01]
+
+TASK [vbotka.linux_postinstall : service:systemd: Debug] ***************************************
+skipping: [test_01]
+
+TASK [vbotka.linux_postinstall : service:systemd: Flush handlers] ******************************
+skipping: [test_01]
+
+TASK [vbotka.linux_postinstall : service:systemd: all] *****************************************
+ok: [test_01] => (item=smartmontools enabled: True masked: auto state: started)
+ok: [test_01] => (item=udev enabled: True masked: service state: started)
+
+TASK [vbotka.linux_postinstall : service:systemd: Debug] ***************************************
+included: /export/home/admin/.ansible/roles/vbotka.linux_postinstall/tasks/fn/service-debug.yml for test_01
+
+TASK [vbotka.linux_postinstall : service: Debug management full results] ***********************
+skipping: [test_01]
+
+TASK [vbotka.linux_postinstall : service: Debug management selected results] *******************
+ok: [test_01] => 
+  msg: |-
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    changed: False
+    item:
+      enabled: true
+      name: smartmontools
+      state: started
+      use: auto
+  
+    name: smartmontools
+    enabled: True
+    state: started
+    msg: UNDEFINED
+    invocation:
+      daemon_reexec: false
+      daemon_reload: false
+      enabled: true
+      force: null
+      masked: null
+      name: smartmontools
+      no_block: false
+      scope: system
+      state: started
+  
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    changed: False
+    item:
+      enabled: true
+      name: udev
+      state: started
+      use: service
+  
+    name: udev
+    enabled: True
+    state: started
+    msg: UNDEFINED
+    invocation:
+      daemon_reexec: false
+      daemon_reload: false
+      enabled: true
+      force: null
+      masked: null
+      name: udev
+      no_block: false
+      scope: system
+      state: started
+
+TASK [vbotka.linux_postinstall : service: Flush handlers] **************************************
+
