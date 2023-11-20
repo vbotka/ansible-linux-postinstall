@@ -5,6 +5,23 @@ vbotka.linux_postinstall 2.4 Release Notes
 .. contents:: Topics
 
 
+2.4.6
+=====
+
+Release Summary
+---------------
+Add lp_<service_name>_state; Update docs.
+
+Minor changes
+-------------
+
+* Add lp_<service_name>_state
+
+* Update docs
+
+* Update README
+
+
 2.4.5
 =====
 

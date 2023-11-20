@@ -63,7 +63,7 @@
     - name: "service: Automatic management of listed services"
       ansible.builtin.service:
         name: "{{ srv_name }}"
-        state: "{{ srv_enbl|bool|ternary('started', 'stopped') }}"
+        state: "{{ srv_stat }}"
         enabled: "{{ srv_enbl|bool }}"
         use: "{{ use_modl }}"
       loop: "{{ lp_service_auto }}"
@@ -74,9 +74,11 @@
       notify: "reload {{ ansible_service_mgr }} daemon"
       vars:
         run_task: "{{ lookup('vars', 'lp_' ~ item, default=false) }}"
-        srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service') }}"
+        srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
         srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
         use_modl: "{{ lookup('vars', 'lp_' ~ item ~ '_module', default='auto') }}"
+        srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
+        default_stat: "{{ srv_enbl|bool|ternary('started', 'stopped') }}"
 
     - name: "service: Debug"
       ansible.builtin.include_tasks: fn/service-debug.yml
