@@ -12,9 +12,15 @@ ok: [test_01] =>
     lp_service_module: auto
     lp_service_module_valid: ['auto', 'service', 'systemd', 'sysvinit']
     lp_service:
-      []
+      - enabled: true
+        name: smartmontools
+        state: started
+        use: auto
+      - enabled: true
+        name: udev
+        state: started
+        use: service
   
     lp_service_auto:
-      - auto_upgrades
-      - autofs
-      - bluetooth
+      - smart
+      - udev
