@@ -1,0 +1,26 @@
+shell> ansible-playbook lp.yml -t lp_service_debug -e lp_service_debug=True
+
+  ...
+
+TASK [vbotka.linux_postinstall : service: Debug] ***********************************************
+ok: [test_01] => 
+  msg: |-
+    ansible_os_family: Debian
+    ansible_service_mgr: systemd
+    lp_service_sanity: False
+  
+    lp_service_module: auto
+    lp_service_module_valid: ['auto', 'service', 'systemd', 'sysvinit']
+    lp_service:
+      - enabled: true
+        name: smartmontools
+        state: started
+        use: auto
+      - enabled: true
+        name: udev
+        state: started
+        use: service
+  
+    lp_service_auto:
+      - smart
+      - udev

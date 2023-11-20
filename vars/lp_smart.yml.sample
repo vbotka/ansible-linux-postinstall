@@ -1,0 +1,28 @@
+---
+
+lp_smart: true
+lp_smart_enable: true
+lp_smart_state: started
+lp_smart_service: smartmontools
+
+lp_smart_install: true
+lp_smart_conf_file: /etc/smartd.conf
+lp_smart_conf_owner: root
+lp_smart_conf_group: root
+lp_smart_conf_mode: '0644'
+
+# man smartctl
+# -a Prints all SMART information about the disk.
+# -o [ATA only] Enables or disables SMART automatic offline test,
+#    which scans the drive every
+#    four  hours  for  disk  defects.
+# -S [ATA only] Enables or disables SMART autosave of device
+#    vendor-specific Attributes.
+# -s Schedule self-tests. Short: daily 2PM. Long: Each Saturday 3PM.
+# -m Mail errors to admin.
+
+lp_smart_devices:
+   - {regexp: '^/dev/sda',
+      line: '/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin'}
+   - {regexp: '^/dev/sdb',
+      line: '/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin'}

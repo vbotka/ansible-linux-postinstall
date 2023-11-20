@@ -348,6 +348,18 @@ myhandlers:
     note: []
     warning: []
 
+  - file: ufw.yml
+    link: ufw.yml
+    path: handlers/ufw.yml
+    synopsis: |
+      Handler ufw.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
   - file: wpasupplicant.yml
     link: wpasupplicant.yml
     path: handlers/wpasupplicant.yml

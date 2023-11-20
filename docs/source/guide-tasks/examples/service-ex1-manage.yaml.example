@@ -1,0 +1,57 @@
+shell> ansible-playbook lp.yml -t lp_service_auto -e lp_service_debug=true
+
+  ...
+
+TASK [vbotka.linux_postinstall : service: Automatic management of listed services] *************
+ok: [test_01] => (item=smartmontools enabled: True use: auto)
+ok: [test_01] => (item=udev enabled: True use: service)
+
+TASK [vbotka.linux_postinstall : service: Debug] ***********************************************
+included: /export/home/admin/.ansible/roles/vbotka.linux_postinstall/tasks/fn/service-debug.yml for test_01
+
+TASK [vbotka.linux_postinstall : service: Debug management full results] ***********************
+skipping: [test_01]
+
+TASK [vbotka.linux_postinstall : service: Debug management selected results] *******************
+ok: [test_01] => 
+  msg: |-
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    changed: False
+    item:
+      smart
+  
+    name: smartmontools
+    enabled: True
+    state: started
+    msg: UNDEFINED
+    invocation:
+      daemon_reexec: false
+      daemon_reload: false
+      enabled: true
+      force: null
+      masked: null
+      name: smartmontools
+      no_block: false
+      scope: system
+      state: started
+  
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    changed: False
+    item:
+      udev
+  
+    name: udev
+    enabled: True
+    state: started
+    msg: UNDEFINED
+    invocation:
+      arguments: ''
+      enabled: true
+      name: udev
+      pattern: null
+      runlevel: default
+      sleep: null
+      state: started
+
+TASK [vbotka.linux_postinstall : service: Flush handlers] **************************************
+

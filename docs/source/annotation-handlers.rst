@@ -581,6 +581,26 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+.. _as_handler_ufw.yml:
+
+ufw.yml
+-------
+
+Synopsis: Handler ufw.
+
+
+Description of the handler.
+
+
+[`handlers/ufw.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/ufw.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../handlers/ufw.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
 .. _as_handler_wpasupplicant.yml:
 
 wpasupplicant.yml

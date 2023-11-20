@@ -1,0 +1,18 @@
+shell> ansible-playbook lp.yml -t lp_service_sanity -e lp_service_sanity=True -e lp_service_sanity_quiet=False
+
+  ...
+
+TASK [vbotka.linux_postinstall : service: Get service facts] *************************************************************************
+ok: [test_01]
+
+TASK [vbotka.linux_postinstall : service: Sanity lp_service_auto items are defined] **************************************************
+ok: [test_01] => changed=false 
+  msg: '[OK]  All service names in lp_service_auto are valid.'
+
+TASK [vbotka.linux_postinstall : service: Sanity lp_service names are defined] *******************************************************
+ok: [test_01] => changed=false 
+  msg: '[OK]  All service names in lp_service are valid.'
+
+TASK [vbotka.linux_postinstall : service: Sanity lp_service_module] ******************************************************************
+ok: [test_01] => changed=false 
+  msg: '[OK]  auto is valid value of lp_service_module.'
