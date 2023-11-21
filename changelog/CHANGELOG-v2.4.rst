@@ -16,10 +16,9 @@ Minor changes
 -------------
 
 * Add lp_<service_name>_state
-
 * Update docs
-
 * Update README
+* Update vars/samples
 
 
 2.4.5

@@ -1,0 +1,11 @@
+---
+
+# https://help.ubuntu.com/community/Xen
+# http://askubuntu.com/questions/243499/how-do-i-set-up-a-xen-bridge
+
+lp_sysctl_vars:
+ - {var: net.bridge.bridge-nf-call-ip6tables, value: 1}
+ - {var: net.bridge.bridge-nf-call-iptables, value: 1}
+ - {var: net.bridge.bridge-nf-call-arptables, value: 1}
+ - {var: net.ipv4.ip_forward, value: 1}
+ - {var: net.ipv4.conf.eth0.proxy_arp, value: 1}

@@ -1,0 +1,7 @@
+---
+
+lp_bluetooth: true
+# lp_bluetooth_ControllerMode: "bredr"
+lp_bluetooth_ControllerMode: "dual"
+lp_bluetooth_main_conf:
+  - {key: ControllerMode, value: "{{ lp_bluetooth_ControllerMode }}"}

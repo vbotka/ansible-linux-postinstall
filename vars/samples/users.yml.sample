@@ -1,0 +1,17 @@
+---
+
+lp_users:
+ - {name: admin,
+    shell: /bin/bash,
+    password: '',
+    update_password: on_create}
+
+# SEE: How do I generate crypted passwords for the user module?
+# http://docs.ansible.com/ansible/
+#        faq.html#how-do-i-generate-crypted-passwords-for-the-user-module
+# example: mkpasswd --method=SHA-512 PASSWORD -s SALT
+# SALT can be created with: pwgen -s 16 1
+
+# groups must not comprise primary group
+lp_users_groups:
+ - {name: admin, groups: adm}

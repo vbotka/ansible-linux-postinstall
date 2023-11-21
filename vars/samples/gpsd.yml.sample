@@ -1,0 +1,7 @@
+---
+
+lp_gpsd: true
+lp_gpsd_bt_rfcomm:
+  - {rfcomm: '0', bind: 'yes', device: '00:1C:D9:XX:XX:XX', channel: '1', comment: 'BT GPS'}
+
+# NOTE: Disable ModemManager to interfere with rfcommX

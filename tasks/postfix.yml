@@ -65,7 +65,7 @@
     - name: "postfix: Print errors"
       ansible.builtin.debug:
         msg: |
-          [ERROR] task {{ ansible_failed_task.name }} failed. End host.
+          [ERR] task {{ ansible_failed_task.name }} failed. End host.
           ansible_failed_task:
             {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
           ansible_failed_result:

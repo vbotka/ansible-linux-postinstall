@@ -1,0 +1,22 @@
+---
+
+lp_gpg: true
+lp_gpg_install: true
+lp_gpg_debug: true
+lp_gpg_conf:
+  - owner: admin
+    conf:
+      - {key: keyserver, value: hkp://keyserver.ubuntu.com}
+      - {key: use-agent}
+      - {key: personal-digest-preferences, value: SHA512}
+      - {key: cert-digest-algo, value: SHA512}
+      - {key: digest-algo, value: SHA512}
+      - {key: default-preference-list, value: SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed}
+      - {key: default-key, value: <KEY-ID> }
+lp_gpg_agent_conf:
+  - owner: admin
+    conf:
+      - {key: no-grab}
+      - {key: pinentry-program, value: /usr/bin/pinentry-curses}
+lp_gpg_packages_extra:
+  - pinentry-curses

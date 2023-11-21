@@ -1,0 +1,5 @@
+---
+
+lp_aliases:
+  - {alias: root, users: [admin, user1]}
+  - {alias: admin, users: [user1]}

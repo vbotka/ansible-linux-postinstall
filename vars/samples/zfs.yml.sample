@@ -1,0 +1,29 @@
+---
+
+lp_zfs: true
+lp_zfs_debug: true
+
+lp_zfs_services:
+  - {name: zfs-mount, enabled: true, state: started}
+  - {name: zfs-share, enabled: true, state: started}
+  - {name: zfs-zed, enabled: true, state: started}
+
+# zfs-import is masked by default
+# - {name: zfs-import, enabled: false, state: stopped}
+
+lp_zfs_manage:
+  - name: zroot/test1
+    state: present
+    extra_zfs_properties:
+      compression: 'on'
+  - name: zroot/images
+    state: present
+    extra_zfs_properties:
+      compression: 'on'
+      mountpoint: /var/lib/libvirt/images
+
+lp_zfs_mountpoints:
+  - mountpoint: /var/lib/libvirt/images
+    owner: root
+    group: root
+    mode: '0755'

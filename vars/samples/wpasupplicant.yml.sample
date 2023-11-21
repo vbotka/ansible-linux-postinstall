@@ -1,0 +1,27 @@
+---
+
+lp_wpasupplicant_conf_global:
+  - {key: ctrl_interface, value: /run/wpa_supplicant}
+  - {key: ctrl_interface_group, value: adm}
+  - {key: fast_reauth, value: "0"}
+  - {key: update_config, value: "1"}
+lp_wpasupplicant_conf:
+  - dev: "wlan1"
+    network:
+      - conf:
+          - {key: ssid, value: '"MYSSID01"'}
+          - {key: psk, value: '"my-wifi-password"'}
+      - conf:
+          - {key: ssid, value: '"MYSSID02"'}
+          - {key: psk, value: '"my-wifi-password"'}
+lp_wpasupplicant_service_conf:
+  - path: /lib/systemd/system
+    service: wpa_supplicant@.service
+    no_extra_spaces: true
+    handlers:
+      - 'reload systemd daemon'
+      - 'reload wpa_supplicant service'
+    ini:
+      - section: Service
+        option: ExecStart
+        value: "{{ lp_wpasupplicant_bin }} -c/etc/wpa_supplicant/wpa_supplicant-%I.conf -Dnl80211,wext -i%I"

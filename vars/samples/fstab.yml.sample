@@ -1,0 +1,9 @@
+---
+
+lp_fstab_entries:
+  - name: /windows
+    src: /dev/sda2
+    fstype: ntfs
+    opts: ro
+  - name: /mnt1
+    state: unmounted
