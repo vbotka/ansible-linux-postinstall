@@ -1,0 +1,14 @@
+---
+
+lp_cron_var:
+  - {user: admin, name: MAILTO, value: admin@example.com}
+lp_cron_tab:
+  - state: absent
+    user: admin
+    name: Run some command
+    minute: '01'
+    hour: '04'
+    day: '*'
+    month: '*'
+    weekday: '*'
+    command: /usr/bin/somedirectory/somecommand

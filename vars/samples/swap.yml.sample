@@ -1,0 +1,11 @@
+---
+
+lp_swap: true
+lp_swap_file: /usr/swap0
+lp_swap_size: 4096
+# lp_swap_size: 2048
+# lp_swap_size: 1536
+lp_swap_stsize: "{{ lp_swap_size * 1024 * 1024 }}"
+# lp_swap_stsize: "4294967296"
+# lp_swap_stsize: "2147483648"
+# lp_swap_stsize: "1610612736"

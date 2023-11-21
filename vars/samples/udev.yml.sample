@@ -1,0 +1,26 @@
+---
+
+lp_udev_conf:
+  - {key: udev_log, val: debug}
+
+# lp_udev_rules_template: udev-rules.j2
+lp_udev_rules:
+  70-persistent-net.rules:
+    - - {key: NAME, value: eth0, operator: '=='}
+      - {key: SUBSYSTEM, value: net, operator: '=='}
+      - {key: ACTION, value: add, operator: '=='}
+      - {key: DRIVERS, value: '?*', operator: '=='}
+      - {key: 'ATTR{address}', value: '80:3f:5d:14:b1:d3', operator: '=='}
+      - {key: 'ATTR{type}', value: '1', operator: '=='}
+
+lp_udev_hci_name_rules:
+  - {product: Broadcom Bluetooth Device, name: hci0}
+  - {product: CSR8510 A10, name: hci1}
+# For MAC of BT devices 'phys' is used instead of 'address'.
+# There is no phys/address of the controller available in udev
+# - {mac: '<MAC-ADDRESS>', name: hci0}
+# - {mac: '<MAC-ADDRESS>', name: hci1}
+
+lp_udev_hci_run_rules:
+  - {product: Broadcom Bluetooth Device, run: '/bin/hciconfig hci0 up auth encrypt'}
+  - {product: CSR8510 A10, run: '/bin/hciconfig hci1 up auth encrypt'}

@@ -1,0 +1,33 @@
+---
+
+lp_libvirt: true
+lp_libvirt_install: true
+lp_libvirt_guests_enable: true
+lp_libvirt_libvirtd_enable: true
+
+lp_libvirt_packages:
+  - libvirt-daemon-driver-storage-zfs
+
+lp_libvirt_conf:
+  libvirt-admin.conf: {}
+  libvirt.conf: {}
+  libvirtd.conf:
+    owner: root
+    group: root
+    mode: '0644'
+    conf:
+      - [unix_sock_group, '"libvirt"']
+      - [unix_sock_ro_perms, '"0777"']
+      - [unix_sock_rw_perms, '"0770"']
+      - [auth_unix_ro, '"none"']
+      - [auth_unix_rw, '"none"']
+
+# contrib/host_vars/armbian/minimal/1.90/lp-libvirt.yml
+# libxl.conf: {}
+# libxl-lockd.conf: {}
+# lxc.conf: {}
+# qemu.conf: {}
+# qemu-lockd.conf: {}
+# qemu-sanlock.conf: {}
+# virtlockd.conf: {}
+# virt-login-shell.conf: {}

@@ -1,0 +1,5 @@
+---
+
+lp_hosts_template: hosts-aliases-list.j2
+lp_hosts:
+  - {ip: 10.1.0.10, fqdn: srv.example.com, hostname: srv}

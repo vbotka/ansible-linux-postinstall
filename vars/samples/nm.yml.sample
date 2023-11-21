@@ -1,0 +1,8 @@
+---
+
+lp_nm: true
+lp_nm_install: false
+lp_nm_enable: false
+lp_nm_conf:
+  - {section: ifupdown, key: managed, val: 'false'}
+lp_nm_mask: true

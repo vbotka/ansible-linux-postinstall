@@ -1,0 +1,13 @@
+---
+
+lp_apparmor: true
+lp_apparmor_disable:
+ - firefox
+ - rsyslogd
+lp_apparmor_enforce:
+ - evince
+lp_apparmor_complain:
+ - evince
+
+# EOF
+...

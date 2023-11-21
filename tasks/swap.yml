@@ -25,12 +25,12 @@
   - name: "swap: sanity: Defined lp_swap_file"
     ansible.builtin.assert:
       that: lp_swap_file is defined
-      fail_msg: "[ERROR] Variable lp_swap_file must be defined."
+      fail_msg: "[ERR] Variable lp_swap_file must be defined."
 
   - name: "swap: sanity: Defined lp_swap_size and lp_swap_stsize"
     ansible.builtin.assert:
       that: lp_swap_size is defined and lp_swap_stsize is defined
-      fail_msg: "[ERROR] Variables lp_swap_size and lp_swap_stsize must be defined."
+      fail_msg: "[ERR] Variables lp_swap_size and lp_swap_stsize must be defined."
     when: lp_swap_enable|bool
 
   when: lp_swap_sanity|bool
@@ -96,7 +96,7 @@
     - name: "swap: Print errors"
       ansible.builtin.debug:
         msg: |
-          [ERROR] task {{ ansible_failed_task.name }} failed. End host.
+          [ERR] task {{ ansible_failed_task.name }} failed. End host.
           ansible_failed_task:
             {{ ansible_failed_task|to_yaml(indent=2)|indent(2)
           ansible_failed_result:

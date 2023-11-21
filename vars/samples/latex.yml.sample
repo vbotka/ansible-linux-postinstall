@@ -1,0 +1,8 @@
+---
+
+lp_latex: true
+lp_latex_macros:
+  - {url: 'http://mirrors.ctan.org/macros/latex/contrib/labels/labels.ins',
+     dest: /usr/share/texmf/tex/latex/labels}
+  - {url: 'http://mirrors.ctan.org/macros/latex/contrib/labels/labels.dtx',
+     dest: /usr/share/texmf/tex/latex/labels}

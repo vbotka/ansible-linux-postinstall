@@ -1,0 +1,16 @@
+---
+
+lp_sudoers_owner: root
+lp_sudoers_group: root
+lp_sudoers_mode: '0440'
+
+# Bug 1020147 - default requiretty is problematic and breaks valid usage
+# https://bugzilla.redhat.com/show_bug.cgi?id=1020147
+# https://www.shell-tips.com/2014/09/08/sudo-sorry-you-must-have-a-tty-to-run-sudo/
+
+lp_sudoers_conf:
+  - {line: '#includedir /etc/sudoers.d', state: present}
+  - {line: 'Defaults    requiretty', state: absent}
+
+lp_sudoers_01:
+  - 'admin ALL=(ALL) NOPASSWD: ALL'

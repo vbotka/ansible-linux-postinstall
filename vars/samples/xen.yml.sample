@@ -1,0 +1,8 @@
+---
+
+lp_xen: true
+lp_xen_version: '4.9'
+lp_xen_dom0_mem: 4096M
+lp_xen_dom0_mem_max: 4096M
+lp_xen_global:
+  - {var: autoballoon, value: '"0"'}

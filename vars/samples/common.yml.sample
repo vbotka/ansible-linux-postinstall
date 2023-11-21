@@ -1,0 +1,9 @@
+---
+
+# Configure /etc/hostname
+# lp_hostname: host
+# lp_fqdn: host.example.com
+# lp_fqdn_ip: 127.0.1.1
+
+# EOF
+...

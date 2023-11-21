@@ -5,5 +5,5 @@ lp_sudoers_owner: root
 lp_sudoers_group: root
 lp_sudoers_mode: '0440'
 lp_sudoers_conf:
-  - {line: '#includedir /etc/sudoers.d', state: 'present'}
+  - {line: '#includedir /etc/sudoers.d', state: present}
 lp_sudoers_01: []

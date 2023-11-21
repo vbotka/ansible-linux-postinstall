@@ -1,0 +1,5 @@
+---
+
+lp_authorized_keys:
+ - {user: admin,
+    key: "{{ lookup('file', '~/.ansible/copy/ssh-pub-keys/admin/id_rsa.pub') }}"}

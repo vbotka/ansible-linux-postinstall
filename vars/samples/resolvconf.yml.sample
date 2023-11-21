@@ -1,0 +1,5 @@
+---
+
+lp_resolvconf_confd_head:
+  - {key: nameserver, val: 8.8.8.8}
+  - {key: nameserver, val: 8.8.4.4}
