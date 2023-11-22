@@ -21,6 +21,8 @@
     weekday: "{{ item.weekday }}"
     job: "{{ item.command }}"
   loop: "{{ lp_cron_tab }}"
+  loop_control:
+    label: "{{ item.name }}"
   tags: lp_cron_tab
 
 # EOF

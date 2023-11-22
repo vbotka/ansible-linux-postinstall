@@ -35,6 +35,8 @@
     line: "{{ item.key }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_xen_default_grub_conf }}"
+  loop_control:
+    label: "{{ item.key }}: {{ item.value }}"
   notify: update grub
   tags: lp_xen_default_grub
 
@@ -47,6 +49,8 @@
     create: true
     mode: "0644"
   loop: "{{ lp_xen_global }}"
+  loop_control:
+    label: "{{ item.var }}: {{ item.value }}"
   tags: lp_xen_global
 
 # EOF

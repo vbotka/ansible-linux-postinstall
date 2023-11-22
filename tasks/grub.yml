@@ -20,6 +20,8 @@
     line: "{{ item.var }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_grub_default }}"
+  loop_control:
+    label: "{{ item.var }}: {{ item.value }}"
   notify: update grub
   tags: lp_grub_conf
 

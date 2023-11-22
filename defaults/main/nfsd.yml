@@ -2,5 +2,6 @@
 
 lp_nfsd: false
 lp_nfsd_install: false
+lp_nfsd_debug: false
 lp_nfsd_enable: false
 lp_nfsd_exports: []

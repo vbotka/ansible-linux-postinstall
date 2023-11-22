@@ -41,6 +41,8 @@
     update_cache: "{{ item.update_cache|default(omit) }}"
     validate_certs: "{{ item.validate_certs|default(omit) }}"
   loop: "{{ lp_repos }}"
+  loop_control:
+    label: "{{ item.repo }}"
   tags: lp_repos_manage
 
 # EOF

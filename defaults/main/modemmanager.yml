@@ -1,5 +1,7 @@
 ---
 
 lp_modemmanager: false
+lp_modemmanager_debug: false
 lp_modemmanager_enable: true
+lp_modemmanager_service: ModemManager
 lp_modemmanager_override: ''

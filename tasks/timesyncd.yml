@@ -27,20 +27,23 @@
   notify: restart timesyncd
   tags: lp_timesyncd_conf
 
-- name: "timesyncd: Enable and start timesyncd"
+- name: "timesyncd: Service {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_timesyncd_service }}"
-    state: started
-    enabled: true
-  when: lp_timesyncd_enable|bool
+    state: "{{ state }}"
+    enabled: "{{ enabled }}"
+  register: result
+  vars:
+    enabled: "{{ lp_timesyncd_enable|bool|d(false) }}"
+    state: "{{ lp_timesyncd_state|d(default_state) }}"
+    default_state: "{{ enabled|ternary('started', 'stopped') }}"
+    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
   tags: lp_timesyncd_service
 
-- name: "timesyncd: Disable and stop timesyncd"
-  ansible.builtin.service:
-    name: "{{ lp_timesyncd_service }}"
-    state: stopped
-    enabled: false
-  when: not lp_timesyncd_enable|bool
+- name: "timesyncd: Debug service"
+  ansible.builtin.debug:
+    var: result
+  when: lp_timesyncd_debug|bool
   tags: lp_timesyncd_service
 
 # Notes on CentOS

@@ -22,16 +22,16 @@
 - name: "swap: Sanity"
   block:
 
-  - name: "swap: sanity: Defined lp_swap_file"
-    ansible.builtin.assert:
-      that: lp_swap_file is defined
-      fail_msg: "[ERR] Variable lp_swap_file must be defined."
+    - name: "swap: sanity: Defined lp_swap_file"
+      ansible.builtin.assert:
+        that: lp_swap_file is defined
+        fail_msg: "[ERR] Variable lp_swap_file must be defined."
 
-  - name: "swap: sanity: Defined lp_swap_size and lp_swap_stsize"
-    ansible.builtin.assert:
-      that: lp_swap_size is defined and lp_swap_stsize is defined
-      fail_msg: "[ERR] Variables lp_swap_size and lp_swap_stsize must be defined."
-    when: lp_swap_enable|bool
+    - name: "swap: sanity: Defined lp_swap_size and lp_swap_stsize"
+      ansible.builtin.assert:
+        that: lp_swap_size is defined and lp_swap_stsize is defined
+        fail_msg: "[ERR] Variables lp_swap_size and lp_swap_stsize must be defined."
+      when: lp_swap_enable|bool
 
   when: lp_swap_sanity|bool
   tags: lp_swap_sanity
@@ -39,57 +39,57 @@
 - name: "swap: Create, change, or remove {{ lp_swap_file }}"
   block:
 
-  - name: "swap: Create swapfile {{ lp_swap_file }}"
-    ansible.builtin.shell:
-      cmd: >
-        sh -c
-        'if [ ! -e {{ lp_swap_file }} ];
-        then printf "create";
-        fi'
-    register: command_result
-    changed_when: command_result.stdout == 'create'
-    notify: create and mount swap file
-    tags: lp_swap_swapfile
+    - name: "swap: Create swapfile {{ lp_swap_file }}"
+      ansible.builtin.shell:
+        cmd: >
+          sh -c
+          'if [ ! -e {{ lp_swap_file }} ];
+          then printf "create";
+          fi'
+      register: command_result
+      changed_when: command_result.stdout == 'create'
+      notify: create and mount swap file
+      tags: lp_swap_swapfile
 
-  - name: "swap: Change swapfile {{ lp_swap_file }}"
-    ansible.builtin.shell:
-      cmd: >
-        sh -c
-        'if [ -e {{ lp_swap_file }} ] &&
-        [ "`stat --format '%s' {{ lp_swap_file }}`" -ne "{{ lp_swap_stsize }}" ];
-        then printf "change";
-        fi'
-    register: command_result
-    changed_when: command_result.stdout == 'change'
-    notify: change and mount swap file
-    tags: lp_swap_swapfile
+    - name: "swap: Change swapfile {{ lp_swap_file }}"
+      ansible.builtin.shell:
+        cmd: >
+          sh -c
+          'if [ -e {{ lp_swap_file }} ] &&
+          [ "`stat --format '%s' {{ lp_swap_file }}`" -ne "{{ lp_swap_stsize }}" ];
+          then printf "change";
+          fi'
+      register: command_result
+      changed_when: command_result.stdout == 'change'
+      notify: change and mount swap file
+      tags: lp_swap_swapfile
 
-  - name: "swap: Create swap entry in /etc/fstab"
-    ansible.posix.mount:
-      path: none
-      src: "{{ lp_swap_file }}"
-      fstype: swap
-      opts: sw
-      passno: '0'
-      dump: '0'
-      state: present
-      backup: "{{ lp_backup_conf }}"
-    when: lp_swap_enable|bool
-    tags: lp_swap_fstab
+    - name: "swap: Create swap entry in /etc/fstab"
+      ansible.posix.mount:
+        path: none
+        src: "{{ lp_swap_file }}"
+        fstype: swap
+        opts: sw
+        passno: '0'
+        dump: '0'
+        state: present
+        backup: "{{ lp_backup_conf }}"
+      when: lp_swap_enable|bool
+      tags: lp_swap_fstab
 
-  - name: "swap: Remove swap entry from /etc/fstab"
-    ansible.posix.mount:
-      path: none
-      src: "{{ lp_swap_file }}"
-      fstype: swap
-      opts: sw
-      passno: '0'
-      dump: '0'
-      state: absent
-      backup: "{{ lp_backup_conf }}"
-    notify: remove swap file
-    when: not lp_swap_enable|bool
-    tags: lp_swap_swapfile
+    - name: "swap: Remove swap entry from /etc/fstab"
+      ansible.posix.mount:
+        path: none
+        src: "{{ lp_swap_file }}"
+        fstype: swap
+        opts: sw
+        passno: '0'
+        dump: '0'
+        state: absent
+        backup: "{{ lp_backup_conf }}"
+      notify: remove swap file
+      when: not lp_swap_enable|bool
+      tags: lp_swap_swapfile
 
   rescue:
 

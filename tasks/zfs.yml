@@ -30,9 +30,15 @@
 - name: "zfs: Manage zfs services"
   ansible.builtin.service:
     name: "{{ item.name }}"
-    enabled: "{{ item.enabled|default(true) }}"
-    state: "{{ item.state|default('started') }}"
+    enabled: "{{ srv_enbl }}"
+    state: "{{ srv_stat }}"
   loop: "{{ lp_zfs_services|default([]) }}"
+  loop_control:
+    label: "{{ item.name }} enabled: {{ srv_enbl }} state: {{ srv_stat }}"
+  vars:
+    srv_enbl: "{{ item.enabled|default(true) }}"
+    srv_stat: "{{ item.state|default(default_stat) }}"
+    default_stat: "{{ srv_enbl|bool|ternary('started', 'stopped') }}"
   tags: lp_zfs_services
 
 - name: "zfs: Manage zfs"

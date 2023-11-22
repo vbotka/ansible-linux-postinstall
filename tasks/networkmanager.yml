@@ -67,41 +67,33 @@
   tags: lp_nm_conf
 
 # Service
-- name: "nm: Start and enable NM services"
-  ansible.builtin.service:
-    name: "{{ item }}"
-    state: started
-    enabled: true
-  loop: "{{ lp_nm_services }}"
-  when: lp_nm_enable|bool
-  tags: lp_nm_start
 
-- name: "nm: Stop and disable NM services"
+- name: "nm: Services start/stop and enable/disable"
   ansible.builtin.service:
-    name: "{{ item }}"
-    state: stopped
-    enabled: false
+    name: "{{ srv_name }}"
+    state: "{{ srv_stat }}"
+    enabled: "{{ srv_enbl }}"
   loop: "{{ lp_nm_services }}"
-  when: not lp_nm_enable|bool
-  tags: lp_nm_stop
+  loop_control:
+    label: "{{ srv_name }} state: {{ srv_stat }} enabled: {{ srv_enbl }}"
+  vars:
+    srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
+    srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
+    srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
+    default_stat: "{{ srv_enbl|bool|ternary('started', 'stopped') }}"
+  tags: lp_nm_service
 
 # Mask service
-- name: "nm: Unmask NM services"
+- name: "nm: Services mask/unmask"
   ansible.builtin.command:
-    cmd: >
-      systemctl unmask {{ item }}
+    cmd: "systemctl {{ srv_mask }} {{ srv_name }}"
   loop: "{{ lp_nm_services_mask }}"
+  loop_control:
+    label: "{{ srv_name }} {{ srv_mask }}"
+  vars:
+    srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
+    srv_mask: "{{ lp_nm_mask|bool|ternary('mask', 'unmask') }}"
   changed_when: false
-  when: not lp_nm_mask|bool
-  tags: lp_nm_mask
-
-- name: "nm: Mask NM services"
-  ansible.builtin.command:
-    cmd: >
-      systemctl mask {{ item }}
-  loop: "{{ lp_nm_services_mask }}"
-  changed_when: false
-  when: lp_nm_mask|bool
   tags: lp_nm_mask
 
 # EOF

@@ -7,6 +7,7 @@
       ansible_os_family: {{ ansible_os_family }}
       lp_dnsmasq_install: {{ lp_dnsmasq_install }}
       lp_dnsmasq_enable: {{ lp_dnsmasq_enable }}
+      lp_dnsmasq_service: {{ lp_dnsmasq_service }}
       lp_dnsmasq_packages:
         {{ lp_dnsmasq_packages|to_nice_yaml(indent=2)|indent(2) }}
       lp_dnsmasq_config:
@@ -53,6 +54,25 @@
     label: "{{ item.dest }}"
   notify: restart dnsmasq
   tags: lp_dnsmasq_config
+
+- name: "dnsmasq: Service {{ state }} and {{ enable }}"
+  ansible.builtin.service:
+    name: "{{ lp_dnsmasq_service }}"
+    state: "{{ state }}"
+    enabled: "{{ enabled }}"
+  register: result
+  vars:
+    enabled: "{{ lp_dnsmasq_enable|bool|d(false) }}"
+    state: "{{ lp_dnsmasq_state|d(default_state) }}"
+    default_state: "{{ enabled|ternary('started', 'stopped') }}"
+    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+  tags: lp_dnsmasq_service
+
+- name: "dnsmasq: Debug service"
+  ansible.builtin.debug:
+    var: result
+  when: lp_dnsmasq_debug|bool
+  tags: lp_dnsmasq_service
 
 # EOF
 ...

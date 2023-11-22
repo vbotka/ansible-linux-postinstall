@@ -67,6 +67,8 @@
     backup: "{{ lp_backup_conf }}"
     mode: '0644'
   loop: "{{ lp_modules_options }}"
+  loop_control:
+    label: "{{ item.module }}: {{ item.options }}"
   notify: update initramfs
 
 # EOF

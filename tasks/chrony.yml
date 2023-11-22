@@ -55,20 +55,23 @@
       notify: restart chrony
       tags: lp_chrony_conf
 
-    - name: "chrony: Enable and start chrony"
+    - name: "chrony: Service {{ state }} and {{ enable }}"
       ansible.builtin.service:
         name: "{{ lp_chrony_service }}"
-        state: started
-        enabled: true
-      when: lp_chrony_enable|bool
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+      register: result
+      vars:
+        enabled: "{{ lp_chrony_enable|bool|d(false) }}"
+        state: "{{ lp_chrony_state|d(default_state) }}"
+        default_state: "{{ enabled|ternary('started', 'stopped') }}"
+        enable: "{{ enabled|ternary('enabled', 'disabled') }}"
       tags: lp_chrony_service
 
-    - name: "chrony: Disable and stop chrony"
-      ansible.builtin.service:
-        name: "{{ lp_chrony_service }}"
-        state: stopped
-        enabled: false
-      when: not lp_chrony_enable|bool
+    - name: "chrony: Debug service"
+      ansible.builtin.debug:
+        var: result
+      when: lp_chrony_debug|bool
       tags: lp_chrony_service
 
   rescue:

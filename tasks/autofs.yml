@@ -69,20 +69,23 @@
       notify: reload autofs
       tags: lp_autofs_miscr_conf
 
-    - name: "autofs: Enable and start autofs"
+    - name: "autofs: Service {{ state }} and {{ enable }}"
       ansible.builtin.service:
         name: "{{ lp_autofs_service }}"
-        enabled: true
-        state: started
-      when: lp_autofs_enable|bool
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+      register: result
+      vars:
+        enabled: "{{ lp_autofs_enable|bool }}"
+        state: "{{ lp_sutofs_state|d(default_state) }}"
+        default_state: "{{ enabled|ternary('started', 'stopped') }}"
+        enable: "{{ enabled|ternary('enabled', 'disabled') }}"
       tags: lp_autofs_service
 
-    - name: "autofs: Stop and disable autofs"
-      ansible.builtin.service:
-        name: "{{ lp_autofs_service }}"
-        enabled: false
-        state: stopped
-      when: not lp_autofs_enable|bool
+    - name: "autofs: Debug service"
+      ansible.builtin.debug:
+        var: result
+      when: lp_autofs_debug|bool
       tags: lp_autofs_service
 
   rescue:

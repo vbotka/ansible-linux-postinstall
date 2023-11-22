@@ -41,24 +41,28 @@
         create: true
         mode: '0644'
       loop: "{{ lp_postfix_main_conf }}"
+      loop_control:
+        label: "{{ item.key }}: {{ item.value }}"
       notify: reload postfix
       tags: lp_postfix_conf
 
-    - name: "postfix: Enable and start postfix"
+    - name: "postfix: Service {{ state }} and {{ enable }}"
       ansible.builtin.service:
         name: "{{ lp_postfix_service }}"
-        enabled: true
-        state: started
-      when: lp_postfix_enable|bool
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+      register: result
+      vars:
+        enabled: "{{ lp_postfix_enable|bool|d(false) }}"
+        state: "{{ lp_postfix_state|d(default_state) }}"
+        default_state: "{{ enabled|ternary('started', 'stopped') }}"
+        enable: "{{ enabled|ternary('enabled', 'disabled') }}"
       tags: lp_postfix_service
 
-    - name: "postfix: Disable and stop postfix"
-      ansible.builtin.service:
-        name: "{{ lp_postfix_service }}"
-        enabled: false
-        state: stopped
-      when: not lp_postfix_enable|bool
-      tags: lp_postfix_service
+    - name: "postfix: Debug service"
+      ansible.builtin.debug:
+        var: result
+      when: lp_postfix_debug|bool
 
   rescue:
 
