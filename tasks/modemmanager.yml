@@ -1,7 +1,7 @@
 ---
 # linux_postinstall ModemManager
 
-- name: "modem_manager: Configure /etc/init/modemmanager.override"
+- name: "modemmanager: Configure /etc/init/modemmanager.override"
   ansible.builtin.template:
     src: modem-manager-override.j2
     dest: /etc/init/modemmanager.override
@@ -9,19 +9,24 @@
     group: root
     mode: '0644'
 
-- name: "modem_manager: Stop and disable ModemManager"
+- name: "modemmanager: Service {{ state }} and {{ enable }}"
   ansible.builtin.service:
-    name: ModemManager
-    state: stopped
-    enabled: false
-  when: not lp_modemmanager_enable|bool
+    name: "{{ lp_modemmanager_service }}"
+    state: "{{ state }}"
+    enabled: "{{ enabled }}"
+  register: result
+  vars:
+    enabled: "{{ lp_modemmanager_enable|bool|d(false) }}"
+    state: "{{ lp_modemmanager_state|d(default_state) }}"
+    default_state: "{{ enabled|ternary('started', 'stopped') }}"
+    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+  tags: lp_modemmanager_service
 
-- name: "modem_manager: Start and enable ModemManager"
-  ansible.builtin.service:
-    name: ModemManager
-    state: started
-    enabled: true
-  when: lp_modemmanager_enable|bool
+- name: "modemmanager: Debug service"
+  ansible.builtin.debug:
+    var: result
+  when: lp_modemmanager_debug|bool
+  tags: lp_modemmanager_service
 
 # EOF
 ...

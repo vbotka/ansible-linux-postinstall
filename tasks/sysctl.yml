@@ -20,6 +20,8 @@
     line: "{{ item.var }}{{ lp_sysctl_extra_space }}={{ lp_sysctl_extra_space }}{{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_sysctl_vars }}"
+  loop_control:
+    label: "{{ item.var }}: {{ item.value }}"
   notify: load sysctl settings
 
 # EOF

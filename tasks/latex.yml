@@ -20,9 +20,9 @@
 - name: "latex: Create directories for macros"
   ansible.builtin.file:
     state: directory
-    path: "{{ item.dest }}"
+    path: "{{ item }}"
     mode: '0755'
-  loop: "{{ lp_latex_macros }}"
+  loop: "{{ lp_latex_macros|map(attribute='dest')|unique }}"
   tags: lp_latex_macros
 
 - name: "latex: Download macros"
@@ -31,6 +31,8 @@
     dest: "{{ item.dest }}"
     timeout: "{{ lp_latex_download_timeout }}"
   loop: "{{ lp_latex_macros }}"
+  loop_control:
+    label: "{{ item.url }}"
   ignore_errors: "{{ lp_latex_get_url_ignore_errors }}"  # noqa ignore-errors
   changed_when: false
   tags: lp_latex_labels

@@ -39,6 +39,8 @@
     group: "{{ item.group|default('root') }}"
     mode: "{{ item.mode|default('0644') }}"
   loop: "{{ lp_logrotate_confd }}"
+  loop_control:
+    label: "{{ item.path }}"
   tags: lp_logrotate_confd
 
 # EOF

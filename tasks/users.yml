@@ -60,6 +60,8 @@
     groups: "{{ item.groups }}"
     append: "{{ item.append|default(true) }}"
   loop: "{{ lp_users_groups }}"
+  loop_control:
+    label: "{{ item.name }}: {{ item.groups }}"
   tags: lp_users_groups
 
 #  EOF

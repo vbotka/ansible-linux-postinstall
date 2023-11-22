@@ -18,6 +18,8 @@
     backup: "{{ lp_backup_conf }}"
     mode: "0644"
   loop: "{{ lp_xorg_conf }}"
+  loop_control:
+    label: "{{ item.file }}"
   tags: lp_xorg_conf
 
 # EOF

@@ -10,6 +10,8 @@
     mode: "{{ lp_acpi_event_mode }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_acpi_events|dict2items }}"
+  loop_control:
+    label: "{{ item.key }}"
   tags: lp_acpi_events
 
 - name: "acpi: Create actions in {{ lp_acpi_dir }}"
@@ -21,6 +23,8 @@
     mode: "{{ lp_acpi_action_mode }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_acpi_actions|dict2items }}"
+  loop_control:
+    label: "{{ item.value.file }}"
   tags: lp_acpi_actions
 
 # EOF

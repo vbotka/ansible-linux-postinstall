@@ -54,36 +54,30 @@
     - reload libvirt_guests
   tags: lp_libvirt_conf
 
-- name: "libvirt: Start and enable {{ lp_libvirt_libvirtd_service }}"
+- name: "libvirt: Service {{ lp_libvirt_libvirtd_service }} {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_libvirt_libvirtd_service }}"
-    state: started
-    enabled: true
-  when: lp_libvirt_libvirtd_enable|bool
+    state: "{{ state }}"
+    enabled: "{{ enabled }}"
+  register: result
+  vars:
+    enabled: "{{ lp_libvirt_libvirtd_enable|bool|d(false) }}"
+    state: "{{ lp_libvirt_libvirtd_state|d(default_state) }}"
+    default_state: "{{ enabled|ternary('started', 'stopped') }}"
+    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
   tags: lp_libvirt_libvirtd_service
 
-- name: "libvirt: Stop and disable {{ lp_libvirt_libvirtd_service }}"
-  ansible.builtin.service:
-    name: "{{ lp_libvirt_libvirtd_service }}"
-    state: stopped
-    enabled: false
-  when: not lp_libvirt_libvirtd_enable|bool
-  tags: lp_libvirt_libvirtd_service
-
-- name: "libvirt: Start and enable {{ lp_libvirt_guests_service }}"
+- name: "libvirt: Service {{ lp_libvirt_guests_service }} {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_libvirt_guests_service }}"
-    state: started
-    enabled: true
-  when: lp_libvirt_guests_enable|bool
-  tags: lp_libvirt_guests_service
-
-- name: "libvirt: Stop and disable {{ lp_libvirt_guests_service }}"
-  ansible.builtin.service:
-    name: "{{ lp_libvirt_guests_service }}"
-    state: stopped
-    enabled: false
-  when: not lp_libvirt_guests_enable|bool
+    state: "{{ state }}"
+    enabled: "{{ enabled }}"
+  register: result
+  vars:
+    enabled: "{{ lp_libvirt_guests_enable|bool|d(false) }}"
+    state: "{{ lp_libvirt_guests_state|d(default_state) }}"
+    default_state: "{{ enabled|ternary('started', 'stopped') }}"
+    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
   tags: lp_libvirt_guests_service
 
 # EOF

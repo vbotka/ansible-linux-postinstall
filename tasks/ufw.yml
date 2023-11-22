@@ -72,6 +72,8 @@
     line: '{{ item.key }}={{ item.val }}'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_ufw_default }}"
+  loop_control:
+    label: "{{ item.key }}: {{ item.val }}"
   notify: reload ufw
   tags: lp_ufw_defaults
 
@@ -82,6 +84,8 @@
     line: '{{ item.key }}={{ item.val }}'
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_ufw_sysctl }}"
+  loop_control:
+    label: "{{ item.key }}: {{ item.val }}"
   notify: reload ufw
   tags: lp_ufw_defaults
 
@@ -147,34 +151,23 @@
   notify: "{{ item.0.handlers|default(omit) }}"
   tags: lp_ufw_service_conf
 
-- name: "ufw: Start and enable ufw"
-  block:
-    - name: "ufw: Start and enable ufw"
-      ansible.builtin.service:
-        name: "{{ lp_ufw_service }}"
-        state: started
-        enabled: true
-      register: result
-    - name: "ufw: Debug enabled service"
-      ansible.builtin.debug:
-        var: result
-      when: lp_ufw_debug|bool
-  when: lp_ufw_enable|bool
+- name: "ufw: Service {{ state }} and {{ enable }}"
+  ansible.builtin.service:
+    name: "{{ lp_ufw_service }}"
+    state: "{{ state }}"
+    enabled: "{{ enabled }}"
+  register: result
+  vars:
+    enabled: "{{ lp_ufw_enable|bool|d(false) }}"
+    state: "{{ lp_ufw_state|d(default_state) }}"
+    default_state: "{{ enabled|ternary('started', 'stopped') }}"
+    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
   tags: lp_ufw_service
 
-- name: "ufw: Stop and disable ufw"
-  block:
-    - name: "ufw: Stop and disable ufw"
-      ansible.builtin.service:
-        name: "{{ lp_ufw_service }}"
-        state: stopped
-        enabled: false
-      register: result
-    - name: "ufw: Debug disabled service"
-      ansible.builtin.debug:
-        var: result
-      when: lp_ufw_debug|bool
-  when: not lp_ufw_enable|bool
+- name: "ufw: Debug service"
+  ansible.builtin.debug:
+    var: result
+  when: lp_ufw_debug|bool
   tags: lp_ufw_service
 
 # EOF

@@ -5,6 +5,20 @@ vbotka.linux_postinstall 2.4 Release Notes
 .. contents:: Topics
 
 
+2.4.7
+=====
+
+Release Summary
+---------------
+Update loop labels. Unify service management.
+
+Minor changes
+-------------
+* Update loop labels.
+* Unify service start/stop and enable/disable.
+* Update apparmor.
+
+
 2.4.6
 =====
 
