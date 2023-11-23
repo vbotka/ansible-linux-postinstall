@@ -37,7 +37,7 @@
   loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == 'Debian'
-    - item.state|default("present") == 'present'
+    - item.state|default('present') == 'present'
 
 # RedHat
 - name: "modules: Configure {{ lp_modules_conf }} in RedHat"
@@ -49,7 +49,7 @@
   loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == 'RedHat'
-    - item.state|default("present") == 'present'
+    - item.state|default('present') == 'present'
 
 - name: "modules: Blacklist modules in {{ lp_modules_blacklist_path }}"
   ansible.builtin.template:

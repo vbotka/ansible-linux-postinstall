@@ -5,6 +5,20 @@ vbotka.linux_postinstall 2.4 Release Notes
 .. contents:: Topics
 
 
+2.4.8
+=====
+
+Release Summary
+---------------
+Update debug and docs.
+
+Minor changes
+-------------
+* Add variables: +lp_service_all, lp_services_all
+* Debug; add Jinja template for lp_service_all and lp_services_all
+* Update docs. Section debug.
+
+
 2.4.7
 =====
 
