@@ -39,5 +39,10 @@ my_services_regex: "({{ my_services_alias|join('|') }})"
 my_services_names: "{{ query('vars', *query('varnames', '^lp_' ~ my_services_regex ~ '_service$'))|sort }}"
 my_services_undef: "{{ my_services_names|difference(my_services_all) }}"
 
+# All services
+lp_service_all: [apparmor, auto_upgrades, autofs, bluetooth, chrony, dnsmasq, gpsd, libvirt, modemmanager, networkd, nfsd, nm, postfix, resolvconf, smart, speechd, sshd, timesyncd, udev, ufw]
+# All lists of services
+lp_services_all: [tlp, virtualbox]
+
 # EOF
 ...

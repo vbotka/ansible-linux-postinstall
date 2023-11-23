@@ -26,16 +26,38 @@ output either in the configuration,
 
    shell> ansible-playbook lp.yml -e lp_debug=true -t lp_debug
 
-The above command will run the single debug task. In the last section,
-the values of all variables that enable the subsystems are displayed
-in alphabetical order. See ``tasks/main.yml`` on how to enable
+The above command will run the single debug task and display selected
+variables. There are more sections in the output:
+
+* (4-10) The facts collected by *setup*.
+
+* (12-15) The parameters that control the collection of OS specific
+  variables.
+
+* {19-22) The parameters that control the installation of packages
+  (19-20), backup of changed files (21), and list of managed services.
+
+* (25-26) See the next section :ref:`ug_debug_subsystems_lists`
+  
+* (28-49) The sorted list of tasks
+
+* (51-70) The sorted list of single services *lp_<name>_service*
+
+* (72-80) The sorted list of multiple services *lp_<name>_services*
+
+* (82-86) Others
+  
+The first variables in the blocks of the tasks and services enable
+that particular subsystem. See ``tasks/main.yml`` on how to enable
 particular imports. Some tasks need non-empty list only. For example
 non-empty lists *lp_users* or *lp_users_groups* iterate the *user*
-module in ``tasks/users.yml``.
+module in ``tasks/users.yml``. Not all tasks are listed in this debug
+output.
 
 .. literalinclude:: guide-debug/code04.yaml.example
    :language: YAML
-   :emphasize-lines: 1,28-78
+   :linenos:
+   :emphasize-lines: 1,4-10,12-15,19-22,28-49,51-70,72-80,82-85
 
 .. note:: The debug output of this role is optimized for the **yaml**
    callback plugin. Set this plugin, for example, in the environment

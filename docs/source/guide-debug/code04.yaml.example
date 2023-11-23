@@ -1,4 +1,4 @@
-TASK [vbotka.linux_postinstall : Debug] ******************************************************
+TASK [vbotka.linux_postinstall : Debug] *******************************************************
 ok: [srv.example.com] => 
   msg: |-
     ansible_architecture: x86_64
@@ -9,7 +9,7 @@ ok: [srv.example.com] =>
     ansible_distribution_release: focal
     ansible_python_version: 3.8.5
   
-    lp_vars_distro: firstfound
+    lp_vars_distro: incremental
     lp_vars_distro_firstfound_skip: True
     lp_vars_flavors: firstfound
     lp_flavors_enable: False
@@ -18,61 +18,69 @@ ok: [srv.example.com] =>
   
     lp_package_state: present
     lp_package_state_remove: absent
-    lp_backup_conf: False
+    lp_backup_conf: True
     lp_service:
       []
   
     lp_tasks_enabled: Disabled
     lp_tasks_disabled: Disabled
   
-    lp_acpi: False
-    lp_aliases: False
-    lp_apparmor: False lp_apparmor_install: False lp_apparmor_enable: False
+    lp_acpi: True
+    lp_aliases: True
     lp_apt: False
-    lp_autofs: False lp_autofs_install: False lp_autofs_enable: False
-    lp_auto_upgrades: False lp_auto_upgrades_enable: False
-    lp_bluetooth: False lp_bluetooth_enable: False
-    lp_chrony: False lp_chrony_install: False lp_chrony_enable: False
-    lp_debsums: False lp_debsums_install: False
-    lp_dnsmasq: False lp_dnsmasq_install: False lp_dnsmasq_enable: False
-    lp_gpg: False lp_gpg_install: True
-    lp_gpsd: False lp_gpsd_install: False lp_gpsd_enable: False
-    lp_grub: False
-    lp_chrony: False lp_chrony_install: False lp_chrony_enable: False
-    lp_iptables: False
-    lp_kvm: False lp_kvm_install: False
-    lp_latex: False lp_latex_install: False
-    lp_libvirt: False lp_libvirt_install: False lp_libvirt_libvirtd_enable: False
-    lp_libvirt_guests_enable: False
-    lp_lid: False
-    lp_logrotate: False lp_logrotate_install: False
-    lp_modemmanager: False lp_modemmanager_enable: True
-    lp_netplan: False
-    lp_networkd: False lp_neworkd_install: False lp_neworkd_enable: False
-    lp_nfsd: False lp_nfsd_install: False lp_nfsd_enable: False
-    lp_nm: False lp_nm_install: True lp_nm_enable: True
-    lp_packages_autoremove: False
-    lp_passwords: False
-    lp_pm: False
-    lp_postfix: False lp_postfix_install: False lp_postfix_enable: False
-    lp_rc_local: False
+    lp_debsums: True, lp_debsums_install: False
+    lp_gpg: True, lp_gpg_install: True
+    lp_grub: True
+    lp_iptables: True
+    lp_kvm: True, lp_kvm_install: False
+    lp_latex: True, lp_latex_install: True
+    lp_lid: True
+    lp_logrotate: True, lp_logrotate_install: True
+    lp_netplan: True
+    lp_packages_autoremove: True
+    lp_passwords: True
+    lp_pm: True
+    lp_rc_local: True
     lp_reboot: False
-    lp_resolvconf: False lp_resolvconf_install: True lp_resolvconf_enable: False
-    lp_smart: False lp_smart_install: False lp_smart_enable: False
-    [WIP] lp_snap: False lp_snap_install: False lp_snap_enable: False
-    lp_speechd: False lp_speechd_enable: True
-    lp_ssh: False
-    lp_sshd: False lp_sshd_enable: False
-    lp_swap: False lp_swap_enable: False
-    lp_systemd: False lp_systemd_install: True
-    lp_timesyncd: False lp_timesyncd_enable: True
-    lp_timezone: False
-    lp_tlp: False lp_tlp_install: True lp_tlp_enable: False
-    lp_udev: False lp_udev_enable: True
-    lp_ufw: False lp_ufw_install: True lp_ufw_enable: True
-    lp_virtualbox: False lp_virtualbox_install: False lp_virtualbox_enable: False
-    lp_wpagui: False lp_wpagui_install: False
-    lp_wpasupplicant: False lp_wpasupplicant_install: False
-    lp_xen: False lp_xen_install: False
-    lp_zeitgeist: False lp_zeitgeist_install: True
-    lp_zfs: False lp_zfs_install: True
+    lp_ssh: True
+    lp_swap: True, lp_swap_enable: True
+    lp_systemd: False, lp_systemd_install: True
+    lp_timezone: True
+    lp_wpagui: True, lp_wpagui_install: True
+  
+    lp_apparmor: True, lp_apparmor_install: False, lp_apparmor_enable: False, lp_apparmor_service: apparmor,
+    lp_auto_upgrades: True, lp_auto_upgrades_install: UNDEFINED, lp_auto_upgrades_enable: False, lp_auto_upgrades_service: unattended-upgrades,
+    lp_autofs: True, lp_autofs_install: False, lp_autofs_enable: False, lp_autofs_service: autofs,
+    lp_bluetooth: True, lp_bluetooth_install: UNDEFINED, lp_bluetooth_enable: True, lp_bluetooth_service: bluetooth,
+    lp_chrony: True, lp_chrony_install: True, lp_chrony_enable: True, lp_chrony_service: chrony,
+    lp_dnsmasq: False, lp_dnsmasq_install: False, lp_dnsmasq_enable: False, lp_dnsmasq_service: dnsmasq,
+    lp_gpsd: True, lp_gpsd_install: True, lp_gpsd_enable: False, lp_gpsd_service: gpsd,
+    lp_libvirt: False, lp_libvirt_install: False, lp_libvirt_enable: UNDEFINED, lp_libvirt_service: UNDEFINED,
+    lp_modemmanager: True, lp_modemmanager_install: UNDEFINED, lp_modemmanager_enable: False, lp_modemmanager_service: ModemManager,
+    lp_networkd: True, lp_networkd_install: False, lp_networkd_enable: True, lp_networkd_service: systemd-networkd.service,
+    lp_nfsd: True, lp_nfsd_install: True, lp_nfsd_enable: False, lp_nfsd_service: UNDEFINED,
+    lp_nm: True, lp_nm_install: False, lp_nm_enable: False, lp_nm_service: UNDEFINED,
+    lp_postfix: True, lp_postfix_install: True, lp_postfix_enable: True, lp_postfix_service: postfix,
+    lp_resolvconf: True, lp_resolvconf_install: True, lp_resolvconf_enable: True, lp_resolvconf_service: resolvconf,
+    lp_smart: True, lp_smart_install: True, lp_smart_enable: True, lp_smart_service: smartmontools,
+    lp_speechd: True, lp_speechd_install: UNDEFINED, lp_speechd_enable: False, lp_speechd_service: speech-dispatcher,
+    lp_sshd: True, lp_sshd_install: UNDEFINED, lp_sshd_enable: True, lp_sshd_service: ssh,
+    lp_timesyncd: False, lp_timesyncd_install: UNDEFINED, lp_timesyncd_enable: False, lp_timesyncd_service: systemd-timesyncd.service,
+    lp_udev: True, lp_udev_install: UNDEFINED, lp_udev_enable: True, lp_udev_service: udev,
+    lp_ufw: True, lp_ufw_install: False, lp_ufw_enable: True, lp_ufw_service: ufw,
+  
+    lp_tlp: True, lp_tlp_install: False, lp_tlp_enable: True,
+    services:
+    - tlp
+    lp_virtualbox: False, lp_virtualbox_install: False, lp_virtualbox_enable: False,
+    services:
+    - vboxautostart-service
+    - vboxballoonctrl-service
+    - vboxdrv.service
+    - vboxweb-service
+  
+    lp_wpasupplicant: True, lp_wpasupplicant_install: True
+    lp_xen: True lp_xen_install: True
+    lp_zeitgeist: False, lp_zeitgeist_install: True
+    lp_zfs: True, lp_zfs_install: False
+    [WIP] lp_snap: False, lp_snap_install: False, lp_snap_enable: False

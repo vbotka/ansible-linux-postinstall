@@ -28,55 +28,49 @@
 
       lp_acpi: {{ lp_acpi }}
       lp_aliases: {{ lp_aliases }}
-      lp_apparmor: {{ lp_apparmor }} lp_apparmor_install: {{ lp_apparmor_install }} lp_apparmor_enable: {{ lp_apparmor_enable }} lp_apparmor_service: {{ lp_apparmor_service|d('UNDEFINED') }}
       lp_apt: {{ lp_apt }}
-      lp_autofs: {{ lp_autofs }} lp_autofs_install: {{ lp_autofs_install }} lp_autofs_enable: {{ lp_autofs_enable }}
-      lp_auto_upgrades: {{ lp_auto_upgrades }} lp_auto_upgrades_enable: {{ lp_auto_upgrades_enable }}
-      lp_bluetooth: {{ lp_bluetooth }} lp_bluetooth_enable: {{ lp_bluetooth_enable }}
-      lp_chrony: {{ lp_chrony }} lp_chrony_install: {{ lp_chrony_install }} lp_chrony_enable: {{ lp_chrony_enable }}
-      lp_debsums: {{ lp_debsums }} lp_debsums_install: {{ lp_debsums_install }}
-      lp_dnsmasq: {{ lp_dnsmasq }} lp_dnsmasq_install: {{ lp_dnsmasq_install }} lp_dnsmasq_enable: {{ lp_dnsmasq_enable }}
-      lp_gpg: {{ lp_gpg }} lp_gpg_install: {{ lp_gpg_install }}
-      lp_gpsd: {{ lp_gpsd }} lp_gpsd_install: {{ lp_gpsd_install }} lp_gpsd_enable: {{ lp_gpsd_enable }}
+      lp_debsums: {{ lp_debsums }}, lp_debsums_install: {{ lp_debsums_install }}
+      lp_gpg: {{ lp_gpg }}, lp_gpg_install: {{ lp_gpg_install }}
       lp_grub: {{ lp_grub }}
-      lp_chrony: {{ lp_chrony }} lp_chrony_install: {{ lp_chrony_install }} lp_chrony_enable: {{ lp_chrony_enable }}
       lp_iptables: {{ lp_iptables }}
-      lp_kvm: {{ lp_kvm }} lp_kvm_install: {{ lp_kvm_install }}
-      lp_latex: {{ lp_latex }} lp_latex_install: {{ lp_latex_install }}
-      lp_libvirt: {{ lp_libvirt }} lp_libvirt_install: {{ lp_libvirt_install }} lp_libvirt_libvirtd_enable: {{ lp_libvirt_libvirtd_enable }}
-      lp_libvirt_guests_enable: {{ lp_libvirt_guests_enable }}
+      lp_kvm: {{ lp_kvm }}, lp_kvm_install: {{ lp_kvm_install }}
+      lp_latex: {{ lp_latex }}, lp_latex_install: {{ lp_latex_install }}
       lp_lid: {{ lp_lid }}
-      lp_logrotate: {{ lp_logrotate }} lp_logrotate_install: {{ lp_logrotate_install }}
-      lp_modemmanager: {{ lp_modemmanager }} lp_modemmanager_enable: {{ lp_modemmanager_enable }}
+      lp_logrotate: {{ lp_logrotate }}, lp_logrotate_install: {{ lp_logrotate_install }}
       lp_netplan: {{ lp_netplan }}
-      lp_networkd: {{ lp_networkd }} lp_neworkd_install: {{ lp_networkd_install }} lp_neworkd_enable: {{ lp_networkd_enable }}
-      lp_nfsd: {{ lp_nfsd }} lp_nfsd_install: {{ lp_nfsd_install }} lp_nfsd_enable: {{ lp_nfsd_enable }}
-      lp_nm: {{ lp_nm }} lp_nm_install: {{ lp_nm_install }} lp_nm_enable: {{ lp_nm_enable }}
       lp_packages_autoremove: {{ lp_packages_autoremove }}
       lp_passwords: {{ lp_passwords }}
       lp_pm: {{ lp_pm }}
-      lp_postfix: {{ lp_postfix }} lp_postfix_install: {{ lp_postfix_install }} lp_postfix_enable: {{ lp_postfix_enable }}
       lp_rc_local: {{ lp_rc_local }}
       lp_reboot: {{ lp_reboot }}
-      lp_resolvconf: {{ lp_resolvconf }} lp_resolvconf_install: {{ lp_resolvconf_install }} lp_resolvconf_enable: {{ lp_resolvconf_enable }}
-      lp_smart: {{ lp_smart }} lp_smart_install: {{ lp_smart_install }} lp_smart_enable: {{ lp_smart_enable }}
-      [WIP] lp_snap: {{ lp_snap }} lp_snap_install: {{ lp_snap_install }} lp_snap_enable: {{ lp_snap_enable }}
-      lp_speechd: {{ lp_speechd }} lp_speechd_enable: {{ lp_speechd_enable }}
       lp_ssh: {{ lp_ssh }}
-      lp_sshd: {{ lp_sshd }} lp_sshd_enable: {{ lp_sshd_enable }}
-      lp_swap: {{ lp_swap }} lp_swap_enable: {{ lp_swap_enable }}
-      lp_systemd: {{ lp_systemd }} lp_systemd_install: {{ lp_systemd_install }}
-      lp_timesyncd: {{ lp_timesyncd }} lp_timesyncd_enable: {{ lp_timesyncd_enable }}
+      lp_swap: {{ lp_swap }}, lp_swap_enable: {{ lp_swap_enable }}
+      lp_systemd: {{ lp_systemd }}, lp_systemd_install: {{ lp_systemd_install }}
       lp_timezone: {{ lp_timezone }}
-      lp_tlp: {{ lp_tlp }} lp_tlp_install: {{ lp_tlp_install }} lp_tlp_enable: {{ lp_tlp_enable }}
-      lp_udev: {{ lp_udev }} lp_udev_enable: {{ lp_udev_enable }}
-      lp_ufw: {{ lp_ufw }} lp_ufw_install: {{ lp_ufw_install }} lp_ufw_enable: {{ lp_ufw_enable }}
-      lp_virtualbox: {{ lp_virtualbox }} lp_virtualbox_install: {{ lp_virtualbox_install }} lp_virtualbox_enable: {{ lp_virtualbox_enable }}
-      lp_wpagui: {{ lp_wpagui }} lp_wpagui_install: {{ lp_wpagui_install }}
-      lp_wpasupplicant: {{ lp_wpasupplicant }} lp_wpasupplicant_install: {{ lp_wpasupplicant_install }}
+      lp_wpagui: {{ lp_wpagui }}, lp_wpagui_install: {{ lp_wpagui_install }}
+
+      {% for service in lp_service_all %}
+      lp_{{ service }}: {{ lookup('vars', 'lp_' ~ service) }}, {% for suffix in ['_install', '_enable', '_service'] -%}
+      lp_{{ service }}{{ suffix }}: {{ lookup('vars', 'lp_' ~ service ~ suffix, default='UNDEFINED') }}, {% endfor %}
+
+      {% endfor %}
+
+      {% for group in lp_services_all %}
+      lp_{{ group }}: {{ lookup('vars', 'lp_' ~ group) }}, {% for suffix in ['_install', '_enable'] -%}
+      lp_{{ group }}{{ suffix }}: {{ lookup('vars', 'lp_' ~ group ~ suffix, default='UNDEFINED') }}, {% endfor %}
+
+      services:
+      {% for service in lookup('vars', 'lp_' ~ group ~ '_services') %}
+      - {{ service }}
+      {% endfor %}
+      {% endfor %}
+
+      lp_wpasupplicant: {{ lp_wpasupplicant }}, lp_wpasupplicant_install: {{ lp_wpasupplicant_install }}
       lp_xen: {{ lp_xen }} lp_xen_install: {{ lp_xen_install }}
-      lp_zeitgeist: {{ lp_zeitgeist }} lp_zeitgeist_install: {{ lp_zeitgeist_install }}
-      lp_zfs: {{ lp_zfs }} lp_zfs_install: {{ lp_zfs_install }}
+      lp_zeitgeist: {{ lp_zeitgeist }}, lp_zeitgeist_install: {{ lp_zeitgeist_install }}
+      lp_zfs: {{ lp_zfs }}, lp_zfs_install: {{ lp_zfs_install }}
+      [WIP] lp_snap: {{ lp_snap }}, lp_snap_install: {{ lp_snap_install }}, lp_snap_enable: {{ lp_snap_enable }}
+
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
 
