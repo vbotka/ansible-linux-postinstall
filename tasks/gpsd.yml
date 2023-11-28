@@ -1,13 +1,30 @@
 ---
 # linux_postinstall gpsd
 
+- name: "gpsd: Debug"
+  vars:
+    msg: |-
+      ansible_os_family: {{ ansible_os_family }}
+      lp_gpsd_install: {{ lp_gpsd_install }}
+      lp_gpsd_packages:
+        {{ lp_gpsd_packages|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
+  ansible.builtin.debug:
+    msg: "{{ '{}'.format(msg) }}"
+  when: lp_gpsd_debug|bool
+  tags: lp_gpsd_debug
+
 - name: "gpsd: Install packages for gpsd"
-  ansible.builtin.include_tasks:
-    file: fn/install-package.yml
-    apply:
-      tags: lp_gpsd_packages
-  loop: "{{ lp_gpsd_packages }}"
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
   when: lp_gpsd_install|bool
+  vars:
+    ll_ipkg_list: "{{ lp_gpsd_packages }}"
+    ll_ipkg_state: "{{ lp_package_state }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
+    ll_debug: "{{ lp_gpsd_debug|bool }}"
   tags: lp_gpsd_packages
 
 - name: "gpsd: Add user gpsd to group dialout"

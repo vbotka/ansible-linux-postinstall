@@ -826,39 +826,42 @@ Description of the task.
 
 
 
-.. _as_packages_auto.yml:
-
-packages_auto.yml
------------------
-
-Synopsis: Configure packages_auto.
-
-
-Description of the task.
-
-
-[`tasks/packages_auto.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/packages_auto.yml>`_]
-
-.. highlight:: yaml
-    :linenothreshold: 5
-.. literalinclude:: ../../tasks/packages_auto.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
-    :linenos:
-
-
-
-
-
 .. _as_packages.yml:
 
 packages.yml
 ------------
 
-Synopsis: Configure packages.
+Synopsis: Manage packages.
 
 
-Description of the task.
+Dynamic variables (4)
+^^^^^^^^^^^^^^^^^^^^^
+
+TBD
+
+Debug (13)
+^^^^^^^^^^
+
+TBD
+
+Install packages automatically (41)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If enabled (52) and not empty (53) import ``install_package.yml``
+(44) from the role ``vbotka.linux_lib`` (43). Flatten and filter
+*unique* items in the lists ``my_packages_auto`` (46). Set it to the
+mandatory variable ``ll_ipkg_list``. Optionally, set other variables
+(47-50).
+
+Install packages (56)
+^^^^^^^^^^^^^^^^^^^^^
+
+If not empty (66) TBD
+
+Remove packages (69)
+^^^^^^^^^^^^^^^^^^^^
+
+TBD
 
 
 [`tasks/packages.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/packages.yml>`_]
@@ -867,55 +870,7 @@ Description of the task.
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/packages.yml
     :language: Yaml
-    :emphasize-lines: 1,2
-    :linenos:
-
-
-
-
-
-.. _as_install-package.yml:
-
-install-package.yml
--------------------
-
-Synopsis: Configure install-package.
-
-
-Description of the task.
-
-
-[`tasks/fn/install-package.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/install-package.yml>`_]
-
-.. highlight:: yaml
-    :linenothreshold: 5
-.. literalinclude:: ../../tasks/fn/install-package.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
-    :linenos:
-
-
-
-
-
-.. _as_remove-package.yml:
-
-remove-package.yml
-------------------
-
-Synopsis: Configure remove-package.
-
-
-Description of the task.
-
-
-[`tasks/fn/remove-package.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/remove-package.yml>`_]
-
-.. highlight:: yaml
-    :linenothreshold: 5
-.. literalinclude:: ../../tasks/fn/remove-package.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :emphasize-lines: 4,13,41,43,44,46-50,52-53,56,66,69
     :linenos:
 
 
@@ -1095,7 +1050,7 @@ Description of the task.
 service.yml
 -----------
 
-Synopsis: Configure services.
+Synopsis: Manage services.
 
 
 Debug (6)
@@ -1108,27 +1063,28 @@ Sanity (24)
 
 TBD
 
-Automatic management of listed services (57)
+Automatic management of listed services (60)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If not empty (81) iterate ``lp_service_auto`` (66). Skip when ``lp_
-~ item`` (73) is not *True* (70). Get (74) and use (62) the OS
-dependent name of the service. Get (75) and set (64) the service
-enablement. If enabled set state (63) *started*. Get (76) and use
-the module (65).
+If not empty (86) iterate ``lp_service_auto`` (69). Skip when ``lp_
+~ item`` (76) is not *True* (73). Get (77) and use (65) the OS
+dependent name of the service. Get (78) and set (66) the service
+enablement. Get (80) and set (66) the service state. Use
+*default_stat* (81) if *lp_\*_state* does not exist. Get (79) and
+use the module (68).
 
-Manual management of listed services (84)
+Manual management of listed services (89)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-If not empty (95) iterate ``lp_service`` in the included tasks
-(93). If *auto* (90) set the module (89) to ``ansible_service_mgr``
+If not empty (100) iterate ``lp_service`` in the included tasks
+(98). If *auto* (95) set the module (94) to ``ansible_service_mgr``
 (OS native service manager found by the *setup*). TBC
 
-Flush handlers (98)
-^^^^^^^^^^^^^^^^^^^
+Flush handlers (103)
+^^^^^^^^^^^^^^^^^^^^
 
 Automatic management of listed services notifies
-``ansible_service_mgr`` (71). See the tasks service-\*.yml how manual
+``ansible_service_mgr`` (74). See the tasks service-\*.yml how manual
 management options notify handlers.
 
 
@@ -1138,7 +1094,7 @@ management options notify handlers.
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/service.yml
     :language: Yaml
-    :emphasize-lines: 6,24,57,62,63,64,65,66,70,71,73,74,75,76,81,84,89,90,93,95,98
+    :emphasize-lines: 6,24,60,86,69,76,73,77,65,78,66,80,66,81,79,68,89,100,98,95,94,103,74
     :linenos:
 
 

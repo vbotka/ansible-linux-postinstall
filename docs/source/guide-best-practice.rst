@@ -11,29 +11,29 @@ Recommended configuration after the installation of OS
 
 * Test the syntax
 
-.. code-block:: Bash
+.. code-block:: bash
    :emphasize-lines: 1
 
    shell> ansible-playbook lp.yml --syntax-check
 
 * What variables will be included?
 
-.. code-block:: Bash
+.. code-block:: bash
    :emphasize-lines: 1
 
    shell> ansible-playbook lp.yml -t lp_debug -e lp_debug=True
 
 * Dry run, display differences and display variables
 
-.. code-block:: Bash
+.. code-block:: bash
    :emphasize-lines: 1
 
    shell> ansible-playbook lp.yml -e lp_debug=True --check --diff
 
 * Configure hostname, users, sudoers, network and reboot
 
-.. code-block:: Bash
-   :emphasize-lines: 1-8
+.. code-block:: bash
+   :emphasize-lines: 1-7
 
    shell> ansible-playbook lp.yml -t lp_hostname
    shell> ansible-playbook lp.yml -t lp_users
@@ -41,34 +41,32 @@ Recommended configuration after the installation of OS
    shell> ansible-playbook lp.yml -t lp_udev
    shell> ansible-playbook lp.yml -t lp_netplan
    shell> ansible-playbook lp.yml -t lp_wpasupplicant
-   shell> ansible-playbook lp.yml -t lp_reboot \
-                                  -e lp_reboot=true lp_reboot_force=true
+   shell> ansible-playbook lp.yml -t lp_reboot -e lp_reboot=true lp_reboot_force=true
 
 * Configure firewall
 
-.. code-block:: Bash
+.. code-block:: bash
    :emphasize-lines: 1
 
    shell> ansible-playbook lp.yml -t lp_iptables
 
 * Test the installation of packages
 
-.. code-block:: Bash
-   :emphasize-lines: 1-2
+.. code-block:: bash
+   :emphasize-lines: 1
 
-   shell> ansible-playbook lp.yml -t lp_packages \
-                                  -e lp_package_install_dryrun=True
+   shell> ansible-playbook lp.yml -t lp_packages -e lp_package_install_dryrun=True
 
 * Install packages
 
-.. code-block:: Bash
+.. code-block:: bash
    :emphasize-lines: 1
 
    shell> ansible-playbook lp.yml -t lp_packages
 
 * Run the playbook
 
-.. code-block:: Bash
+.. code-block:: bash
    :emphasize-lines: 1
 
    shell> ansible-playbook lp.yml
@@ -79,7 +77,7 @@ Recommended configuration after the installation of OS
   running the playbook repeatedly. To speedup the playbook disable
   debug, and install, and run the playbook again.
 
-.. code-block:: Bash
+.. code-block:: bash
    :emphasize-lines: 1
 
     shell> ansible-playbook lp.yml

@@ -1,8 +1,9 @@
 ---
 
 lp_tlp: false
-lp_tlp_install: true
 lp_tlp_debug: false
+
+lp_tlp_install: true
 lp_tlp_enable: false
 lp_tlp_thinkpad: false
 lp_tlp_config: []

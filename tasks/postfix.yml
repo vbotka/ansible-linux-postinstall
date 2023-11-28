@@ -21,12 +21,16 @@
   tags: lp_postfix_debug
 
 - name: "postfix: Install packages"
-  ansible.builtin.include_tasks:
-    file: fn/install-package.yml
-    apply:
-      tags: lp_postfix_packages
-  loop: "{{ lp_postfix_packages }}"
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
   when: lp_postfix_install|bool
+  vars:
+    ll_ipkg_list: "{{ lp_postfix_packages }}"
+    ll_ipkg_state: "{{ lp_package_state }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
+    ll_debug: "{{ lp_postfix_debug|bool }}"
   tags: lp_postfix_packages
 
 - name: "chrony: Configure, enable, start, or disable postfix"

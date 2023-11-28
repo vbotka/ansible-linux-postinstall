@@ -2,17 +2,17 @@ shell> ansible-playbook lp.yml -t lp_service_auto -e lp_service_debug=true
 
   ...
 
-TASK [vbotka.linux_postinstall : service: Automatic management of listed services] *************
+TASK [vbotka.linux_postinstall : service: Automatic management of listed services] *****************
 ok: [test_01] => (item=smartmontools enabled: True use: auto)
 ok: [test_01] => (item=udev enabled: True use: service)
 
-TASK [vbotka.linux_postinstall : service: Debug] ***********************************************
+TASK [vbotka.linux_postinstall : service: Debug] ***************************************************
 included: /export/home/admin/.ansible/roles/vbotka.linux_postinstall/tasks/fn/service-debug.yml for test_01
 
-TASK [vbotka.linux_postinstall : service: Debug management full results] ***********************
+TASK [vbotka.linux_postinstall : service: Debug management full results] ***************************
 skipping: [test_01]
 
-TASK [vbotka.linux_postinstall : service: Debug management selected results] *******************
+TASK [vbotka.linux_postinstall : service: Debug management selected results] ***********************
 ok: [test_01] => 
   msg: |-
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

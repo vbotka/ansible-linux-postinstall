@@ -17,6 +17,7 @@ The description of the tasks is not complete. The `role <https://galaxy.ansible.
    guide-tasks-development-and-testing
    guide-task-netplan
    guide-task-networkmanager
+   guide-task-packages
    guide-task-passwords
    guide-task-passwords-passwordstore
    guide-task-service

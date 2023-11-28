@@ -47,6 +47,7 @@ supported also by Centos. You're encouraged to fit the variables in
 ### Roles
 
 * [ansible_lib](https://galaxy.ansible.com/vbotka/ansible_lib)
+* [linux_lib](https://galaxy.ansible.com/vbotka/linux_lib)
 
 ### Collections
 
@@ -62,10 +63,14 @@ See defaults and examples in vars.
 
 ## Workflow
 
-1. Install the role and collection vbotka.linux_postinstall
+1. Install the roles and collections
+
+Install roles
 
 ```bash
 shell> ansible-galaxy role install vbotka.linux_postinstall
+shell> ansible-galaxy role install vbotka.ansible_lib
+shell> ansible-galaxy role install vbotka.linux_lib
 ```
 
 The collections ansible.posix and community.general are included in

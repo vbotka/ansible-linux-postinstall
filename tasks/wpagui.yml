@@ -25,12 +25,16 @@
   tags: lp_wpagui_debug
 
 - name: "wpagui: Install packages"
-  ansible.builtin.include_tasks:
-    file: fn/install-package.yml
-    apply:
-      tags: lp_wpagui_packages
-  loop: "{{ lp_wpagui_packages }}"
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
   when: lp_wpagui_install|bool
+  vars:
+    ll_ipkg_list: "{{ lp_wpagui_packages }}"
+    ll_ipkg_state: "{{ lp_package_state }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
+    ll_debug: "{{ lp_wpagui_debug|bool }}"
   tags: lp_wpagui_packages
 
 # EOF

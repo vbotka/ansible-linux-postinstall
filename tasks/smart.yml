@@ -1,13 +1,30 @@
 ---
 # linux_postinstall smart
 
+- name: "smart: Debug"
+  vars:
+    msg: |-
+      ansible_os_family: {{ ansible_os_family }}
+      lp_smart_install: {{ lp_smart_install }}
+      lp_smart_packages:
+        {{ lp_smart_packages|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
+  ansible.builtin.debug:
+    msg: "{{ '{}'.format(msg) }}"
+  when: lp_smart_debug|bool
+  tags: lp_smart_debug
+
 - name: "smart: Install packages"
-  ansible.builtin.include_tasks:
-    file: fn/install-package.yml
-    apply:
-      tags: lp_smart_packages
-  loop: "{{ lp_smart_packages }}"
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
   when: lp_smart_install|bool
+  vars:
+    ll_ipkg_list: "{{ lp_smart_packages }}"
+    ll_ipkg_state: "{{ lp_package_state }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
+    ll_debug: "{{ lp_smart_debug|bool }}"
   tags: lp_smart_packages
 
 - name: "smart: Configure {{ lp_smart_conf_file }}. Do not scan for devices"

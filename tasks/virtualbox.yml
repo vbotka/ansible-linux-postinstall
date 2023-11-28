@@ -42,13 +42,17 @@
   tags: lp_virtualbox_repos
 
 - name: "virtualbox: Install VirtualBox packages"
-  ansible.builtin.include_tasks:
-    file: fn/install-package.yml
-    apply:
-      tags: lp_virtualbox_packages
-  loop: "{{ lp_virtualbox_packages }}"
-  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"  # noqa ignore-errors
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
   when: lp_virtualbox_install|bool
+  vars:
+    ll_ipkg_list: "{{ lp_virtualbox_packages }}"
+    ll_ipkg_state: "{{ lp_package_state }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
+    ll_debug: "{{ lp_virtualboxool_debug|bool }}"
+  ignore_errors: "{{ lp_virtualbox_ignore_errors }}"  # noqa ignore-errors
   tags: lp_virtualbox_packages
 
 - name: "virtualbox: Services start/stop and enable/disable"

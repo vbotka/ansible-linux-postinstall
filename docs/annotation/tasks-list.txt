@@ -30,10 +30,7 @@ netplan.yml
 networkd.yml
 networkmanager.yml
 nfsd.yml
-packages_auto.yml
 packages.yml
-fn/install-package.yml
-fn/remove-package.yml
 passwords.yml
 pm_utils.yml
 postfix.yml

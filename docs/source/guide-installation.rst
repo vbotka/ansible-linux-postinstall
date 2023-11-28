@@ -21,12 +21,13 @@ and install it
 
     shell> ansible-galaxy install vbotka.linux_postinstall
 
-Install the library of tasks
+Install the libraries of tasks
 
 .. code-block:: sh
-   :emphasize-lines: 1
+   :emphasize-lines: 1-2
 
     shell> ansible-galaxy install vbotka.ansible_lib
+    shell> ansible-galaxy install vbotka.linux_lib
 
 .. seealso::
    * To install specific versions from various sources see `Installing content <https://galaxy.ansible.com/docs/using/installing.html>`_.

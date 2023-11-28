@@ -15,9 +15,9 @@
   loop_control:
     label: >-
       {{ item.name }}
-      enabled: {{ item.enabled|d('UNDEFINED') }}
-      state: {{ item.state|d('UNDEFINED') }}
-      use: {{ item.use|d('UNDEFINED') }}
+      enabled={{ item.enabled|d('UNDEFINED') }}
+      state={{ item.state|d('UNDEFINED') }}
+      use={{ item.use|d('UNDEFINED') }}
   register: result
   notify: "reload {{ ansible_service_mgr }} daemon"
 

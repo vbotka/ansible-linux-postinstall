@@ -5,6 +5,28 @@ vbotka.linux_postinstall 2.4 Release Notes
 .. contents:: Topics
 
 
+2.4.9
+=====
+
+Release Summary
+---------------
+Update docs. Update tasks packages. Import install_package.yml from
+vbotka.linux_lib.
+
+Minor changes
+-------------
+* Update tasks packages
+* Update tasks passwords local installation of packages.
+* Update tasks which install packages. Import install_package.yml from
+  vbotka.linux_lib
+* Add dynamic variables in defaults/main/packages.yml
+* Add debug to tasks. Add variables lp_*_debug to defaults
+* Remove tasks: packages_auto.yml, fn/install-package.yml,
+  fn/remove-package.yml
+* Update annotated source service.yml
+* Update docs tasks packages.
+
+
 2.4.8
 =====
 
@@ -64,9 +86,9 @@ Release Summary
 ---------------
 Update docs, defaults, vars. Fixes.
 
-Minor cahnges
+Minor changes
 -------------
-* Update docs. Services, annotatioin lists, annotation service.yml,
+* Update docs. Services, annotation lists, annotation service.yml,
   guide service.
 * Update lp_smart_* defaults and vars.
 * Fix tags in 'service: Flush handlers'
@@ -102,7 +124,7 @@ Minor changes
     service)
   * Add handler reexec systemd daemon
   
-Bufixes
+Bugfixes
 -------
 * Fix default lp_udev_debug2|d(false)|bool
 
@@ -137,9 +159,9 @@ Major Changes
   variables lp_swap_sanity, lp_swap_f$
 * No network-manager.service in Jammy
 * Run timesyncd before chrony. Crony will fail if timesyncd not
-  deisabled.
+  disabled.
 * Update Ansible 2.14, meta, license
-* Update LaTex packages and reference.
+* Update LaTeX packages and reference.
 * Update autofs block/rescue, end of host if fails. Install
   package. Flush handlers.
 * Update chrony debug.
@@ -160,7 +182,7 @@ Minor Changes
 * Debug udev. Add debug2. udev not idempotent #75542. Add Note.
 * Debug packages, repos, ufw, zfs. Add missing variables
 
-Bufixes
+Bugfixes
 -------
 * lp_gpsd_install
 * lp_udev_debug2|d(false)|bool

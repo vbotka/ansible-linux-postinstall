@@ -1,0 +1,45 @@
+shell> ansible-playbook lp.yml -t lp_packages_auto -e lp_packages_auto=true
+
+...
+
+TASK [vbotka.linux_postinstall : packages: Instantiate dynamic variables] **************************
+ok: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Sanity ll_ipkg_list is defined.] **********************
+ok: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Debug] ************************************************
+skipping: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Install (apt)] ****************************************
+ok: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Install (yum)] ****************************************
+skipping: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Install (package)] ************************************
+skipping: [test_01] => (item=autofs) 
+skipping: [test_01] => (item=chrony) 
+skipping: [test_01] => (item=debsums) 
+skipping: [test_01] => (item=gnupg) 
+skipping: [test_01] => (item=gpg) 
+skipping: [test_01] => (item=gpg-agent) 
+skipping: [test_01] => (item=texlive) 
+skipping: [test_01] => (item=logrotate) 
+skipping: [test_01] => (item=pass) 
+skipping: [test_01] => (item=postfix) 
+skipping: [test_01] => (item=resolvconf) 
+skipping: [test_01] => (item=smartmontools) 
+skipping: [test_01] => (item=tlp) 
+skipping: [test_01] => (item=tlp-rdw) 
+skipping: [test_01] => (item=wpasupplicant) 
+skipping: [test_01] => (item=wpagui) 
+skipping: [test_01] => (item=net-tools) 
+skipping: [test_01] => (item=ifupdown) 
+skipping: [test_01] => (item=wireless-tools) 
+skipping: [test_01] => (item=zfsutils-linux) 
+skipping: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Debug result] *****************************************
+skipping: [test_01]
+

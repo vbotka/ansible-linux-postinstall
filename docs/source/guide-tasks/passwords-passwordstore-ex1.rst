@@ -1,7 +1,7 @@
 .. _ug_task_passwords_passwordstore_ex1:
 
-Example 1: Update passwords or create them if do not exist
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Example 1: Update or create passwords
+"""""""""""""""""""""""""""""""""""""
 
 Let's start with no passwords stored in `passwordstore <single:
 password; passwordstore>` for users at host *test_01*. The command
@@ -82,8 +82,7 @@ before. To change the passwords in the future set both variables
 .. code-block:: YAML
    :emphasize-lines: 1-2
 
-   shell> ansible-playbook lp.yml -t lp_passwords \
-                                  -e lp_passwordstore_create=True
+   shell> ansible-playbook lp.yml -t lp_passwords -e lp_passwordstore_create=True
    ...
   
    TASK [vbotka.ansible_lib : al_pws_user_host: Retrieve, create or update ...]

@@ -1,0 +1,37 @@
+---
+
+task_packages_synopsis: |
+  Manage packages.
+
+task_packages_description: |
+  Dynamic variables (4)
+  ^^^^^^^^^^^^^^^^^^^^^
+
+  TBD
+
+  Debug (13)
+  ^^^^^^^^^^
+
+  TBD
+
+  Install packages automatically (41)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+  If enabled (52) and not empty (53) import ``install_package.yml``
+  (44) from the role ``vbotka.linux_lib`` (43). Flatten and filter
+  *unique* items in the lists ``my_packages_auto`` (46). Set it to the
+  mandatory variable ``ll_ipkg_list``. Optionally, set other variables
+  (47-50).
+
+  Install packages (56)
+  ^^^^^^^^^^^^^^^^^^^^^
+
+  If not empty (66) TBD
+
+  Remove packages (69)
+  ^^^^^^^^^^^^^^^^^^^^
+
+  TBD
+
+task_packages_lines: 4,13,41,43,44,46-50,52-53,56,66,69
+...

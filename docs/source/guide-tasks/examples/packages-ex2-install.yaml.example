@@ -1,0 +1,24 @@
+shell> ansible-playbook lp.yml -t lp_packages_install
+
+...
+
+TASK [vbotka.linux_lib : ll install_package: Sanity ll_ipkg_list is defined.] **********************
+ok: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Debug] ************************************************
+skipping: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Install (apt)] ****************************************
+ok: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Install (yum)] ****************************************
+skipping: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Install (package)] ************************************
+skipping: [test_01] => (item=ansible) 
+skipping: [test_01] => (item=ansible-lint) 
+skipping: [test_01] => (item=ara-client) 
+skipping: [test_01]
+
+TASK [vbotka.linux_lib : ll install_package: Debug result] *****************************************
+skipping: [test_01]

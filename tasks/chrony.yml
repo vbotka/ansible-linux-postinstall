@@ -33,12 +33,16 @@
   tags: lp_chrony_sanity
 
 - name: "chrony: Install packages"
-  ansible.builtin.include_tasks:
-    file: fn/install-package.yml
-    apply:
-      tags: lp_chrony_packages
-  loop: "{{ lp_chrony_packages }}"
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
   when: lp_chrony_install|bool
+  vars:
+    ll_ipkg_list: "{{ lp_chrony_packages }}"
+    ll_ipkg_state: "{{ lp_package_state }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
+    ll_debug: "{{ lp_chrony_debug|bool }}"
   tags: lp_chrony_packages
 
 - name: "chrony: Configure, enable, start, or disable chrony"

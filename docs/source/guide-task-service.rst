@@ -4,11 +4,11 @@
 Service
 -------
 
-Manage services. There are three modules that manage services:
+Manage services. There are three modules that manage services
 
-* ansible.builtin.service
-* ansible.builtin.systemd
-* ansible.builtin.sysvinet
+* `ansible.builtin.service <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html>`_
+* `ansible.builtin.systemd <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/systemd_service_module.html>`_
+* `ansible.builtin.sysvinit <https://docs.ansible.com/ansible/latest/collections/ansible/builtin/sysvinit_module.html>`_
 
 
 Synopsis
@@ -16,16 +16,50 @@ Synopsis
 
 There are four standalone blocks that can be selected by tags:
 
-* Debug
-* Sanity
-* Automatic management of services
-* Manual management of services
+* Debug. Display variables.
+* Sanity check
+* Manage automatically services listed in *lp_service_auto*
+* Manage services listed in *lp_service*
 
-The module *service* is used in **automatic** management of services
-listed in *lp_service_auto*. The **manual** management of services
-uses by default the OS specific service management module discovered
-by *ansible.builtin.setup* to manage services listed in
-*lp_service*. The last task after the blocks will flush handlers.
+The module *service* is used in automatic management of services
+listed in *lp_service_auto*. The OS specific service management module
+discovered by *ansible.builtin.setup* is used to manage services
+listed in *lp_service*. The last task after the blocks will flush
+handlers.
+
+.. seealso::
+
+   * :ref:`as_service.yml`
+   * :ref:`as_service-service.yml`
+   * :ref:`as_service-systemd.yml`
+   * :ref:`as_service-sysvinit.yml`
+
+Quick guide
+^^^^^^^^^^^
+
+* Create list *lp_service_auto* ::
+
+   lp_service_auto: [smart, udev]
+
+  and select the automatic management of services::
+
+   shell> ansible-playbook lp.yml -t lp_service_auto
+
+* Create list *lp_service*::
+
+   lp_service:
+     - enabled: true
+       name: smartmontools
+       state: started
+       use: auto
+     - enabled: true
+       name: udev
+       state: started
+       use: service
+
+  and select the manual management of services::
+
+   shell> ansible-playbook lp.yml -t lp_service_manual
 
 
 Best practice
@@ -68,56 +102,79 @@ execution to the automatic and manual management of services
    shell> ansible-playbook lp.yml -t lp_service_auto --check --diff
    shell> ansible-playbook lp.yml -t lp_service_manual --check --diff
 
+If all seems right manage services and display results
+
+.. code-block:: bash
+
+   shell> ansible-playbook lp.yml -t lp_service_manual -e lp_service_debug=true
+
 Automatically manage services and display results
 
 .. code-block:: bash
 
    shell> ansible-playbook lp.yml -t lp_service_auto -e lp_service_debug=true
 
-Manually manage services and display results
+To minimize both the execution and output, disable skipped hosts
 
 .. code-block:: bash
 
-   shell> ansible-playbook lp.yml -t lp_service_manual -e lp_service_debug=true
+   shell> ANSIBLE_DISPLAY_SKIPPED_HOSTS=false ansible-playbook lp.yml -t lp_service_auto
+     ...
+   TASK [vbotka.linux_postinstall : service: Automatic management of listed services] **************
+   ok: [test_01] => (item=unattended-upgrades enabled=False state=stopped use=auto)
+   ok: [test_01] => (item=autofs enabled=False state=stopped use=auto)
+   ok: [test_01] => (item=bluetooth enabled=True state=started use=auto)
+   ok: [test_01] => (item=postfix enabled=True state=started use=auto)
+   ok: [test_01] => (item=resolvconf enabled=True state=started use=auto)
+   ok: [test_01] => (item=smartmontools enabled=True state=started use=auto)
+   ok: [test_01] => (item=speech-dispatcher enabled=False state=stopped use=auto)
+   ok: [test_01] => (item=ssh enabled=True state=started use=auto)
+   ok: [test_01] => (item=systemd-timesyncd.service enabled=False state=stopped use=auto)
+   ok: [test_01] => (item=udev enabled=True state=started use=service)
+   ok: [test_01] => (item=ufw enabled=True state=started use=auto)
 
 .. seealso::
 
    * source code :ref:`as_service.yml` to learn details.
 
-   * defaults in *defaults/main/services.yml*
+   * `defaults/main/service.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/defaults/main/service.yml>`_
 
    * examples below.
   
 .. note::
    
-   * The module **service** is a proxy for OS specific service
-     management modules. See the parameter **use** of the module.
+   * The module ``service`` is a proxy for OS specific service
+     management modules. See the parameter ``use`` of the module.
 
-   * The module **service** by default uses the service manager
-     discovered by **ansible.builtin.setup** stored in the variable
-     **ansible_service_mgr**.
+   * The module ``service`` by default uses the service manager
+     discovered by ``ansible.builtin.setup`` stored in the variable
+     ``ansible_service_mgr``.
+
+.. hint:: Use `yaml callback <https://docs.ansible.com/ansible/latest/collections/community/general/yaml_callback.html>`_
 
 
 Debug
 ^^^^^
 
-By default, the debug is turned off. If enabled the debug task will
-display the variables. For example,
+By default, the debug is turned off ``lp_service_debug=false``. If
+enabled the debug task will display the variables. For example,
 
 .. literalinclude:: guide-tasks/examples/service-debug.yaml.example
    :language: yaml
-   :emphasize-lines: 1
+   :linenos:
+   :emphasize-lines: 1,14,24
 
-.. note:: To demonstrate the functionality, both *lp_service* and
-          *lp_service_auto* list the same services. To manage a
-          service you will usually use either *lp_service* or
-          *lp_service_auto*. The tasks won't complain if you use both.
+.. note:: To demonstrate the functionality, both ``lp_service`` and
+          ``lp_service_auto`` list the same services. To manage a
+          service you will usually use either ``lp_service`` or
+          ``lp_service_auto``. The tasks won't complain if you use both.
 
 
 Sanity
 ^^^^^^
 
-By default, the sanity checking is turned off. If enabled the module
+By default, the sanity checking is turned off
+``lp_service_sanity=false``. If enabled the module
 *ansible.builtin.service_facts* will get the service facts and
 following tasks will check the validity of:
 
@@ -129,13 +186,13 @@ following tasks will check the validity of:
    :language: yaml
    :emphasize-lines: 1
 
-.. seealso:: The declaration of the dynamic variables in *defaults/main/service.yml*
+.. seealso:: The declaration of the dynamic variables in `defaults/main/service.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/defaults/main/service.yml>`_
 
 
-Automatic management of services
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Manage services automatically
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Only limited parameters (state, enabled, use) of the module *service*
+Only limited parameters (*state, enabled, use*) of the module *service*
 are used in the automatic management of the services. The
 configuration is very simple. Put services you want to manage into the
 list *lp_service_auto*. Non-empty list *lp_service_auto* enables
@@ -148,8 +205,8 @@ automatic management of services
       - udev
 
 See the tasks what services are implemented (acpi, apparmor,
-auto_upgrades, ..., zfs). For each service, there are five variables
-of the form
+auto_upgrades, ..., zfs). For each service, there might be five
+variables of the form
 
 .. code-block:: text
 
@@ -161,26 +218,26 @@ of the form
 
 where *service_name* is the name of the task.
 
-* lp_<service_name> is used both to import the tasks in
+* ``lp_<service_name>`` is used both to import the tasks in
   *tasks/main.yml* and to enable automatic management of the
   service. If this variable is *false* neither the tasks will be
   imported nor the service will be managed automatically. The default
   value is *false* (see defaults).
 
-* lp_<service_name>_service is the name of the service. The names of
+* ``lp_<service_name>_service`` is the name of the service. The names of
   services may vary among the operating systems. The default is
-  <service_name>
+  *<service_name>*
 
-* lp_<service_name>_enable is what you think it is. The default is
-  false.
+* ``lp_<service_name>_enable`` is what you think it is. The default is
+  *false*.
 
-* lp_<service_name>_state is also what you think it is. The default
+* ``lp_<service_name>_state`` is also what you think it is. The default
   state of the service is derived from the variable
   *lp_<service_name>_enable*. If enabled the state is set *started*
   otherwise it is set *stopped*.
 
-* lp_<service_name>_module is a name of Ansible module used in the
-  parameter *use* of the module *service. The default is *auto*.
+* ``lp_<service_name>_module`` is a name of Ansible module used in the
+  parameter *use* of the module *service*. The default is *auto*.
 
 For example, given the below variables, the service *udev* will be set
 enabled and started by the module *service* if *udev* is included in
@@ -197,12 +254,12 @@ the list *lp_service_auto*
    :ref:`ug_task_service_ex1`
 
 
-Manual management of services
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Manage services
+^^^^^^^^^^^^^^^
 
-If you want to set other parameters use the list
+If you want to set other parameters of the services use the list
 *lp_service*. Non-empty list *lp_service* enables manual management of
-services.
+services
 
 .. code-block:: yaml
 
