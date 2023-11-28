@@ -178,7 +178,7 @@ shell> ansible-playbook lp.yml -t lp_packages_auto -e lp_packages_auto=true
 
 See:
 
-* chapter [packages](https://ansible-linux-postinstall.readthedocs.io/en/latest/guide-task-packages.html)
+* chapter [Packages](https://ansible-linux-postinstall.readthedocs.io/en/latest/guide-task-packages.html)
 * source code [packages.yml](tasks/packages.yml)
 
 
