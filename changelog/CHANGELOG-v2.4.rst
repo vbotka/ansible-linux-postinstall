@@ -10,11 +10,12 @@ vbotka.linux_postinstall 2.4 Release Notes
 
 Release Summary
 ---------------
-Update README
+Update docs and README.
 
 Minor changes
 -------------
 * Update README
+* Update docs guide-task-packages
 
 
 2.4.9

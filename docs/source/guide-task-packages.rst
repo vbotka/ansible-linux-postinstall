@@ -175,7 +175,8 @@ form
     lp_<name>_packages .... list of packages
     lp_<name>_install ..... install packages if true (default=false)
 
-where *name* is the name of the task. Install the packages::
+where *name* is typically a name of a subsystem. See
+:ref:`ug_debug_subsystems_enable`. Install the packages::
 
   shell> ansible-playbook lp.yml -t lp_packages_auto -e lp_packages_auto=true
 
@@ -200,9 +201,23 @@ Install the packages::
 
    shell> ansible-playbook lp.yml -t lp_packages_install
 
+.. hint::
+
+   This list of packages will be included in the automatic installation
+   if you declare::
+
+      lp_ansible_misc_install: true
+      lp_ansible_misc_packages:
+        - ansible
+        - ansible-lint
+        - ara-client
+
+   The name of the list, *ansible_misc* in this case, must be
+   unique. See :ref:`ug_debug_subsystems_enable`.
+
 .. seealso::
 
-   * :ref:`ug_task_packages_ex2`
+   :ref:`ug_task_packages_ex2`
 
 
 Remove packages
@@ -221,7 +236,7 @@ Remove the packages::
 
 .. seealso::
 
-   * :ref:`ug_task_packages_ex3`
+   :ref:`ug_task_packages_ex3`
 
 
 Examples
