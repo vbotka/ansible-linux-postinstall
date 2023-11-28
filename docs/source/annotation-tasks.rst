@@ -870,7 +870,7 @@ TBD
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/packages.yml
     :language: Yaml
-    :emphasize-lines: 4,13,41,43,44,46-50,52-53,56,66,69
+    :emphasize-lines: 2,4,13,41,56,69
     :linenos:
 
 
@@ -1094,7 +1094,7 @@ management options notify handlers.
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/service.yml
     :language: Yaml
-    :emphasize-lines: 6,24,60,86,69,76,73,77,65,78,66,80,66,81,79,68,89,100,98,95,94,103,74
+    :emphasize-lines: 2,6,24,60,89,103
     :linenos:
 
 
@@ -1418,15 +1418,15 @@ options ``-t lp_systemd_debug -e lp_systemd_debug=True`` (54).
 
 Packages (58)
 ^^^^^^^^^^^^^
-Install packages when enabled (64).
+Install packages when enabled (62).
 
-Configure systemd (68)
+Configure systemd (72)
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Use ``community.general.ini_file`` (69) to configure files (70) in loop
-``with_subelements`` (80-82). Register
-``lp_systemd_conf_changes`` (79) and notify handler ``reload
-systemd conf`` (85).
+Use ``community.general.ini_file`` (73) to configure files (74) in loop
+``with_subelements`` (84-86). Register
+``lp_systemd_conf_changes`` (83) and notify handler ``reload
+systemd conf`` (89).
 
 .. code-block:: yaml
 
@@ -1440,13 +1440,13 @@ systemd conf`` (85).
          - {section: <section>, key: <option>, val: <value>}
      ...
 
-Create units (110)
+Create units (114)
 ^^^^^^^^^^^^^^^^^^
 
-Use `` ansible.builtin.template`` (111) to create units in the loop
-(119) when ``state == 'create'`` (123). Register
-``lp_systemd_unit_create_changes`` (118) and notify handler ``reload
-systemd units`` (122).
+Use `` ansible.builtin.template`` (115) to create units in the loop
+(123) when ``state == 'create'`` (127). Register
+``lp_systemd_unit_create_changes`` (122) and notify handler ``reload
+systemd units`` (126).
 
 .. code-block:: yaml
 
@@ -1460,12 +1460,12 @@ systemd units`` (122).
        state: <'create' or 'absent'|default('noop')>
      ...
 
-Remove units (132)
+Remove units (136)
 ^^^^^^^^^^^^^^^^^^
 
 <TBD>
 
-Control units (149)
+Control units (153)
 ^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: yaml
@@ -1498,7 +1498,7 @@ Control units (149)
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/systemd.yml
     :language: Yaml
-    :emphasize-lines: 1,2,13,18,31,54,58,64,64,68,70,80-82,79,85,110,111,118,119,122,123,132,149
+    :emphasize-lines: 2,13,31,58,72,114,136,153
     :linenos:
 
 

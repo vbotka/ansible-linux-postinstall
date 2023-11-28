@@ -5,6 +5,19 @@ vbotka.linux_postinstall 2.4 Release Notes
 .. contents:: Topics
 
 
+2.4.10
+======
+
+Release Summary
+---------------
+Update docs and README.
+
+Minor changes
+-------------
+* Update README
+* Update docs guide-task-packages
+
+
 2.4.9
 =====
 
