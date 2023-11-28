@@ -179,7 +179,7 @@ shell> ansible-playbook lp.yml -t lp_packages_auto -e lp_packages_auto=true
 See:
 
 * chapter [packages](https://ansible-linux-postinstall.readthedocs.io/en/latest/guide-task-packages.html)
-* source code [service.yml](tasks/packages.yml)
+* source code [packages.yml](tasks/packages.yml)
 
 
 ## Auto-management of services
