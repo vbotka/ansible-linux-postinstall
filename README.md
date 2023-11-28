@@ -157,10 +157,10 @@ shell> ansible-playbook lp.yml
 
 ## Auto-installation of packages
 
-Packages listed in the variables ``lp_*_packages`` will be automatically installed by the tasks/packages.yml if enabled by variable ``lp_*`` . For example
+Packages listed in the variables ``lp_*_packages`` will be automatically installed by the tasks/packages.yml if enabled by variables ``lp_*_install`` . For example,
 
 ```yaml
-lp_libvirt: true
+lp_libvirt_install: true
 lp_libvirt_packages:
   - libvirt0
   - libvirt-bin
@@ -173,8 +173,13 @@ lp_libvirt_packages:
 The packages listed in ``lp_libvirt_packages`` will be included in the packages installed by
 
 ```bash
-shell> ansible-playbook lp.yml -t lp_packages
+shell> ansible-playbook lp.yml -t lp_packages_auto -e lp_packages_auto=true
 ```
+
+See:
+
+* chapter [packages](https://ansible-linux-postinstall.readthedocs.io/en/latest/guide-task-packages.html)
+* source code [service.yml](tasks/packages.yml)
 
 
 ## Auto-management of services
