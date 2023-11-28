@@ -5,6 +5,18 @@ vbotka.linux_postinstall 2.4 Release Notes
 .. contents:: Topics
 
 
+2.4.11
+======
+
+Release Summary
+---------------
+Fix changelog format.
+
+Minor changes
+-------------
+* Fix changelog format.
+
+
 2.4.10
 ======
 
@@ -138,7 +150,7 @@ Minor changes
   * Add handler reexec systemd daemon
   
 Bugfixes
--------
+--------
 * Fix default lp_udev_debug2|d(false)|bool
 
 
@@ -196,7 +208,7 @@ Minor Changes
 * Debug packages, repos, ufw, zfs. Add missing variables
 
 Bugfixes
--------
+--------
 * lp_gpsd_install
 * lp_udev_debug2|d(false)|bool
 * postfix debug.
