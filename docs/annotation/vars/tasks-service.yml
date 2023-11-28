@@ -38,5 +38,5 @@ task_service_description: |
   ``ansible_service_mgr`` (74). See the tasks service-\*.yml how manual
   management options notify handlers.
 
-task_service_lines: 6,24,60,86,69,76,73,77,65,78,66,80,66,81,79,68,89,100,98,95,94,103,74
+task_service_lines: 2,6,24,60,89,103
 ...
