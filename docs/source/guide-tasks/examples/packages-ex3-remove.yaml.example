@@ -1,0 +1,9 @@
+shell> ansible-playbook lp.yml -t lp_packages_remove
+
+...
+
+TASK [vbotka.linux_postinstall : packages: Remove] *************************************************
+ok: [test_01] => (item=zeitgeist)
+
+TASK [vbotka.linux_postinstall : packages: Debug result] *******************************************
+skipping: [test_01]

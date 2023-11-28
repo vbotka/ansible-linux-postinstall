@@ -1,7 +1,7 @@
 .. _ug_task_passwords_passwordstore_ex2:
 
-Example 2: Update passwords submitted in the variable
-"""""""""""""""""""""""""""""""""""""""""""""""""""""
+Example 2: Update passwords in a variable
+"""""""""""""""""""""""""""""""""""""""""
 
 Update passwords of users at host *test_01*. Use the same playbook and
 variables as in Example 1. Update the variable *lp_users* with the new
@@ -20,8 +20,7 @@ Update the passwords
 .. code-block:: Bash
    :emphasize-lines: 1-2
 
-   shell> ansible-playbook lp.yml -t lp_passwords \
-                                  -e lp_passwordstore_overwrite=True
+   shell> ansible-playbook lp.yml -t lp_passwords -e lp_passwordstore_overwrite=True
    ...
    TASK [vbotka.linux_postinstall : users: Manage user accounts] **********
    changed: [test_01] => (item=user1)
@@ -32,8 +31,7 @@ The command is idempotent
 .. code-block:: Bash
    :emphasize-lines: 1-2
 
-   shell> ansible-playbook lp.yml -t lp_passwords \
-                                  -e lp_passwordstore_overwrite=True
+   shell> ansible-playbook lp.yml -t lp_passwords -e lp_passwordstore_overwrite=True
    ...
    
    PLAY RECAP *************************************************************

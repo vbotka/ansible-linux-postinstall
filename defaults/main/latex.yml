@@ -1,6 +1,7 @@
 ---
 
 lp_latex: false
+lp_latex_debug: false
 lp_latex_install: false
 lp_latex_download_timeout: 20
 lp_latex_macros: []

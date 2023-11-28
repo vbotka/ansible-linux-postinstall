@@ -15,7 +15,7 @@
       ansible.builtin.systemd:
       loop: "{{ _enabld }}"
       loop_control:
-        label: "{{ item.name }} enabled: {{ enabled }}"
+        label: "{{ item.name }} enabled={{ enabled }}"
       register: result
       notify: reload systemd daemon
     - name: "service:systemd: Debug"
@@ -29,7 +29,7 @@
       ansible.builtin.systemd:
       loop: "{{ _masked }}"
       loop_control:
-        label: "{{ item.name }} enabled: {{ enabled }} masked: {{ masked }}"
+        label: "{{ item.name }} enabled={{ enabled }} masked={{ masked }}"
       register: result
       notify: reload systemd daemon
     - name: "service:systemd: Debug"
@@ -43,7 +43,7 @@
       ansible.builtin.systemd:
       loop: "{{ lp_service }}"
       loop_control:
-        label: "{{ item.name }} enabled: {{ enabled }} masked: {{ masked }} state: {{ state }}"
+        label: "{{ item.name }} enabled={{ enabled }} masked={{ masked }} state={{ state }}"
       register: result
       notify: reload systemd daemon
     - name: "service:systemd: Debug"
@@ -70,7 +70,7 @@
     _masked: "{{ lp_service|selectattr('masked', 'defined')|
                             ansible.utils.remove_keys(target=['state']) }}"
     enabled: "{{ item.enabled|d('UNDEFINED') }}"
-    masked: "{{ item.use|d('UNDEFINED') }}"
+    masked: "{{ item.masked|d('UNDEFINED') }}"
     state: "{{ item.state|d('UNDEFINED') }}"
 
 # EOF

@@ -36,14 +36,14 @@ case, the OS native service manager *ansible_service_mgr* is used.
 
 **Create variables**
 
-Create the file *host_vars/test_01/lp-service.yml* and create the list
-of services `lp_service` that shall be managed by this task
+Create the file *host_vars/test_01/lp-service.yml* and declare the list
+of services *lp_service* that shall be managed by this task
 
 .. code-block:: yaml
     :emphasize-lines: 1
 
     shell> cat host_vars/test_01/lp-service.yml
-    lp_service: []
+    lp_service:
       - enabled: true
         name: smartmontools
         state: started

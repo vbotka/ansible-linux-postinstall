@@ -428,53 +428,43 @@ mytasks:
     hints: []
     warnings: []
 
-  - file: packages_auto.yml
-    link: packages_auto.yml
-    path: tasks/packages_auto.yml
-    synopsis: |
-      Configure packages_auto.
-    description: |
-      Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
-
   - file: packages.yml
     link: packages.yml
     path: tasks/packages.yml
     synopsis: |
-      Configure packages.
-    description: |
-      Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+      Manage packages.
 
-  - file: install-package.yml
-    link: install-package.yml
-    path: tasks/fn/install-package.yml
-    synopsis: |
-      Configure install-package.
     description: |
-      Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+      Dynamic variables (4)
+      ^^^^^^^^^^^^^^^^^^^^^
 
-  - file: remove-package.yml
-    link: remove-package.yml
-    path: tasks/fn/remove-package.yml
-    synopsis: |
-      Configure remove-package.
-    description: |
-      Description of the task.
-    lines: 1,2
+      TBD
+
+      Debug (13)
+      ^^^^^^^^^^
+
+      TBD
+
+      Install packages automatically (41)
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+      If enabled (52) and not empty (53) import ``install_package.yml``
+      (44) from the role ``vbotka.linux_lib`` (43). Flatten and filter
+      *unique* items in the lists ``my_packages_auto`` (46). Set it to the
+      mandatory variable ``ll_ipkg_list``. Optionally, set other variables
+      (47-50).
+
+      Install packages (56)
+      ^^^^^^^^^^^^^^^^^^^^^
+
+      If not empty (66) TBD
+
+      Remove packages (69)
+      ^^^^^^^^^^^^^^^^^^^^
+
+      TBD
+
+    lines: 4,13,41,43,44,46-50,52-53,56,66,69
     seealso: []
     notes: []
     hints: []
@@ -575,7 +565,7 @@ mytasks:
     link: service.yml
     path: tasks/service.yml
     synopsis: |
-      Configure services.
+      Manage services.
 
     description: |
       Debug (6)
@@ -588,30 +578,31 @@ mytasks:
 
       TBD
 
-      Automatic management of listed services (57)
+      Automatic management of listed services (60)
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-      If not empty (81) iterate ``lp_service_auto`` (66). Skip when ``lp_
-      ~ item`` (73) is not *True* (70). Get (74) and use (62) the OS
-      dependent name of the service. Get (75) and set (64) the service
-      enablement. If enabled set state (63) *started*. Get (76) and use
-      the module (65).
+      If not empty (86) iterate ``lp_service_auto`` (69). Skip when ``lp_
+      ~ item`` (76) is not *True* (73). Get (77) and use (65) the OS
+      dependent name of the service. Get (78) and set (66) the service
+      enablement. Get (80) and set (66) the service state. Use
+      *default_stat* (81) if *lp_\*_state* does not exist. Get (79) and
+      use the module (68).
 
-      Manual management of listed services (84)
+      Manual management of listed services (89)
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-      If not empty (95) iterate ``lp_service`` in the included tasks
-      (93). If *auto* (90) set the module (89) to ``ansible_service_mgr``
+      If not empty (100) iterate ``lp_service`` in the included tasks
+      (98). If *auto* (95) set the module (94) to ``ansible_service_mgr``
       (OS native service manager found by the *setup*). TBC
 
-      Flush handlers (98)
-      ^^^^^^^^^^^^^^^^^^^
+      Flush handlers (103)
+      ^^^^^^^^^^^^^^^^^^^^
 
       Automatic management of listed services notifies
-      ``ansible_service_mgr`` (71). See the tasks service-\*.yml how manual
+      ``ansible_service_mgr`` (74). See the tasks service-\*.yml how manual
       management options notify handlers.
 
-    lines: 6,24,57,62,63,64,65,66,70,71,73,74,75,76,81,84,89,90,93,95,98
+    lines: 6,24,60,86,69,76,73,77,65,78,66,80,66,81,79,68,89,100,98,95,94,103,74
     seealso: []
     notes: []
     hints: []

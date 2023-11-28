@@ -68,7 +68,7 @@
         use: "{{ use_modl }}"
       loop: "{{ lp_service_auto }}"
       loop_control:
-        label: "{{ srv_name }} enabled: {{ srv_enbl }} use: {{ use_modl }}"
+        label: "{{ srv_name }} enabled={{ srv_enbl }} state={{ srv_stat }} use={{ use_modl }}"
       register: result
       when: run_task
       notify: "reload {{ ansible_service_mgr }} daemon"

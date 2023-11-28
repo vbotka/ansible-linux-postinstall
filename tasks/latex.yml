@@ -1,13 +1,30 @@
 ---
 # linux_postinstall LaTeX
 
+- name: "latex: Debug"
+  vars:
+    msg: |-
+      ansible_os_family: {{ ansible_os_family }}
+      lp_latex_install: {{ lp_latex_install }}
+      lp_latex_packages:
+        {{ lp_latex_packages|to_nice_yaml(indent=2)|indent(2) }}
+      lp_backup_conf: {{ lp_backup_conf }}
+  ansible.builtin.debug:
+    msg: "{{ '{}'.format(msg) }}"
+  when: lp_latex_debug|bool
+  tags: lp_latex_debug
+
 - name: "latex: Install packages"
-  ansible.builtin.include_tasks:
-    file: fn/install-package.yml
-    apply:
-      tags: lp_latex_packages
-  loop: "{{ lp_latex_packages }}"
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
   when: lp_latex_install|bool
+  vars:
+    ll_ipkg_list: "{{ lp_latex_packages }}"
+    ll_ipkg_state: "{{ lp_package_state }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
+    ll_debug: "{{ lp_latex_debug|bool }}"
   tags: lp_latex_packages
 
 - name: "latex: Create directory /usr/share/texmf/tex/latex"

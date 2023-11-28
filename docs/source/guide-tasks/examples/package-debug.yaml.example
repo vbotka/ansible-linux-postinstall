@@ -1,0 +1,101 @@
+shell> ansible-playbook lp.yml -t lp_packages_debug -e lp_packages_debug=True
+
+  ...
+
+TASK [vbotka.linux_postinstall : packages: Debug] ***********************************************
+ok: [test_01] => 
+  msg: |-
+    ansible_os_family: Debian
+    lp_packages_auto: False
+    lp_package_state: present
+    lp_packages_autoremove: True
+    lp_packages_rescue_end_host: True
+  
+    lp_packages_selections_preinstall:
+      - {name: ca-certificates, selection: install}
+  
+    lp_packages_install:
+      - ansible
+  
+    lp_packages_remove:
+      []
+  
+    lp_packages_selections_postinstall:
+      []
+  
+    my_packages_install:
+      apparmor: false
+      autofs: true
+      chrony: true
+      debsums: true
+      dnsmasq: false
+      gpg: true
+      gpsd: false
+      kvm: false
+      latex: true
+      libvirt: false
+      logrotate: true
+      networkd: false
+      nfsd: false
+      nm: false
+      packages: [ansible]
+      passwordstore: true
+      postfix: true
+      resolvconf: true
+      smart: true
+      snap: false
+      systemd: true
+      tlp: true
+      ufw: false
+      virtualbox: false
+      wpagui: true
+      wpasupplicant: true
+      xen: false
+      zeitgeist: true
+      zfs: true
+  
+    my_packages_lists:
+      apparmor: [apparmor, apparmor-utils, snapd, jq]
+      autofs: [autofs]
+      chrony: [chrony]
+      debsums: [debsums]
+      dnsmasq: [dnsmasq]
+      gpg: [gnupg, gpg, gpg-agent]
+      gpsd: [gpsd, gpsd-clients]
+      kvm: [qemu, qemu-kvm, libvirt-daemon, libvirt-daemon-system, libvirt-clients, bridge-utils]
+      latex: [texlive]
+      libvirt: [libvirt0, libvirt-daemon, libvirt-daemon-driver-storage-rbd, libvirt-daemon-system,
+        libvirt-clients, virtinst]
+      logrotate: [logrotate]
+      networkd: []
+      nfsd: [nfs-kernel-server]
+      nm: [network-manager]
+      passwordstore: [pass]
+      postfix: [postfix]
+      resolvconf: [resolvconf]
+      smart: [smartmontools]
+      systemd: []
+      tlp: [tlp, tlp-rdw]
+      ufw: [ufw]
+      virtualbox: [virtualbox-5.2]
+      wpagui: [wpasupplicant, wpagui, net-tools, ifupdown, wireless-tools]
+      wpasupplicant: [wpasupplicant]
+      xen: [xen-hypervisor-4.16-amd64, xen-utils-4.16, xen-utils-common, xenstore-utils]
+      zfs: [zfsutils-linux]
+  
+    my_packages_auto:
+      - [autofs]
+      - [chrony]
+      - [debsums]
+      - [gnupg, gpg, gpg-agent]
+      - [texlive]
+      - [logrotate]
+      - [pass]
+      - [postfix]
+      - [resolvconf]
+      - [smartmontools]
+      - []
+      - [tlp, tlp-rdw]
+      - [wpasupplicant, wpagui, net-tools, ifupdown, wireless-tools]
+      - [wpasupplicant]
+      - [zfsutils-linux]

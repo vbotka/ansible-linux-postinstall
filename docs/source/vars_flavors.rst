@@ -3,7 +3,7 @@ Flavors specific variables (WIP)
 
 The files in the directories ``vars/flavors`` and
 ``vars/flavors.incr`` keep flavors specific variables. The difference
-between them is the method how the files are included.
+between them is the method how the files are included
 
   * firstfound: A file in the directory ``vars/flavors`` in the
     order <TBD> is included with the *lookup plugin* ``first_found``.
@@ -19,11 +19,10 @@ The method is determined by the variable ``lp_vars_flavor`` *(default:
 firstfound)*
 
 .. code-block:: yaml
-   :emphasize-lines: 1
 
    lp_vars_flavor: firstfound
    
-.. seealso::
+.. note::
 
    * Annotated Source code :ref:`as_vars_flavors.yml`
    * Annotated Source code :ref:`as_vars_flavors_common.yml`

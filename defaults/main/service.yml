@@ -36,7 +36,7 @@ lp_service_auto:
 # Dynamic variables my_services_*
 my_services_all: "{{ ansible_facts.services.keys() }}"
 my_services_regex: "({{ my_services_alias|join('|') }})"
-my_services_names: "{{ query('vars', *query('varnames', '^lp_' ~ my_services_regex ~ '_service$'))|sort }}"
+my_services_names: "{{ query('ansible.builtin.vars', *query('ansible.builtin.varnames', '^lp_' ~ my_services_regex ~ '_service$'))|sort }}"
 my_services_undef: "{{ my_services_names|difference(my_services_all) }}"
 
 # All services

@@ -8,9 +8,11 @@ example of how to create users, install packages, and configure
 services.
 
 
-* Install the role ``vbotka.linux_postinstall`` ::
+* Install the roles::
 
     shell> ansible-galaxy install vbotka.linux_postinstall
+    shell> ansible-galaxy install vbotka.ansible_lib
+    shell> ansible-galaxy install vbotka.linux_lib
 
 
 * Create the playbook ``playbook.yml`` for single host srv.example.com (2)
