@@ -10,11 +10,12 @@ vbotka.linux_postinstall 2.4 Release Notes
 
 Release Summary
 ---------------
-Fix changelog format.
+Fixes.
 
 Minor changes
 -------------
 * Fix changelog format.
+* Fix task xorg format.
 
 
 2.4.10
