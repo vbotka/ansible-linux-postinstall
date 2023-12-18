@@ -1,11 +1,11 @@
 ---
-# linux_postinstall xen
+# linux_postinstall xorg
 
 - name: "xorg: Debug"
   vars:
     msg: |-
       lp_xorg_conf:
-        {{ lp_xorg_conf|to_nice_yaml|indent(2) }}
+        {{ lp_xorg_conf|to_yaml(indent=2)|indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_xorg_debug|bool
@@ -16,7 +16,7 @@
     src: xorg.conf.j2
     dest: "{{ lp_xorg_conf_dir }}/{{ item.file }}"
     backup: "{{ lp_backup_conf }}"
-    mode: "0644"
+    mode: '0644'
   loop: "{{ lp_xorg_conf }}"
   loop_control:
     label: "{{ item.file }}"
