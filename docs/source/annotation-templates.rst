@@ -241,26 +241,6 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
-.. _as_template_gpg_agent.conf.j2:
-
-gpg_agent.conf.j2
------------------
-
-Synopsis: Template gpg_agent.conf.
-
-
-Description of the template.
-
-
-[`templates/gpg_agent.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpg_agent.conf.j2>`_]
-
-.. highlight:: jinja
-    :linenothreshold: 5
-.. literalinclude:: ../../templates/gpg_agent.conf.j2
-    :language: jinja
-    :emphasize-lines: 1
-    :linenos:
-
 .. _as_template_gpg.conf.j2:
 
 gpg.conf.j2
@@ -277,26 +257,6 @@ Description of the template.
 .. highlight:: jinja
     :linenothreshold: 5
 .. literalinclude:: ../../templates/gpg.conf.j2
-    :language: jinja
-    :emphasize-lines: 1
-    :linenos:
-
-.. _as_template_gpg_dirmngr.conf.j2:
-
-gpg_dirmngr.conf.j2
--------------------
-
-Synopsis: Template gpg_dirmngr.conf.
-
-
-Description of the template.
-
-
-[`templates/gpg_dirmngr.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpg_dirmngr.conf.j2>`_]
-
-.. highlight:: jinja
-    :linenothreshold: 5
-.. literalinclude:: ../../templates/gpg_dirmngr.conf.j2
     :language: jinja
     :emphasize-lines: 1
     :linenos:

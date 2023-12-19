@@ -10,9 +10,7 @@ default_iptables.j2
 dnsmasq.conf.j2
 dnsmasq-openwrt-dhcp.j2
 exports.j2
-gpg_agent.conf.j2
 gpg.conf.j2
-gpg_dirmngr.conf.j2
 gpsd.j2
 hci_name.rules.j2
 hci_run.rules.j2

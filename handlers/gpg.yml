@@ -1,26 +1,13 @@
 ---
 
-- name: gpgconf reload gpg-agent
+- name: gpgconf reload
   ansible.builtin.command:
-    cmd: >
-      gpgconf --reload gpg-agent
-  loop: "{{ lp_gpg_agent_conf_changes.results }}"
+    cmd: "gpgconf --reload {{ item.item.component }}"
+  loop: "{{ lp_gpg_conf_reg.results|selectattr('changed') }}"
   loop_control:
-    label: "{{ item.item.owner }}"
+    label: "{{ item.item.owner }} {{ item.item.component }}"
   become: true
   become_user: "{{ item.item.owner }}"
-  when: item.changed|bool
-
-- name: gpgconf reload dirmngr
-  ansible.builtin.command:
-    cmd: >
-      gpgconf --reload dirmngr
-  loop: "{{ lp_gpg_dirmngr_conf_changes.results }}"
-  loop_control:
-    label: "{{ item.item.owner }}"
-  become: true
-  become_user: "{{ item.item.owner }}"
-  when: item.changed|bool
 
 # EOF
 ...
