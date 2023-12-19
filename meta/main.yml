@@ -7,12 +7,14 @@ galaxy_info:
   company: https://botka.info
   github_branch: master
   license: BSD
-  min_ansible_version: "2.14"
+  min_ansible_version: "2.15"
   platforms:
     - name: Ubuntu
       versions:
         - focal
         - jammy
+        - lunar
+        - mantic
   galaxy_tags:
     - linux
     - ubuntu
