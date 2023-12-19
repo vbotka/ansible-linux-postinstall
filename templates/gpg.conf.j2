@@ -1,7 +1,7 @@
 # {{ ansible_managed }}
 
 # default
-{% for conf in lp_gpg_conf_default %}
+{% for conf in item.default|d([]) %}
 {{ conf.key }} {{ conf.value|default('') }}
 {% endfor %}
 
