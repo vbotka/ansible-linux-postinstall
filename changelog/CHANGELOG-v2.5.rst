@@ -11,7 +11,7 @@ vbotka.linux_postinstall 2.5 Release Notes
 Release Summary
 ---------------
 Update meta Ansible 2.15. Add support for Ubuntu 23.04(Lunar) and
-23.10(Mantic). Update gpg.
+23.10(Mantic). Update gnupg.
 
 Major Changes
 -------------
@@ -19,6 +19,7 @@ Major Changes
 
 Minor Changes
 -------------
+* update docs.
 
 Bugfixes
 --------

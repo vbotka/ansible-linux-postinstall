@@ -202,7 +202,7 @@ mytasks:
     description: |
       Description of the task.
     lines: 1,2
-    seealso: {'handlers': ['gpg'], 'templates': ['gpg.conf', 'gpg_agent.conf', 'gpg_dirmngr.conf']}
+    seealso: {'handlers': ['gpg'], 'templates': ['gpg.conf']}
     notes: []
     hints: []
     warnings: []

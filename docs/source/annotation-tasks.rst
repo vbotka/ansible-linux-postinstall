@@ -393,8 +393,6 @@ Description of the task.
 .. seealso::
    * Handler :ref:`as_handler_gpg.yml`
    * Template :ref:`as_template_gpg.conf.j2`
-   * Template :ref:`as_template_gpg_agent.conf.j2`
-   * Template :ref:`as_template_gpg_dirmngr.conf.j2`
 
 
 

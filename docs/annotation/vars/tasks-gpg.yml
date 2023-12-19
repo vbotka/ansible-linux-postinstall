@@ -5,7 +5,5 @@ task_gpg_seealso:
     - gpg
   templates:
     - gpg.conf
-    - gpg_agent.conf
-    - gpg_dirmngr.conf
 
 ...

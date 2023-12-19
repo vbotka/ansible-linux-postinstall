@@ -145,35 +145,11 @@ mytemplates:
     note: []
     warning: []
 
-  - file: gpg_agent.conf.j2
-    link: gpg_agent.conf.j2
-    path: templates/gpg_agent.conf.j2
-    synopsis: |
-      Template gpg_agent.conf.
-    description: |
-      Description of the template.
-    lines: 1
-    seealso: []
-    note: []
-    warning: []
-
   - file: gpg.conf.j2
     link: gpg.conf.j2
     path: templates/gpg.conf.j2
     synopsis: |
       Template gpg.conf.
-    description: |
-      Description of the template.
-    lines: 1
-    seealso: []
-    note: []
-    warning: []
-
-  - file: gpg_dirmngr.conf.j2
-    link: gpg_dirmngr.conf.j2
-    path: templates/gpg_dirmngr.conf.j2
-    synopsis: |
-      Template gpg_dirmngr.conf.
     description: |
       Description of the template.
     lines: 1
