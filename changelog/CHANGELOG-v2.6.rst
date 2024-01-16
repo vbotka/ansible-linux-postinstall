@@ -15,10 +15,10 @@ Update Ansible 2.16
 Major Changes
 -------------
 
-
 Minor Changes
 -------------
-
+* Bump docs 2.6.0
+* Update docs requirements readthedocs-sphinx-search==0.3.2
 
 Bugfixes
 --------
