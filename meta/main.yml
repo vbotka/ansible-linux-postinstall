@@ -7,7 +7,7 @@ galaxy_info:
   company: https://botka.info
   github_branch: master
   license: BSD
-  min_ansible_version: "2.15"
+  min_ansible_version: "2.16"
   platforms:
     - name: Ubuntu
       versions:
