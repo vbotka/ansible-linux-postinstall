@@ -9,6 +9,7 @@
 #      - { key: "HashKnownHosts", val: "yes" }
 #      - { key: "GSSAPIAuthentication", val: "yes" }
 
+lp_acpi_service: acpid
 lp_speechd_service: speech-dispatcher
 
 lp_auto_upgrades_service: unattended-upgrades

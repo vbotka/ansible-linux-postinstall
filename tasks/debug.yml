@@ -26,17 +26,17 @@
       lp_tasks_enabled: {{ lp_tasks_enabled_print|ternary(lp_tasks_enabled, 'Disabled') }}
       lp_tasks_disabled: {{ lp_tasks_disabled_print|ternary(lp_tasks_disabled, 'Disabled') }}
 
-      lp_acpi: {{ lp_acpi }}
+      lp_acpi: {{ lp_acpi }} lp_acpi_install: {{ lp_acpi_install }} lp_acpi_enable: {{ lp_acpi_enable }} lp_acpi_service: {{ lp_acpi_service }}
       lp_aliases: {{ lp_aliases }}
       lp_apt: {{ lp_apt }}
-      lp_debsums: {{ lp_debsums }}, lp_debsums_install: {{ lp_debsums_install }}
-      lp_gpg: {{ lp_gpg }}, lp_gpg_install: {{ lp_gpg_install }}
+      lp_debsums: {{ lp_debsums }} lp_debsums_install: {{ lp_debsums_install }}
+      lp_gpg: {{ lp_gpg }} lp_gpg_install: {{ lp_gpg_install }}
       lp_grub: {{ lp_grub }}
       lp_iptables: {{ lp_iptables }}
-      lp_kvm: {{ lp_kvm }}, lp_kvm_install: {{ lp_kvm_install }}
-      lp_latex: {{ lp_latex }}, lp_latex_install: {{ lp_latex_install }}
+      lp_kvm: {{ lp_kvm }} lp_kvm_install: {{ lp_kvm_install }}
+      lp_latex: {{ lp_latex }} lp_latex_install: {{ lp_latex_install }}
       lp_lid: {{ lp_lid }}
-      lp_logrotate: {{ lp_logrotate }}, lp_logrotate_install: {{ lp_logrotate_install }}
+      lp_logrotate: {{ lp_logrotate }} lp_logrotate_install: {{ lp_logrotate_install }}
       lp_netplan: {{ lp_netplan }}
       lp_packages_autoremove: {{ lp_packages_autoremove }}
       lp_passwords: {{ lp_passwords }}
@@ -44,10 +44,10 @@
       lp_rc_local: {{ lp_rc_local }}
       lp_reboot: {{ lp_reboot }}
       lp_ssh: {{ lp_ssh }}
-      lp_swap: {{ lp_swap }}, lp_swap_enable: {{ lp_swap_enable }}
-      lp_systemd: {{ lp_systemd }}, lp_systemd_install: {{ lp_systemd_install }}
+      lp_swap: {{ lp_swap }} lp_swap_enable: {{ lp_swap_enable }}
+      lp_systemd: {{ lp_systemd }} lp_systemd_install: {{ lp_systemd_install }}
       lp_timezone: {{ lp_timezone }}
-      lp_wpagui: {{ lp_wpagui }}, lp_wpagui_install: {{ lp_wpagui_install }}
+      lp_wpagui: {{ lp_wpagui }} lp_wpagui_install: {{ lp_wpagui_install }}
 
       {% for service in lp_service_all %}
       lp_{{ service }}: {{ lookup('vars', 'lp_' ~ service) }}, {% for suffix in ['_install', '_enable', '_service'] -%}
@@ -65,11 +65,11 @@
       {% endfor %}
       {% endfor %}
 
-      lp_wpasupplicant: {{ lp_wpasupplicant }}, lp_wpasupplicant_install: {{ lp_wpasupplicant_install }}
+      lp_wpasupplicant: {{ lp_wpasupplicant }} lp_wpasupplicant_install: {{ lp_wpasupplicant_install }}
       lp_xen: {{ lp_xen }} lp_xen_install: {{ lp_xen_install }}
-      lp_zeitgeist: {{ lp_zeitgeist }}, lp_zeitgeist_install: {{ lp_zeitgeist_install }}
-      lp_zfs: {{ lp_zfs }}, lp_zfs_install: {{ lp_zfs_install }}
-      [WIP] lp_snap: {{ lp_snap }}, lp_snap_install: {{ lp_snap_install }}, lp_snap_enable: {{ lp_snap_enable }}
+      lp_zeitgeist: {{ lp_zeitgeist }} lp_zeitgeist_install: {{ lp_zeitgeist_install }}
+      lp_zfs: {{ lp_zfs }} lp_zfs_install: {{ lp_zfs_install }}
+      [WIP] lp_snap: {{ lp_snap }} lp_snap_install: {{ lp_snap_install }} lp_snap_enable: {{ lp_snap_enable }}
 
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"

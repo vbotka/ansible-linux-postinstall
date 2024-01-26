@@ -1,6 +1,9 @@
 ---
 # linux_postinstall handlers
 
+- name: Import acpi.yml
+  ansible.builtin.import_tasks: acpi.yml
+
 - name: Import apparmor.yml
   ansible.builtin.import_tasks: apparmor.yml
 

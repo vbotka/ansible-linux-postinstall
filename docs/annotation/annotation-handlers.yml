@@ -12,6 +12,18 @@ myhandlers:
     note: []
     warning: []
 
+  - file: acpi.yml
+    link: acpi.yml
+    path: handlers/acpi.yml
+    synopsis: |
+      Handler acpi.
+    description: |
+      Description of the handler.
+    lines: 1,2
+    seealso: []
+    note: []
+    warning: []
+
   - file: apparmor.yml
     link: apparmor.yml
     path: handlers/apparmor.yml

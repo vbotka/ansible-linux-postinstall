@@ -6,7 +6,7 @@
                {{ ansible_distribution }},
                {{ ansible_distribution_release }}]"
   ansible.builtin.include_vars: "{{ item }}"
-# register: result
+  register: result
   loop:
     - "{{ my_path }}/defaults.yml"
     - "{{ my_path }}/default.yml"
@@ -17,17 +17,17 @@
   vars:
     my_path: "{{ role_path }}/vars/defaults.incr"
 
-# - name: "vars_incemental: Debug include default vars"
-#   ansible.builtin.debug:
-#     var: result
-#   when: lp_debug|bool
+- name: "vars_incemental: Debug include default vars"
+  ansible.builtin.debug:
+    var: result
+  when: lp_debug2|d(false)|bool
 
 - name: "vars_incemental: Include custom vars for
               [{{ ansible_os_family }},
                {{ ansible_distribution }},
                {{ ansible_distribution_release }}]"
   ansible.builtin.include_vars: "{{ item }}"
-# register: result
+  register: result
   loop:
     - "{{ my_path }}/defaults.yml"
     - "{{ my_path }}/default.yml"
@@ -38,10 +38,10 @@
   vars:
     my_path: "{{ role_path }}/vars"
 
-# - name: "vars_incemental: Debug include custom vars"
-#   ansible.builtin.debug:
-#     var: result
-#   when: lp_debug|bool
+- name: "vars_incemental: Debug include custom vars"
+  ansible.builtin.debug:
+    var: result
+  when: lp_debug2|d(false)|bool
 
 # EOF
 ...

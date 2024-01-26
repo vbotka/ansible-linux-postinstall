@@ -10,7 +10,7 @@
     - lp_packages_debug
     - lp_packages_auto
 
-- name: "packages: Debug"
+- name: "packages: Debug (lp_packages_debug={{ lp_packages_debug }})"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}

@@ -1,6 +1,12 @@
 ---
 
 lp_acpi: false
+lp_acpi_debug: false
+lp_acpi_install: false
+lp_acpi_enable: false
+lp_acpi_packages:
+  - acpi
+  - acpid
 lp_acpi_dir: /etc/acpi
 lp_acpi_owner: root
 lp_acpi_group: root
