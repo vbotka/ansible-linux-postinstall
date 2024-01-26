@@ -1,3 +1,4 @@
+acpi.yml
 apparmor.yml
 autofs.yml
 bluetooth.yml

@@ -15,6 +15,7 @@
 #      - { key: "SendEnv", val: "LC_IDENTIFICATION LC_ALL LANGUAGE" }
 #      - { key: "SendEnv", val: "XMODIFIERS" }
 
+lp_acpi_service: acpid
 lp_autofs_service: autofs
 lp_bluetooth_service: bluetooth
 lp_chrony_service: chronyd

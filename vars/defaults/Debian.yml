@@ -9,6 +9,7 @@
 #      - { key: "HashKnownHosts", val: "yes" }
 #      - { key: "GSSAPIAuthentication", val: "yes" }
 
+lp_acpi_service: acpid
 lp_auto_upgrades_service: unattended-upgrades
 lp_autofs_service: autofs
 lp_bluetooth_service: bluetooth

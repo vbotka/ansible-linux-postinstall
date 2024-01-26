@@ -21,6 +21,26 @@ Import handlers.
     :emphasize-lines: 1,2
     :linenos:
 
+.. _as_handler_acpi.yml:
+
+acpi.yml
+--------
+
+Synopsis: Handler acpi.
+
+
+Description of the handler.
+
+
+[`handlers/acpi.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/handlers/acpi.yml>`_]
+
+.. highlight:: yaml
+    :linenothreshold: 5
+.. literalinclude:: ../../handlers/acpi.yml
+    :language: Yaml
+    :emphasize-lines: 1,2
+    :linenos:
+
 .. _as_handler_apparmor.yml:
 
 apparmor.yml
