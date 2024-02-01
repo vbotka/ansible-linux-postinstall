@@ -12,6 +12,7 @@
 
       lp_service_module: {{ lp_service_module }}
       lp_service_module_valid: {{ lp_service_module_valid }}
+
       lp_service:
         {{ lp_service|to_nice_yaml(indent=2)|indent(2) }}
       lp_service_auto:

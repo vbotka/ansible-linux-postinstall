@@ -15,13 +15,13 @@ lp_service: []
 # Automatic management
 # List of managed services
 lp_service_auto:
+  - acpi
+  - apparmor
   - auto_upgrades
   - autofs
   - bluetooth
   - postfix
-  - resolvconf
   - smart
-  - speechd
   - sshd
   - timesyncd
   - udev
@@ -29,7 +29,9 @@ lp_service_auto:
 # - gpsd
 # - libvirt_guests
 # - libvirt_libvirtd
+# - resolvconf
 # - snap  WIP
+# - speechd
 # - tlp   [TODO] add list of services
 # - nm    [TODO] add list of services
 
@@ -40,7 +42,7 @@ my_services_names: "{{ query('ansible.builtin.vars', *query('ansible.builtin.var
 my_services_undef: "{{ my_services_names|difference(my_services_all) }}"
 
 # All services
-lp_service_all: [apparmor, auto_upgrades, autofs, bluetooth, chrony, dnsmasq, gpsd, libvirt, modemmanager, networkd, nfsd, nm, postfix, resolvconf, smart, speechd, sshd, timesyncd, udev, ufw]
+lp_service_all: [acpi, apparmor, auto_upgrades, autofs, bluetooth, chrony, dnsmasq, gpsd, libvirt, modemmanager, networkd, nfsd, nm, postfix, resolvconf, smart, speechd, sshd, timesyncd, udev, ufw]
 # All lists of services
 lp_services_all: [tlp, virtualbox]
 

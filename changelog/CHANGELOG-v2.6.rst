@@ -10,12 +10,14 @@ vbotka.linux_postinstall 2.6 Release Notes
 
 Release Summary
 ---------------
-Update acpi.
+Update acpi. Update service.
 
 Major Changes
 -------------
 * Add acpi handlers
 * Add defaults acpi.yml. Add vars lp_acpi_*
+* Run service.yml last before reboot.
+* Update lists lp_service_all and lp_service_auto
 
 Minor Changes
 -------------

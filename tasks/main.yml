@@ -333,10 +333,6 @@
   when: (ansible_os_family == 'Debian') and lp_rc_local|bool
   tags: lp_rc_local
 
-- name: Import service.yml
-  ansible.builtin.import_tasks: service.yml
-  tags: lp_service
-
 - name: Import resolvconf.yml
   ansible.builtin.import_tasks: resolvconf.yml
   when: (ansible_os_family == 'Debian') and lp_resolvconf|bool
@@ -346,6 +342,10 @@
   ansible.builtin.import_tasks: dnsmasq.yml
   when: (ansible_os_family == 'Debian') and lp_dnsmasq|bool
   tags: lp_dnsmasq
+
+- name: Import service.yml
+  ansible.builtin.import_tasks: service.yml
+  tags: lp_service
 
 - name: Import reboot.yml
   ansible.builtin.import_tasks: reboot.yml
