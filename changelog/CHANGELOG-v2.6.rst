@@ -5,6 +5,22 @@ vbotka.linux_postinstall 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.2
+=====
+
+Release Summary
+---------------
+Update service.
+
+Major Changes
+-------------
+* Run service.yml last before reboot.
+* Update lists lp_service_all and lp_service_auto
+
+Minor Changes
+-------------
+
+
 2.6.1
 =====
 
