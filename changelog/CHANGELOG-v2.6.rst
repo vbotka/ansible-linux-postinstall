@@ -16,6 +16,7 @@ Major Changes
 -------------
 * Run service.yml last before reboot.
 * Update lists lp_service_all and lp_service_auto
+* Default lp_ufw_enable changed to false
 
 Minor Changes
 -------------
