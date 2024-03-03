@@ -156,7 +156,6 @@ lp_networkd_service: systemd-networkd.service
 lp_networkd_packages: []
 
 lp_netplan_default: 01-network-manager-all.yaml
-lp_netplan_mode: "0644"
 
 # Note 1.
 # Netplan in 18.04 does not support wpa_supplicant.conf
