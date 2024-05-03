@@ -15,7 +15,7 @@ Manage source/annotation-*.rst by Ansible
    <type>_<file.0>_note
    <type>_<file.0>_warning
 
-   where <type> is : tasks, handler, template
+   where <type> is : task, handler, template
    (see annotation-<type>.yml.j2)
 
 3) Create annotation-<types>.yml

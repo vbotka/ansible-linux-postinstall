@@ -22,6 +22,7 @@ Major Changes
 Minor Changes
 -------------
 * Bump docs version.
+* Update docs.
 
 
 2.6.1

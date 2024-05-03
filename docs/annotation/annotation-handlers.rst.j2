@@ -1,3 +1,5 @@
+.. _as_handlers:
+
 Handlers
 ========
 
@@ -5,7 +7,7 @@ Handlers
 .. _as_handler_{{ i.link }}:
 
 {{ i.file }}
-{{ '-' * i.file|length }}
+{{ '-' * i.file | length }}
 
 Synopsis: {{ i.synopsis }}
 
@@ -20,16 +22,31 @@ Synopsis: {{ i.synopsis }}
     :emphasize-lines: {{ i.lines }}
     :linenos:
 
-{% if i.seealso|length > 0 %}
+{% if i.seealso | length > 0 %}
 .. seealso:: 
-
+  {% for ii in i.seealso.others | d([]) %}
+   * {{ ii }}
+{% endfor %}
 {% endif %}
-{% if i.note|length > 0 %}
+
+{% if i.note | length > 0 %}
 .. note::
-
+{% for note in i.notes %}
+   * {{ note }}
+{% endfor %}
 {% endif %}
-{% if i.warning|length > 0 %}
-.. warning::
 
+{% if i.hints | d([]) | length > 0 %}
+.. hint::
+{% for hint in i.hints %}
+   * {{ hint }}
+{% endfor %}
+{% endif %}
+
+{% if i.warning | length > 0 %}
+.. warning::
+{% for warning in i.warnings %}
+   * {{ warning }}
+{% endfor %}
 {% endif %}
 {% endfor %}

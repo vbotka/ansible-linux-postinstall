@@ -17,20 +17,20 @@ myhandlers:
     link: {{ file.0 ~ file.1 }}
     path: handlers/{{ file.2 }}
     synopsis: |
-    {%- if lookup('varnames', 'handler_' ~ file.0 ~ '_synopsis')|length > 0 %}
-      {{ lookup('vars', 'handler_' ~ file.0 ~ '_synopsis')|indent(width=6) }}
+    {%- if lookup('varnames', 'handler_' ~ file.0 ~ '_synopsis') | length > 0 %}
+      {{ lookup('vars', 'handler_' ~ file.0 ~ '_synopsis') | indent(width=6) }}
     {%- else %}
       Handler {{ file.0 }}.
     {%- endif %}
     description: |
-    {%- if lookup('varnames', 'handler_' ~ file.0 ~ '_description')|length > 0 %}
-      {{ lookup('vars', 'handler_' ~ file.0 ~ '_description')|indent(width=6) }}
+    {%- if lookup('varnames', 'handler_' ~ file.0 ~ '_description') | length > 0 %}
+      {{ lookup('vars', 'handler_' ~ file.0 ~ '_description') | indent(width=6) }}
     {%- else %}
       Description of the handler.
     {%- endif %}
-    lines: {% if lookup('varnames', 'handler_' ~ file.0 ~ '_lines')|length > 0 %}{{ lookup('vars', 'handler_' ~ file.0 ~ '_lines') }}{% else %}1,2{% endif %}
-    seealso: {% if lookup('varnames', 'handler_' ~ file.0 ~ '_seealso')|length > 0 %}{{ lookup('vars', 'handler_' ~ file.0 ~ '_seealso') }}{% else %}[]{% endif %}
-    note: {% if lookup('varnames', 'handler_' ~ file.0 ~ '_note')|length > 0 %}{{ lookup('vars', 'handler_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
-    warning: {% if lookup('varnames', 'handler_' ~ file.0 ~ '_warning')|length > 0 %}{{ lookup('vars', 'handler_' ~ file.0 ~ '_warning') }}{% else %}[]{% endif %}
+    lines: {% if lookup('varnames', 'handler_' ~ file.0 ~ '_lines') | length > 0 %}{{ lookup('vars', 'handler_' ~ file.0 ~ '_lines') }}{% else %}1,2{% endif %}
+    seealso: {% if lookup('varnames', 'handler_' ~ file.0 ~ '_seealso') | length > 0 %}{{ lookup('vars', 'handler_' ~ file.0 ~ '_seealso') }}{% else %}[]{% endif %}
+    note: {% if lookup('varnames', 'handler_' ~ file.0 ~ '_note') | length > 0 %}{{ lookup('vars', 'handler_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
+    warning: {% if lookup('varnames', 'handler_' ~ file.0 ~ '_warning') | length > 0 %}{{ lookup('vars', 'handler_' ~ file.0 ~ '_warning') }}{% else %}[]{% endif %}
 {% endfor %}
 ...
