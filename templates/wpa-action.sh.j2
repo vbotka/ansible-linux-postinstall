@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# All rights reserved (c) 2019-2020, Vladimir Botka <vbotka@gmail.com>
+# All rights reserved (c) 2019-2024, Vladimir Botka <vbotka@gmail.com>
 # Simplified BSD License, https://opensource.org/licenses/BSD-2-Clause
 
 # See Ansible Galaxy role Linux postinstall
@@ -18,8 +18,9 @@ pidfile="{{ lp_wpa_action_script_pidfile }}"
 options_connect="{{ lp_wpa_action_script_options_connect }}"
 options_disconnect="{{ lp_wpa_action_script_options_disconnect }}"
 logfile="{{ lp_wpa_action_script_logfile }}"
+date_format="+%F %T" # Date format in the log messages
 
-my_date=`date +"%b %d %T"`
+my_date=`date +"$date_format"`
 printf "$my_date $ifname: $cmd \n" >> $logfile
 
 if [ "$cmd" == "CONNECTED" ]; then
