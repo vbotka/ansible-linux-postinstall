@@ -1,11 +1,2 @@
 ---
-verbosity: 1
-quiet: false
-parseable: true
-use_default_rules: true
-rulesdir:
-  - $HOME/.ansible/ansible-lint-rules
-# skip_list:
-#   - '306'
-
-# EOF
+skip_list: []

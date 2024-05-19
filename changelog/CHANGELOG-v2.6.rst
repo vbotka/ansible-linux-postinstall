@@ -26,6 +26,7 @@ Minor Changes
 * Update README.
 * Add default my_date=`date +"%b %d %T"` in template wpa-action.sh.j2
 * Deprecated ansible.netcommon changed to ansible.utils.ipaddr
+* Update ansible-lint, travis, and readthedoc configurations
 
 
 2.6.1

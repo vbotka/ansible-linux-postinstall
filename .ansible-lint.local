@@ -1,0 +1,19 @@
+---
+verbosity: 1
+quiet: false
+parseable: true
+use_default_rules: true
+skip_list:
+  - schema[meta]
+exclude_paths:
+  - docs/
+
+# rulesdir:
+#   - $HOME/.ansible/ansible-lint-rules
+
+# Notes of skip_list
+#
+# * schema[meta]: $.galaxy_info.platforms[0].versions[0] 12.4 is not one
+#   of ['6.1', '7.1', '7.2', 'all'].
+
+# EOF
