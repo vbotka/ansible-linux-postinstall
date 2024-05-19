@@ -1,6 +1,9 @@
 # linux_postinstall
 
-[![quality](https://img.shields.io/ansible/quality/27914)](https://galaxy.ansible.com/vbotka/linux_postinstall)[![Build Status](https://app.travis-ci.com/vbotka/ansible-linux-postinstall.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-linux-postinstall)[![Documentation Status](https://readthedocs.org/projects/docs/badge/?version=latest)](https://ansible-linux-postinstall.readthedocs.io/en/latest/)
+[![quality](https://img.shields.io/ansible/quality/27914)](https://galaxy.ansible.com/vbotka/linux_postinstall)
+[![Build Status](https://app.travis-ci.com/vbotka/ansible-linux-postinstall.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-linux-postinstall)
+[![Documentation Status](https://readthedocs.org/projects/docs/badge/?version=latest)](https://ansible-linux-postinstall.readthedocs.io/en/latest/)
+[![GitHub tag](https://img.shields.io/github/v/tag/vbotka/ansible-linux-postinstall)](https://github.com/vbotka/ansible-linux-postinstall/tags)
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/linux_postinstall/) Configure Linux: acpi,
 aliases, apparmor, apt, authorized keys, autofs, automatic upgrades, bluetooth, cron, debsums,
@@ -14,8 +17,7 @@ wpa_gui, wpa_supplicant, xen, xorg.conf.d, zfs, (wip ...)
 
 This role and the documentation is work in progress. If the
 documentation of a task is missing it's necessary to review the
-[source
-code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks)
+[source code](https://github.com/vbotka/ansible-linux-postinstall/tree/master/tasks)
 to learn how to use it. If a functionality is missing consider role
 [config_light](https://galaxy.ansible.com/vbotka/config_light). See
 various
@@ -32,10 +34,6 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 This role has been developed and tested in
 * [Ubuntu Supported Releases](http://releases.ubuntu.com/)
 * Armbian 5.90
-
-This may be different from the platforms in Ansible Galaxy which does not offer all
-released versions in time and would report an error. For example:
-`IMPORTER101: Invalid platform: "Ubuntu focal", skipping.`
 
 Support for other platforms is work in progress. Some tasks are
 supported also by Centos. You're encouraged to fit the variables in
@@ -255,6 +253,16 @@ shell> ansible-playbook lp.yml --check
 shell> ansible-playbook lp.yml
 ```
 
+## Ansible lint
+
+Use the configuration file *.ansible-lint.local* when running
+*ansible-lint*. Some rules might be disabled and some warnings might
+be ignored. See the notes in the configuration file.
+
+```bash
+shell> ansible-lint -c .ansible-lint.local
+```
+
 
 ## License
 
@@ -268,11 +276,10 @@ shell> ansible-playbook lp.yml
 
 ## References
 
-- [Ubuntu Desktop Guide](https://help.ubuntu.com/lts/ubuntu-help/index.html)
-- [Ubuntu Server Guide](https://help.ubuntu.com/lts/serverguide/index.html)
+- [Ubuntu Official Documentation](https://help.ubuntu.com)
+- [Ubuntu Releases](https://wiki.ubuntu.com/Releases)
 - [Armbian linux for ARM development boards](https://docs.armbian.com/)
 - [RHEL 7 System Administrator's Guide](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/system_administrators_guide/index)
-- [Ubuntu Release Notes](https://wiki.ubuntu.com/BionicBeaver/ReleaseNotes#New_features_in_18.04)
 
 - [ACPI - Ubuntu Wiki](https://wiki.ubuntu.com/DebuggingACPI)
 - [AptConfiguration - Debian Wiki](https://wiki.debian.org/AptConfiguration)
