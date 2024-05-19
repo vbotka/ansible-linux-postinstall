@@ -10,7 +10,7 @@ vbotka.linux_postinstall 2.6 Release Notes
 
 Release Summary
 ---------------
-Update service.
+Maintenance and bugfix release including docs update.
 
 Major Changes
 -------------
@@ -27,6 +27,13 @@ Minor Changes
 * Add default my_date=`date +"%b %d %T"` in template wpa-action.sh.j2
 * Deprecated ansible.netcommon changed to ansible.utils.ipaddr
 * Update ansible-lint, travis, and readthedoc configurations
+
+Bugfixes
+--------
+* Fix lp_udev_module variable.
+
+Breaking Changes / Porting Guide
+--------------------------------
 
 
 2.6.1

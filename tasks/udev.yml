@@ -1,13 +1,13 @@
 ---
 # linux_postinstall udev
 
-- name: "udev: Debug"
+- name: "udev: Debug lp_udev_debug={{ lp_udev_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_udev_debug2: {{ lp_udev_debug2|d(false)|bool }}
       lp_udev_enable: {{ lp_udev_enable }}
-      lp_udev_enable_module: {{ lp_udev_enable_module }}
+      lp_udev_module: {{ lp_udev_module }}
       lp_udev_service: {{ lp_udev_service }}
       lp_udev_conf_file: {{ lp_udev_conf_file }}
       lp_udev_conf:
@@ -125,7 +125,7 @@
         state: started
         enabled: true
       register: result
-      when: lp_udev_enable_module == 'sysvinit'
+      when: lp_udev_module == 'sysvinit'
 
     - name: "udev: Start and enable udev (systemd)"
       ansible.builtin.systemd:
@@ -133,7 +133,7 @@
         state: started
         enabled: true
       register: result
-      when: lp_udev_enable_module == 'systemd'
+      when: lp_udev_module == 'systemd'
 
     - name: "udev: Start and enable udev (service)"
       ansible.builtin.service:
@@ -141,7 +141,7 @@
         state: started
         enabled: true
       register: result
-      when: lp_udev_enable_module == 'service'
+      when: lp_udev_module == 'service'
 
     - name: "udev: Debug result"
       ansible.builtin.debug:
