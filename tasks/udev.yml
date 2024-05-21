@@ -9,9 +9,12 @@
       ansible_distribution_version: {{ ansible_distribution_version }}
 
       lp_udev_debug2: {{ lp_udev_debug2|d(false)|bool }}
+      lp_backup_conf: {{ lp_backup_conf }}
+
       lp_udev_enable: {{ lp_udev_enable }}
       lp_udev_module: {{ lp_udev_module }}
       lp_udev_service: {{ lp_udev_service }}
+      lp_udev_path: {{ lp_udev_path }}
       lp_udev_conf_file: {{ lp_udev_conf_file }}
       lp_udev_conf:
         {{ lp_udev_conf|to_yaml(indent=2)|indent(2) }}
@@ -19,6 +22,7 @@
       lp_udev_rules_template: {{ lp_udev_rules_template }}
       lp_udev_rules:
         {{ lp_udev_rules|to_yaml(indent=2)|indent(2) }}
+      >>> Deprecated - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       lp_udev_persistent_net_template: {{ lp_udev_persistent_net_template }}
       lp_udev_persistent_net_rules_file: {{ lp_udev_persistent_net_rules_file }}
       lp_udev_persistent_net_rules:
@@ -29,7 +33,6 @@
       lp_udev_hci_run_rules_file: {{ lp_udev_hci_run_rules_file }}
       lp_udev_hci_run_rules:
         {{ lp_udev_hci_run_rules|to_nice_yaml(indent=2)|indent(2) }}
-      lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_udev_debug|bool
