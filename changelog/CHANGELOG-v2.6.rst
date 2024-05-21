@@ -18,6 +18,7 @@ Major Changes
 * Update lists lp_service_all and lp_service_auto.
 * Default lp_ufw_enable changed to false.
 * Default lp_netplan_mode: "0600" removed from vars.
+* Update udev task, handlers, lp_udev_* defaults and vars. 
 
 Minor Changes
 -------------
@@ -26,9 +27,8 @@ Minor Changes
 * Update README.
 * Add default my_date=`date +"%b %d %T"` in template wpa-action.sh.j2
 * Deprecated ansible.netcommon changed to ansible.utils.ipaddr
-* Update ansible-lint, travis, and readthedoc configurations
-* Add distro facts to udev debug
-
+* Update ansible-lint, travis, and readthedoc configurations.
+* Add distro facts to udev debug.
 
 Bugfixes
 --------
@@ -36,6 +36,7 @@ Bugfixes
 
 Breaking Changes / Porting Guide
 --------------------------------
+* vars/defaults.incr/Debian.yml moved to vars/defaults.incr/Ubuntu.yml
 
 
 2.6.1

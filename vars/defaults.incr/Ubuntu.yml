@@ -1,37 +1,39 @@
 ---
-# Ubuntu 23.10 Mantic vars linux-postinstall
+# Ubuntu vars linux-postinstall
 
 # lp_ssh: True
 # lp_ssh_config:
-#  - host: '*'
+#  - host: "*"
 #    conf:
-#      - {key: 'SendEnv', val: 'LANG LC_*'}
-#      - {key: 'HashKnownHosts', val: 'yes'}
-#      - {key: 'GSSAPIAuthentication', val: 'yes'}
+#      - { key: "SendEnv", val: "LANG LC_*" }
+#      - { key: "HashKnownHosts", val: "yes" }
+#      - { key: "GSSAPIAuthentication", val: "yes" }
 
 lp_acpi_service: acpid
 lp_auto_upgrades_service: unattended-upgrades
 lp_autofs_service: autofs
 lp_bluetooth_service: bluetooth
+lp_chrony_service: chrony
 lp_gpsd_service: gpsd
 lp_postfix_service: postfix
 lp_speechd_service: speech-dispatcher
 lp_sshd_service: ssh
 lp_timesyncd_service: systemd-timesyncd.service
 lp_udev_service: udev
+lp_ufw_service: ufw
 
-lp_udev_path: /usr/bin/udevadm
 lp_sshd_path: /usr/sbin/sshd
+lp_udev_path: /usr//bin/udevadm
 
 lp_modules_conf: /etc/modules
 
 lp_hosts_default:
-  - {ip: '127.0.0.1', name1: 'localhost'}
-  - {ip: '::1', name1: 'ip6-localhost', name2: 'ip6-loopback'}
-  - {ip: 'fe00::0', name1: 'ip6-localnet'}
-  - {ip: 'ff00::0', name1: 'ip6-mcastprefix'}
-  - {ip: 'ff02::1', name1: 'ip6-allnodes'}
-  - {ip: 'ff02::2', name1: 'ip6-allrouters'}
+  - {ip: "127.0.0.1", name1: "localhost"}
+  - {ip: "::1", name1: "ip6-localhost", name2: "ip6-loopback"}
+  - {ip: "fe00::0", name1: "ip6-localnet"}
+  - {ip: "ff00::0", name1: "ip6-mcastprefix"}
+  - {ip: "ff02::1", name1: "ip6-allnodes"}
+  - {ip: "ff02::2", name1: "ip6-allrouters"}
 
 lp_nfsd_packages:
   - nfs-kernel-server
@@ -57,6 +59,7 @@ lp_nm_services:
   - NetworkManager.service
   - NetworkManager-wait-online.service
   - NetworkManager-dispatcher.service
+  - network-manager.service
   - wpa_supplicant.service
 lp_nm_services_mask:
   - NetworkManager.service
@@ -64,7 +67,6 @@ lp_nm_conf_path: /etc/NetworkManager/NetworkManager.conf
 
 lp_wpasupplicant_packages:
   - wpasupplicant
-lp_wpasupplicant_bin: /usr/sbin/wpa_supplicant
 lp_wpasupplicant_conf_ctrl_interface: /run/wpa_supplicant
 # lp_wpasupplicant_conf_ctrl_interface: /var/run/wpa_supplicant
 # lp_wpa_action_script_dhclient: "{{ lp_dhclient }}"
@@ -89,68 +91,62 @@ lp_smart_packages:
 lp_kvm_packages:
   - qemu
   - qemu-kvm
-  - libvirt-daemon
-  - libvirt-daemon-system
-  - libvirt-clients
+  - libvirt-bin
+  - ubuntu-vm-builder
   - bridge-utils
-# - ubuntu-vm-builder
 
-lp_xen_version: '4.16'
+lp_xen_version: 4.9
 lp_xen_packages:
-  - "xen-hypervisor-{{ lp_xen_version }}-amd64"
-  - "xen-utils-{{ lp_xen_version }}"
+  - xen-hypervisor-4.9-amd64
+  - xen-utils-4.9
   - xen-utils-common
   - xenstore-utils
+# - "xen-hypervisor-{{ lp_xen_version }}-amd64"
+# - "xen-utils-{{ lp_xen_version }}"
 # - ubuntu-virt-server
 
+lp_tlp_config_file: /etc/tlp.conf
+lp_tlp_path: /usr/sbin/tlp
 lp_tlp_packages:
   - tlp
   - tlp-rdw
 lp_tlp_packages_tp:
   - tp-smapi-dkms
-# - acpi-call-dkms
-# Error: acpi_call: module verification failed: signature and/or
-# required key missing - tainting kernel
+#  - acpi-call-dkms
 lp_tlp_services:
   - tlp
 lp_tlp_restart_service: tlp
-lp_tlp_config_file: /etc/tlp.conf
-lp_tlp_path: /usr/sbin/tlp
 
 lp_virtualbox_repos:
-  - 'deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/focal contrib'
-# - 'deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
-#                     {{ ansible_lsb.codename }} contrib'
+  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/buster contrib"
+# - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
+#                     {{ ansible_lsb.codename }} contrib"
 lp_virtualbox_services:
   - vboxautostart-service
   - vboxballoonctrl-service
   - vboxdrv.service
   - vboxweb-service
 
-# TODO: Not tested in 22.04 yet
 lp_libvirt_libvirtd_service: libvirtd
 lp_libvirt_guests_service: libvirt-guests
 lp_libvirt_packages:
   - libvirt0
+  - libvirt-bin
   - libvirt-daemon
   - libvirt-daemon-driver-storage-rbd
   - libvirt-daemon-system
-  - libvirt-clients
   - virtinst
 lp_libvirt_conf_owner: root
 lp_libvirt_conf_group: root
-lp_libvirt_conf_mode: '0644'
+lp_libvirt_conf_mode: "0644"
 lp_libvirt_conf_dir: /etc/libvirt
 
 lp_zfs_packages:
   - zfsutils-linux
 
-lp_ufw_packages:
-  - ufw
-
 lp_systemd_owner: root
 lp_systemd_group: root
-lp_systemd_mode: '0644'
+lp_systemd_mode: "0644"
 
 lp_networkd_service: systemd-networkd.service
 lp_networkd_packages: []
@@ -170,16 +166,19 @@ lp_debsums_packages:
 lp_resolvconf_service: resolvconf
 lp_resolvconf_packages:
   - resolvconf
-lp_resolvconf_confd_head_path: /etc/resolvconf/resolv.conf.d/head
 lp_resolvconf_conf_owner: root
 lp_resolvconf_conf_group: root
-lp_resolvconf_conf_mode: '0644'
+lp_resolvconf_conf_mode: "0644"
+lp_resolvconf_confd_head_path: /etc/resolvconf/resolv.conf.d/head
 
 # userland paths
-lp_dhclient: /usr/sbin/dhclient
+# lp_dhclient: "/sbin/dhclient"
 
 lp_passwordstore_packages:
   - pass
+
+lp_ufw_packages:
+  - ufw
 
 lp_dnsmasq_packages:
   - dnsmasq

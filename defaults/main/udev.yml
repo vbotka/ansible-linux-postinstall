@@ -4,12 +4,13 @@ lp_udev: false
 lp_udev_debug: false
 lp_udev_enable: true
 lp_udev_state: started
-lp_udev_module: service  #75542 workaround; systemd not idempotent
+lp_udev_module: service
 lp_udev_conf_file: /etc/udev/udev.conf
 lp_udev_conf: []
 lp_udev_rules_dir: /etc/udev/rules.d
 lp_udev_rules_template: udev-rules.j2
 lp_udev_rules: {}
+# > > > Deprecated, use lp_udev_rules instead - - - - - - - - - - - - - - - - - -
 lp_udev_persistent_net_template: persistent-net.rules.j2
 lp_udev_persistent_net_rules_file: 70-persistent-net.rules
 lp_udev_persistent_net_rules: []
@@ -17,3 +18,6 @@ lp_udev_hci_name_rules_file: 71-hci-name.rules
 lp_udev_hci_name_rules: []
 lp_udev_hci_run_rules_file: 72-hci-run.rules
 lp_udev_hci_run_rules: []
+# - - - - - - - - - - - - - - - - - - Deprecated, use lp_udev_rules instead < < <
+
+# EOF

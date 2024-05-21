@@ -1,23 +1,64 @@
 ---
 
-- name: reload udev
-  ansible.builtin.command:
-    cmd: >
-      {{ lp_udev_path }} control --reload-rules
-  when: lp_udev_enable|bool
-#  Ubuntu 18.04 error: Failed to reload udev.service: Job type reload
-#  is not applicable for unit systemd-udevd.service
-#  systemd: name="udev" state="reloaded"
-# Ubuntu 18.04
-# command: "/sbin/udevadm control --reload-rules"
-# Ubuntu 20.04
-# command: "/usr/bin/udevadm control --reload-rules"
+# Service
 
-- name: restart udev
+- name: reload udev service
+  listen: reload udev
   ansible.builtin.service:
-    name: "{{ lp_service_udev }}"
+    name: "{{ lp_udev_service }}"
+    state: reloaded
+  when:
+    - lp_udev_module == 'service'
+    - lp_udev_enable | bool
+
+- name: restart udev service
+  listen: restart udev
+  ansible.builtin.service:
+    name: "{{ lp_udev_service }}"
     state: restarted
-  when: lp_udev_enable|bool
+  when:
+    - lp_udev_module == 'service'
+    - lp_udev_enable | bool
+
+# Systemd
+
+- name: reload udev systemd
+  listen: reload udev
+  ansible.builtin.systemd_service:
+    name: "{{ lp_udev_service }}"
+    state: reloaded
+  when:
+    - lp_udev_module == 'systemd'
+    - lp_udev_enable | bool
+
+- name: restart udev systemd
+  listen: restart udev
+  ansible.builtin.systemd_service:
+    name: "{{ lp_udev_service }}"
+    state: restarted
+  when:
+    - lp_udev_module == 'systemd'
+    - lp_udev_enable | bool
+
+# SysV
+
+- name: reload udev SysV
+  listen: reload udev
+  ansible.builtin.sysvinit:
+    name: "{{ lp_udev_service }}"
+    state: reloaded
+  when:
+    - lp_udev_module == 'sysvinit'
+    - lp_udev_enable | bool
+
+- name: restart udev SysV
+  listen: restart udev
+  ansible.builtin.sysvinit:
+    name: "{{ lp_udev_service }}"
+    state: restarted
+  when:
+    - lp_udev_module == 'sysvinit'
+    - lp_udev_enable | bool
 
 # EOF
 ...

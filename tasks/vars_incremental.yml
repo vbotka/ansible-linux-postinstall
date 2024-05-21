@@ -1,10 +1,7 @@
 ---
 # linux_postinstall vars_incremental
 
-- name: "vars_incemental: Include default vars for
-              [{{ ansible_os_family }},
-               {{ ansible_distribution }},
-               {{ ansible_distribution_release }}]"
+- name: "vars_incemental: Include default vars"
   ansible.builtin.include_vars: "{{ item }}"
   register: result
   loop:
@@ -22,10 +19,7 @@
     var: result
   when: lp_debug2|d(false)|bool
 
-- name: "vars_incemental: Include custom vars for
-              [{{ ansible_os_family }},
-               {{ ansible_distribution }},
-               {{ ansible_distribution_release }}]"
+- name: "vars_incemental: Include custom vars"
   ansible.builtin.include_vars: "{{ item }}"
   register: result
   loop:
