@@ -1,0 +1,47 @@
+---
+# Ubuntu 24.04 Noble vars linux-postinstall incremental
+
+lp_dhclient: /usr/sbin/dhclient
+lp_wpasupplicant_bin: /usr/sbin/wpa_supplicant
+
+lp_nm_services:
+  - NetworkManager.service
+  - NetworkManager-wait-online.service
+  - NetworkManager-dispatcher.service
+  - wpa_supplicant.service
+
+lp_kvm_packages:
+  - qemu
+  - qemu-kvm
+  - libvirt-daemon
+  - libvirt-daemon-system
+  - libvirt-clients
+  - bridge-utils
+# - ubuntu-vm-builder
+
+lp_xen_version: '4.16'
+lp_xen_packages:
+  - "xen-hypervisor-{{ lp_xen_version }}-amd64"
+  - "xen-utils-{{ lp_xen_version }}"
+  - xen-utils-common
+  - xenstore-utils
+# - ubuntu-virt-server
+
+lp_virtualbox_repos:
+  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/focal contrib"
+# - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
+#                     {{ ansible_lsb.codename }} contrib"
+
+# TODO: Not tested in 23.10 yet
+lp_libvirt_libvirtd_service: libvirtd
+lp_libvirt_guests_service: libvirt-guests
+lp_libvirt_packages:
+  - libvirt0
+  - libvirt-daemon
+  - libvirt-daemon-driver-storage-rbd
+  - libvirt-daemon-system
+  - libvirt-clients
+  - virtinst
+
+# EOF
+...

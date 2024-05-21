@@ -18,7 +18,8 @@ Major Changes
 * Update lists lp_service_all and lp_service_auto.
 * Default lp_ufw_enable changed to false.
 * Default lp_netplan_mode: "0600" removed from vars.
-* Update udev task, handlers, lp_udev_* defaults and vars. 
+* Update udev task, handlers, lp_udev_* defaults and vars.
+* Add Ubuntu 24.04 Noble vars.
 
 Minor Changes
 -------------
