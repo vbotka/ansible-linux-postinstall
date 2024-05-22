@@ -30,6 +30,7 @@ Minor Changes
 * Deprecated ansible.netcommon changed to ansible.utils.ipaddr
 * Update ansible-lint, travis, and readthedoc configurations.
 * Add distro facts to udev debug.
+* Add templates: udev-rules-lists.j2, udev-rules-strings.j2
 
 Bugfixes
 --------
