@@ -29,6 +29,7 @@ Minor Changes
 * Add default my_date=`date +"%b %d %T"` in template wpa-action.sh.j2
 * Deprecated ansible.netcommon changed to ansible.utils.ipaddr
 * Update ansible-lint, travis, and readthedoc configurations.
+* Formatting: netplan
 * Add distro facts to udev debug.
 * Add templates: udev-rules-lists.j2, udev-rules-strings.j2
 * Add default lp_udev_debug2=false
