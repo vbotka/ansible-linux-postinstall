@@ -39,6 +39,7 @@ Bugfixes
 Breaking Changes / Porting Guide
 --------------------------------
 * vars/defaults.incr/Debian.yml moved to vars/defaults.incr/Ubuntu.yml
+* Update task networkmanager; Use systemd_service to mask services; Formatting.
 
 
 2.6.1
