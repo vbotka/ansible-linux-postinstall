@@ -2,6 +2,7 @@
 
 lp_udev: false
 lp_udev_debug: false
+lp_udev_debug2: false
 lp_udev_enable: true
 lp_udev_state: started
 lp_udev_module: service

@@ -31,6 +31,7 @@ Minor Changes
 * Update ansible-lint, travis, and readthedoc configurations.
 * Add distro facts to udev debug.
 * Add templates: udev-rules-lists.j2, udev-rules-strings.j2
+* Add default lp_udev_debug2=false
 
 Bugfixes
 --------
