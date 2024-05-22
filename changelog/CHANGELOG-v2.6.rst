@@ -34,6 +34,7 @@ Minor Changes
 Bugfixes
 --------
 * Fix lp_udev_module variable.
+* Fix docs indexes and formatting.
 
 Breaking Changes / Porting Guide
 --------------------------------

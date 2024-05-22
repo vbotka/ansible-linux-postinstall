@@ -23,7 +23,7 @@ Synopsis: {{ i.synopsis }}
     :linenos:
 
 {% if i.seealso | length > 0 %}
-.. seealso:: 
+.. seealso::
   {% for ii in i.seealso.others | d([]) %}
    * {{ ii }}
 {% endfor %}

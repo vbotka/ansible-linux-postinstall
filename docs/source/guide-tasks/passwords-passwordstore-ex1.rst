@@ -3,9 +3,8 @@
 Example 1: Update or create passwords
 """""""""""""""""""""""""""""""""""""
 
-Let's start with no passwords stored in `passwordstore <single:
-password; passwordstore>` for users at host *test_01*. The command
-shows no results
+Let's start with no passwords stored in :index:`passwordstore` for
+users at host *test_01*. The command shows no results
 
 .. code-block:: YAML
    :emphasize-lines: 1

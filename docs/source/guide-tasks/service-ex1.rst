@@ -8,21 +8,23 @@ according the below variables
 
 .. code-block:: text
 
-    lp_<service_name> ........... included if true (default=false)
-    lp_<service_name>_service ... Os specific name (see defaults and vars)
-    lp_<service_name>_enable .... enabled if true (default=false)
-    lp_<service_name>_state ..... started if true (default=<fn(enabled)>)
-    lp_<service_name>_module .... module used (default=auto)
+   lp_<service_name> ........... included if true (default=false)
+   lp_<service_name>_service ... Os specific name (see defaults and vars)
+   lp_<service_name>_enable .... enabled if true (default=false)
+   lp_<service_name>_state ..... started if true (default=<fn(enabled)>)
+   lp_<service_name>_module .... module used (default=auto)
+
 
 For example, given the below variables, the service *udev* will be set
 enabled and started by module *service*
 
 .. code-block:: yaml
 
-    lp_udev: true
-    lp_udev_service: udev
-    lp_udev_enable: true
-    lp_udev_module: service
+   lp_udev: true
+   lp_udev_service: udev
+   lp_udev_enable: true
+   lp_udev_module: service
+
 
 **Create playbook**
 
@@ -34,6 +36,7 @@ enabled and started by module *service*
      become: true
      roles:
        - vbotka.linux_postinstall
+
 
 **Create variables**
 	 
@@ -47,14 +50,17 @@ of services `lp_service_auto` that shall be managed by this task
    lp_service_auto:
      - smart
      - udev
-	  
+
+
 .. hint:: Use the variable **lp_service** to set other parameters.
-   
+
+
 **Show variables**
 
 .. literalinclude:: examples/service-ex1-debug.yaml.example
    :language: yaml
    :emphasize-lines: 1
+
 
 **Manage the services and show the results**
 

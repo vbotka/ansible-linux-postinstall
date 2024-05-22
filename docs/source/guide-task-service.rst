@@ -273,20 +273,22 @@ services
         state: started
         use: service
 
+
 Here you can use the variables *lp_<service_name>_\** explicitly. The
 content of the below list will be the same
 
 .. code-block:: yaml
 
-    lp_service:
-      - name: "{{ lookup('vars', 'lp_smart_service') }}"
-        enabled: "{{ lookup('vars', 'lp_smart_enable', default=false) }}"
-        state: "{{ lookup('vars', 'lp_smart_state', default='stopped') }}"
-        use: "{{ lookup('vars', 'lp_smart_module', default='auto') }}"
-      - name: "{{ lookup('vars', 'lp_udev_service') }}"
-        enabled: "{{ lookup('vars', 'lp_udev_enable', default=false) }}"
-        state: "{{ lookup('vars', 'lp_udevt_state', default='stopped') }}"
-        use: "{{ lookup('vars', 'lp_udev_module', default='auto') }}"
+   lp_service:
+     - name: "{{ lookup('vars', 'lp_smart_service') }}"
+       enabled: "{{ lookup('vars', 'lp_smart_enable', default=false) }}"
+       state: "{{ lookup('vars', 'lp_smart_state', default='stopped') }}"
+       use: "{{ lookup('vars', 'lp_smart_module', default='auto') }}"
+     - name: "{{ lookup('vars', 'lp_udev_service') }}"
+       enabled: "{{ lookup('vars', 'lp_udev_enable', default=false) }}"
+       state: "{{ lookup('vars', 'lp_udevt_state', default='stopped') }}"
+       use: "{{ lookup('vars', 'lp_udev_module', default='auto') }}"
+
 
 What parameters can be used depends on the module. By default the
 variable *lp_service_module* is set to *auto*. In this case, the OS
