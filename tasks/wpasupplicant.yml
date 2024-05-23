@@ -1,14 +1,20 @@
 ---
 # linux_postinstall wpasupplicant
 
-- name: "wpasupplicant: Debug"
+- name: "wpasupplicant: Debug lp_wpasupplicant_debug={{ lp_wpasupplicant_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
+      ansible_distribution: {{ ansible_distribution }}
+      ansible_distribution_version: {{ ansible_distribution_version }}
+      ansible_distribution_release: {{ ansible_distribution_release }}
+
+      lp_backup_conf: {{ lp_backup_conf }}
       lp_package_state: {{ lp_package_state }}
+
       lp_wpasupplicant_install: {{ lp_wpasupplicant_install }}
       lp_wpasupplicant_packages:
-        {{ lp_wpasupplicant_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_wpasupplicant_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_wpasupplicant_bin: {{ lp_wpasupplicant_bin }}
       lp_wpasupplicant_conf_only: {{ lp_wpasupplicant_conf_only }}
       lp_wpasupplicant_conf_dir: {{ lp_wpasupplicant_conf_dir }}
@@ -17,7 +23,7 @@
       lp_wpasupplicant_conf_mode: {{ lp_wpasupplicant_conf_mode }}
       lp_wpasupplicant_conf_ctrl_interface: {{ lp_wpasupplicant_conf_ctrl_interface }}
       lp_wpasupplicant_conf_global:
-        {{ lp_wpasupplicant_conf_global|to_yaml(indent=2)|indent(2) }}
+        {{ lp_wpasupplicant_conf_global | to_yaml(indent=2) | indent(2) }}
       lp_wpa_action_script: {{ lp_wpa_action_script }}
       lp_wpa_action_script_dir: {{ lp_wpa_action_script_dir }}
       lp_wpa_action_script_dir_owner: {{ lp_wpa_action_script_dir_owner }}
@@ -33,15 +39,15 @@
       lp_wpa_action_script_options_disconnect: {{ lp_wpa_action_script_options_disconnect }}
       lp_wpa_action_script_logfile: {{ lp_wpa_action_script_logfile }}
       lp_wpasupplicant_service_conf:
-        {{ lp_wpasupplicant_service_conf|to_yaml(indent=2)|indent(2) }}
-      {% if lp_wpasupplicant_debug_classified|bool %}
+        {{ lp_wpasupplicant_service_conf | to_yaml(indent=2) | indent(2) }}
+      {% if lp_wpasupplicant_debug_classified | bool %}
       lp_wpasupplicant_conf:
-        {{ lp_wpasupplicant_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_wpasupplicant_conf | to_yaml(indent=2) | indent(2) }}
       {% endif %}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_wpasupplicant_debug|bool
+  when: lp_wpasupplicant_debug | bool
   tags: lp_wpasupplicant_debug
 
 # Packages
@@ -49,13 +55,13 @@
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_wpasupplicant_install|bool
+  when: lp_wpasupplicant_install | bool
   vars:
     ll_ipkg_list: "{{ lp_wpasupplicant_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_wpasupplicant_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_wpasupplicant_debug | bool }}"
   tags: lp_wpasupplicant_packages
 
 # Action script for wpa_cli
@@ -66,7 +72,7 @@
     owner: "{{ lp_wpa_action_script_dir_owner }}"
     group: "{{ lp_wpa_action_script_dir_group }}"
     mode: "{{ lp_wpa_action_script_dir_mode }}"
-  when: lp_wpa_action_script|bool
+  when: lp_wpa_action_script | bool
   tags: lp_wpa_action_script_dir
 
 - name: "wpasupplicant: Create script {{ lp_wpa_action_script_file }}"
@@ -77,11 +83,11 @@
     group: "{{ lp_wpa_action_script_group }}"
     mode: "{{ lp_wpa_action_script_mode }}"
     backup: "{{ lp_backup_conf }}"
-  when: lp_wpa_action_script|bool
+  when: lp_wpa_action_script | bool
   tags: lp_wpa_action_script
 
 # Conf
-- name: "wpasupplicant: Create wpasupplicant configuration"
+- name: "wpasupplicant: Create wpasupplicant configuration lp_wpasupplicant_debug_classified={{ lp_wpasupplicant_debug_classified }}"
   ansible.builtin.template:
     src: wpa_supplicant.conf.j2
     dest: "{{ lp_wpasupplicant_conf_dir }}/{{ my_filename }}"
@@ -96,65 +102,65 @@
     label: "{{ my_filename }}"
   no_log: "{{ not lp_wpasupplicant_debug_classified }}"
   vars:
-    my_filename: "{{ lp_wpasupplicant_conf_file[item.type|default('default')] }}"
+    my_filename: "{{ lp_wpasupplicant_conf_file[item.type | d('default')] }}"
   tags: lp_wpasupplicant_conf
 
-- name: "wpasupplicant: Debug: Create wpasupplicant configuration"
+- name: "wpasupplicant: Debug: Create wpasupplicant configuration lp_wpasupplicant_debug_classified={{ lp_wpasupplicant_debug_classified }}"
   ansible.builtin.debug:
     var: lp_wpasupplicant_conf_changes
-  when: lp_wpasupplicant_debug_classified|bool
+  when: lp_wpasupplicant_debug_classified | bool
   tags: lp_wpasupplicant_conf
 
 # Service
 - name: "wpasupplicant: Configure wpa_supplicant services"
   community.general.ini_file:
     path: "{{ item.0.path }}/{{ item.0.service }}"
-    owner: "{{ item.0.owner|default(omit) }}"
-    group: "{{ item.0.group|default(omit) }}"
-    mode: "{{ item.0.mode|default(omit) }}"
-    create: "{{ item.0.create|default(omit) }}"
-    no_extra_spaces: "{{ item.0.no_extra_spaces|default(omit) }}"
+    owner: "{{ item.0.owner | d(omit) }}"
+    group: "{{ item.0.group | d(omit) }}"
+    mode: "{{ item.0.mode | d(omit) }}"
+    create: "{{ item.0.create | d(omit) }}"
+    no_extra_spaces: "{{ item.0.no_extra_spaces | d(omit) }}"
     section: "{{ item.1.section }}"
-    state: "{{ item.1.state|default(omit) }}"
-    option: "{{ item.1.option|default(omit) }}"
-    value: "{{ item.1.value|default(omit) }}"
+    state: "{{ item.1.state | d(omit) }}"
+    option: "{{ item.1.option | d(omit) }}"
+    value: "{{ item.1.value | d(omit) }}"
     backup: "{{ lp_backup_conf }}"
   register: lp_wpasupplicant_service_conf_changes
-  notify: "{{ item.0.handlers|default(omit) }}"  # TODO: see handlers
-  loop: "{{ lp_wpasupplicant_service_conf|subelements('ini', {'skip_missing': True}) }}"
+  notify: "{{ item.0.handlers | d(omit) }}"  # TODO: see handlers
+  loop: "{{ lp_wpasupplicant_service_conf | subelements('ini', {'skip_missing': True}) }}"
   loop_control:
     label: "{{ item.0.path }}/{{ item.0.service }}"
   tags: lp_wpasupplicant_service_conf
 
-- name: "wpasupplicant: Debug: Configure wpasupplicant services"
+- name: "wpasupplicant: Debug: Configure wpasupplicant services lp_wpasupplicant_debug={{ lp_wpasupplicant_debug }}"
   ansible.builtin.debug:
     var: lp_wpasupplicant_service_conf_changes
-  when: lp_wpasupplicant_debug|bool
+  when: lp_wpasupplicant_debug | bool
   tags: lp_wpasupplicant_service_conf
 
 - name: "wpasupplicant: Manage wpa_supplicant services"
   ansible.builtin.service:
     name: "{{ my_service }}"
-    state: "{{ item.state|default('started') }}"
-    enabled: "{{ item.enabled|default(true) }}"
-    arguments: "{{ item.arguments|default(omit) }}"
-    pattern: "{{ item.pattern|default(omit) }}"
-    runlevel: "{{ item.runlevel|default(omit) }}"
-    sleep: "{{ item.sleep|default(omit) }}"
-    use: "{{ item.use|default(omit) }}"
+    state: "{{ item.state | d('started') }}"
+    enabled: "{{ item.enabled | d(true) }}"
+    arguments: "{{ item.arguments | d(omit) }}"
+    pattern: "{{ item.pattern | d(omit) }}"
+    runlevel: "{{ item.runlevel | d(omit) }}"
+    sleep: "{{ item.sleep | d(omit) }}"
+    use: "{{ item.use | d(omit) }}"
   register: lp_wpasupplicant_service_changes
   loop: "{{ lp_wpasupplicant_conf }}"
   loop_control:
     label: "{{ my_service }}"
   vars:
     my_dev: "{{ item.dev }}"
-    my_service: "{{ lp_wpasupplicant_service[item.type|default('default')] }}"
+    my_service: "{{ lp_wpasupplicant_service[item.type|d('default')] }}"
   tags: lp_wpasupplicant_service
 
-- name: "wpasupplicant: Debug: Manage wpa_supplicant services"
+- name: "wpasupplicant: Debug: Manage wpa_supplicant services lp_wpasupplicant_debug_classified={{ lp_wpasupplicant_debug_classified }}"
   ansible.builtin.debug:
     var: lp_wpasupplicant_service_changes
-  when: lp_wpasupplicant_debug_classified|bool
+  when: lp_wpasupplicant_debug_classified | bool
   tags: lp_wpasupplicant_service
 
 # EOF

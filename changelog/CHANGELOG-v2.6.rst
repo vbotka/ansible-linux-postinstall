@@ -27,12 +27,12 @@ Minor Changes
 * Update docs.
 * Update README.
 * Add default my_date=`date +"%b %d %T"` in template wpa-action.sh.j2
-* Deprecated ansible.netcommon changed to ansible.utils.ipaddr
-* Update ansible-lint, travis, and readthedoc configurations.
-* Formatting: netplan
-* Add distro facts to udev debug.
-* Add templates: udev-rules-lists.j2, udev-rules-strings.j2
+* Add distro facts to tasks debug.
+* Add templates udev-rules-lists.j2 and udev-rules-strings.j2
 * Add default lp_udev_debug2=false
+* Update ansible-lint, travis, and readthedoc configurations.
+* Formatting of tasks
+* Deprecated ansible.netcommon changed to ansible.utils.ipaddr
 
 Bugfixes
 --------
@@ -42,7 +42,7 @@ Bugfixes
 Breaking Changes / Porting Guide
 --------------------------------
 * vars/defaults.incr/Debian.yml moved to vars/defaults.incr/Ubuntu.yml
-* Update task networkmanager; Use systemd_service to mask services; Formatting.
+* Update task networkmanager. Use systemd_service to mask services
 
 
 2.6.1
