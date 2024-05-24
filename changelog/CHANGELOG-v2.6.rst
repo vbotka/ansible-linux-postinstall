@@ -31,8 +31,9 @@ Minor Changes
 * Add templates udev-rules-lists.j2 and udev-rules-strings.j2
 * Add default lp_udev_debug2=false
 * Update ansible-lint, travis, and readthedoc configurations.
-* Formatting of tasks
+* Formatting of tasks and handlers
 * Deprecated ansible.netcommon changed to ansible.utils.ipaddr
+* Deprecated ansible.builtin.systemd changed to ansible.builtin.systemd_service
 * Remove variable my_dev from wpasupplicant.
 
 Bugfixes
