@@ -154,8 +154,7 @@
   loop_control:
     label: "{{ my_service }}"
   vars:
-    my_dev: "{{ item.dev }}"
-    my_service: "{{ lp_wpasupplicant_service[item.type|d('default')] }}"
+    my_service: "{{ lp_wpasupplicant_service[item.type | d('default')] }}"
   tags: lp_wpasupplicant_service
 
 - name: "wpasupplicant: Debug: Manage wpa_supplicant services lp_wpasupplicant_debug_classified={{ lp_wpasupplicant_debug_classified }}"

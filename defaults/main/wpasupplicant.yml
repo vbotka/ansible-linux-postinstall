@@ -19,9 +19,9 @@ lp_wpasupplicant_conf_global:
   - {key: ctrl_interface, value: "{{ lp_wpasupplicant_conf_ctrl_interface }}"}
 lp_wpasupplicant_conf: []
 lp_wpasupplicant_service:
-  default: "{{ 'wpa_supplicant@' ~ my_dev ~ '.service' }}"
-  nl80211: "{{ 'wpa_supplicant-nl80211@' ~ my_dev ~ '.service' }}"
-  wired: "{{ 'wpa_supplicant-wired@' ~ my_dev ~ '.service' }}"
+  default: "{{ 'wpa_supplicant@' ~ item.dev ~ '.service' }}"
+  nl80211: "{{ 'wpa_supplicant-nl80211@' ~ item.dev ~ '.service' }}"
+  wired: "{{ 'wpa_supplicant-wired@' ~ item.dev ~ '.service' }}"
 lp_wpasupplicant_service_conf_only: false
 lp_wpasupplicant_service_conf: []
 lp_wpa_action_script: false

@@ -33,6 +33,7 @@ Minor Changes
 * Update ansible-lint, travis, and readthedoc configurations.
 * Formatting of tasks
 * Deprecated ansible.netcommon changed to ansible.utils.ipaddr
+* Remove variable my_dev from wpasupplicant.
 
 Bugfixes
 --------
