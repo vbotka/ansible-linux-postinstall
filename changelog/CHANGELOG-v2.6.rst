@@ -37,6 +37,8 @@ Minor Changes
 
 Bugfixes
 --------
+* Fix handler 'reconfigure wpasupplicant'. Add default dictionary
+  lp_wpasupplicant_service_change
 * Fix lp_udev_module variable.
 * Fix docs indexes and formatting.
 

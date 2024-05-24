@@ -8,18 +8,17 @@
   loop_control:
     label: "{{ my_service }}"
   vars:
-    my_dev: "{{ item.item.dev }}"
-    my_service: "{{ lp_wpasupplicant_service[item.item.type|default('default')] }}"
+    my_service: "{{ lp_wpasupplicant_service_change[item.item.type | d('default')] }}"
   when:
-    - item.changed|bool
-    - not lp_wpasupplicant_conf_only|bool
-    - item.item.enabled|default(true)
+    - item.changed | bool
+    - not lp_wpasupplicant_conf_only | bool
+    - item.item.enabled | d(true)
 
 # [TODO] Wait for OK result. Error: 'RECONFIGURE' command timed out.
 # shell: >
-#    [ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ item.item.dev }} ] &&
+#    [ -S {{ lp_wpasupplicant_conf_ctrl_interface }}/{{ my_dev }} ] &&
 #    wpa_cli -p {{ lp_wpasupplicant_conf_ctrl_interface }}
-#            -i {{ item.item.dev }} reconfigure ||
+#            -i {{ my_dev }} reconfigure ||
 #    exit 0
 
 - name: reload wpa_supplicant service
@@ -30,9 +29,9 @@
   loop_control:
     label: "{{ item.item.0.path }}/{{ item.item.0.service }}"
   when:
-    - item.changed|bool
+    - item.changed | bool
     - not lp_wpasupplicant_service_conf_only|bool
-    - item.item.enabled|default(true)
+    - item.item.enabled | d(true)
 
 # [TODO] Restart running wpa_supplicant-*.service services
 # The command below successfully restarts the service in 20.04
