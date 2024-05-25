@@ -41,7 +41,7 @@
     exists: "{{ service in ansible_facts.services }}"
   tags: [lp_timesyncd_exists, lp_timesyncd_conf, lp_timesyncd_sanity, lp_timesyncd_service]
 
-- name: "timesyncd: Debug {{ lp_timesyncd_service }}"
+- name: "timesyncd: Debug lp_timesyncd_service lp_timesyncd_debug={{ lp_timesyncd_debug }}"
   ansible.builtin.debug:
     msg: |
       lp_timesyncd_service_exists: {{ lp_timesyncd_service_exists }}
@@ -94,10 +94,10 @@
   when: lp_timesyncd_service_exists
   tags: lp_timesyncd_service
 
-- name: "timesyncd: Debug service"
+- name: "timesyncd: Debug service result lp_timesyncd_debug2={{ lp_timesyncd_debug2|d(false)|bool }}"
   ansible.builtin.debug:
     var: result
-  when: lp_timesyncd_debug | bool
+  when: lp_timesyncd_debug2 | d(false) | bool
   tags: lp_timesyncd_service
 
 # Notes on CentOS
