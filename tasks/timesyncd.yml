@@ -1,25 +1,65 @@
 ---
 # linux_postinstall timesyncd
 
-- name: "timesyncd: Debug"
+- name: "timesyncd: Debug lp_timesyncd_debug={{ lp_timesyncd_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
-      lp_timesyncd: {{ lp_timesyncd }}
+      ansible_distribution: {{ ansible_distribution }}
+      ansible_distribution_version: {{ ansible_distribution_version }}
+      ansible_distribution_release: {{ ansible_distribution_release }}
+
+      lp_backup_conf: {{ lp_backup_conf }}
+
+      lp_timesyncd_enable: {{ lp_timesyncd_enable }}
+      lp_timesyncd_service: {{ lp_timesyncd_service }}
+      lp_timesyncd_service_exists_fatal: {{ lp_timesyncd_service_exists_fatal }}
+      lp_timesyncd_conf_file: {{ lp_timesyncd_conf_file }}
+      lp_timesyncd_conf_file_orig: {{ lp_timesyncd_conf_file_orig }}
+      lp_timesyncd_conf_template: {{ lp_timesyncd_conf_template }}
       lp_timesyncd_ntp: {{ lp_timesyncd_ntp }}
       lp_timesyncd_fallbackntp: {{ lp_timesyncd_fallbackntp }}
       lp_timesyncd_rootdistancemaxsec: {{ lp_timesyncd_rootdistancemaxsec }}
       lp_timesyncd_pollintervalminsec: {{ lp_timesyncd_pollintervalminsec }}
       lp_timesyncd_pollintervalmaxsec: {{ lp_timesyncd_pollintervalmaxsec }}
+      lp_timesyncd_connectionretrysec: {{ lp_timesyncd_connectionretrysec }}
+      lp_timesyncd_saveintervalsec: {{ lp_timesyncd_saveintervalsec }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_timesyncd_debug|bool
   tags: lp_timesyncd_debug
 
-- name: "timesyncd: Configure /etc/systemd/timesyncd.conf"
+- name: "timesyncd: Get Service facts"
+  ansible.builtin.service_facts:
+  tags: [lp_timesyncd_exists, lp_timesyncd_conf, lp_timesyncd_sanity, lp_timesyncd_service]
+
+- name: "timesyncd: Set lp_timesyncd_service_exists={{ exists }}"
+  ansible.builtin.set_fact:
+    lp_timesyncd_service_exists: "{{ exists }}"
+  vars:
+    service: "{{ lp_timesyncd_service | splitext | first }}.service"
+    exists: "{{ service in ansible_facts.services }}"
+  tags: [lp_timesyncd_exists, lp_timesyncd_conf, lp_timesyncd_sanity, lp_timesyncd_service]
+
+- name: "timesyncd: Assert exists {{ lp_timesyncd_service }}"
+  ansible.builtin.assert:
+    that: lp_timesyncd_service_exists
+  when: lp_timesyncd_service_exists_fatal | bool
+  tags: lp_timesyncd_sanity
+
+- name: "timesyncd: Keep original {{ lp_timesyncd_conf_file }}"
+  ansible.builtin.copy:
+    src: "{{ lp_timesyncd_conf_file }}"
+    dest: "{{ lp_timesyncd_conf_file }}.orig"
+    remote_src: true
+    force: false
+  when: lp_timesyncd_conf_file_orig | bool
+  tags: lp_timesyncd_conf_orig
+
+- name: "timesyncd: Configure {{ lp_timesyncd_conf_file }}"
   ansible.builtin.template:
-    src: timesyncd.conf.j2
-    dest: /etc/systemd/timesyncd.conf
+    src: "{{ lp_timesyncd_conf_template }}"
+    dest: "{{ lp_timesyncd_conf_file }}"
     owner: root
     group: root
     mode: '0644'
@@ -27,23 +67,24 @@
   notify: restart timesyncd
   tags: lp_timesyncd_conf
 
-- name: "timesyncd: Service {{ state }} and {{ enable }}"
+- name: "timesyncd: Service/State {{ state ~ '/' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_timesyncd_service }}"
     state: "{{ state }}"
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_timesyncd_enable|bool|d(false) }}"
-    state: "{{ lp_timesyncd_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_timesyncd_enable | bool | d(false) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    state: "{{ lp_timesyncd_state | d(default_state) }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+  when: lp_timesyncd_service_exists
   tags: lp_timesyncd_service
 
 - name: "timesyncd: Debug service"
   ansible.builtin.debug:
     var: result
-  when: lp_timesyncd_debug|bool
+  when: lp_timesyncd_debug | bool
   tags: lp_timesyncd_service
 
 # Notes on CentOS

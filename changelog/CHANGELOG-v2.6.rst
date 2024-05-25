@@ -32,6 +32,11 @@ Minor Changes
 * Add default lp_udev_debug2=false
 * Update ansible-lint, travis, and readthedoc configurations.
 * Update tasks acpi. Job type 'reload' not available for service acpid.
+* Update timesyncd. Add variables lp_timesyncd_*. By default,
+  lp_timesyncd_service doesn't have to exist
+  (lp_timesyncd_service_exists_fatal=false). By default, create backup
+  of original conf (lp_timesyncd_conf_file_orig=true). Update
+  template.
 * Formatting of tasks and handlers
 * Deprecated ansible.netcommon changed to ansible.utils.ipaddr
 * Deprecated ansible.builtin.systemd changed to ansible.builtin.systemd_service
