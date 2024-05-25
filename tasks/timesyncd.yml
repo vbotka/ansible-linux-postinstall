@@ -41,6 +41,19 @@
     exists: "{{ service in ansible_facts.services }}"
   tags: [lp_timesyncd_exists, lp_timesyncd_conf, lp_timesyncd_sanity, lp_timesyncd_service]
 
+- name: "timesyncd: Debug {{ lp_timesyncd_service }}"
+  ansible.builtin.debug:
+    msg: |
+      lp_timesyncd_service_exists: {{ lp_timesyncd_service_exists }}
+      {% if lp_timesyncd_service_exists %}
+      {{ service }}:
+        {{ ansible_facts.services[service] | to_nice_yaml(indent=2) | indent(2) }}
+      {% endif %}
+  vars:
+    service: "{{ lp_timesyncd_service | splitext | first }}.service"
+  when: lp_timesyncd_debug | bool
+  tags: lp_timesyncd_sanity
+
 - name: "timesyncd: Assert exists {{ lp_timesyncd_service }}"
   ansible.builtin.assert:
     that: lp_timesyncd_service_exists
