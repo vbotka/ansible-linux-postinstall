@@ -33,18 +33,21 @@
   ansible.builtin.service_facts:
   tags: [lp_timesyncd_exists, lp_timesyncd_conf, lp_timesyncd_sanity, lp_timesyncd_service]
 
-- name: "timesyncd: Set lp_timesyncd_service_exists={{ exists }}"
+- name: "timesyncd: Set lp_timesyncd_service_exists/found={{ exists ~ '/' ~ found }}"
   ansible.builtin.set_fact:
     lp_timesyncd_service_exists: "{{ exists }}"
+    lp_timesyncd_service_found: "{{ found }}"
   vars:
     service: "{{ lp_timesyncd_service | splitext | first }}.service"
     exists: "{{ service in ansible_facts.services }}"
+    found:  "{{ ansible_facts.services[service]['status'] != 'not-found' }}"
   tags: [lp_timesyncd_exists, lp_timesyncd_conf, lp_timesyncd_sanity, lp_timesyncd_service]
 
 - name: "timesyncd: Debug lp_timesyncd_service lp_timesyncd_debug={{ lp_timesyncd_debug }}"
   ansible.builtin.debug:
     msg: |
       lp_timesyncd_service_exists: {{ lp_timesyncd_service_exists }}
+      lp_timesyncd_service_found: {{ lp_timesyncd_service_found }}
       {% if lp_timesyncd_service_exists %}
       {{ service }}:
         {{ ansible_facts.services[service] | to_nice_yaml(indent=2) | indent(2) }}
@@ -54,9 +57,11 @@
   when: lp_timesyncd_debug | bool
   tags: lp_timesyncd_sanity
 
-- name: "timesyncd: Assert exists {{ lp_timesyncd_service }}"
+- name: "timesyncd: Assert exists and found {{ lp_timesyncd_service }}"
   ansible.builtin.assert:
-    that: lp_timesyncd_service_exists
+    that:
+      - lp_timesyncd_service_exists
+      - lp_timesyncd_service_found
   when: lp_timesyncd_service_exists_fatal | bool
   tags: lp_timesyncd_sanity
 
@@ -80,7 +85,7 @@
   notify: restart timesyncd
   tags: lp_timesyncd_conf
 
-- name: "timesyncd: Service/State {{ state ~ '/' ~ enable }}"
+- name: "timesyncd: Set state/status {{ state ~ '/' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_timesyncd_service }}"
     state: "{{ state }}"
@@ -91,10 +96,10 @@
     default_state: "{{ enabled | ternary('started', 'stopped') }}"
     state: "{{ lp_timesyncd_state | d(default_state) }}"
     enable: "{{ enabled | ternary('enabled', 'disabled') }}"
-  when: lp_timesyncd_service_exists
+  when: lp_timesyncd_service_found
   tags: lp_timesyncd_service
 
-- name: "timesyncd: Debug service result lp_timesyncd_debug2={{ lp_timesyncd_debug2|d(false)|bool }}"
+- name: "timesyncd: Debug set state/status result lp_timesyncd_debug2={{ lp_timesyncd_debug2|d(false)|bool }}"
   ansible.builtin.debug:
     var: result
   when: lp_timesyncd_debug2 | d(false) | bool

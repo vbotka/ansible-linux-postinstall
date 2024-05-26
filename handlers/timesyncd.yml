@@ -6,7 +6,7 @@
     state: restarted
   when:
     - lp_timesyncd_enable | bool
-    - lp_timesyncd_service_exists | bool
+    - lp_timesyncd_service_found | bool
 
 # EOF
 ...
