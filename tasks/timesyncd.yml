@@ -11,9 +11,13 @@
 
       lp_backup_conf: {{ lp_backup_conf }}
 
+      lp_timesyncd_install: {{ lp_timesyncd_install }}
       lp_timesyncd_enable: {{ lp_timesyncd_enable }}
       lp_timesyncd_service: {{ lp_timesyncd_service }}
+      lp_timesyncd_sanity: {{ lp_timesyncd_sanity }}
       lp_timesyncd_service_exists_fatal: {{ lp_timesyncd_service_exists_fatal }}
+      lp_timesyncd_rescue_end_host {{ lp_timesyncd_rescue_end_host }}
+      lp_timesyncd_flush_handlers: {{ lp_timesyncd_flush_handlers }}
       lp_timesyncd_conf_file: {{ lp_timesyncd_conf_file }}
       lp_timesyncd_conf_file_orig: {{ lp_timesyncd_conf_file_orig }}
       lp_timesyncd_conf_template: {{ lp_timesyncd_conf_template }}
@@ -24,86 +28,160 @@
       lp_timesyncd_pollintervalmaxsec: {{ lp_timesyncd_pollintervalmaxsec }}
       lp_timesyncd_connectionretrysec: {{ lp_timesyncd_connectionretrysec }}
       lp_timesyncd_saveintervalsec: {{ lp_timesyncd_saveintervalsec }}
+      lp_timesyncd_packages:
+        {{ lp_timesyncd_packages | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_timesyncd_debug|bool
+  when: lp_timesyncd_debug | bool
   tags: lp_timesyncd_debug
 
-- name: "timesyncd: Get Service facts"
-  ansible.builtin.service_facts:
-  tags: [lp_timesyncd_exists, lp_timesyncd_conf, lp_timesyncd_sanity, lp_timesyncd_service]
-
-- name: "timesyncd: Set lp_timesyncd_service_exists/found={{ exists ~ '/' ~ found }}"
-  ansible.builtin.set_fact:
-    lp_timesyncd_service_exists: "{{ exists }}"
-    lp_timesyncd_service_found: "{{ found }}"
-  vars:
-    service: "{{ lp_timesyncd_service | splitext | first }}.service"
-    exists: "{{ service in ansible_facts.services }}"
-    found:  "{{ ansible_facts.services[service]['status'] != 'not-found' }}"
-  tags: [lp_timesyncd_exists, lp_timesyncd_conf, lp_timesyncd_sanity, lp_timesyncd_service]
-
-- name: "timesyncd: Debug lp_timesyncd_service lp_timesyncd_debug={{ lp_timesyncd_debug }}"
-  ansible.builtin.debug:
-    msg: |
-      lp_timesyncd_service_exists: {{ lp_timesyncd_service_exists }}
-      lp_timesyncd_service_found: {{ lp_timesyncd_service_found }}
-      {% if lp_timesyncd_service_exists %}
-      {{ service }}:
-        {{ ansible_facts.services[service] | to_nice_yaml(indent=2) | indent(2) }}
-      {% endif %}
-  vars:
-    service: "{{ lp_timesyncd_service | splitext | first }}.service"
-  when: lp_timesyncd_debug | bool
+- name: Sanity
+  when: lp_timesyncd_sanity | bool
   tags: lp_timesyncd_sanity
+  block:
+
+    - name: "timesyncd: sanity: Assert chrony and timesyncd packages mutually exclusive."
+      ansible.builtin.assert:
+        that: not (lp_chrony_install|bool and lp_timesyncd_install|bool)
+        fail_msg: >
+          [ERR] Packages for chrony and timesyncd are mutually exclusive.
+
+    - name: "timesyncd: sanity: Assert chrony and timesyncd services mutually exclusive."
+      ansible.builtin.assert:
+        that: not (lp_chrony_enable|bool and lp_timesyncd_enable|bool)
+        fail_msg: >
+          [ERR] Services {{ lp_chrony_service }} and {{ lp_timesyncd_service }}
+          are mutually exclusive.
+
+    - name: "timesyncd: sanity: Get package facts"
+      ansible.builtin.package_facts:
+
+    - name: "timesyncd: sanity: Assert installed lp_timesyncd_packages in ansible_check_mode"
+      ansible.builtin.assert:
+        that: missing | length == 0
+        fail_msg: >
+          [ERR] Packages must be installed before running --check
+          Missing packages: {{ missing }}
+      vars:
+        missing: "{{ lp_timesyncd_packages | difference(ansible_facts.packages) }}"
+      when: ansible_check_mode
+
+- name: "timesyncd: Install packages"
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
+  vars:
+    ll_ipkg_list: "{{ lp_timesyncd_packages }}"
+    ll_ipkg_state: "{{ lp_package_state }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_timesyncd_debug | bool }}"
+  when: lp_timesyncd_install | bool
+  tags: lp_timesyncd_packages
+
+- name: Set lp_timesyncd_service_exists/found
+  block:
+
+    - name: "timesyncd: Get Service facts"
+      ansible.builtin.service_facts:
+
+    - name: "timesyncd: Set lp_timesyncd_service_exists/found={{ exists ~ '/' ~ found }}"
+      ansible.builtin.set_fact:
+        lp_timesyncd_service_exists: "{{ exists }}"
+        lp_timesyncd_service_found: "{{ found }}"
+      vars:
+        service: "{{ lp_timesyncd_service | splitext | first }}.service"
+        exists: "{{ service in ansible_facts.services }}"
+        found:  "{{ ansible_facts.services[service]['status']|d('not-found') != 'not-found' }}"
+
+    - name: "timesyncd: Debug lp_timesyncd_service lp_timesyncd_debug={{ lp_timesyncd_debug }}"
+      ansible.builtin.debug:
+        msg: |
+          lp_timesyncd_service_exists: {{ lp_timesyncd_service_exists }}
+          lp_timesyncd_service_found: {{ lp_timesyncd_service_found }}
+          {% if lp_timesyncd_service_exists %}
+          {{ service }}:
+            {{ ansible_facts.services[service] | to_nice_yaml(indent=2) | indent(2) }}
+          {% endif %}
+      vars:
+        service: "{{ lp_timesyncd_service | splitext | first }}.service"
+      when: lp_timesyncd_debug | bool
 
 - name: "timesyncd: Assert exists and found {{ lp_timesyncd_service }}"
   ansible.builtin.assert:
     that:
       - lp_timesyncd_service_exists
       - lp_timesyncd_service_found
+    fail_msg: "[ERR] Service {{ lp_timesyncd_service }} must exists and be found."
   when: lp_timesyncd_service_exists_fatal | bool
-  tags: lp_timesyncd_sanity
 
-- name: "timesyncd: Keep original {{ lp_timesyncd_conf_file }}"
-  ansible.builtin.copy:
-    src: "{{ lp_timesyncd_conf_file }}"
-    dest: "{{ lp_timesyncd_conf_file }}.orig"
-    remote_src: true
-    force: false
-  when: lp_timesyncd_conf_file_orig | bool
-  tags: lp_timesyncd_conf_orig
+- name: Configure, enable, start, or disable timesyncd
+  block:
 
-- name: "timesyncd: Configure {{ lp_timesyncd_conf_file }}"
-  ansible.builtin.template:
-    src: "{{ lp_timesyncd_conf_template }}"
-    dest: "{{ lp_timesyncd_conf_file }}"
-    owner: root
-    group: root
-    mode: '0644'
-    backup: "{{ lp_backup_conf }}"
-  notify: restart timesyncd
-  tags: lp_timesyncd_conf
+    - name: "timesyncd: Keep original {{ lp_timesyncd_conf_file }}"
+      ansible.builtin.copy:
+        src: "{{ lp_timesyncd_conf_file }}"
+        dest: "{{ lp_timesyncd_conf_file }}.orig"
+        remote_src: true
+        force: false
+      when: lp_timesyncd_conf_file_orig | bool
+      tags: lp_timesyncd_conf_orig
 
-- name: "timesyncd: Set state/status {{ state ~ '/' ~ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_timesyncd_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_timesyncd_enable | bool | d(false) }}"
-    default_state: "{{ enabled | ternary('started', 'stopped') }}"
-    state: "{{ lp_timesyncd_state | d(default_state) }}"
-    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
-  when: lp_timesyncd_service_found
-  tags: lp_timesyncd_service
+    - name: "timesyncd: Configure {{ lp_timesyncd_conf_file }}"
+      ansible.builtin.template:
+        src: "{{ lp_timesyncd_conf_template }}"
+        dest: "{{ lp_timesyncd_conf_file }}"
+        owner: root
+        group: root
+        mode: '0644'
+        backup: "{{ lp_backup_conf }}"
+      notify: restart timesyncd
+      tags: lp_timesyncd_conf
 
-- name: "timesyncd: Debug set state/status result lp_timesyncd_debug2={{ lp_timesyncd_debug2|d(false)|bool }}"
-  ansible.builtin.debug:
-    var: result
-  when: lp_timesyncd_debug2 | d(false) | bool
-  tags: lp_timesyncd_service
+    - name: "timesyncd: Set service state/status {{ state ~ '/' ~ enable }}"
+      ansible.builtin.service:
+        name: "{{ lp_timesyncd_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+      register: result
+      vars:
+        enabled: "{{ lp_timesyncd_enable | bool | d(false) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        state: "{{ lp_timesyncd_state | d(default_state) }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      when: lp_timesyncd_service_found
+      tags: lp_timesyncd_service
+
+    - name: "timesyncd: Debug set state/status result lp_timesyncd_debug2={{ lp_timesyncd_debug2|d(false)|bool }}"
+      ansible.builtin.debug:
+        var: result
+      when: lp_timesyncd_debug2 | d(false) | bool
+      tags: lp_timesyncd_service
+
+  rescue:
+
+    - name: "timesyncd: Print errors"
+      ansible.builtin.debug:
+        msg: |
+          [ERR] task {{ ansible_failed_task.name }} failed. End host.
+          ansible_failed_task:
+            {{ ansible_failed_task | to_yaml(indent=2) | indent(2) }}
+          ansible_failed_result:
+            {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
+
+    - name: "timesyncd: End host"
+      ansible.builtin.meta: end_host
+      when:
+        - lp_timesyncd_rescue_end_host | bool
+        - not ansible_check_mode
+
+    - name: "timesyncd: Clear host errors"
+      ansible.builtin.meta: clear_host_errors
+
+- name: "timesyncd: Flush handlers"
+  ansible.builtin.meta: flush_handlers
+  when: lp_timesyncd_flush_handlers | bool
+  tags: lp_timesyncd_flush_handlers
 
 # Notes on CentOS
 # * systemd compiled without timesyncd service in CentOS 7 ?

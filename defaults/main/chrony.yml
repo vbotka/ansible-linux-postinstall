@@ -4,28 +4,58 @@ lp_chrony: false
 lp_chrony_debug: false
 lp_chrony_install: false
 lp_chrony_enable: false
+lp_chrony_sanity: true
+lp_chrony_service_exists_fatal: true
 lp_chrony_flush_handlers: true
 lp_chrony_rescue_end_host: true
-lp_chrony_sanity: true
 lp_chrony_packages:
   - chrony
+
+lp_chrony_conf_file: /etc/chrony/chrony.conf
+lp_chrony_conf_file_orig: true
+lp_chrony_conf_template: chrony.conf.j2
 lp_chrony_pool:
   - ntp.ubuntu.com        iburst maxsources 4
   - 0.ubuntu.pool.ntp.org iburst maxsources 1
   - 1.ubuntu.pool.ntp.org iburst maxsources 1
   - 2.ubuntu.pool.ntp.org iburst maxsources 2
+lp_chrony_sourcedir:
+  - /run/chrony-dhcp
+  - /etc/chrony/sources.d
 lp_chrony_keyfile: /etc/chrony/chrony.keys
 lp_chrony_driftfile: /var/lib/chrony/chrony.drift
+lp_chrony_ntsdumpdir: /var/lib/chrony
+lp_chrony_log: tracking measurements statistics
 lp_chrony_logdir: /var/log/chrony
 lp_chrony_maxupdateskew: 100.0
 lp_chrony_rtcsync: true
 lp_chrony_makestep: 1 3
-lp_chrony_conf_file: /etc/chrony/chrony.conf
+lp_chrony_leapsectz: right/UTC
+
+# The template chrony.conf.j2 renders identically a dictionary or list
+
+# lp_chrony_conf:
+#   - {key: pool, val: "{{ lp_chrony_pool }}"}
+#   - {key: sourcedir, val: "{{ lp_chrony_sourcedir }}"}
+#   - {key: keyfile, val: "{{ lp_chrony_keyfile }}"}
+#   - {key: driftfile, val: "{{ lp_chrony_driftfile }}"}
+#   - {key: ntsdumpdir, val: "{{ lp_chrony_ntsdumpdir }}"}
+# # - {key: log, val: "{{ lp_chrony_log }}"}
+#   - {key: logdir, val: "{{ lp_chrony_logdir }}"}
+#   - {key: maxupdateskew, val: "{{ lp_chrony_maxupdateskew }}"}
+#   - {key: rtcsync, val: "{{ lp_chrony_rtcsync }}"}
+#   - {key: makestep, val: "{{ lp_chrony_makestep }}"}
+#   - {key: leapsectz, val: "{{ lp_chrony_leapsectz }}"}
+
 lp_chrony_conf:
-  - {key: pool, val: "{{ lp_chrony_pool }}"}
-  - {key: keyfile, val: "{{ lp_chrony_keyfile }}"}
-  - {key: driftfile, val: "{{ lp_chrony_driftfile }}"}
-  - {key: logdir, val: "{{ lp_chrony_logdir  }}"}
-  - {key: maxupdateskew, val: "{{ lp_chrony_maxupdateskew }}"}
-  - {key: rtcsync, val: true}
-  - {key: makestep, val: "{{ lp_chrony_makestep }}"}
+  pool: "{{ lp_chrony_pool }}"
+  sourcedir: "{{ lp_chrony_sourcedir }}"
+  keyfile: "{{ lp_chrony_keyfile }}"
+  driftfile: "{{ lp_chrony_driftfile }}"
+  ntsdumpdir: "{{ lp_chrony_ntsdumpdir }}"
+# log: "{{ lp_chrony_log }}"
+  logdir: "{{ lp_chrony_logdir }}"
+  maxupdateskew: "{{ lp_chrony_maxupdateskew }}"
+  rtcsync: "{{ lp_chrony_rtcsync }}"
+  makestep: "{{ lp_chrony_makestep }}"
+  leapsectz: "{{ lp_chrony_leapsectz }}"

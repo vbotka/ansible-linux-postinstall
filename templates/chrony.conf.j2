@@ -1,5 +1,20 @@
 # {{ ansible_managed }}
 
+{% if lp_chrony_conf is mapping %}
+{% for key,val in lp_chrony_conf.items() %}
+{% if val is string %}
+{{ key }} {{ val }}
+{% elif val is boolean %}
+{{ key }}
+{% elif val is iterable %}
+{% for j in val %}
+{{ key }} {{ j }}
+{% endfor %}
+{% else %}
+{{ key }} {{ val }}
+{% endif %}
+{% endfor %}
+{% else %}
 {% for i in lp_chrony_conf %}
 {% if i.val is string %}
 {{ i.key }} {{ i.val }}
@@ -13,5 +28,6 @@
 {{ i.key }} {{ i.val }}
 {% endif %}
 {% endfor %}
+{% endif %}
 
 # EOF

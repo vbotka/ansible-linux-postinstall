@@ -14,7 +14,7 @@
   ansible.builtin.service:
     name: "{{ lp_chrony_service }}"
     state: restarted
-  when: lp_chrony_enable|bool
+  when: lp_chrony_enable | bool
 
 # EOF
 ...
