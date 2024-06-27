@@ -10,7 +10,7 @@ vbotka.linux_postinstall 2.6 Release Notes
 
 Release Summary
 ---------------
-Maintenance and bugfix release including docs update.
+Ansible 2.17 maintenance and bugfix release including docs update.
 
 Major Changes
 -------------
@@ -20,6 +20,7 @@ Major Changes
 * Default lp_netplan_mode: "0600" removed from vars.
 * Update udev task, handlers, lp_udev_* defaults and vars.
 * Add Ubuntu 24.04 Noble vars.
+* Requires collection: +ansible.utils
 
 Minor Changes
 -------------
@@ -30,6 +31,8 @@ Minor Changes
 * Add distro facts to tasks debug.
 * Add templates udev-rules-lists.j2 and udev-rules-strings.j2
 * Add default lp_udev_debug2=false
+* Add docs: guide-task-wpagui, guide-tasks/wpasupplicant-ex2
+* Add contrib: wpa_ctl
 * Update ansible-lint, travis, and readthedoc configurations.
 * Update tasks acpi. Job type 'reload' not available for service acpid.
 * Update timesyncd. Add variables lp_timesyncd_*. By default,
@@ -37,6 +40,13 @@ Minor Changes
   (lp_timesyncd_service_exists_fatal=false). By default, create backup
   of original conf (lp_timesyncd_conf_file_orig=true). Update
   template.
+* Update tasks: service, rc-local, repos, resolvconf, sysctl, wpasupplicant
+* Update defaults: wpasupplicant,
+* Update vars: defaults.incr/Ubuntu-noble.yml
+* Update vars: defaults/Ubuntu-noble.yml
+* Update docs: introduction, installation, wpasupplicant, netplan-ex2,
+  wpasupplicant-ex1
+* Update templates: wpa-action.sh
 * Formatting of tasks and handlers
 * Deprecated ansible.netcommon changed to ansible.utils.ipaddr
 * Deprecated ansible.builtin.systemd changed to ansible.builtin.systemd_service

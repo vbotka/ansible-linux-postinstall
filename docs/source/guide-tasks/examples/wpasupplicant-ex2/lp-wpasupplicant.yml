@@ -1,0 +1,52 @@
+shell> cat host_vars/test_01/lp-wpasupplicant.yml
+---
+lp_wpasupplicant: true
+lp_wpasupplicant_install: true
+lp_wpasupplicant_debug: false
+lp_wpasupplicant_debug_classified: false
+lp_wpasupplicant_conf_only: false
+lp_wpasupplicant_service_conf_only: false
+
+lp_wpasupplicant_bin: /usr/sbin/wpa_supplicant
+lp_wpasupplicant_service_conf:
+  - path: /lib/systemd/system
+    service: wpa_supplicant@.service
+    no_extra_spaces: true
+    handlers:
+      - 'reload systemd daemon'
+    ini:
+      - section: Service
+        option: ExecStart
+        value: "{{ lp_wpasupplicant_bin }} -c/etc/wpa_supplicant/wpa_supplicant-%I.conf -i%I"
+  - path: /lib/systemd/system
+    service: wpa_supplicant-nl80211@.service
+    no_extra_spaces: true
+    handlers:
+      - 'reload systemd daemon'
+    ini:
+      - section: Service
+        option: ExecStart
+        value: "{{ lp_wpasupplicant_bin }} -c/etc/wpa_supplicant/wpa_supplicant-nl80211-%I.conf -Dnl80211 -i%I"
+
+lp_wpasupplicant_conf_global:
+  - {key: ctrl_interface, value: "{{ lp_wpasupplicant_conf_ctrl_interface }}"}
+  - {key: ctrl_interface_group, value: adm}
+  - {key: fast_reauth, value: 0}
+  - {key: update_config, value: 1}
+
+lp_wpasupplicant_conf:
+  - dev: wlan0
+    enabled: false
+    state: started
+    type: nl80211
+    network:
+      - conf:
+          - {key: ssid, value: '"AP1"'}
+          - {key: psk, value: '"password"'}
+          - {key: pairwise, value: CCMP}
+          - {key: disabled, value: 0}
+      - conf:
+          - {key: ssid, value: '"AP2"'}
+          - {key: psk, value: '"password"'}
+          - {key: pairwise, value: CCMP}
+          - {key: disabled, value: 1}

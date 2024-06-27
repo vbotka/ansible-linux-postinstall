@@ -1,0 +1,5 @@
+test_01> systemctl list-unit-files | grep wpa
+wpa_supplicant-nl80211@.service  disabled        enabled
+wpa_supplicant-wired@.service    disabled        enabled
+wpa_supplicant.service           disabled        enabled
+wpa_supplicant@.service          disabled        enabled

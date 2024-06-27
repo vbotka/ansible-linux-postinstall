@@ -1,48 +1,48 @@
 ---
 # linux_postinstall function service-service
 
-- name: "service: Manual management of listed services"
+- name: "service: Manual management of services"
   ansible.builtin.service:
     name: "{{ item.name }}"
-    arguments: "{{ item.arguments|default(omit) }}"
-    enabled: "{{ item.enabled|default(omit) }}"
-    pattern: "{{ item.pattern|default(omit) }}"
-    runlevel: "{{ item.runlevel|default(omit) }}"
-    sleep: "{{ item.sleep|default(omit) }}"
-    state: "{{ item.state|default(omit) }}"
-    use: "{{ item.use|default(omit) }}"
+    arguments: "{{ item.arguments | d(omit) }}"
+    enabled: "{{ item.enabled | d(omit) }}"
+    pattern: "{{ item.pattern | d(omit) }}"
+    runlevel: "{{ item.runlevel | d(omit) }}"
+    sleep: "{{ item.sleep | d(omit) }}"
+    state: "{{ item.state | d(omit) }}"
+    use: "{{ item.use | d(omit) }}"
   loop: "{{ lp_service }}"
   loop_control:
     label: >-
       {{ item.name }}
-      enabled={{ item.enabled|d('UNDEFINED') }}
-      state={{ item.state|d('UNDEFINED') }}
-      use={{ item.use|d('UNDEFINED') }}
+      enabled={{ item.enabled | d('UNDEFINED') }}
+      state={{ item.state | d('UNDEFINED') }}
+      use={{ item.use | d('UNDEFINED') }}
   register: result
   notify: "reload {{ ansible_service_mgr }} daemon"
 
-- name: "service: Debug Manual management full results"
+- name: "service: Debug Manual management full results lp_service_debug2={{ lp_service_debug2 }}"
+  when: lp_service_debug2 | d(false) | bool
   ansible.builtin.debug:
     var: result
-  when: lp_service_debug2|d(false)|bool
 
-- name: "service: Debug Manual management selected results"
+- name: "service: Debug Manual management results lp_service_debug2={{ lp_service_debug2 }}"
+  when: lp_service_debug2 | d(false) | bool
   ansible.builtin.debug:
     msg: |
       {% for i in result.results %}
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       changed: {{ i.changed }}
-      name: {{ i.name|d('UNDEFINED') }}
-      enabled: {{ i.enabled|d('UNDEFINED') }}
-      state: {{ i.state|d('UNDEFINED') }}
-      msg: {{ i.msg|d('UNDEFINED') }}
+      name: {{ i.name | d('UNDEFINED') }}
+      enabled: {{ i.enabled | d('UNDEFINED') }}
+      state: {{ i.state | d('UNDEFINED') }}
+      msg: {{ i.msg | d('UNDEFINED') }}
 
       invocation:
-        {{ i.invocation.module_args|to_nice_yaml(indent=2)|indent(2) }}
+        {{ i.invocation.module_args | to_nice_yaml(indent=2) | indent(2) }}
       item:
-        {{ i.item|to_nice_yaml(indent=2)|indent(2) }}
+        {{ i.item | to_nice_yaml(indent=2) | indent(2) }}
       {% endfor %}
-  when: lp_service_debug|bool
 
 # EOF
 ...

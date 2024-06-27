@@ -3,9 +3,13 @@
 # All rights reserved (c) 2019-2024, Vladimir Botka <vbotka@gmail.com>
 # Simplified BSD License, https://opensource.org/licenses/BSD-2-Clause
 
-# See Ansible Galaxy role Linux postinstall
+# See:
+# Ansible Galaxy role vbotka.linux_postinstall
+# https://galaxy.ansible.com/ui/standalone/roles/vbotka/linux_postinstall/
+# GitHub Ansible role source code
 # https://github.com/vbotka/ansible-linux-postinstall
-# https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/wpa_action.sh.j2
+# Ansible template
+# https://github.com/vbotka/ansible-linux-postinstall/templates/wpa_action.sh.j2
 
 # Example how to activate the script
 # wpa_cli -B -i wlan2 -a /root/bin/wpa_action.sh
@@ -14,21 +18,21 @@ ifname=$1
 cmd=$2
 
 dhclient="{{ lp_wpa_action_script_dhclient }}"
-pidfile="{{ lp_wpa_action_script_pidfile }}"
+# pidfile="{{ lp_wpa_action_script_pidfile }}"
 options_connect="{{ lp_wpa_action_script_options_connect }}"
 options_disconnect="{{ lp_wpa_action_script_options_disconnect }}"
 logfile="{{ lp_wpa_action_script_logfile }}"
 date_format="+%F %T" # Date format in the log messages
 
-my_date=`date +"$date_format"`
-printf "$my_date $ifname: $cmd \n" >> $logfile
+my_date=$(date +"$date_format")
+printf '%b\n' "$my_date $ifname: $cmd \n" >> "$logfile"
 
 if [ "$cmd" == "CONNECTED" ]; then
-    #SSID=`wpa_cli -i$ifname status | grep ^ssid= | cut -f2- -d=`
-    $dhclient $options_connect $ifname
+    # SSID=`wpa_cli -i$ifname status | grep ^ssid= | cut -f2- -d=`
+    $dhclient "$options_connect" "$ifname"
 fi
 if [ "$cmd" == "DISCONNECTED" ]; then
-    $dhclient $options_disconnect $ifname
+    $dhclient "$options_disconnect" "$ifname"
 fi
 exit 0
 

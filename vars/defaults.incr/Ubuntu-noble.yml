@@ -1,6 +1,9 @@
 ---
 # Ubuntu 24.04 Noble vars linux-postinstall incremental
 
+lp_udev_service: systemd-udevd.service
+lp_resolvconf_service: systemd-resolved.service
+
 lp_dhclient: /usr/sbin/dhclient
 lp_wpasupplicant_bin: /usr/sbin/wpa_supplicant
 

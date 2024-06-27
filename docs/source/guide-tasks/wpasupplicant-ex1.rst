@@ -1,57 +1,37 @@
 .. _ug_task_wpasupplicant_ex1:
 
-Example 1: Configure wpa_supplicant by networkd
-"""""""""""""""""""""""""""""""""""""""""""""""
+Example 1: Configure wpa_supplicant in Ubuntu 20.04
+"""""""""""""""""""""""""""""""""""""""""""""""""""
 
-Create a playbook
+In this example the Ansible role:
 
-.. code-block:: YAML
+* creates *wpa_supplicant* configuration
+
+* starts *wpa_supplicant* service
+
+* *netplan* configured *networkd* configures IP address, resolver, and
+  routing
+
+**Create a playbook**
+
+.. code-block:: yaml
    :emphasize-lines: 1
 
    shell> cat lp.yml
+   ---
    - hosts: test_01
      become: true
      roles:
        - vbotka.linux_postinstall
 
+**Create host_vars/test_01/lp-wpasupplicant.yml**
 
-Take a look at the wpa_supplicant services available at the remote
-host
+Take a look at wpa_supplicant services available at the remote
+host. If the `nl80211`_ service ``wpa_supplicant-nl80211@.service`` is
+not available use the role's default service
+``wpa_supplicant@.service``. Set type ``type: default`` (21).
 
-.. code-block:: YAML
-   :emphasize-lines: 1
-
-   test_01> systemctl list-unit-files | grep wpa
-   wpa_supplicant-wired@.service          disabled       
-   wpa_supplicant.service                 disabled       
-   wpa_supplicant@.service                disabled
-
-.. note::
-   * ``wpa_supplicant.service`` uses D-Bus, recommended for NetworkManager.
-   * When *systemd-networkd* is used disable NetworkManager.
-   * See :ref:`ug_task_networkmanager_ex1`
-
-.. warning::
-   * This role doesn't test whether a service is already used by other
-     interfaces or not. It's necessary to disable such services and
-     make sure corresponding wpa_supplicants are not
-     running. Otherwise the restart of such service will crash.
-
-The *nl80211* service ``wpa_supplicant-nl80211@.service`` is not
-available. Therefor, in the configuration, we use the default type
-``type: default`` (21). This will enable and start the service
-``wpa_supplicant@wlan0.service``. This service will start
-*wpa_supplicant* with both *nl80211* and *wext* driver
-
-.. code-block:: Bash
-   :emphasize-lines: 1
-
-   shell> /sbin/wpa_supplicant -c/etc/wpa_supplicant/wpa_supplicant-wlan0.conf -Dnl80211,wext -iwlan0
-
-
-Create *host_vars/test_01/lp-wpasupplicant.yml*
-
-.. code-block:: YAML
+.. code-block:: yaml
    :linenos:
    :emphasize-lines: 1,8,21,26,30
 
@@ -86,20 +66,30 @@ Create *host_vars/test_01/lp-wpasupplicant.yml*
            - {key: psk, value: "\"{{ ap.office['AP2'] }}\""}
            - {key: disabled, value: '1'}
 
+This service will start `wpa_supplicant`_ with both `nl80211`_ and
+`wext`_ drivers
+
+.. code-block:: sh
+   :emphasize-lines: 1
+
+   /usr/sbin/wpa_supplicant -c/etc/wpa_supplicant/wpa_supplicant-wlan0.conf -Dnl80211,wext -iwlan0
+
 .. note::
+
    * The client will automatically connect to *AP1* (26,30)
-   * *systemd-networkd* uses internal DHCP client. It's not necessary
-     to enable *wpa_cli* ``wpa_cli -B -i wlan0 -a
-     /root/bin/wpa_action.sh``. The *action script* is disabled
-     ``lp_wpa_action_script: false`` (8).
+
+   * *systemd-networkd* uses internal DHCP client.
+
+   * The *wpa_cli* *action script* is disabled (8).
 
 .. warning::
+
    * ``lp_wpasupplicant_debug_classified: true`` (5) will display also
      the passwords.
 
-Configure wpa_supplicant
+**Configure wpa_supplicant**
 
-.. code-block:: Bash
+.. code-block:: sh
    :emphasize-lines: 1
 
    shell> ansible-playbook lp.yml -t lp_wpasupplicant
@@ -122,14 +112,14 @@ Configure wpa_supplicant
 
 
 .. note::
-   * There is no item *(item=None)* reported by the task *Create
-     wpasupplicant configuration file* because the log is disabled
+   * There is no item *(item=None)* reported by the task *"Create
+     wpasupplicant configuration file"* because the log is disabled
      ``no_log: "{{ not lp_wpasupplicant_debug_classified }}"``
 
 
 The command is idempotent
 
-.. code-block:: Bash
+.. code-block:: sh
    :emphasize-lines: 1
 
    shell> ansible-playbook lp.yml -t lp_wpasupplicant
@@ -138,18 +128,18 @@ The command is idempotent
    test_01: ok=49 changed=0 unreachable=0 failed=0 skipped=28 rescued=0 ignored=0
 
 
-Show the process at the remote host
+**Show the process at the remote host**
 
-.. code-block:: Bash
+.. code-block:: sh
    :emphasize-lines: 1
 
    test_01> pgrep -a wpa_supplicant
    28300 /sbin/wpa_supplicant -c/etc/wpa_supplicant/wpa_supplicant-wlan0.conf -Dnl80211,wext -iwlan0
 
 
-Show the status of the service at the remote host
+**Show the status of the service at the remote host**
 
-.. code-block:: Bash
+.. code-block:: sh
    :emphasize-lines: 1,4,19
 
    test_01> systemctl status wpa_supplicant@wlan0.service
@@ -173,9 +163,11 @@ Show the status of the service at the remote host
    Aug 04 04:55:17 test_01 wpa_supplicant[28300]: wlan0: CTRL-EVENT-CONNECTED - Connection to <sanitized> completed [id=0 id_str=]
 
 The service is *active* and the connection to the access-point
-completed. Display the link and address
+completed.
 
-.. code-block:: Bash
+**Display the link and address**
+
+.. code-block:: sh
    :emphasize-lines: 1,14
 
    test_01> iw wlan0 link
@@ -199,9 +191,9 @@ completed. Display the link and address
           valid_lft 3068841540sec preferred_lft 3068841540sec
    ...
 
-Show the configuration of networkd.
+**Show the configuration of networkd.**
 
-.. code-block:: Bash
+.. code-block:: sh
    :emphasize-lines: 1
 
    test_01> networkctl
@@ -211,3 +203,11 @@ Show the configuration of networkd.
      3 wlan0            wlan               routable    configured
 
    3 links listed.
+
+.. _wpa_supplicant: https://w1.fi/wpa_supplicant/
+.. _netplan: https://netplan.readthedocs.io/en/stable/
+.. _networkd: https://manpages.ubuntu.com/manpages/noble/man8/systemd-networkd.service.8.html
+.. _nl80211: https://wireless.wiki.kernel.org/en/developers/documentation/nl80211
+.. _wext: https://wireless.wiki.kernel.org/en/developers/documentation/wireless-extensions
+.. _wpa_cli: https://manpages.ubuntu.com/manpages/noble/man8/wpa_cli.8.html
+.. _wpa_gui: https://manpages.ubuntu.com/manpages/noble/man8/wpa_gui.8.html

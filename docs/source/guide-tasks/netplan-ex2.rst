@@ -147,4 +147,4 @@ Show the configuration of `networkd` at the remote host
 
 .. note::
    * wlan0 is *configuring* and *no-carrier* because wpa_supplicant has not been started yet.
-   * See :ref:`ug_task_wpasupplicant_ex1`
+   * See :ref:`ug_task_wpasupplicant`

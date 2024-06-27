@@ -18,7 +18,8 @@ lp_postfix_service: postfix
 lp_speechd_service: speech-dispatcher
 lp_sshd_service: ssh
 lp_timesyncd_service: systemd-timesyncd.service
-lp_udev_service: udev
+lp_udev_service: systemd-udevd.service
+lp_resolvconf_service: systemd-resolved.service
 
 lp_udev_path: /usr/bin/udevadm
 lp_sshd_path: /usr/sbin/sshd

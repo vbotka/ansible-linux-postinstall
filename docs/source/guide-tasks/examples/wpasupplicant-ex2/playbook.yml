@@ -1,0 +1,6 @@
+shell> cat lp.yml
+---
+- hosts: test_01
+  become: true
+  roles:
+    - vbotka.linux_postinstall

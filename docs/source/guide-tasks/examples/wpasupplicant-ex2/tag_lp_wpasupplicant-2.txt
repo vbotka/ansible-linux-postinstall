@@ -1,0 +1,4 @@
+shell> ansible-playbook lp.yml -t lp_wpasupplicant
+  ...
+PLAY RECAP ******************************************************************
+test_01: ok=11 changed=0 unreachable=0 failed=0 skipped=15 rescued=0 ignored=0

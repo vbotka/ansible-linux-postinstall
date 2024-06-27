@@ -1,0 +1,435 @@
+#!/bin/bash
+# set -x
+
+# All rights reserved (c) 2019-2024, Vladimir Botka <vbotka@gmail.com>
+# Simplified BSD License, https://opensource.org/licenses/BSD-2-Clause
+
+version="2.0.0"
+
+# Usage - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+usage="$(basename "$0") ver $version
+
+Usage:
+  $(basename "$0") [-h|--help] [-n|--notes] [-V|--version]
+          [-i|--info] [-l|--list] [-c|--conf] [-s|--silent] [-d|--debug]
+          [[-k|--kill] -a|--all|<interface>]
+          -- Control wireless interface(s)
+Where:
+          -h  --help ....... show this help and exit
+          -n  --notes ...... show notes and exit
+          -V  --version .... show version and exit
+          -c  --conf ....... show configuration and exit
+          -i  --info ....... show interfaces info and exit
+          -l  --list ....... list interfaces and exit
+          -s  --silent ..... display errors only
+          -d  --debug ...... enable debug messages
+          -k  --kill ....... kill interface(s)
+          -a  --all ........ control all interfaces (default init)
+          <interface> ...... control interface (default initialize)
+
+Overview:
+  wpa_ctl facilitates the control of wireless interfaces without the
+  NetworkManager (NM). Typically, it brings up an interface and starts
+  wpa_supplicant. Optionally, it starts also wpa_cli and wpa_gui. You
+  have to disable NM and wpa_supplicant services if you want to use
+  wpa_gui. Do not configure the interface in netplan if you want to
+  use wpa_cli. See the notes. Run 'wpa_ctl -n'.
+
+Examples:
+  wpa_ctl -l ............... list all interfaces
+  wpa_ctl wlan0 ............ initialize wlan0
+  wpa_ctl -a ............... initialize all interfaces
+  wpa_ctl -k wlan0 ......... terminate wlan0
+  wpa_ctl -k -a ............ terminate all interfaces
+  wpa_ctl -d -c ............ show configuration
+
+Configuration files precedence:
+  1. /etc/wpa_ctl
+  2. /usr/local/etc/wpa_ctl
+  3. ~/.wpa_ctl
+  4. ./.wpa_ctl
+
+See: https://github.com/vbotka/ansible-linux-postinstall/contrib"
+
+# Notes - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+notes="$(basename "$0") ver $version
+
+Notes:
+
+* The main goal is to keep the configuration of WiFi as simple as
+  possible. In desktop, this means 1) letting wpa_gui to controll
+  wpa_supplicant and 2) running wpa_cli in the background to wait for
+  events from wpa_supplicant. See https://w1.fi/wpa_supplicant/
+
+* Before you use this script stop and disable NM and wpa_supplicant
+  services. Kill all running instances of NM and wpa_supplicant.
+  Optionally, mask these services.
+
+* wpa_gui is started by default. It is expected that single instance
+  of wpa_gui is running in the tray. Set wpa_gui_enable_ifc=1 if you
+  want to run wpa_gui for each initialized interface.
+
+* wpa_cli is not started by default. It is expected that the system,
+  for example netplan, will set the IP address and routing of the
+  interface. Set wpa_cli=1 and configure the action script if you want
+  to control the IP and routing of the interface on your own.
+
+* wpa_gui won't be terminated on killing of an interface.
+
+* Example of udev configuration:
+  shell> cat /etc/udev/rules.d/70-persistent-net.rules
+  SUBSYSTEM==\"net\", ACTION==\"add\", ATTR{address}==\"<mac address>\", NAME=\"wlan0\"
+
+* Example of wpa_supplicant configuration:
+  shell> cat /etc/wpa_supplicant/wpa_supplicant-wlan0.conf 
+  ctrl_interface=/run/wpa_supplicant
+  ctrl_interface_group=adm
+  fast_reauth=0
+  update_config=1
+  network={
+          ssid=\"MY_AP\"
+          psk=\"password\"
+          pairwise=CCMP
+          disabled=1
+  }
+
+* Configure the interface in netplan if you don't run wpa_cli. Example
+  of netplan configuration:
+
+  shell> cat /etc/netplan/10-ethernets.yaml
+  network:
+    version: 2
+    renderer: networkd
+    ethernets:
+      wlan0:
+        dhcp4: true
+        dhcp6: false
+        match: {macaddress: '<mac address>'}
+        set-name: wlan0
+
+* If you run wpa_cli don't configfure the interface in
+  netplan. Instead, create the wpa_cli action script below. Example of
+  the wpa_cli action script:
+
+  shell> cat /root/bin/wpa_action.sh 
+  #!/bin/bash
+
+  ifname=\$1
+  cmd=\$2
+
+  dhclient=\"/usr/sbin/dhclient\"
+  pidfile=\"/var/run/dhclient.\$ifname.pid\"
+  options_connect=\"-4 -nw -pf \$pidfile -v\"
+  options_disconnect=\"-4 -r -pf \$pidfile -v\"
+  logfile=\"/tmp/wpa_action.\$ifname\"
+  date_format=\"+%F %T\"
+  my_date=\`date \"\$date_format\"\`
+
+  echo \"\$my_date \$ifname: \$cmd\" >> \$logfile
+  if [ \"\$cmd\" == \"CONNECTED\" ]; then
+      #SSID=\`wpa_cli -i\$ifname status | grep ^ssid= | cut -f2- -d=\`
+      \$dhclient \$options_connect \$ifname
+  fi
+  if [ \"\$cmd\" == \"DISCONNECTED\" ]; then
+      \$dhclient \$options_disconnect \$ifname
+  fi
+  exit 0
+
+* This script is developed and tested with the Ansible role:
+  https://github.com/vbotka/ansible-linux-postinstall
+
+* See the documentation:
+  https://ansible-linux-postinstall.readthedocs.io/"
+
+# Configuration - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+wpa_supplicant=/usr/sbin/wpa_supplicant  # Path to wpa_supplicant
+wpa_cli=/usr/sbin/wpa_cli                # Path to wpa_cli
+wpa_gui=/usr/sbin/wpa_gui                # Path to wpa_gui
+ip=/usr/sbin/ip                          # Path to ip
+pkill=/usr/bin/pkill                     # Path to pkill
+wpa_cli_enable=0                         # Run wpa_cli
+wpa_gui_enable=1                         # Run wpa_gui single instance
+wpa_gui_enable_ifc=0                     # Run wpa_gui on each interface
+ctrl_interface=/var/run/wpa_supplicant   # Directory for wpa_supplicant control sockets
+pid_path=/var/run                        # Directory for PID
+wpa_action=/root/bin/wpa_action.sh       # wpa_cli action script
+wpa_gui_user=$SUDO_USER                  # User running wpa_gui
+xdg_runtime_dir_create=0                 # Create xdg_runtime_dir
+xdg_runtime_dir=/tmp/runtime             # Path to xdg_runtime_dir
+verbose=1                                # Send messages to standard output
+debug=0                                  # Enable debug messages
+logtofile=1                              # Send messages to logfile
+logfile=/var/log/wpa_ctl.log             # Path to logile
+date_format="+%F %T"                     # Date format in log messages
+
+# Logging
+function log-ok {
+    timestamp=$(date "$date_format")
+    (( verbose )) && echo "[OK]  wpa_ctl: $message"
+    (( logtofile )) && echo "$timestamp [OK]  wpa_ctl: $message" >> $logfile
+}
+
+function log-dbg {
+    timestamp=$(date "$date_format")
+    (( debug )) && echo "[DBG] wpa_ctl: $message"
+    (( debug )) && (( logtofile )) && echo "$timestamp [DBG] wpa_ctl: $message" >> $logfile
+}
+
+function log-err {
+    timestamp=$(date "$date_format")
+    echo "[ERR] wpa_ctl: $message"
+    (( logtofile )) && echo "$timestamp [ERR] wpa_ctl: $message" >> $logfile
+}
+
+# Read configuration
+function read_configuration {
+    if [ -f /etc/wpa_ctl ]; then
+	message="conf: /etc/wpa_ctl found."; log-dbg
+	. /etc/wpa_ctl
+    fi
+    if [ -f /usr/local/etc/wpa_ctl ]; then
+	message="conf: /usr/local/etc/wpa_ctl found."; log-dbg
+	. /usr/local/etc/wpa_ctl
+    fi
+    if [ -f ~/.wpa_ctl ]; then
+	message="conf: ~/.wpa_ctl found."; log-dbg
+	. ~/.wpa_ctl
+    fi
+    if [ -f ./.wpa_ctl ]; then
+	message="conf: ./.wpa_ctl found."; log-dbg
+	. ./.wpa_ctl
+    fi
+}
+
+# Print configuration
+function print_configuration {
+    message="wpa_supplicant: $wpa_supplicant"; log-ok
+    message="wpa_cli: $wpa_cli"; log-ok
+    message="wpa_gui: $wpa_gui"; log-ok
+    message="pkill: $pkill"; log-ok
+    message="wpa_cli_enable: $wpa_cli_enable"; log-ok
+    message="wpa_gui_enable: $wpa_gui_enable"; log-ok
+    message="wpa_gui_enable_ifc: $wpa_gui_enable_ifc"; log-ok
+    message="ctrl_interface: $ctrl_interface"; log-ok
+    message="pid_path: $pid_path"; log-ok
+    message="wpa_action: $wpa_action"; log-ok
+    message="wpa_gui_user: $wpa_gui_user"; log-ok
+    message="xdg_runtime_dir_create: $xdg_runtime_dir_create"; log-ok
+    message="xdg_runtime_dir: $xdg_runtime_dir"; log-ok
+    message="verbose: $verbose"; log-ok
+    message="debug: $debug"; log-ok
+    message="logtofile: $logtofile"; log-ok
+    message="logfile: $logfile"; log-ok
+    message="date_format=: $date_format"; log-ok
+}
+
+# Initialize interface
+function interface_initialize {
+    if [ -S "$ctrl_interface"/"$interface" ]; then
+	message="wpa_supplicant is running on $interface"; log-ok
+    else
+	if log=$($wpa_supplicant -B -i"$interface" \
+		                 -P$pid_path/wpa_supplicant."$interface.pid" \
+                                 -c/etc/wpa_supplicant/wpa_supplicant-"$interface".conf \
+                                 -f/var/log/wpa_supplicant."$interface".log 2>&1); then
+	    message="wpa_supplicant started on $interface"; log-ok
+	else
+	    message="wpa_supplicant failed to start on $interface: \n$log"; log-err
+	fi
+    fi
+
+    if (( wpa_cli_enable )); then
+	if log=$(ps ax | grep "$interface" | grep wpa_cli 2>&1); then
+            message="wpa_cli is running on $interface"; log-ok
+        else
+            if log=$($wpa_cli -B -i "$interface" \
+                              -P $pid_path/wpa_cli."$interface".pid \
+                              -a $wpa_action 2>&1); then
+                message="wpa_cli started on $interface"; log-ok
+            else
+                message="wpa_cli failed to start on $interface: \n$log"; log-err
+            fi
+        fi
+    fi
+
+    if (( xdg_runtime_dir_create )); then
+	create_xdg_runtime_dir
+    fi
+
+    if (( wpa_gui_enable )); then
+	if (( wpa_gui_enable_ifc )); then
+	    wpa_gui_ifc_start
+	else
+	    wpa_gui_start
+	fi
+    fi
+}
+
+function wpa_gui_start {
+    if log=$(pgrep wpa_gui 2>&1); then
+	message="wpa_gui is running"; log-ok
+    else
+	if log=$(su "$wpa_gui_user" -c "$wpa_gui -t -p $ctrl_interface &"); then
+	    message="wpa_gui started"; log-ok
+	else
+	    message="wpa_gui failed to start: \n$log"; log-err
+	fi
+    fi
+}
+
+function wpa_gui_ifc_start {
+    if log=$(ps ax | grep "$interface" | grep wpa_gui 2>&1); then
+	message="wpa_gui is running on $interface"; log-ok
+    else
+	if log=$(su "$wpa_gui_user" -c "$wpa_gui -t -i $interface -p $ctrl_interface &"); then
+	    message="wpa_gui started on $interface"; log-ok
+	else
+	    message="wpa_gui failed to start on $interface: \n$log"; log-err
+	fi
+    fi
+}
+
+function create_xdg_runtime_dir {
+    if [ -d $xdg_runtime_dir ]; then
+	message="$xdg_runtime_dir exists"; log-ok
+    else
+	if log=$(su "$wpa_gui_user" -c "mkdir $xdg_runtime_dir; chmod 0700 $xdg_runtime_dir"); then
+	    message="$xdg_runtime_dir created"; log-ok
+	else
+	    message="Can not create $xdg_runtime_dir: \n$log"; log-err
+	fi
+    fi
+}
+
+# Set interface down
+function interface_down {
+    if log=$($ip link set "$interface" down 2>&1); then
+	    message="$interface set down"; log-ok
+	else
+	    message="Failed to set $interface down: \n$log"; log-err
+    fi
+}
+
+# Kill interface
+function interface_kill {
+    interface_down
+    if [ -S "$ctrl_interface"/"$interface" ]; then
+	if log=$($pkill -F$pid_path/wpa_supplicant."$interface".pid 2>&1); then
+	    message="wpa_supplicant on $interface terminated"; log-ok
+	else
+	    message="wpa_supplicant failed to terminate on $interface: \n$log"; log-err
+	fi
+    else
+	message="wpa_supplicant is not running on $interface"; log-ok
+    fi
+
+    if log=$(ps ax | grep "$interface" | grep wpa_cli 2>&1); then
+	if log=$($pkill -F$pid_path/wpa_cli."$interface".pid 2>&1); then
+	    message="wpa_cli on $interface terminated"; log-ok
+	else
+	    message="wpa_cli failed to terminate on $interface: \n$log"; log-err
+	fi
+    else
+	message="wpa_cli is not running on $interface"; log-ok
+    fi
+}
+
+# Control interface
+function interface_control {
+    case $action in
+	init)
+	    interface_initialize
+	    ;;
+	kill)
+	    interface_kill
+	    ;;
+	*)
+	    message="Unknown action: $action"; log-err
+	    exit 1
+	    ;;
+    esac
+}
+
+# Main - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+expected_args=1
+if [ $# -lt $expected_args ]; then
+    echo "$usage"
+    exit 0
+fi
+
+interfaces=$(iw dev | grep Interface | cut -d ' ' -f 2)
+action="init"
+read_configuration
+
+for i in "$@"; do
+    case $i in
+	-h|--help)
+	    echo "$usage"
+	    exit 0
+	    ;;
+	-n|--notes)
+	    echo "$notes"
+	    exit 0
+	    ;;
+	-V|--version)
+	    echo "$version"
+	    exit 0
+	    ;;
+	-i|--info)
+	    for interface in $interfaces; do
+		log1=$(iw dev "$interface" link | head -n 1 2>&1)
+		log2=$(iw dev "$interface" get power_save | head -n 1 2>&1)
+		# log3=$(cat /sys/class/net/$interface/device/vendor 2>&1)
+		# log4=$(cat /sys/class/net/$interface/device/subsystem_vendor 2>&1)
+		# log5=$(cat /sys/class/net/$interface/device/subsystem_device 2>&1)
+		# log6=$(cat /sys/class/net/$interface/device/max_link_speed 2>&1)
+                echo "$interface|$log1|$log2"
+	    done
+	    exit 0
+	    ;;
+	-l|--list)
+            echo "$interfaces"
+            exit 0
+	    ;;
+	-d|--debug)
+	    debug=1
+	    [ -f /etc/wpa_ctl ] && (message="conf: /etc/wpa_ctl found."; log-dbg)
+	    [ -f /usr/local/etc/wpa_ctl ] && (message="configuration: /usr/local/etc/wpa_ctl found."; log-dbg)
+	    [ -f ~/.wpa_ctl ] && (message="conf: ~/.wpa_ctl found."; log-dbg)
+	    [ -f ./.wpa_ctl ] && (message="conf: ./.wpa_ctl found."; log-dbg)
+	    print_configuration
+	    ;;
+	-c|--conf)
+	    if (( debug )); then
+		exit 0
+	    else
+		print_configuration
+	        exit 0
+	    fi
+	    ;;
+	-s|--silent)
+	    verbose=0
+	    ;;
+	-k|--kill)
+	    action="kill"
+	    ;;
+	-a|--all)
+	    for interface in $interfaces; do
+		interface_control
+	    done
+	    ;;
+	*)
+	    if [[ $interfaces =~ $i ]]; then
+		interface=$i
+		interface_control
+	    else
+		message="Unknown interface: $i"; log-err
+	    fi
+           ;;
+    esac
+done
+
+exit 0
+
+# EOF

@@ -22,5 +22,6 @@ The description of the tasks is not complete. The `role <https://galaxy.ansible.
    guide-task-passwords-passwordstore
    guide-task-service
    guide-task-systemd
+   guide-task-wpagui
    guide-task-wpasupplicant
    guide-task-zfs.rst

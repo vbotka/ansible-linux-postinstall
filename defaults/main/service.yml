@@ -14,18 +14,28 @@ lp_service: []
 
 # Automatic management
 # List of managed services
+lp_service_auto_exclude:
+  - lp_dnsmasq_service
+  - lp_gpsd_service
+  - lp_libvirt_guests_service
+  - lp_libvirt_libvirtd_service
+  - lp_modemmanager_service
+  - lp_rc_local_service
+  - lp_timesyncd_service
+  - lp_wpasupplicant_service
 lp_service_auto:
-  - acpi
-  - apparmor
-  - auto_upgrades
-  - autofs
-  - bluetooth
-  - postfix
-  - smart
-  - sshd
-  - timesyncd
-  - udev
-  - ufw
+  - '.*'
+# - acpi
+# - apparmor
+# - auto_upgrades
+# - autofs
+# - bluetooth
+# - postfix
+# - smart
+# - sshd
+# - timesyncd
+# - udev
+# - ufw
 # - gpsd
 # - libvirt_guests
 # - libvirt_libvirtd
@@ -36,13 +46,23 @@ lp_service_auto:
 # - nm    [TODO] add list of services
 
 # Dynamic variables my_services_*
-my_services_all: "{{ ansible_facts.services.keys() }}"
-my_services_regex: "({{ my_services_alias|join('|') }})"
-my_services_names: "{{ query('ansible.builtin.vars', *query('ansible.builtin.varnames', '^lp_' ~ my_services_regex ~ '_service$'))|sort }}"
-my_services_undef: "{{ my_services_names|difference(my_services_all) }}"
+my_services_all: "{{ ansible_facts.services.keys() | sort }}"
+my_services_regex: "^lp_({{ my_services_alias|join('|') }})_service$"
+my_services_varnames: "{{ q('ansible.builtin.varnames', my_services_regex) |
+                          difference(lp_service_auto_exclude) | sort }}"
+my_services_names: |
+  {% filter sort %}
+  {% filter from_yaml %}
+  [{% for i in my_services_varnames %}
+  {{ lookup('ansible.builtin.vars', i) }}, {% endfor %}]
+  {% endfilter %}
+  {% endfilter %}
+my_services_undef: "{{ my_services_names | difference(my_services_all) }}"
 
 # All services
-lp_service_all: [acpi, apparmor, auto_upgrades, autofs, bluetooth, chrony, dnsmasq, gpsd, libvirt, modemmanager, networkd, nfsd, nm, postfix, resolvconf, smart, speechd, sshd, timesyncd, udev, ufw]
+lp_service_all: [acpi, apparmor, auto_upgrades, autofs, bluetooth, chrony,
+  dnsmasq, gpsd, libvirt, modemmanager, networkd, nfsd, nm, postfix,
+  resolvconf, smart, speechd, sshd, timesyncd, udev, ufw]
 # All lists of services
 lp_services_all: [tlp, virtualbox]
 

@@ -8,7 +8,7 @@
 # behave differently depending on the order of operations if you do
 # the same manually.
 
-- name: "service:systemd"
+- name: Service systemd
   block:
 
     - name: "service:systemd: enable/disable"
@@ -19,11 +19,11 @@
       register: result
       notify: reload systemd daemon
     - name: "service:systemd: Debug"
+      when: _enabld | length > 0
       ansible.builtin.include_tasks: fn/service-debug.yml
-      when: _enabld|length > 0
     - name: "service:systemd: Flush handlers"
+      when: _enabld | length > 0
       ansible.builtin.meta: flush_handlers
-      when: _enabld|length > 0
 
     - name: "service:systemd: mask/unmask"
       ansible.builtin.systemd:
@@ -33,11 +33,11 @@
       register: result
       notify: reload systemd daemon
     - name: "service:systemd: Debug"
+      when: _masked | length > 0
       ansible.builtin.include_tasks: fn/service-debug.yml
-      when: _masked|length > 0
     - name: "service:systemd: Flush handlers"
+      when: _masked | length > 0
       ansible.builtin.meta: flush_handlers
-      when: _masked|length > 0
 
     - name: "service:systemd: all"
       ansible.builtin.systemd:
@@ -47,31 +47,31 @@
       register: result
       notify: reload systemd daemon
     - name: "service:systemd: Debug"
+      when: lp_service | length > 0
       ansible.builtin.include_tasks: fn/service-debug.yml
-      when: lp_service|length > 0
 
   module_defaults:
 
     ansible.builtin.systemd:
-      name: "{{ item.name|default(omit) }}"
-      daemon_reexec: "{{ item.daemon_reexec|default(omit) }}"
-      daemon_reload: "{{ item.daemon_reload|default(omit) }}"
-      enabled: "{{ item.enabled|default(omit) }}"
-      force: "{{ item.force|default(omit) }}"
-      masked: "{{ item.masked|default(omit) }}"
-      no_block: "{{ item.no_block|default(omit) }}"
-      scope: "{{ item.scope|default(omit) }}"
-      state: "{{ item.state|default(omit) }}"
+      name: "{{ item.name | d(omit) }}"
+      daemon_reexec: "{{ item.daemon_reexec | d(omit) }}"
+      daemon_reload: "{{ item.daemon_reload | d(omit) }}"
+      enabled: "{{ item.enabled | d(omit) }}"
+      force: "{{ item.force | d(omit) }}"
+      masked: "{{ item.masked | d(omit) }}"
+      no_block: "{{ item.no_block | d(omit) }}"
+      scope: "{{ item.scope | d(omit) }}"
+      state: "{{ item.state | d(omit) }}"
 
   vars:
 
-    _enabld: "{{ lp_service|selectattr('enabled', 'defined')|
-                            ansible.utils.remove_keys(target=['masked', 'state']) }}"
-    _masked: "{{ lp_service|selectattr('masked', 'defined')|
-                            ansible.utils.remove_keys(target=['state']) }}"
-    enabled: "{{ item.enabled|d('UNDEFINED') }}"
-    masked: "{{ item.masked|d('UNDEFINED') }}"
-    state: "{{ item.state|d('UNDEFINED') }}"
+    _enabld: "{{ lp_service | selectattr('enabled', 'defined') |
+                              community.general.remove_keys(target=['masked', 'state']) }}"
+    _masked: "{{ lp_service | selectattr('masked', 'defined') |
+                              community.general.remove_keys(target=['state']) }}"
+    enabled: "{{ item.enabled | d('UNDEFINED') }}"
+    masked: "{{ item.masked | d('UNDEFINED') }}"
+    state: "{{ item.state | d('UNDEFINED') }}"
 
 # EOF
 ...

@@ -1,0 +1,21 @@
+shell> ansible-playbook lp.yml -t lp_wpasupplicant
+
+TASK [vbotka.linux_postinstall : wpasupplicant: Create wpasupplicant configuration file]
+changed: [test_01] => (item=None)
+changed: [test_01]
+
+TASK [vbotka.linux_postinstall : wpasupplicant: Configure wpa_supplicant services] *****
+changed: [test_01] => (item=/lib/systemd/system/wpa_supplicant@.service)
+changed: [test_01] => (item=/lib/systemd/system/wpa_supplicant-nl80211@.service)
+
+TASK [vbotka.linux_postinstall : wpasupplicant: Manage wpa_supplicant services] ********
+changed: [test_01] => (item=wpa_supplicant-nl80211@wlan0.service)
+
+TASK [vbotka.linux_postinstall : wpasupplicant: Debug: Services] ***********************
+skipping: [test_01]
+
+RUNNING HANDLER [vbotka.linux_postinstall : reconfigure wpa_supplicant] ****************
+changed: [test_01] => (item=wpa_supplicant-nl80211@wlan0.service)
+
+PLAY RECAP *****************************************************************************
+test_01: ok=7 changed=4 unreachable=0 failed=0 skipped=15 rescued=0 ignored=0
