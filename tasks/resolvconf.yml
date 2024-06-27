@@ -1,7 +1,9 @@
 ---
 # linux_postinstall resolvconf
 
-- name: "resolvconf: Debug"
+- name: "resolvconf: Debug lp_resolvconf_debug={{ lp_resolvconf_debug }}"
+  when: lp_resolvconf_debug | bool
+  tags: lp_resolvconf_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -10,32 +12,30 @@
       lp_package_state: {{ lp_package_state }}
       lp_resolvconf_install: {{ lp_resolvconf_install }}
       lp_resolvconf_packages:
-        {{ lp_resolvconf_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_resolvconf_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_resolvconf_conf_owner: {{ lp_resolvconf_conf_owner }}
       lp_resolvconf_conf_group: {{ lp_resolvconf_conf_group }}
       lp_resolvconf_conf_mode: {{ lp_resolvconf_conf_mode }}
       lp_resolvconf_conf:
-        {{ lp_resolvconf_conf|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_resolvconf_conf | to_nice_yaml(indent=2) | indent(2) }}
       lp_resolvconf_confd_head:
-        {{ lp_resolvconf_confd_head|to_yaml(indent=2)|indent(2) }}
+        {{ lp_resolvconf_confd_head | to_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_resolvconf_debug|bool
-  tags: lp_resolvconf_debug
 
 - name: "resolvconf: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
-  when: lp_resolvconf_install|bool
+  when: lp_resolvconf_install | bool
+  tags: lp_resolvconf_packages
   vars:
     ll_ipkg_list: "{{ lp_resolvconf_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_resolvconf_debug|bool }}"
-  tags: lp_resolvconf_packages
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_resolvconf_debug | bool }}"
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
 - name: "resolvconf: Configure lp_resolvconf_conf"
   ansible.builtin.template:
@@ -58,17 +58,17 @@
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_resolvconf_enable|bool|d(false) }}"
-    state: "{{ lp_resolvconf_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_resolvconf_enable | bool | d(false) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    state: "{{ lp_resolvconf_state | d(default_state) }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_resolvconf_service
 
-- name: "resolvconf: Debug service"
+- name: "resolvconf: Debug service lp_resolvconf_debug={{ lp_resolvconf_debug }}"
+  when: lp_resolvconf_debug | bool
+  tags: lp_resolvconf_service
   ansible.builtin.debug:
     var: result
-  when: lp_resolvconf_debug|bool
-  tags: lp_resolvconf_service
 
 # EOF
 ...

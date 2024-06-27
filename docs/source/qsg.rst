@@ -80,6 +80,9 @@ services.
 
 * Configure passwords. See `details <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_
 
+.. index::
+   single: passwordstore
+
 .. code-block:: Bash
    :emphasize-lines: 2-5
    :linenos:

@@ -1,8 +1,5 @@
 .. index::
-   single: password; passwordstore
-   module: __main__
-   module: sys
-   triple: module; search; path
+   single: passwordstore
 
 .. _ug_task_passwords_passwordstore:
 

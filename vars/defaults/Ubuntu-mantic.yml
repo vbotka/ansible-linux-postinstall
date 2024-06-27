@@ -10,20 +10,17 @@
 #      - {key: 'GSSAPIAuthentication', val: 'yes'}
 
 lp_acpi_service: acpid
-lp_speechd_service: speech-dispatcher
-
-lp_autofs_service: autofs
-lp_timesyncd_service: systemd-timesyncd.service
-lp_postfix_service: postfix
-lp_gpsd_service: gpsd
-lp_bluetooth_service: bluetooth
 lp_auto_upgrades_service: unattended-upgrades
-
-lp_udev_service: udev
-lp_udev_enable_module: sysvinit
-lp_udev_path: /usr/bin/udevadm
-
+lp_autofs_service: autofs
+lp_bluetooth_service: bluetooth
+lp_gpsd_service: gpsd
+lp_postfix_service: postfix
+lp_speechd_service: speech-dispatcher
 lp_sshd_service: ssh
+lp_timesyncd_service: systemd-timesyncd.service
+lp_udev_service: udev
+
+lp_udev_path: /usr/bin/udevadm
 lp_sshd_path: /usr/sbin/sshd
 
 lp_modules_conf: /etc/modules
@@ -159,7 +156,6 @@ lp_networkd_service: systemd-networkd.service
 lp_networkd_packages: []
 
 lp_netplan_default: 01-network-manager-all.yaml
-lp_netplan_mode: '0644'
 
 lp_apparmor_packages:
   - apparmor

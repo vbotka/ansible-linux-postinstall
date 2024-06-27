@@ -1,0 +1,20 @@
+test_01> iw wlan0 link
+Connected to <sanitized> (on wlan0)
+	SSID: AP1
+	freq: 2412.0
+	RX: 250263021 bytes (2007924 packets)
+	TX: 2194111 bytes (16115 packets)
+	signal: -24 dBm
+	rx bitrate: 104.0 MBit/s MCS 13
+	tx bitrate: 144.4 MBit/s MCS 15 short GI
+	bss flags: short-preamble short-slot-time
+	dtim period: 2
+	beacon int: 100
+
+test_01> ip address show wlan0
+10: wlan0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default qlen 1000
+    link/ether <sanitized> brd ff:ff:ff:ff:ff:ff
+    inet 10.1.0.150/24 metric 100 brd 10.1.0.255 scope global dynamic wlan0
+       valid_lft 42339sec preferred_lft 42339sec
+    inet6 fe80::429b:cdff:fe03:4ca/64 scope link 
+       valid_lft forever preferred_lft forever

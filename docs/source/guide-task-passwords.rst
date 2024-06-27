@@ -1,3 +1,6 @@
+.. index::
+   single: passwordstore
+
 .. _ug_task_passwords:
 
 Passwords

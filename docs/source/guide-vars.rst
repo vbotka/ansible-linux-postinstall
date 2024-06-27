@@ -16,4 +16,4 @@ Variables
 .. _ug_vars_os_custom:
 .. include:: vars-os-custom.rst
 .. _ug_vars_flavors:
-.. include:: vars_flavors.rst
+.. include:: vars-flavors.rst

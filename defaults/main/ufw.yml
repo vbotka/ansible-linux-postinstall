@@ -2,7 +2,7 @@
 
 lp_ufw: false
 lp_ufw_install: true
-lp_ufw_enable: true
+lp_ufw_enable: false
 lp_ufw_debug: false
 lp_ufw_reset: false
 lp_ufw_reload: false

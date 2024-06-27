@@ -1,10 +1,14 @@
 ---
 # linux_postinstall acpi
 
-- name: "acpi: Debug"
+- name: "acpi: Debug lp_acpi_debug={{ lp_acpi_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
+      ansible_distribution: {{ ansible_distribution }}
+      ansible_distribution_version: {{ ansible_distribution_version }}
+      ansible_distribution_release: {{ ansible_distribution_release }}
+
       lp_acpi_install: {{ lp_acpi_install }}
       lp_acpi_enable: {{ lp_acpi_enable }}
       lp_acpi_service: {{ lp_acpi_service }}
@@ -16,28 +20,28 @@
       lp_acpi_packages: {{ lp_acpi_packages }}
 
       lp_acpi_events:
-        {{ lp_acpi_events|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_acpi_events | to_nice_yaml(indent=2) | indent(2) }}
       lp_acpi_actions:
-        {{ lp_acpi_actions|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_acpi_actions | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_acpi_debug|bool
+  when: lp_acpi_debug | bool
   tags: lp_acpi_debug
 
 - name: "acpi: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_acpi_install|bool
+  when: lp_acpi_install | bool
   vars:
     ll_ipkg_list: "{{ lp_acpi_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_acpi_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_acpi_debug | bool }}"
   tags: lp_acpi_packages
 
-- name: "acpi: Configure {{ lp_acpi_dir }}/events"
+- name: "acpi: Configure {{ lp_acpi_dir ~ '/events' }}"
   ansible.builtin.template:
     src: "{{ item.value.template }}"
     dest: "{{ lp_acpi_dir }}/events/{{ item.value.file }}"
@@ -45,10 +49,10 @@
     group: "{{ lp_acpi_group }}"
     mode: "{{ lp_acpi_event_mode }}"
     backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_acpi_events|dict2items }}"
+  loop: "{{ lp_acpi_events | dict2items }}"
   loop_control:
     label: "{{ item.key }}"
-  notify: reload acpid
+  notify: restart acpid
   tags: lp_acpi_events
 
 - name: "acpi: Create actions in {{ lp_acpi_dir }}"
@@ -59,23 +63,23 @@
     group: "{{ lp_acpi_group }}"
     mode: "{{ lp_acpi_action_mode }}"
     backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_acpi_actions|dict2items }}"
+  loop: "{{ lp_acpi_actions | dict2items }}"
   loop_control:
     label: "{{ item.value.file }}"
-  notify: reload acpid
+  notify: restart acpid
   tags: lp_acpi_actions
 
-- name: "acpi: Service {{ state }} and {{ enable }}"
+- name: "acpi: Service/State {{ state ~ '/' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_acpi_service }}"
     state: "{{ state }}"
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_acpi_enable|bool|d(false) }}"
-    state: "{{ lp_acpi_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_acpi_enable | bool | d(false) }}"
+    state: "{{ lp_acpi_state | d(default_state) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_acpi_service
 
 # EOF

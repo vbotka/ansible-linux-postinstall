@@ -1,28 +1,34 @@
 ---
 # linux_postinstall networkmanager
 
-- name: "nm: Debug"
+- name: "nm: Debug lp_nm_debug={{ lp_nm_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
+      ansible_distribution: {{ ansible_distribution }}
+      ansible_distribution_version: {{ ansible_distribution_version }}
+      ansible_distribution_release: {{ ansible_distribution_release }}
+
+      lp_backup_conf: {{ lp_backup_conf }}
+      
       lp_nm_install: {{ lp_nm_install }}
       lp_nm_packages:
-        {{ lp_nm_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_nm_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_nm_enable: {{ lp_nm_enable }}
       lp_nm_override: {{ lp_nm_override }}
       lp_nm_conf_path: {{ lp_nm_conf_path }}
       lp_nm_conf_no_extra_spaces: {{ lp_nm_conf_no_extra_spaces }}
       lp_nm_conf:
-        {{ lp_nm_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_nm_conf | to_yaml(indent=2) | indent(2) }}
       lp_nm_services:
-        {{ lp_nm_services|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_nm_services | to_nice_yaml(indent=2) | indent(2) }}
       lp_nm_mask: {{ lp_nm_mask }}
       lp_nm_service_mask:
-        {{ lp_nm_services_mask|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_nm_services_mask | to_nice_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_nm_debug|bool
+  when: lp_nm_debug | bool
   tags: lp_nm_debug
 
 # Packages
@@ -30,13 +36,13 @@
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_nm_install|bool
+  when: lp_nm_install | bool
   vars:
     ll_ipkg_list: "{{ lp_nm_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_nm_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_nm_debug | bool }}"
   tags: lp_nm_packages
 
 # Override
@@ -47,14 +53,14 @@
     owner: root
     group: root
     mode: '0644'
-  when: not lp_nm_enable|bool
+  when: not lp_nm_enable | bool
   tags: lp_nm_override
 
 - name: "nm: Remove /etc/init/network-manager.override"
   ansible.builtin.file:
     state: absent
     dest: /etc/init/network-manager.override
-  when: lp_nm_enable|bool
+  when: lp_nm_enable | bool
   tags: lp_nm_override
 
 # Conf
@@ -71,7 +77,6 @@
   tags: lp_nm_conf
 
 # Service
-
 - name: "nm: Services start/stop and enable/disable"
   ansible.builtin.service:
     name: "{{ srv_name }}"
@@ -84,20 +89,19 @@
     srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
     srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
     srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
-    default_stat: "{{ srv_enbl|bool|ternary('started', 'stopped') }}"
+    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
   tags: lp_nm_service
 
 # Mask service
-- name: "nm: Services mask/unmask"
-  ansible.builtin.command:
-    cmd: "systemctl {{ srv_mask }} {{ srv_name }}"
+- name: "nm: Services mask={{ lp_nm_mask }}"
+  ansible.builtin.systemd_service:
+    name: "{{ srv_name }}"
+    masked: "{{ lp_nm_mask }}" 
   loop: "{{ lp_nm_services_mask }}"
   loop_control:
-    label: "{{ srv_name }} {{ srv_mask }}"
+    label: "{{ srv_name }}"
   vars:
     srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
-    srv_mask: "{{ lp_nm_mask|bool|ternary('mask', 'unmask') }}"
-  changed_when: false
   tags: lp_nm_mask
 
 # EOF

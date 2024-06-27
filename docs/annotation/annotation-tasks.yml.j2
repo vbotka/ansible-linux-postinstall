@@ -17,21 +17,21 @@ mytasks:
     link: {{ file.0 ~ file.1 }}
     path: tasks/{{ file.2 }}
     synopsis: |
-    {%- if lookup('varnames', 'task_' ~ file.0 ~ '_synopsis')|length > 0 %}
-      {{ lookup('vars', 'task_' ~ file.0 ~ '_synopsis')|indent(width=6) }}
+    {%- if lookup('varnames', 'task_' ~ file.0 ~ '_synopsis') | length > 0 %}
+      {{ lookup('vars', 'task_' ~ file.0 ~ '_synopsis') | indent(width=6) }}
     {%- else %}
       Configure {{ file.0 }}.
     {%- endif %}
     description: |
-    {%- if lookup('varnames', 'task_' ~ file.0 ~ '_description')|length > 0 %}
-      {{ lookup('vars', 'task_' ~ file.0 ~ '_description')|indent(width=6) }}
+    {%- if lookup('varnames', 'task_' ~ file.0 ~ '_description') | length > 0 %}
+      {{ lookup('vars', 'task_' ~ file.0 ~ '_description') | indent(width=6) }}
     {%- else %}
       Description of the task.
     {%- endif %}
-    lines: {% if lookup('varnames', 'task_' ~ file.0 ~ '_lines')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_lines') }}{% else %}1,2{% endif %}
-    seealso: {% if lookup('varnames', 'task_' ~ file.0 ~ '_seealso')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_seealso') }}{% else %}[]{% endif %}
-    notes: {% if lookup('varnames', 'task_' ~ file.0 ~ '_note')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
-    hints: {% if lookup('varnames', 'task_' ~ file.0 ~ '_hint')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_hint') }}{% else %}[]{% endif %}
-    warnings: {% if lookup('varnames', 'task_' ~ file.0 ~ '_warning')|length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_warning') }}{% else %}[]{% endif %}
+    lines: {% if lookup('varnames', 'task_' ~ file.0 ~ '_lines') | length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_lines') }}{% else %}1,2{% endif %}
+    seealso: {% if lookup('varnames', 'task_' ~ file.0 ~ '_seealso') | length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_seealso') }}{% else %}[]{% endif %}
+    notes: {% if lookup('varnames', 'task_' ~ file.0 ~ '_note') | length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
+    hints: {% if lookup('varnames', 'task_' ~ file.0 ~ '_note') | length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
+    warnings: {% if lookup('varnames', 'task_' ~ file.0 ~ '_warning') | length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_warning') }}{% else %}[]{% endif %}
 {% endfor %}
 ...

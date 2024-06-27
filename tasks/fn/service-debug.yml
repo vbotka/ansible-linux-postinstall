@@ -1,31 +1,31 @@
 ---
 # linux_postinstall function service-debug
 
-- name: "service: Debug management full results"
+- name: "service: Debug management full results lp_service_debug2={{ lp_service_debug2 }}"
+  when: lp_service_debug2 | d(false) | bool
   ansible.builtin.debug:
     var: result
-  when: lp_service_debug2|d(false)|bool
 
-- name: "service: Debug management selected results"
+- name: "service: Debug management selected results lp_service_debug2={{ lp_service_debug2 }}"
+  when: lp_service_debug2 | d(false) | bool
   ansible.builtin.debug:
     msg: |
       {% for i in result.results %}
       # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       changed: {{ i.changed }}
       item:
-        {{ i.item|to_nice_yaml(indent=2)|indent(2) }}
-      {% if i.skipped|d(false) %}
+        {{ i.item | to_nice_yaml(indent=2) | indent(2) }}
+      {% if i.skipped | d(false) %}
       skip_reason: {{ i.skip_reason }}
       {% else %}
-      name: {{ i.name|d('UNDEFINED') }}
-      enabled: {{ i.enabled|d('UNDEFINED') }}
-      state: {{ i.state|d('UNDEFINED') }}
-      msg: {{ i.msg|d('UNDEFINED') }}
+      name: {{ i.name | d('UNDEFINED') }}
+      enabled: {{ i.enabled | d('UNDEFINED') }}
+      state: {{ i.state | d('UNDEFINED') }}
+      msg: {{ i.msg | d('UNDEFINED') }}
       invocation:
-        {{ i.invocation.module_args|to_nice_yaml(indent=2)|indent(2) }}
+        {{ i.invocation.module_args | to_nice_yaml(indent=2) | indent(2) }}
       {% endif %}
       {% endfor %}
-  when: lp_service_debug|bool
 
 # EOF
 ...

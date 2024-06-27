@@ -1,3 +1,5 @@
+.. _as_handlers:
+
 Handlers
 ========
 
@@ -21,6 +23,9 @@ Import handlers.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_acpi.yml:
 
 acpi.yml
@@ -40,6 +45,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_apparmor.yml:
 
@@ -61,6 +69,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_autofs.yml:
 
 autofs.yml
@@ -80,6 +91,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_bluetooth.yml:
 
@@ -101,6 +115,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_chrony.yml:
 
 chrony.yml
@@ -120,6 +137,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_dnsmasq.yml:
 
@@ -141,6 +161,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_gpg.yml:
 
 gpg.yml
@@ -160,6 +183,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_gpsd.yml:
 
@@ -181,6 +207,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_grub.yml:
 
 grub.yml
@@ -200,6 +229,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_hostname.yml:
 
@@ -221,6 +253,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_initramfs.yml:
 
 initramfs.yml
@@ -240,6 +275,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_iptables.yml:
 
@@ -261,6 +299,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_libvirtd.yml:
 
 libvirtd.yml
@@ -280,6 +321,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_messages.yml:
 
@@ -301,6 +345,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_netplan.yml:
 
 netplan.yml
@@ -320,6 +367,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_networkd.yml:
 
@@ -341,6 +391,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_newaliases.yml:
 
 newaliases.yml
@@ -360,6 +413,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_nfsd.yml:
 
@@ -381,6 +437,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_postfix.yml:
 
 postfix.yml
@@ -400,6 +459,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_rc_local.yml:
 
@@ -421,6 +483,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_resolvconf.yml:
 
 resolvconf.yml
@@ -440,6 +505,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_smart.yml:
 
@@ -461,6 +529,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_sshd.yml:
 
 sshd.yml
@@ -480,6 +551,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_swap.yml:
 
@@ -501,6 +575,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_sysctl.yml:
 
 sysctl.yml
@@ -520,6 +597,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_systemd.yml:
 
@@ -541,6 +621,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_timesyncd.yml:
 
 timesyncd.yml
@@ -560,6 +643,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_tlp.yml:
 
@@ -581,6 +667,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_udev.yml:
 
 udev.yml
@@ -600,6 +689,9 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 
 .. _as_handler_ufw.yml:
 
@@ -621,6 +713,9 @@ Description of the handler.
     :emphasize-lines: 1,2
     :linenos:
 
+
+
+
 .. _as_handler_wpasupplicant.yml:
 
 wpasupplicant.yml
@@ -640,4 +735,7 @@ Description of the handler.
     :language: Yaml
     :emphasize-lines: 1,2
     :linenos:
+
+
+
 

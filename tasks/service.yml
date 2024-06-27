@@ -1,9 +1,9 @@
 ---
 # linux_postinstall service
 
-# [TODO] add list of services, e.g. tlp and nm 'lp_' ~ item ~ '_services'
-
-- name: "service: Debug"
+- name: "service: Debug lp_service_debug={{ lp_service_debug }}"
+  when: lp_service_debug | bool
+  tags: lp_service_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -12,40 +12,57 @@
 
       lp_service_module: {{ lp_service_module }}
       lp_service_module_valid: {{ lp_service_module_valid }}
+
       lp_service:
-        {{ lp_service|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_service | to_nice_yaml(indent=2) | indent(2) }}
       lp_service_auto:
-        {{ lp_service_auto|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_service_auto | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_service_debug|bool
-  tags: lp_service_debug
 
 - name: Sanity
+  when: lp_service_sanity | bool
+  tags: lp_service_sanity
   block:
 
     - name: "service: Get service facts"
       ansible.builtin.service_facts:
 
+    - name: "service: Debug my_services_* lp_service_debug2={{ lp_service_debug2 }}"
+      when: lp_service_debug2 | d(false) | bool
+      vars:
+        my_services_alias: "{{ lp_service_auto }}"
+        msg: |-
+          my_services_regex: {{ my_services_regex }}
+          my_services_all: {{ my_services_all | to_yaml }}
+          my_services_varnames:
+            {{ my_services_varnames | to_nice_yaml(indent=2) | indent(2) }}
+          my_services_names:
+            {{ my_services_names | to_nice_yaml(indent=2) | indent(2) }}
+          my_services_undef:
+            {{ my_services_undef | to_nice_yaml(indent=2) | indent(2) }}
+      ansible.builtin.debug:
+        msg: "{{ '{}'.format(msg) }}"
+
     - name: "service: Sanity lp_service_auto items are defined"
+      when: lp_service_auto | length > 0
       ansible.builtin.assert:
-        that: my_services_undef|length == 0
+        that: my_services_undef | length == 0
         fail_msg: "[ERR] Undefined services: {{ my_services_undef }}"
         success_msg: "[OK]  All service names in lp_service_auto are valid."
         quiet: "{{ lp_service_sanity_quiet }}"
-      when: lp_service_auto|length > 0
       vars:
         my_services_alias: "{{ lp_service_auto }}"
 
     - name: "service: Sanity lp_service names are defined"
+      when: lp_service | length > 0
       ansible.builtin.assert:
-        that: my_services_undef|length == 0
+        that: my_services_undef | length == 0
         fail_msg: "[ERR] Undefined services: {{ my_services_undef }}"
         success_msg: "[OK]  All service names in lp_service are valid."
         quiet: "{{ lp_service_sanity_quiet }}"
-      when: lp_service|length > 0
       vars:
-        my_services_alias: "{{ lp_service|map(attribute='name') }}"
+        my_services_alias: "{{ lp_service | map(attribute='name') }}"
 
     - name: "service: Sanity lp_service_module"
       ansible.builtin.assert:
@@ -54,39 +71,40 @@
         success_msg: "[OK]  {{ lp_service_module }} is valid value of lp_service_module."
         quiet: "{{ lp_service_sanity_quiet }}"
 
-  when: lp_service_sanity|bool
-  tags: lp_service_sanity
-
-- name: Automatic management of listed services
+- name: Automatic management of services
+  when: lp_service_auto | length > 0
+  tags: lp_service_auto
   block:
 
-    - name: "service: Automatic management of listed services"
+    - name: "service: Automatic management of services"
       ansible.builtin.service:
         name: "{{ srv_name }}"
         state: "{{ srv_stat }}"
-        enabled: "{{ srv_enbl|bool }}"
+        enabled: "{{ srv_enbl | bool }}"
         use: "{{ use_modl }}"
-      loop: "{{ lp_service_auto }}"
+      loop: "{{ my_services_varnames }}"
       loop_control:
         label: "{{ srv_name }} enabled={{ srv_enbl }} state={{ srv_stat }} use={{ use_modl }}"
       register: result
-      when: run_task
+      when: run_task | bool
       notify: "reload {{ ansible_service_mgr }} daemon"
       vars:
-        run_task: "{{ lookup('vars', 'lp_' ~ item, default=false) }}"
-        srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
-        srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
-        use_modl: "{{ lookup('vars', 'lp_' ~ item ~ '_module', default='auto') }}"
-        srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
-        default_stat: "{{ srv_enbl|bool|ternary('started', 'stopped') }}"
+        my_services_alias: "{{ lp_service_auto }}"
+        vbase: "{{ item | reverse | replace('ecivres_', '', 1) | reverse }}"
+        run_task: "{{ lookup('vars', vbase, default=false) }}"
+        srv_name: "{{ lookup('vars', vbase ~ '_service', default=item) }}"
+        srv_enbl: "{{ lookup('vars', vbase ~ '_enable', default=false) }}"
+        use_modl: "{{ lookup('vars', vbase ~ '_module', default='auto') }}"
+        srv_stat: "{{ lookup('vars', vbase ~ '_state', default=default_state) }}"
+        default_state: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
 
     - name: "service: Debug"
       ansible.builtin.include_tasks: fn/service-debug.yml
 
-  when: lp_service_auto|length > 0
-  tags: lp_service_auto
 
-- name: Manual management of listed services
+- name: Manual management of services
+  when: lp_service | length > 0
+  tags: lp_service_manual
   block:
 
     - name: "service: Manual management set module auto"
@@ -96,9 +114,6 @@
 
     - name: "service: Include {{ lp_service_module }}"
       include_tasks: "fn/service-{{ lp_service_module }}.yml"
-
-  when: lp_service|length > 0
-  tags: lp_service_manual
 
 - name: "service: Flush handlers"
   ansible.builtin.meta: flush_handlers

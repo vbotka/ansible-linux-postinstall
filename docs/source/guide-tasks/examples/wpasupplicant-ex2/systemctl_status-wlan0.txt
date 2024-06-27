@@ -1,0 +1,12 @@
+test_01 > systemctl status wpa_supplicant-nl80211@wlan0.service
+● wpa_supplicant-nl80211@wlan0.service - WPA supplicant daemon (interface- and nl80211 driver-specific version)
+     Loaded: loaded (/usr/lib/systemd/system/wpa_supplicant-nl80211@.service; disabled; preset: enabled)
+     Active: active (running) since Tue 2024-05-28 13:52:49 CEST; 3 weeks 3 days ago
+   Main PID: 124727 (wpa_supplicant)
+      Tasks: 1 (limit: 9282)
+     Memory: 1.3M (peak: 2.2M swap: 1.3M swap peak: 1.3M)
+        CPU: 2min 21.899s
+     CGroup: /system.slice/system-wpa_supplicant\x2dnl80211.slice/wpa_supplicant-nl80211@wlan0.service
+             └─124727 /usr/sbin/wpa_supplicant -c/etc/wpa_supplicant/wpa_supplicant-nl80211-wlan0.conf -Dnl80211 -iw>
+
+Jun 21 12:55:25 test_01 wpa_supplicant[124727]: wlan0: WPA: Group rekeying completed with <sanitized> [GTK=CCMP]

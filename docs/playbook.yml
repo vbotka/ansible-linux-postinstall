@@ -7,35 +7,47 @@
 
   tasks:
 
-    - block:
+    - name: Tasks
+      tags: tasks
+      block:
+
         - name: Include variables
-          include_vars:
+          ansible.builtin.include_vars:
             file: annotation/annotation-tasks.yml
+
         - name: Create rst file
-          template:
+          ansible.builtin.template:
             src: annotation/annotation-tasks.rst.j2
             dest: source/annotation-tasks.rst
-      tags: tasks
+            mode: "0644"
 
-    - block:
+    - name: Handlers
+      tags: handlers
+      block:
+
         - name: Include variables
-          include_vars:
+          ansible.builtin.include_vars:
             file: annotation/annotation-handlers.yml
+
         - name: Create rst file
-          template:
+          ansible.builtin.template:
             src: annotation/annotation-handlers.rst.j2
             dest: source/annotation-handlers.rst
-      tags: handlers
+            mode: "0644"
 
-    - block:
+    - name: Templates
+      tags: templates
+      block:
+
         - name: Include variables
-          include_vars:
+          ansible.builtin.include_vars:
             file: annotation/annotation-templates.yml
+
         - name: Create rst file
-          template:
+          ansible.builtin.template:
             src: annotation/annotation-templates.rst.j2
             dest: source/annotation-templates.rst
-      tags: templates
+            mode: "0644"
 
 # EOF
 ...

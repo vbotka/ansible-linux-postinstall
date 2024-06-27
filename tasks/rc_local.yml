@@ -1,7 +1,9 @@
 ---
 # linux_postinstall rc_local
 
-- name: "rc_local: Debug"
+- name: "rc_local: Debug lp_rc_local_debug={{ lp_rc_local_debug }}"
+  when: lp_rc_local_debug | bool
+  tags: lp_rc_local_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -13,14 +15,12 @@
       lp_rc_local_group: {{ lp_rc_local_group }}
       lp_rc_local_mode: {{ lp_rc_local_mode }}
       lp_rc_local_content:
-        {{ lp_rc_local_content|indent(2) }}
+        {{ lp_rc_local_content | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_rc_local_debug|bool
-  tags: lp_rc_local_debug
 
-- name: "rc_local: Manage service {{ lp_rc_local_service }}.service"
+- name: "rc_local: Manage service {{ lp_rc_local_service }}"
   ansible.builtin.service:
     name: "{{ lp_rc_local_service }}"
     state: "{{ lp_rc_local_state }}"

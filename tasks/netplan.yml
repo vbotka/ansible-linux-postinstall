@@ -7,7 +7,7 @@
     path: "{{ lp_netplan_root }}/{{ lp_netplan_default }}"
   register: result
 
-- name: "netplan: Configure {{ lp_netplan_root }}/{{ lp_netplan_default }}"
+- name: "netplan: Configure {{ lp_netplan_root ~ '/' ~ lp_netplan_default }}"
   ansible.builtin.template:
     src: netplan-default.j2
     dest: "{{ lp_netplan_root }}/{{ lp_netplan_default }}"
@@ -16,15 +16,15 @@
     mode: "{{ lp_netplan_mode }}"
     backup: "{{ lp_backup_conf }}"
   notify: netplan apply
-  when: result.stat.exists|default(false)
+  when: result.stat.exists | d(false)
 
 - name: "netplan: Configure files in {{ lp_netplan_root }}"
   ansible.builtin.template:
     src: netplan-conf.j2
     dest: "{{ lp_netplan_root }}/{{ item.file }}"
-    owner: "{{ item.owner | default(lp_netplan_owner) }}"
-    group: "{{ item.group | default(lp_netplan_group) }}"
-    mode: "{{ item.mode | default(lp_netplan_mode) }}"
+    owner: "{{ item.owner | d(lp_netplan_owner) }}"
+    group: "{{ item.group | d(lp_netplan_group) }}"
+    mode: "{{ item.mode | d(lp_netplan_mode) }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_netplan_conf }}"
   loop_control:

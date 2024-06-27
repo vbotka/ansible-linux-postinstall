@@ -1,25 +1,25 @@
 #jinja2: trim_blocks:False
 ---
-mytemplates:{% if not my_files %} []{% endif %}
+mytemplates:{% if my_files | d([]) | length == 0  %} []{% endif %}
 {% for file in my_files %}
   - file: {{ file.0 ~ file.1 }}
     link: {{ file.0 ~ file.1 }}
     path: templates/{{ file.2 }}
     synopsis: |
-    {%- if lookup('varnames', 'template_' ~ file.0 ~ '_synopsis')|length > 0 %}
-      {{ lookup('vars', 'template_' ~ file.0 ~ '_synopsis')|indent(width=6) }}
+    {%- if lookup('varnames', 'template_' ~ file.0 ~ '_synopsis') | length > 0 %}
+      {{ lookup('vars', 'template_' ~ file.0 ~ '_synopsis') | indent(width=6) }}
     {%- else %}
       Template {{ file.0 }}.
     {%- endif %}
     description: |
-    {%- if lookup('varnames', 'template_' ~ file.0 ~ '_description')|length > 0 %}
-      {{ lookup('vars', 'template_' ~ file.0 ~ '_description')|indent(width=6) }}
+    {%- if lookup('varnames', 'template_' ~ file.0 ~ '_description') | length > 0 %}
+      {{ lookup('vars', 'template_' ~ file.0 ~ '_description') | indent(width=6) }}
     {%- else %}
       Description of the template.
     {%- endif %}
-    lines: {% if lookup('varnames', 'template_' ~ file.0 ~ '_lines')|length > 0 %}{{ lookup('vars', 'template_' ~ file.0 ~ '_lines') }}{% else %}1{% endif %}
-    seealso: {% if lookup('varnames', 'template_' ~ file.0 ~ '_seealso')|length > 0 %}{{ lookup('vars', 'template_' ~ file.0 ~ '_seealso') }}{% else %}[]{% endif %}
-    note: {% if lookup('varnames', 'template_' ~ file.0 ~ '_note')|length > 0 %}{{ lookup('vars', 'template_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
-    warning: {% if lookup('varnames', 'template_' ~ file.0 ~ '_warning')|length > 0 %}{{ lookup('vars', 'template_' ~ file.0 ~ '_warning') }}{% else %}[]{% endif %}
+    lines: {% if lookup('varnames', 'template_' ~ file.0 ~ '_lines') | length > 0 %}{{ lookup('vars', 'template_' ~ file.0 ~ '_lines') }}{% else %}1{% endif %}
+    seealso: {% if lookup('varnames', 'template_' ~ file.0 ~ '_seealso') | length > 0 %}{{ lookup('vars', 'template_' ~ file.0 ~ '_seealso') }}{% else %}[]{% endif %}
+    note: {% if lookup('varnames', 'template_' ~ file.0 ~ '_note') | length > 0 %}{{ lookup('vars', 'template_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
+    warning: {% if lookup('varnames', 'template_' ~ file.0 ~ '_warning') | length > 0 %}{{ lookup('vars', 'template_' ~ file.0 ~ '_warning') }}{% else %}[]{% endif %}
 {% endfor %}
 ...

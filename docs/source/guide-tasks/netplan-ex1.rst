@@ -31,14 +31,11 @@ Create *host_vars/test_01/lp-netplan.yml*
            set-name: eth0
            dhcp4: true
            dhcp6: false
-           match:
-           macaddress: "<sanitized>"
-
+           match: {macaddress: "<sanitized>"}
 
 .. note::
-   * When `networkd` renderer is used disable Neworkmanager.
+   * When `networkd` renderer is used disable NetworkManager.
    * See :ref:`ug_task_networkmanager_ex1`
-
 
 Configure `network`
 
@@ -59,7 +56,6 @@ The command is `idempotent`
    ...
    PLAY RECAP ******************************************************************
    test_01: ok=6 changed=0 unreachable=0 failed=0 skipped=4 rescued=0 ignored=0
-
 
 Show the configuration of `netplan` at the remote host
 

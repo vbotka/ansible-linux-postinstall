@@ -1,3 +1,5 @@
+.. _as_tamplates:
+
 Templates
 =========
 
@@ -21,6 +23,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_acpi_event_default.j2:
 
 acpi_event_default.j2
@@ -40,6 +45,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_aliases.j2:
 
@@ -61,6 +69,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_apt_confd.j2:
 
 apt_confd.j2
@@ -80,6 +91,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_auto_upgrades.j2:
 
@@ -101,6 +115,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_blacklist_module.j2:
 
 blacklist_module.j2
@@ -120,6 +137,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_bluetooth_rfcomm_conf.j2:
 
@@ -141,6 +161,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_chrony.conf.j2:
 
 chrony.conf.j2
@@ -160,6 +183,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_default_iptables.j2:
 
@@ -181,6 +207,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_dnsmasq.conf.j2:
 
 dnsmasq.conf.j2
@@ -200,6 +229,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_dnsmasq-openwrt-dhcp.j2:
 
@@ -221,6 +253,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_exports.j2:
 
 exports.j2
@@ -240,6 +275,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_gpg.conf.j2:
 
@@ -261,6 +299,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_gpsd.j2:
 
 gpsd.j2
@@ -280,6 +321,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_hci_name.rules.j2:
 
@@ -301,6 +345,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_hci_run.rules.j2:
 
 hci_run.rules.j2
@@ -320,6 +367,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_hostname.j2:
 
@@ -341,6 +391,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_hosts.j2:
 
 hosts.j2
@@ -360,6 +413,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_hosts-aliases-list.j2:
 
@@ -381,6 +437,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_iptables_restore.j2:
 
 iptables_restore.j2
@@ -400,6 +459,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_modem_manager_override.j2:
 
@@ -421,6 +483,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_netplan_conf.j2:
 
 netplan_conf.j2
@@ -440,6 +505,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_netplan_default.j2:
 
@@ -461,6 +529,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_networkd.conf.j2:
 
 networkd.conf.j2
@@ -480,6 +551,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_network_manager_override.j2:
 
@@ -501,6 +575,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_options_module.j2:
 
 options_module.j2
@@ -520,6 +597,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_persistent_net.rules2.j2:
 
@@ -541,6 +621,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_persistent_net.rules.j2:
 
 persistent_net.rules.j2
@@ -560,6 +643,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_pm_sleepd.j2:
 
@@ -581,6 +667,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_rc.local.j2:
 
 rc.local.j2
@@ -600,6 +689,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_resolvconf_confd_head.j2:
 
@@ -621,6 +713,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_router1_iptables.j2:
 
 router1_iptables.j2
@@ -640,6 +735,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_ssh_config.j2:
 
@@ -661,6 +759,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_systemd_unit.j2:
 
 systemd_unit.j2
@@ -680,6 +781,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_timesyncd.conf.j2:
 
@@ -701,6 +805,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_udev_rules.j2:
 
 udev_rules.j2
@@ -720,6 +827,9 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 
 .. _as_template_wpa_action.sh.j2:
 
@@ -741,6 +851,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_wpa_supplicant.conf.j2:
 
 wpa_supplicant.conf.j2
@@ -761,6 +874,9 @@ Description of the template.
     :emphasize-lines: 1
     :linenos:
 
+
+
+
 .. _as_template_xorg.conf.j2:
 
 xorg.conf.j2
@@ -780,4 +896,7 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
+
+
 

@@ -4,6 +4,7 @@ lp_netplan: false
 lp_netplan_root: /etc/netplan
 lp_netplan_owner: root
 lp_netplan_group: root
+lp_netplan_mode: "0600"
 lp_netplan_version: 2
 lp_netplan_renderer: NetworkManager
 lp_netplan_conf: []

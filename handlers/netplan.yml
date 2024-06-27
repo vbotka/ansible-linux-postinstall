@@ -4,7 +4,7 @@
   ansible.builtin.command:
     cmd: >
       netplan apply
-  when: lp_netplan|bool
+  when: lp_netplan | bool
 
 # EOF
 ...
