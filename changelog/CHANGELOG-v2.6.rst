@@ -5,6 +5,23 @@ vbotka.linux_postinstall 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.3
+=====
+
+Release Summary
+---------------
+Maintenance  including docs update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Bump docs version
+* Update debug
+* Add var lp_role_version
+
+
 2.6.2
 =====
 
