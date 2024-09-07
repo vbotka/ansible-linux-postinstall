@@ -20,6 +20,7 @@ Minor Changes
 * Bump docs version
 * Update debug
 * Add var lp_role_version
+* Update tests/test.yml playbook
 
 
 2.6.2
