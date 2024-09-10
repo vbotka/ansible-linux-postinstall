@@ -21,6 +21,7 @@ Minor Changes
 * Update debug
 * Add var lp_role_version
 * Update tests/test.yml playbook
+* Update template netplan-conf.j2
 
 
 2.6.2
