@@ -3,6 +3,26 @@ vbotka.linux_postinstall 2.6 Release Notes
 ==========================================
 
 .. contents:: Topics
+# BEGIN Commits 2.6.3
+- Format meta/main.yml
+- Update template netplan-conf.j2
+- Update tests/test.yml playbook
+- Start 2.6.3 devel
+# END Commits 2.6.3
+# BEGIN Release notes 2.6.3
+2.6.3
+=====
+Release Summary
+---------------
+Major Changes
+-------------
+Minor Changes
+-------------
+Bugfixes
+--------
+Breaking Changes / Porting Guide
+--------------------------------
+# END Release notes 2.6.3
 
 
 2.6.3
