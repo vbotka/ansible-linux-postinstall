@@ -3,33 +3,6 @@ vbotka.linux_postinstall 2.6 Release Notes
 ==========================================
 
 .. contents:: Topics
-# BEGIN Commits 2.6.3
-- Update python 3.11 in .travis.yml
-- Format meta/main.yml
-- Update template netplan-conf.j2
-- Update tests/test.yml playbook
-- Start 2.6.3 devel
-# END Commits 2.6.3
-# BEGIN Release notes 2.6.3
-2.6.3
-=====
-Release Summary
----------------
-Major Changes
--------------
-Minor Changes
--------------
-- Update python 3.11 in .travis.yml
-- Format meta/main.yml
-- Update template netplan-conf.j2
-- Update tests/test.yml playbook
-- Start 2.6.3 devel
-
-Bugfixes
---------
-Breaking Changes / Porting Guide
---------------------------------
-# END Release notes 2.6.3
 
 
 2.6.3
@@ -37,14 +10,15 @@ Breaking Changes / Porting Guide
 
 Release Summary
 ---------------
-Maintenance  including docs update.
+Maintenance including docs update.
 
 Major Changes
 -------------
 
 Minor Changes
 -------------
-* Bump docs version
+* Update python 3.11 in .travis.yml
+* Format meta/main.yml
 * Update debug
 * Add var lp_role_version
 * Update tests/test.yml playbook
