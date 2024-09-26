@@ -1,5 +1,6 @@
 ---
 # linux_postinstall defaults
+lp_role_version: 2.6.3
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Put distro and flavor specific vars and overrides to the vars
@@ -18,11 +19,13 @@ lp_install_delay: 2
 # Display lists of enabled and disabled tasks in debug
 lp_tasks_enabled_print: false
 lp_tasks_disabled_print: false
-lp_tasks_names: "{{ q('ansible.builtin.fileglob', role_path ~ '/tasks/*.yml')|
-                    map('basename')|map('splitext')|map('first')|sort }}"
-lp_tasks_vars: "{{ ['lp_']|product(lp_tasks_names)|map('join') }}"
+lp_tasks_names: "{{ q('ansible.builtin.fileglob', role_path ~ '/tasks/*.yml') |
+                    map('basename') | map('splitext') | map('first') | sort }}"
+lp_tasks_vars: "{{ ['lp_'] | product(lp_tasks_names) | map('join') }}"
 lp_tasks_vals: "{{ lookup('ansible.builtin.vars', *lp_tasks_vars, default='UNDEF') }}"
-lp_tasks_dict: "{{ dict(lp_tasks_vars|zip(lp_tasks_vals))|dict2items|
-                   selectattr('value', 'boolean')|items2dict }}"
-lp_tasks_enabled: "{{ lp_tasks_dict|dict2items|selectattr('value')|map(attribute='key') }}"
-lp_tasks_disabled: "{{ lp_tasks_dict|dict2items|rejectattr('value')|map(attribute='key') }}"
+lp_tasks_dict: "{{ dict(lp_tasks_vars | zip(lp_tasks_vals)) | dict2items |
+                   selectattr('value', 'boolean') | items2dict }}"
+lp_tasks_enabled: "{{ lp_tasks_dict | dict2items | selectattr('value') | map(attribute='key') }}"
+lp_tasks_disabled: "{{ lp_tasks_dict | dict2items | rejectattr('value') | map(attribute='key') }}"
+
+# EOF

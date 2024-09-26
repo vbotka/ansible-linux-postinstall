@@ -4,4 +4,4 @@ network:
   version: {{ lp_netplan_version }}
   renderer: {{ lp_netplan_renderer }}
   {{ item.category }}:
-    {{ item.conf|to_yaml|indent(4) }}
+    {{ item.conf | to_yaml | indent(4) }}
