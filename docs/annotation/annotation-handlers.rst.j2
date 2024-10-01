@@ -24,7 +24,7 @@ Synopsis: {{ i.synopsis }}
 
 {% if i.seealso | length > 0 %}
 .. seealso::
-  {% for ii in i.seealso.others | d([]) %}
+{% for ii in i.seealso.others | d([]) %}
    * {{ ii }}
 {% endfor %}
 {% endif %}
