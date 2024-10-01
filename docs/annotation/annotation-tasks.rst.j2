@@ -7,7 +7,7 @@ Tasks
 .. _as_{{ i.link }}:
 
 {{ i.file }}
-{{ '-' * i.file|length }}
+{{ '-' * i.file | length }}
 
 Synopsis: {{ i.synopsis }}
 
@@ -22,34 +22,34 @@ Synopsis: {{ i.synopsis }}
     :emphasize-lines: {{ i.lines }}
     :linenos:
 
-{% if i.seealso|default([])|length > 0 %}
+{% if i.seealso | d([]) | length > 0 %}
 .. seealso::
-{% for ii in i.seealso.handlers|default([]) %}
+{% for ii in i.seealso.handlers | d([]) %}
    * Handler :ref:`as_handler_{{ ii }}.yml`
 {% endfor %}
-{% for ii in i.seealso.templates|default([]) %}
+{% for ii in i.seealso.templates | d([]) %}
    * Template :ref:`as_template_{{ ii }}.j2`
 {% endfor %}
-{% for ii in i.seealso.others|default([]) %}
+{% for ii in i.seealso.others | d([]) %}
    * {{ ii }}
 {% endfor %}
 {% endif %}
 
-{% if i.notes|default([])|length > 0 %}
+{% if i.notes | d([]) | length > 0 %}
 .. note::
 {% for note in i.notes %}
    * {{ note }}
 {% endfor %}
 {% endif %}
 
-{% if i.hints|default([])|length > 0 %}
+{% if i.hints | d([]) | length > 0 %}
 .. hint::
 {% for hint in i.hints %}
    * {{ hint }}
 {% endfor %}
 {% endif %}
 
-{% if i.warnings|default([])|length > 0 %}
+{% if i.warnings | d([]) | length > 0 %}
 .. warning::
 {% for warning in i.warnings %}
    * {{ warning }}
