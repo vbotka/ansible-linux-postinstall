@@ -1,14 +1,12 @@
 ---
-
-- name: apparmor disable profile
+- name: Apparmor disable profile
   ansible.builtin.command:
     cmd: >
       apparmor_parser -R /etc/apparmor.d/{{ apparmor_item_path.stdout }}
 
-- name: apparmor enforce profile
+- name: Apparmor enforce profile
   ansible.builtin.command:
     cmd: >
       apparmor_parser -r /etc/apparmor.d/{{ apparmor_item_path.stdout }}
 
 # EOF
-...

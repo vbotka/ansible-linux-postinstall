@@ -1,26 +1,26 @@
 ---
 # linux_postinstall bluetooth
 
-- name: "bluetooth: Debug"
+- name: "Bluetooth: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_bluetooth_enable: {{ lp_bluetooth_enable }}
       lp_bluetooth_main_conf:
-        {{ lp_bluetooth_main_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_bluetooth_main_conf | to_yaml(indent=2) | indent(2) }}
       lp_bluetooth_ini:
-        {{ lp_bluetooth_ini|to_yaml(indent=2)|indent(2) }}
+        {{ lp_bluetooth_ini | to_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_bluetooth_debug|bool
   tags: lp_bluetooth_debug
 
-- name: "bluetooth: Configure /etc/bluetooth/main.conf"
+- name: "Bluetooth: Configure /etc/bluetooth/main.conf"
   ansible.builtin.lineinfile:
     dest: /etc/bluetooth/main.conf
-    regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
-    insertbefore: '^[\s#]*{{ item.key }}(.*)$'
+    regexp: ^\s*{{ item.key }}\s*=\s*(.*)$
+    insertbefore: ^[\s#]*{{ item.key }}(.*)$
     line: "{{ item.key }} = {{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_bluetooth_main_conf }}"
@@ -29,7 +29,7 @@
   notify: restart bluetooth
   tags: lp_bluetooth_conf
 
-- name: "bluetooth: Configure bluetooth"
+- name: "Bluetooth: Configure bluetooth"
   community.general.ini_file:
     path: "{{ item.0.path }}"
     mode: "{{ item.0.mode }}"
@@ -43,23 +43,22 @@
   notify: restart bluetooth
   tags: lp_bluetooth_ini
 
-- name: "bluetooth: Service {{ state }} and {{ enable }}"
+- name: "Bluetooth: Service {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_bluetooth_service }}"
     state: "{{ state }}"
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_bluetooth_enable|bool|d(false) }}"
-    state: "{{ lp_bluetooth_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_bluetooth_enable | bool | d(false) }}"
+    state: "{{ lp_bluetooth_state | d(default_state) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_bluetooth_service
 
-- name: "bluetooth: Debug service"
+- name: "Bluetooth: Debug service"
   ansible.builtin.debug:
     var: result
   when: lp_bluetooth_debug|bool
 
 # EOF
-...

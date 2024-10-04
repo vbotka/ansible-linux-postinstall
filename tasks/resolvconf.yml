@@ -1,7 +1,7 @@
 ---
 # linux_postinstall resolvconf
 
-- name: "resolvconf: Debug lp_resolvconf_debug={{ lp_resolvconf_debug }}"
+- name: "Resolvconf: Debug lp_resolvconf_debug={{ lp_resolvconf_debug }}"
   when: lp_resolvconf_debug | bool
   tags: lp_resolvconf_debug
   vars:
@@ -24,7 +24,7 @@
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
 
-- name: "resolvconf: Install packages"
+- name: "Resolvconf: Install packages"
   when: lp_resolvconf_install | bool
   tags: lp_resolvconf_packages
   vars:
@@ -37,7 +37,7 @@
     name: vbotka.linux_lib
     tasks_from: install_package.yml
 
-- name: "resolvconf: Configure lp_resolvconf_conf"
+- name: "Resolvconf: Configure lp_resolvconf_conf"
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -51,7 +51,7 @@
   notify: restart resolvconf
   tags: lp_resolvconf_confd_head
 
-- name: "resolvconf: Service {{ state }} and {{ enable }}"
+- name: "Resolvconf: Service {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_resolvconf_service }}"
     state: "{{ state }}"
@@ -64,11 +64,10 @@
     enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_resolvconf_service
 
-- name: "resolvconf: Debug service lp_resolvconf_debug={{ lp_resolvconf_debug }}"
+- name: "Resolvconf: Debug service lp_resolvconf_debug={{ lp_resolvconf_debug }}"
   when: lp_resolvconf_debug | bool
   tags: lp_resolvconf_service
   ansible.builtin.debug:
     var: result
 
 # EOF
-...

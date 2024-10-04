@@ -1,7 +1,7 @@
 ---
 # linux_postinstall reboot
 
-- name: "reboot Debug"
+- name: Reboot Debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -18,43 +18,40 @@
   when: lp_reboot_debug|bool
   tags: lp_reboot_debug
 
-- name: "reboot: Debian test {{ lp_reboot_required_file }}"
+- name: "Reboot: Debian test {{ lp_reboot_required_file }}"
+  when: ansible_os_family == 'Debian'
+
   block:
-    - name: "reboot: Stat {{ lp_reboot_required_file }}"
+    - name: "Reboot: Stat {{ lp_reboot_required_file }}"
       ansible.builtin.stat:
         path: "{{ lp_reboot_required_file }}"
       register: reboot_required_file_status
-    - name: "reboot: Set reboot_required"
+    - name: "Reboot: Set reboot_required"
       ansible.builtin.set_fact:
-        reboot_required: "{{ reboot_required_file_status.exists|
-                             default(false) }}"
-  when: ansible_os_family == 'Debian'
+        reboot_required: "{{ reboot_required_file_status.exists | default(false) }}"
+- name: "Reboot: RedHat test {{ lp_reboot_required_command }}"
+  when: ansible_os_family == 'RedHat'
 
-- name: "reboot: RedHat test {{ lp_reboot_required_command }}"
   block:
-    - name: "reboot: Run {{ lp_reboot_required_command }}"
+    - name: "Reboot: Run {{ lp_reboot_required_command }}"
       ansible.builtin.command:
         cmd: >
           {{ lp_reboot_required_command }}
       register: reboot_required_cmd_status
-    - name: "reboot: Set reboot_required"
+    - name: "Reboot: Set reboot_required"
       ansible.builtin.set_fact:
-        reboot_required: "{{ (reboot_required_cmd_status.rc != 0)|
-                              ternary(true, false) }}"
-  when: ansible_os_family == 'RedHat'
-
-- name: "reboot: Debug reboot_required"
+        reboot_required: "{{ (reboot_required_cmd_status.rc != 0) | ternary(true, false) }}"
+- name: "Reboot: Debug reboot_required"
   ansible.builtin.debug:
     var: reboot_required
   when: lp_reboot_debug|bool
 
-- name: "reboot: Reboot and wait for connection"
+- name: "Reboot: Reboot and wait for connection"
   ansible.builtin.reboot:
     connect_timeout: "{{ lp_reboot_wait_connect_timeout }}"
     post_reboot_delay: "{{ lp_reboot_wait_delay }}"
     reboot_timeout: "{{ lp_reboot_wait_timeout }}"
-  when: (reboot_required|default(false) and (not lp_reboot_required_ignore)) or
-        lp_reboot_force|bool
+  when: (reboot_required|default(false) and (not lp_reboot_required_ignore)) or lp_reboot_force|bool
 
 # - name: "reboot: Reboot and wait for connection"
 #   block:
@@ -72,4 +69,3 @@
 #         (not lp_reboot_required_ignore)) or lp_reboot_force
 
 # EOF
-...

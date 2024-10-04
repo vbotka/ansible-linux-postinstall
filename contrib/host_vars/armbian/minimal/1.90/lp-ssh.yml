@@ -12,14 +12,14 @@ lp_ssh_ServerAliveInterval: "420"
 lp_ssh_config:
   - host: "*"
     conf:
-      - {key: "SendEnv", val: "LANG LC_*"}
-      - {key: "HashKnownHosts", val: "no"}
-      - {key: "GSSAPIAuthentication", val: "yes"}
-      - {key: Protocol, val: "{{ lp_ssh_Protocol }}"}
-      - {key: ForwardAgent, val: "{{ lp_ssh_ForwardAgent }}"}
-      - {key: ForwardX11, val: "{{ lp_ssh_ForwardX11 }}"}
-      - {key: HostbasedAuthentication, val: "{{ lp_ssh_HostbasedAuthentication }}"}
-      - {key: StrictHostKeyChecking, val: "{{ lp_ssh_StrictHostKeyChecking }}"}
-      - {key: Ciphers, val: "{{ lp_ssh_Ciphers }}"}
-      - {key: Tunnel, val: "{{ lp_ssh_Tunnel }}"}
-      - {key: ServerAliveInterval, val: "{{ lp_ssh_ServerAliveInterval }}"}
+      - { key: SendEnv, val: LANG LC_* }
+      - { key: HashKnownHosts, val: "no" }
+      - { key: GSSAPIAuthentication, val: "yes" }
+      - { key: Protocol, val: "{{ lp_ssh_Protocol }}" }
+      - { key: ForwardAgent, val: "{{ lp_ssh_ForwardAgent }}" }
+      - { key: ForwardX11, val: "{{ lp_ssh_ForwardX11 }}" }
+      - { key: HostbasedAuthentication, val: "{{ lp_ssh_HostbasedAuthentication }}" }
+      - { key: StrictHostKeyChecking, val: "{{ lp_ssh_StrictHostKeyChecking }}" }
+      - { key: Ciphers, val: "{{ lp_ssh_Ciphers }}" }
+      - { key: Tunnel, val: "{{ lp_ssh_Tunnel }}" }
+      - { key: ServerAliveInterval, val: "{{ lp_ssh_ServerAliveInterval }}" }

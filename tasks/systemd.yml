@@ -2,7 +2,7 @@
 # linux_postinstall systemd
 
 # Vars
-- name: "systemd: Create empty dictionary my_services"
+- name: "Systemd: Create empty dictionary my_services"
   ansible.builtin.set_fact:
     my_services: {}
   tags:
@@ -10,44 +10,42 @@
     - lp_systemd_packages
     - lp_systemd_conf
 
-- name: "systemd: Set my_services"
+- name: "Systemd: Set my_services"
   ansible.builtin.set_fact:
-    my_services: "{{ my_services|
-                     combine({my_name: {'state': my_state,
-                                        'restart_or_reload': my_restart_or_reload }}) }}"
+    my_services: "{{ my_services | combine({my_name: {'state': my_state, 'restart_or_reload': my_restart_or_reload}}) }}"
   loop: "{{ lp_systemd_unit }}"
   loop_control:
     label: "{{ my_name }}"
   vars:
-    my_name: "{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
-    my_state: "{{ item.control.state|default('started') }}"
-    my_restart_or_reload: "{{ item.control.restart_or_reload|default('reloaded') }}"
+    my_name: "{{ item.name }}.{{ item.type | default(lp_systemd_unit_type) }}"
+    my_state: "{{ item.control.state | default('started') }}"
+    my_restart_or_reload: "{{ item.control.restart_or_reload | default('reloaded') }}"
   tags:
     - lp_systemd_debug
     - lp_systemd_packages
     - lp_systemd_conf
 
 # Debug
-- name: "systemd: Debug"
+- name: "Systemd: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_systemd_install: {{ lp_systemd_install }}
       lp_systemd_packages:
-        {{ lp_systemd_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_systemd_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_systemd_dir: {{ lp_systemd_dir }}
       lp_systemd_owner: {{ lp_systemd_owner }}
       lp_systemd_group: {{ lp_systemd_group }}
       lp_systemd_mode: {{ lp_systemd_mode }}
       lp_systemd_conf_no_extra_spaces: {{ lp_systemd_conf_no_extra_spaces }}
       lp_systemd_conf:
-        {{ lp_systemd_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_systemd_conf | to_yaml(indent=2) | indent(2) }}
       lp_systemd_unit_dir: {{ lp_systemd_unit_dir }}
       lp_systemd_unit_type: {{ lp_systemd_unit_type }}
       lp_systemd_unit:
-        {{ lp_systemd_unit|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_systemd_unit | to_nice_yaml(indent=2) | indent(2) }}
       my_services:
-        {{ my_services|to_yaml(indent=2)|indent(2) }}
+        {{ my_services | to_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
@@ -55,7 +53,7 @@
   tags: lp_systemd_debug
 
 # Packages
-- name: "systemd: Install packages"
+- name: "Systemd: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -63,13 +61,13 @@
   vars:
     ll_ipkg_list: "{{ lp_systemd_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_systemd_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_systemd_debug | bool }}"
   tags: lp_systemd_packages
 
 # Conf
-- name: "systemd: Configure systemd"
+- name: "Systemd: Configure systemd"
   community.general.ini_file:
     path: "{{ item.0.key }}"
     section: "{{ item.1.section }}"
@@ -82,99 +80,98 @@
     backup: "{{ lp_backup_conf }}"
   register: lp_systemd_conf_changes
   with_subelements:
-    - "{{ lp_systemd_conf|dict2items }}"
+    - "{{ lp_systemd_conf | dict2items }}"
     - value.conf
   loop_control:
     label: "{{ item.0.key }} {{ item.1.section }} {{ item.1.key }} {{ item.1.val }}"
   notify: reload systemd conf
   tags: lp_systemd_conf
 
-- name: "systemd: Debug conf results"
+- name: "Systemd: Debug conf results"
   ansible.builtin.debug:
     msg: "{{ lp_systemd_conf_changes.results }}"
   when: lp_systemd_debug|bool
   tags: lp_systemd_conf
 
-- name: "systemd: Debug loop conf results"
+- name: "Systemd: Debug loop conf results"
   ansible.builtin.debug:
     msg: "{{ my_service }} {{ my_state }} {{ my_restart_or_reload }}"
   loop: "{{ lp_systemd_conf_changes.results }}"
   loop_control:
-    label: "{{ item.path|default('NA') }}"  # 'lp_systemd: false' complains "no attribute 'path'"
+    label: "{{ item.path | default('NA') }}" # 'lp_systemd: false' complains "no attribute 'path'"
   vars:
     my_service: "{{ item.item.0.value.reload_service }}"
-    my_state: "{{ my_services[my_service].state|default('started') }}"
-    my_restart_or_reload: "{{ my_services[my_service].restart_or_reload|default('reloaded') }}"
+    my_state: "{{ my_services[my_service].state | default('started') }}"
+    my_restart_or_reload: "{{ my_services[my_service].restart_or_reload | default('reloaded') }}"
   when:
     - lp_systemd_debug|bool
     - lp_systemd_conf_changes.results|default([])|length > 0
   tags: lp_systemd_conf
 
 # Units
-- name: "systemd: Create units"
+- name: "Systemd: Create units"
   ansible.builtin.template:
     src: systemd-unit.j2
-    dest: "{{ item.path|default(lp_systemd_unit_dir) }}/{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
-    owner: "{{ item.owner|default(lp_systemd_owner) }}"
-    group: "{{ item.group|default(lp_systemd_group) }}"
-    mode: "{{ item.mode|default(lp_systemd_mode) }}"
+    dest: "{{ item.path | default(lp_systemd_unit_dir) }}/{{ item.name }}.{{ item.type | default(lp_systemd_unit_type) }}"
+    owner: "{{ item.owner | default(lp_systemd_owner) }}"
+    group: "{{ item.group | default(lp_systemd_group) }}"
+    mode: "{{ item.mode | default(lp_systemd_mode) }}"
     backup: "{{ lp_backup_conf }}"
   register: lp_systemd_unit_create_changes
   loop: "{{ lp_systemd_unit }}"
   loop_control:
-    label: "{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
+    label: "{{ item.name }}.{{ item.type | default(lp_systemd_unit_type) }}"
   notify: reload systemd units
   when: item.state|default('noop') == 'create'
   tags: lp_systemd_unit_create
 
-- name: "systemd: Debug unit create results"
+- name: "Systemd: Debug unit create results"
   ansible.builtin.debug:
     var: lp_systemd_unit_create_changes
   when: lp_systemd_debug|bool
   tags: lp_systemd_unit_create
 
-- name: "systemd: Remove units"
+- name: "Systemd: Remove units"
   ansible.builtin.file:
     state: absent
-    path: "{{ item.path|default(lp_systemd_unit_dir) }}/{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
+    path: "{{ item.path | default(lp_systemd_unit_dir) }}/{{ item.name }}.{{ item.type | default(lp_systemd_unit_type) }}"
   register: lp_systemd_unit_remove_changes
   loop: "{{ lp_systemd_unit }}"
   loop_control:
-    label: "{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
+    label: "{{ item.name }}.{{ item.type | default(lp_systemd_unit_type) }}"
   when: item.state|default('noop') == 'absent'
   tags: lp_systemd_unit_remove
 
-- name: "systemd: Debug unit remove results"
+- name: "Systemd: Debug unit remove results"
   ansible.builtin.debug:
     var: lp_systemd_unit_remove_changes
   when: lp_systemd_debug|bool
   tags: lp_systemd_unit_remove
 
-- name: "systemd: Control units"
+- name: "Systemd: Control units"
   ansible.builtin.systemd:
-    name: "{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
-    daemon_reexec: "{{ item.control.daemon_reexec|default(omit) }}"
-    daemon_reload: "{{ item.control.daemon_reload|default(omit) }}"
-    enabled: "{{ item.control.enabled|default(omit) }}"
-    force: "{{ item.control.force|default(omit) }}"
-    masked: "{{ item.control.masked|default(omit) }}"
-    no_block: "{{ item.control.no_block|default(omit) }}"
-    scope: "{{ item.control.scope|default(omit) }}"
-    state: "{{ item.control.state|default(omit) }}"
+    name: "{{ item.name }}.{{ item.type | default(lp_systemd_unit_type) }}"
+    daemon_reexec: "{{ item.control.daemon_reexec | default(omit) }}"
+    daemon_reload: "{{ item.control.daemon_reload | default(omit) }}"
+    enabled: "{{ item.control.enabled | default(omit) }}"
+    force: "{{ item.control.force | default(omit) }}"
+    masked: "{{ item.control.masked | default(omit) }}"
+    no_block: "{{ item.control.no_block | default(omit) }}"
+    scope: "{{ item.control.scope | default(omit) }}"
+    state: "{{ item.control.state | default(omit) }}"
   register: lp_systemd_unit_control_changes
   loop: "{{ lp_systemd_unit }}"
   loop_control:
-    label: "{{ item.name }}.{{ item.type|default(lp_systemd_unit_type) }}"
+    label: "{{ item.name }}.{{ item.type | default(lp_systemd_unit_type) }}"
   when:
     - item.control|default([])|length > 0
     - not (item.name|regex_search('^(.*)@\.\w+$'))
   tags: lp_systemd_unit_control
 
-- name: "systemd: Debug unit control results"
+- name: "Systemd: Debug unit control results"
   ansible.builtin.debug:
     var: lp_systemd_unit_control_changes
   when: lp_systemd_debug|bool
   tags: lp_systemd_unit_control
 
 # EOF
-...

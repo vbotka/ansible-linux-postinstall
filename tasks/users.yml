@@ -1,68 +1,67 @@
 ---
 # linux_postinstall users
 
-- name: "users: Debug"
+- name: "Users: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_users_nolog: {{ lp_users_nolog }}
       lp_users:
-        {{ lp_users|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_users | to_nice_yaml(indent=2) | indent(2) }}
       lp_users_groups:
-        {{ lp_users_groups|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_users_groups | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_users_debug|bool
   tags: lp_users_debug
 
-- name: "users: Manage user accounts"
+- name: "Users: Manage user accounts"
   ansible.builtin.user:
     name: "{{ item.name }}"
-    authorization: "{{ item.authorization|default(omit) }}"
-    comment: "{{ item.comment|default(omit) }}"
-    create_home: "{{ item.create_home|default(omit) }}"
-    expires: "{{ item.expires|default(omit) }}"
-    force: "{{ item.force|default(omit) }}"
-    generate_ssh_key: "{{ item.generate_ssh_key|default(omit) }}"
-    group: "{{ item.group|default(omit) }}"
-    hidden: "{{ item.hidden|default(omit) }}"
-    home: "{{ item.home|default(omit) }}"
-    local: "{{ item.local|default(omit) }}"
-    login_class: "{{ item.login_class|default(omit) }}"
-    move_home: "{{ item.move_home|default(omit) }}"
-    non_unique: "{{ item.non_unique|default(omit) }}"
-    password: "{{ item.password|default(omit) }}"
-    password_lock: "{{ item.password_lock|default(omit) }}"
-    profile: "{{ item.profile|default(omit) }}"
-    remove: "{{ item.remove|default(omit) }}"
-    role: "{{ item.role|default(omit) }}"
-    seuser: "{{  item.seuser|default(omit) }}"
-    shell: "{{ item.shell|default(omit) }}"
-    skeleton: "{{ item.skeleton|default(omit) }}"
-    ssh_key_bits: "{{ item.ssh_key_bits|default(omit) }}"
-    ssh_key_comment: "{{ item.ssh_key_comment|default(omit) }}"
-    ssh_key_file: "{{ item.ssh_key_file|default(omit) }}"
-    ssh_key_passphrase: "{{ item.ssh_key_passphrase|default(omit) }}"
-    ssh_key_type: "{{ item.ssh_key_type|default(omit) }}"
-    state: "{{ item.state|default(omit) }}"
-    system: "{{ item.system|default(omit) }}"
-    uid: "{{ item.uid|default(omit) }}"
-    update_password: "{{ item.update_password|default(omit) }}"
+    authorization: "{{ item.authorization | default(omit) }}"
+    comment: "{{ item.comment | default(omit) }}"
+    create_home: "{{ item.create_home | default(omit) }}"
+    expires: "{{ item.expires | default(omit) }}"
+    force: "{{ item.force | default(omit) }}"
+    generate_ssh_key: "{{ item.generate_ssh_key | default(omit) }}"
+    group: "{{ item.group | default(omit) }}"
+    hidden: "{{ item.hidden | default(omit) }}"
+    home: "{{ item.home | default(omit) }}"
+    local: "{{ item.local | default(omit) }}"
+    login_class: "{{ item.login_class | default(omit) }}"
+    move_home: "{{ item.move_home | default(omit) }}"
+    non_unique: "{{ item.non_unique | default(omit) }}"
+    password: "{{ item.password | default(omit) }}"
+    password_lock: "{{ item.password_lock | default(omit) }}"
+    profile: "{{ item.profile | default(omit) }}"
+    remove: "{{ item.remove | default(omit) }}"
+    role: "{{ item.role | default(omit) }}"
+    seuser: "{{  item.seuser | default(omit) }}"
+    shell: "{{ item.shell | default(omit) }}"
+    skeleton: "{{ item.skeleton | default(omit) }}"
+    ssh_key_bits: "{{ item.ssh_key_bits | default(omit) }}"
+    ssh_key_comment: "{{ item.ssh_key_comment | default(omit) }}"
+    ssh_key_file: "{{ item.ssh_key_file | default(omit) }}"
+    ssh_key_passphrase: "{{ item.ssh_key_passphrase | default(omit) }}"
+    ssh_key_type: "{{ item.ssh_key_type | default(omit) }}"
+    state: "{{ item.state | default(omit) }}"
+    system: "{{ item.system | default(omit) }}"
+    uid: "{{ item.uid | default(omit) }}"
+    update_password: "{{ item.update_password | default(omit) }}"
   loop: "{{ lp_users }}"
   loop_control:
     label: "{{ item.name }}"
   no_log: "{{ lp_users_nolog|bool }}"
   tags: lp_users_accounts
 
-- name: "users: Add users to additional groups"
+- name: "Users: Add users to additional groups"
   ansible.builtin.user:
     name: "{{ item.name }}"
     groups: "{{ item.groups }}"
-    append: "{{ item.append|default(true) }}"
+    append: "{{ item.append | default(true) }}"
   loop: "{{ lp_users_groups }}"
   loop_control:
     label: "{{ item.name }}: {{ item.groups }}"
   tags: lp_users_groups
 
 #  EOF
-...

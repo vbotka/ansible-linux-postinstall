@@ -1,7 +1,7 @@
 ---
 # linux_postinstall wpasupplicant
 
-- name: "wpasupplicant: Debug lp_wpasupplicant_debug={{ lp_wpasupplicant_debug }}"
+- name: "Wpasupplicant: Debug lp_wpasupplicant_debug={{ lp_wpasupplicant_debug }}"
   when: lp_wpasupplicant_debug | bool
   vars:
     msg: |-
@@ -51,7 +51,7 @@
     msg: "{{ '{}'.format(msg) }}"
   tags: lp_wpasupplicant_debug
 
-- name: "wpasupplicant: Install packages"
+- name: "Wpasupplicant: Install packages"
   when: lp_wpasupplicant_install | bool
   ansible.builtin.import_role:
     name: vbotka.linux_lib
@@ -64,12 +64,11 @@
     ll_debug: "{{ lp_wpasupplicant_debug | bool }}"
   tags: lp_wpasupplicant_packages
 
-  # wpa_action script
+# wpa_action script
 - name: Action script for wpa_cli
   when: lp_wpa_action_script | bool
   block:
-
-    - name: "wpasupplicant: Create dir {{ lp_wpa_action_script_dir }}"
+    - name: "Wpasupplicant: Create dir {{ lp_wpa_action_script_dir }}"
       ansible.builtin.file:
         state: directory
         path: "{{ lp_wpa_action_script_dir }}"
@@ -78,7 +77,7 @@
         mode: "{{ lp_wpa_action_script_dir_mode }}"
       tags: lp_wpa_action_script_dir
 
-    - name: "wpasupplicant: Create script {{ lp_wpa_action_script_file }}"
+    - name: "Wpasupplicant: Create script {{ lp_wpa_action_script_file }}"
       ansible.builtin.template:
         src: wpa_action.sh.j2
         dest: "{{ lp_wpa_action_script_file }}"
@@ -88,8 +87,8 @@
         backup: "{{ lp_backup_conf }}"
       tags: lp_wpa_action_script
 
-  # Conf
-- name: "wpasupplicant: Create wpasupplicant configuration lp_wpasupplicant_debug_classified={{ lp_wpasupplicant_debug_classified }}"
+# Conf
+- name: "Wpasupplicant: Create wpasupplicant configuration lp_wpasupplicant_debug_classified={{ lp_wpasupplicant_debug_classified }}"
   ansible.builtin.template:
     src: wpa_supplicant.conf.j2
     dest: "{{ lp_wpasupplicant_conf_dir }}/{{ my_filename }}"
@@ -107,14 +106,14 @@
     my_filename: "{{ lp_wpasupplicant_conf_file[item.type | d('default')] }}"
   tags: lp_wpasupplicant_conf
 
-- name: "wpasupplicant: Debug: Create wpasupplicant configuration lp_wpasupplicant_debug_classified={{ lp_wpasupplicant_debug_classified }}"
+- name: "Wpasupplicant: Debug: Create wpasupplicant configuration lp_wpasupplicant_debug_classified={{ lp_wpasupplicant_debug_classified }}"
   ansible.builtin.debug:
     var: lp_wpasupplicant_conf_changes
   when: lp_wpasupplicant_debug_classified | bool
   tags: lp_wpasupplicant_conf
 
-  # Service
-- name: "wpasupplicant: Configure wpa_supplicant services"
+# Service
+- name: "Wpasupplicant: Configure wpa_supplicant services"
   community.general.ini_file:
     path: "{{ item.0.path }}/{{ item.0.service }}"
     owner: "{{ item.0.owner | d(omit) }}"
@@ -128,19 +127,19 @@
     value: "{{ item.1.value | d(omit) }}"
     backup: "{{ lp_backup_conf }}"
   register: lp_wpasupplicant_service_conf_changes
-  notify: "{{ item.0.handlers | d(omit) }}"  # TODO: see handlers
+  notify: "{{ item.0.handlers | d(omit) }}" # TODO: see handlers
   loop: "{{ lp_wpasupplicant_service_conf | subelements('ini', {'skip_missing': True}) }}"
   loop_control:
     label: "{{ item.0.path }}/{{ item.0.service }}"
   tags: lp_wpasupplicant_service_conf
 
-- name: "wpasupplicant: Debug: Configure wpasupplicant services lp_wpasupplicant_debug={{ lp_wpasupplicant_debug }}"
+- name: "Wpasupplicant: Debug: Configure wpasupplicant services lp_wpasupplicant_debug={{ lp_wpasupplicant_debug }}"
   ansible.builtin.debug:
     var: lp_wpasupplicant_service_conf_changes
   when: lp_wpasupplicant_debug | bool
   tags: lp_wpasupplicant_service_conf
 
-- name: "wpasupplicant: Manage wpa_supplicant services"
+- name: "Wpasupplicant: Manage wpa_supplicant services"
   ansible.builtin.service:
     name: "{{ my_service }}"
     state: "{{ item.state | d('started') }}"
@@ -158,11 +157,10 @@
     my_service: "{{ lp_wpasupplicant_service[item.type | d('default')] }}"
   tags: lp_wpasupplicant_service
 
-- name: "wpasupplicant: Debug: Manage wpa_supplicant services lp_wpasupplicant_debug_classified={{ lp_wpasupplicant_debug_classified }}"
+- name: "Wpasupplicant: Debug: Manage wpa_supplicant services lp_wpasupplicant_debug_classified={{ lp_wpasupplicant_debug_classified }}"
   ansible.builtin.debug:
     var: lp_wpasupplicant_service_changes
   when: lp_wpasupplicant_debug_classified | bool
   tags: lp_wpasupplicant_service
 
 # EOF
-...

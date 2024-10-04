@@ -1,10 +1,10 @@
 ---
 # linux_postinstall lid
 
-- name: "lid: Configure {{ lp_lid_logind_conf }}"
+- name: "Lid: Configure {{ lp_lid_logind_conf }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_lid_logind_conf }}"
-    regexp: '^\s*{{ item.var }}\s*=\s*(.*)$'
+    regexp: ^\s*{{ item.var }}\s*=\s*(.*)$
     line: "{{ item.var }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_lid_logind_conf_vars }}"
@@ -12,10 +12,10 @@
     label: "{{ item.var }}: {{ item.value }}"
   notify: logind message reboot
 
-- name: "lid: Configure {{ lp_lid_upower_conf }}"
+- name: "Lid: Configure {{ lp_lid_upower_conf }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_lid_upower_conf }}"
-    regexp: '^\s*{{ item.var }}\s*=\s*(.*)$'
+    regexp: ^\s*{{ item.var }}\s*=\s*(.*)$
     line: "{{ item.var }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_lid_upower_conf_vars }}"
@@ -23,4 +23,3 @@
     label: "{{ item.var }}: {{ item.value }}"
 
 # EOF
-...

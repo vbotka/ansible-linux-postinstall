@@ -1,9 +1,7 @@
 ---
-
-- name: update grub
+- name: Update grub
   ansible.builtin.command:
     cmd: >
       /usr/sbin/update-grub
 
 # EOF
-...

@@ -1,8 +1,7 @@
 ---
-
 # Service
 
-- name: reload udev service
+- name: Reload udev service
   listen: reload udev
   ansible.builtin.service:
     name: "{{ lp_udev_service }}"
@@ -11,7 +10,7 @@
     - lp_udev_module == 'service'
     - lp_udev_enable | bool
 
-- name: restart udev service
+- name: Restart udev service
   listen: restart udev
   ansible.builtin.service:
     name: "{{ lp_udev_service }}"
@@ -22,7 +21,7 @@
 
 # Systemd
 
-- name: reload udev systemd
+- name: Reload udev systemd
   listen: reload udev
   ansible.builtin.systemd_service:
     name: "{{ lp_udev_service }}"
@@ -31,7 +30,7 @@
     - lp_udev_module == 'systemd'
     - lp_udev_enable | bool
 
-- name: restart udev systemd
+- name: Restart udev systemd
   listen: restart udev
   ansible.builtin.systemd_service:
     name: "{{ lp_udev_service }}"
@@ -42,7 +41,7 @@
 
 # SysV
 
-- name: reload udev SysV
+- name: Reload udev SysV
   listen: reload udev
   ansible.builtin.sysvinit:
     name: "{{ lp_udev_service }}"
@@ -51,7 +50,7 @@
     - lp_udev_module == 'sysvinit'
     - lp_udev_enable | bool
 
-- name: restart udev SysV
+- name: Restart udev SysV
   listen: restart udev
   ansible.builtin.sysvinit:
     name: "{{ lp_udev_service }}"
@@ -61,4 +60,3 @@
     - lp_udev_enable | bool
 
 # EOF
-...

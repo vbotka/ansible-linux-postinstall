@@ -1,22 +1,22 @@
 ---
 # linux_postinstall tlp
 
-- name: "tlp: Debug"
+- name: "Tlp: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_tlp_enable: {{ lp_tlp_enable }}
       lp_tlp_install: {{ lp_tlp_install }}
       lp_tlp_packages:
-        {{ lp_tlp_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_tlp_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_tlp_thinkpad: {{ lp_tlp_thinkpad }}
       lp_tlp_packages_tp:
-        {{ lp_tlp_packages_tp|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_tlp_packages_tp | to_nice_yaml(indent=2) | indent(2) }}
       lp_tlp_config_file: {{ lp_tlp_config_file }}
       lp_tlp_config:
-        {{ lp_tlp_config|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_tlp_config | to_nice_yaml(indent=2) | indent(2) }}
       lp_tlp_services:
-        {{ lp_tlp_services|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_tlp_services | to_nice_yaml(indent=2) | indent(2) }}
       lp_tlp_restart_service: {{ lp_tlp_restart_service }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
@@ -24,7 +24,7 @@
   when: lp_tlp_debug|bool
   tags: lp_tlp_debug
 
-- name: "tlp: Install packages"
+- name: "Tlp: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -32,12 +32,12 @@
   vars:
     ll_ipkg_list: "{{ lp_tlp_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_tlp_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_tlp_debug | bool }}"
   tags: lp_tlp_packages
 
-- name: "tlp: Install packages for ThinkPad"
+- name: "Tlp: Install packages for ThinkPad"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -45,18 +45,18 @@
   vars:
     ll_ipkg_list: "{{ lp_tlp_packages_tp }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_tlp_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_tlp_debug | bool }}"
   tags: lp_tlp_packages
 
-- name: "tlp: Configure {{ lp_tlp_config_file }}"
+- name: "Tlp: Configure {{ lp_tlp_config_file }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_tlp_config_file }}"
-    regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
+    regexp: ^\s*{{ item.key }}\s*=\s*(.*)$
     line: "{{ item.key }}={{ item.value }}"
     create: true
-    mode: '0644'
+    mode: "0644"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_tlp_config }}"
   loop_control:
@@ -64,7 +64,7 @@
   notify: restart tlp
   tags: lp_tlp_conf
 
-- name: "tlp: Services start/stop and enable/disable"
+- name: "Tlp: Services start/stop and enable/disable"
   ansible.builtin.service:
     name: "{{ srv_name }}"
     state: "{{ srv_stat }}"
@@ -76,8 +76,7 @@
     srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
     srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
     srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
-    default_stat: "{{ srv_enbl|bool|ternary('started', 'stopped') }}"
+    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
   tags: lp_tlp_service
 
 # EOF
-...

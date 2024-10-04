@@ -1,6 +1,6 @@
 ---
 lp_postfix: false
-lp_postfix_inet_protocols: "ipv4"
+lp_postfix_inet_protocols: ipv4
 lp_postfix_main_conf:
-  - {key: inet_protocols, value: "{{ lp_postfix_inet_protocols }}"}
-  - {key: myhostname, value: "{{ lp_fqdn }}"}
+  - { key: inet_protocols, value: "{{ lp_postfix_inet_protocols }}" }
+  - { key: myhostname, value: "{{ lp_fqdn }}" }

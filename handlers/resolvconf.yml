@@ -1,16 +1,14 @@
 ---
-
-- name: restart resolvconf
+- name: Restart resolvconf
   ansible.builtin.service:
     name: "{{ lp_resolvconf_service }}"
     state: restarted
   when: lp_resolvconf_enable|bool
 
-- name: reload resolvconf
+- name: Reload resolvconf
   ansible.builtin.service:
     name: "{{ lp_resolvconf_service }}"
     state: reloaded
   when: lp_resolvconf_enable|bool
 
 # EOF
-...

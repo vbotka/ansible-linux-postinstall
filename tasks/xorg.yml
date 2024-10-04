@@ -1,26 +1,25 @@
 ---
 # linux_postinstall xorg
 
-- name: "xorg: Debug"
+- name: "Xorg: Debug"
   vars:
     msg: |-
       lp_xorg_conf:
-        {{ lp_xorg_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_xorg_conf | to_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_xorg_debug|bool
   tags: lp_xorg_debug
 
-- name: "xorg: Configure {{ lp_xorg_conf_dir }}"
+- name: "Xorg: Configure {{ lp_xorg_conf_dir }}"
   ansible.builtin.template:
     src: xorg.conf.j2
     dest: "{{ lp_xorg_conf_dir }}/{{ item.file }}"
     backup: "{{ lp_backup_conf }}"
-    mode: '0644'
+    mode: "0644"
   loop: "{{ lp_xorg_conf }}"
   loop_control:
     label: "{{ item.file }}"
   tags: lp_xorg_conf
 
 # EOF
-...

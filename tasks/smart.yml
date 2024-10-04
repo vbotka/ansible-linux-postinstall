@@ -1,20 +1,20 @@
 ---
 # linux_postinstall smart
 
-- name: "smart: Debug"
+- name: "Smart: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_smart_install: {{ lp_smart_install }}
       lp_smart_packages:
-        {{ lp_smart_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_smart_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_smart_debug|bool
   tags: lp_smart_debug
 
-- name: "smart: Install packages"
+- name: "Smart: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -22,16 +22,16 @@
   vars:
     ll_ipkg_list: "{{ lp_smart_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_smart_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_smart_debug | bool }}"
   tags: lp_smart_packages
 
-- name: "smart: Configure {{ lp_smart_conf_file }}. Do not scan for devices"
+- name: "Smart: Configure {{ lp_smart_conf_file }}. Do not scan for devices"
   ansible.builtin.lineinfile:
     state: absent
     dest: "{{ lp_smart_conf_file }}"
-    regexp: '^\s*DEVICESCAN\s*(.*)$'
+    regexp: ^\s*DEVICESCAN\s*(.*)$
     owner: "{{ lp_smart_conf_owner }}"
     group: "{{ lp_smart_conf_group }}"
     mode: "{{ lp_smart_conf_mode }}"
@@ -41,7 +41,7 @@
   notify: reload smart
   tags: lp_smart_conf
 
-- name: "smart: Configure devices in {{ lp_smart_conf_file }}"
+- name: "Smart: Configure devices in {{ lp_smart_conf_file }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_smart_conf_file }}"
     regexp: "{{ item.regexp }}"
@@ -57,24 +57,23 @@
   notify: reload smart
   tags: lp_smart_conf
 
-- name: "smart: Service {{ state }} and {{ enable }}"
+- name: "Smart: Service {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_smart_service }}"
     state: "{{ state }}"
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_smart_enable|bool|d(false) }}"
-    state: "{{ lp_smart_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_smart_enable | bool | d(false) }}"
+    state: "{{ lp_smart_state | d(default_state) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_smart_service
 
-- name: "smart: Debug service"
+- name: "Smart: Debug service"
   ansible.builtin.debug:
     var: result
   when: lp_smart_debug|bool
   tags: lp_smart_service
 
 # EOF
-...

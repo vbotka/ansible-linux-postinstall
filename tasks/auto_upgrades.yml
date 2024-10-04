@@ -1,32 +1,31 @@
 ---
 # linux_postinstall auto_upgrades
 
-- name: "auto_upgrades: Configure /etc/apt/apt.conf.d/20auto-upgrades"
+- name: "Auto_upgrades: Configure /etc/apt/apt.conf.d/20auto-upgrades"
   ansible.builtin.template:
     src: auto-upgrades.j2
     dest: /etc/apt/apt.conf.d/20auto-upgrades
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
     backup: "{{ lp_backup_conf }}"
 
-- name: "auto_upgrades: Service {{ state }} and {{ enable }}"
+- name: "Auto_upgrades: Service {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_auto_upgrades_service }}"
     state: "{{ state }}"
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_auto_upgrades_enable|bool }}"
-    state: "{{ lp_auto_upgrades_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_auto_upgrades_enable | bool }}"
+    state: "{{ lp_auto_upgrades_state | d(default_state) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_auto_upgrades_service
 
-- name: "auto_upgrades: Debug service"
+- name: "Auto_upgrades: Debug service"
   ansible.builtin.debug:
     var: result
   when: lp_auto_upgrades_debug|bool
 
 # EOF
-...

@@ -2,12 +2,12 @@
 # linux_postinstall netplan
 
 # Configure 01-network-manager-all.yaml only if it already exists
-- name: "netplan: Stat {{ lp_netplan_default }}"
+- name: "Netplan: Stat {{ lp_netplan_default }}"
   ansible.builtin.stat:
     path: "{{ lp_netplan_root }}/{{ lp_netplan_default }}"
   register: result
 
-- name: "netplan: Configure {{ lp_netplan_root ~ '/' ~ lp_netplan_default }}"
+- name: "Netplan: Configure {{ lp_netplan_root ~ '/' ~ lp_netplan_default }}"
   ansible.builtin.template:
     src: netplan-default.j2
     dest: "{{ lp_netplan_root }}/{{ lp_netplan_default }}"
@@ -18,7 +18,7 @@
   notify: netplan apply
   when: result.stat.exists | d(false)
 
-- name: "netplan: Configure files in {{ lp_netplan_root }}"
+- name: "Netplan: Configure files in {{ lp_netplan_root }}"
   ansible.builtin.template:
     src: netplan-conf.j2
     dest: "{{ lp_netplan_root }}/{{ item.file }}"
@@ -32,4 +32,3 @@
   notify: netplan apply
 
 # EOF
-...

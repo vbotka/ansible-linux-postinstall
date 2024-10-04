@@ -1,8 +1,7 @@
 ---
-
-- name: gpgconf reload
+- name: Gpgconf reload
   ansible.builtin.command:
-    cmd: "gpgconf --reload {{ item.item.component }}"
+    cmd: gpgconf --reload {{ item.item.component }}
   loop: "{{ lp_gpg_conf_reg.results|selectattr('changed') }}"
   loop_control:
     label: "{{ item.item.owner }} {{ item.item.component }}"
@@ -10,4 +9,3 @@
   become_user: "{{ item.item.owner }}"
 
 # EOF
-...

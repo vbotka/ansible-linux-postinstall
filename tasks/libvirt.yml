@@ -1,7 +1,7 @@
 ---
 # linux_postinstall libvirt
 
-- name: "libvirt Debug"
+- name: Libvirt Debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -12,16 +12,16 @@
       lp_libvirt_conf_mode: {{ lp_libvirt_conf_mode }}
       lp_libvirt_conf_dir: {{ lp_libvirt_conf_dir }}
       lp_libvirt_packages:
-        {{ lp_libvirt_packages|to_nice_yaml|indent(2) }}
+        {{ lp_libvirt_packages | to_nice_yaml | indent(2) }}
       lp_libvirt_conf:
-        {{ lp_libvirt_conf|to_nice_yaml|indent(2) }}
+        {{ lp_libvirt_conf | to_nice_yaml | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_libvirt_debug|bool
   tags: lp_libvirt_debug
 
-- name: "libvirt: Install packages"
+- name: "Libvirt: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -29,15 +29,15 @@
   vars:
     ll_ipkg_list: "{{ lp_libvirt_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_libvirt_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_libvirt_debug | bool }}"
   tags: lp_libvirt_packages
 
-- name: "libvirt: Configure {{ lp_libvirt_conf_dir }}"
+- name: "Libvirt: Configure {{ lp_libvirt_conf_dir }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_libvirt_conf_dir }}/{{ item.0.key }}"
-    regexp: '^\s*{{ item.1.0 }}(\s|=)(.*)$'
+    regexp: ^\s*{{ item.1.0 }}(\s|=)(.*)$
     line: "{{ item.1.0 }} = {{ item.1.1 }}"
     state: "{{ item.1.2|default('present') }}"
     backup: "{{ lp_backup_conf }}"
@@ -45,44 +45,38 @@
     owner: "{{ item.0.owner|default('root') }}"
     group: "{{ item.0.group|default('root') }}"
     mode: "{{ item.0.mode|default('0644') }}"
-  loop: "{{ query('subelements',
-                  lp_libvirt_conf|dict2items,
-                  'value.conf',
-                  {'skip_missing': True}) }}"
+  loop: "{{ query('subelements', lp_libvirt_conf|dict2items, 'value.conf', {'skip_missing': True}) }}"
   loop_control:
-    label: "{{ item.0.key }}
-            {{ item.1.0 }}: {{ item.1.1 }}
-            {{ item.1.2|default('present') }}"
+    label: "{{ item.0.key }} {{ item.1.0 }}: {{ item.1.1 }} {{ item.1.2|default('present') }}"
   notify:
     - reload libvirtd
     - reload libvirt_guests
   tags: lp_libvirt_conf
 
-- name: "libvirt: Service {{ lp_libvirt_libvirtd_service }} {{ state }} and {{ enable }}"
+- name: "Libvirt: Service {{ lp_libvirt_libvirtd_service }} {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_libvirt_libvirtd_service }}"
     state: "{{ state }}"
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_libvirt_libvirtd_enable|bool|d(false) }}"
-    state: "{{ lp_libvirt_libvirtd_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_libvirt_libvirtd_enable | bool | d(false) }}"
+    state: "{{ lp_libvirt_libvirtd_state | d(default_state) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_libvirt_libvirtd_service
 
-- name: "libvirt: Service {{ lp_libvirt_guests_service }} {{ state }} and {{ enable }}"
+- name: "Libvirt: Service {{ lp_libvirt_guests_service }} {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_libvirt_guests_service }}"
     state: "{{ state }}"
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_libvirt_guests_enable|bool|d(false) }}"
-    state: "{{ lp_libvirt_guests_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_libvirt_guests_enable | bool | d(false) }}"
+    state: "{{ lp_libvirt_guests_state | d(default_state) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_libvirt_guests_service
 
 # EOF
-...

@@ -1,22 +1,22 @@
 ---
 # linux_postinstall grub
 
-- name: "grub: Debug"
+- name: "Grub: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_grub_default:
-        {{ lp_grub_default|to_yaml(indent=2)|indent(2) }}
+        {{ lp_grub_default | to_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_grub_debug|bool
   tags: lp_grub_debug
 
-- name: "grub: Configure /etc/default/grub"
+- name: "Grub: Configure /etc/default/grub"
   ansible.builtin.lineinfile:
     dest: /etc/default/grub
-    regexp: '^\s*{{ item.var }}\s*=(.*)$'
+    regexp: ^\s*{{ item.var }}\s*=(.*)$
     line: "{{ item.var }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_grub_default }}"
@@ -26,4 +26,3 @@
   tags: lp_grub_conf
 
 # EOF
-...

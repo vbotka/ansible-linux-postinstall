@@ -1,8 +1,8 @@
 ---
 # linux_postinstall authorized_keys
 
-- name: "authorized_key: Configure authorized_keys"
-  ansible.builtin.authorized_key:
+- name: "Authorized_key: Configure authorized_keys"
+  ansible.posix.authorized_key:
     user: "{{ item.user }}"
     key: "{{ item.key }}"
     manage_dir: true
@@ -10,7 +10,6 @@
   loop_control:
     label: "{{ item.user }} {{ arr.0 }} {{ arr.2 }}"
   vars:
-    arr: "{{ item.key|split }}"
+    arr: "{{ item.key | split }}"
 
 # EOF
-...

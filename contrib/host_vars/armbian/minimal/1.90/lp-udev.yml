@@ -1,7 +1,7 @@
 ---
 lp_udev_persistent_net_rules:
-  - {kernel: "eth*", mac: "AA:BB:CC:00:4d:7f", name: "eth0"}
-  - {kernel: "wlan*", mac: "AA:BB:CC:e9:5e:5a", name: "wlan0"}
+  - { kernel: eth*, mac: AA:BB:CC:00:4d:7f, name: eth0 }
+  - { kernel: wlan*, mac: AA:BB:CC:e9:5e:5a, name: wlan0 }
 
 lp_udev_hci_name_rules: []
 #  - { product: "Broadcom Bluetooth Device", name: "hci0"}

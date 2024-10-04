@@ -1,10 +1,8 @@
 ---
-
-- name: netplan apply
+- name: Netplan apply
   ansible.builtin.command:
     cmd: >
       netplan apply
   when: lp_netplan | bool
 
 # EOF
-...

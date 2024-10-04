@@ -1,9 +1,9 @@
 ---
 lp_netplan: true
-lp_netplan_renderer: "networkd"
+lp_netplan_renderer: networkd
 lp_netplan_conf:
-  - file: "10-ethernet.yaml"
-    category: "ethernets"
+  - file: 10-ethernet.yaml
+    category: ethernets
     conf: |
       eth0:
         optional: true

@@ -1,7 +1,7 @@
 ---
 # linux_postinstall acpi
 
-- name: "acpi: Debug lp_acpi_debug={{ lp_acpi_debug }}"
+- name: "Acpi: Debug lp_acpi_debug={{ lp_acpi_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -28,7 +28,7 @@
   when: lp_acpi_debug | bool
   tags: lp_acpi_debug
 
-- name: "acpi: Install packages"
+- name: "Acpi: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -41,7 +41,7 @@
     ll_debug: "{{ lp_acpi_debug | bool }}"
   tags: lp_acpi_packages
 
-- name: "acpi: Configure {{ lp_acpi_dir ~ '/events' }}"
+- name: "Acpi: Configure {{ lp_acpi_dir ~ '/events' }}"
   ansible.builtin.template:
     src: "{{ item.value.template }}"
     dest: "{{ lp_acpi_dir }}/events/{{ item.value.file }}"
@@ -55,7 +55,7 @@
   notify: restart acpid
   tags: lp_acpi_events
 
-- name: "acpi: Create actions in {{ lp_acpi_dir }}"
+- name: "Acpi: Create actions in {{ lp_acpi_dir }}"
   ansible.builtin.template:
     src: "{{ item.value.template }}"
     dest: "{{ lp_acpi_dir }}/{{ item.value.file }}"
@@ -69,7 +69,7 @@
   notify: restart acpid
   tags: lp_acpi_actions
 
-- name: "acpi: Service/State {{ state ~ '/' ~ enable }}"
+- name: "Acpi: Service/State {{ state ~ '/' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_acpi_service }}"
     state: "{{ state }}"
@@ -83,4 +83,3 @@
   tags: lp_acpi_service
 
 # EOF
-...

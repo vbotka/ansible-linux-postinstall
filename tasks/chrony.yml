@@ -1,7 +1,7 @@
 ---
 # linux_postinstall chrony
 
-- name: "chrony: Debug lp_chrony_debug={{ lp_chrony_debug }}"
+- name: "Chrony: Debug lp_chrony_debug={{ lp_chrony_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -34,24 +34,23 @@
   when: lp_chrony_sanity | bool
   tags: lp_chrony_sanity
   block:
-
-    - name: "chrony: sanity: Assert chrony and timesyncd packages mutually exclusive."
+    - name: "Chrony: sanity: Assert chrony and timesyncd packages mutually exclusive."
       ansible.builtin.assert:
         that: not (lp_chrony_install|bool and lp_timesyncd_install|bool)
         fail_msg: >
           [ERR] Packages for chrony and timesyncd are mutually exclusive.
 
-    - name: "chrony: sanity: Assert chrony and timesyncd services mutually exclusive."
+    - name: "Chrony: sanity: Assert chrony and timesyncd services mutually exclusive."
       ansible.builtin.assert:
         that: not (lp_chrony_enable|bool and lp_timesyncd_enable|bool)
         fail_msg: >
           [ERR] Services {{ lp_chrony_service }} and {{ lp_timesyncd_service }}
           are mutually exclusive.
 
-    - name: "chrony: sanity: Get package facts"
+    - name: "Chrony: sanity: Get package facts"
       ansible.builtin.package_facts:
 
-    - name: "chrony: sanity: Assert installed lp_chrony_packages in ansible_check_mode"
+    - name: "Chrony: sanity: Assert installed lp_chrony_packages in ansible_check_mode"
       ansible.builtin.assert:
         that: missing | length == 0
         fail_msg: >
@@ -61,7 +60,7 @@
         missing: "{{ lp_chrony_packages | difference(ansible_facts.packages) }}"
       when: ansible_check_mode
 
-- name: "chrony: Install packages"
+- name: "Chrony: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -76,20 +75,19 @@
 
 - name: Set lp_chrony_service_exists/found
   block:
-
-    - name: "chrony: Get Service facts"
+    - name: "Chrony: Get Service facts"
       ansible.builtin.service_facts:
 
-    - name: "chrony: Set lp_chrony_service_exists/found={{ exists ~ '/' ~ found }}"
+    - name: "Chrony: Set lp_chrony_service_exists/found={{ exists ~ '/' ~ found }}"
       ansible.builtin.set_fact:
         lp_chrony_service_exists: "{{ exists }}"
         lp_chrony_service_found: "{{ found }}"
       vars:
         service: "{{ lp_chrony_service | splitext | first }}.service"
         exists: "{{ service in ansible_facts.services }}"
-        found:  "{{ ansible_facts.services[service]['status']|d('not-found') != 'not-found' }}"
+        found: "{{ ansible_facts.services[service]['status'] | d('not-found') != 'not-found' }}"
 
-    - name: "chrony: Debug lp_timesyncd_service lp_timesyncd_debug={{ lp_timesyncd_debug }}"
+    - name: "Chrony: Debug lp_timesyncd_service lp_timesyncd_debug={{ lp_timesyncd_debug }}"
       ansible.builtin.debug:
         msg: |
           lp_chrony_service_exists: {{ lp_chrony_service_exists }}
@@ -102,7 +100,7 @@
         service: "{{ lp_chrony_service | splitext | first }}.service"
       when: lp_chrony_debug | bool
 
-- name: "chrony: Assert exists and found {{ lp_chrony_service }}"
+- name: "Chrony: Assert exists and found {{ lp_chrony_service }}"
   ansible.builtin.assert:
     that:
       - lp_chrony_service_exists
@@ -112,8 +110,7 @@
 
 - name: Configure, enable, start, or disable chrony
   block:
-
-    - name: "chrony: Keep original {{ lp_chrony_conf_file }}"
+    - name: "Chrony: Keep original {{ lp_chrony_conf_file }}"
       ansible.builtin.copy:
         src: "{{ lp_chrony_conf_file }}"
         dest: "{{ lp_chrony_conf_file }}.orig"
@@ -122,7 +119,7 @@
       when: lp_chrony_conf_file_orig | bool
       tags: lp_chrony_conf_orig
 
-    - name: "chrony: Configure {{ lp_chrony_conf_file }}"
+    - name: "Chrony: Configure {{ lp_chrony_conf_file }}"
       ansible.builtin.template:
         src: "{{ lp_chrony_conf_template }}"
         dest: "{{ lp_chrony_conf_file }}"
@@ -133,7 +130,7 @@
       notify: restart chrony
       tags: lp_chrony_conf
 
-    - name: "chrony: Set service state/status {{ state ~ '/' ~ enable }}"
+    - name: "Chrony: Set service state/status {{ state ~ '/' ~ enable }}"
       ansible.builtin.service:
         name: "{{ lp_chrony_service }}"
         state: "{{ state }}"
@@ -153,8 +150,7 @@
       tags: lp_chrony_service
 
   rescue:
-
-    - name: "chrony: Print errors"
+    - name: "Chrony: Print errors"
       ansible.builtin.debug:
         msg: |
           [ERR] task {{ ansible_failed_task.name }} failed. End host.
@@ -163,19 +159,18 @@
           ansible_failed_result:
             {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
-    - name: "chrony: End host"
+    - name: "Chrony: End host"
       ansible.builtin.meta: end_host
       when:
         - lp_chrony_rescue_end_host | bool
         - not ansible_check_mode
 
-    - name: "chrony: Clear host errors"
+    - name: "Chrony: Clear host errors"
       ansible.builtin.meta: clear_host_errors
 
-- name: "chrony: Flush handlers"
+- name: "Chrony: Flush handlers"
   ansible.builtin.meta: flush_handlers
   when: lp_chrony_flush_handlers | bool
   tags: lp_chrony_flush_handlers
 
 # EOF
-...

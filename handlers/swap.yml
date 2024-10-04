@@ -1,6 +1,5 @@
 ---
-
-- name: create and mount swap file
+- name: Create and mount swap file
   ansible.builtin.shell:
     cmd: >
       sh -c
@@ -10,7 +9,7 @@
       swapon {{ lp_swap_file }}'
   when: lp_swap_enable|bool
 
-- name: change and mount swap file
+- name: Change and mount swap file
   ansible.builtin.shell:
     cmd: >
       sh -c
@@ -21,7 +20,7 @@
       swapon {{ lp_swap_file }}'
   when: lp_swap_enable|bool
 
-- name: remove swap file
+- name: Remove swap file
   ansible.builtin.shell:
     cmd: >
       sh -c
@@ -29,4 +28,3 @@
   when: not lp_swap_enable|bool
 
 # EOF
-...

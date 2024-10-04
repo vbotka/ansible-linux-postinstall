@@ -1,7 +1,7 @@
 ---
 # linux_postinstall service
 
-- name: "service: Debug lp_service_debug={{ lp_service_debug }}"
+- name: "Service: Debug lp_service_debug={{ lp_service_debug }}"
   when: lp_service_debug | bool
   tags: lp_service_debug
   vars:
@@ -24,11 +24,10 @@
   when: lp_service_sanity | bool
   tags: lp_service_sanity
   block:
-
-    - name: "service: Get service facts"
+    - name: "Service: Get service facts"
       ansible.builtin.service_facts:
 
-    - name: "service: Debug my_services_* lp_service_debug2={{ lp_service_debug2 }}"
+    - name: "Service: Debug my_services_* lp_service_debug2={{ lp_service_debug2 }}"
       when: lp_service_debug2 | d(false) | bool
       vars:
         my_services_alias: "{{ lp_service_auto }}"
@@ -44,7 +43,7 @@
       ansible.builtin.debug:
         msg: "{{ '{}'.format(msg) }}"
 
-    - name: "service: Sanity lp_service_auto items are defined"
+    - name: "Service: Sanity lp_service_auto items are defined"
       when: lp_service_auto | length > 0
       ansible.builtin.assert:
         that: my_services_undef | length == 0
@@ -54,7 +53,7 @@
       vars:
         my_services_alias: "{{ lp_service_auto }}"
 
-    - name: "service: Sanity lp_service names are defined"
+    - name: "Service: Sanity lp_service names are defined"
       when: lp_service | length > 0
       ansible.builtin.assert:
         that: my_services_undef | length == 0
@@ -64,7 +63,7 @@
       vars:
         my_services_alias: "{{ lp_service | map(attribute='name') }}"
 
-    - name: "service: Sanity lp_service_module"
+    - name: "Service: Sanity lp_service_module"
       ansible.builtin.assert:
         that: lp_service_module in lp_service_module_valid
         fail_msg: "[ERR] {{ lp_service_module }} not in {{ lp_service_module_valid }}"
@@ -75,8 +74,7 @@
   when: lp_service_auto | length > 0
   tags: lp_service_auto
   block:
-
-    - name: "service: Automatic management of services"
+    - name: "Service: Automatic management of services"
       ansible.builtin.service:
         name: "{{ srv_name }}"
         state: "{{ srv_stat }}"
@@ -87,7 +85,7 @@
         label: "{{ srv_name }} enabled={{ srv_enbl }} state={{ srv_stat }} use={{ use_modl }}"
       register: result
       when: run_task | bool
-      notify: "reload {{ ansible_service_mgr }} daemon"
+      notify: reload {{ ansible_service_mgr }} daemon
       vars:
         my_services_alias: "{{ lp_service_auto }}"
         vbase: "{{ item | reverse | replace('ecivres_', '', 1) | reverse }}"
@@ -98,28 +96,24 @@
         srv_stat: "{{ lookup('vars', vbase ~ '_state', default=default_state) }}"
         default_state: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
 
-    - name: "service: Debug"
+    - name: "Service: Debug"
       ansible.builtin.include_tasks: fn/service-debug.yml
-
 
 - name: Manual management of services
   when: lp_service | length > 0
   tags: lp_service_manual
   block:
-
-    - name: "service: Manual management set module auto"
-      set_fact:
+    - name: "Service: Manual management set module auto"
+      ansible.builtin.set_fact:
         lp_service_module: "{{ ansible_service_mgr }}"
       when: lp_service_module == 'auto'
 
-    - name: "service: Include {{ lp_service_module }}"
-      include_tasks: "fn/service-{{ lp_service_module }}.yml"
-
-- name: "service: Flush handlers"
+    - name: "Service: Include {{ lp_service_module }}"
+      ansible.builtin.include_tasks: fn/service-{{ lp_service_module }}.yml
+- name: "Service: Flush handlers"
   ansible.builtin.meta: flush_handlers
   tags:
     - lp_service_auto
     - lp_service_manual
 
 # EOF
-...
