@@ -1,7 +1,7 @@
 ---
 # linux_postinstall function service-service
 
-- name: "service: Manual management of services"
+- name: "Service: Manual management of services"
   ansible.builtin.service:
     name: "{{ item.name }}"
     arguments: "{{ item.arguments | d(omit) }}"
@@ -19,14 +19,14 @@
       state={{ item.state | d('UNDEFINED') }}
       use={{ item.use | d('UNDEFINED') }}
   register: result
-  notify: "reload {{ ansible_service_mgr }} daemon"
+  notify: reload {{ ansible_service_mgr }} daemon
 
-- name: "service: Debug Manual management full results lp_service_debug2={{ lp_service_debug2 }}"
+- name: "Service: Debug Manual management full results lp_service_debug2={{ lp_service_debug2 }}"
   when: lp_service_debug2 | d(false) | bool
   ansible.builtin.debug:
     var: result
 
-- name: "service: Debug Manual management results lp_service_debug2={{ lp_service_debug2 }}"
+- name: "Service: Debug Manual management results lp_service_debug2={{ lp_service_debug2 }}"
   when: lp_service_debug2 | d(false) | bool
   ansible.builtin.debug:
     msg: |
@@ -45,4 +45,3 @@
       {% endfor %}
 
 # EOF
-...

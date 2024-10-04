@@ -1,7 +1,7 @@
 ---
 # linux_postinstall repos
 
-- name: "repos: Debug lp_repos_debug={{ lp_repos_debug }}"
+- name: "Repos: Debug lp_repos_debug={{ lp_repos_debug }}"
   when: lp_repos_debug | bool
   tags: lp_repos_debug
   vars:
@@ -17,8 +17,7 @@
 - name: Manage repo signing keys
   tags: lp_repos_keys_manage
   block:
-
-    - name: "repos: Manage repo signing keys"
+    - name: "Repos: Manage repo signing keys"
       ansible.builtin.apt_key:
         data: "{{ item.data | d(omit) }}"
         file: "{{ item.file | d(omit) }}"
@@ -34,7 +33,7 @@
       until: result is succeeded
       delay: "{{ lp_install_delay }}"
 
-    - name: "repos: Debug manage repo signing keys lp_repos_debug={{ lp_repos_debug }}"
+    - name: "Repos: Debug manage repo signing keys lp_repos_debug={{ lp_repos_debug }}"
       when: lp_repos_debug | bool
       ansible.builtin.debug:
         var: result
@@ -42,8 +41,7 @@
 - name: Manage repositories
   tags: lp_repos_manage
   block:
-
-    - name: "repos: Manage repositories"
+    - name: "Repos: Manage repositories"
       ansible.builtin.apt_repository:
         codename: "{{ item.codename | d(omit) }}"
         filename: "{{ item.filename | d(omit) }}"
@@ -57,10 +55,9 @@
       loop_control:
         label: "{{ item.repo }}"
 
-    - name: "repos: Debug manage repositories lp_repos_debug={{ lp_repos_debug }}"
+    - name: "Repos: Debug manage repositories lp_repos_debug={{ lp_repos_debug }}"
       when: lp_repos_debug | bool
       ansible.builtin.debug:
         var: result
 
 # EOF
-...

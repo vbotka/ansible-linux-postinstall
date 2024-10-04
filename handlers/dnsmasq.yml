@@ -1,10 +1,8 @@
 ---
-
-- name: restart dnsmasq
+- name: Restart dnsmasq
   ansible.builtin.command:
     cmd: >
       /etc/init.d/dnsmasq restart
   when: lp_dnsmasq_enable|bool
 
 # EOF
-...

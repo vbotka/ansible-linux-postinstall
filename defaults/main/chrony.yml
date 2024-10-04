@@ -53,7 +53,7 @@ lp_chrony_conf:
   keyfile: "{{ lp_chrony_keyfile }}"
   driftfile: "{{ lp_chrony_driftfile }}"
   ntsdumpdir: "{{ lp_chrony_ntsdumpdir }}"
-# log: "{{ lp_chrony_log }}"
+  # log: "{{ lp_chrony_log }}"
   logdir: "{{ lp_chrony_logdir }}"
   maxupdateskew: "{{ lp_chrony_maxupdateskew }}"
   rtcsync: "{{ lp_chrony_rtcsync }}"

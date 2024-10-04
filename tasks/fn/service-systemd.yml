@@ -9,47 +9,6 @@
 # the same manually.
 
 - name: Service systemd
-  block:
-
-    - name: "service:systemd: enable/disable"
-      ansible.builtin.systemd:
-      loop: "{{ _enabld }}"
-      loop_control:
-        label: "{{ item.name }} enabled={{ enabled }}"
-      register: result
-      notify: reload systemd daemon
-    - name: "service:systemd: Debug"
-      when: _enabld | length > 0
-      ansible.builtin.include_tasks: fn/service-debug.yml
-    - name: "service:systemd: Flush handlers"
-      when: _enabld | length > 0
-      ansible.builtin.meta: flush_handlers
-
-    - name: "service:systemd: mask/unmask"
-      ansible.builtin.systemd:
-      loop: "{{ _masked }}"
-      loop_control:
-        label: "{{ item.name }} enabled={{ enabled }} masked={{ masked }}"
-      register: result
-      notify: reload systemd daemon
-    - name: "service:systemd: Debug"
-      when: _masked | length > 0
-      ansible.builtin.include_tasks: fn/service-debug.yml
-    - name: "service:systemd: Flush handlers"
-      when: _masked | length > 0
-      ansible.builtin.meta: flush_handlers
-
-    - name: "service:systemd: all"
-      ansible.builtin.systemd:
-      loop: "{{ lp_service }}"
-      loop_control:
-        label: "{{ item.name }} enabled={{ enabled }} masked={{ masked }} state={{ state }}"
-      register: result
-      notify: reload systemd daemon
-    - name: "service:systemd: Debug"
-      when: lp_service | length > 0
-      ansible.builtin.include_tasks: fn/service-debug.yml
-
   module_defaults:
 
     ansible.builtin.systemd:
@@ -65,13 +24,49 @@
 
   vars:
 
-    _enabld: "{{ lp_service | selectattr('enabled', 'defined') |
-                              community.general.remove_keys(target=['masked', 'state']) }}"
-    _masked: "{{ lp_service | selectattr('masked', 'defined') |
-                              community.general.remove_keys(target=['state']) }}"
+    _enabld: "{{ lp_service | selectattr('enabled', 'defined') | community.general.remove_keys(target=['masked', 'state']) }}"
+    _masked: "{{ lp_service | selectattr('masked', 'defined') | community.general.remove_keys(target=['state']) }}"
     enabled: "{{ item.enabled | d('UNDEFINED') }}"
     masked: "{{ item.masked | d('UNDEFINED') }}"
     state: "{{ item.state | d('UNDEFINED') }}"
 
-# EOF
-...
+  # EOF
+  block:
+    - name: "Service:systemd: enable/disable"
+      ansible.builtin.systemd:
+      loop: "{{ _enabld }}"
+      loop_control:
+        label: "{{ item.name }} enabled={{ enabled }}"
+      register: result
+      notify: reload systemd daemon
+    - name: "Service:systemd: Debug"
+      when: _enabld | length > 0
+      ansible.builtin.include_tasks: fn/service-debug.yml
+    - name: "Service:systemd: Flush handlers"
+      when: _enabld | length > 0
+      ansible.builtin.meta: flush_handlers
+
+    - name: "Service:systemd: mask/unmask"
+      ansible.builtin.systemd:
+      loop: "{{ _masked }}"
+      loop_control:
+        label: "{{ item.name }} enabled={{ enabled }} masked={{ masked }}"
+      register: result
+      notify: reload systemd daemon
+    - name: "Service:systemd: Debug"
+      when: _masked | length > 0
+      ansible.builtin.include_tasks: fn/service-debug.yml
+    - name: "Service:systemd: Flush handlers"
+      when: _masked | length > 0
+      ansible.builtin.meta: flush_handlers
+
+    - name: "Service:systemd: all"
+      ansible.builtin.systemd:
+      loop: "{{ lp_service }}"
+      loop_control:
+        label: "{{ item.name }} enabled={{ enabled }} masked={{ masked }} state={{ state }}"
+      register: result
+      notify: reload systemd daemon
+    - name: "Service:systemd: Debug"
+      when: lp_service | length > 0
+      ansible.builtin.include_tasks: fn/service-debug.yml

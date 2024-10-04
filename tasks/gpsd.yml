@@ -1,20 +1,20 @@
 ---
 # linux_postinstall gpsd
 
-- name: "gpsd: Debug"
+- name: "Gpsd: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_gpsd_install: {{ lp_gpsd_install }}
       lp_gpsd_packages:
-        {{ lp_gpsd_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_gpsd_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_gpsd_debug|bool
   tags: lp_gpsd_debug
 
-- name: "gpsd: Install packages for gpsd"
+- name: "Gpsd: Install packages for gpsd"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -22,19 +22,19 @@
   vars:
     ll_ipkg_list: "{{ lp_gpsd_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_gpsd_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_gpsd_debug | bool }}"
   tags: lp_gpsd_packages
 
-- name: "gpsd: Add user gpsd to group dialout"
+- name: "Gpsd: Add user gpsd to group dialout"
   ansible.builtin.user:
     name: gpsd
     groups: dialout
     append: true
   tags: lp_gpsd_group
 
-- name: "gpsd: Configure /etc/bluetooth/rfcomm.conf"
+- name: "Gpsd: Configure /etc/bluetooth/rfcomm.conf"
   ansible.builtin.blockinfile:
     dest: /etc/bluetooth/rfcomm.conf
     create: true
@@ -42,7 +42,7 @@
     insertafter: EOF
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
     backup: "{{ lp_backup_conf }}"
     block: |
       rfcomm{{ item.rfcomm }} {
@@ -55,35 +55,34 @@
   notify: restart bluetooth
   tags: lp_gpsd_bt_rfcom
 
-- name: "gpsd: Configure /etc/default/gpsd"
+- name: "Gpsd: Configure /etc/default/gpsd"
   ansible.builtin.template:
     src: gpsd.j2
     dest: /etc/default/gpsd
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
     backup: "{{ lp_backup_conf }}"
   notify: restart gpsd
   tags: lp_gpsd_config
 
-- name: "gpsd: Service {{ state }} and {{ enable }}"
+- name: "Gpsd: Service {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_gpsd_service }}"
     state: "{{ state }}"
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_gpsd_enable|bool|d(false) }}"
-    state: "{{ lp_gpsd_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_gpsd_enable | bool | d(false) }}"
+    state: "{{ lp_gpsd_state | d(default_state) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_gpsd_service
 
-- name: "gpsd: Debug service"
+- name: "Gpsd: Debug service"
   ansible.builtin.debug:
     var: result
   when: lp_gpsd_debug|bool
   tags: lp_gpsd_service
 
 # EOF
-...

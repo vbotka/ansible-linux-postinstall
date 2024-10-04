@@ -2,14 +2,14 @@
 # linux_postinstall zeitgeist
 
 # One-way atm
-- name: "zeitgeist: Remove zeitgeist"
+- name: "Zeitgeist: Remove zeitgeist"
   ansible.builtin.apt:
     state: absent
     name: zeitgeist
     purge: true
   when: not lp_zeitgeist_install|bool
 
-- name: "zeitgeist: Remove zeitgeist-*"
+- name: "Zeitgeist: Remove zeitgeist-*"
   ansible.builtin.apt:
     state: absent
     name: zeitgeist-*
@@ -31,4 +31,3 @@
 # done
 
 # EOF
-...

@@ -1,20 +1,18 @@
 ---
-
-- name: start chrony
+- name: Start chrony
   ansible.builtin.service:
     name: "{{ lp_chrony_service }}"
     state: started
 
-- name: stop chrony
+- name: Stop chrony
   ansible.builtin.service:
     name: "{{ lp_chrony_service }}"
     state: stopped
 
-- name: restart chrony
+- name: Restart chrony
   ansible.builtin.service:
     name: "{{ lp_chrony_service }}"
     state: restarted
   when: lp_chrony_enable | bool
 
 # EOF
-...

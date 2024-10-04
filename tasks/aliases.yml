@@ -1,7 +1,7 @@
 ---
 # linux_postinstall aliases
 
-- name: "aliases: Configure /etc/aliases"
+- name: "Aliases: Configure /etc/aliases"
   ansible.builtin.template:
     src: aliases.j2
     dest: /etc/aliases
@@ -12,4 +12,3 @@
   notify: newaliases
 
 # EOF
-...

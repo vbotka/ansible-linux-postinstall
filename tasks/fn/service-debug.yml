@@ -1,12 +1,12 @@
 ---
 # linux_postinstall function service-debug
 
-- name: "service: Debug management full results lp_service_debug2={{ lp_service_debug2 }}"
+- name: "Service: Debug management full results lp_service_debug2={{ lp_service_debug2 }}"
   when: lp_service_debug2 | d(false) | bool
   ansible.builtin.debug:
     var: result
 
-- name: "service: Debug management selected results lp_service_debug2={{ lp_service_debug2 }}"
+- name: "Service: Debug management selected results lp_service_debug2={{ lp_service_debug2 }}"
   when: lp_service_debug2 | d(false) | bool
   ansible.builtin.debug:
     msg: |
@@ -28,4 +28,3 @@
       {% endfor %}
 
 # EOF
-...

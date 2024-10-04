@@ -1,16 +1,14 @@
 ---
-
-- name: reload acpid
+- name: Reload acpid
   ansible.builtin.service:
     name: "{{ lp_acpi_service }}"
     state: reloaded
   when: lp_acpi_enable|bool
 
-- name: restart acpid
+- name: Restart acpid
   ansible.builtin.service:
     name: "{{ lp_acpi_service }}"
     state: restarted
   when: lp_acpi_enable|bool
 
 # EOF
-...

@@ -1,6 +1,6 @@
 ---
 lp_swap: false
 lp_swap_enable: false
-lp_swap_file: "/usr/swap0"
+lp_swap_file: /usr/swap0
 lp_swap_size: "4096"
 lp_swap_stsize: "4294967296"

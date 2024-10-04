@@ -1,9 +1,9 @@
 ---
 lp_users:
-  - name: "ansible"
-    shell: "/bin/sh"
-  - name: "admin"
-    shell: "/bin/bash"
+  - name: ansible
+    shell: /bin/sh
+  - name: admin
+    shell: /bin/bash
 #   password: "<my-generated-password>"
 #   update_password: "on_create"
 #
@@ -15,8 +15,8 @@ lp_users:
 #
 # groups must not comprise primary group
 lp_users_groups:
-  - name: "admin"
-    groups: "adm, dialout"
+  - name: admin
+    groups: adm, dialout
 # - name: "user1"
 #   groups: "adm, admin, audio, cdrom, dialout, dip, disk, kvm, libvirt, lpadmin,
 #            plugdev, sudo, sambashare, scanner, users" }

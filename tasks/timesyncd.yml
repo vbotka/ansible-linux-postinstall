@@ -1,7 +1,7 @@
 ---
 # linux_postinstall timesyncd
 
-- name: "timesyncd: Debug lp_timesyncd_debug={{ lp_timesyncd_debug }}"
+- name: "Timesyncd: Debug lp_timesyncd_debug={{ lp_timesyncd_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -39,24 +39,23 @@
   when: lp_timesyncd_sanity | bool
   tags: lp_timesyncd_sanity
   block:
-
-    - name: "timesyncd: sanity: Assert chrony and timesyncd packages mutually exclusive."
+    - name: "Timesyncd: sanity: Assert chrony and timesyncd packages mutually exclusive."
       ansible.builtin.assert:
         that: not (lp_chrony_install|bool and lp_timesyncd_install|bool)
         fail_msg: >
           [ERR] Packages for chrony and timesyncd are mutually exclusive.
 
-    - name: "timesyncd: sanity: Assert chrony and timesyncd services mutually exclusive."
+    - name: "Timesyncd: sanity: Assert chrony and timesyncd services mutually exclusive."
       ansible.builtin.assert:
         that: not (lp_chrony_enable|bool and lp_timesyncd_enable|bool)
         fail_msg: >
           [ERR] Services {{ lp_chrony_service }} and {{ lp_timesyncd_service }}
           are mutually exclusive.
 
-    - name: "timesyncd: sanity: Get package facts"
+    - name: "Timesyncd: sanity: Get package facts"
       ansible.builtin.package_facts:
 
-    - name: "timesyncd: sanity: Assert installed lp_timesyncd_packages in ansible_check_mode"
+    - name: "Timesyncd: sanity: Assert installed lp_timesyncd_packages in ansible_check_mode"
       ansible.builtin.assert:
         that: missing | length == 0
         fail_msg: >
@@ -66,7 +65,7 @@
         missing: "{{ lp_timesyncd_packages | difference(ansible_facts.packages) }}"
       when: ansible_check_mode
 
-- name: "timesyncd: Install packages"
+- name: "Timesyncd: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -81,20 +80,19 @@
 
 - name: Set lp_timesyncd_service_exists/found
   block:
-
-    - name: "timesyncd: Get Service facts"
+    - name: "Timesyncd: Get Service facts"
       ansible.builtin.service_facts:
 
-    - name: "timesyncd: Set lp_timesyncd_service_exists/found={{ exists ~ '/' ~ found }}"
+    - name: "Timesyncd: Set lp_timesyncd_service_exists/found={{ exists ~ '/' ~ found }}"
       ansible.builtin.set_fact:
         lp_timesyncd_service_exists: "{{ exists }}"
         lp_timesyncd_service_found: "{{ found }}"
       vars:
         service: "{{ lp_timesyncd_service | splitext | first }}.service"
         exists: "{{ service in ansible_facts.services }}"
-        found:  "{{ ansible_facts.services[service]['status']|d('not-found') != 'not-found' }}"
+        found: "{{ ansible_facts.services[service]['status'] | d('not-found') != 'not-found' }}"
 
-    - name: "timesyncd: Debug lp_timesyncd_service lp_timesyncd_debug={{ lp_timesyncd_debug }}"
+    - name: "Timesyncd: Debug lp_timesyncd_service lp_timesyncd_debug={{ lp_timesyncd_debug }}"
       ansible.builtin.debug:
         msg: |
           lp_timesyncd_service_exists: {{ lp_timesyncd_service_exists }}
@@ -107,7 +105,7 @@
         service: "{{ lp_timesyncd_service | splitext | first }}.service"
       when: lp_timesyncd_debug | bool
 
-- name: "timesyncd: Assert exists and found {{ lp_timesyncd_service }}"
+- name: "Timesyncd: Assert exists and found {{ lp_timesyncd_service }}"
   ansible.builtin.assert:
     that:
       - lp_timesyncd_service_exists
@@ -117,8 +115,7 @@
 
 - name: Configure, enable, start, or disable timesyncd
   block:
-
-    - name: "timesyncd: Keep original {{ lp_timesyncd_conf_file }}"
+    - name: "Timesyncd: Keep original {{ lp_timesyncd_conf_file }}"
       ansible.builtin.copy:
         src: "{{ lp_timesyncd_conf_file }}"
         dest: "{{ lp_timesyncd_conf_file }}.orig"
@@ -127,18 +124,18 @@
       when: lp_timesyncd_conf_file_orig | bool
       tags: lp_timesyncd_conf_orig
 
-    - name: "timesyncd: Configure {{ lp_timesyncd_conf_file }}"
+    - name: "Timesyncd: Configure {{ lp_timesyncd_conf_file }}"
       ansible.builtin.template:
         src: "{{ lp_timesyncd_conf_template }}"
         dest: "{{ lp_timesyncd_conf_file }}"
         owner: root
         group: root
-        mode: '0644'
+        mode: "0644"
         backup: "{{ lp_backup_conf }}"
       notify: restart timesyncd
       tags: lp_timesyncd_conf
 
-    - name: "timesyncd: Set service state/status {{ state ~ '/' ~ enable }}"
+    - name: "Timesyncd: Set service state/status {{ state ~ '/' ~ enable }}"
       ansible.builtin.service:
         name: "{{ lp_timesyncd_service }}"
         state: "{{ state }}"
@@ -159,8 +156,7 @@
       tags: lp_timesyncd_service
 
   rescue:
-
-    - name: "timesyncd: Print errors"
+    - name: "Timesyncd: Print errors"
       ansible.builtin.debug:
         msg: |
           [ERR] task {{ ansible_failed_task.name }} failed. End host.
@@ -169,16 +165,16 @@
           ansible_failed_result:
             {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
-    - name: "timesyncd: End host"
+    - name: "Timesyncd: End host"
       ansible.builtin.meta: end_host
       when:
         - lp_timesyncd_rescue_end_host | bool
         - not ansible_check_mode
 
-    - name: "timesyncd: Clear host errors"
+    - name: "Timesyncd: Clear host errors"
       ansible.builtin.meta: clear_host_errors
 
-- name: "timesyncd: Flush handlers"
+- name: "Timesyncd: Flush handlers"
   ansible.builtin.meta: flush_handlers
   when: lp_timesyncd_flush_handlers | bool
   tags: lp_timesyncd_flush_handlers
@@ -191,4 +187,3 @@
 # https://www.freedesktop.org/wiki/Software/systemd/timedated/
 
 # EOF
-...

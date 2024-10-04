@@ -1,23 +1,21 @@
 ---
 # linux_postinstall iptables
 
-- name: "iptables: Create /etc/network/if-pre-up.d/iptables"
+- name: "Iptables: Create /etc/network/if-pre-up.d/iptables"
   ansible.builtin.template:
     src: iptables-restore.j2
     dest: /etc/network/if-pre-up.d/iptables
     owner: root
     group: root
-    mode: '0755'
+    mode: "0755"
 
-- name: "iptables: Create /etc/network/iptables
-                   using {{ lp_iptables_type }}-iptables.j2"
+- name: "Iptables: Create /etc/network/iptables using {{ lp_iptables_type }}-iptables.j2"
   ansible.builtin.template:
     src: "{{ lp_iptables_type }}-iptables.j2"
     dest: /etc/network/iptables
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify: reload iptables
 
 # EOF
-...

@@ -1,20 +1,20 @@
 ---
 # linux_postinstall nfsd
 
-- name: "nfsd: Debug"
+- name: "Nfsd: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_nfsd_install: {{ lp_nfsd_install }}
       lp_nfsd_packages:
-        {{ lp_nfsd_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_nfsd_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_nfsd_debug|bool
   tags: lp_nfsd_debug
 
-- name: "nfsd: Install packages"
+- name: "Nfsd: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -22,22 +22,22 @@
   vars:
     ll_ipkg_list: "{{ lp_nfsd_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_nfsd_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_nfsd_debug | bool }}"
   tags: lp_nfsd_packages
 
-- name: "nfsd: Configure exports"
+- name: "Nfsd: Configure exports"
   ansible.builtin.template:
     src: exports.j2
     dest: /etc/exports
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   notify: reload nfsd
   tags: lp_nfsd_exports
 
-- name: "nfsd: Services start/stop and enable/disable"
+- name: "Nfsd: Services start/stop and enable/disable"
   ansible.builtin.service:
     name: "{{ srv_name }}"
     state: "{{ srv_stat }}"
@@ -50,16 +50,16 @@
     srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
     srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
     srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
-    default_stat: "{{ srv_enbl|bool|ternary('started', 'stopped') }}"
+    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
   tags: lp_nfsd_service
 
-- name: "nfsd: Debug service"
+- name: "Nfsd: Debug service"
   ansible.builtin.debug:
     var: result
   when: lp_nfsd_debug|bool
   tags: lp_nfsd_service
 
-- name: "nfsd: Enable and start nfsd services"
+- name: "Nfsd: Enable and start nfsd services"
   ansible.builtin.service:
     name: "{{ item }}"
     enabled: true
@@ -70,7 +70,7 @@
     - lp_nfsd_services|length > 0
   tags: lp_nfsd_service
 
-- name: "nfsd: Stop and disable nfsd services"
+- name: "Nfsd: Stop and disable nfsd services"
   ansible.builtin.service:
     name: "{{ item }}"
     enabled: false
@@ -82,4 +82,3 @@
   tags: lp_nfsd_service
 
 # EOF
-...

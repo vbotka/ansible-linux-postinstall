@@ -1,10 +1,8 @@
 ---
-
-- name: restart rc-local
+- name: Restart rc-local
   ansible.builtin.service:
     name: "{{ lp_rc_local_service }}"
     state: restarted
-  when: "lp_rc_local_state == 'started'"
+  when: lp_rc_local_state == 'started'
 
 # EOF
-...

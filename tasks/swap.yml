@@ -1,7 +1,7 @@
 ---
 # linux_postinstall swap
 
-- name: "swap: Debug"
+- name: "Swap: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -10,36 +10,34 @@
       lp_swap_sanity: {{ lp_swap_sanity }}
       lp_swap_flush_handlers: {{ lp_swap_flush_handlers }}
       lp_swap_rescue_end_host: {{ lp_swap_rescue_end_host }}
-      lp_swap_file: {{ lp_swap_file|default("UNDEFINED") }}
-      lp_swap_size: {{ lp_swap_size|default("UNDEFINED") }}
-      lp_swap_stsize: {{ lp_swap_stsize|default("UNDEFINED") }}
+      lp_swap_file: {{ lp_swap_file | default("UNDEFINED") }}
+      lp_swap_size: {{ lp_swap_size | default("UNDEFINED") }}
+      lp_swap_stsize: {{ lp_swap_stsize | default("UNDEFINED") }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_swap_debug|bool
   tags: lp_swap_debug
 
-- name: "swap: Sanity"
-  block:
+- name: "Swap: Sanity"
+  when: lp_swap_sanity|bool
+  tags: lp_swap_sanity
 
-    - name: "swap: sanity: Defined lp_swap_file"
+  block:
+    - name: "Swap: sanity: Defined lp_swap_file"
       ansible.builtin.assert:
         that: lp_swap_file is defined
         fail_msg: "[ERR] Variable lp_swap_file must be defined."
 
-    - name: "swap: sanity: Defined lp_swap_size and lp_swap_stsize"
+    - name: "Swap: sanity: Defined lp_swap_size and lp_swap_stsize"
       ansible.builtin.assert:
         that: lp_swap_size is defined and lp_swap_stsize is defined
         fail_msg: "[ERR] Variables lp_swap_size and lp_swap_stsize must be defined."
       when: lp_swap_enable|bool
 
-  when: lp_swap_sanity|bool
-  tags: lp_swap_sanity
-
-- name: "swap: Create, change, or remove {{ lp_swap_file }}"
+- name: "Swap: Create, change, or remove {{ lp_swap_file }}"
   block:
-
-    - name: "swap: Create swapfile {{ lp_swap_file }}"
+    - name: "Swap: Create swapfile {{ lp_swap_file }}"
       ansible.builtin.shell:
         cmd: >
           sh -c
@@ -51,7 +49,7 @@
       notify: create and mount swap file
       tags: lp_swap_swapfile
 
-    - name: "swap: Change swapfile {{ lp_swap_file }}"
+    - name: "Swap: Change swapfile {{ lp_swap_file }}"
       ansible.builtin.shell:
         cmd: >
           sh -c
@@ -64,27 +62,27 @@
       notify: change and mount swap file
       tags: lp_swap_swapfile
 
-    - name: "swap: Create swap entry in /etc/fstab"
+    - name: "Swap: Create swap entry in /etc/fstab"
       ansible.posix.mount:
         path: none
         src: "{{ lp_swap_file }}"
         fstype: swap
         opts: sw
-        passno: '0'
-        dump: '0'
+        passno: "0"
+        dump: "0"
         state: present
         backup: "{{ lp_backup_conf }}"
       when: lp_swap_enable|bool
       tags: lp_swap_fstab
 
-    - name: "swap: Remove swap entry from /etc/fstab"
+    - name: "Swap: Remove swap entry from /etc/fstab"
       ansible.posix.mount:
         path: none
         src: "{{ lp_swap_file }}"
         fstype: swap
         opts: sw
-        passno: '0'
-        dump: '0'
+        passno: "0"
+        dump: "0"
         state: absent
         backup: "{{ lp_backup_conf }}"
       notify: remove swap file
@@ -92,8 +90,7 @@
       tags: lp_swap_swapfile
 
   rescue:
-
-    - name: "swap: Print errors"
+    - name: "Swap: Print errors"
       ansible.builtin.debug:
         msg: |
           [ERR] task {{ ansible_failed_task.name }} failed. End host.
@@ -102,13 +99,12 @@
           ansible_failed_result:
             {{ ansible_failed_result|to_yaml(indent=2)|indent(2)
 
-    - name: "swap: End host"
+    - name: "Swap: End host"
       ansible.builtin.meta: end_host
       when: lp_swap_rescue_end_host|bool
 
-- name: "swap: Flush handlers"
+- name: "Swap: Flush handlers"
   ansible.builtin.meta: flush_handlers
   when: lp_swap_flush_handlers|bool
 
 # EOF
-...

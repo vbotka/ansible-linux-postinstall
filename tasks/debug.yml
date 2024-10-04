@@ -1,7 +1,7 @@
 ---
 # Hint: Get readable output with stdout_callback = yaml
 
-- name: "Debug"
+- name: Debug
   vars:
     msg: |-
       lp_role_version: {{ lp_role_version }}
@@ -75,4 +75,3 @@
     msg: "{{ '{}'.format(msg) }}"
 
 # EOF
-...

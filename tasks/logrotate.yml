@@ -1,20 +1,20 @@
 ---
 # linux_postinstall logrotate
 
-- name: "logrotate: Debug"
+- name: "Logrotate: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_logrotate_install: {{ lp_logrotate_install }}
       lp_logrotate_packages:
-        {{ lp_logrotate_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_logrotate_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_logrotate_debug|bool
   tags: lp_logrotate_debug
 
-- name: "logrotate: Install packages for logrotate"
+- name: "Logrotate: Install packages for logrotate"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -22,12 +22,12 @@
   vars:
     ll_ipkg_list: "{{ lp_logrotate_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_logrotate_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_logrotate_debug | bool }}"
   tags: lp_logrotate_packages
 
-- name: "logrotate: Configure blocks in {{ lp_logrotate_conf_file }}"
+- name: "Logrotate: Configure blocks in {{ lp_logrotate_conf_file }}"
   ansible.builtin.blockinfile:
     path: "{{ lp_logrotate_conf_file }}"
     mark: "{{ item.mark }}"
@@ -37,7 +37,7 @@
   loop: "{{ lp_logrotate_conf_blocks }}"
   tags: lp_logrotate_conf_blocks
 
-- name: "logrotate: Configure lines in {{ lp_logrotate_conf_file }}"
+- name: "Logrotate: Configure lines in {{ lp_logrotate_conf_file }}"
   ansible.builtin.lineinfile:
     path: "{{ lp_logrotate_conf_file }}"
     line: "{{ item.line }}"
@@ -46,19 +46,18 @@
   loop: "{{ lp_logrotate_conf_lines }}"
   tags: lp_logrotate_conf_lines
 
-- name: "logrotate: Configure {{ lp_logrotate_conf_dir }}"
+- name: "Logrotate: Configure {{ lp_logrotate_conf_dir }}"
   ansible.builtin.blockinfile:
     path: "{{ lp_logrotate_conf_dir }}/{{ item.path }}"
     block: "{{ item.conf }}"
     backup: "{{ lp_backup_conf }}"
     create: true
-    owner: "{{ item.owner|default('root') }}"
-    group: "{{ item.group|default('root') }}"
-    mode: "{{ item.mode|default('0644') }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0644') }}"
   loop: "{{ lp_logrotate_confd }}"
   loop_control:
     label: "{{ item.path }}"
   tags: lp_logrotate_confd
 
 # EOF
-...

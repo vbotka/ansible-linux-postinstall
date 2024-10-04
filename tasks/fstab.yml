@@ -1,17 +1,16 @@
 ---
 # linux_postinstall fstab
 
-- name: "fstab: Configure fstab entries"
+- name: "Fstab: Configure fstab entries"
   ansible.posix.mount:
     name: "{{ item.name }}"
-    state: "{{ item.state|default('mounted') }}"
-    src: "{{ item.src|default(omit) }}"
-    fstype: "{{ item.fstype|default(omit) }}"
-    opts: "{{ item.opts|default(omit) }}"
-    dump: "{{ item.dump|default(omit) }}"
-    passno: "{{ item.passno|default(omit) }}"
+    state: "{{ item.state | default('mounted') }}"
+    src: "{{ item.src | default(omit) }}"
+    fstype: "{{ item.fstype | default(omit) }}"
+    opts: "{{ item.opts | default(omit) }}"
+    dump: "{{ item.dump | default(omit) }}"
+    passno: "{{ item.passno | default(omit) }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_fstab_entries }}"
 
 # EOF
-...

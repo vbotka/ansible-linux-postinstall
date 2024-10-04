@@ -1,18 +1,15 @@
 ---
-
 # Create list lp_dnsmasq_hosts from file dhcp-hosts. Remove config
 # sections from the file dhcp. Keep 'config host' only.
 
 - hosts: localhost
   gather_facts: false
   tasks:
-    - set_fact:
+    - ansible.builtin.set_fact:
         my_hosts: "{{ lookup('file', 'dhcp-hosts').splitlines() }}"
-    - set_fact:
-        lp_dnsmasq_hosts: "{{ lp_dnsmasq_hosts|d([]) +
-                              [{'name': item.1.split(' ')[2][1:-1],
-                                'mac': item.3.split(' ')[2][1:-1],
-                                'ip': item.4.split(' ')[2][1:-1]}] }}"
+    - ansible.builtin.set_fact:
+        lp_dnsmasq_hosts: "{{ lp_dnsmasq_hosts|d([]) + [{'name': item.1.split(' ')[2][1:-1], 'mac': item.3.split(' ')[2][1:-1], 'ip': item.4.split(' ')[2][1:-1]}]
+          }}"
       loop: "{{ my_hosts|batch(6) }}"
-    - debug:
+    - ansible.builtin.debug:
         var: lp_dnsmasq_hosts|to_yaml

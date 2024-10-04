@@ -1,26 +1,26 @@
 ---
 # linux_postinstall debsums
 
-- name: "debsums: Debug"
+- name: "Debsums: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_debsums_install: {{ lp_debsums_install }}
       lp_debsums_default_file: {{ lp_debsums_default_file }}
       lp_debsums_default_conf:
-        {{ lp_debsums_default_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_debsums_default_conf | to_yaml(indent=2) | indent(2) }}
       lp_debsums_ignore_file: {{ lp_debsums_ignore_file }}
       lp_debsums_ignore_conf:
-        {{ lp_debsums_ignore_conf|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_debsums_ignore_conf | to_nice_yaml(indent=2) | indent(2) }}
       lp_debsums_packages:
-        {{ lp_debsums_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_debsums_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_debsums_debug|bool
   tags: lp_debsums_debug
 
-- name: "debsums: Install packages"
+- name: "Debsums: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -28,16 +28,16 @@
   vars:
     ll_ipkg_list: "{{ lp_debsums_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_debsums_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_debsums_debug | bool }}"
   tags: lp_debsums_packages
 
-- name: "debsums: Configure {{ lp_debsums_default_file }}"
+- name: "Debsums: Configure {{ lp_debsums_default_file }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_debsums_default_file }}"
-    state: "{{ item.state|default(omit) }}"
-    regexp: '^\s*{{ item.key }}\s*=(.*)$'
+    state: "{{ item.state | default(omit) }}"
+    regexp: ^\s*{{ item.key }}\s*=(.*)$
     line: "{{ item.key }}={{ item.value }}"
     backup: "{{ lp_backup_conf }}"
     create: true
@@ -45,10 +45,10 @@
   loop: "{{ lp_debsums_default_conf }}"
   tags: lp_debsums_default_conf
 
-- name: "debsums: Configure {{ lp_debsums_ignore_file }}"
+- name: "Debsums: Configure {{ lp_debsums_ignore_file }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_debsums_ignore_file }}"
-    state: "{{ item.state|default(omit) }}"
+    state: "{{ item.state | default(omit) }}"
     line: "{{ item }}"
     backup: "{{ lp_backup_conf }}"
     create: true
@@ -57,4 +57,3 @@
   tags: lp_debsums_ignore_conf
 
 # EOF
-...
