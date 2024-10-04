@@ -12,26 +12,22 @@
 
 - name: Import swap.yml
   ansible.builtin.import_tasks: swap.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')) and lp_swap|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_swap|bool
   tags: lp_swap
 
 - name: Import modules.yml
   ansible.builtin.import_tasks: modules.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')
   tags: lp_modules
 
 - name: Import udev.yml
   ansible.builtin.import_tasks: udev.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')) and lp_udev|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_udev|bool
   tags: lp_udev
 
 - name: Import fstab.yml
   ansible.builtin.import_tasks: fstab.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian'))
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian'))
   tags: lp_fstab
 
 - name: Import networkmanager.yml
@@ -56,8 +52,7 @@
 
 - name: Import timezone.yml
   ansible.builtin.import_tasks: timezone.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')) and lp_timezone|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_timezone|bool
   tags: lp_timezone
 
 - name: Import timesyncd.yml
@@ -67,8 +62,7 @@
 
 - name: Import chrony.yml
   ansible.builtin.import_tasks: chrony.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')) and lp_chrony|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_chrony|bool
   tags: lp_chrony
 
 - name: Import apt.yml
@@ -88,8 +82,7 @@
 
 - name: Import packages.yml
   ansible.builtin.import_tasks: packages.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')
   tags: lp_packages
 
 - name: Import upgrades.yml
@@ -99,8 +92,7 @@
 
 - name: Import sysctl.yml
   ansible.builtin.import_tasks: sysctl.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')
   tags: lp_sysctl
 
 - name: Import zfs.yml
@@ -110,14 +102,12 @@
 
 - name: Import hostname.yml
   ansible.builtin.import_tasks: hostname.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')
   tags: lp_hostname
 
 - name: Import hosts.yml
   ansible.builtin.import_tasks: hosts.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')
   tags: lp_hosts
 
 - name: Import iptables.yml
@@ -134,14 +124,12 @@
 
 - name: Import groups.yml
   ansible.builtin.import_tasks: groups.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')
   tags: lp_groups
 
 - name: Import users.yml
   ansible.builtin.import_tasks: users.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')
   tags: lp_users
 
 - name: Import gpg.yml
@@ -151,26 +139,22 @@
 
 - name: Import passwords.yml
   ansible.builtin.import_tasks: passwords.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian') and lp_passwords|bool
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian') and lp_passwords|bool
   tags: lp_passwords
 
 - name: Import sudoers.yml
   ansible.builtin.import_tasks: sudoers.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')
   tags: lp_sudoers
 
 - name: Import keys.yml
   ansible.builtin.import_tasks: authorized_keys.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')
   tags: lp_authorized_keys
 
 - name: Import aliases.yml
   ansible.builtin.import_tasks: aliases.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')) and lp_aliases|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_aliases|bool
   tags: lp_aliases
 
 - name: Import utils.yml
@@ -180,14 +164,12 @@
 
 - name: Import ssh.yml
   ansible.builtin.import_tasks: ssh.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')) and lp_ssh|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_ssh|bool
   tags: lp_ssh
 
 - name: Import sshd.yml
   ansible.builtin.import_tasks: sshd.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')) and lp_sshd|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_sshd|bool
   tags: lp_sshd
 
 - name: Import bluetooth.yml
@@ -202,8 +184,7 @@
 
 - name: Import cron.yml
   ansible.builtin.import_tasks: cron.yml
-  when: (ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')
+  when: (ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')
   tags: lp_cron
 
 - name: Import modemmanager.yml
@@ -218,8 +199,7 @@
 
 - name: Import postfix.yml
   ansible.builtin.import_tasks: postfix.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')) and lp_postfix|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_postfix|bool
   tags: lp_postfix
 
 - name: Import smart.yml
@@ -261,8 +241,7 @@
   tags: lp_nfsd
 
 - name: Flush handlers
-  meta: flush_handlers
-
+  ansible.builtin.meta: flush_handlers
 - name: Import latex.yml
   ansible.builtin.import_tasks: latex.yml
   when: (ansible_os_family == 'Debian') and lp_latex|bool
@@ -290,14 +269,12 @@
 
 - name: Import wpasupplicant.yml
   ansible.builtin.import_tasks: wpasupplicant.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')) and lp_wpasupplicant|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_wpasupplicant|bool
   tags: lp_wpasupplicant
 
 - name: Import logrotate.yml
   ansible.builtin.import_tasks: logrotate.yml
-  when: ((ansible_os_family == 'RedHat') or
-        (ansible_os_family == 'Debian')) and lp_logrotate|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_logrotate|bool
   tags: lp_logrotate
 
 - name: Import tlp.yml
@@ -326,8 +303,7 @@
   tags: lp_debsums
 
 - name: Flush handlers
-  meta: flush_handlers
-
+  ansible.builtin.meta: flush_handlers
 - name: Import rc_local.yml
   ansible.builtin.import_tasks: rc_local.yml
   when: (ansible_os_family == 'Debian') and lp_rc_local|bool
@@ -349,9 +325,7 @@
 
 - name: Import reboot.yml
   ansible.builtin.import_tasks: reboot.yml
-  when: ((ansible_os_family == 'RedHat') or
-         (ansible_os_family == 'Debian')) and lp_reboot|bool
+  when: ((ansible_os_family == 'RedHat') or (ansible_os_family == 'Debian')) and lp_reboot|bool
   tags: lp_reboot
 
 # EOF
-...

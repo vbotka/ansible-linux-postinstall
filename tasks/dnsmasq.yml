@@ -1,7 +1,7 @@
 ---
 # linux_postinstall dnsmasq
 
-- name: "dnsmasq: Debug"
+- name: "Dnsmasq: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -9,18 +9,18 @@
       lp_dnsmasq_enable: {{ lp_dnsmasq_enable }}
       lp_dnsmasq_service: {{ lp_dnsmasq_service }}
       lp_dnsmasq_packages:
-        {{ lp_dnsmasq_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_dnsmasq_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_dnsmasq_config:
-        {{ lp_dnsmasq_config|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_dnsmasq_config | to_nice_yaml(indent=2) | indent(2) }}
       lp_dnsmasq_hosts:
-        {{ lp_dnsmasq_hosts|to_yaml(indent=2)|indent(2) }}
+        {{ lp_dnsmasq_hosts | to_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_dnsmasq_debug|bool
   tags: lp_dnsmasq_debug
 
-- name: "dnsmasq: Install packages"
+- name: "Dnsmasq: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -28,30 +28,30 @@
   vars:
     ll_ipkg_list: "{{ lp_dnsmasq_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_dnsmasq_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_dnsmasq_debug | bool }}"
   tags: lp_dnsmasq_packages
 
-- name: "dnsmasq: Create directories"
+- name: "Dnsmasq: Create directories"
   ansible.builtin.file:
     state: directory
-    path: "{{ item.dest|dirname }}"
-    owner: "{{ item.downer|d('root') }}"
-    group: "{{ item.dgroup|d('root') }}"
-    mode: "{{ item.dmode|d('0755') }}"
+    path: "{{ item.dest | dirname }}"
+    owner: "{{ item.downer | d('root') }}"
+    group: "{{ item.dgroup | d('root') }}"
+    mode: "{{ item.dmode | d('0755') }}"
   loop: "{{ lp_dnsmasq_config }}"
   loop_control:
-    label: "{{ item.dest|dirname }}"
+    label: "{{ item.dest | dirname }}"
   tags: lp_dnsmasq_directories
 
-- name: "dnsmasq: Configure"
+- name: "Dnsmasq: Configure"
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner|d('root') }}"
-    group: "{{ item.group|d('root') }}"
-    mode: "{{ item.mode|d('0600') }}"
+    owner: "{{ item.owner | d('root') }}"
+    group: "{{ item.group | d('root') }}"
+    mode: "{{ item.mode | d('0600') }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_dnsmasq_config }}"
   loop_control:
@@ -59,24 +59,23 @@
   notify: restart dnsmasq
   tags: lp_dnsmasq_config
 
-- name: "dnsmasq: Service {{ state }} and {{ enable }}"
+- name: "Dnsmasq: Service {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_dnsmasq_service }}"
     state: "{{ state }}"
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_dnsmasq_enable|bool|d(false) }}"
-    state: "{{ lp_dnsmasq_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_dnsmasq_enable | bool | d(false) }}"
+    state: "{{ lp_dnsmasq_state | d(default_state) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_dnsmasq_service
 
-- name: "dnsmasq: Debug service"
+- name: "Dnsmasq: Debug service"
   ansible.builtin.debug:
     var: result
   when: lp_dnsmasq_debug|bool
   tags: lp_dnsmasq_service
 
 # EOF
-...

@@ -1,16 +1,14 @@
 ---
-
-- name: restart autofs
+- name: Restart autofs
   ansible.builtin.service:
     name: "{{ lp_autofs_service }}"
     state: restarted
   when: lp_autofs_enable|bool
 
-- name: reload autofs
+- name: Reload autofs
   ansible.builtin.service:
     name: "{{ lp_autofs_service }}"
     state: reloaded
   when: lp_autofs_enable|bool
 
 # EOF
-...

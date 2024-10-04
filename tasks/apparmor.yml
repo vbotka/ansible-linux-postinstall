@@ -1,20 +1,20 @@
 ---
 # linux_postinstall apparmor
 
-- name: "apparmor: Debug"
+- name: "Apparmor: Debug"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_apparmor_install: {{ lp_apparmor_install }}
       lp_apparmor_packages:
-        {{ lp_apparmor_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_apparmor_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: lp_apparmor_debug|bool
   tags: lp_apparmor_debug
 
-- name: "apparmor: Install packages"
+- name: "Apparmor: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
@@ -22,52 +22,50 @@
   vars:
     ll_ipkg_list: "{{ lp_apparmor_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_apparmor_debug|bool }}"
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_apparmor_debug | bool }}"
   tags: lp_apparmor_packages
 
-- name: "apparmor: Create list of profiles"
-  block:
+- name: "Apparmor: Create list of profiles"
+  tags: lp_apparmor_profiles
 
-    - name: "apparmor: List profiles"
+  block:
+    - name: "Apparmor: List profiles"
       ansible.builtin.shell:
         cmd: >
           aa-status --json | jq .profiles | jq to_entries
       register: result
       changed_when: false
 
-    - name: "apparmor: Debug: List of profiles"
+    - name: "Apparmor: Debug: List of profiles"
       ansible.builtin.debug:
         var: result
       when: lp_apparmor_debug|bool
 
-    - name: "apparmor: Instantiate profiles"
+    - name: "Apparmor: Instantiate profiles"
       ansible.builtin.set_fact:
         lp_apparmor_profiles_enforce: "{{ lp_apparmor_profiles_enforce }}"
         lp_apparmor_profiles_complain: "{{ lp_apparmor_profiles_complain }}"
 
-    - name: "apparmor: Debug profiles"
+    - name: "Apparmor: Debug profiles"
       ansible.builtin.debug:
         msg: |
           lp_apparmor_profiles_enforce:
-            {{ lp_apparmor_profiles_enforce|to_nice_yaml(indent=2)|indent(2) }}
+            {{ lp_apparmor_profiles_enforce | to_nice_yaml(indent=2) | indent(2) }}
           lp_apparmor_profiles_complain:
-            {{ lp_apparmor_profiles_complain|to_nice_yaml(indent=2)|indent(2) }}
+            {{ lp_apparmor_profiles_complain | to_nice_yaml(indent=2) | indent(2) }}
       when: lp_apparmor_debug|bool
 
-  tags: lp_apparmor_profiles
-
-- name: "apparmor: Disable profiles"
+- name: "Apparmor: Disable profiles"
   ansible.builtin.command:
     cmd: >
       aa-disable {{ item }}
   loop: "{{ lp_apparmor_disable }}"
-  when: item in lp_apparmor_profiles_enforce or
-        item in lp_apparmor_profiles_complain
+  when: item in lp_apparmor_profiles_enforce or item in lp_apparmor_profiles_complain
   tags: lp_apparmor_disable
 
-- name: "apparmor: Enforce profiles"
+- name: "Apparmor: Enforce profiles"
   ansible.builtin.command:
     cmd: >
       aa-enforce {{ item }}
@@ -75,7 +73,7 @@
   when: item not in lp_apparmor_profiles_enforce
   tags: lp_apparmor_enforce
 
-- name: "apparmor: Complain profiles"
+- name: "Apparmor: Complain profiles"
   ansible.builtin.command:
     cmd: >
       aa-complain {{ item }}
@@ -83,24 +81,23 @@
   when: item not in lp_apparmor_profiles_complain
   tags: lp_apparmor_enforce
 
-- name: "apparmor: Service {{ state }} and {{ enable }}"
+- name: "Apparmor: Service {{ state }} and {{ enable }}"
   ansible.builtin.service:
     name: "{{ lp_apparmor_service }}"
     state: "{{ state }}"
     enabled: "{{ enabled }}"
   register: result
   vars:
-    enabled: "{{ lp_apparmor_enable|bool|d(false) }}"
-    state: "{{ lp_apparmor_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+    enabled: "{{ lp_apparmor_enable | bool | d(false) }}"
+    state: "{{ lp_apparmor_state | d(default_state) }}"
+    default_state: "{{ enabled | ternary('started', 'stopped') }}"
+    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_apparmor_service
 
-- name: "apparmor: Debug service"
+- name: "Apparmor: Debug service"
   ansible.builtin.debug:
     var: result
   when: lp_apparmor_debug|bool
   tags: lp_apparmor_service
 
 # EOF
-...
