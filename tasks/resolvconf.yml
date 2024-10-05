@@ -51,7 +51,7 @@
   notify: restart resolvconf
   tags: lp_resolvconf_confd_head
 
-- name: "Resolvconf: Service {{ state }} and {{ enable }}"
+- name: "Resolvconf: Service {{ state ~ ' and ' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_resolvconf_service }}"
     state: "{{ state }}"

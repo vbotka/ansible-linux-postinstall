@@ -36,7 +36,7 @@
         {{ lp_udev_hci_run_rules | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_udev_debug|bool
+  when: lp_udev_debug | bool
   tags: lp_udev_debug
 
 - name: "Udev: Configure {{ lp_udev_conf_file }}"
@@ -56,7 +56,7 @@
     group: root
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_udev_rules|dict2items }}"
+  loop: "{{ lp_udev_rules | dict2items }}"
   loop_control:
     label: "{{ item.key }}"
   notify: reload udev
@@ -105,6 +105,7 @@
 - name: Debug ansible_facts.services
   when: lp_udev_debug2 | bool
   block:
+
     - name: "Udev: Get ansible_facts.services"
       ansible.builtin.service_facts:
 
@@ -122,9 +123,10 @@
 # https://github.com/ansible/ansible/issues/28247
 
 - name: Start and enable udev
-  when: lp_udev_enable|bool
+  when: lp_udev_enable | bool
   tags: lp_udev_service
   block:
+
     - name: "Udev: Start and enable udev (service)"
       ansible.builtin.service:
         name: "{{ lp_udev_service }}"
@@ -153,9 +155,10 @@
       when: lp_udev_debug2 | bool
 
 - name: Stop and disable udev
-  when: not lp_udev_enable|bool
+  when: not lp_udev_enable | bool
   tags: lp_udev_service
   block:
+
     - name: "Udev: Stop and disable udev"
       ansible.builtin.service:
         name: "{{ lp_udev_service }}"

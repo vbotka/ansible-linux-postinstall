@@ -1,7 +1,7 @@
 ---
 # linux_postinstall postfix
 
-- name: "Postfix: Debug"
+- name: "Postfix: Debug lp_postfix_debug={{ lp_postfix_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -17,14 +17,14 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_postfix_debug|bool
+  when: lp_postfix_debug | bool
   tags: lp_postfix_debug
 
 - name: "Postfix: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_postfix_install|bool
+  when: lp_postfix_install | bool
   vars:
     ll_ipkg_list: "{{ lp_postfix_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
@@ -49,7 +49,7 @@
       notify: reload postfix
       tags: lp_postfix_conf
 
-    - name: "Postfix: Service {{ state }} and {{ enable }}"
+    - name: "Postfix: Service {{ state ~ ' and ' ~ enable }}"
       ansible.builtin.service:
         name: "{{ lp_postfix_service }}"
         state: "{{ state }}"
@@ -62,12 +62,13 @@
         enable: "{{ enabled | ternary('enabled', 'disabled') }}"
       tags: lp_postfix_service
 
-    - name: "Postfix: Debug service"
+    - name: "Postfix: Debug service lp_postfix_debug={{ lp_postfix_debug }}"
       ansible.builtin.debug:
         var: result
-      when: lp_postfix_debug|bool
+      when: lp_postfix_debug | bool
 
   rescue:
+
     - name: "Postfix: Print errors"
       ansible.builtin.debug:
         msg: |
@@ -80,7 +81,7 @@
     - name: "Postfix: End host"
       ansible.builtin.meta: end_host
       when:
-        - lp_postfix_rescue_end_host|bool
+        - lp_postfix_rescue_end_host | bool
         - not ansible_check_mode
 
     - name: "Postfix: Clear host errors"
@@ -88,6 +89,6 @@
 
 - name: "Postfix: Flush handlers"
   ansible.builtin.meta: flush_handlers
-  when: lp_postfix_flush_handlers|bool
+  when: lp_postfix_flush_handlers | bool
 
 # EOF

@@ -1,7 +1,7 @@
 ---
 # linux_postinstall gpg
 
-- name: "Gpg: Debug"
+- name: "Gpg: Debug lp_gpg_debug={{ lp_gpg_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -17,7 +17,7 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_gpg_debug|bool
+  when: lp_gpg_debug | bool
   tags: lp_gpg_debug
 
 - name: "Gpg: Install packages"
@@ -30,7 +30,7 @@
     ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_gpg_debug | bool }}"
-  when: lp_gpg_install|bool
+  when: lp_gpg_install | bool
   tags: lp_gpg_packages
 
 - name: "Gpg: Create directories .gnupg"
@@ -40,7 +40,7 @@
     owner: "{{ item }}"
     group: "{{ item }}"
     mode: "0700"
-  loop: "{{ lp_gpg_conf|map(attribute='owner')|unique|sort }}"
+  loop: "{{ lp_gpg_conf | map(attribute='owner') | unique | sort }}"
   tags: lp_gpg_dir
 
 - name: "Gpg: Configure gnupg"

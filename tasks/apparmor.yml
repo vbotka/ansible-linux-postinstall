@@ -1,7 +1,7 @@
 ---
 # linux_postinstall apparmor
 
-- name: "Apparmor: Debug"
+- name: "Apparmor: Debug lp_apparmor_debug={{ lp_apparmor_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -11,14 +11,14 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_apparmor_debug|bool
+  when: lp_apparmor_debug | bool
   tags: lp_apparmor_debug
 
 - name: "Apparmor: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_apparmor_install|bool
+  when: lp_apparmor_install | bool
   vars:
     ll_ipkg_list: "{{ lp_apparmor_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
@@ -34,11 +34,11 @@
     - name: "Apparmor: List profiles"
       ansible.builtin.shell:
         cmd: >
-          aa-status --json | jq .profiles | jq to_entries
+          set -o pipefail && aa-status --json | jq .profiles | jq to_entries
       register: result
       changed_when: false
 
-    - name: "Apparmor: Debug: List of profiles"
+    - name: "Apparmor: Debug: List of profiles lp_apparmor_debug={{ lp_apparmor_debug }}"
       ansible.builtin.debug:
         var: result
       when: lp_apparmor_debug|bool
@@ -48,17 +48,17 @@
         lp_apparmor_profiles_enforce: "{{ lp_apparmor_profiles_enforce }}"
         lp_apparmor_profiles_complain: "{{ lp_apparmor_profiles_complain }}"
 
-    - name: "Apparmor: Debug profiles"
+    - name: "Apparmor: Debug profiles lp_apparmor_debug={{ lp_apparmor_debug }}"
       ansible.builtin.debug:
         msg: |
           lp_apparmor_profiles_enforce:
             {{ lp_apparmor_profiles_enforce | to_nice_yaml(indent=2) | indent(2) }}
           lp_apparmor_profiles_complain:
             {{ lp_apparmor_profiles_complain | to_nice_yaml(indent=2) | indent(2) }}
-      when: lp_apparmor_debug|bool
+      when: lp_apparmor_debug | bool
 
 - name: "Apparmor: Disable profiles"
-  ansible.builtin.command:
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       aa-disable {{ item }}
   loop: "{{ lp_apparmor_disable }}"
@@ -66,7 +66,7 @@
   tags: lp_apparmor_disable
 
 - name: "Apparmor: Enforce profiles"
-  ansible.builtin.command:
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       aa-enforce {{ item }}
   loop: "{{ lp_apparmor_enforce }}"
@@ -74,14 +74,14 @@
   tags: lp_apparmor_enforce
 
 - name: "Apparmor: Complain profiles"
-  ansible.builtin.command:
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       aa-complain {{ item }}
   loop: "{{ lp_apparmor_complain }}"
   when: item not in lp_apparmor_profiles_complain
   tags: lp_apparmor_enforce
 
-- name: "Apparmor: Service {{ state }} and {{ enable }}"
+- name: "Apparmor: Service {{ state ~ ' and ' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_apparmor_service }}"
     state: "{{ state }}"
@@ -94,10 +94,10 @@
     enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_apparmor_service
 
-- name: "Apparmor: Debug service"
+- name: "Apparmor: Debug service lp_apparmor_debug={{ lp_apparmor_debug }}"
   ansible.builtin.debug:
     var: result
-  when: lp_apparmor_debug|bool
+  when: lp_apparmor_debug | bool
   tags: lp_apparmor_service
 
 # EOF

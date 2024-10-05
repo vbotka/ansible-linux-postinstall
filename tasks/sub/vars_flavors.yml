@@ -5,7 +5,7 @@
 # release_file(s). If release_file exists include tasks specific to this
 # flavor.
 
-- name: "Sub: vars_flavors: Debug"
+- name: "Sub: vars_flavors: Debug lp_debug={{ lp_debug }}"
   vars:
     msg: |-
       lp_flavors_dir [{{ lp_flavors_dir }}]
@@ -16,7 +16,7 @@
       {{ lp_flavors | to_nice_yaml }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_debug|bool
+  when: lp_debug | bool
 
 - name: "Sub: vars_flavors: Create {{ lp_flavors_dir }}"
   ansible.builtin.file:
@@ -31,17 +31,17 @@
 - name: "Sub: vars_flavors: Detect flavor"
   ansible.builtin.stat:
     path: "{{ item.value.release_file }}"
-  loop: "{{ lp_flavors|dict2items }}"
+  loop: "{{ lp_flavors | dict2items }}"
   register: result
 
-- name: "Sub: vars_flavors: Debug result"
+- name: "Sub: vars_flavors: Debug result lp_debug={{ lp_debug }}"
   ansible.builtin.debug:
     msg: "{{ result.results | json_query('[?stat.exists].item') }}"
-  when: lp_debug|bool
+  when: lp_debug | bool
 
 - name: "Sub: vars_flavors: Include tasks for flavor"
   ansible.builtin.include_tasks: "{{ 'sub/vars_flavors-' ~ outer_item.key ~ '.yml' }}"
-  loop: "{{ result.results|json_query('[?stat.exists].item') }}"
+  loop: "{{ result.results | json_query('[?stat.exists].item') }}"
   loop_control:
     loop_var: outer_item
 

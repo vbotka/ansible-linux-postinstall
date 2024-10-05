@@ -12,27 +12,34 @@ lp_package_state: present # apt and yum support "latest"
 lp_package_state_remove: absent # see "remove" vs. "purge"
 lp_packages_autoremove: false
 
-# Dynamic variables
-
-# List of enabled lists of packages
-my_packages_auto: "{{ my_packages_install|dict2items| selectattr('value')| map(attribute='key')| intersect(my_packages_npkg)| map('extract', my_packages_lists) }}"
+# List of enabled packages lists
+my_packages_auto: "{{ my_packages_install | dict2items |
+                      selectattr('value') | map(attribute='key') |
+                      intersect(my_packages_npkg) |
+                      map('extract', my_packages_lists) }}"
 
 # lp_<name>_install
 
 # [names] from lp_name_install
-my_packages_ninst: "{{ q('ansible.builtin.varnames', '^lp_.*_install$')| map('regex_replace', 'lp_(.*)_install', '\\1') }}"
+my_packages_ninst: "{{ q('ansible.builtin.varnames', '^lp_.*_install$') |
+                       map('regex_replace', 'lp_(.*)_install', '\\1') }}"
+
 # [install] from lp_name_install
 my_packages_instl: "{{ q('ansible.builtin.vars', *q('ansible.builtin.varnames', '^lp_.*_install$')) }}"
+
 # {name: install}
-my_packages_install: "{{ dict(my_packages_ninst|zip(my_packages_instl)) }}"
+my_packages_install: "{{ dict(my_packages_ninst | zip(my_packages_instl)) }}"
 
 # lp_<name>_packages
 
 # [names] from lp_name_packages
-my_packages_npkg: "{{ q('ansible.builtin.varnames', '^lp_.*_packages$')| map('regex_replace', 'lp_(.*)_packages', '\\1') }}"
+my_packages_npkg: "{{ q('ansible.builtin.varnames', '^lp_.*_packages$') |
+                      map('regex_replace', 'lp_(.*)_packages', '\\1') }}"
+
 # [[packages]] from lp_name_packages
 my_packages_pkgs: "{{ q('ansible.builtin.vars', *q('ansible.builtin.varnames', '^lp_.*_packages$')) }}"
+
 # {name: [packages]}
-my_packages_lists: "{{ dict(my_packages_npkg|zip(my_packages_pkgs)) }}"
+my_packages_lists: "{{ dict(my_packages_npkg | zip(my_packages_pkgs)) }}"
 
 # EOF

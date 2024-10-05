@@ -1,16 +1,18 @@
 ---
 - name: Create and mount swap file
-  ansible.builtin.shell:
+  listen: create and mount swap file
+  ansible.builtin.shell: # noqa: no-changed-when
     cmd: >
       sh -c
       'dd if=/dev/zero of={{ lp_swap_file }} bs=1M count={{ lp_swap_size }} &&
       chmod 0600 {{ lp_swap_file }} &&
       mkswap {{ lp_swap_file }} &&
       swapon {{ lp_swap_file }}'
-  when: lp_swap_enable|bool
+  when: lp_swap_enable | bool
 
 - name: Change and mount swap file
-  ansible.builtin.shell:
+  listen: change and mount swap file
+  ansible.builtin.shell: # noqa: no-changed-when
     cmd: >
       sh -c
       'swapoff {{ lp_swap_file }} &&
@@ -18,13 +20,14 @@
       chmod 0600 {{ lp_swap_file }} &&
       mkswap {{ lp_swap_file }} &&
       swapon {{ lp_swap_file }}'
-  when: lp_swap_enable|bool
+  when: lp_swap_enable | bool
 
 - name: Remove swap file
-  ansible.builtin.shell:
+  listen: remove swap file
+  ansible.builtin.shell: # noqa: no-changed-when
     cmd: >
       sh -c
       'swapoff {{ lp_swap_file }} && rm {{ lp_swap_file }}'
-  when: not lp_swap_enable|bool
+  when: not lp_swap_enable | bool
 
 # EOF

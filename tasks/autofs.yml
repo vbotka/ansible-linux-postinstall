@@ -1,7 +1,7 @@
 ---
 # linux_postinstall autofs
 
-- name: "Autofs: Debug"
+- name: "Autofs: Debug lp_autofs_debug={{ lp_autofs_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -24,14 +24,14 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_autofs_debug|bool
+  when: lp_autofs_debug | bool
   tags: lp_autofs_debug
 
 - name: "Autofs: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_autofs_install|bool
+  when: lp_autofs_install | bool
   vars:
     ll_ipkg_list: "{{ lp_autofs_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
@@ -72,7 +72,7 @@
       notify: reload autofs
       tags: lp_autofs_miscr_conf
 
-    - name: "Autofs: Service {{ state }} and {{ enable }}"
+    - name: "Autofs: Service {{ state ~ ' and ' ~ enable }}"
       ansible.builtin.service:
         name: "{{ lp_autofs_service }}"
         state: "{{ state }}"
@@ -85,10 +85,10 @@
         enable: "{{ enabled | ternary('enabled', 'disabled') }}"
       tags: lp_autofs_service
 
-    - name: "Autofs: Debug service"
+    - name: "Autofs: Debug service lp_autofs_debug={{ lp_autofs_debug }}"
       ansible.builtin.debug:
         var: result
-      when: lp_autofs_debug|bool
+      when: lp_autofs_debug | bool
       tags: lp_autofs_service
 
   rescue:
@@ -104,7 +104,7 @@
     - name: "Autofs: End host"
       ansible.builtin.meta: end_host
       when:
-        - lp_autofs_rescue_end_host|bool
+        - lp_autofs_rescue_end_host | bool
         - not ansible_check_mode
 
     - name: "Autofs: Clear host errors"
@@ -112,6 +112,6 @@
 
 - name: "Autofs: Flush handlers"
   ansible.builtin.meta: flush_handlers
-  when: lp_autofs_flush_handlers|bool
+  when: lp_autofs_flush_handlers | bool
 
 # EOF

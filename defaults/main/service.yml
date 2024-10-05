@@ -46,8 +46,9 @@ lp_service_auto:
 
 # Dynamic variables my_services_*
 my_services_all: "{{ ansible_facts.services.keys() | sort }}"
-my_services_regex: ^lp_({{ my_services_alias|join('|') }})_service$
-my_services_varnames: "{{ q('ansible.builtin.varnames', my_services_regex) | difference(lp_service_auto_exclude) | sort }}"
+my_services_regex: ^lp_({{ my_services_alias | join('|') }})_service$
+my_services_varnames: "{{ q('ansible.builtin.varnames', my_services_regex) |
+                          difference(lp_service_auto_exclude) | sort }}"
 my_services_names: |
   {% filter sort %}
   {% filter from_yaml %}

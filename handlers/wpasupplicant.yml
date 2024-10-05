@@ -1,5 +1,6 @@
 ---
 - name: Reconfigure wpa_supplicant
+  listen: reconfigure wpa_supplicant
   ansible.builtin.service:
     name: "{{ my_service }}"
     state: restarted
@@ -21,6 +22,7 @@
 #    exit 0
 
 - name: Reload wpa_supplicant service
+  listen: reload wpa_supplicant service
   ansible.builtin.service:
     name: "{{ item.item.0.service }}"
     state: reloaded

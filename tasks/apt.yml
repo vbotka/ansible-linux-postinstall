@@ -1,7 +1,7 @@
 ---
 # linux_postinstall apt
 
-- name: "Apt: Debug"
+- name: "Apt: Debug lp_apt_debug={{ lp_apt_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -10,21 +10,21 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_apt_debug|bool
+  when: lp_apt_debug | bool
   tags: lp_apt_debug
 
 - name: "Apt: Configure /etc/apt/apt.conf.d"
   ansible.builtin.template:
-    src: "{{ item.template | default('apt-confd.j2') }}"
+    src: "{{ item.template | d('apt-confd.j2') }}"
     dest: /etc/apt/apt.conf.d/{{ item.file }}
-    owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
-    mode: "{{ item.mode | default('0644') }}"
+    owner: "{{ item.owner | d('root') }}"
+    group: "{{ item.group | d('root') }}"
+    mode: "{{ item.mode | d('0644') }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_apt_conf }}"
   loop_control:
     label: "{{ item.file }}"
-  notify: "{{ item.notify|default(omit) }}"
+  notify: "{{ item.notify | d(omit) }}"
   tags: lp_apt_conf
 
 # EOF

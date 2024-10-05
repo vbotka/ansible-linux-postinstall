@@ -1,7 +1,7 @@
 ---
 # linux_postinstall smart
 
-- name: "Smart: Debug"
+- name: "Smart: Debug lp_smart_debug={{ lp_smart_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -11,14 +11,14 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_smart_debug|bool
+  when: lp_smart_debug | bool
   tags: lp_smart_debug
 
 - name: "Smart: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_smart_install|bool
+  when: lp_smart_install | bool
   vars:
     ll_ipkg_list: "{{ lp_smart_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
@@ -27,7 +27,7 @@
     ll_debug: "{{ lp_smart_debug | bool }}"
   tags: lp_smart_packages
 
-- name: "Smart: Configure {{ lp_smart_conf_file }}. Do not scan for devices"
+- name: "Smart: Do not scan for devices. Configure {{ lp_smart_conf_file }}"
   ansible.builtin.lineinfile:
     state: absent
     dest: "{{ lp_smart_conf_file }}"
@@ -37,7 +37,7 @@
     mode: "{{ lp_smart_conf_mode }}"
     backup: "{{ lp_backup_conf }}"
     create: true
-  when: not lp_smart_devicescan|bool
+  when: not lp_smart_devicescan | bool
   notify: reload smart
   tags: lp_smart_conf
 
@@ -57,7 +57,7 @@
   notify: reload smart
   tags: lp_smart_conf
 
-- name: "Smart: Service {{ state }} and {{ enable }}"
+- name: "Smart: Service {{ state ~ ' and ' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_smart_service }}"
     state: "{{ state }}"
@@ -73,7 +73,7 @@
 - name: "Smart: Debug service"
   ansible.builtin.debug:
     var: result
-  when: lp_smart_debug|bool
+  when: lp_smart_debug | bool
   tags: lp_smart_service
 
 # EOF

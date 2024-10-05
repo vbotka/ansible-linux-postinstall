@@ -1,12 +1,12 @@
 ---
 # linux_postinstall speechd
 
-- name: "Speechd: Debug"
+- name: "Speechd: Debug lp_speechd_debug={{ lp_speechd_debug }}"
   ansible.builtin.debug:
     msg: "lp_speechd_enable: {{ lp_speechd_enable }}"
-  when: lp_speechd_debug|bool
+  when: lp_speechd_debug | bool
 
-- name: "Speechd: Service {{ state }} and {{ enable }}"
+- name: "Speechd: Service {{ state ~ ' and ' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_speechd_service }}"
     state: "{{ state }}"
@@ -19,9 +19,9 @@
     enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_speechd_service
 
-- name: "Speechd: Debug service"
+- name: "Speechd: Debug service lp_speechd_debug={{ lp_speechd_debug }}"
   ansible.builtin.debug:
     var: result
-  when: lp_speechd_debug|bool
+  when: lp_speechd_debug | bool
 
 # EOF

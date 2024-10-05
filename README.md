@@ -237,13 +237,13 @@ shell> ansible-playbook lp.yml -t lp_iptables
 3. Test installation of the packages
 
 ```bash
-shell> ansible-playbook -t lp_packages -e 'lp_package_install_dryrun=true' lp.yml
+shell> ansible-playbook -t lp_packages -e lp_packages_auto=true lp.yml -CD
 ```
 
 4. Install packages
 
 ```bash
-shell> ansible-playbook -t lp_packages lp.yml
+shell> ansible-playbook -t lp_packages -e lp_packages_auto=true lp.yml
 ```
 
 5. Check, install and configure other tasks
@@ -252,6 +252,7 @@ shell> ansible-playbook -t lp_packages lp.yml
 shell> ansible-playbook lp.yml --check
 shell> ansible-playbook lp.yml
 ```
+
 
 ## Ansible lint
 

@@ -1,24 +1,26 @@
 ---
 # linux_postinstall LaTeX
 
-- name: "Latex: Debug"
+- name: "Latex: Debug lp_latex_debug={{ lp_latex_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
+      lp_backup_conf: {{ lp_backup_conf }}
       lp_latex_install: {{ lp_latex_install }}
       lp_latex_packages:
         {{ lp_latex_packages | to_nice_yaml(indent=2) | indent(2) }}
-      lp_backup_conf: {{ lp_backup_conf }}
+      lp_latex_macros:
+        {{ lp_latex_macros | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_latex_debug|bool
+  when: lp_latex_debug | bool
   tags: lp_latex_debug
 
 - name: "Latex: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_latex_install|bool
+  when: lp_latex_install | bool
   vars:
     ll_ipkg_list: "{{ lp_latex_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
@@ -39,13 +41,14 @@
     state: directory
     path: "{{ item }}"
     mode: "0755"
-  loop: "{{ lp_latex_macros|map(attribute='dest')|unique }}"
+  loop: "{{ lp_latex_macros | map(attribute='dest') | unique }}"
   tags: lp_latex_macros
 
 - name: "Latex: Download macros"
   ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
+    mode: "0644"
     timeout: "{{ lp_latex_download_timeout }}"
   loop: "{{ lp_latex_macros }}"
   loop_control:

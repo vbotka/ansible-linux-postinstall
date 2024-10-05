@@ -23,6 +23,21 @@ Recommended configuration after the installation of OS
 
    shell> ansible-playbook lp.yml -t lp_debug -e lp_debug=True
 
+
+* Test the auto-installation of packages
+
+.. code-block:: bash
+   :emphasize-lines: 1
+
+   shell> ansible-playbook lp.yml -t lp_packages -e lp_packages_auto=true -CD
+
+* Auto-install packages
+
+.. code-block:: bash
+   :emphasize-lines: 1
+
+   shell> ansible-playbook lp.yml -t lp_packages -e lp_packages_auto=true
+
 * Dry run, display differences and display variables
 
 .. code-block:: bash
@@ -30,11 +45,12 @@ Recommended configuration after the installation of OS
 
    shell> ansible-playbook lp.yml -e lp_debug=True --check --diff
 
-* Configure hostname, users, sudoers, network and reboot
+* Install packages. Configure hostname, users, sudoers, network and reboot
 
 .. code-block:: bash
-   :emphasize-lines: 1-7
+   :emphasize-lines: 1-8
 
+   shell> ansible-playbook lp.yml -t lp_packages
    shell> ansible-playbook lp.yml -t lp_hostname
    shell> ansible-playbook lp.yml -t lp_users
    shell> ansible-playbook lp.yml -t lp_sudoers
@@ -49,20 +65,6 @@ Recommended configuration after the installation of OS
    :emphasize-lines: 1
 
    shell> ansible-playbook lp.yml -t lp_iptables
-
-* Test the installation of packages
-
-.. code-block:: bash
-   :emphasize-lines: 1
-
-   shell> ansible-playbook lp.yml -t lp_packages -e lp_package_install_dryrun=True
-
-* Install packages
-
-.. code-block:: bash
-   :emphasize-lines: 1
-
-   shell> ansible-playbook lp.yml -t lp_packages
 
 * Run the playbook
 

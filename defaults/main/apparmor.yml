@@ -8,8 +8,12 @@ lp_apparmor_service: apparmor
 lp_apparmor_disable: []
 lp_apparmor_complain: []
 lp_apparmor_enforce: []
-# Dynamic variables
-lp_apparmor_profiles_enforce: "{{ result.stdout|d('[]')|from_yaml| selectattr('value', 'eq', 'enforce')| map(attribute='key')|sort }}"
-lp_apparmor_profiles_complain: "{{ result.stdout|d('[]')|from_yaml| selectattr('value', 'eq', 'complain')| map(attribute='key')|sort }}"
+
+lp_apparmor_profiles_enforce: "{{ result.stdout | d('[]') | from_yaml |
+                                  selectattr('value', 'eq', 'enforce') |
+                                  map(attribute='key') | sort }}"
+lp_apparmor_profiles_complain: "{{ result.stdout | d('[]') | from_yaml |
+                                   selectattr('value', 'eq', 'complain') |
+                                   map(attribute='key') | sort }}"
 
 # EOF

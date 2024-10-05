@@ -2,6 +2,7 @@
 # MESSAGES - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 - name: Logind message reboot
+  listen: logind message reboot
   ansible.builtin.debug:
     msg: |
       [MESSAGE] Reboot to activate configuration in logind.conf

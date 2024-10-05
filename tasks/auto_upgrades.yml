@@ -10,7 +10,7 @@
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
 
-- name: "Auto_upgrades: Service {{ state }} and {{ enable }}"
+- name: "Auto_upgrades: Service {{ state ~ ' and ' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_auto_upgrades_service }}"
     state: "{{ state }}"
@@ -23,9 +23,9 @@
     enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_auto_upgrades_service
 
-- name: "Auto_upgrades: Debug service"
+- name: "Auto_upgrades: Debug service lp_auto_upgrades_debug={{ lp_auto_upgrades_debug }}"
   ansible.builtin.debug:
     var: result
-  when: lp_auto_upgrades_debug|bool
+  when: lp_auto_upgrades_debug | bool
 
 # EOF

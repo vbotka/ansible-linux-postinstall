@@ -1,8 +1,9 @@
 ---
 - name: Gpgconf reload
-  ansible.builtin.command:
+  listen: gpgconf reload
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: gpgconf --reload {{ item.item.component }}
-  loop: "{{ lp_gpg_conf_reg.results|selectattr('changed') }}"
+  loop: "{{ lp_gpg_conf_reg.results | selectattr('changed') }}"
   loop_control:
     label: "{{ item.item.owner }} {{ item.item.component }}"
   become: true

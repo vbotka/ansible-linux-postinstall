@@ -1,8 +1,9 @@
 ---
 - name: Restart bluetooth
+  listen: restart bluetooth
   ansible.builtin.service:
     name: "{{ lp_bluetooth_service }}"
     state: restarted
-  when: lp_bluetooth_enable|bool
+  when: lp_bluetooth_enable | bool
 
 # EOF

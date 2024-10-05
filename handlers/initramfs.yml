@@ -1,7 +1,9 @@
 ---
 - name: Update initramfs
-  listen: update initrd
-  ansible.builtin.command:
+  listen:
+    - update initramfs
+    - update initrd
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       update-initramfs -k all -u
 

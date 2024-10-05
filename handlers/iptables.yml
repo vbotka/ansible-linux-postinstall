@@ -1,6 +1,7 @@
 ---
 - name: Reload iptables
-  ansible.builtin.shell:
+  listen: reload iptables
+  ansible.builtin.shell: # noqa: no-changed-when
     cmd: >
       /sbin/iptables-restore < /etc/network/iptables
 

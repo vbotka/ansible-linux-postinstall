@@ -39,15 +39,16 @@
   when: lp_timesyncd_sanity | bool
   tags: lp_timesyncd_sanity
   block:
+
     - name: "Timesyncd: sanity: Assert chrony and timesyncd packages mutually exclusive."
       ansible.builtin.assert:
-        that: not (lp_chrony_install|bool and lp_timesyncd_install|bool)
+        that: not (lp_chrony_install | bool and lp_timesyncd_install | bool)
         fail_msg: >
           [ERR] Packages for chrony and timesyncd are mutually exclusive.
 
     - name: "Timesyncd: sanity: Assert chrony and timesyncd services mutually exclusive."
       ansible.builtin.assert:
-        that: not (lp_chrony_enable|bool and lp_timesyncd_enable|bool)
+        that: not (lp_chrony_enable | bool and lp_timesyncd_enable | bool)
         fail_msg: >
           [ERR] Services {{ lp_chrony_service }} and {{ lp_timesyncd_service }}
           are mutually exclusive.
@@ -63,7 +64,9 @@
           Missing packages: {{ missing }}
       vars:
         missing: "{{ lp_timesyncd_packages | difference(ansible_facts.packages) }}"
-      when: ansible_check_mode
+      when:
+        - ansible_check_mode
+        - lp_timesyncd_install | bool
 
 - name: "Timesyncd: Install packages"
   ansible.builtin.import_role:
@@ -80,6 +83,7 @@
 
 - name: Set lp_timesyncd_service_exists/found
   block:
+
     - name: "Timesyncd: Get Service facts"
       ansible.builtin.service_facts:
 
@@ -115,10 +119,12 @@
 
 - name: Configure, enable, start, or disable timesyncd
   block:
+
     - name: "Timesyncd: Keep original {{ lp_timesyncd_conf_file }}"
       ansible.builtin.copy:
         src: "{{ lp_timesyncd_conf_file }}"
         dest: "{{ lp_timesyncd_conf_file }}.orig"
+        mode: "0644"
         remote_src: true
         force: false
       when: lp_timesyncd_conf_file_orig | bool
@@ -149,13 +155,14 @@
       when: lp_timesyncd_service_found
       tags: lp_timesyncd_service
 
-    - name: "timesyncd: Debug set state/status result lp_timesyncd_debug2={{ lp_timesyncd_debug2|d(false)|bool }}"
+    - name: "Timesyncd: Debug set state/status result lp_timesyncd_debug2={{ lp_timesyncd_debug2 | d(false) | bool }}"
       ansible.builtin.debug:
         var: result
       when: lp_timesyncd_debug2 | d(false) | bool
       tags: lp_timesyncd_service
 
   rescue:
+
     - name: "Timesyncd: Print errors"
       ansible.builtin.debug:
         msg: |
@@ -179,7 +186,18 @@
   when: lp_timesyncd_flush_handlers | bool
   tags: lp_timesyncd_flush_handlers
 
-# Notes on CentOS
+# Notes:
+
+# chrony and timesyncd are mutually exclusive
+# -------------------------------------------
+# To configure timesyncd without installation disable the service and
+# disable crashing on missing service
+# lp_timesyncd: true
+# lp_timesyncd_enable: false
+# lp_timesyncd_service_exists_fatal: false
+
+# CentOS
+# ------
 # * systemd compiled without timesyncd service in CentOS 7 ?
 # * use ntpd or chrony only ?
 # https://unix.stackexchange.com/questions/286708/

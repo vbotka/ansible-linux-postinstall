@@ -1,14 +1,16 @@
 ---
 - name: Restart postfix
+  listen: restart postfix
   ansible.builtin.service:
     name: "{{ lp_postfix_service }}"
     state: restarted
-  when: lp_postfix_enable|bool
+  when: lp_postfix_enable | bool
 
 - name: Reload postfix
+  listen: reload postfix
   ansible.builtin.service:
     name: "{{ lp_postfix_service }}"
     state: reloaded
-  when: lp_postfix_enable|bool
+  when: lp_postfix_enable | bool
 
 # EOF

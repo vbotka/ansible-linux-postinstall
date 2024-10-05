@@ -1,7 +1,7 @@
 ---
 # linux_postinstall modules
 
-- name: "Modules: Debug"
+- name: "Modules: Debug lp_modules_debug={{ lp_modules_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -17,18 +17,18 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_modules_debug|bool
+  when: lp_modules_debug | bool
   tags: lp_modules_debug
 
 - name: "Modules: modprobe modules"
   community.general.modprobe:
     name: "{{ item.name }}"
     params: "{{ item.params }}"
-    state: "{{ item.state | default('present') }}"
+    state: "{{ item.state | d('present') }}"
   loop: "{{ lp_modules }}"
 
 # Debian
-- name: "Modules: Configure {{ lp_modules_conf }} in Debian"
+- name: "Modules: Configure in Debian {{ lp_modules_conf }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_modules_conf }}"
     regexp: ^\s*{{ item.name }}\s*(.*)$
@@ -37,10 +37,10 @@
   loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == 'Debian'
-    - item.state|default('present') == 'present'
+    - item.state | d('present') == 'present'
 
 # RedHat
-- name: "Modules: Configure {{ lp_modules_conf }} in RedHat"
+- name: "Modules: Configure in RedHat {{ lp_modules_conf }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_modules_conf }}"
     regexp: ^\s*modprobe\s+{{ item.name }}\s*(.*)$
@@ -49,7 +49,7 @@
   loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == 'RedHat'
-    - item.state|default('present') == 'present'
+    - item.state | d('present') == 'present'
 
 - name: "Modules: Blacklist modules in {{ lp_modules_blacklist_path }}"
   ansible.builtin.template:

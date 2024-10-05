@@ -9,7 +9,7 @@
     group: root
     mode: "0755"
 
-- name: "Iptables: Create /etc/network/iptables using {{ lp_iptables_type }}-iptables.j2"
+- name: "Iptables: Create /etc/network/iptables using {{ lp_iptables_type ~ '-iptables.j2' }}"
   ansible.builtin.template:
     src: "{{ lp_iptables_type }}-iptables.j2"
     dest: /etc/network/iptables

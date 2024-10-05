@@ -1,14 +1,16 @@
 ---
 - name: Reload sshd
+  listen: reload sshd
   ansible.builtin.service:
     name: "{{ lp_sshd_service }}"
     state: reloaded
-  when: lp_sshd_enable|bool
+  when: lp_sshd_enable | bool
 
 - name: Restart sshd
+  listen: restart sshd
   ansible.builtin.service:
     name: "{{ lp_sshd_service }}"
     state: restarted
-  when: lp_sshd_enable|bool
+  when: lp_sshd_enable | bool
 
 # EOF

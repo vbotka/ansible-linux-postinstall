@@ -1,6 +1,7 @@
 ---
 - name: Set hostname
-  ansible.builtin.command:
+  listen: set hostname
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       /sbin/sysctl kernel.hostname={{ hostname }}
 

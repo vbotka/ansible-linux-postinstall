@@ -4,91 +4,92 @@ task_systemd_synopsis: |
   Configure systemd.
 
 task_systemd_description: |
-  Set my_services (13)
+  Set my_services (4)
   ^^^^^^^^^^^^^^^^^^^^
-  Iterate ``lp_systemd_unit`` (18) and create dictionary
-  ``my_services``. It will be used by handlers to decide if and
-  how to reload or restart services
+
+  Iterate ``lp_systemd_unit`` (24) and create dictionary
+  ``my_services``. It will be used by handlers to decide if and how to
+  reload or restart services
 
   .. code-block:: yaml
 
      my_services:
-       <name>.<type|default(lp_systemd_unit_type)>:
-         state: <control.state|default('started')>
-         restart_or_reload: <control.restart_or_reload|default('reload')>
+       <name>.<type | d(lp_systemd_unit_type)>:
+         state: <control.state | d('started')>
+         restart_or_reload: <control.restart_or_reload | d('reload')>
      ...
 
-  Debug (31)
+  Debug (28)
   ^^^^^^^^^^
-  To see the values of the variables run the playbook with
-  options ``-t lp_systemd_debug -e lp_systemd_debug=True`` (54).
 
-  Packages (58)
+  To see the values of the variables run the playbook with options
+  ``-t lp_systemd_debug -e lp_systemd_debug=True`` (29).
+
+  Packages (54)
   ^^^^^^^^^^^^^
-  Install packages when enabled (62).
+  Install packages when enabled (55).
 
-  Configure systemd (72)
+  Configure systemd (67)
   ^^^^^^^^^^^^^^^^^^^^^^
 
-  Use ``community.general.ini_file`` (73) to configure files (74) in loop
-  ``with_subelements`` (84-86). Register
-  ``lp_systemd_conf_changes`` (83) and notify handler ``reload
-  systemd conf`` (89).
+  Use ``community.general.ini_file`` (72) to configure files in loop
+  (83). Register ``lp_systemd_conf_changes`` (82) and notify handler
+  ``reload systemd conf`` (72).
 
   .. code-block:: yaml
 
      lp_systemd_conf:
        <path>:
-         owner: <owner|default(lp_systemd_owner)>
-         group: <group|default(lp_systemd_group)>
-         mode: <mode|default(lp_systemd_mode)>
+         owner: <owner | d(lp_systemd_owner)>
+         group: <group | d(lp_systemd_group)>
+         mode: <mode | d(lp_systemd_mode)>
          reload_service: <service to be reloaded or restarted by handler>
          conf:
            - {section: <section>, key: <option>, val: <value>}
        ...
 
-  Create units (114)
+  Create units (105)
   ^^^^^^^^^^^^^^^^^^
 
-  Use `` ansible.builtin.template`` (115) to create units in the loop
-  (123) when ``state == 'create'`` (127). Register
-  ``lp_systemd_unit_create_changes`` (122) and notify handler ``reload
-  systemd units`` (126).
+  Use `` ansible.builtin.template`` (112) to create units in the loop
+  (120) when ``state == 'create'`` (110). Register
+  ``lp_systemd_unit_create_changes`` (119) and notify handler ``reload
+  systemd units`` (111).
 
   .. code-block:: yaml
 
      lp_systemd_unit:
        - name: <name of the service>
-         type: <type of the service|default(lp_systemd_unit_type)>
-         path: <directory of the units|default(lp_systemd_unit_dir)>
-         owner: <owner|default(lp_systemd_owner)>
-         group: <group|default(lp_systemd_group)>
-         mode: <mode|default(lp_systemd_mode)>
-         state: <'create' or 'absent'|default('noop')>
+         type: <type of the service | d(lp_systemd_unit_type)>
+         path: <directory of the units | d(lp_systemd_unit_dir)>
+         owner: <owner | d(lp_systemd_owner)>
+         group: <group | d(lp_systemd_group)>
+         mode: <mode | d(lp_systemd_mode)>
+         state: <'create' or 'absent' | d('noop')>
        ...
 
-  Remove units (136)
+  Remove units (129)
   ^^^^^^^^^^^^^^^^^^
 
   <TBD>
 
-  Control units (153)
+  Control units (148)
   ^^^^^^^^^^^^^^^^^^^
 
   .. code-block:: yaml
 
      lp_systemd_unit:
        - name: <name of the service>
-         type: <type of the service|default(lp_systemd_unit_type)>
+         type: <type of the service | d(lp_systemd_unit_type)>
          control:
-           daemon_reexec: <daemon_reexec|default(omit)>
-           daemon_reload: <daemon_reload|default(omit)>
-           enabled: <enabled|default(systemd_units_enabled)>
-           force: <force|default(omit)>
-           masked: <masked|default(omit)>
-           no_block: <no_block|default(omit)>
-           scope: <scope|default(omit)>
-           state: <state|default(omit)>
+           daemon_reexec: <daemon_reexec | d(omit)>
+           daemon_reload: <daemon_reload | d(omit)>
+           enabled: <enabled | d(systemd_units_enabled)>
+           force: <force | d(omit)>
+           masked: <masked | d(omit)>
+           no_block: <no_block | d(omit)>
+           scope: <scope | d(omit)>
+           state: <state | d(omit)>
 
 
   .. seealso::
@@ -98,5 +99,5 @@ task_systemd_description: |
 
   <TBD>
 
-task_systemd_lines: 2,13,31,58,72,114,136,153
+task_systemd_lines: 2,4,28,54,67,105,129,148
 ...

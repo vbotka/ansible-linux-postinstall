@@ -4,39 +4,33 @@ task_service_synopsis: |
   Manage services.
 
 task_service_description: |
-  Debug (6)
+  Debug (4)
   ^^^^^^^^^
 
   TBD
 
-  Sanity (24)
+  Sanity (23)
   ^^^^^^^^^^^
 
   TBD
 
-  Automatic management of listed services (60)
+  Automatic management of listed services (73)
   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  If not empty (86) iterate ``lp_service_auto`` (69). Skip when ``lp_
-  ~ item`` (76) is not *True* (73). Get (77) and use (65) the OS
-  dependent name of the service. Get (78) and set (66) the service
-  enablement. Get (80) and set (66) the service state. Use
-  *default_stat* (81) if *lp_\*_state* does not exist. Get (79) and
-  use the module (68).
+  When not empty (74) iterate ``my_services_varnames`` (84) (See default s/main/service.yml). Skip
+  when ``run_task`` (93) is not *True*.
 
-  Manual management of listed services (89)
-  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  Manual management of listed services (103)
+  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-  If not empty (100) iterate ``lp_service`` in the included tasks
-  (98). If *auto* (95) set the module (94) to ``ansible_service_mgr``
-  (OS native service manager found by the *setup*). TBC
+  When not empty (104) iterate ``lp_service`` in the included tasks (114). When *auto* (111) set the
+  module (110) to ``ansible_service_mgr`` (OS native service manager found by the *setup*). TBC
 
-  Flush handlers (103)
+  Flush handlers (116)
   ^^^^^^^^^^^^^^^^^^^^
 
-  Automatic management of listed services notifies
-  ``ansible_service_mgr`` (74). See the tasks service-\*.yml how manual
-  management options notify handlers.
+  Automatic management of listed services notifies ``ansible_service_mgr``. See the tasks
+  service-\*.yml how manual management options notify handlers.
 
-task_service_lines: 2,6,24,60,89,103
+task_service_lines: 2,4,23,73,103,116
 ...

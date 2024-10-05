@@ -36,13 +36,13 @@
   block:
     - name: "Chrony: sanity: Assert chrony and timesyncd packages mutually exclusive."
       ansible.builtin.assert:
-        that: not (lp_chrony_install|bool and lp_timesyncd_install|bool)
+        that: not (lp_chrony_install | bool and lp_timesyncd_install | bool)
         fail_msg: >
           [ERR] Packages for chrony and timesyncd are mutually exclusive.
 
     - name: "Chrony: sanity: Assert chrony and timesyncd services mutually exclusive."
       ansible.builtin.assert:
-        that: not (lp_chrony_enable|bool and lp_timesyncd_enable|bool)
+        that: not (lp_chrony_enable | bool and lp_timesyncd_enable | bool)
         fail_msg: >
           [ERR] Services {{ lp_chrony_service }} and {{ lp_timesyncd_service }}
           are mutually exclusive.
@@ -114,6 +114,7 @@
       ansible.builtin.copy:
         src: "{{ lp_chrony_conf_file }}"
         dest: "{{ lp_chrony_conf_file }}.orig"
+        mode: "0644"
         remote_src: true
         force: false
       when: lp_chrony_conf_file_orig | bool
@@ -143,7 +144,7 @@
         enable: "{{ enabled | ternary('enabled', 'disabled') }}"
       tags: lp_chrony_service
 
-    - name: "chrony: Debug set state/status result lp_chrony_debug2={{ lp_chrony_debug2|d(false)|bool }}"
+    - name: "Chrony: Debug set state/status result lp_chrony_debug2={{ lp_chrony_debug2 | d(false) | bool }}"
       ansible.builtin.debug:
         var: result
       when: lp_chrony_debug2 | d(false) | bool

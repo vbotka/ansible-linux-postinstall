@@ -1,5 +1,6 @@
 ---
 - name: Restart rc-local
+  listen: restart rc-local
   ansible.builtin.service:
     name: "{{ lp_rc_local_service }}"
     state: restarted

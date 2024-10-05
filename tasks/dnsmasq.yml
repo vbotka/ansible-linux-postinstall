@@ -1,7 +1,7 @@
 ---
 # linux_postinstall dnsmasq
 
-- name: "Dnsmasq: Debug"
+- name: "Dnsmasq: Debug lp_dnsmasq_debug={{ lp_dnsmasq_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -17,14 +17,14 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_dnsmasq_debug|bool
+  when: lp_dnsmasq_debug | bool
   tags: lp_dnsmasq_debug
 
 - name: "Dnsmasq: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_dnsmasq_install|bool
+  when: lp_dnsmasq_install | bool
   vars:
     ll_ipkg_list: "{{ lp_dnsmasq_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
@@ -59,7 +59,7 @@
   notify: restart dnsmasq
   tags: lp_dnsmasq_config
 
-- name: "Dnsmasq: Service {{ state }} and {{ enable }}"
+- name: "Dnsmasq: Service {{ state ~ ' and ' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_dnsmasq_service }}"
     state: "{{ state }}"
@@ -72,10 +72,10 @@
     enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_dnsmasq_service
 
-- name: "Dnsmasq: Debug service"
+- name: "Dnsmasq: Debug service lp_dnsmasq_debug={{ lp_dnsmasq_debug }}"
   ansible.builtin.debug:
     var: result
-  when: lp_dnsmasq_debug|bool
+  when: lp_dnsmasq_debug | bool
   tags: lp_dnsmasq_service
 
 # EOF

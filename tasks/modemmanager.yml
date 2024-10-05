@@ -9,7 +9,7 @@
     group: root
     mode: "0644"
 
-- name: "Modemmanager: Service {{ state }} and {{ enable }}"
+- name: "Modemmanager: Service {{ state ~ ' and ' ~ enable }}"
   ansible.builtin.service:
     name: "{{ lp_modemmanager_service }}"
     state: "{{ state }}"
@@ -22,10 +22,10 @@
     enable: "{{ enabled | ternary('enabled', 'disabled') }}"
   tags: lp_modemmanager_service
 
-- name: "Modemmanager: Debug service"
+- name: "Modemmanager: Debug service lp_modemmanager_service={{ lp_modemmanager_service }}"
   ansible.builtin.debug:
     var: result
-  when: lp_modemmanager_debug|bool
+  when: lp_modemmanager_debug | bool
   tags: lp_modemmanager_service
 
 # EOF

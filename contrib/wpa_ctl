@@ -4,7 +4,7 @@
 # All rights reserved (c) 2019-2024, Vladimir Botka <vbotka@gmail.com>
 # Simplified BSD License, https://opensource.org/licenses/BSD-2-Clause
 
-version="2.0.0"
+version="2.0.1"
 
 # Usage - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 usage="$(basename "$0") ver $version
@@ -49,32 +49,35 @@ Configuration files precedence:
   3. ~/.wpa_ctl
   4. ./.wpa_ctl
 
-See: https://github.com/vbotka/ansible-linux-postinstall/contrib"
+See: https://github.com/vbotka/ansible-linux-postinstall"
 
 # Notes - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 notes="$(basename "$0") ver $version
 
 Notes:
 
-* The main goal is to keep the configuration of WiFi as simple as
+* This script's main goal is to keep the configuration of WiFi as simple as
   possible. In desktop, this means 1) letting wpa_gui to controll
   wpa_supplicant and 2) running wpa_cli in the background to wait for
   events from wpa_supplicant. See https://w1.fi/wpa_supplicant/
 
-* Before you use this script stop and disable NM and wpa_supplicant
-  services. Kill all running instances of NM and wpa_supplicant.
-  Optionally, mask these services.
+* Before you use this script stop and disable NetworkManager (NM) and
+  wpa_supplicant services. Kill all running instances of NM and
+  wpa_supplicant started by these services. Optionally, mask these
+  services.
 
-* wpa_gui is started by default. It is expected that single instance
-  of wpa_gui is running in the tray. Set wpa_gui_enable_ifc=1 if you
-  want to run wpa_gui for each initialized interface.
+* wpa_gui is started by default in this script. Set
+  wpa_gui_enable_ifc=1 if you want to run wpa_gui for each initialized
+  interface.
 
-* wpa_cli is not started by default. It is expected that the system,
-  for example netplan, will set the IP address and routing of the
-  interface. Set wpa_cli=1 and configure the action script if you want
-  to control the IP and routing of the interface on your own.
+* wpa_cli is not started by default in this script. It is expected
+  that the system, for example netplan, will set the IP address and
+  routing of the interface. Set wpa_cli=1 and configure the action
+  script if you want to control the IP and routing of the interface on
+  your own.
 
-* wpa_gui won't be terminated on killing of an interface.
+* wpa_gui won't be terminated on killing of an interface in this
+  script..
 
 * Example of udev configuration:
   shell> cat /etc/udev/rules.d/70-persistent-net.rules
@@ -135,8 +138,8 @@ Notes:
   fi
   exit 0
 
-* This script is developed and tested with the Ansible role:
-  https://github.com/vbotka/ansible-linux-postinstall
+* This script is developed and tested in the Ansible role:
+  https://github.com/vbotka/ansible-linux-postinstall/
 
 * See the documentation:
   https://ansible-linux-postinstall.readthedocs.io/"
@@ -269,7 +272,8 @@ function wpa_gui_start {
     if log=$(pgrep wpa_gui 2>&1); then
 	message="wpa_gui is running"; log-ok
     else
-	if log=$(su "$wpa_gui_user" -c "$wpa_gui -t -p $ctrl_interface &"); then
+	cmd="$wpa_gui -t -p $ctrl_interface"
+	if log=$(runuser -u "$wpa_gui_user" -- "$cmd" &); then
 	    message="wpa_gui started"; log-ok
 	else
 	    message="wpa_gui failed to start: \n$log"; log-err
@@ -281,7 +285,8 @@ function wpa_gui_ifc_start {
     if log=$(ps ax | grep "$interface" | grep wpa_gui 2>&1); then
 	message="wpa_gui is running on $interface"; log-ok
     else
-	if log=$(su "$wpa_gui_user" -c "$wpa_gui -t -i $interface -p $ctrl_interface &"); then
+	cmd="$wpa_gui -t -i $interface -p $ctrl_interface"
+	if log=$(runuser -u "$wpa_gui_user" -- "$cmd" &); then
 	    message="wpa_gui started on $interface"; log-ok
 	else
 	    message="wpa_gui failed to start on $interface: \n$log"; log-err
@@ -293,7 +298,8 @@ function create_xdg_runtime_dir {
     if [ -d $xdg_runtime_dir ]; then
 	message="$xdg_runtime_dir exists"; log-ok
     else
-	if log=$(su "$wpa_gui_user" -c "mkdir $xdg_runtime_dir; chmod 0700 $xdg_runtime_dir"); then
+	cmd="mkdir $xdg_runtime_dir; chmod 0700 $xdg_runtime_dir"
+	if log=$(runuser "$wpa_gui_user" -- "$cmd"); then
 	    message="$xdg_runtime_dir created"; log-ok
 	else
 	    message="Can not create $xdg_runtime_dir: \n$log"; log-err

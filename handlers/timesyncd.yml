@@ -1,5 +1,6 @@
 ---
 - name: Restart timesyncd
+  listen: restart timesyncd
   ansible.builtin.service:
     name: "{{ lp_timesyncd_service }}"
     state: restarted

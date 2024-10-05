@@ -1,28 +1,28 @@
 ---
 # linux_postinstall zfs
 
-- name: "Zfs: Debug"
+- name: "Zfs: Debug lp_zfs_debug={{ lp_zfs_debug }}"
   vars:
     msg: |-
       lp_zfs_install: {{ lp_zfs_install }}
       lp_zfs_packages:
         {{ lp_zfs_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_zfs_services:
-        {{ lp_zfs_services | default([]) | to_yaml(indent=2) | indent(2) }}
+        {{ lp_zfs_services | d([]) | to_yaml(indent=2) | indent(2) }}
       lp_zfs_manage:
         {{ lp_zfs_manage | to_yaml(indent=2) | indent(2) }}
       lp_zfs_mountpoints:
         {{ lp_zfs_mountpoints | to_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_zfs_debug|bool
+  when: lp_zfs_debug | bool
   tags: lp_zfs_debug
 
 - name: "Zfs: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_zfs_install|bool
+  when: lp_zfs_install | bool
   vars:
     ll_ipkg_list: "{{ lp_zfs_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
@@ -36,12 +36,12 @@
     name: "{{ item.name }}"
     enabled: "{{ srv_enbl }}"
     state: "{{ srv_stat }}"
-  loop: "{{ lp_zfs_services|default([]) }}"
+  loop: "{{ lp_zfs_services | d([]) }}"
   loop_control:
     label: "{{ item.name }} enabled: {{ srv_enbl }} state: {{ srv_stat }}"
   vars:
-    srv_enbl: "{{ item.enabled | default(true) }}"
-    srv_stat: "{{ item.state | default(default_stat) }}"
+    srv_enbl: "{{ item.enabled | d(true) }}"
+    srv_stat: "{{ item.state | d(default_stat) }}"
     default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
   tags: lp_zfs_services
 
@@ -49,8 +49,8 @@
   community.general.zfs:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
-    origin: "{{ item.origin | default(omit) }}"
-    extra_zfs_properties: "{{ item.extra_zfs_properties | default(omit) }}"
+    origin: "{{ item.origin | d(omit) }}"
+    extra_zfs_properties: "{{ item.extra_zfs_properties | d(omit) }}"
   loop: "{{ lp_zfs_manage }}"
   loop_control:
     label: "{{ item.name }}"
@@ -60,9 +60,9 @@
   ansible.builtin.file:
     state: directory
     path: "{{ item.mountpoint }}"
-    owner: "{{ item.owner | default(omit) }}"
-    group: "{{ item.group | default(omit) }}"
-    mode: "{{ item.mode | default(omit) }}"
+    owner: "{{ item.owner | d(omit) }}"
+    group: "{{ item.group | d(omit) }}"
+    mode: "{{ item.mode | d(omit) }}"
   loop: "{{ lp_zfs_mountpoints }}"
   loop_control:
     label: "{{ item.mountpoint }}"

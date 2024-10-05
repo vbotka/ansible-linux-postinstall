@@ -1,7 +1,7 @@
 ---
 # linux_postinstall networkd
 
-- name: "Networkd: Debug"
+- name: "Networkd: Debug lp_networkd_debug={{ lp_networkd_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -18,7 +18,7 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_networkd_debug|bool
+  when: lp_networkd_debug | bool
   tags: lp_networkd_debug
 
 # Packages
@@ -26,7 +26,7 @@
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_networkd_install|bool
+  when: lp_networkd_install | bool
   vars:
     ll_ipkg_list: "{{ lp_networkd_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
@@ -40,9 +40,9 @@
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner | default(lp_systemd_owner) }}"
-    group: "{{ item.group | default(lp_systemd_group) }}"
-    mode: "{{ item.mode | default(lp_systemd_mode) }}"
+    owner: "{{ item.owner | d(lp_systemd_owner) }}"
+    group: "{{ item.group | d(lp_systemd_group) }}"
+    mode: "{{ item.mode | d(lp_systemd_mode) }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_networkd_conf }}"
   loop_control:
@@ -50,23 +50,25 @@
   notify: restart networkd
   tags: lp_networkd_conf
 
-# Service
-- name: "Networkd: Service {{ state }} and {{ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_networkd_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_networkd_enable | bool | d(false) }}"
-    state: "{{ lp_networkd_state | d(default_state) }}"
-    default_state: "{{ enabled | ternary('started', 'stopped') }}"
-    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+- name: Service
   tags: lp_networkd_service
+  block:
 
-- name: "Networkd: Debug service"
-  ansible.builtin.debug:
-    var: result
-  when: lp_networkd_debug|bool
+    - name: "Networkd: Service {{ state ~ ' and ' ~ enable }}"
+      ansible.builtin.service:
+        name: "{{ lp_networkd_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+      register: result
+      vars:
+        enabled: "{{ lp_networkd_enable | bool | d(false) }}"
+        state: "{{ lp_networkd_state | d(default_state) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+
+    - name: "Networkd: Debug service lp_networkd_debug={{ lp_networkd_debug }}"
+      ansible.builtin.debug:
+        var: result
+      when: lp_networkd_debug | bool
 
 # EOF

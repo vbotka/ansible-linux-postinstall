@@ -18,14 +18,15 @@
       lp_vars_flavors: {{ lp_vars_flavors }}
       lp_flavors_enable: {{ lp_flavors_enable }}
       my_release:
-        {{ my_release|default([])|to_nice_yaml|indent(2) }}
+        {{ my_release | default([]) | to_nice_yaml(indent=2) | indent(2) }}
+      lp_packages_auto: {{ lp_packages_auto }}
       lp_package_state: {{ lp_package_state }}
       lp_package_state_remove: {{ lp_package_state_remove }}
       lp_backup_conf: {{ lp_backup_conf }}
       lp_service:
-        {{ lp_service|to_yaml|indent(2) }}
-      lp_tasks_enabled: {{ lp_tasks_enabled_print|ternary(lp_tasks_enabled, 'Disabled') }}
-      lp_tasks_disabled: {{ lp_tasks_disabled_print|ternary(lp_tasks_disabled, 'Disabled') }}
+        {{ lp_service | to_yaml(indent=2) | indent(2) }}
+      lp_tasks_enabled: {{ lp_tasks_enabled_print | ternary(lp_tasks_enabled, 'Disabled') }}
+      lp_tasks_disabled: {{ lp_tasks_disabled_print | ternary(lp_tasks_disabled, 'Disabled') }}
 
       lp_aliases: {{ lp_aliases }}
       lp_apt: {{ lp_apt }}

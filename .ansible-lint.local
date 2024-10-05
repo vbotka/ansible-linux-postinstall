@@ -7,6 +7,7 @@ skip_list:
   - schema[meta]
 exclude_paths:
   - docs/
+  - contrib/host_vars/armbian/minimal/1.90
 
 # rulesdir:
 #   - $HOME/.ansible/ansible-lint-rules
