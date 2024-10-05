@@ -10,15 +10,15 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_groups_debug|bool
+  when: lp_groups_debug | bool
   tags: lp_groups_debug
 
 - name: "Groups: Manage groups"
   ansible.builtin.group:
     name: "{{ item.name }}"
-    gid: "{{ item.gid | default(omit) }}"
-    state: "{{ item.state | default(omit) }}"
-    system: "{{ item.system | default(omit) }}"
+    gid: "{{ item.gid | d(omit) }}"
+    state: "{{ item.state | d(omit) }}"
+    system: "{{ item.system | d(omit) }}"
   loop: "{{ lp_groups }}"
 
 # EOF

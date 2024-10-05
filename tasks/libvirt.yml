@@ -39,12 +39,12 @@
     dest: "{{ lp_libvirt_conf_dir }}/{{ item.0.key }}"
     regexp: ^\s*{{ item.1.0 }}(\s|=)(.*)$
     line: "{{ item.1.0 }} = {{ item.1.1 }}"
-    state: "{{ item.1.2|default('present') }}"
+    state: "{{ item.1.2 | d('present') }}"
     backup: "{{ lp_backup_conf }}"
     create: true
-    owner: "{{ item.0.owner|default('root') }}"
-    group: "{{ item.0.group|default('root') }}"
-    mode: "{{ item.0.mode|default('0644') }}"
+    owner: "{{ item.0.owner | d('root') }}"
+    group: "{{ item.0.group | d('root') }}"
+    mode: "{{ item.0.mode | d('0644') }}"
   loop: "{{ lp_libvirt_conf | dict2items | subelements('value.conf', {'skip_missing': True}) }}"
   loop_control:
     label: "{{ item.0.key }} {{ item.1.0 }}: {{ item.1.1 }} {{ item.1.2 | d('present') }}"

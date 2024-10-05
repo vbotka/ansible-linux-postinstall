@@ -71,7 +71,7 @@
 #         sleep: "{{ lp_reboot_wait_sleep }}"
 #         delay: "{{ lp_reboot_wait_delay }}"
 #         timeout: "{{ lp_reboot_wait_timeout }}"
-#   when: (reboot_required | default(false) and
+#   when: (reboot_required | d(false) and
 #         (not lp_reboot_required_ignore)) or lp_reboot_force
 
 # EOF

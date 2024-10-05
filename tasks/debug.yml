@@ -18,7 +18,7 @@
       lp_vars_flavors: {{ lp_vars_flavors }}
       lp_flavors_enable: {{ lp_flavors_enable }}
       my_release:
-        {{ my_release | default([]) | to_nice_yaml(indent=2) | indent(2) }}
+        {{ my_release | d([]) | to_nice_yaml(indent=2) | indent(2) }}
       lp_packages_auto: {{ lp_packages_auto }}
       lp_package_state: {{ lp_package_state }}
       lp_package_state_remove: {{ lp_package_state_remove }}

@@ -1,7 +1,7 @@
 ---
 # linux_postinstall logrotate
 
-- name: "Logrotate: Debug"
+- name: "Logrotate: Debug lp_logrotate_debug={{ lp_logrotate_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -11,14 +11,14 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_logrotate_debug|bool
+  when: lp_logrotate_debug | bool
   tags: lp_logrotate_debug
 
 - name: "Logrotate: Install packages for logrotate"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_logrotate_install|bool
+  when: lp_logrotate_install | bool
   vars:
     ll_ipkg_list: "{{ lp_logrotate_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
@@ -52,9 +52,9 @@
     block: "{{ item.conf }}"
     backup: "{{ lp_backup_conf }}"
     create: true
-    owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
-    mode: "{{ item.mode | default('0644') }}"
+    owner: "{{ item.owner | d('root') }}"
+    group: "{{ item.group | d('root') }}"
+    mode: "{{ item.mode | d('0644') }}"
   loop: "{{ lp_logrotate_confd }}"
   loop_control:
     label: "{{ item.path }}"
