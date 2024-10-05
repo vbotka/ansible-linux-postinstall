@@ -1,11 +1,11 @@
 # {{ ansible_managed }}
 
 # default
-{% for conf in item.default|d([]) %}
-{{ conf.key }} {{ conf.value|default('') }}
+{% for conf in item.default | d([]) %}
+{{ conf.key }} {{ conf.value | d('') }}
 {% endfor %}
 
 # user
 {% for conf in item.conf %}
-{{ conf.key }} {{ conf.value|default('') }}
+{{ conf.key }} {{ conf.value | d('') }}
 {% endfor %}

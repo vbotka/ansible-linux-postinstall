@@ -2,12 +2,12 @@
 
 # lp_hosts_default
 {% for item in lp_hosts_default_override|default(lp_hosts_default) %}
-{{ "%-20s" | format(item.ip) }}     {{ item.name1 }} {{ item.name2|default('') }} {{ item.name3|default('') }} {{ item.name4|default('') }}
+{{ "%-20s" | format(item.ip) }}     {{ item.name1 }} {{ item.name2 | d('') }} {{ item.name3 | d('') }} {{ item.name4 | d('') }}
 {% endfor %}
 
 # lp_hosts
 {% for item in lp_hosts %}
-{{ "%-20s" | format(item.ip) }}     {{ item.fqdn }}{% for alias in item.aliases|default([]) %} {{ alias }}{% endfor %}{% if item.hostname|default('')|length > 0 %} {{ item.hostname }}
+{{ "%-20s" | format(item.ip) }}     {{ item.fqdn }}{% for alias in item.aliases | d([]) %} {{ alias }}{% endfor %}{% if item.hostname | d('') | length > 0 %} {{ item.hostname }}
 {% endif %}
 {% endfor %}
 

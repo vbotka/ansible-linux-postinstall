@@ -1,13 +1,13 @@
 # {{ ansible_managed }}
 
 # lp_hosts_default
-{% for item in lp_hosts_default_override|default(lp_hosts_default) %}
-{{ "%-20s" | format(item.ip) }}     {{ item.name1 }} {{ item.name2|default('') }} {{ item.name3|default('') }} {{ item.name4|default('') }}
+{% for item in lp_hosts_default_override | d(lp_hosts_default) %}
+{{ "%-20s" | format(item.ip) }}     {{ item.name1 }} {{ item.name2 | d('') }} {{ item.name3 | d('') }} {{ item.name4 | d('') }}
 {% endfor %}
 
 # lp_hosts
 {% for item in lp_hosts %}
-{{ "%-20s" | format(item.ip) }}     {{ item.fqdn }} {{ item.hostname|default('') }}
+{{ "%-20s" | format(item.ip) }}     {{ item.fqdn }} {{ item.hostname | d('') }}
 {% endfor %}
 
 # EOF

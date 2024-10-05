@@ -7,9 +7,9 @@
 {% endfor %}
 {% endif %}
 
-{% if item.type|default(lp_systemd_unit_type)|title in item %}
-[{{ item.type|default(lp_systemd_unit_type)|title }}]
-{% for key, val in item[item.type|default(lp_systemd_unit_type)|title].items() %}
+{% if item.type | d(lp_systemd_unit_type) | title in item %}
+[{{ item.type | d(lp_systemd_unit_type) | title }}]
+{% for key, val in item[item.type | d(lp_systemd_unit_type) | title].items() %}
 {{ key }}={{ val }}
 {% endfor %}
 {% endif %}

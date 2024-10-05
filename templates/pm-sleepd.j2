@@ -6,7 +6,7 @@ PATH={{ item.value.path }}
 case "$1" in
     suspend|hibernate)
 {% for command in item.value.suspend_hibernate %}
-{{ command|indent(10, true) }}
+{{ command | indent(10, first=true) }}
 {% endfor %}
           ;;
     resume|thaw)
