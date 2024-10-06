@@ -14,6 +14,7 @@
     msg: "{{ '{}'.format(msg) }}"
 
 - name: "Sysctl: Configure /etc/sysctl.conf"
+  notify: load sysctl settings
   ansible.builtin.lineinfile:
     dest: /etc/sysctl.conf
     regexp: ^\s*{{ item.var }}\s*=(.*)$
@@ -23,6 +24,5 @@
   loop: "{{ lp_sysctl_vars }}"
   loop_control:
     label: "{{ item.var }}: {{ item.value }} {{ item.state | d('present') }}"
-  notify: load sysctl settings
 
 # EOF

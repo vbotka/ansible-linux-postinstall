@@ -66,21 +66,23 @@
   when: lp_packages_install | length > 0
   tags: lp_packages_install
 
-- name: "Packages: Remove"
-  ansible.builtin.package:
-    name: "{{ item }}"
-    state: "{{ lp_package_state_remove }}"
-  loop: "{{ lp_packages_remove }}"
-  register: result
-  retries: "{{ lp_install_retries }}"
-  delay: "{{ lp_install_delay }}"
-  until: result is succeeded
+- name: Remove packages
   tags: lp_packages_remove
+  block:
 
-- name: "Packages: Debug result"
-  ansible.builtin.debug:
-    var: result
-  when: lp_packages_debug | bool
-  tags: lp_packages_remove
+    - name: "Packages: Remove"
+      ansible.builtin.package:
+        name: "{{ item }}"
+        state: "{{ lp_package_state_remove }}"
+      loop: "{{ lp_packages_remove }}"
+      register: result
+      retries: "{{ lp_install_retries }}"
+      delay: "{{ lp_install_delay }}"
+      until: result is succeeded
+
+    - name: "Packages: Debug result lp_packages_debug={{ lp_packages_debug }}"
+      ansible.builtin.debug:
+        var: result
+      when: lp_packages_debug | bool
 
 # EOF

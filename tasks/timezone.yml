@@ -2,14 +2,14 @@
 # linux_postinstall timezone
 
 - name: "Timezone: Debug lp_timezone_debug={{ lp_timezone_debug }}"
-  ansible.builtin.debug:
-    msg: "lp_timezone_zoneinfo: {{ lp_timezone_zoneinfo }}"
   when: lp_timezone_debug | bool
   tags: lp_timezone_debug
+  ansible.builtin.debug:
+    msg: "lp_timezone_zoneinfo: {{ lp_timezone_zoneinfo }}"
 
 - name: "Timezone: Set timezone {{ lp_timezone_zoneinfo }}"
+  tags: lp_timezone_set
   community.general.timezone:
     name: "{{ lp_timezone_zoneinfo | d('UTC') }}"
-  tags: lp_timezone_set
 
 # EOF

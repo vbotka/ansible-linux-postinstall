@@ -1,7 +1,7 @@
 ---
 # linux_postinstall grub
 
-- name: "Grub: Debug"
+- name: "Grub: Debug lp_grub_debug={{ lp_grub_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -10,7 +10,7 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_grub_debug|bool
+  when: lp_grub_debug | bool
   tags: lp_grub_debug
 
 - name: "Grub: Configure /etc/default/grub"

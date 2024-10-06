@@ -19,6 +19,8 @@
 # 7.See: man ufw.
 
 - name: "Ufw: Debug lp_ufw_debug={{ lp_ufw_debug }}"
+  when: lp_ufw_debug | bool
+  tags: lp_ufw_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -41,35 +43,35 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_ufw_debug | bool
-  tags: lp_ufw_debug
 
 - name: "Ufw: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
   when: lp_ufw_install | bool
+  tags: lp_ufw_packages
   vars:
     ll_ipkg_list: "{{ lp_ufw_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
     ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_ufw_debug | bool }}"
-  tags: lp_ufw_packages
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
 - name: "Ufw: Disable and reset firewall to installation defaults"
-  community.general.ufw:
-    state: reset
   when: lp_ufw_reset | bool
   tags: lp_ufw_reset
+  community.general.ufw:
+    state: reset
 
 - name: "Ufw: Reload firewall"
-  community.general.ufw:
-    state: reloaded
   when: lp_ufw_reload | bool
   tags: lp_ufw_reload
+  community.general.ufw:
+    state: reloaded
 
 - name: "Ufw: Configure /etc/default/ufw"
+  tags: lp_ufw_default
+  notify: reload ufw
   ansible.builtin.lineinfile:
     path: /etc/default/ufw
     regexp: ^\s*{{ item.key }}\s*=(.*)$
@@ -78,10 +80,10 @@
   loop: "{{ lp_ufw_default }}"
   loop_control:
     label: "{{ item.key }}: {{ item.val }}"
-  notify: reload ufw
-  tags: lp_ufw_defaults
 
 - name: "Ufw: Configure /etc/ufw/sysctl.conf"
+  tags: lp_ufw_sysctl
+  notify: reload ufw
   ansible.builtin.lineinfile:
     path: /etc/ufw/sysctl.conf
     regexp: ^\s*{{ item.key }}\s*=(.*)$
@@ -90,10 +92,10 @@
   loop: "{{ lp_ufw_sysctl }}"
   loop_control:
     label: "{{ item.key }}: {{ item.val }}"
-  notify: reload ufw
-  tags: lp_ufw_defaults
 
 - name: "Ufw: Configure blocks"
+  tags: lp_ufw_blocks
+  notify: reload ufw
   ansible.builtin.blockinfile:
     path: /etc/ufw/{{ item.0.key }}
     marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.1.mark }}"
@@ -104,10 +106,9 @@
   loop: "{{ lp_ufw_blocks | dict2items | subelements('value') }}"
   loop_control:
     label: "{{ item.0.key }} {{ item.1.mark }}"
-  notify: reload ufw
-  tags: lp_ufw_defaults
 
 - name: "Ufw: Configure ufw"
+  tags: lp_ufw_conf
   community.general.ufw:
     comment: "{{ item.comment | d(omit) }}"
     default: "{{ item.default | d(omit) }}"
@@ -130,9 +131,10 @@
   loop: "{{ lp_ufw_conf }}"
   loop_control:
     label: "{{ item.comment | d('no comment') }}"
-  tags: lp_ufw_conf
 
 - name: "Ufw: Configure service"
+  tags: lp_ufw_service_conf
+  notify: "{{ item.0.handlers | d(omit) }}"
   community.general.ini_file:
     path: "{{ item.0.path }}"
     owner: "{{ item.0.owner | d(omit) }}"
@@ -153,26 +155,26 @@
       {{ item.1.option | d('none') }}
       {{ item.1.value | d('none') }}
       {{ item.1.state | d('none') }}"
-  notify: "{{ item.0.handlers | d(omit) }}"
-  tags: lp_ufw_service_conf
 
-- name: "Ufw: Service {{ state ~ ' and ' ~ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_ufw_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_ufw_enable | bool | d(false) }}"
-    state: "{{ lp_ufw_state | d(default_state) }}"
-    default_state: "{{ enabled | ternary('started', 'stopped') }}"
-    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+- name: Service
   tags: lp_ufw_service
+  block:
 
-- name: "Ufw: Debug service lp_ufw_debug={{ lp_ufw_debug }}"
-  ansible.builtin.debug:
-    var: result
-  when: lp_ufw_debug | bool
-  tags: lp_ufw_service
+    - name: "Ufw: Service {{ state ~ ' and ' ~ enable }}"
+      register: result
+      vars:
+        enabled: "{{ lp_ufw_enable | bool | d(false) }}"
+        state: "{{ lp_ufw_state | d(default_state) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      ansible.builtin.service:
+        name: "{{ lp_ufw_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+
+    - name: "Ufw: Debug service lp_ufw_debug={{ lp_ufw_debug }}"
+      when: lp_ufw_debug | bool
+      ansible.builtin.debug:
+        var: result
 
 # EOF

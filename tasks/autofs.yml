@@ -42,6 +42,7 @@
 
 - name: "Autofs: Configure, enable, start, or disable autofs"
   block:
+
     - name: "Autofs: Configure {{ lp_autofs_conf_file }}"
       ansible.builtin.lineinfile:
         dest: "{{ lp_autofs_conf_file }}"
@@ -92,6 +93,7 @@
       tags: lp_autofs_service
 
   rescue:
+
     - name: "Autofs: Print errors"
       ansible.builtin.debug:
         msg: |

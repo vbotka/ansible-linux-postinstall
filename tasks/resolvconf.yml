@@ -38,6 +38,8 @@
     tasks_from: install_package.yml
 
 - name: "Resolvconf: Configure lp_resolvconf_conf"
+  notify: restart resolvconf
+  tags: lp_resolvconf_confd_head
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -48,21 +50,19 @@
   loop: "{{ lp_resolvconf_conf }}"
   loop_control:
     label: "{{ item.dest }}"
-  notify: restart resolvconf
-  tags: lp_resolvconf_confd_head
 
 - name: "Resolvconf: Service {{ state ~ ' and ' ~ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_resolvconf_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
+  tags: lp_resolvconf_service
   register: result
   vars:
     enabled: "{{ lp_resolvconf_enable | bool | d(false) }}"
     default_state: "{{ enabled | ternary('started', 'stopped') }}"
     state: "{{ lp_resolvconf_state | d(default_state) }}"
     enable: "{{ enabled | ternary('enabled', 'disabled') }}"
-  tags: lp_resolvconf_service
+  ansible.builtin.service:
+    name: "{{ lp_resolvconf_service }}"
+    state: "{{ state }}"
+    enabled: "{{ enabled }}"
 
 - name: "Resolvconf: Debug service lp_resolvconf_debug={{ lp_resolvconf_debug }}"
   when: lp_resolvconf_debug | bool

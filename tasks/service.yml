@@ -24,6 +24,7 @@
   when: lp_service_sanity | bool
   tags: lp_service_sanity
   block:
+
     - name: "Service: Get service facts"
       ansible.builtin.service_facts:
 
@@ -45,23 +46,23 @@
 
     - name: "Service: Sanity lp_service_auto items are defined"
       when: lp_service_auto | length > 0
+      vars:
+        my_services_alias: "{{ lp_service_auto }}"
       ansible.builtin.assert:
         that: my_services_undef | length == 0
         fail_msg: "[ERR] Undefined services: {{ my_services_undef }}"
         success_msg: "[OK]  All service names in lp_service_auto are valid."
         quiet: "{{ lp_service_sanity_quiet }}"
-      vars:
-        my_services_alias: "{{ lp_service_auto }}"
 
     - name: "Service: Sanity lp_service names are defined"
       when: lp_service | length > 0
+      vars:
+        my_services_alias: "{{ lp_service | map(attribute='name') }}"
       ansible.builtin.assert:
         that: my_services_undef | length == 0
         fail_msg: "[ERR] Undefined services: {{ my_services_undef }}"
         success_msg: "[OK]  All service names in lp_service are valid."
         quiet: "{{ lp_service_sanity_quiet }}"
-      vars:
-        my_services_alias: "{{ lp_service | map(attribute='name') }}"
 
     - name: "Service: Sanity lp_service_module"
       ansible.builtin.assert:
@@ -106,9 +107,9 @@
   block:
 
     - name: "Service: Manual management set module auto"
+      when: lp_service_module == 'auto'
       ansible.builtin.set_fact:
         lp_service_module: "{{ ansible_service_mgr }}"
-      when: lp_service_module == 'auto'
 
     - name: "Service: Include {{ lp_service_module }}"
       ansible.builtin.include_tasks: fn/service-{{ lp_service_module }}.yml

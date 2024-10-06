@@ -31,7 +31,6 @@
   when: lp_nm_debug | bool
   tags: lp_nm_debug
 
-# Packages
 - name: "Nm: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
@@ -45,25 +44,25 @@
     ll_debug: "{{ lp_nm_debug | bool }}"
   tags: lp_nm_packages
 
-# Override
-- name: "Nm: Create /etc/init/network-manager.override"
-  ansible.builtin.template:
-    src: network-manager-override.j2
-    dest: /etc/init/network-manager.override
-    owner: root
-    group: root
-    mode: "0644"
-  when: not lp_nm_enable | bool
+- name: Override
   tags: lp_nm_override
+  block:
 
-- name: "Nm: Remove /etc/init/network-manager.override"
-  ansible.builtin.file:
-    state: absent
-    dest: /etc/init/network-manager.override
-  when: lp_nm_enable | bool
-  tags: lp_nm_override
+    - name: "Nm: Create /etc/init/network-manager.override"
+      ansible.builtin.template:
+        src: network-manager-override.j2
+        dest: /etc/init/network-manager.override
+        owner: root
+        group: root
+        mode: "0644"
+      when: not lp_nm_enable | bool
 
-# Conf
+    - name: "Nm: Remove /etc/init/network-manager.override"
+      ansible.builtin.file:
+        state: absent
+        dest: /etc/init/network-manager.override
+      when: lp_nm_enable | bool
+
 - name: "Nm: Configure {{ lp_nm_conf_path }}"
   community.general.ini_file:
     path: "{{ lp_nm_conf_path }}"
@@ -76,7 +75,6 @@
   loop: "{{ lp_nm_conf }}"
   tags: lp_nm_conf
 
-# Service
 - name: "Nm: Services start/stop and enable/disable"
   ansible.builtin.service:
     name: "{{ srv_name }}"
@@ -92,7 +90,6 @@
     default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
   tags: lp_nm_service
 
-# Mask service
 - name: "Nm: Services mask={{ lp_nm_mask }}"
   ansible.builtin.systemd_service:
     name: "{{ srv_name }}"

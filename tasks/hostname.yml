@@ -19,13 +19,13 @@
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
   when:
-    - lp_hostname|length > 0
+    - lp_hostname | length > 0
     - ansible_os_family == 'Debian'
 #  notify: set hostname
 
 - name: "Hostname: Configure hostname"
   ansible.builtin.hostname:
     name: "{{ lp_hostname }}"
-  when: lp_hostname|length > 0
+  when: lp_hostname | length > 0
 
 # EOF

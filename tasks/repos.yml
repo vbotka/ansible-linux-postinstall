@@ -17,6 +17,7 @@
 - name: Manage repo signing keys
   tags: lp_repos_keys_manage
   block:
+
     - name: "Repos: Manage repo signing keys"
       ansible.builtin.apt_key:
         data: "{{ item.data | d(omit) }}"

@@ -2,6 +2,8 @@
 # linux_postinstall users
 
 - name: "Users: Debug lp_users_debug={{ lp_users_debug }}"
+  when: lp_users_debug | bool
+  tags: lp_users_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -12,10 +14,10 @@
         {{ lp_users_groups | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_users_debug | bool
-  tags: lp_users_debug
 
 - name: "Users: Manage user accounts"
+  tags: lp_users_accounts
+  no_log: "{{ lp_users_nolog | bool }}"
   ansible.builtin.user:
     name: "{{ item.name }}"
     authorization: "{{ item.authorization | d(omit) }}"
@@ -51,10 +53,9 @@
   loop: "{{ lp_users }}"
   loop_control:
     label: "{{ item.name }}"
-  no_log: "{{ lp_users_nolog | bool }}"
-  tags: lp_users_accounts
 
 - name: "Users: Add users to additional groups"
+  tags: lp_users_groups
   ansible.builtin.user:
     name: "{{ item.name }}"
     groups: "{{ item.groups }}"
@@ -62,6 +63,5 @@
   loop: "{{ lp_users_groups }}"
   loop_control:
     label: "{{ item.name }}: {{ item.groups }}"
-  tags: lp_users_groups
 
 #  EOF

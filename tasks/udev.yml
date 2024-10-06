@@ -2,6 +2,8 @@
 # linux_postinstall udev
 
 - name: "Udev: Debug lp_udev_debug={{ lp_udev_debug }}"
+  when: lp_udev_debug | bool
+  tags: lp_udev_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -36,19 +38,20 @@
         {{ lp_udev_hci_run_rules | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_udev_debug | bool
-  tags: lp_udev_debug
 
 - name: "Udev: Configure {{ lp_udev_conf_file }}"
+  tags: lp_udev_conf
+  notify: update initrd
   ansible.builtin.lineinfile:
     dest: "{{ lp_udev_conf_file }}"
     regexp: ^\s*{{ item.key }}\s*=(.*)$
     line: "{{ item.key }}={{ item.val }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_udev_conf }}"
-  notify: update initrd
 
 - name: "Udev: Configure {{ lp_udev_rules_dir }}"
+  tags: lp_udev_rules
+  notify: reload udev
   ansible.builtin.template:
     src: "{{ lp_udev_rules_template }}"
     dest: "{{ lp_udev_rules_dir }}/{{ item.key }}"
@@ -59,46 +62,45 @@
   loop: "{{ lp_udev_rules | dict2items }}"
   loop_control:
     label: "{{ item.key }}"
-  notify: reload udev
-  tags: lp_udev_rules
 
   # > > > Deprecated, use lp_udev_rules instead - - - - - - - - - - - - - - - - - -
 
-- name: "Udev: Configure {{ lp_udev_rules_dir ~ '/' ~ lp_udev_persistent_net_rules_file }}"
-  ansible.builtin.template:
-    src: "{{ lp_udev_persistent_net_template }}"
-    dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_persistent_net_rules_file }}"
-    owner: root
-    group: root
-    mode: "0644"
-    backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_udev_persistent_net_rules }}"
+- name: Configure legacy templates
   notify: reload udev
-  tags: lp_udev_persistentnet
+  block:
 
-- name: "Udev: Configure {{ lp_udev_rules_dir ~ '/' ~ lp_udev_hci_name_rules_file }}"
-  ansible.builtin.template:
-    src: hci-name.rules.j2
-    dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_hci_name_rules_file }}"
-    owner: root
-    group: root
-    mode: "0644"
-    backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_udev_hci_name_rules }}"
-  notify: reload udev
-  tags: lp_udev_hciname
+    - name: "Udev: Configure {{ lp_udev_rules_dir ~ '/' ~ lp_udev_persistent_net_rules_file }}"
+      tags: lp_udev_persistentnet
+      ansible.builtin.template:
+        src: "{{ lp_udev_persistent_net_template }}"
+        dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_persistent_net_rules_file }}"
+        owner: root
+        group: root
+        mode: "0644"
+        backup: "{{ lp_backup_conf }}"
+      loop: "{{ lp_udev_persistent_net_rules }}"
 
-- name: "Udev: Configure {{ lp_udev_rules_dir ~ '/' ~ lp_udev_hci_run_rules_file }}"
-  ansible.builtin.template:
-    src: hci-run.rules.j2
-    dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_hci_run_rules_file }}"
-    owner: root
-    group: root
-    mode: "0644"
-    backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_udev_hci_run_rules }}"
-  notify: reload udev
-  tags: lp_udev_hcirun
+    - name: "Udev: Configure {{ lp_udev_rules_dir ~ '/' ~ lp_udev_hci_name_rules_file }}"
+      tags: lp_udev_hciname
+      ansible.builtin.template:
+        src: hci-name.rules.j2
+        dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_hci_name_rules_file }}"
+        owner: root
+        group: root
+        mode: "0644"
+        backup: "{{ lp_backup_conf }}"
+      loop: "{{ lp_udev_hci_name_rules }}"
+
+    - name: "Udev: Configure {{ lp_udev_rules_dir ~ '/' ~ lp_udev_hci_run_rules_file }}"
+      tags: lp_udev_hcirun
+      ansible.builtin.template:
+        src: hci-run.rules.j2
+        dest: "{{ lp_udev_rules_dir }}/{{ lp_udev_hci_run_rules_file }}"
+        owner: root
+        group: root
+        mode: "0644"
+        backup: "{{ lp_backup_conf }}"
+      loop: "{{ lp_udev_hci_run_rules }}"
 
   # - - - - - - - - - - - - - - - - - - Deprecated, use lp_udev_rules instead < < <
 
@@ -128,31 +130,31 @@
   block:
 
     - name: "Udev: Start and enable udev (service)"
+      when: lp_udev_module == 'service'
+      register: result_service
       ansible.builtin.service:
         name: "{{ lp_udev_service }}"
         state: started
-      register: result_service
-      when: lp_udev_module == 'service'
 
     - name: "Udev: Start and enable udev (systemd)"
+      when: lp_udev_module == 'systemd'
+      register: result_systemd
       ansible.builtin.systemd_service:
         name: "{{ lp_udev_service }}"
         state: started
-      register: result_systemd
-      when: lp_udev_module == 'systemd'
 
     - name: "Udev: Start and enable udev (sysvinit)"
+      when: lp_udev_module == 'sysvinit'
+      register: result_sysvinit
       ansible.builtin.sysvinit:
         name: "{{ lp_udev_service }}"
         state: started
         enabled: true
-      register: result_sysvinit
-      when: lp_udev_module == 'sysvinit'
 
     - name: "Udev: Debug result lp_udev_debug2={{ lp_udev_debug2 }}"
+      when: lp_udev_debug2 | bool
       ansible.builtin.debug:
         msg: "{{ lookup('vars', 'result_' ~ lp_udev_module) }}"
-      when: lp_udev_debug2 | bool
 
 - name: Stop and disable udev
   when: not lp_udev_enable | bool

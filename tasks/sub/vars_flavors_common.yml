@@ -5,82 +5,107 @@
 # lp_flavors_dir. Read release_attr from the fetched file and include
 # vars that correspond the flavor, release and HW.
 
-# my_release_file
-- name: "Sub: vars-flavors-common: Set my_release_file"
-  ansible.builtin.set_fact:
-    my_release_file: "{{ outer_item.value.release_file }}"
-- name: "Sub: vars-flavors-common: Debug my_release_file lp_debug={{ lp_debug }}"
-  ansible.builtin.debug:
-    var: my_release_file
-  when: lp_debug | bool
+- name: Set my_release_file
+  block:
 
-# my_flavor
-- name: "Sub: vars-flavors-common: Set my_flavor"
-  ansible.builtin.set_fact:
-    my_flavor: "{{ outer_item.key }}"
-- name: "Sub: vars-flavors-common: Debug my_flavor lp_debug={{ lp_debug }}"
-  ansible.builtin.debug:
-    var: my_flavor
-  when: lp_debug | bool
+    - name: "Sub: vars-flavors-common: Set my_release_file"
+      ansible.builtin.set_fact:
+        my_release_file: "{{ outer_item.value.release_file }}"
 
-# my_release_file_fetch
-- name: "Sub: vars-flavors-common: Set my_release_file_fetch"
-  ansible.builtin.set_fact:
-    my_release_file_fetch: "{{ lp_flavors_dir ~ '/' ~ inventory_hostname ~ '-' ~ my_flavor }}"
-- name: "Sub: vars-flavors-common: Fetch {{ my_release_file ~ ' to ' ~ my_release_file_fetch }}"
-  ansible.builtin.fetch:
-    flat: true
-    src: "{{ my_release_file }}"
-    dest: "{{ my_release_file_fetch }}"
+    - name: "Sub: vars-flavors-common: Debug my_release_file lp_debug={{ lp_debug }}"
+      when: lp_debug | bool
+      ansible.builtin.debug:
+        var: my_release_file
 
-# my_release_keys
-- name: "Sub: vars-flavors-common: Clear my_release_keys"
-  ansible.builtin.set_fact:
-    my_release_keys: []
-- name: "Sub: vars-flavors-common: Set my_release_keys"
-  ansible.builtin.set_fact:
-    my_release_keys: "{{ my_release_keys | d([]) + [item.split('=').0 | trim] }}"
-  loop: "{{ lookup('file', my_release_file_fetch).splitlines() }}"
-  when: item is match('^(\s*[a-zA-Z0-9_]+\s*)=(.*)$')
-- name: "Sub: vars-flavors-common: Debug my_release_keys lp_debug={{ lp_debug }}"
-  ansible.builtin.debug:
-    var: my_release_keys
-  when: lp_debug | bool
+- name: Set my_flavor
+  block:
 
-# my_release_dict
-- name: "Sub: vars-flavors-common: Clear my_release_dict"
-  ansible.builtin.set_fact:
-    my_release_dict: {}
-- name: "Sub: vars-flavors-common: Set my_release_dict attributes"
-  ansible.builtin.set_fact:
-    my_release_dict: "{{ my_release_dict| combine({item: lookup('ini', item ~ ' type=properties file=' ~ my_release_file_fetch)}) }}"
-  loop: "{{ my_release_keys }}"
-- name: "Sub: vars-flavors-common: Debug my_release_dict"
-  ansible.builtin.debug:
-    var: my_release_dict
-  when: lp_debug|bool
+    - name: "Sub: vars-flavors-common: Set my_flavor"
+      ansible.builtin.set_fact:
+        my_flavor: "{{ outer_item.key }}"
 
-# my_release
-- name: "Sub: vars-flavors-common: Add flavor to my_release"
-  ansible.builtin.set_fact:
-    my_release: "{{ my_release | d({}) | combine({my_flavor: my_release_dict}) }}"
-- name: "Sub: vars-flavors-common: Debug my_release lp_debug={{ lp_debug }}"
-  ansible.builtin.debug:
-    var: my_release
-  when: lp_debug | bool
+    - name: "Sub: vars-flavors-common: Debug my_flavor lp_debug={{ lp_debug }}"
+      when: lp_debug | bool
+      ansible.builtin.debug:
+        var: my_flavor
 
-# my_labels
-- name: "Sub: vars-flavors-common: Set my_labels"
-  ansible.builtin.set_fact:
-    my_labels: "{{ lp_flavors[my_flavor].file_labels | map('extract', my_release[my_flavor]) | list }}"
-- name: "Sub: vars-flavors-common: Debug my_labels lp_debug={{ lp_debug }}"
-  ansible.builtin.debug:
-    var: my_labels
-  when: lp_debug | bool
+- name: Set my_release_file_fetch
+  block:
 
-# Include default vars for flavor
+    - name: "Sub: vars-flavors-common: Set my_release_file_fetch"
+      ansible.builtin.set_fact:
+        my_release_file_fetch: "{{ lp_flavors_dir ~ '/' ~ inventory_hostname ~ '-' ~ my_flavor }}"
+
+    - name: "Sub: vars-flavors-common: Fetch {{ my_release_file ~ ' to ' ~ my_release_file_fetch }}"
+      ansible.builtin.fetch:
+        flat: true
+        src: "{{ my_release_file }}"
+        dest: "{{ my_release_file_fetch }}"
+
+- name: Set my_release_keys
+  block:
+
+    - name: "Sub: vars-flavors-common: Clear my_release_keys"
+      ansible.builtin.set_fact:
+        my_release_keys: []
+
+    - name: "Sub: vars-flavors-common: Set my_release_keys"
+      ansible.builtin.set_fact:
+        my_release_keys: "{{ my_release_keys | d([]) + [item.split('=').0 | trim] }}"
+      loop: "{{ lookup('file', my_release_file_fetch).splitlines() }}"
+      when: item is match('^(\s*[a-zA-Z0-9_]+\s*)=(.*)$')
+
+    - name: "Sub: vars-flavors-common: Debug my_release_keys lp_debug={{ lp_debug }}"
+      when: lp_debug | bool
+      ansible.builtin.debug:
+        var: my_release_keys
+
+- name: Set my_release_dict
+  block:
+
+    - name: "Sub: vars-flavors-common: Clear my_release_dict"
+      ansible.builtin.set_fact:
+        my_release_dict: {}
+
+    - name: "Sub: vars-flavors-common: Set my_release_dict attributes"
+      ansible.builtin.set_fact:
+        my_release_dict: "{{ my_release_dict |
+                             combine({item: lookup('ansible.builtin.ini',
+                                                   item,
+                                                   'type=properties',
+                                                   'file=' ~ my_release_file_fetch)}) }}"
+      loop: "{{ my_release_keys }}"
+
+    - name: "Sub: vars-flavors-common: Debug my_release_dict"
+      when: lp_debug | bool
+      ansible.builtin.debug:
+        var: my_release_dict
+
+- name: Set my_release
+  block:
+
+    - name: "Sub: vars-flavors-common: Add flavor to my_release"
+      ansible.builtin.set_fact:
+        my_release: "{{ my_release | d({}) | combine({my_flavor: my_release_dict}) }}"
+
+    - name: "Sub: vars-flavors-common: Debug my_release lp_debug={{ lp_debug }}"
+      when: lp_debug | bool
+      ansible.builtin.debug:
+        var: my_release
+
+- name: Set my_labels
+  block:
+
+    - name: "Sub: vars-flavors-common: Set my_labels"
+      ansible.builtin.set_fact:
+        my_labels: "{{ lp_flavors[my_flavor].file_labels | map('extract', my_release[my_flavor]) | list }}"
+
+    - name: "Sub: vars-flavors-common: Debug my_labels lp_debug={{ lp_debug }}"
+      when: lp_debug | bool
+      ansible.builtin.debug:
+        var: my_labels
+
 - name: "Sub: vars-flavors-common: Include defaults for flavor {{ [my_labels.1, my_labels.0, my_flavor] | join(',') }}"
-  ansible.builtin.include_vars: "{{ file }}"
   vars:
     file: "{{ lookup('first_found', params) }}"
     params:
@@ -93,6 +118,7 @@
         - defaults.yml
       paths:
         - "{{ role_path }}/vars/flavors"
+  ansible.builtin.include_vars: "{{ file }}"
 
 # Note: skip doesn't work with first_found lookup #43833
 # https://github.com/ansible/ansible/issues/43833

@@ -2,24 +2,9 @@
 # linux_postinstall vars_incremental
 
 - name: "Vars_incemental: Include default vars"
-  ansible.builtin.include_vars: "{{ item }}"
-  register: result
-  loop:
-    - "{{ my_path }}/defaults.yml"
-    - "{{ my_path }}/default.yml"
-    - "{{ my_path }}/{{ ansible_os_family }}.yml"
-    - "{{ my_path }}/{{ ansible_distribution }}.yml"
-    - "{{ my_path }}/{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
   when: item is exists
   vars:
     my_path: "{{ role_path }}/vars/defaults.incr"
-
-- name: "Vars_incemental: Debug include default vars"
-  ansible.builtin.debug:
-    var: result
-  when: lp_debug2|d(false)|bool
-
-- name: "Vars_incemental: Include custom vars"
   ansible.builtin.include_vars: "{{ item }}"
   register: result
   loop:
@@ -28,13 +13,28 @@
     - "{{ my_path }}/{{ ansible_os_family }}.yml"
     - "{{ my_path }}/{{ ansible_distribution }}.yml"
     - "{{ my_path }}/{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
-  when: item is exists
-  vars:
-    my_path: "{{ role_path }}/vars"
 
-- name: "Vars_incemental: Debug include custom vars"
+- name: "Vars_incemental: Debug include default vars"
+  when: lp_debug2 | d(false) | bool
   ansible.builtin.debug:
     var: result
-  when: lp_debug2|d(false)|bool
+
+- name: "Vars_incemental: Include custom vars"
+  when: item is exists
+  register: result
+  vars:
+    my_path: "{{ role_path }}/vars"
+  ansible.builtin.include_vars: "{{ item }}"
+  loop:
+    - "{{ my_path }}/defaults.yml"
+    - "{{ my_path }}/default.yml"
+    - "{{ my_path }}/{{ ansible_os_family }}.yml"
+    - "{{ my_path }}/{{ ansible_distribution }}.yml"
+    - "{{ my_path }}/{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
+
+- name: "Vars_incemental: Debug include custom vars"
+  when: lp_debug2 | d(false) | bool
+  ansible.builtin.debug:
+    var: result
 
 # EOF

@@ -1,7 +1,7 @@
 ---
 # linux_postinstall groups
 
-- name: "Groups: Debug"
+- name: "Groups: Debug lp_groups_debug={{ lp_groups_debug }}"
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}

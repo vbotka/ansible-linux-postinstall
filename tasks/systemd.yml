@@ -8,7 +8,7 @@
     - lp_systemd_conf
   block:
 
-    - name: "Systemd: Create empty dictionary my_services"
+    - name: "Systemd: Create empty my_services"
       ansible.builtin.set_fact:
         my_services: {}
 

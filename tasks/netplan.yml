@@ -1,22 +1,24 @@
 ---
 # linux_postinstall netplan
 
-# Configure 01-network-manager-all.yaml only if it already exists
-- name: "Netplan: Stat {{ lp_netplan_default }}"
-  ansible.builtin.stat:
-    path: "{{ lp_netplan_root }}/{{ lp_netplan_default }}"
-  register: result
+- name: Configure 01-network-manager-all.yaml if it exists
+  block:
 
-- name: "Netplan: Configure {{ lp_netplan_root ~ '/' ~ lp_netplan_default }}"
-  ansible.builtin.template:
-    src: netplan-default.j2
-    dest: "{{ lp_netplan_root }}/{{ lp_netplan_default }}"
-    owner: "{{ lp_netplan_owner }}"
-    group: "{{ lp_netplan_group }}"
-    mode: "{{ lp_netplan_mode }}"
-    backup: "{{ lp_backup_conf }}"
-  notify: netplan apply
-  when: result.stat.exists | d(false)
+    - name: "Netplan: Stat {{ lp_netplan_default }}"
+      ansible.builtin.stat:
+        path: "{{ lp_netplan_root }}/{{ lp_netplan_default }}"
+      register: result
+
+    - name: "Netplan: Configure {{ lp_netplan_root ~ '/' ~ lp_netplan_default }}"
+      ansible.builtin.template:
+        src: netplan-default.j2
+        dest: "{{ lp_netplan_root }}/{{ lp_netplan_default }}"
+        owner: "{{ lp_netplan_owner }}"
+        group: "{{ lp_netplan_group }}"
+        mode: "{{ lp_netplan_mode }}"
+        backup: "{{ lp_backup_conf }}"
+      notify: netplan apply
+      when: result.stat.exists | d(false)
 
 - name: "Netplan: Configure files in {{ lp_netplan_root }}"
   ansible.builtin.template:

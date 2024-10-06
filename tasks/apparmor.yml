@@ -35,6 +35,7 @@
       ansible.builtin.shell:
         cmd: >
           set -o pipefail && aa-status --json | jq .profiles | jq to_entries
+        executable: /usr/bin/bash
       register: result
       changed_when: false
 

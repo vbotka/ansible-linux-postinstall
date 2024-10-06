@@ -1,7 +1,9 @@
 ---
 # linux_postinstall virtualbox
 
-- name: "Virtualbox: Debug"
+- name: "Virtualbox: Debug lp_virtualbox_debug={{ lp_virtualbox_debug }}"
+  when: lp_virtualbox_debug | bool
+  tags: lp_virtualbox_debug
   vars:
     msg: |-
       ansible_lsb.description: {{ ansible_lsb.codename }}
@@ -15,13 +17,12 @@
         {{ lp_virtualbox_services | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_virtualbox_debug|bool
-  tags: lp_virtualbox_debug
 
 # TODO: assert lp_virtualbox_modules are loaded
-#       when: lp_virtualbox|bool
+#       when: lp_virtualbox | bool
 
 - name: "Virtualbox: Add signing key of VirtualBox"
+  tags: lp_virtualbox_keys
   ansible.builtin.apt_key:
     url: "{{ item }}"
     state: present
@@ -31,21 +32,18 @@
   until: result is succeeded
   delay: "{{ lp_install_delay }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}" # noqa ignore-errors
-  tags: lp_virtualbox_keys
 
 - name: "Virtualbox: Add repository of VirtualBox"
+  tags: lp_virtualbox_repos
   ansible.builtin.apt_repository:
     repo: "{{ item }}"
     state: present
   loop: "{{ lp_virtualbox_repos }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}" # noqa ignore-errors
-  tags: lp_virtualbox_repos
 
 - name: "Virtualbox: Install VirtualBox packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
-  when: lp_virtualbox_install|bool
+  when: lp_virtualbox_install | bool
+  tags: lp_virtualbox_packages
   vars:
     ll_ipkg_list: "{{ lp_virtualbox_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
@@ -53,9 +51,17 @@
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_virtualboxool_debug | bool }}"
   ignore_errors: "{{ lp_virtualbox_ignore_errors }}" # noqa ignore-errors
-  tags: lp_virtualbox_packages
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
 - name: "Virtualbox: Services start/stop and enable/disable"
+  tags: lp_virtualbox_service
+  vars:
+    srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
+    srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
+    srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
+    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
   ansible.builtin.service:
     name: "{{ srv_name }}"
     state: "{{ srv_stat }}"
@@ -63,11 +69,5 @@
   loop: "{{ lp_virtualbox_services }}"
   loop_control:
     label: "{{ srv_name }} state: {{ srv_stat }} enabled: {{ srv_enbl }}"
-  vars:
-    srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
-    srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
-    srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
-    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
-  tags: lp_virtualbox_service
 
 # EOF

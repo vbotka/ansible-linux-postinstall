@@ -21,7 +21,6 @@
   when: lp_networkd_debug | bool
   tags: lp_networkd_debug
 
-# Packages
 - name: "Networkd: Install packages"
   ansible.builtin.import_role:
     name: vbotka.linux_lib
@@ -35,7 +34,6 @@
     ll_debug: "{{ lp_networkd_debug | bool }}"
   tags: lp_networkd_packages
 
-# Conf
 - name: "Networkd: Configure networkd"
   ansible.builtin.template:
     src: "{{ item.src }}"

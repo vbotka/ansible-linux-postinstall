@@ -1,7 +1,9 @@
 ---
 # linux_postinstall tlp
 
-- name: "Tlp: Debug"
+- name: "Tlp: Debug lp_tlp_debug={{ lp_tlp_debug }}"
+  when: lp_tlp_debug | bool
+  tags: lp_tlp_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -21,36 +23,38 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_tlp_debug|bool
-  tags: lp_tlp_debug
 
-- name: "Tlp: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
-  when: lp_tlp_install|bool
-  vars:
-    ll_ipkg_list: "{{ lp_tlp_packages }}"
-    ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
-    ll_debug: "{{ lp_tlp_debug | bool }}"
+- name: Install packages
   tags: lp_tlp_packages
+  block:
 
-- name: "Tlp: Install packages for ThinkPad"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
-  when: lp_tlp_thinkpad|bool
-  vars:
-    ll_ipkg_list: "{{ lp_tlp_packages_tp }}"
-    ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
-    ll_debug: "{{ lp_tlp_debug | bool }}"
-  tags: lp_tlp_packages
+    - name: "Tlp: Install packages"
+      when: lp_tlp_install | bool
+      vars:
+        ll_ipkg_list: "{{ lp_tlp_packages }}"
+        ll_ipkg_state: "{{ lp_package_state }}"
+        ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+        ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+        ll_debug: "{{ lp_tlp_debug | bool }}"
+      ansible.builtin.import_role:
+        name: vbotka.linux_lib
+        tasks_from: install_package.yml
+
+    - name: "Tlp: Install packages for ThinkPad"
+      when: lp_tlp_thinkpad | bool
+      vars:
+        ll_ipkg_list: "{{ lp_tlp_packages_tp }}"
+        ll_ipkg_state: "{{ lp_package_state }}"
+        ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+        ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+        ll_debug: "{{ lp_tlp_debug | bool }}"
+      ansible.builtin.import_role:
+        name: vbotka.linux_lib
+        tasks_from: install_package.yml
 
 - name: "Tlp: Configure {{ lp_tlp_config_file }}"
+  tags: lp_tlp_conf
+  notify: restart tlp
   ansible.builtin.lineinfile:
     dest: "{{ lp_tlp_config_file }}"
     regexp: ^\s*{{ item.key }}\s*=\s*(.*)$
@@ -61,10 +65,14 @@
   loop: "{{ lp_tlp_config }}"
   loop_control:
     label: "{{ item.key }}: {{ item.value }}"
-  notify: restart tlp
-  tags: lp_tlp_conf
 
 - name: "Tlp: Services start/stop and enable/disable"
+  tags: lp_tlp_service
+  vars:
+    srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
+    srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
+    srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
+    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
   ansible.builtin.service:
     name: "{{ srv_name }}"
     state: "{{ srv_stat }}"
@@ -72,11 +80,5 @@
   loop: "{{ lp_tlp_services }}"
   loop_control:
     label: "{{ srv_name }} state: {{ srv_stat }} enabled: {{ srv_enbl }}"
-  vars:
-    srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
-    srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
-    srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
-    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
-  tags: lp_tlp_service
 
 # EOF

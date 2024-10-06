@@ -2,6 +2,8 @@
 # linux_postinstall reboot
 
 - name: "Reboot Debug lp_reboot_debug={{ lp_reboot_debug }}"
+  when: lp_reboot_debug | bool
+  tags: lp_reboot_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -15,8 +17,6 @@
       lp_reboot_wait_timeout: {{ lp_reboot_wait_timeout }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_reboot_debug | bool
-  tags: lp_reboot_debug
 
 - name: "Reboot: Debian test {{ lp_reboot_required_file }}"
   when: ansible_os_family == 'Debian'
@@ -45,7 +45,7 @@
       ansible.builtin.set_fact:
         reboot_required: "{{ (reboot_required_cmd_status.rc != 0) | ternary(true, false) }}"
 
-- name: "Reboot: Debug reboot_required"
+- name: "Reboot: Debug reboot_required lp_reboot_debug={{ lp_reboot_debug }}"
   ansible.builtin.debug:
     var: reboot_required
   when: lp_reboot_debug | bool
@@ -60,18 +60,19 @@
     - (not lp_reboot_required_ignore) or lp_reboot_force | bool
 
 # - name: "Reboot: Reboot and wait for connection"
+#   when: (reboot_required | d(false) and not lp_reboot_required_ignore) or lp_reboot_force
 #   block:
+#
 #     - name: "reboot: Reboot"
 #       shell: "{{ lp_reboot_command }}"
 #       async: 1
 #       poll: 0
+#
 #     - name: "reboot: Wait for connection"
 #       wait_for_connection:
 #         connect_timeout: "{{ lp_reboot_wait_connect_timeout }}"
 #         sleep: "{{ lp_reboot_wait_sleep }}"
 #         delay: "{{ lp_reboot_wait_delay }}"
 #         timeout: "{{ lp_reboot_wait_timeout }}"
-#   when: (reboot_required | d(false) and
-#         (not lp_reboot_required_ignore)) or lp_reboot_force
 
 # EOF
