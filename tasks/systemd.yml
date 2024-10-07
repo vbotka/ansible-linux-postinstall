@@ -69,6 +69,7 @@
   block:
 
     - name: "Systemd: Configure systemd"
+      register: lp_systemd_conf_changes
       notify: reload systemd conf
       community.general.ini_file:
         path: "{{ item.0.key }}"
@@ -80,7 +81,6 @@
         mode: "{{ item.0.value.mode | d(lp_systemd_mode) }}"
         no_extra_spaces: "{{ lp_systemd_conf_no_extra_spaces }}"
         backup: "{{ lp_backup_conf }}"
-      register: lp_systemd_conf_changes
       loop: "{{ lp_systemd_conf | dict2items | subelements('value.conf') }}"
       loop_control:
         label: "{{ item.0.key }} {{ item.1.section }} {{ item.1.key }} {{ item.1.val }}"
@@ -108,6 +108,7 @@
 
     - name: "Systemd: Create units"
       when: item.state | d('noop') == 'create'
+      register: lp_systemd_unit_create_changes
       notify: reload systemd units
       ansible.builtin.template:
         src: systemd-unit.j2
@@ -116,7 +117,6 @@
         group: "{{ item.group | d(lp_systemd_group) }}"
         mode: "{{ item.mode | d(lp_systemd_mode) }}"
         backup: "{{ lp_backup_conf }}"
-      register: lp_systemd_unit_create_changes
       loop: "{{ lp_systemd_unit }}"
       loop_control:
         label: "{{ item.name }}.{{ item.type | d(lp_systemd_unit_type) }}"
@@ -132,10 +132,10 @@
 
     - name: "Systemd: Remove units"
       when: item.state | d('noop') == 'absent'
+      register: lp_systemd_unit_remove_changes
       ansible.builtin.file:
         state: absent
         path: "{{ item.path | d(lp_systemd_unit_dir) }}/{{ item.name }}.{{ item.type | d(lp_systemd_unit_type) }}"
-      register: lp_systemd_unit_remove_changes
       loop: "{{ lp_systemd_unit }}"
       loop_control:
         label: "{{ item.name }}.{{ item.type | d(lp_systemd_unit_type) }}"
@@ -153,6 +153,7 @@
       when:
         - item.control | d([]) | length > 0
         - not (item.name | regex_search('^(.*)@\.\w+$'))
+      register: lp_systemd_unit_control_changes
       ansible.builtin.systemd:
         name: "{{ item.name }}.{{ item.type | d(lp_systemd_unit_type) }}"
         daemon_reexec: "{{ item.control.daemon_reexec | d(omit) }}"
@@ -163,7 +164,6 @@
         no_block: "{{ item.control.no_block | d(omit) }}"
         scope: "{{ item.control.scope | d(omit) }}"
         state: "{{ item.control.state | d(omit) }}"
-      register: lp_systemd_unit_control_changes
       loop: "{{ lp_systemd_unit }}"
       loop_control:
         label: "{{ item.name }}.{{ item.type | d(lp_systemd_unit_type) }}"

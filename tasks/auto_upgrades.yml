@@ -2,6 +2,7 @@
 # linux_postinstall auto_upgrades
 
 - name: "Auto_upgrades: Configure /etc/apt/apt.conf.d/20auto-upgrades"
+  tags: lp_auto_upgrades_conf
   ansible.builtin.template:
     src: auto-upgrades.j2
     dest: /etc/apt/apt.conf.d/20auto-upgrades
@@ -10,22 +11,25 @@
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
 
-- name: "Auto_upgrades: Service {{ state ~ ' and ' ~ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_auto_upgrades_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_auto_upgrades_enable | bool }}"
-    state: "{{ lp_auto_upgrades_state | d(default_state) }}"
-    default_state: "{{ enabled | ternary('started', 'stopped') }}"
-    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+- name: Service
   tags: lp_auto_upgrades_service
+  block:
 
-- name: "Auto_upgrades: Debug service lp_auto_upgrades_debug={{ lp_auto_upgrades_debug }}"
-  ansible.builtin.debug:
-    var: result
-  when: lp_auto_upgrades_debug | bool
+    - name: "Auto_upgrades: Service {{ state ~ ' and ' ~ enable }}"
+      register: result
+      vars:
+        enabled: "{{ lp_auto_upgrades_enable | bool }}"
+        state: "{{ lp_auto_upgrades_state | d(default_state) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      ansible.builtin.service:
+        name: "{{ lp_auto_upgrades_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+
+    - name: "Auto_upgrades: Debug service lp_auto_upgrades_debug={{ lp_auto_upgrades_debug }}"
+      when: lp_auto_upgrades_debug | bool
+      ansible.builtin.debug:
+        var: result
 
 # EOF

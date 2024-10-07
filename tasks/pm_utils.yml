@@ -15,7 +15,6 @@
     group: root
     mode: "0755"
     backup: "{{ lp_backup_conf }}"
-  with_dict: "{{ lp_pm_sleepd | d({}) }}"
-  when: item.value.file | length > 0
+  loop: "{{ lp_pm_sleepd | d({}) | dict2items | selectattr('value.file') }}"
 
 # EOF

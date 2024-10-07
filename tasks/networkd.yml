@@ -2,6 +2,8 @@
 # linux_postinstall networkd
 
 - name: "Networkd: Debug lp_networkd_debug={{ lp_networkd_debug }}"
+  when: lp_networkd_debug | bool
+  tags: lp_networkd_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -18,23 +20,23 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_networkd_debug | bool
-  tags: lp_networkd_debug
 
 - name: "Networkd: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
   when: lp_networkd_install | bool
+  tags: lp_networkd_packages
   vars:
     ll_ipkg_list: "{{ lp_networkd_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
     ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_networkd_debug | bool }}"
-  tags: lp_networkd_packages
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
 - name: "Networkd: Configure networkd"
+  tags: lp_networkd_conf
+  notify: restart networkd
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -45,28 +47,26 @@
   loop: "{{ lp_networkd_conf }}"
   loop_control:
     label: "{{ item.dest }}"
-  notify: restart networkd
-  tags: lp_networkd_conf
 
 - name: Service
   tags: lp_networkd_service
   block:
 
     - name: "Networkd: Service {{ state ~ ' and ' ~ enable }}"
-      ansible.builtin.service:
-        name: "{{ lp_networkd_service }}"
-        state: "{{ state }}"
-        enabled: "{{ enabled }}"
       register: result
       vars:
         enabled: "{{ lp_networkd_enable | bool | d(false) }}"
         state: "{{ lp_networkd_state | d(default_state) }}"
         default_state: "{{ enabled | ternary('started', 'stopped') }}"
         enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      ansible.builtin.service:
+        name: "{{ lp_networkd_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
 
     - name: "Networkd: Debug service lp_networkd_debug={{ lp_networkd_debug }}"
+      when: lp_networkd_debug | bool
       ansible.builtin.debug:
         var: result
-      when: lp_networkd_debug | bool
 
 # EOF

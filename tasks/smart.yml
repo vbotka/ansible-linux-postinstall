@@ -63,12 +63,12 @@
   block:
 
     - name: "Smart: Service {{ state ~ ' and ' ~ enable }}"
+      register: result
       vars:
         enabled: "{{ lp_smart_enable | bool | d(false) }}"
         state: "{{ lp_smart_state | d(default_state) }}"
         default_state: "{{ enabled | ternary('started', 'stopped') }}"
         enable: "{{ enabled | ternary('enabled', 'disabled') }}"
-      register: result
       ansible.builtin.service:
         name: "{{ lp_smart_service }}"
         state: "{{ state }}"

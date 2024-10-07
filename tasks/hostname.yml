@@ -10,7 +10,22 @@
 # http://blog.schlomo.schapiro.org/2013/11/setting-hostname-from-dhcp-in-debian.html
 # https://askubuntu.com/questions/757423/how-to-force-dhcp-client-to-allow-a-self-defined-domain-name
 
+- name: Sanity
+  block:
+
+    - name: "Hostname: Sanity lp_hostname not empty"
+      ansible.builtin.assert:
+        that: lp_hostname | length > 0
+        fail_msg: The variable lp_hostname is empty.
+
+    - name: "Hostname: Sanity lp_hostname RFC 1123 and RFC 952"
+      when: lp_hostname_fqdn_valid | bool
+      ansible.builtin.assert:
+        that: lp_hostname is community.general.fqdn_valid
+        fail_msg: The variable lp_hostname not conforming RFC 1123 and RFC 952.
+
 - name: "Hostname: Configure hostname in /etc/hostname"
+  when: ansible_os_family == 'Debian'
   ansible.builtin.template:
     src: hostname.j2
     dest: /etc/hostname
@@ -18,14 +33,9 @@
     group: root
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
-  when:
-    - lp_hostname | length > 0
-    - ansible_os_family == 'Debian'
-#  notify: set hostname
 
 - name: "Hostname: Configure hostname"
   ansible.builtin.hostname:
     name: "{{ lp_hostname }}"
-  when: lp_hostname | length > 0
 
 # EOF

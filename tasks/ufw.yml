@@ -154,7 +154,7 @@
       {{ item.1.section | d('none') }}
       {{ item.1.option | d('none') }}
       {{ item.1.value | d('none') }}
-      {{ item.1.state | d('none') }}"
+      {{ item.1.state | d('none') }}
 
 - name: Service
   tags: lp_ufw_service

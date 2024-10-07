@@ -96,6 +96,8 @@
 
     - name: "Timesyncd: Debug lp_timesyncd_service lp_timesyncd_debug={{ lp_timesyncd_debug }}"
       when: lp_timesyncd_debug | bool
+      vars:
+        service: "{{ lp_timesyncd_service | splitext | first }}.service"
       ansible.builtin.debug:
         msg: |
           lp_timesyncd_service_exists: {{ lp_timesyncd_service_exists }}
@@ -104,8 +106,6 @@
           {{ service }}:
             {{ ansible_facts.services[service] | to_nice_yaml(indent=2) | indent(2) }}
           {% endif %}
-      vars:
-        service: "{{ lp_timesyncd_service | splitext | first }}.service"
 
     - name: "Timesyncd: Assert exists and found {{ lp_timesyncd_service }}"
       when: lp_timesyncd_service_exists_fatal | bool
@@ -150,10 +150,8 @@
             {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
     - name: "Timesyncd: End host"
+      when: lp_timesyncd_rescue_end_host | bool
       ansible.builtin.meta: end_host
-      when:
-        - lp_timesyncd_rescue_end_host | bool
-        - not ansible_check_mode
 
     - name: "Timesyncd: Clear host errors"
       ansible.builtin.meta: clear_host_errors
@@ -192,10 +190,8 @@
             {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
     - name: "Timesyncd: End host"
+      when: lp_timesyncd_rescue_end_host | bool
       ansible.builtin.meta: end_host
-      when:
-        - lp_timesyncd_rescue_end_host | bool
-        - not ansible_check_mode
 
     - name: "Timesyncd: Clear host errors"
       ansible.builtin.meta: clear_host_errors

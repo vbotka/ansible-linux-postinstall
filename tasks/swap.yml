@@ -74,8 +74,8 @@
             {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
     - name: "Swap: End host"
-      ansible.builtin.meta: end_host
       when: lp_swap_rescue_end_host | bool
+      ansible.builtin.meta: end_host
 
 - name: Create or remove swap entry in /etc/fstab
   tags: lp_swap_fstab
@@ -118,8 +118,8 @@
             {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
     - name: "Swap: End host"
-      ansible.builtin.meta: end_host
       when: lp_swap_rescue_end_host | bool
+      ansible.builtin.meta: end_host
 
 - name: "Swap: Flush handlers"
   when: lp_swap_flush_handlers | bool

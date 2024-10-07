@@ -2,6 +2,8 @@
 # linux_postinstall nfsd
 
 - name: "Nfsd: Debug lp_nfsd_debug={{ lp_nfsd_debug }}"
+  when: lp_nfsd_debug | bool
+  tags: lp_nfsd_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -11,42 +13,46 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_nfsd_debug | bool
-  tags: lp_nfsd_debug
 
 - name: "Nfsd: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
+  when: lp_nfsd_install | bool
+  tags: lp_nfsd_packages
   vars:
     ll_ipkg_list: "{{ lp_nfsd_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
     ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_nfsd_debug | bool }}"
-  when: lp_nfsd_install | bool
-  tags: lp_nfsd_packages
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
 - name: "Nfsd: Configure exports"
+  tags: lp_nfsd_exports
+  notify: reload nfsd
   ansible.builtin.template:
     src: exports.j2
     dest: /etc/exports
     owner: root
     group: root
     mode: "0644"
-  notify: reload nfsd
-  tags: lp_nfsd_exports
 
 - name: Service
   tags: lp_nfsd_service
   block:
 
     - name: "Nfsd: Debug service lp_nfsd_debug={{ lp_nfsd_debug }}"
+      when: lp_nfsd_debug | bool
       ansible.builtin.debug:
         var: result
-      when: lp_nfsd_debug | bool
 
     - name: "Nfsd: Services start/stop and enable/disable"
+      register: result
+      vars:
+        srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
+        srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
+        srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
+        default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
       ansible.builtin.service:
         name: "{{ srv_name }}"
         state: "{{ srv_stat }}"
@@ -54,12 +60,6 @@
       loop: "{{ lp_nfsd_services }}"
       loop_control:
         label: "{{ srv_name }} state: {{ srv_stat }} enabled: {{ srv_enbl }}"
-      register: result
-      vars:
-        srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
-        srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
-        srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
-        default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
 
     # - name: "Nfsd: Enable and start nfsd services"
     #   ansible.builtin.service:

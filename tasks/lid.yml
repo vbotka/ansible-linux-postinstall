@@ -2,6 +2,7 @@
 # linux_postinstall lid
 
 - name: "Lid: Configure {{ lp_lid_logind_conf }}"
+  notify: logind message reboot
   ansible.builtin.lineinfile:
     dest: "{{ lp_lid_logind_conf }}"
     regexp: ^\s*{{ item.var }}\s*=\s*(.*)$
@@ -10,7 +11,6 @@
   loop: "{{ lp_lid_logind_conf_vars }}"
   loop_control:
     label: "{{ item.var }}: {{ item.value }}"
-  notify: logind message reboot
 
 - name: "Lid: Configure {{ lp_lid_upower_conf }}"
   ansible.builtin.lineinfile:

@@ -1,20 +1,21 @@
 ---
 # linux_postinstall zeitgeist
 
-# One-way atm
-- name: "Zeitgeist: Remove zeitgeist"
-  ansible.builtin.apt:
-    state: absent
-    name: zeitgeist
-    purge: true
-  when: not lp_zeitgeist_install|bool
+- name: Remove zeitgeist
+  when: not lp_zeitgeist_install | bool
+  block:
 
-- name: "Zeitgeist: Remove zeitgeist-*"
-  ansible.builtin.apt:
-    state: absent
-    name: zeitgeist-*
-    purge: true
-  when: not lp_zeitgeist_install|bool
+    - name: "Zeitgeist: Remove zeitgeist"
+      ansible.builtin.apt:
+        state: absent
+        name: zeitgeist
+        purge: true
+
+    - name: "Zeitgeist: Remove zeitgeist-*"
+      ansible.builtin.apt:
+        state: absent
+        name: zeitgeist-*
+        purge: true
 
 # - name: Disable zeitgeist
 #   ansible.builtin.service:

@@ -2,6 +2,8 @@
 # linux_postinstall zfs
 
 - name: "Zfs: Debug lp_zfs_debug={{ lp_zfs_debug }}"
+  when: lp_zfs_debug | bool
+  tags: lp_zfs_debug
   vars:
     msg: |-
       lp_zfs_install: {{ lp_zfs_install }}
@@ -15,23 +17,26 @@
         {{ lp_zfs_mountpoints | to_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_zfs_debug | bool
-  tags: lp_zfs_debug
 
 - name: "Zfs: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
   when: lp_zfs_install | bool
+  tags: lp_zfs_packages
   vars:
     ll_ipkg_list: "{{ lp_zfs_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
     ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_zfs_debug | bool }}"
-  tags: lp_zfs_packages
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
 - name: "Zfs: Manage zfs services"
+  tags: lp_zfs_services
+  vars:
+    srv_enbl: "{{ item.enabled | d(true) }}"
+    srv_stat: "{{ item.state | d(default_stat) }}"
+    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
   ansible.builtin.service:
     name: "{{ item.name }}"
     enabled: "{{ srv_enbl }}"
@@ -39,13 +44,9 @@
   loop: "{{ lp_zfs_services | d([]) }}"
   loop_control:
     label: "{{ item.name }} enabled: {{ srv_enbl }} state: {{ srv_stat }}"
-  vars:
-    srv_enbl: "{{ item.enabled | d(true) }}"
-    srv_stat: "{{ item.state | d(default_stat) }}"
-    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
-  tags: lp_zfs_services
 
 - name: "Zfs: Manage zfs"
+  tags: lp_zfs_manage
   community.general.zfs:
     name: "{{ item.name }}"
     state: "{{ item.state }}"
@@ -54,9 +55,9 @@
   loop: "{{ lp_zfs_manage }}"
   loop_control:
     label: "{{ item.name }}"
-  tags: lp_zfs_manage
 
 - name: "Zfs: Set mode and ownership of zfs mountpoints"
+  tags: lp_zfs_mountpoints
   ansible.builtin.file:
     state: directory
     path: "{{ item.mountpoint }}"
@@ -66,6 +67,5 @@
   loop: "{{ lp_zfs_mountpoints }}"
   loop_control:
     label: "{{ item.mountpoint }}"
-  tags: lp_zfs_mountpoints
 
 # EOF

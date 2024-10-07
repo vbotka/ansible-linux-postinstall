@@ -42,7 +42,9 @@
 - name: Manage repositories
   tags: lp_repos_manage
   block:
+
     - name: "Repos: Manage repositories"
+      register: result
       ansible.builtin.apt_repository:
         codename: "{{ item.codename | d(omit) }}"
         filename: "{{ item.filename | d(omit) }}"
@@ -52,7 +54,6 @@
         update_cache: "{{ item.update_cache | d(omit) }}"
         validate_certs: "{{ item.validate_certs | d(omit) }}"
       loop: "{{ lp_repos }}"
-      register: result
       loop_control:
         label: "{{ item.repo }}"
 

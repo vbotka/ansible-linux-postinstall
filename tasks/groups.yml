@@ -2,6 +2,8 @@
 # linux_postinstall groups
 
 - name: "Groups: Debug lp_groups_debug={{ lp_groups_debug }}"
+  when: lp_groups_debug | bool
+  tags: lp_groups_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -10,8 +12,6 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_groups_debug | bool
-  tags: lp_groups_debug
 
 - name: "Groups: Manage groups"
   ansible.builtin.group:

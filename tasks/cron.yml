@@ -2,14 +2,15 @@
 # linux_postinstall cron
 
 - name: "Cron: Configure cron variables"
+  tags: lp_cron_var
   community.general.cronvar:
     name: "{{ item.name }}"
     value: "{{ item.value }}"
     user: "{{ item.user }}"
   loop: "{{ lp_cron_var }}"
-  tags: lp_cron_var
 
 - name: "Cron: Configure cron"
+  tags: lp_cron_tab
   ansible.builtin.cron:
     state: "{{ item.state }}"
     user: "{{ item.user }}"
@@ -23,6 +24,5 @@
   loop: "{{ lp_cron_tab }}"
   loop_control:
     label: "{{ item.name }}"
-  tags: lp_cron_tab
 
 # EOF

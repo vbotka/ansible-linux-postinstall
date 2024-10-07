@@ -112,10 +112,10 @@
       ansible.builtin.service_facts:
 
     - name: "Udev: Debug ansible_facts.services *udev* lp_udev_debug2={{ lp_udev_debug2 }}"
-      ansible.builtin.debug:
-        var: udev_service
       vars:
         udev_service: "{{ ansible_facts.services | dict2items | selectattr('key', 'search', 'udev') | items2dict }}"
+      ansible.builtin.debug:
+        var: udev_service
 
 # The module ansible.builtin.service is not idempotent when the
 # parameter enabled is True for udev.service. udev.service is alias to
@@ -162,15 +162,15 @@
   block:
 
     - name: "Udev: Stop and disable udev"
+      register: result
       ansible.builtin.service:
         name: "{{ lp_udev_service }}"
         state: stopped
         enabled: false
-      register: result
 
     - name: "Udev: Debug result lp_udev_debug2={{ lp_udev_debug2 }}"
+      when: lp_udev_debug2 | bool
       ansible.builtin.debug:
         var: result
-      when: lp_udev_debug2 | bool
 
 # EOF

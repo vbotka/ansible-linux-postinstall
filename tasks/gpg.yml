@@ -2,6 +2,8 @@
 # linux_postinstall gpg
 
 - name: "Gpg: Debug lp_gpg_debug={{ lp_gpg_debug }}"
+  when: lp_gpg_debug | bool
+  tags: lp_gpg_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -17,23 +19,22 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_gpg_debug | bool
-  tags: lp_gpg_debug
 
 - name: "Gpg: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
+  when: lp_gpg_install | bool
+  tags: lp_gpg_packages
   vars:
     ll_ipkg_list: "{{ lp_gpg_packages + lp_gpg_packages_extra }}"
     ll_ipkg_state: "{{ lp_package_state }}"
     ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_gpg_debug | bool }}"
-  when: lp_gpg_install | bool
-  tags: lp_gpg_packages
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
 - name: "Gpg: Create directories .gnupg"
+  tags: lp_gpg_dir
   ansible.builtin.file:
     state: directory
     dest: /home/{{ item }}/.gnupg
@@ -41,22 +42,21 @@
     group: "{{ item }}"
     mode: "0700"
   loop: "{{ lp_gpg_conf | map(attribute='owner') | unique | sort }}"
-  tags: lp_gpg_dir
 
 - name: "Gpg: Configure gnupg"
+  tags: lp_gpg_conf
+  register: lp_gpg_conf_reg
+  notify: gpgconf reload
   ansible.builtin.template:
     src: "{{ lp_gpg_conf_template }}"
-    dest: "{{ '/home/' ~ item.owner ~ '/.gnupg/' ~ item.component ~ '.conf' }}"
+    dest: "{{ ['/home/', item.owner, '/.gnupg/', item.component, '.conf'] | join }}"
     owner: "{{ item.owner }}"
     group: "{{ item.owner }}"
     mode: "0600"
     backup: "{{ lp_backup_conf }}"
-  register: lp_gpg_conf_reg
   loop: "{{ lp_gpg_conf }}"
   loop_control:
     label: "{{ item.owner }} {{ item.component }}"
-  notify: gpgconf reload
-  tags: lp_gpg_conf
 
 # TODO: import keys, template blocks
 

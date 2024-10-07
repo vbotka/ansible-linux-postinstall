@@ -21,12 +21,14 @@
     msg: "{{ '{}'.format(msg) }}"
 
 - name: "Rc_local: Manage service {{ lp_rc_local_service }}"
+  tags: lp_rc_local_service
   ansible.builtin.service:
     name: "{{ lp_rc_local_service }}"
     state: "{{ lp_rc_local_state }}"
-  tags: lp_rc_local_service
 
 - name: "Rc_local: Create /etc/rc.local"
+  tags: lp_rc_local_file
+  notify: restart rc-local
   ansible.builtin.template:
     src: "{{ lp_rc_local_template }}"
     dest: "{{ lp_rc_local_file }}"
@@ -34,7 +36,5 @@
     group: "{{ lp_rc_local_group }}"
     mode: "{{ lp_rc_local_mode }}"
     backup: "{{ lp_backup_conf }}"
-  notify: restart rc-local
-  tags: lp_rc_local_file
 
 # EOF

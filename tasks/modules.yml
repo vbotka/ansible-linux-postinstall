@@ -2,6 +2,8 @@
 # linux_postinstall modules
 
 - name: "Modules: Debug lp_modules_debug={{ lp_modules_debug }}"
+  when: lp_modules_debug | bool
+  tags: lp_modules_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -17,8 +19,6 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_modules_debug | bool
-  tags: lp_modules_debug
 
 - name: "Modules: modprobe modules"
   community.general.modprobe:
@@ -27,7 +27,6 @@
     state: "{{ item.state | d('present') }}"
   loop: "{{ lp_modules }}"
 
-# Debian
 - name: "Modules: Configure in Debian {{ lp_modules_conf }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_modules_conf }}"
@@ -39,7 +38,6 @@
     - ansible_os_family == 'Debian'
     - item.state | d('present') == 'present'
 
-# RedHat
 - name: "Modules: Configure in RedHat {{ lp_modules_conf }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_modules_conf }}"
@@ -51,24 +49,26 @@
     - ansible_os_family == 'RedHat'
     - item.state | d('present') == 'present'
 
-- name: "Modules: Blacklist modules in {{ lp_modules_blacklist_path }}"
-  ansible.builtin.template:
-    src: blacklist-module.j2
-    dest: "{{ lp_modules_blacklist_path }}/blacklist-{{ item }}.conf"
-    backup: "{{ lp_backup_conf }}"
-    mode: "0644"
-  loop: "{{ lp_modules_blacklist }}"
+- name: Configure modules
   notify: update initramfs
+  block:
 
-- name: "Modules: Set modules options in {{ lp_modules_options_path }}"
-  ansible.builtin.template:
-    src: options-module.j2
-    dest: "{{ lp_modules_options_path }}/{{ item.module }}.conf"
-    backup: "{{ lp_backup_conf }}"
-    mode: "0644"
-  loop: "{{ lp_modules_options }}"
-  loop_control:
-    label: "{{ item.module }}: {{ item.options }}"
-  notify: update initramfs
+    - name: "Modules: Blacklist modules in {{ lp_modules_blacklist_path }}"
+      ansible.builtin.template:
+        src: blacklist-module.j2
+        dest: "{{ lp_modules_blacklist_path }}/blacklist-{{ item }}.conf"
+        backup: "{{ lp_backup_conf }}"
+        mode: "0644"
+      loop: "{{ lp_modules_blacklist }}"
+
+    - name: "Modules: Set modules options in {{ lp_modules_options_path }}"
+      ansible.builtin.template:
+        src: options-module.j2
+        dest: "{{ lp_modules_options_path }}/{{ item.module }}.conf"
+        backup: "{{ lp_backup_conf }}"
+        mode: "0644"
+      loop: "{{ lp_modules_options }}"
+      loop_control:
+        label: "{{ item.module }}: {{ item.options }}"
 
 # EOF

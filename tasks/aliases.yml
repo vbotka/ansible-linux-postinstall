@@ -2,6 +2,7 @@
 # linux_postinstall aliases
 
 - name: "Aliases: Configure /etc/aliases"
+  notify: newaliases
   ansible.builtin.template:
     src: aliases.j2
     dest: /etc/aliases
@@ -9,6 +10,5 @@
     group: root
     mode: "0644"
     backup: "{{ lp_backup_conf }}"
-  notify: newaliases
 
 # EOF

@@ -10,12 +10,12 @@
     mode: "0755"
 
 - name: "Iptables: Create /etc/network/iptables using {{ lp_iptables_type ~ '-iptables.j2' }}"
+  notify: reload iptables
   ansible.builtin.template:
     src: "{{ lp_iptables_type }}-iptables.j2"
     dest: /etc/network/iptables
     owner: root
     group: root
     mode: "0644"
-  notify: reload iptables
 
 # EOF

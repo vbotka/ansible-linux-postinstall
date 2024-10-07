@@ -578,25 +578,25 @@ mytasks:
 
       TBD
 
-      Automatic management of listed services (73)
+      Automatic management of listed services (74)
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-      When not empty (74) iterate ``my_services_varnames`` (84) (See default s/main/service.yml). Skip
-      when ``run_task`` (93) is not *True*.
+      When not empty (75) iterate ``my_services_varnames`` (97) (See default s/main/service.yml). Skip
+      when ``run_task`` (80) is not *True*.
 
-      Manual management of listed services (103)
+      Manual management of listed services (104)
       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-      When not empty (104) iterate ``lp_service`` in the included tasks (114). When *auto* (111) set the
-      module (110) to ``ansible_service_mgr`` (OS native service manager found by the *setup*). TBC
+      When not empty (105) iterate ``lp_service`` in the included tasks (115). When *auto* (110) set the
+      module (112) to ``ansible_service_mgr`` (OS native service manager found by the *setup*). TBC
 
-      Flush handlers (116)
+      Flush handlers (117)
       ^^^^^^^^^^^^^^^^^^^^
 
       Automatic management of listed services notifies ``ansible_service_mgr``. See the tasks
       service-\*.yml how manual management options notify handlers.
 
-    lines: 2,4,23,73,103,116
+    lines: 2,4,23,74,104,117
     seealso: []
     notes: []
     hints: []

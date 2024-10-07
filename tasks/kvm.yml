@@ -2,6 +2,8 @@
 # linux_postinstall kvm
 
 - name: "Kvm: Debug lp_kvm_debug={{ lp_kvm_debug }}"
+  when: lp_kvm_debug | bool
+  tags: lp_kvm_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -9,20 +11,18 @@
         {{ lp_kvm_packages | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_kvm_debug | bool
-  tags: lp_kvm_debug
 
 - name: "Kvm: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
   when: lp_kvm_install | bool
+  tags: lp_kvm_packages
   vars:
     ll_ipkg_list: "{{ lp_kvm_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
     ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_kvm_debug | bool }}"
-  tags: lp_kvm_packages
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
 # EOF

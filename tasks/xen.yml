@@ -1,7 +1,9 @@
 ---
 # linux_postinstall xen
 
-- name: "Xen: Debug"
+- name: "Xen: Debug lp_xen_debug={{ lp_xen_debug }}"
+  when: lp_xen_debug | bool
+  tags: lp_xen_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -16,23 +18,23 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_xen_debug|bool
-  tags: lp_xen_debug
 
 - name: "Xen: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
-  when: lp_xen_install|bool
+  when: lp_xen_install | bool
+  tags: lp_xen_packages
   vars:
     ll_ipkg_list: "{{ lp_xen_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
     ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_xen_debug | bool }}"
-  tags: lp_xen_packages
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
 - name: "Xen: Configure /etc/default/grub"
+  tags: lp_xen_default_grub
+  notify: update grub
   ansible.builtin.lineinfile:
     dest: /etc/default/grub
     regexp: ^\s*{{ item.key }}\s*=\s*(.*)$
@@ -41,10 +43,9 @@
   loop: "{{ lp_xen_default_grub_conf }}"
   loop_control:
     label: "{{ item.key }}: {{ item.value }}"
-  notify: update grub
-  tags: lp_xen_default_grub
 
 - name: "Xen: Configure /etc/xen/xl.conf"
+  tags: lp_xen_global
   ansible.builtin.lineinfile:
     dest: /etc/xen/xl.conf
     regexp: ^\s*{{ item.var }}\s*=\s*(.*)$
@@ -55,6 +56,5 @@
   loop: "{{ lp_xen_global }}"
   loop_control:
     label: "{{ item.var }}: {{ item.value }}"
-  tags: lp_xen_global
 
 # EOF

@@ -2,6 +2,8 @@
 # linux_postinstall dnsmasq
 
 - name: "Dnsmasq: Debug lp_dnsmasq_debug={{ lp_dnsmasq_debug }}"
+  when: lp_dnsmasq_debug | bool
+  tags: lp_dnsmasq_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -17,23 +19,22 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_dnsmasq_debug | bool
-  tags: lp_dnsmasq_debug
 
 - name: "Dnsmasq: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
   when: lp_dnsmasq_install | bool
+  tags: lp_dnsmasq_packages
   vars:
     ll_ipkg_list: "{{ lp_dnsmasq_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
     ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_dnsmasq_debug | bool }}"
-  tags: lp_dnsmasq_packages
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
 - name: "Dnsmasq: Create directories"
+  tags: lp_dnsmasq_directories
   ansible.builtin.file:
     state: directory
     path: "{{ item.dest | dirname }}"
@@ -43,9 +44,10 @@
   loop: "{{ lp_dnsmasq_config }}"
   loop_control:
     label: "{{ item.dest | dirname }}"
-  tags: lp_dnsmasq_directories
 
 - name: "Dnsmasq: Configure"
+  tags: lp_dnsmasq_config
+  notify: restart dnsmasq
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -56,26 +58,26 @@
   loop: "{{ lp_dnsmasq_config }}"
   loop_control:
     label: "{{ item.dest }}"
-  notify: restart dnsmasq
-  tags: lp_dnsmasq_config
 
-- name: "Dnsmasq: Service {{ state ~ ' and ' ~ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_dnsmasq_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_dnsmasq_enable | bool | d(false) }}"
-    state: "{{ lp_dnsmasq_state | d(default_state) }}"
-    default_state: "{{ enabled | ternary('started', 'stopped') }}"
-    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+- name: Service
   tags: lp_dnsmasq_service
+  block:
 
-- name: "Dnsmasq: Debug service lp_dnsmasq_debug={{ lp_dnsmasq_debug }}"
-  ansible.builtin.debug:
-    var: result
-  when: lp_dnsmasq_debug | bool
-  tags: lp_dnsmasq_service
+    - name: "Dnsmasq: Service {{ state ~ ' and ' ~ enable }}"
+      register: result
+      vars:
+        enabled: "{{ lp_dnsmasq_enable | bool | d(false) }}"
+        state: "{{ lp_dnsmasq_state | d(default_state) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      ansible.builtin.service:
+        name: "{{ lp_dnsmasq_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+
+    - name: "Dnsmasq: Debug service lp_dnsmasq_debug={{ lp_dnsmasq_debug }}"
+      when: lp_dnsmasq_debug | bool
+      ansible.builtin.debug:
+        var: result
 
 # EOF

@@ -2,6 +2,8 @@
 # linux_postinstall bluetooth
 
 - name: "Bluetooth: Debug lp_bluetooth_debug={{ lp_bluetooth_debug }}"
+  when: lp_bluetooth_debug | bool
+  tags: lp_bluetooth_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -13,52 +15,55 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_bluetooth_debug | bool
-  tags: lp_bluetooth_debug
 
-- name: "Bluetooth: Configure /etc/bluetooth/main.conf"
-  ansible.builtin.lineinfile:
-    dest: /etc/bluetooth/main.conf
-    regexp: ^\s*{{ item.key }}\s*=\s*(.*)$
-    insertbefore: ^[\s#]*{{ item.key }}(.*)$
-    line: "{{ item.key }} = {{ item.value }}"
-    backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_bluetooth_main_conf }}"
-  loop_control:
-    label: "{{ item.key }} {{ item.value }}"
+- name: Configure bluetooth
   notify: restart bluetooth
-  tags: lp_bluetooth_conf
+  block:
 
-- name: "Bluetooth: Configure bluetooth"
-  community.general.ini_file:
-    path: "{{ item.0.path }}"
-    mode: "{{ item.0.mode }}"
-    section: "{{ item.1.section }}"
-    option: "{{ item.1.option | d(omit) }}"
-    value: "{{ item.1.value }}"
-    backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_bluetooth_ini | subelements('conf') }}"
-  loop_control:
-    label: "{{ item.1.option }}: {{ item.1.value }}"
-  notify: restart bluetooth
-  tags: lp_bluetooth_ini
+    - name: "Bluetooth: Configure /etc/bluetooth/main.conf"
+      tags: lp_bluetooth_conf
+      ansible.builtin.lineinfile:
+        dest: /etc/bluetooth/main.conf
+        regexp: ^\s*{{ item.key }}\s*=\s*(.*)$
+        insertbefore: ^[\s#]*{{ item.key }}(.*)$
+        line: "{{ item.key }} = {{ item.value }}"
+        backup: "{{ lp_backup_conf }}"
+      loop: "{{ lp_bluetooth_main_conf }}"
+      loop_control:
+        label: "{{ item.key }} {{ item.value }}"
 
-- name: "Bluetooth: Service {{ state ~ ' and ' ~ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_bluetooth_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_bluetooth_enable | bool | d(false) }}"
-    state: "{{ lp_bluetooth_state | d(default_state) }}"
-    default_state: "{{ enabled | ternary('started', 'stopped') }}"
-    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+    - name: "Bluetooth: Configure bluetooth"
+      tags: lp_bluetooth_ini
+      community.general.ini_file:
+        path: "{{ item.0.path }}"
+        mode: "{{ item.0.mode }}"
+        section: "{{ item.1.section }}"
+        option: "{{ item.1.option | d(omit) }}"
+        value: "{{ item.1.value }}"
+        backup: "{{ lp_backup_conf }}"
+      loop: "{{ lp_bluetooth_ini | subelements('conf') }}"
+      loop_control:
+        label: "{{ item.1.option }}: {{ item.1.value }}"
+
+- name: Service bluetooth
   tags: lp_bluetooth_service
+  block:
 
-- name: "Bluetooth: Debug service lp_bluetooth_debug={{ lp_bluetooth_debug }}"
-  ansible.builtin.debug:
-    var: result
-  when: lp_bluetooth_debug | bool
+    - name: "Bluetooth: Service {{ state ~ ' and ' ~ enable }}"
+      register: result
+      vars:
+        enabled: "{{ lp_bluetooth_enable | bool | d(false) }}"
+        state: "{{ lp_bluetooth_state | d(default_state) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      ansible.builtin.service:
+        name: "{{ lp_bluetooth_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+
+    - name: "Bluetooth: Debug service lp_bluetooth_debug={{ lp_bluetooth_debug }}"
+      when: lp_bluetooth_debug | bool
+      ansible.builtin.debug:
+        var: result
 
 # EOF

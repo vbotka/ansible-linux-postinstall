@@ -5,11 +5,13 @@
   block:
 
     - name: "Netplan: Stat {{ lp_netplan_default }}"
+      register: result
       ansible.builtin.stat:
         path: "{{ lp_netplan_root }}/{{ lp_netplan_default }}"
-      register: result
 
     - name: "Netplan: Configure {{ lp_netplan_root ~ '/' ~ lp_netplan_default }}"
+      when: result.stat.exists | d(false)
+      notify: netplan apply
       ansible.builtin.template:
         src: netplan-default.j2
         dest: "{{ lp_netplan_root }}/{{ lp_netplan_default }}"
@@ -17,10 +19,9 @@
         group: "{{ lp_netplan_group }}"
         mode: "{{ lp_netplan_mode }}"
         backup: "{{ lp_backup_conf }}"
-      notify: netplan apply
-      when: result.stat.exists | d(false)
 
 - name: "Netplan: Configure files in {{ lp_netplan_root }}"
+  notify: netplan apply
   ansible.builtin.template:
     src: netplan-conf.j2
     dest: "{{ lp_netplan_root }}/{{ item.file }}"
@@ -31,6 +32,5 @@
   loop: "{{ lp_netplan_conf }}"
   loop_control:
     label: "{{ item.file }}"
-  notify: netplan apply
 
 # EOF

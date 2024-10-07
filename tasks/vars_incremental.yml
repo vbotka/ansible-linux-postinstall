@@ -3,10 +3,10 @@
 
 - name: "Vars_incemental: Include default vars"
   when: item is exists
+  register: result
   vars:
     my_path: "{{ role_path }}/vars/defaults.incr"
   ansible.builtin.include_vars: "{{ item }}"
-  register: result
   loop:
     - "{{ my_path }}/defaults.yml"
     - "{{ my_path }}/default.yml"

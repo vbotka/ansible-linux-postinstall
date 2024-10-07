@@ -23,9 +23,9 @@
   block:
 
     - name: "Reboot: Stat {{ lp_reboot_required_file }}"
+      register: reboot_required_file_status
       ansible.builtin.stat:
         path: "{{ lp_reboot_required_file }}"
-      register: reboot_required_file_status
 
     - name: "Reboot: Set reboot_required"
       ansible.builtin.set_fact:
@@ -36,28 +36,28 @@
   block:
 
     - name: "Reboot: Run {{ lp_reboot_required_command }}"
+      register: reboot_required_cmd_status
       ansible.builtin.command: # noqa: no-changed-when
         cmd: >
           {{ lp_reboot_required_command }}
-      register: reboot_required_cmd_status
 
     - name: "Reboot: Set reboot_required"
       ansible.builtin.set_fact:
         reboot_required: "{{ (reboot_required_cmd_status.rc != 0) | ternary(true, false) }}"
 
 - name: "Reboot: Debug reboot_required lp_reboot_debug={{ lp_reboot_debug }}"
+  when: lp_reboot_debug | bool
   ansible.builtin.debug:
     var: reboot_required
-  when: lp_reboot_debug | bool
 
 - name: "Reboot: Reboot and wait for connection"
+  when:
+    - reboot_required | d(false)
+    - (not lp_reboot_required_ignore) or lp_reboot_force | bool
   ansible.builtin.reboot:
     connect_timeout: "{{ lp_reboot_wait_connect_timeout }}"
     post_reboot_delay: "{{ lp_reboot_wait_delay }}"
     reboot_timeout: "{{ lp_reboot_wait_timeout }}"
-  when:
-    - reboot_required | d(false)
-    - (not lp_reboot_required_ignore) or lp_reboot_force | bool
 
 # - name: "Reboot: Reboot and wait for connection"
 #   when: (reboot_required | d(false) and not lp_reboot_required_ignore) or lp_reboot_force

@@ -37,6 +37,8 @@
   block:
 
     - name: "Postfix: Configure /etc/postfix/main.cf"
+      tags: lp_postfix_conf
+      notify: reload postfix
       ansible.builtin.lineinfile:
         dest: /etc/postfix/main.cf
         regexp: ^\s*{{ item.key }}\s*=\s*(.*)$
@@ -47,26 +49,25 @@
       loop: "{{ lp_postfix_main_conf }}"
       loop_control:
         label: "{{ item.key }}: {{ item.value }}"
-      notify: reload postfix
-      tags: lp_postfix_conf
 
     - name: "Postfix: Service {{ state ~ ' and ' ~ enable }}"
-      ansible.builtin.service:
-        name: "{{ lp_postfix_service }}"
-        state: "{{ state }}"
-        enabled: "{{ enabled }}"
+      tags: lp_postfix_service
       register: result
       vars:
         enabled: "{{ lp_postfix_enable | bool | d(false) }}"
         state: "{{ lp_postfix_state | d(default_state) }}"
         default_state: "{{ enabled | ternary('started', 'stopped') }}"
         enable: "{{ enabled | ternary('enabled', 'disabled') }}"
-      tags: lp_postfix_service
+      ansible.builtin.service:
+        name: "{{ lp_postfix_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
 
     - name: "Postfix: Debug service lp_postfix_debug={{ lp_postfix_debug }}"
+      when: lp_postfix_debug | bool
+      tags: lp_postfix_service
       ansible.builtin.debug:
         var: result
-      when: lp_postfix_debug | bool
 
   rescue:
 
@@ -80,16 +81,14 @@
             {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
     - name: "Postfix: End host"
+      when: lp_postfix_rescue_end_host | bool
       ansible.builtin.meta: end_host
-      when:
-        - lp_postfix_rescue_end_host | bool
-        - not ansible_check_mode
 
     - name: "Postfix: Clear host errors"
       ansible.builtin.meta: clear_host_errors
 
 - name: "Postfix: Flush handlers"
-  ansible.builtin.meta: flush_handlers
   when: lp_postfix_flush_handlers | bool
+  ansible.builtin.meta: flush_handlers
 
 # EOF
