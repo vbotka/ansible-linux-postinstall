@@ -5,7 +5,7 @@ vbotka.linux_postinstall 2.6 Release Notes
 .. contents:: Topics
 
 
-2.6.5
+2.6.7
 =====
 
 Release Summary
@@ -17,6 +17,25 @@ Major Changes
 
 Minor Changes
 -------------
+* Fix travis.yml formatting.
+
+
+2.6.6
+=====
+
+Release Summary
+---------------
+Maintenance update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* ansible-lint --write automatic fixes.
+* Fix lint errors. Update handlers and docs.
+* Templates formating improved.
+* Tasks formatting improved.
 
 
 2.6.4
