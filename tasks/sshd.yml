@@ -1,65 +1,67 @@
 ---
 # linux_postinstall sshd
 
-- name: "sshd: Debug"
+- name: "Sshd: Debug lp_sshd_debug={{ lp_sshd_debug }}"
+  when: lp_sshd_debug | bool
+  tags: lp_sshd_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_sshd_enable: {{ lp_sshd_enable }}
       lp_sshd_config_remove_duplicates: {{ lp_sshd_config_remove_duplicates }}
       lp_sshd_config:
-        {{ lp_sshd_config|to_yaml(indent=2)|indent(2) }}
+        {{ lp_sshd_config | to_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_sshd_debug|bool
-  tags: lp_sshd_debug
 
-- name: "sshd: Remove duplicate parameters from /etc/ssh/sshd_config"
-  ansible.builtin.replace:
-    dest: /etc/ssh/sshd_config
-    after: '^\s*{{ item.key }}(?!\S)'
-    regexp: '^\s*{{ item.key }}(?!\S).*$'
-    backup: "{{ lp_backup_conf }}"
-    validate: "{{ lp_sshd_path }} -t -f %s"
-  loop: "{{ lp_sshd_config }}"
-  loop_control:
-    label: "{{ item.key }}"
-  notify: reload sshd
-  when: lp_sshd_config_remove_duplicates|bool
+- name: Configure /etc/ssh/sshd_config
   tags: lp_sshd_config
-
-- name: "sshd: Configure /etc/ssh/sshd_config"
-  ansible.builtin.lineinfile:
-    dest: /etc/ssh/sshd_config
-    regexp: '^\s*{{ item.key }}(?!\S).*$'
-    line: "{{ item.key }} {{ item.value }}"
-    backup: "{{ lp_backup_conf }}"
-    validate: "{{ lp_sshd_path }} -t -f %s"
-  loop: "{{ lp_sshd_config }}"
-  loop_control:
-    label: "{{ item.key }}: {{ item.value }}"
   notify: reload sshd
-  tags: lp_sshd_config
+  block:
 
-- name: "sshd: Service {{ state }} and {{ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_sshd_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_sshd_enable|bool|d(false) }}"
-    state: "{{ lp_sshd_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
-  tags: lp_sshd_service
+    - name: "Sshd: Remove duplicate parameters from /etc/ssh/sshd_config"
+      when: lp_sshd_config_remove_duplicates | bool
+      ansible.builtin.replace:
+        dest: /etc/ssh/sshd_config
+        after: ^\s*{{ item.key }}(?!\S)
+        regexp: ^\s*{{ item.key }}(?!\S).*$
+        backup: "{{ lp_backup_conf }}"
+        validate: "{{ lp_sshd_path }} -t -f %s"
+      loop: "{{ lp_sshd_config }}"
+      loop_control:
+        label: "{{ item.key }}"
 
-- name: "sshd: Debug service"
-  ansible.builtin.debug:
-    var: result
-  when: lp_sshd_debug|bool
+    - name: "Sshd: Configure /etc/ssh/sshd_config"
+      ansible.builtin.lineinfile:
+        dest: /etc/ssh/sshd_config
+        regexp: ^\s*{{ item.key }}(?!\S).*$
+        line: "{{ item.key }} {{ item.value }}"
+        backup: "{{ lp_backup_conf }}"
+        validate: "{{ lp_sshd_path }} -t -f %s"
+      loop: "{{ lp_sshd_config }}"
+      loop_control:
+        label: "{{ item.key }}: {{ item.value }}"
+
+- name: Service
   tags: lp_sshd_service
+  block:
+
+    - name: "Sshd: Service {{ state ~ ' and ' ~ enable }}"
+      register: result
+      vars:
+        enabled: "{{ lp_sshd_enable | bool | d(false) }}"
+        state: "{{ lp_sshd_state | d(default_state) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      ansible.builtin.service:
+        name: "{{ lp_sshd_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+
+    - name: "Sshd: Debug service lp_sshd_debug={{ lp_sshd_debug }}"
+      when: lp_sshd_debug | bool
+      ansible.builtin.debug:
+        var: result
 
 # EOF
-...

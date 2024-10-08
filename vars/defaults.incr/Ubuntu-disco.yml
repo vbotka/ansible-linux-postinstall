@@ -16,7 +16,7 @@ lp_kvm_packages:
 lp_tlp_path: /sbin/tlp
 
 lp_virtualbox_repos:
-  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/disco contrib"
+  - deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/disco contrib
 # - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
 #                     {{ ansible_lsb.codename }} contrib"
 
@@ -29,4 +29,3 @@ lp_libvirt_packages:
   - virtinst
 
 # EOF
-...

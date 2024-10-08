@@ -10,7 +10,7 @@ lp_smart_packages:
 lp_smart_conf_file: /etc/smartd.conf
 lp_smart_conf_owner: root
 lp_smart_conf_group: root
-lp_smart_conf_mode: '0644'
+lp_smart_conf_mode: "0644"
 
 # man smartctl
 # -a Prints all SMART information about the disk. Equivalent to
@@ -35,6 +35,6 @@ lp_smart_conf_mode: '0644'
 # Log, ignoring -l selftest; no SMART Error Log, ignoring -l error
 
 lp_smart_devices:
-  - {regexp: '^/dev/sda', line: '/dev/sda -H -f -t -o on -S on -s (S/../.././02|L/../../6/03) -m admin'}
+  - { regexp: ^/dev/sda, line: /dev/sda -H -f -t -o on -S on -s (S/../.././02|L/../../6/03) -m admin }
 # - {regexp: '^/dev/sda', line: '/dev/sda -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin'}
 # - {regexp: '^/dev/sdb', line: '/dev/sdb -a -o on -S on -s (S/../.././02|L/../../6/03) -m admin'}

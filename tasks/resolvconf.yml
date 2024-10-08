@@ -1,7 +1,7 @@
 ---
 # linux_postinstall resolvconf
 
-- name: "resolvconf: Debug lp_resolvconf_debug={{ lp_resolvconf_debug }}"
+- name: "Resolvconf: Debug lp_resolvconf_debug={{ lp_resolvconf_debug }}"
   when: lp_resolvconf_debug | bool
   tags: lp_resolvconf_debug
   vars:
@@ -24,7 +24,7 @@
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
 
-- name: "resolvconf: Install packages"
+- name: "Resolvconf: Install packages"
   when: lp_resolvconf_install | bool
   tags: lp_resolvconf_packages
   vars:
@@ -37,7 +37,9 @@
     name: vbotka.linux_lib
     tasks_from: install_package.yml
 
-- name: "resolvconf: Configure lp_resolvconf_conf"
+- name: "Resolvconf: Configure lp_resolvconf_conf"
+  tags: lp_resolvconf_confd_head
+  notify: restart resolvconf
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
@@ -48,27 +50,26 @@
   loop: "{{ lp_resolvconf_conf }}"
   loop_control:
     label: "{{ item.dest }}"
-  notify: restart resolvconf
-  tags: lp_resolvconf_confd_head
 
-- name: "resolvconf: Service {{ state }} and {{ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_resolvconf_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_resolvconf_enable | bool | d(false) }}"
-    default_state: "{{ enabled | ternary('started', 'stopped') }}"
-    state: "{{ lp_resolvconf_state | d(default_state) }}"
-    enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+- name: Service
   tags: lp_resolvconf_service
+  block:
 
-- name: "resolvconf: Debug service lp_resolvconf_debug={{ lp_resolvconf_debug }}"
-  when: lp_resolvconf_debug | bool
-  tags: lp_resolvconf_service
-  ansible.builtin.debug:
-    var: result
+    - name: "Resolvconf: Service {{ state ~ ' and ' ~ enable }}"
+      register: result
+      vars:
+        enabled: "{{ lp_resolvconf_enable | bool | d(false) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        state: "{{ lp_resolvconf_state | d(default_state) }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      ansible.builtin.service:
+        name: "{{ lp_resolvconf_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+
+    - name: "Resolvconf: Debug service lp_resolvconf_debug={{ lp_resolvconf_debug }}"
+      when: lp_resolvconf_debug | bool
+      ansible.builtin.debug:
+        var: result
 
 # EOF
-...

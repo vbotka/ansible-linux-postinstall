@@ -7,16 +7,14 @@
 # 3) add cases: resume, thaw, suspend, hibernate
 # 4) install pm_utils
 
-- name: "pm_utils: Configure /etc/pm/sleep.d"
+- name: "Pm_utils: Configure /etc/pm/sleep.d"
   ansible.builtin.template:
     src: pm-sleepd.j2
-    dest: "/etc/pm/sleep.d/{{ item.value.file }}"
+    dest: /etc/pm/sleep.d/{{ item.value.file }}
     owner: root
     group: root
-    mode: '0755'
+    mode: "0755"
     backup: "{{ lp_backup_conf }}"
-  with_dict: "{{ lp_pm_sleepd|default({}) }}"
-  when: item.value.file|length > 0
+  loop: "{{ lp_pm_sleepd | d({}) | dict2items | selectattr('value.file') }}"
 
 # EOF
-...

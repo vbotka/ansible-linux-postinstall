@@ -1,25 +1,24 @@
 ---
 # linux_postinstall ssh
 
-- name: "ssh: Debug"
+- name: "Ssh: Debug lp_ssh_debug={{ lp_ssh_debug }}"
+  when: lp_ssh_debug | bool
+  tags: lp_ssh_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_ssh_config:
-        {{ lp_ssh_config|to_yaml(indent=2)|indent(2) }}
+        {{ lp_ssh_config | to_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_ssh_debug|bool
-  tags: lp_ssh_debug
 
-- name: "ssh: Configure /etc/ssh/ssh_config"
+- name: "Ssh: Configure /etc/ssh/ssh_config"
+  tags: lp_ssh_conf
   ansible.builtin.template:
     src: ssh_config.j2
     dest: /etc/ssh/ssh_config
     backup: "{{ lp_backup_conf }}"
-    mode: '0644'
-  tags: lp_ssh_conf
+    mode: "0644"
 
 # EOF
-...

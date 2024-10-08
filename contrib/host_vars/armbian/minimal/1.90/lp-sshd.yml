@@ -9,10 +9,10 @@ lp_sshd_permittunnel: "no"
 lp_sshd_allowtcpforwarding: "yes"
 lp_sshd_x11forwarding: "no"
 lp_sshd_config:
-  - {key: PasswordAuthentication, value: "{{ lp_sshd_passwordauthentication }}"}
-  - {key: PubkeyAuthentication, value: "{{ lp_sshd_pubkeyauthentication }}"}
-  - {key: ChallengeResponseAuthentication, value: "{{ lp_sshd_challengeresponseauthentication }}"}
-  - {key: PermitRootLogin, value: "{{ lp_sshd_permitrootlogin }}"}
-  - {key: PermitTunnel, value: "{{ lp_sshd_permittunnel }}"}
-  - {key: AllowTcpForwarding, value: "{{ lp_sshd_allowtcpforwarding }}"}
-  - {key: X11Forwarding, value: "{{ lp_sshd_x11forwarding }}"}
+  - { key: PasswordAuthentication, value: "{{ lp_sshd_passwordauthentication }}" }
+  - { key: PubkeyAuthentication, value: "{{ lp_sshd_pubkeyauthentication }}" }
+  - { key: ChallengeResponseAuthentication, value: "{{ lp_sshd_challengeresponseauthentication }}" }
+  - { key: PermitRootLogin, value: "{{ lp_sshd_permitrootlogin }}" }
+  - { key: PermitTunnel, value: "{{ lp_sshd_permittunnel }}" }
+  - { key: AllowTcpForwarding, value: "{{ lp_sshd_allowtcpforwarding }}" }
+  - { key: X11Forwarding, value: "{{ lp_sshd_x11forwarding }}" }

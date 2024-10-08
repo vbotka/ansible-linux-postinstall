@@ -5,6 +5,6 @@ lp_debsums_debug: false
 lp_debsums_install: false
 lp_debsums_default_file: /etc/default/debsums
 lp_debsums_default_conf:
-  - {key: CRON_CHECK, value: never}
+  - { key: CRON_CHECK, value: never }
 lp_debsums_ignore_file: /etc/debsums-ignore
 lp_debsums_ignore_conf: []

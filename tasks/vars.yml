@@ -1,19 +1,18 @@
 ---
 # linux_postinstall vars
 
-- name: "vars: Include firstfound default vars"
-  ansible.builtin.include_tasks: vars_firstfound.yml
+- name: "Vars: Include firstfound default vars"
   when: lp_vars_distro == 'firstfound'
+  ansible.builtin.include_tasks: vars_firstfound.yml
 
-- name: "vars: Include incremental default vars"
-  ansible.builtin.include_tasks: vars_incremental.yml
+- name: "Vars: Include incremental default vars"
   when: lp_vars_distro == 'incremental'
+  ansible.builtin.include_tasks: vars_incremental.yml
 
-- name: "vars: Include firstfound default vars for various flavors"
+- name: "Vars: Include firstfound default vars for various flavors"
+  when: lp_flavors_enable | bool
   ansible.builtin.include_tasks: sub/vars_flavors.yml
-  when: lp_flavors_enable|bool
 
 # TODO "vars: Include incremental default vars for various flavors"
 
 # EOF
-...

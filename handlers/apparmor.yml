@@ -1,14 +1,14 @@
 ---
-
-- name: apparmor disable profile
-  ansible.builtin.command:
+- name: Apparmor disable profile
+  listen: apparmor disable profile
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       apparmor_parser -R /etc/apparmor.d/{{ apparmor_item_path.stdout }}
 
-- name: apparmor enforce profile
-  ansible.builtin.command:
+- name: Apparmor enforce profile
+  listen: apparmor enforce profile
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       apparmor_parser -r /etc/apparmor.d/{{ apparmor_item_path.stdout }}
 
 # EOF
-...

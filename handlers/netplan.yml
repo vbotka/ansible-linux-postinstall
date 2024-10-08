@@ -1,10 +1,9 @@
 ---
-
-- name: netplan apply
-  ansible.builtin.command:
+- name: Netplan apply
+  listen: netplan apply
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       netplan apply
   when: lp_netplan | bool
 
 # EOF
-...

@@ -1,7 +1,7 @@
 ---
 # linux_postinstall rc_local
 
-- name: "rc_local: Debug lp_rc_local_debug={{ lp_rc_local_debug }}"
+- name: "Rc_local: Debug lp_rc_local_debug={{ lp_rc_local_debug }}"
   when: lp_rc_local_debug | bool
   tags: lp_rc_local_debug
   vars:
@@ -20,13 +20,15 @@
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
 
-- name: "rc_local: Manage service {{ lp_rc_local_service }}"
+- name: "Rc_local: Manage service {{ lp_rc_local_service }}"
+  tags: lp_rc_local_service
   ansible.builtin.service:
     name: "{{ lp_rc_local_service }}"
     state: "{{ lp_rc_local_state }}"
-  tags: lp_rc_local_service
 
-- name: "rc_local: Create /etc/rc.local"
+- name: "Rc_local: Create /etc/rc.local"
+  tags: lp_rc_local_file
+  notify: restart rc-local
   ansible.builtin.template:
     src: "{{ lp_rc_local_template }}"
     dest: "{{ lp_rc_local_file }}"
@@ -34,8 +36,5 @@
     group: "{{ lp_rc_local_group }}"
     mode: "{{ lp_rc_local_mode }}"
     backup: "{{ lp_backup_conf }}"
-  notify: restart rc-local
-  tags: lp_rc_local_file
 
 # EOF
-...

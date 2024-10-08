@@ -1,7 +1,9 @@
 ---
 # linux_postinstall postfix
 
-- name: "postfix: Debug"
+- name: "Postfix: Debug lp_postfix_debug={{ lp_postfix_debug }}"
+  when: lp_postfix_debug | bool
+  tags: lp_postfix_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -11,86 +13,82 @@
       lp_postfix_rescue_end_host: {{ lp_postfix_rescue_end_host }}
       lp_postfix_service: {{ lp_postfix_service }}
       lp_postfix_main_conf:
-        {{ lp_postfix_main_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_postfix_main_conf | to_yaml(indent=2) | indent(2) }}
       lp_postfix_packages:
-        {{ lp_postfix_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_postfix_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_postfix_debug|bool
-  tags: lp_postfix_debug
 
-- name: "postfix: Install packages"
+- name: "Postfix: Install packages"
+  when: lp_postfix_install | bool
+  tags: lp_postfix_packages
   ansible.builtin.import_role:
     name: vbotka.linux_lib
     tasks_from: install_package.yml
-  when: lp_postfix_install|bool
   vars:
     ll_ipkg_list: "{{ lp_postfix_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_postfix_debug|bool }}"
-  tags: lp_postfix_packages
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_postfix_debug | bool }}"
 
-- name: "chrony: Configure, enable, start, or disable postfix"
+- name: "Chrony: Configure, enable, start, or disable postfix"
   block:
 
-    - name: "postfix: Configure /etc/postfix/main.cf"
+    - name: "Postfix: Configure /etc/postfix/main.cf"
+      tags: lp_postfix_conf
+      notify: reload postfix
       ansible.builtin.lineinfile:
         dest: /etc/postfix/main.cf
-        regexp: '^\s*{{ item.key }}\s*=\s*(.*)$'
+        regexp: ^\s*{{ item.key }}\s*=\s*(.*)$
         line: "{{ item.key }} = {{ item.value }}"
         backup: "{{ lp_backup_conf }}"
         create: true
-        mode: '0644'
+        mode: "0644"
       loop: "{{ lp_postfix_main_conf }}"
       loop_control:
         label: "{{ item.key }}: {{ item.value }}"
-      notify: reload postfix
-      tags: lp_postfix_conf
 
-    - name: "postfix: Service {{ state }} and {{ enable }}"
+    - name: "Postfix: Service {{ state ~ ' and ' ~ enable }}"
+      tags: lp_postfix_service
+      register: result
+      vars:
+        enabled: "{{ lp_postfix_enable | bool | d(false) }}"
+        state: "{{ lp_postfix_state | d(default_state) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
       ansible.builtin.service:
         name: "{{ lp_postfix_service }}"
         state: "{{ state }}"
         enabled: "{{ enabled }}"
-      register: result
-      vars:
-        enabled: "{{ lp_postfix_enable|bool|d(false) }}"
-        state: "{{ lp_postfix_state|d(default_state) }}"
-        default_state: "{{ enabled|ternary('started', 'stopped') }}"
-        enable: "{{ enabled|ternary('enabled', 'disabled') }}"
-      tags: lp_postfix_service
 
-    - name: "postfix: Debug service"
+    - name: "Postfix: Debug service lp_postfix_debug={{ lp_postfix_debug }}"
+      when: lp_postfix_debug | bool
+      tags: lp_postfix_service
       ansible.builtin.debug:
         var: result
-      when: lp_postfix_debug|bool
 
   rescue:
 
-    - name: "postfix: Print errors"
+    - name: "Postfix: Print errors"
       ansible.builtin.debug:
         msg: |
           [ERR] task {{ ansible_failed_task.name }} failed. End host.
           ansible_failed_task:
-            {{ ansible_failed_task|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_task | to_yaml(indent=2) | indent(2) }}
           ansible_failed_result:
-            {{ ansible_failed_result|to_yaml(indent=2)|indent(2) }}
+            {{ ansible_failed_result | to_yaml(indent=2) | indent(2) }}
 
-    - name: "postfix: End host"
+    - name: "Postfix: End host"
+      when: lp_postfix_rescue_end_host | bool
       ansible.builtin.meta: end_host
-      when:
-        - lp_postfix_rescue_end_host|bool
-        - not ansible_check_mode
 
-    - name: "postfix: Clear host errors"
+    - name: "Postfix: Clear host errors"
       ansible.builtin.meta: clear_host_errors
 
-- name: "postfix: Flush handlers"
+- name: "Postfix: Flush handlers"
+  when: lp_postfix_flush_handlers | bool
   ansible.builtin.meta: flush_handlers
-  when: lp_postfix_flush_handlers|bool
 
 # EOF
-...

@@ -168,7 +168,7 @@ lp_apparmor_profile_dir: /etc/apparmor.d
 lp_debsums_packages:
   - debsums
 
-lp_resolvconf_service: resolvconf
+# lp_resolvconf_service: resolvconf
 lp_resolvconf_packages:
   - resolvconf
 lp_resolvconf_confd_head_path: /etc/resolvconf/resolv.conf.d/head

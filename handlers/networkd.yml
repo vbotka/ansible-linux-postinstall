@@ -1,10 +1,9 @@
 ---
-
-- name: restart networkd
+- name: Restart networkd
+  listen: restart networkd
   ansible.builtin.service:
     name: "{{ lp_networkd_service }}"
     state: restarted
-  when: lp_networkd_enable|bool
+  when: lp_networkd_enable | bool
 
 # EOF
-...

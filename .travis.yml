@@ -9,7 +9,6 @@ sudo: false
 addons:
   apt:
     packages: [python-pip]
-
 install:
   - pip install ansible
   - ansible --version

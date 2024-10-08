@@ -5,6 +5,20 @@ vbotka.linux_postinstall 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.5
+=====
+
+Release Summary
+---------------
+Maintenance update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+
+
 2.6.4
 =====
 

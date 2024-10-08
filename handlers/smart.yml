@@ -1,16 +1,16 @@
 ---
-
-- name: restart smart
+- name: Restart smart
+  listen: restart smart
   ansible.builtin.service:
     name: "{{ lp_smart_service }}"
     state: restarted
-  when: lp_smart_enable|bool
+  when: lp_smart_enable | bool
 
-- name: reload smart
+- name: Reload smart
+  listen: reload smart
   ansible.builtin.service:
     name: "{{ lp_smart_service }}"
     state: reloaded
-  when: lp_smart_enable|bool
+  when: lp_smart_enable | bool
 
 # EOF
-...

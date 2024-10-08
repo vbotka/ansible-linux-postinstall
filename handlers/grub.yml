@@ -1,9 +1,8 @@
 ---
-
-- name: update grub
-  ansible.builtin.command:
+- name: Update grub
+  listen: update grub
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       /usr/sbin/update-grub
 
 # EOF
-...

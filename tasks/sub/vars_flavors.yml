@@ -5,7 +5,8 @@
 # release_file(s). If release_file exists include tasks specific to this
 # flavor.
 
-- name: 'sub: vars_flavors: Debug'
+- name: "Sub: vars_flavors: Debug lp_debug={{ lp_debug }}"
+  when: lp_debug | bool
   vars:
     msg: |-
       lp_flavors_dir [{{ lp_flavors_dir }}]
@@ -13,37 +14,35 @@
       lp_flavors_dir_group [{{ lp_flavors_dir_group }}]
       lp_flavors_dir_mode [{{ lp_flavors_dir_mode }}]
       lp_flavors
-      {{ lp_flavors|to_nice_yaml }}
+      {{ lp_flavors | to_nice_yaml }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_debug|bool
 
-- name: 'sub: vars_flavors: Create {{ lp_flavors_dir }}'
-  ansible.builtin.file:
-    state: directory
-    path: '{{ lp_flavors_dir }}'
-    owner: '{{ lp_flavors_dir_owner }}'
-    group: '{{ lp_flavors_dir_group }}'
-    mode: '{{ lp_flavors_dir_mode }}'
+- name: "Sub: vars_flavors: Create {{ lp_flavors_dir }}"
   delegate_to: localhost
   run_once: true
+  ansible.builtin.file:
+    state: directory
+    path: "{{ lp_flavors_dir }}"
+    owner: "{{ lp_flavors_dir_owner }}"
+    group: "{{ lp_flavors_dir_group }}"
+    mode: "{{ lp_flavors_dir_mode }}"
 
-- name: 'sub: vars_flavors: Detect flavor'
-  ansible.builtin.stat:
-    path: '{{ item.value.release_file }}'
-  loop: '{{ lp_flavors|dict2items }}'
+- name: "Sub: vars_flavors: Detect flavor"
   register: result
+  ansible.builtin.stat:
+    path: "{{ item.value.release_file }}"
+  loop: "{{ lp_flavors | dict2items }}"
 
-- name: 'sub: vars_flavors: Debug result'
+- name: "Sub: vars_flavors: Debug result lp_debug={{ lp_debug }}"
+  when: lp_debug | bool
   ansible.builtin.debug:
-    msg: "{{ result.results|json_query('[?stat.exists].item') }}"
-  when: lp_debug|bool
+    msg: "{{ result.results | json_query('[?stat.exists].item') }}"
 
-- name: 'sub: vars_flavors: Include tasks for flavor'
+- name: "Sub: vars_flavors: Include tasks for flavor"
   ansible.builtin.include_tasks: "{{ 'sub/vars_flavors-' ~ outer_item.key ~ '.yml' }}"
-  loop: "{{ result.results|json_query('[?stat.exists].item') }}"
+  loop: "{{ result.results | json_query('[?stat.exists].item') }}"
   loop_control:
     loop_var: outer_item
 
 # EOF
-...

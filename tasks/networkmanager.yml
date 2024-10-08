@@ -1,7 +1,9 @@
 ---
 # linux_postinstall networkmanager
 
-- name: "nm: Debug lp_nm_debug={{ lp_nm_debug }}"
+- name: "Nm: Debug lp_nm_debug={{ lp_nm_debug }}"
+  when: lp_nm_debug | bool
+  tags: lp_nm_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -10,7 +12,7 @@
       ansible_distribution_release: {{ ansible_distribution_release }}
 
       lp_backup_conf: {{ lp_backup_conf }}
-      
+
       lp_nm_install: {{ lp_nm_install }}
       lp_nm_packages:
         {{ lp_nm_packages | to_nice_yaml(indent=2) | indent(2) }}
@@ -28,43 +30,41 @@
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_nm_debug | bool
-  tags: lp_nm_debug
 
-# Packages
-- name: "nm: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
+- name: "Nm: Install packages"
   when: lp_nm_install | bool
+  tags: lp_nm_packages
   vars:
     ll_ipkg_list: "{{ lp_nm_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
     ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
     ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
     ll_debug: "{{ lp_nm_debug | bool }}"
-  tags: lp_nm_packages
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
-# Override
-- name: "nm: Create /etc/init/network-manager.override"
-  ansible.builtin.template:
-    src: network-manager-override.j2
-    dest: /etc/init/network-manager.override
-    owner: root
-    group: root
-    mode: '0644'
-  when: not lp_nm_enable | bool
+- name: Override
   tags: lp_nm_override
+  block:
 
-- name: "nm: Remove /etc/init/network-manager.override"
-  ansible.builtin.file:
-    state: absent
-    dest: /etc/init/network-manager.override
-  when: lp_nm_enable | bool
-  tags: lp_nm_override
+    - name: "Nm: Create /etc/init/network-manager.override"
+      when: not lp_nm_enable | bool
+      ansible.builtin.template:
+        src: network-manager-override.j2
+        dest: /etc/init/network-manager.override
+        owner: root
+        group: root
+        mode: "0644"
 
-# Conf
-- name: "nm: Configure {{ lp_nm_conf_path }}"
+    - name: "Nm: Remove /etc/init/network-manager.override"
+      when: lp_nm_enable | bool
+      ansible.builtin.file:
+        state: absent
+        dest: /etc/init/network-manager.override
+
+- name: "Nm: Configure {{ lp_nm_conf_path }}"
+  tags: lp_nm_conf
   community.general.ini_file:
     path: "{{ lp_nm_conf_path }}"
     section: "{{ item.section }}"
@@ -72,12 +72,16 @@
     value: "{{ item.val }}"
     no_extra_spaces: "{{ lp_nm_conf_no_extra_spaces }}"
     backup: "{{ lp_backup_conf }}"
-    mode: '0644'
+    mode: "0644"
   loop: "{{ lp_nm_conf }}"
-  tags: lp_nm_conf
 
-# Service
-- name: "nm: Services start/stop and enable/disable"
+- name: "Nm: Services start/stop and enable/disable"
+  tags: lp_nm_service
+  vars:
+    srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
+    srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
+    srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
+    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
   ansible.builtin.service:
     name: "{{ srv_name }}"
     state: "{{ srv_stat }}"
@@ -85,24 +89,16 @@
   loop: "{{ lp_nm_services }}"
   loop_control:
     label: "{{ srv_name }} state: {{ srv_stat }} enabled: {{ srv_enbl }}"
+
+- name: "Nm: Services mask={{ lp_nm_mask }}"
+  tags: lp_nm_mask
   vars:
     srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
-    srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
-    srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
-    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
-  tags: lp_nm_service
-
-# Mask service
-- name: "nm: Services mask={{ lp_nm_mask }}"
   ansible.builtin.systemd_service:
     name: "{{ srv_name }}"
-    masked: "{{ lp_nm_mask }}" 
+    masked: "{{ lp_nm_mask }}"
   loop: "{{ lp_nm_services_mask }}"
   loop_control:
     label: "{{ srv_name }}"
-  vars:
-    srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
-  tags: lp_nm_mask
 
 # EOF
-...

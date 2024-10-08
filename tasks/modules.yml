@@ -1,75 +1,74 @@
 ---
 # linux_postinstall modules
 
-- name: "modules: Debug"
+- name: "Modules: Debug lp_modules_debug={{ lp_modules_debug }}"
+  when: lp_modules_debug | bool
+  tags: lp_modules_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_modules_conf: {{ lp_modules_conf }}
       lp_modules:
-        {{ lp_modules|to_yaml(indent=2)|indent(2) }}
+        {{ lp_modules | to_yaml(indent=2) | indent(2) }}
       lp_modules_options_path:  {{ lp_modules_options_path }}
       lp_modules_options:
-        {{ lp_modules_options|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_modules_options | to_nice_yaml(indent=2) | indent(2) }}
       lp_modules_blacklist_path: {{ lp_modules_blacklist_path }}
       lp_modules_blacklist:
-        {{ lp_modules_blacklist|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_modules_blacklist | to_nice_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_modules_debug|bool
-  tags: lp_modules_debug
 
-- name: "modules: modprobe modules"
+- name: "Modules: modprobe modules"
   community.general.modprobe:
     name: "{{ item.name }}"
     params: "{{ item.params }}"
-    state: "{{ item.state|default('present') }}"
+    state: "{{ item.state | d('present') }}"
   loop: "{{ lp_modules }}"
 
-# Debian
-- name: "modules: Configure {{ lp_modules_conf }} in Debian"
+- name: "Modules: Configure in Debian {{ lp_modules_conf }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_modules_conf }}"
-    regexp: '^\s*{{ item.name }}\s*(.*)$'
+    regexp: ^\s*{{ item.name }}\s*(.*)$
     line: "{{ item.name }} {{ item.params }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == 'Debian'
-    - item.state|default('present') == 'present'
+    - item.state | d('present') == 'present'
 
-# RedHat
-- name: "modules: Configure {{ lp_modules_conf }} in RedHat"
+- name: "Modules: Configure in RedHat {{ lp_modules_conf }}"
   ansible.builtin.lineinfile:
     dest: "{{ lp_modules_conf }}"
-    regexp: '^\s*modprobe\s+{{ item.name }}\s*(.*)$'
-    line: "modprobe {{ item.name }} {{ item.params }}"
+    regexp: ^\s*modprobe\s+{{ item.name }}\s*(.*)$
+    line: modprobe {{ item.name }} {{ item.params }}
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_modules }}"
   when:
     - ansible_os_family == 'RedHat'
-    - item.state|default('present') == 'present'
+    - item.state | d('present') == 'present'
 
-- name: "modules: Blacklist modules in {{ lp_modules_blacklist_path }}"
-  ansible.builtin.template:
-    src: blacklist-module.j2
-    dest: "{{ lp_modules_blacklist_path }}/blacklist-{{ item }}.conf"
-    backup: "{{ lp_backup_conf }}"
-    mode: '0644'
-  loop: "{{ lp_modules_blacklist }}"
+- name: Configure modules
   notify: update initramfs
+  block:
 
-- name: "modules: Set modules options in {{ lp_modules_options_path }}"
-  ansible.builtin.template:
-    src: options-module.j2
-    dest: "{{ lp_modules_options_path }}/{{ item.module }}.conf"
-    backup: "{{ lp_backup_conf }}"
-    mode: '0644'
-  loop: "{{ lp_modules_options }}"
-  loop_control:
-    label: "{{ item.module }}: {{ item.options }}"
-  notify: update initramfs
+    - name: "Modules: Blacklist modules in {{ lp_modules_blacklist_path }}"
+      ansible.builtin.template:
+        src: blacklist-module.j2
+        dest: "{{ lp_modules_blacklist_path }}/blacklist-{{ item }}.conf"
+        backup: "{{ lp_backup_conf }}"
+        mode: "0644"
+      loop: "{{ lp_modules_blacklist }}"
+
+    - name: "Modules: Set modules options in {{ lp_modules_options_path }}"
+      ansible.builtin.template:
+        src: options-module.j2
+        dest: "{{ lp_modules_options_path }}/{{ item.module }}.conf"
+        backup: "{{ lp_backup_conf }}"
+        mode: "0644"
+      loop: "{{ lp_modules_options }}"
+      loop_control:
+        label: "{{ item.module }}: {{ item.options }}"
 
 # EOF
-...

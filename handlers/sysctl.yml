@@ -1,9 +1,8 @@
 ---
-
-- name: load sysctl settings
-  ansible.builtin.command:
+- name: Load sysctl settings
+  listen: load sysctl settings
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       /sbin/sysctl -p /etc/sysctl.conf
 
 # EOF
-...

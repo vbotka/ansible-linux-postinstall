@@ -27,12 +27,12 @@ lp_sshd_path: /usr/sbin/sshd
 lp_modules_conf: /etc/modules
 
 lp_hosts_default:
-  - {ip: "127.0.0.1", name1: "localhost"}
-  - {ip: "::1", name1: "ip6-localhost", name2: "ip6-loopback"}
-  - {ip: "fe00::0", name1: "ip6-localnet"}
-  - {ip: "ff00::0", name1: "ip6-mcastprefix"}
-  - {ip: "ff02::1", name1: "ip6-allnodes"}
-  - {ip: "ff02::2", name1: "ip6-allrouters"}
+  - { ip: 127.0.0.1, name1: localhost }
+  - { ip: "::1", name1: ip6-localhost, name2: ip6-loopback }
+  - { ip: fe00::0, name1: ip6-localnet }
+  - { ip: ff00::0, name1: ip6-mcastprefix }
+  - { ip: ff02::1, name1: ip6-allnodes }
+  - { ip: ff02::2, name1: ip6-allrouters }
 
 lp_nfsd_packages:
   - nfs-kernel-server
@@ -111,7 +111,7 @@ lp_tlp_services:
 lp_tlp_restart_service: tlp
 
 lp_virtualbox_repos:
-  - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/buster contrib"
+  - deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/buster contrib
 # - "deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian/
 #                     {{ ansible_lsb.codename }} contrib"
 lp_virtualbox_services:
@@ -143,7 +143,6 @@ lp_systemd_mode: "0644"
 
 lp_networkd_service: systemd-networkd.service
 lp_networkd_packages: []
-
 lp_netplan_default: 01-network-manager-all.yaml
 
 # Note 1.
@@ -182,4 +181,3 @@ lp_dnsmasq_packages:
   - dnsmasq
 
 # EOF
-...

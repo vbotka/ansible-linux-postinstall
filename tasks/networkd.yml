@@ -1,73 +1,72 @@
 ---
 # linux_postinstall networkd
 
-- name: "networkd: Debug"
+- name: "Networkd: Debug lp_networkd_debug={{ lp_networkd_debug }}"
+  when: lp_networkd_debug | bool
+  tags: lp_networkd_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
       lp_networkd_install: {{ lp_networkd_install }}
       lp_networkd_packages:
-        {{ lp_networkd_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_networkd_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_networkd_enable: {{ lp_networkd_enable }}
       lp_networkd_service: {{ lp_networkd_service }}
       lp_networkd_conf:
-        {{ lp_networkd_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_networkd_conf | to_yaml(indent=2) | indent(2) }}
       lp_systemd_owner: {{ lp_systemd_owner }}
       lp_systemd_group: {{ lp_systemd_group }}
       lp_systemd_mode: {{ lp_systemd_mode }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_networkd_debug|bool
-  tags: lp_networkd_debug
 
-# Packages
-- name: "networkd: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
-  when: lp_networkd_install|bool
+- name: "Networkd: Install packages"
+  when: lp_networkd_install | bool
+  tags: lp_networkd_packages
   vars:
     ll_ipkg_list: "{{ lp_networkd_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_networkd_debug|bool }}"
-  tags: lp_networkd_packages
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_networkd_debug | bool }}"
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
-# Conf
-- name: "networkd: Configure networkd"
+- name: "Networkd: Configure networkd"
+  tags: lp_networkd_conf
+  notify: restart networkd
   ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    owner: "{{ item.owner|default(lp_systemd_owner) }}"
-    group: "{{ item.group|default(lp_systemd_group) }}"
-    mode: "{{ item.mode|default(lp_systemd_mode) }}"
+    owner: "{{ item.owner | d(lp_systemd_owner) }}"
+    group: "{{ item.group | d(lp_systemd_group) }}"
+    mode: "{{ item.mode | d(lp_systemd_mode) }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_networkd_conf }}"
   loop_control:
     label: "{{ item.dest }}"
-  notify: restart networkd
-  tags: lp_networkd_conf
 
-# Service
-- name: "networkd: Service {{ state }} and {{ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_networkd_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_networkd_enable|bool|d(false) }}"
-    state: "{{ lp_networkd_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+- name: Service
   tags: lp_networkd_service
+  block:
 
-- name: "networkd: Debug service"
-  ansible.builtin.debug:
-    var: result
-  when: lp_networkd_debug|bool
+    - name: "Networkd: Service {{ state ~ ' and ' ~ enable }}"
+      register: result
+      vars:
+        enabled: "{{ lp_networkd_enable | bool | d(false) }}"
+        state: "{{ lp_networkd_state | d(default_state) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      ansible.builtin.service:
+        name: "{{ lp_networkd_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+
+    - name: "Networkd: Debug service lp_networkd_debug={{ lp_networkd_debug }}"
+      when: lp_networkd_debug | bool
+      ansible.builtin.debug:
+        var: result
 
 # EOF
-...

@@ -5,8 +5,8 @@
 #
 # 1.Aliases of parameters in ufw module not implemented in task
 #   "Configure ufw".
-# 2.It's not necessary to reload ufw after configuration has
-#   changed. Module ufw automatically updates the rules.
+# 2.It's not necessary to reload ufw after configuration changed.
+#   The module ufw automatically updates the rules.
 # 3.Best practice: First time 'lp_ufw_reset: true'; configure and enable
 #   ufs (configuration item {state: 'enabled'} reloads firewall and
 #   enables firewall on boot); 'lp_ufw_enable: true' start and enable ufw
@@ -18,7 +18,9 @@
 #   https://askubuntu.com/questions/1040539/how-do-i-get-ufw-to-start-on-boot
 # 7.See: man ufw.
 
-- name: "ufw: Debug"
+- name: "Ufw: Debug lp_ufw_debug={{ lp_ufw_debug }}"
+  when: lp_ufw_debug | bool
+  tags: lp_ufw_debug
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
@@ -27,152 +29,152 @@
       lp_ufw_reset: {{ lp_ufw_reset }}
       lp_ufw_reload: {{ lp_ufw_reload }}
       lp_ufw_packages:
-        {{ lp_ufw_packages|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_ufw_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_ufw_default:
-        {{ lp_ufw_default|to_yaml(indent=2)|indent(2) }}
+        {{ lp_ufw_default | to_yaml(indent=2) | indent(2) }}
       lp_ufw_sysctl:
-        {{ lp_ufw_sysctl|to_yaml(indent=2)|indent(2) }}
+        {{ lp_ufw_sysctl | to_yaml(indent=2) | indent(2) }}
       lp_ufw_blocks:
-        {{ lp_ufw_blocks|to_nice_yaml(indent=2)|indent(2) }}
+        {{ lp_ufw_blocks | to_nice_yaml(indent=2) | indent(2) }}
       lp_ufw_conf:
-        {{ lp_ufw_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_ufw_conf | to_yaml(indent=2) | indent(2) }}
       lp_ufw_service_conf:
-        {{ lp_ufw_service_conf|to_yaml(indent=2)|indent(2) }}
+        {{ lp_ufw_service_conf | to_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: lp_ufw_debug|bool
-  tags: lp_ufw_debug
 
-- name: "ufw: Install packages"
-  ansible.builtin.import_role:
-    name: vbotka.linux_lib
-    tasks_from: install_package.yml
-  when: lp_ufw_install|bool
+- name: "Ufw: Install packages"
+  when: lp_ufw_install | bool
+  tags: lp_ufw_packages
   vars:
     ll_ipkg_list: "{{ lp_ufw_packages }}"
     ll_ipkg_state: "{{ lp_package_state }}"
-    ll_ipkg_autoremove: "{{ lp_packages_autoremove|bool }}"
-    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host|bool }}"
-    ll_debug: "{{ lp_ufw_debug|bool }}"
-  tags: lp_ufw_packages
+    ll_ipkg_autoremove: "{{ lp_packages_autoremove | bool }}"
+    ll_ipkg_rescue_end_host: "{{ lp_packages_rescue_end_host | bool }}"
+    ll_debug: "{{ lp_ufw_debug | bool }}"
+  ansible.builtin.import_role:
+    name: vbotka.linux_lib
+    tasks_from: install_package.yml
 
-- name: "ufw: Disable and reset firewall to installation defaults"
+- name: "Ufw: Disable and reset firewall to installation defaults"
+  when: lp_ufw_reset | bool
+  tags: lp_ufw_reset
   community.general.ufw:
     state: reset
-  when: lp_ufw_reset|bool
-  tags: lp_ufw_reset
 
-- name: "ufw: Reload firewall"
+- name: "Ufw: Reload firewall"
+  when: lp_ufw_reload | bool
+  tags: lp_ufw_reload
   community.general.ufw:
     state: reloaded
-  when: lp_ufw_reload|bool
-  tags: lp_ufw_reload
 
-- name: "ufw: Configure /etc/default/ufw"
+- name: "Ufw: Configure /etc/default/ufw"
+  tags: lp_ufw_default
+  notify: reload ufw
   ansible.builtin.lineinfile:
     path: /etc/default/ufw
-    regexp: '^\s*{{ item.key }}\s*=(.*)$'
-    line: '{{ item.key }}={{ item.val }}'
+    regexp: ^\s*{{ item.key }}\s*=(.*)$
+    line: "{{ item.key }}={{ item.val }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_ufw_default }}"
   loop_control:
     label: "{{ item.key }}: {{ item.val }}"
-  notify: reload ufw
-  tags: lp_ufw_defaults
 
-- name: "ufw: Configure /etc/ufw/sysctl.conf"
+- name: "Ufw: Configure /etc/ufw/sysctl.conf"
+  tags: lp_ufw_sysctl
+  notify: reload ufw
   ansible.builtin.lineinfile:
     path: /etc/ufw/sysctl.conf
-    regexp: '^\s*{{ item.key }}\s*=(.*)$'
-    line: '{{ item.key }}={{ item.val }}'
+    regexp: ^\s*{{ item.key }}\s*=(.*)$
+    line: "{{ item.key }}={{ item.val }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_ufw_sysctl }}"
   loop_control:
     label: "{{ item.key }}: {{ item.val }}"
-  notify: reload ufw
-  tags: lp_ufw_defaults
 
-- name: "ufw: Configure blocks"
+- name: "Ufw: Configure blocks"
+  tags: lp_ufw_blocks
+  notify: reload ufw
   ansible.builtin.blockinfile:
-    path: "/etc/ufw/{{ item.0.key }}"
+    path: /etc/ufw/{{ item.0.key }}
     marker: "# {mark} ANSIBLE MANAGED BLOCK {{ item.1.mark }}"
     block: "{{ item.1.block }}"
-    insertbefore: "{{ item.1.insertbefore|default(omit) }}"
-    insertafter: "{{ item.1.insertafter|default(omit) }}"
+    insertbefore: "{{ item.1.insertbefore | d(omit) }}"
+    insertafter: "{{ item.1.insertafter | d(omit) }}"
     backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_ufw_blocks|dict2items|subelements('value') }}"
+  loop: "{{ lp_ufw_blocks | dict2items | subelements('value') }}"
   loop_control:
     label: "{{ item.0.key }} {{ item.1.mark }}"
-  notify: reload ufw
-  tags: lp_ufw_defaults
 
-- name: "ufw: Configure ufw"
+- name: "Ufw: Configure ufw"
+  tags: lp_ufw_conf
   community.general.ufw:
-    comment: "{{ item.comment|default(omit) }}"
-    default: "{{ item.default|default(omit) }}"
-    delete: "{{ item.delete|default(omit) }}"
-    direction: "{{ item.direction|default(omit) }}"
-    from_ip: "{{ item.from_ip|default(omit) }}"
-    from_port: "{{ item.from_port|default(omit) }}"
-    insert: "{{ item.insert|default(omit) }}"
-    insert_relative_to: "{{ item.insert_relative_to|default(omit) }}"
-    interface: "{{ item.interface|default(omit) }}"
-    log: "{{ item.log|default(omit) }}"
-    logging: "{{ item.logging|default(omit) }}"
-    name: "{{ item.name|default(omit) }}"
-    proto: "{{ item.proto|default(omit) }}"
-    route: "{{ item.route|default(omit) }}"
-    rule: "{{ item.rule|default(omit) }}"
-    state: "{{ item.state|default(omit) }}"
-    to_ip: "{{ item.to_ip|default(omit) }}"
-    to_port: "{{ item.to_port|default(omit) }}"
+    comment: "{{ item.comment | d(omit) }}"
+    default: "{{ item.default | d(omit) }}"
+    delete: "{{ item.delete | d(omit) }}"
+    direction: "{{ item.direction | d(omit) }}"
+    from_ip: "{{ item.from_ip | d(omit) }}"
+    from_port: "{{ item.from_port | d(omit) }}"
+    insert: "{{ item.insert | d(omit) }}"
+    insert_relative_to: "{{ item.insert_relative_to | d(omit) }}"
+    interface: "{{ item.interface | d(omit) }}"
+    log: "{{ item.log | d(omit) }}"
+    logging: "{{ item.logging | d(omit) }}"
+    name: "{{ item.name | d(omit) }}"
+    proto: "{{ item.proto | d(omit) }}"
+    route: "{{ item.route | d(omit) }}"
+    rule: "{{ item.rule | d(omit) }}"
+    state: "{{ item.state | d(omit) }}"
+    to_ip: "{{ item.to_ip | d(omit) }}"
+    to_port: "{{ item.to_port | d(omit) }}"
   loop: "{{ lp_ufw_conf }}"
   loop_control:
-    label: "{{ item.comment|default('no comment') }}"
-  tags: lp_ufw_conf
+    label: "{{ item.comment | d('no comment') }}"
 
-- name: "ufw: Configure service"
+- name: "Ufw: Configure service"
+  tags: lp_ufw_service_conf
+  notify: "{{ item.0.handlers | d(omit) }}"
   community.general.ini_file:
     path: "{{ item.0.path }}"
-    owner: "{{ item.0.owner|default(omit) }}"
-    group: "{{ item.0.group|default(omit) }}"
-    mode: "{{ item.0.mode|default(omit) }}"
-    create: "{{ item.0.create|default(omit) }}"
-    no_extra_spaces: "{{ item.0.no_extra_spaces|default(omit) }}"
+    owner: "{{ item.0.owner | d(omit) }}"
+    group: "{{ item.0.group | d(omit) }}"
+    mode: "{{ item.0.mode | d(omit) }}"
+    create: "{{ item.0.create | d(omit) }}"
+    no_extra_spaces: "{{ item.0.no_extra_spaces | d(omit) }}"
     section: "{{ item.1.section }}"
-    state: "{{ item.1.state|default(omit) }}"
-    option: "{{ item.1.option|default(omit) }}"
-    value: "{{ item.1.value|default(omit) }}"
+    state: "{{ item.1.state | d(omit) }}"
+    option: "{{ item.1.option | d(omit) }}"
+    value: "{{ item.1.value | d(omit) }}"
     backup: "{{ lp_backup_conf }}"
-  loop: "{{ lp_ufw_service_conf|subelements('ini', {'skip_missing': True}) }}"
+  loop: "{{ lp_ufw_service_conf | subelements('ini', {'skip_missing': True}) }}"
   loop_control:
-    label: "{{ item.0.path }}
-            {{ item.1.section|default('none') }}
-            {{ item.1.option|default('none') }}
-            {{ item.1.value|default('none') }}
-            {{ item.1.state|default('none') }}"
-  notify: "{{ item.0.handlers|default(omit) }}"
-  tags: lp_ufw_service_conf
+    label: >
+      {{ item.0.path }}
+      {{ item.1.section | d('none') }}
+      {{ item.1.option | d('none') }}
+      {{ item.1.value | d('none') }}
+      {{ item.1.state | d('none') }}
 
-- name: "ufw: Service {{ state }} and {{ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_ufw_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_ufw_enable|bool|d(false) }}"
-    state: "{{ lp_ufw_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+- name: Service
   tags: lp_ufw_service
+  block:
 
-- name: "ufw: Debug service"
-  ansible.builtin.debug:
-    var: result
-  when: lp_ufw_debug|bool
-  tags: lp_ufw_service
+    - name: "Ufw: Service {{ state ~ ' and ' ~ enable }}"
+      register: result
+      vars:
+        enabled: "{{ lp_ufw_enable | bool | d(false) }}"
+        state: "{{ lp_ufw_state | d(default_state) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      ansible.builtin.service:
+        name: "{{ lp_ufw_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+
+    - name: "Ufw: Debug service lp_ufw_debug={{ lp_ufw_debug }}"
+      when: lp_ufw_debug | bool
+      ansible.builtin.debug:
+        var: result
 
 # EOF
-...

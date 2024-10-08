@@ -1,19 +1,20 @@
 ---
-
-- name: restart ufw
+- name: Restart ufw
+  listen: restart ufw
   ansible.builtin.service:
     name: "{{ lp_ufw_service }}"
     state: restarted
-  when: lp_ufw_enable|bool
+  when: lp_ufw_enable | bool
 
-- name: reset ufw
+- name: Reset ufw
+  listen: reset ufw
   community.general.ufw:
     state: reset
 
-- name: reload ufw
+- name: Reload ufw
+  listen: reload ufw
   community.general.ufw:
     state: reloaded
-  when: lp_ufw_enable|bool
+  when: lp_ufw_enable | bool
 
 # EOF
-...

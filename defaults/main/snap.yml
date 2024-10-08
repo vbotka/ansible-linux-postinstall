@@ -1,6 +1,6 @@
 ---
 
-lp_snap: false  # WIP
+lp_snap: false # WIP
 lp_snap_install: false
 lp_snap_enable: false
 lp_snap_debug: false

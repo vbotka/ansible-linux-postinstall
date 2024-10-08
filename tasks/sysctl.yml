@@ -1,7 +1,7 @@
 ---
 # linux_postinstall sysctl
 
-- name: "sysctl: Debug lp_sysctl_debug={{ lp_sysctl_debug }}"
+- name: "Sysctl: Debug lp_sysctl_debug={{ lp_sysctl_debug }}"
   when: lp_sysctl_debug | bool
   tags: lp_sysctl_debug
   vars:
@@ -13,17 +13,16 @@
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
 
-- name: "sysctl: Configure /etc/sysctl.conf"
+- name: "Sysctl: Configure /etc/sysctl.conf"
+  notify: load sysctl settings
   ansible.builtin.lineinfile:
     dest: /etc/sysctl.conf
-    regexp: '^\s*{{ item.var }}\s*=(.*)$'
+    regexp: ^\s*{{ item.var }}\s*=(.*)$
     line: "{{ item.var }}{{ lp_sysctl_extra_space }}={{ lp_sysctl_extra_space }}{{ item.value }}"
     state: "{{ item.state | d(omit) }}"
     backup: "{{ lp_backup_conf }}"
   loop: "{{ lp_sysctl_vars }}"
   loop_control:
     label: "{{ item.var }}: {{ item.value }} {{ item.state | d('present') }}"
-  notify: load sysctl settings
 
 # EOF
-...

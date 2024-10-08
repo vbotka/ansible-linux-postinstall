@@ -1,9 +1,8 @@
 ---
-
-- name: newaliases
-  ansible.builtin.command:
+- name: Newaliases
+  listen: newaliases
+  ansible.builtin.command: # noqa: no-changed-when
     cmd: >
       newaliases
 
 # EOF
-...

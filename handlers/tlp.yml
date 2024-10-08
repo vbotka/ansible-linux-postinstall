@@ -1,25 +1,26 @@
 ---
-
-- name: start tlp
+- name: Start tlp
+  listen: start tlp
   ansible.builtin.service:
     name: "{{ lp_tlp_restart_service }}"
     state: started
 
-- name: stop tlp
+- name: Stop tlp
+  listen: stop tlp
   ansible.builtin.service:
     name: "{{ lp_tlp_restart_service }}"
     state: stopped
 
-- name: restart tlp
-  ansible.builtin.shell:
+- name: Restart tlp
+  listen: restart tlp
+  ansible.builtin.shell: # noqa: no-changed-when
     cmd: >
       sh -c
       '{{ lp_tlp_path }} init stop &&
       {{ lp_tlp_path }} init start'
-  when: lp_tlp_enable|bool
+  when: lp_tlp_enable | bool
 
 # [TODO] "restarted" freeze 20.04
 # systemd: name="{{ lp_tlp_restart_service }}" state=restarted
 
 # EOF
-...

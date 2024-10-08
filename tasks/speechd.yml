@@ -1,28 +1,30 @@
 ---
 # linux_postinstall speechd
 
-- name: "speechd: Debug"
+- name: "Speechd: Debug lp_speechd_debug={{ lp_speechd_debug }}"
+  when: lp_speechd_debug | bool
   ansible.builtin.debug:
     msg: "lp_speechd_enable: {{ lp_speechd_enable }}"
-  when: lp_speechd_debug|bool
 
-- name: "speechd: Service {{ state }} and {{ enable }}"
-  ansible.builtin.service:
-    name: "{{ lp_speechd_service }}"
-    state: "{{ state }}"
-    enabled: "{{ enabled }}"
-  register: result
-  vars:
-    enabled: "{{ lp_speechd_enable|bool|d(false) }}"
-    state: "{{ lp_speechd_state|d(default_state) }}"
-    default_state: "{{ enabled|ternary('started', 'stopped') }}"
-    enable: "{{ enabled|ternary('enabled', 'disabled') }}"
+- name: Service speechd
   tags: lp_speechd_service
+  block:
 
-- name: "speechd: Debug service"
-  ansible.builtin.debug:
-    var: result
-  when: lp_speechd_debug|bool
+    - name: "Speechd: Service {{ state ~ ' and ' ~ enable }}"
+      register: result
+      vars:
+        enabled: "{{ lp_speechd_enable | bool | d(false) }}"
+        state: "{{ lp_speechd_state | d(default_state) }}"
+        default_state: "{{ enabled | ternary('started', 'stopped') }}"
+        enable: "{{ enabled | ternary('enabled', 'disabled') }}"
+      ansible.builtin.service:
+        name: "{{ lp_speechd_service }}"
+        state: "{{ state }}"
+        enabled: "{{ enabled }}"
+
+    - name: "Speechd: Debug service lp_speechd_debug={{ lp_speechd_debug }}"
+      when: lp_speechd_debug | bool
+      ansible.builtin.debug:
+        var: result
 
 # EOF
-...
