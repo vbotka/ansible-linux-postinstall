@@ -1,6 +1,6 @@
 ---
 # linux_postinstall defaults
-lp_role_version: 2.6.5
+lp_role_version: 2.6.7
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Put distro and flavor specific vars and overrides to the vars
