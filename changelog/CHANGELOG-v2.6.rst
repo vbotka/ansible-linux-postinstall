@@ -5,6 +5,21 @@ vbotka.linux_postinstall 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.8
+=====
+
+Release Summary
+---------------
+Maintenance update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Fix environment: CRYPTOGRAPHY_OPENSSL_NO_LEGACY: '1' for get_url
+
+
 2.6.7
 =====
 

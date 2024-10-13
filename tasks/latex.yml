@@ -48,6 +48,8 @@
   tags: lp_latex_labels
   ignore_errors: "{{ lp_latex_get_url_ignore_errors }}" # noqa ignore-errors
   changed_when: false
+  environment:
+    CRYPTOGRAPHY_OPENSSL_NO_LEGACY: '1'
   ansible.builtin.get_url:
     url: "{{ item.url }}"
     dest: "{{ item.dest }}"
