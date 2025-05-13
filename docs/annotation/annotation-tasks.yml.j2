@@ -10,28 +10,25 @@ mytasks:
       Import tasks if enabled.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
-{% for file in my_files %}
-  - file: {{ file.0 ~ file.1 }}
-    link: {{ file.0 ~ file.1 }}
-    path: tasks/{{ file.2 }}
+    notes: []
+    hints: []
+    warnings: []
+{% for f in my_files %}
+  - file: {{ f.base_name }}
+    link: {{ f.base_name }}
+    path: tasks/{{ f.path }}
     synopsis: |
-    {%- if lookup('varnames', 'task_' ~ file.0 ~ '_synopsis') | length > 0 %}
-      {{ lookup('vars', 'task_' ~ file.0 ~ '_synopsis') | indent(width=6) }}
-    {%- else %}
-      Configure {{ file.0 }}.
-    {%- endif %}
+      {{ lookup('vars', 'task_' ~ f.file_name ~ '_synopsis', default='Configure ' ~ f.file_name) | indent(width=6) }}
     description: |
-    {%- if lookup('varnames', 'task_' ~ file.0 ~ '_description') | length > 0 %}
-      {{ lookup('vars', 'task_' ~ file.0 ~ '_description') | indent(width=6) }}
-    {%- else %}
-      Description of the task.
-    {%- endif %}
-    lines: {% if lookup('varnames', 'task_' ~ file.0 ~ '_lines') | length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_lines') }}{% else %}1,2{% endif %}
-    seealso: {% if lookup('varnames', 'task_' ~ file.0 ~ '_seealso') | length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_seealso') }}{% else %}[]{% endif %}
-    notes: {% if lookup('varnames', 'task_' ~ file.0 ~ '_note') | length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_note') }}{% else %}[]{% endif %}
-    hints: {% if lookup('varnames', 'task_' ~ file.0 ~ '_hint') | length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_hint') }}{% else %}[]{% endif %}
-    warnings: {% if lookup('varnames', 'task_' ~ file.0 ~ '_warning') | length > 0 %}{{ lookup('vars', 'task_' ~ file.0 ~ '_warning') }}{% else %}[]{% endif %}
+      {{ lookup('vars', 'task_' ~ f.file_name ~ '_description', default='Description of the task.') | indent(width=6) }}
+    lines: {{ lookup('vars', 'task_' ~ f.file_name ~ '_lines', default='1') }}
+    seealso:
+      {{ lookup('vars', 'task_' ~ f.file_name ~ '_seealso', default={}) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+    notes:
+      {{ lookup('vars', 'task_' ~ f.file_name ~ '_note', default=[]) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+    hints:
+      {{ lookup('vars', 'task_' ~ f.file_name ~ '_hint', default=[]) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+    warnings:
+      {{ lookup('vars', 'task_' ~ f.file_name ~ '_warning', default=[]) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
 {% endfor %}
 ...

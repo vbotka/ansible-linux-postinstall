@@ -5,96 +5,37 @@
   gather_facts: false
   debugger: on_failed
 
+  vars:
+
+    ansible_python_interpreter: auto_silent
+    debug: false
+    base_names: "{{ paths | map('basename') }}"
+    file_names: "{{ base_names | map('splitext') | map('first') }}"
+    my_files: "{{ file_names | zip(base_names) | zip(paths) | map('flatten')
+                             | map('zip', ['file_name', 'base_name', 'path'])
+                             | map('map', 'reverse')
+                             | map('community.general.dict') }}"
+
   tasks:
 
-    - name: Read vars
+    - name: Read vars.
       ansible.builtin.include_vars:
         dir: vars
+        extensions: [yml]
         ignore_unknown_extensions: true
-        extensions:
-          - yml
-      tags: always
 
-    - name: Tasks
-      tags: tasks
-      block:
-
-        - name: Set empty list my_files
-          ansible.builtin.set_fact:
-            my_files: []
-
-        - name: Read list of files
-          ansible.builtin.set_fact:
-            my_files: "{{ my_files + [[filename] + [ext] + [item]] }}"
-          loop: "{{ lookup('file', 'tasks-list.txt').splitlines() }}"
-          vars:
-            filename: "{{ (item | basename | splitext).0 }}"
-            ext: "{{ (item | basename | splitext).1 }}"
-
-        - name: Debug my_files
-          ansible.builtin.debug:
-            var: my_files
-
-        - name: Create annotation-tasks.yml
-          ansible.builtin.template:
-            src: annotation-tasks.yml.j2
-            dest: annotation-tasks.yml
-            mode: "0644"
-
-    - name: Handlers
-      tags: handlers
-      block:
-
-        - name: Set empty list my_files
-          ansible.builtin.set_fact:
-            my_files: []
-
-        - name: Read list of files
-          ansible.builtin.set_fact:
-            my_files: "{{ my_files + [[filename] + [ext] + [item]] }}"
-          loop: "{{ lookup('file', 'handlers-list.txt').splitlines() }}"
-          vars:
-            filename: "{{ (item | basename | splitext).0 }}"
-            ext: "{{ (item | basename | splitext).1 }}"
-
-        - name: Debug my_files
-          ansible.builtin.debug:
-            msg: "{{ item.0 }}{{ item.1 }} {{ item.2 }}"
-          loop: "{{ my_files }}"
-          loop_control:
-            label: "{{ item.0 }}"
-
-        - name: Create annotation-handlers.yml
-          ansible.builtin.template:
-            src: annotation-handlers.yml.j2
-            dest: annotation-handlers.yml
-            mode: "0644"
-
-    - name: Templates
-      tags: templates
-      block:
-
-        - name: Set empty list my_files
-          ansible.builtin.set_fact:
-            my_files: []
-
-        - name: Read list of files
-          ansible.builtin.set_fact:
-            my_files: "{{ my_files + [[filename] + [ext] + [item]] }}"
-          loop: "{{ lookup('file', 'templates-list.txt').splitlines() }}"
-          vars:
-            filename: "{{ (item | basename | splitext).0 }}"
-            ext: "{{ (item | basename | splitext).1 }}"
-
-        - name: Debug my_files
-          ansible.builtin.debug:
-            var: my_files
-
-        - name: Create annotation-templates.yml
-          ansible.builtin.template:
-            src: annotation-templates.yml.j2
-            dest: annotation-templates.yml
-            mode: "0644"
+    - name: Create annotations.
+      vars:
+        file: "{{ item }}-list.txt"
+        paths: "{{ lookup('file', file).splitlines() }}"
+      ansible.builtin.template:
+        src: "annotation-{{ item }}.yml.j2"
+        dest: "annotation-{{ item }}.yml"
+        mode: "0644"
+      loop:
+        - tasks
+        - handlers
+        - templates
 
 # EOF
 ...

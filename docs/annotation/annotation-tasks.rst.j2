@@ -13,16 +13,16 @@ Synopsis: {{ i.synopsis }}
 
 {{ i.description }}
 
-[`{{ i.path }} <https://github.com/vbotka/ansible-linux-postinstall/blob/master/{{ i.path }}>`_]
+[`{{ i.path }} <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/{{ i.path }}>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../{{ i.path }}
-    :language: Yaml
+    :language: yaml
     :emphasize-lines: {{ i.lines }}
     :linenos:
 
-{% if i.seealso | d([]) | length > 0 %}
+{% if i.seealso | length > 0 %}
 .. seealso::
 {% for ii in i.seealso.handlers | d([]) %}
    * Handler :ref:`as_handler_{{ ii }}.yml`
@@ -35,21 +35,21 @@ Synopsis: {{ i.synopsis }}
 {% endfor %}
 {% endif %}
 
-{% if i.notes | d([]) | length > 0 %}
+{% if i.notes | length > 0 %}
 .. note::
 {% for note in i.notes %}
    * {{ note }}
 {% endfor %}
 {% endif %}
 
-{% if i.hints | d([]) | length > 0 %}
+{% if i.hints | length > 0 %}
 .. hint::
 {% for hint in i.hints %}
    * {{ hint }}
 {% endfor %}
 {% endif %}
 
-{% if i.warnings | d([]) | length > 0 %}
+{% if i.warnings | length > 0 %}
 .. warning::
 {% for warning in i.warnings %}
    * {{ warning }}

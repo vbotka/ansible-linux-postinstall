@@ -14,12 +14,12 @@ Synopsis: Main task.
 Import tasks if enabled.
 
 
-[`tasks/main.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/main.yml>`_]
+[`tasks/main.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/main.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/main.yml
-    :language: Yaml
+    :language: yaml
     :emphasize-lines: 1,2
     :linenos:
 
@@ -32,19 +32,19 @@ Import tasks if enabled.
 acpi.yml
 --------
 
-Synopsis: Configure acpi.
+Synopsis: Configure acpi
 
 
 Description of the task.
 
 
-[`tasks/acpi.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/acpi.yml>`_]
+[`tasks/acpi.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/acpi.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/acpi.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -56,19 +56,19 @@ Description of the task.
 aliases.yml
 -----------
 
-Synopsis: Configure aliases.
+Synopsis: Configure aliases
 
 
 Description of the task.
 
 
-[`tasks/aliases.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/aliases.yml>`_]
+[`tasks/aliases.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/aliases.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/aliases.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -83,19 +83,19 @@ Description of the task.
 apt.yml
 -------
 
-Synopsis: Configure apt.
+Synopsis: Configure apt
 
 
 Description of the task.
 
 
-[`tasks/apt.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/apt.yml>`_]
+[`tasks/apt.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/apt.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/apt.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -109,19 +109,19 @@ Description of the task.
 apparmor.yml
 ------------
 
-Synopsis: Configure apparmor.
+Synopsis: Configure apparmor
 
 
 Description of the task.
 
 
-[`tasks/apparmor.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/apparmor.yml>`_]
+[`tasks/apparmor.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/apparmor.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/apparmor.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -133,19 +133,19 @@ Description of the task.
 authorized_keys.yml
 -------------------
 
-Synopsis: Configure authorized_keys.
+Synopsis: Configure authorized_keys
 
 
 Description of the task.
 
 
-[`tasks/authorized_keys.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/authorized_keys.yml>`_]
+[`tasks/authorized_keys.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/authorized_keys.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/authorized_keys.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -157,19 +157,19 @@ Description of the task.
 autofs.yml
 ----------
 
-Synopsis: Configure autofs.
+Synopsis: Configure autofs
 
 
 Description of the task.
 
 
-[`tasks/autofs.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/autofs.yml>`_]
+[`tasks/autofs.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/autofs.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/autofs.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -183,19 +183,19 @@ Description of the task.
 auto_upgrades.yml
 -----------------
 
-Synopsis: Configure auto_upgrades.
+Synopsis: Configure auto_upgrades
 
 
 Description of the task.
 
 
-[`tasks/auto_upgrades.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/auto_upgrades.yml>`_]
+[`tasks/auto_upgrades.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/auto_upgrades.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/auto_upgrades.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -207,19 +207,19 @@ Description of the task.
 bluetooth.yml
 -------------
 
-Synopsis: Configure bluetooth.
+Synopsis: Configure bluetooth
 
 
 Description of the task.
 
 
-[`tasks/bluetooth.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/bluetooth.yml>`_]
+[`tasks/bluetooth.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/bluetooth.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/bluetooth.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -233,19 +233,19 @@ Description of the task.
 chrony.yml
 ----------
 
-Synopsis: Configure chrony.
+Synopsis: Configure chrony
 
 
 Description of the task.
 
 
-[`tasks/chrony.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/chrony.yml>`_]
+[`tasks/chrony.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/chrony.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/chrony.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -257,19 +257,19 @@ Description of the task.
 cron.yml
 --------
 
-Synopsis: Configure cron.
+Synopsis: Configure cron
 
 
 Description of the task.
 
 
-[`tasks/cron.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/cron.yml>`_]
+[`tasks/cron.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/cron.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/cron.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -281,19 +281,19 @@ Description of the task.
 debsums.yml
 -----------
 
-Synopsis: Configure debsums.
+Synopsis: Configure debsums
 
 
 Description of the task.
 
 
-[`tasks/debsums.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/debsums.yml>`_]
+[`tasks/debsums.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/debsums.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/debsums.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -305,19 +305,19 @@ Description of the task.
 debug.yml
 ---------
 
-Synopsis: Configure debug.
+Synopsis: Configure debug
 
 
 Description of the task.
 
 
-[`tasks/debug.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/debug.yml>`_]
+[`tasks/debug.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/debug.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/debug.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -329,19 +329,19 @@ Description of the task.
 dnsmasq.yml
 -----------
 
-Synopsis: Configure dnsmasq.
+Synopsis: Configure dnsmasq
 
 
 Description of the task.
 
 
-[`tasks/dnsmasq.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/dnsmasq.yml>`_]
+[`tasks/dnsmasq.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/dnsmasq.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/dnsmasq.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -353,19 +353,19 @@ Description of the task.
 fstab.yml
 ---------
 
-Synopsis: Configure fstab.
+Synopsis: Configure fstab
 
 
 Description of the task.
 
 
-[`tasks/fstab.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fstab.yml>`_]
+[`tasks/fstab.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/fstab.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/fstab.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -377,19 +377,19 @@ Description of the task.
 gpg.yml
 -------
 
-Synopsis: Configure gpg.
+Synopsis: Configure gpg
 
 
 Description of the task.
 
 
-[`tasks/gpg.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/gpg.yml>`_]
+[`tasks/gpg.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/gpg.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/gpg.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -404,19 +404,19 @@ Description of the task.
 gpsd.yml
 --------
 
-Synopsis: Configure gpsd.
+Synopsis: Configure gpsd
 
 
 Description of the task.
 
 
-[`tasks/gpsd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/gpsd.yml>`_]
+[`tasks/gpsd.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/gpsd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/gpsd.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -432,19 +432,19 @@ Description of the task.
 groups.yml
 ----------
 
-Synopsis: Configure groups.
+Synopsis: Configure groups
 
 
 Description of the task.
 
 
-[`tasks/groups.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/groups.yml>`_]
+[`tasks/groups.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/groups.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/groups.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -456,19 +456,19 @@ Description of the task.
 grub.yml
 --------
 
-Synopsis: Configure grub.
+Synopsis: Configure grub
 
 
 Description of the task.
 
 
-[`tasks/grub.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/grub.yml>`_]
+[`tasks/grub.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/grub.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/grub.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -482,19 +482,19 @@ Description of the task.
 hostname.yml
 ------------
 
-Synopsis: Configure hostname.
+Synopsis: Configure hostname
 
 
 Description of the task.
 
 
-[`tasks/hostname.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/hostname.yml>`_]
+[`tasks/hostname.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/hostname.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/hostname.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -506,19 +506,19 @@ Description of the task.
 hosts.yml
 ---------
 
-Synopsis: Configure hosts.
+Synopsis: Configure hosts
 
 
 Description of the task.
 
 
-[`tasks/hosts.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/hosts.yml>`_]
+[`tasks/hosts.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/hosts.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/hosts.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -532,19 +532,19 @@ Description of the task.
 iptables.yml
 ------------
 
-Synopsis: Configure iptables.
+Synopsis: Configure iptables
 
 
 Description of the task.
 
 
-[`tasks/iptables.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/iptables.yml>`_]
+[`tasks/iptables.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/iptables.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/iptables.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -561,19 +561,19 @@ Description of the task.
 kvm.yml
 -------
 
-Synopsis: Configure kvm.
+Synopsis: Configure kvm
 
 
 Description of the task.
 
 
-[`tasks/kvm.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/kvm.yml>`_]
+[`tasks/kvm.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/kvm.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/kvm.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -585,19 +585,19 @@ Description of the task.
 latex.yml
 ---------
 
-Synopsis: Configure latex.
+Synopsis: Configure latex
 
 
 Description of the task.
 
 
-[`tasks/latex.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/latex.yml>`_]
+[`tasks/latex.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/latex.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/latex.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -609,19 +609,19 @@ Description of the task.
 libvirt.yml
 -----------
 
-Synopsis: Configure libvirt.
+Synopsis: Configure libvirt
 
 
 Description of the task.
 
 
-[`tasks/libvirt.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/libvirt.yml>`_]
+[`tasks/libvirt.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/libvirt.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/libvirt.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -633,19 +633,19 @@ Description of the task.
 lid.yml
 -------
 
-Synopsis: Configure lid.
+Synopsis: Configure lid
 
 
 Description of the task.
 
 
-[`tasks/lid.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/lid.yml>`_]
+[`tasks/lid.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/lid.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/lid.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -659,19 +659,19 @@ Description of the task.
 logrotate.yml
 -------------
 
-Synopsis: Configure logrotate.
+Synopsis: Configure logrotate
 
 
 Description of the task.
 
 
-[`tasks/logrotate.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/logrotate.yml>`_]
+[`tasks/logrotate.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/logrotate.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/logrotate.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -683,19 +683,19 @@ Description of the task.
 modemmanager.yml
 ----------------
 
-Synopsis: Configure modemmanager.
+Synopsis: Configure modemmanager
 
 
 Description of the task.
 
 
-[`tasks/modemmanager.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/modemmanager.yml>`_]
+[`tasks/modemmanager.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/modemmanager.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/modemmanager.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -707,19 +707,19 @@ Description of the task.
 modules.yml
 -----------
 
-Synopsis: Configure modules.
+Synopsis: Configure modules
 
 
 Description of the task.
 
 
-[`tasks/modules.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/modules.yml>`_]
+[`tasks/modules.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/modules.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/modules.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -731,19 +731,19 @@ Description of the task.
 netplan.yml
 -----------
 
-Synopsis: Configure netplan.
+Synopsis: Configure netplan
 
 
 Description of the task.
 
 
-[`tasks/netplan.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/netplan.yml>`_]
+[`tasks/netplan.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/netplan.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/netplan.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 .. seealso::
@@ -759,19 +759,19 @@ Description of the task.
 networkd.yml
 ------------
 
-Synopsis: Configure networkd.
+Synopsis: Configure networkd
 
 
 Description of the task.
 
 
-[`tasks/networkd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/networkd.yml>`_]
+[`tasks/networkd.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/networkd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/networkd.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -783,19 +783,19 @@ Description of the task.
 networkmanager.yml
 ------------------
 
-Synopsis: Configure networkmanager.
+Synopsis: Configure networkmanager
 
 
 Description of the task.
 
 
-[`tasks/networkmanager.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/networkmanager.yml>`_]
+[`tasks/networkmanager.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/networkmanager.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/networkmanager.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -807,19 +807,19 @@ Description of the task.
 nfsd.yml
 --------
 
-Synopsis: Configure nfsd.
+Synopsis: Configure nfsd
 
 
 Description of the task.
 
 
-[`tasks/nfsd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/nfsd.yml>`_]
+[`tasks/nfsd.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/nfsd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/nfsd.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -864,12 +864,12 @@ Remove packages (69)
 TBD
 
 
-[`tasks/packages.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/packages.yml>`_]
+[`tasks/packages.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/packages.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/packages.yml
-    :language: Yaml
+    :language: yaml
     :emphasize-lines: 2,4,13,41,56,69
     :linenos:
 
@@ -882,19 +882,19 @@ TBD
 passwords.yml
 -------------
 
-Synopsis: Configure passwords.
+Synopsis: Configure passwords
 
 
 Description of the task.
 
 
-[`tasks/passwords.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/passwords.yml>`_]
+[`tasks/passwords.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/passwords.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/passwords.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -906,19 +906,19 @@ Description of the task.
 pm_utils.yml
 ------------
 
-Synopsis: Configure pm_utils.
+Synopsis: Configure pm_utils
 
 
 Description of the task.
 
 
-[`tasks/pm_utils.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/pm_utils.yml>`_]
+[`tasks/pm_utils.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/pm_utils.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/pm_utils.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -930,19 +930,19 @@ Description of the task.
 postfix.yml
 -----------
 
-Synopsis: Configure postfix.
+Synopsis: Configure postfix
 
 
 Description of the task.
 
 
-[`tasks/postfix.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/postfix.yml>`_]
+[`tasks/postfix.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/postfix.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/postfix.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -954,19 +954,19 @@ Description of the task.
 rc_local.yml
 ------------
 
-Synopsis: Configure rc_local.
+Synopsis: Configure rc_local
 
 
 Description of the task.
 
 
-[`tasks/rc_local.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/rc_local.yml>`_]
+[`tasks/rc_local.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/rc_local.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/rc_local.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -978,19 +978,19 @@ Description of the task.
 reboot.yml
 ----------
 
-Synopsis: Configure reboot.
+Synopsis: Configure reboot
 
 
 Description of the task.
 
 
-[`tasks/reboot.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/reboot.yml>`_]
+[`tasks/reboot.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/reboot.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/reboot.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1002,19 +1002,19 @@ Description of the task.
 repos.yml
 ---------
 
-Synopsis: Configure repos.
+Synopsis: Configure repos
 
 
 Description of the task.
 
 
-[`tasks/repos.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/repos.yml>`_]
+[`tasks/repos.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/repos.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/repos.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1026,19 +1026,19 @@ Description of the task.
 resolvconf.yml
 --------------
 
-Synopsis: Configure resolvconf.
+Synopsis: Configure resolvconf
 
 
 Description of the task.
 
 
-[`tasks/resolvconf.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/resolvconf.yml>`_]
+[`tasks/resolvconf.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/resolvconf.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/resolvconf.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1082,12 +1082,12 @@ Automatic management of listed services notifies ``ansible_service_mgr``. See th
 service-\*.yml how manual management options notify handlers.
 
 
-[`tasks/service.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/service.yml>`_]
+[`tasks/service.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/service.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/service.yml
-    :language: Yaml
+    :language: yaml
     :emphasize-lines: 2,4,23,74,104,117
     :linenos:
 
@@ -1100,19 +1100,19 @@ service-\*.yml how manual management options notify handlers.
 service-service.yml
 -------------------
 
-Synopsis: Configure service-service.
+Synopsis: Configure service-service
 
 
 Description of the task.
 
 
-[`tasks/fn/service-service.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/service-service.yml>`_]
+[`tasks/fn/service-service.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/fn/service-service.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/fn/service-service.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1124,19 +1124,19 @@ Description of the task.
 service-systemd.yml
 -------------------
 
-Synopsis: Configure service-systemd.
+Synopsis: Configure service-systemd
 
 
 Description of the task.
 
 
-[`tasks/fn/service-systemd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/service-systemd.yml>`_]
+[`tasks/fn/service-systemd.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/fn/service-systemd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/fn/service-systemd.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1148,19 +1148,19 @@ Description of the task.
 service-sysvinit.yml
 --------------------
 
-Synopsis: Configure service-sysvinit.
+Synopsis: Configure service-sysvinit
 
 
 Description of the task.
 
 
-[`tasks/fn/service-sysvinit.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/service-sysvinit.yml>`_]
+[`tasks/fn/service-sysvinit.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/fn/service-sysvinit.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/fn/service-sysvinit.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1172,19 +1172,19 @@ Description of the task.
 service-debug.yml
 -----------------
 
-Synopsis: Configure service-debug.
+Synopsis: Configure service-debug
 
 
 Description of the task.
 
 
-[`tasks/fn/service-debug.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/fn/service-debug.yml>`_]
+[`tasks/fn/service-debug.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/fn/service-debug.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/fn/service-debug.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1196,19 +1196,19 @@ Description of the task.
 smart.yml
 ---------
 
-Synopsis: Configure smart.
+Synopsis: Configure smart
 
 
 Description of the task.
 
 
-[`tasks/smart.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/smart.yml>`_]
+[`tasks/smart.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/smart.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/smart.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1220,19 +1220,19 @@ Description of the task.
 snap.yml
 --------
 
-Synopsis: Configure snap.
+Synopsis: Configure snap
 
 
 Description of the task.
 
 
-[`tasks/snap.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/snap.yml>`_]
+[`tasks/snap.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/snap.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/snap.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1244,19 +1244,19 @@ Description of the task.
 speechd.yml
 -----------
 
-Synopsis: Configure speechd.
+Synopsis: Configure speechd
 
 
 Description of the task.
 
 
-[`tasks/speechd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/speechd.yml>`_]
+[`tasks/speechd.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/speechd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/speechd.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1268,19 +1268,19 @@ Description of the task.
 sshd.yml
 --------
 
-Synopsis: Configure sshd.
+Synopsis: Configure sshd
 
 
 Description of the task.
 
 
-[`tasks/sshd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sshd.yml>`_]
+[`tasks/sshd.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/sshd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/sshd.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1292,19 +1292,19 @@ Description of the task.
 ssh.yml
 -------
 
-Synopsis: Configure ssh.
+Synopsis: Configure ssh
 
 
 Description of the task.
 
 
-[`tasks/ssh.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/ssh.yml>`_]
+[`tasks/ssh.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/ssh.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/ssh.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1316,19 +1316,19 @@ Description of the task.
 sudoers.yml
 -----------
 
-Synopsis: Configure sudoers.
+Synopsis: Configure sudoers
 
 
 Description of the task.
 
 
-[`tasks/sudoers.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sudoers.yml>`_]
+[`tasks/sudoers.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/sudoers.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/sudoers.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1340,19 +1340,19 @@ Description of the task.
 swap.yml
 --------
 
-Synopsis: Configure swap.
+Synopsis: Configure swap
 
 
 Description of the task.
 
 
-[`tasks/swap.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/swap.yml>`_]
+[`tasks/swap.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/swap.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/swap.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1364,19 +1364,19 @@ Description of the task.
 sysctl.yml
 ----------
 
-Synopsis: Configure sysctl.
+Synopsis: Configure sysctl
 
 
 Description of the task.
 
 
-[`tasks/sysctl.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sysctl.yml>`_]
+[`tasks/sysctl.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/sysctl.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/sysctl.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1487,12 +1487,12 @@ Control units (148)
 <TBD>
 
 
-[`tasks/systemd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/systemd.yml>`_]
+[`tasks/systemd.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/systemd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/systemd.yml
-    :language: Yaml
+    :language: yaml
     :emphasize-lines: 2,4,28,54,67,105,129,148
     :linenos:
 
@@ -1505,19 +1505,19 @@ Control units (148)
 timesyncd.yml
 -------------
 
-Synopsis: Configure timesyncd.
+Synopsis: Configure timesyncd
 
 
 Description of the task.
 
 
-[`tasks/timesyncd.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/timesyncd.yml>`_]
+[`tasks/timesyncd.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/timesyncd.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/timesyncd.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1529,19 +1529,19 @@ Description of the task.
 timezone.yml
 ------------
 
-Synopsis: Configure timezone.
+Synopsis: Configure timezone
 
 
 Description of the task.
 
 
-[`tasks/timezone.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/timezone.yml>`_]
+[`tasks/timezone.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/timezone.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/timezone.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1553,19 +1553,19 @@ Description of the task.
 tlp.yml
 -------
 
-Synopsis: Configure tlp.
+Synopsis: Configure tlp
 
 
 Description of the task.
 
 
-[`tasks/tlp.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/tlp.yml>`_]
+[`tasks/tlp.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/tlp.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/tlp.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1577,19 +1577,19 @@ Description of the task.
 udev.yml
 --------
 
-Synopsis: Configure udev.
+Synopsis: Configure udev
 
 
 Description of the task.
 
 
-[`tasks/udev.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/udev.yml>`_]
+[`tasks/udev.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/udev.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/udev.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1601,19 +1601,19 @@ Description of the task.
 ufw.yml
 -------
 
-Synopsis: Configure ufw.
+Synopsis: Configure ufw
 
 
 Description of the task.
 
 
-[`tasks/ufw.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/ufw.yml>`_]
+[`tasks/ufw.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/ufw.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/ufw.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1625,19 +1625,19 @@ Description of the task.
 users.yml
 ---------
 
-Synopsis: Configure users.
+Synopsis: Configure users
 
 
 Description of the task.
 
 
-[`tasks/users.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/users.yml>`_]
+[`tasks/users.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/users.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/users.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1649,19 +1649,19 @@ Description of the task.
 vars_firstfound.yml
 -------------------
 
-Synopsis: Configure vars_firstfound.
+Synopsis: Configure vars_firstfound
 
 
 Description of the task.
 
 
-[`tasks/vars_firstfound.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars_firstfound.yml>`_]
+[`tasks/vars_firstfound.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/vars_firstfound.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/vars_firstfound.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1673,19 +1673,19 @@ Description of the task.
 vars_incremental.yml
 --------------------
 
-Synopsis: Configure vars_incremental.
+Synopsis: Configure vars_incremental
 
 
 Description of the task.
 
 
-[`tasks/vars_incremental.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars_incremental.yml>`_]
+[`tasks/vars_incremental.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/vars_incremental.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/vars_incremental.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1697,19 +1697,19 @@ Description of the task.
 vars.yml
 --------
 
-Synopsis: Configure vars.
+Synopsis: Configure vars
 
 
 Description of the task.
 
 
-[`tasks/vars.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/vars.yml>`_]
+[`tasks/vars.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/vars.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/vars.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1721,19 +1721,19 @@ Description of the task.
 virtualbox.yml
 --------------
 
-Synopsis: Configure virtualbox.
+Synopsis: Configure virtualbox
 
 
 Description of the task.
 
 
-[`tasks/virtualbox.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/virtualbox.yml>`_]
+[`tasks/virtualbox.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/virtualbox.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/virtualbox.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1745,19 +1745,19 @@ Description of the task.
 wpagui.yml
 ----------
 
-Synopsis: Configure wpagui.
+Synopsis: Configure wpagui
 
 
 Description of the task.
 
 
-[`tasks/wpagui.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/wpagui.yml>`_]
+[`tasks/wpagui.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/wpagui.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/wpagui.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1769,19 +1769,19 @@ Description of the task.
 wpasupplicant.yml
 -----------------
 
-Synopsis: Configure wpasupplicant.
+Synopsis: Configure wpasupplicant
 
 
 Description of the task.
 
 
-[`tasks/wpasupplicant.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/wpasupplicant.yml>`_]
+[`tasks/wpasupplicant.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/wpasupplicant.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/wpasupplicant.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1793,19 +1793,19 @@ Description of the task.
 xen.yml
 -------
 
-Synopsis: Configure xen.
+Synopsis: Configure xen
 
 
 Description of the task.
 
 
-[`tasks/xen.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/xen.yml>`_]
+[`tasks/xen.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/xen.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/xen.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1817,19 +1817,19 @@ Description of the task.
 xorg.yml
 --------
 
-Synopsis: Configure xorg.
+Synopsis: Configure xorg
 
 
 Description of the task.
 
 
-[`tasks/xorg.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/xorg.yml>`_]
+[`tasks/xorg.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/xorg.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/xorg.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1841,19 +1841,19 @@ Description of the task.
 zeitgeist.yml
 -------------
 
-Synopsis: Configure zeitgeist.
+Synopsis: Configure zeitgeist
 
 
 Description of the task.
 
 
-[`tasks/zeitgeist.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/zeitgeist.yml>`_]
+[`tasks/zeitgeist.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/zeitgeist.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/zeitgeist.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1865,19 +1865,19 @@ Description of the task.
 zfs.yml
 -------
 
-Synopsis: Configure zfs.
+Synopsis: Configure zfs
 
 
 Description of the task.
 
 
-[`tasks/zfs.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/zfs.yml>`_]
+[`tasks/zfs.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/zfs.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/zfs.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1889,19 +1889,19 @@ Description of the task.
 vars_flavors.yml
 ----------------
 
-Synopsis: Configure vars_flavors.
+Synopsis: Configure vars_flavors
 
 
 Description of the task.
 
 
-[`tasks/sub/vars_flavors.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sub/vars_flavors.yml>`_]
+[`tasks/sub/vars_flavors.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/sub/vars_flavors.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/sub/vars_flavors.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 
@@ -1913,19 +1913,19 @@ Description of the task.
 vars_flavors_common.yml
 -----------------------
 
-Synopsis: Configure vars_flavors_common.
+Synopsis: Configure vars_flavors_common
 
 
 Description of the task.
 
 
-[`tasks/sub/vars_flavors_common.yml <https://github.com/vbotka/ansible-linux-postinstall/blob/master/tasks/sub/vars_flavors_common.yml>`_]
+[`tasks/sub/vars_flavors_common.yml <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/tasks/sub/vars_flavors_common.yml>`_]
 
 .. highlight:: yaml
     :linenothreshold: 5
 .. literalinclude:: ../../tasks/sub/vars_flavors_common.yml
-    :language: Yaml
-    :emphasize-lines: 1,2
+    :language: yaml
+    :emphasize-lines: 1
     :linenos:
 
 

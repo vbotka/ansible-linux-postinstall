@@ -1,92 +1,29 @@
 README
 ======
 
-Documentation of an Ansible project
-
-
-Customize the templates in dir source
--------------------------------------
-
-* Replace __AUTHOR_FULL_NAME__ by the full name of the author
-  Example:
-  find source -name '*.rst' -o -name '*.py' | xargs grep __AUTHOR_FULL_NAME__
-  find source -name '*.rst' -o -name '*.py' | xargs sed -i 's/__AUTHOR_FULL_NAME__/Vladimir Botka/g'
-
-* Replace __COPYRIGHT_HOLDER__ by the copyright holder
-  Example:
-  find source -name '*.rst' -o -name '*.py' | xargs grep __COPYRIGHT_HOLDER__
-  find source -name '*.rst' -o -name '*.py' | xargs sed -i 's/__COPYRIGHT_HOLDER__/Vladimir Botka/g'
-
-* Replace __GITHUB_USERNAME__ by the GitHub username
-  Example:
-  find source -name '*.rst' -o -name '*.py' | xargs grep __GITHUB_USERNAME__
-  find source -name '*.rst' -o -name '*.py' | xargs sed -i 's/__GITHUB_USERNAME__/vbotka/g'
-
-* Replace __GALAXY_PROJECT__ by the name of the Ansible Galaxy project
-  Example:
-  https://galaxy.ansible.com/__GITHUB_USERNAME__/__GALAXY_PROJECT__
-  find source -name '*.rst' -o -name '*.py' | xargs grep __GALAXY_PROJECT__
-  find source -name '*.rst' -o -name '*.py' | xargs sed -i 's/__GALAXY_PROJECT__/freebsd_custom_image/g'
-
-* Replace __PROJECT__ by the name of the GitHub project
-  Example:
-  https://github.com/__GITHUB_USERNAME__/ansible-__PROJECT__
-  find source -name '*.rst' -o -name '*.py' | xargs grep __PROJECT__
-  find source -name '*.rst' -o -name '*.py' | xargs sed -i 's/__PROJECT__/freebsd-custom-image/g'
-
-* Update version
+Update version
 
   shell> grep "version =" source/conf.py 
-  version = '0.1'
+  version = '1.3'
 
+Create source/annotation.rst and source/examples.rst
 
-Customize the templates in dir annotation
------------------------------------------
-
-* Replace __GITHUB_USERNAME__ by the GitHub username, e.g. vbotka
-  Example:
-  https://github.com/__GITHUB_USERNAME__/ansible-__PROJECT__/blob/__BRANCH__/{{ i.path }}
-  find annotation -name '*.rst.j2' | xargs grep __GITHUB_USERNAME__
-  find annotation -name '*.rst.j2' | xargs sed -i 's/__GITHUB_USERNAME__/vbotka/g'
-
-* Replace __PROJECT__ by the name of the GitHub project, e.g. freebsd-custom-image
-  Example:
-  https://github.com/__GITHUB_USERNAME__/ansible-__PROJECT__/blob/__BRANCH__/{{ i.path }}
-  find annotation -name '*.rst.j2' | xargs grep __PROJECT__
-  find annotation -name '*.rst.j2' | xargs sed -i 's/__PROJECT__/freebsd-custom-image/g'
-
-* Replace __BRANCH__ by the name of the GitHub branch, e.g. master
-  Example:
-  https://github.com/__GITHUB_USERNAME__/ansible-__PROJECT__/blob/__BRANCH__/{{ i.path }}
-  find annotation -name '*.rst.j2' | xargs grep __BRANCH__
-  find annotation -name '*.rst.j2' | xargs sed -i 's/__BRANCH__/master/g'
-
-
-Create annotated source code
-----------------------------
-
-* See annotation/README and create the required files
-
-* Create lists of files and vars
-  shell> cd annotation; ansible-playbook pb-annotations.yml
-
-* Create source/annotation-*.rst
   shell> ansible-playbook playbook.yml
 
+Create html documents
 
-Build documentation
--------------------
-
-* Create html documents
   shell> make html
 
-* Create LaTex and PDF documents
+Create LaTex and PDF documents
+
   shell> make latexpdf
 
-* Create epub documents
+Create epub documents
+
   shell> make epub
 
-* See the documents
+See the documents
+
   shell> browser build/html/index.html
 
 # EOF

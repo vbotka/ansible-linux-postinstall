@@ -17,6 +17,7 @@ Major Changes
 
 Minor Changes
 -------------
+* Updated documentation. Updated annotation templates.
 
 Bugfixes
 --------
