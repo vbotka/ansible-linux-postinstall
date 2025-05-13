@@ -9,9 +9,8 @@ Debug
 Display subsystems
 ------------------
 
-Limit the execution of the playbook by the tag ``-t lp_debug`` to the
-tasks stored in the file ``tasks/debug.yml`` and enable the debug
-output either in the configuration,
+Limit the execution of the playbook by the tag ``-t lp_debug`` to the tasks stored in the file
+``tasks/debug.yml`` and enable the debug output either in the configuration,
 
 .. code-block:: YAML
    :emphasize-lines: 1
@@ -26,8 +25,8 @@ output either in the configuration,
 
    shell> ansible-playbook lp.yml -e lp_debug=true -t lp_debug
 
-The above command will run the single debug task and display selected
-variables. There are more sections in the output:
+The above command will run the single debug task and display selected variables. There are more
+sections in the output:
 
 * (4-10) The facts collected by *setup*.
 
@@ -47,22 +46,31 @@ variables. There are more sections in the output:
 
 * (82-86) Others
   
-The first variables in the blocks of the tasks and services enable
-that particular subsystem. See ``tasks/main.yml`` on how to enable
-particular imports. Some tasks need non-empty list only. For example
-non-empty lists *lp_users* or *lp_users_groups* iterate the *user*
-module in ``tasks/users.yml``. Not all tasks are listed in this debug
-output.
+The first variables in the blocks of the tasks and services enable that particular subsystem. See
+``tasks/main.yml`` on how to enable particular imports. Some tasks need non-empty list only. For
+example non-empty lists *lp_users* or *lp_users_groups* iterate the *user* module in
+``tasks/users.yml``. Not all tasks are listed in this debug output.
 
 .. literalinclude:: guide-debug/code04.yaml.example
    :language: YAML
    :linenos:
    :emphasize-lines: 1,4-10,12-15,19-22,28-49,51-70,72-80,82-85
 
-.. note:: The debug output of this role is optimized for the **yaml**
-   callback plugin. Set this plugin, for example, in the environment
-   ``shell> export ANSIBLE_STDOUT_CALLBACK=yaml``.
+.. hint::
 
+   The debug output of this role is optimized for ``result_format=yaml``. See
+   `result_format`_. Set it in the configuration
+
+   .. code:: ini
+
+      [defaults]
+      callback_result_format = yaml
+
+   , or in the environment
+
+   .. code:: bash
+
+      ANSIBLE_CALLBACK_RESULT_FORMAT=yam
 
 .. _ug_debug_subsystems_lists:
 
@@ -116,4 +124,8 @@ single task and display the values of the *lp_sshd_\** variables
 
 .. seealso::
 
-   * `Playbook Debugger <https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html>`_
+   * `Playbook Debugger`_
+
+
+.. _result_format: https://docs.ansible.com/ansible/latest/collections/ansible/builtin/default_callback.html#parameter-result_format
+.. _Playbook Debugger: https://docs.ansible.com/ansible/latest/user_guide/playbooks_debugger.html
