@@ -18,6 +18,7 @@ Major Changes
 Minor Changes
 -------------
 * Updated documentation. Updated annotation templates.
+* Add template wpa-supplicant.conf-v2.j2; Use tab instead of spaces.
 
 Bugfixes
 --------

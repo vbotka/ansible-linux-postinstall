@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+{% for gvar in lp_wpasupplicant_conf_global %}
+{{ gvar.key }}={{ gvar.value }}
+{% endfor %}
+{% for net in item.network %}
+{% for nvar in net.conf %}
+{% if loop.first %}
+
+network={
+{% endif %}
+{{ '\t' }}{{ nvar.key }}={{ nvar.value }}
+{% if loop.last %}
+}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+# EOF
