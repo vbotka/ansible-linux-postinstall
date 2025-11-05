@@ -10,7 +10,7 @@ vbotka.linux_postinstall 2.7 Release Notes
 
 Release Summary
 ---------------
-Update Ansible 2.18
+Update Ansible 2.19
 
 Major Changes
 -------------
