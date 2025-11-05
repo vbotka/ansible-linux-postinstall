@@ -25,3 +25,4 @@ Bugfixes
 
 Breaking Changes / Porting Guide
 --------------------------------
+Use ansible core 2.19.4 or higher for critical bug-fixes.
