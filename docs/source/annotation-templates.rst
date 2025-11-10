@@ -8,13 +8,13 @@ Templates
 acpi_action_lid.sh.j2
 ---------------------
 
-Synopsis: Template acpi_action_lid.sh.
+Synopsis: Configure acpi_action_lid.sh
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/acpi_action_lid.sh.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/acpi_action_lid.sh.j2>`_]
+[`templates/acpi_action_lid.sh.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/acpi_action_lid.sh.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -26,18 +26,19 @@ Description of the template.
 
 
 
+
 .. _as_template_acpi_event_default.j2:
 
 acpi_event_default.j2
 ---------------------
 
-Synopsis: Template acpi_event_default.
+Synopsis: Configure acpi_event_default
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/acpi_event_default.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/acpi_event_default.j2>`_]
+[`templates/acpi_event_default.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/acpi_event_default.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -49,18 +50,19 @@ Description of the template.
 
 
 
+
 .. _as_template_aliases.j2:
 
 aliases.j2
 ----------
 
-Synopsis: Template aliases.
+Synopsis: Configure aliases
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/aliases.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/aliases.j2>`_]
+[`templates/aliases.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/aliases.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -72,18 +74,19 @@ Description of the template.
 
 
 
+
 .. _as_template_apt_confd.j2:
 
 apt_confd.j2
 ------------
 
-Synopsis: Template apt_confd.
+Synopsis: Configure apt_confd
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/apt_confd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/apt_confd.j2>`_]
+[`templates/apt_confd.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/apt_confd.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -95,18 +98,19 @@ Description of the template.
 
 
 
+
 .. _as_template_auto_upgrades.j2:
 
 auto_upgrades.j2
 ----------------
 
-Synopsis: Template auto_upgrades.
+Synopsis: Configure auto_upgrades
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/auto_upgrades.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/auto_upgrades.j2>`_]
+[`templates/auto_upgrades.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/auto_upgrades.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -118,18 +122,19 @@ Description of the template.
 
 
 
+
 .. _as_template_blacklist_module.j2:
 
 blacklist_module.j2
 -------------------
 
-Synopsis: Template blacklist_module.
+Synopsis: Configure blacklist_module
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/blacklist_module.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/blacklist_module.j2>`_]
+[`templates/blacklist_module.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/blacklist_module.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -141,18 +146,19 @@ Description of the template.
 
 
 
+
 .. _as_template_bluetooth_rfcomm_conf.j2:
 
 bluetooth_rfcomm_conf.j2
 ------------------------
 
-Synopsis: Template bluetooth_rfcomm_conf.
+Synopsis: Configure bluetooth_rfcomm_conf
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/bluetooth_rfcomm_conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/bluetooth_rfcomm_conf.j2>`_]
+[`templates/bluetooth_rfcomm_conf.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/bluetooth_rfcomm_conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -164,18 +170,19 @@ Description of the template.
 
 
 
+
 .. _as_template_chrony.conf.j2:
 
 chrony.conf.j2
 --------------
 
-Synopsis: Template chrony.conf.
+Synopsis: Configure chrony.conf
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/chrony.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/chrony.conf.j2>`_]
+[`templates/chrony.conf.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/chrony.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -187,18 +194,19 @@ Description of the template.
 
 
 
+
 .. _as_template_default_iptables.j2:
 
 default_iptables.j2
 -------------------
 
-Synopsis: Template default_iptables.
+Synopsis: Configure default_iptables
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/default_iptables.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/default_iptables.j2>`_]
+[`templates/default_iptables.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/default_iptables.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -210,18 +218,19 @@ Description of the template.
 
 
 
+
 .. _as_template_dnsmasq.conf.j2:
 
 dnsmasq.conf.j2
 ---------------
 
-Synopsis: Template dnsmasq.conf.
+Synopsis: Configure dnsmasq.conf
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/dnsmasq.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/dnsmasq.conf.j2>`_]
+[`templates/dnsmasq.conf.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/dnsmasq.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -233,18 +242,19 @@ Description of the template.
 
 
 
+
 .. _as_template_dnsmasq-openwrt-dhcp.j2:
 
 dnsmasq-openwrt-dhcp.j2
 -----------------------
 
-Synopsis: Template dnsmasq-openwrt-dhcp.
+Synopsis: Configure dnsmasq-openwrt-dhcp
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/dnsmasq-openwrt-dhcp.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/dnsmasq-openwrt-dhcp.j2>`_]
+[`templates/dnsmasq-openwrt-dhcp.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/dnsmasq-openwrt-dhcp.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -256,18 +266,19 @@ Description of the template.
 
 
 
+
 .. _as_template_exports.j2:
 
 exports.j2
 ----------
 
-Synopsis: Template exports.
+Synopsis: Configure exports
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/exports.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/exports.j2>`_]
+[`templates/exports.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/exports.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -279,18 +290,19 @@ Description of the template.
 
 
 
+
 .. _as_template_gpg.conf.j2:
 
 gpg.conf.j2
 -----------
 
-Synopsis: Template gpg.conf.
+Synopsis: Configure gpg.conf
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/gpg.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpg.conf.j2>`_]
+[`templates/gpg.conf.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/gpg.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -302,18 +314,19 @@ Description of the template.
 
 
 
+
 .. _as_template_gpsd.j2:
 
 gpsd.j2
 -------
 
-Synopsis: Template gpsd.
+Synopsis: Configure gpsd
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/gpsd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/gpsd.j2>`_]
+[`templates/gpsd.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/gpsd.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -325,18 +338,19 @@ Description of the template.
 
 
 
+
 .. _as_template_hci_name.rules.j2:
 
 hci_name.rules.j2
 -----------------
 
-Synopsis: Template hci_name.rules.
+Synopsis: Configure hci_name.rules
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/hci_name.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hci_name.rules.j2>`_]
+[`templates/hci_name.rules.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/hci_name.rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -348,18 +362,19 @@ Description of the template.
 
 
 
+
 .. _as_template_hci_run.rules.j2:
 
 hci_run.rules.j2
 ----------------
 
-Synopsis: Template hci_run.rules.
+Synopsis: Configure hci_run.rules
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/hci_run.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hci_run.rules.j2>`_]
+[`templates/hci_run.rules.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/hci_run.rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -371,18 +386,19 @@ Description of the template.
 
 
 
+
 .. _as_template_hostname.j2:
 
 hostname.j2
 -----------
 
-Synopsis: Template hostname.
+Synopsis: Configure hostname
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/hostname.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hostname.j2>`_]
+[`templates/hostname.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/hostname.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -394,18 +410,19 @@ Description of the template.
 
 
 
+
 .. _as_template_hosts.j2:
 
 hosts.j2
 --------
 
-Synopsis: Template hosts.
+Synopsis: Configure hosts
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/hosts.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hosts.j2>`_]
+[`templates/hosts.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/hosts.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -417,18 +434,19 @@ Description of the template.
 
 
 
+
 .. _as_template_hosts-aliases-list.j2:
 
 hosts-aliases-list.j2
 ---------------------
 
-Synopsis: Template hosts-aliases-list.
+Synopsis: Configure hosts-aliases-list
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/hosts-aliases-list.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/hosts-aliases-list.j2>`_]
+[`templates/hosts-aliases-list.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/hosts-aliases-list.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -440,18 +458,19 @@ Description of the template.
 
 
 
+
 .. _as_template_iptables_restore.j2:
 
 iptables_restore.j2
 -------------------
 
-Synopsis: Template iptables_restore.
+Synopsis: Configure iptables_restore
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/iptables_restore.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/iptables_restore.j2>`_]
+[`templates/iptables_restore.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/iptables_restore.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -463,18 +482,19 @@ Description of the template.
 
 
 
+
 .. _as_template_modem_manager_override.j2:
 
 modem_manager_override.j2
 -------------------------
 
-Synopsis: Template modem_manager_override.
+Synopsis: Configure modem_manager_override
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/modem_manager_override.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/modem_manager_override.j2>`_]
+[`templates/modem_manager_override.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/modem_manager_override.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -486,18 +506,19 @@ Description of the template.
 
 
 
+
 .. _as_template_netplan_conf.j2:
 
 netplan_conf.j2
 ---------------
 
-Synopsis: Template netplan_conf.
+Synopsis: Configure netplan_conf
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/netplan_conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/netplan_conf.j2>`_]
+[`templates/netplan_conf.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/netplan_conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -509,18 +530,19 @@ Description of the template.
 
 
 
+
 .. _as_template_netplan_default.j2:
 
 netplan_default.j2
 ------------------
 
-Synopsis: Template netplan_default.
+Synopsis: Configure netplan_default
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/netplan_default.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/netplan_default.j2>`_]
+[`templates/netplan_default.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/netplan_default.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -532,18 +554,19 @@ Description of the template.
 
 
 
+
 .. _as_template_networkd.conf.j2:
 
 networkd.conf.j2
 ----------------
 
-Synopsis: Template networkd.conf.
+Synopsis: Configure networkd.conf
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/networkd.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/networkd.conf.j2>`_]
+[`templates/networkd.conf.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/networkd.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -555,18 +578,19 @@ Description of the template.
 
 
 
+
 .. _as_template_network_manager_override.j2:
 
 network_manager_override.j2
 ---------------------------
 
-Synopsis: Template network_manager_override.
+Synopsis: Configure network_manager_override
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/network_manager_override.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/network_manager_override.j2>`_]
+[`templates/network_manager_override.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/network_manager_override.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -578,18 +602,19 @@ Description of the template.
 
 
 
+
 .. _as_template_options_module.j2:
 
 options_module.j2
 -----------------
 
-Synopsis: Template options_module.
+Synopsis: Configure options_module
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/options_module.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/options_module.j2>`_]
+[`templates/options_module.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/options_module.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -601,18 +626,19 @@ Description of the template.
 
 
 
+
 .. _as_template_persistent_net.rules2.j2:
 
 persistent_net.rules2.j2
 ------------------------
 
-Synopsis: Template persistent_net.rules2.
+Synopsis: Configure persistent_net.rules2
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/persistent_net.rules2.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/persistent_net.rules2.j2>`_]
+[`templates/persistent_net.rules2.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/persistent_net.rules2.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -624,18 +650,19 @@ Description of the template.
 
 
 
+
 .. _as_template_persistent_net.rules.j2:
 
 persistent_net.rules.j2
 -----------------------
 
-Synopsis: Template persistent_net.rules.
+Synopsis: Configure persistent_net.rules
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/persistent_net.rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/persistent_net.rules.j2>`_]
+[`templates/persistent_net.rules.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/persistent_net.rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -647,18 +674,19 @@ Description of the template.
 
 
 
+
 .. _as_template_pm_sleepd.j2:
 
 pm_sleepd.j2
 ------------
 
-Synopsis: Template pm_sleepd.
+Synopsis: Configure pm_sleepd
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/pm_sleepd.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/pm_sleepd.j2>`_]
+[`templates/pm_sleepd.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/pm_sleepd.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -670,18 +698,19 @@ Description of the template.
 
 
 
+
 .. _as_template_rc.local.j2:
 
 rc.local.j2
 -----------
 
-Synopsis: Template rc.local.
+Synopsis: Configure rc.local
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/rc.local.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/rc.local.j2>`_]
+[`templates/rc.local.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/rc.local.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -693,18 +722,19 @@ Description of the template.
 
 
 
+
 .. _as_template_resolvconf_confd_head.j2:
 
 resolvconf_confd_head.j2
 ------------------------
 
-Synopsis: Template resolvconf_confd_head.
+Synopsis: Configure resolvconf_confd_head
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/resolvconf_confd_head.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/resolvconf_confd_head.j2>`_]
+[`templates/resolvconf_confd_head.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/resolvconf_confd_head.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -716,18 +746,19 @@ Description of the template.
 
 
 
+
 .. _as_template_router1_iptables.j2:
 
 router1_iptables.j2
 -------------------
 
-Synopsis: Template router1_iptables.
+Synopsis: Configure router1_iptables
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/router1_iptables.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/router1_iptables.j2>`_]
+[`templates/router1_iptables.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/router1_iptables.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -739,18 +770,19 @@ Description of the template.
 
 
 
+
 .. _as_template_ssh_config.j2:
 
 ssh_config.j2
 -------------
 
-Synopsis: Template ssh_config.
+Synopsis: Configure ssh_config
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/ssh_config.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/ssh_config.j2>`_]
+[`templates/ssh_config.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/ssh_config.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -762,18 +794,19 @@ Description of the template.
 
 
 
+
 .. _as_template_systemd_unit.j2:
 
 systemd_unit.j2
 ---------------
 
-Synopsis: Template systemd_unit.
+Synopsis: Configure systemd_unit
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/systemd_unit.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/systemd_unit.j2>`_]
+[`templates/systemd_unit.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/systemd_unit.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -785,18 +818,19 @@ Description of the template.
 
 
 
+
 .. _as_template_timesyncd.conf.j2:
 
 timesyncd.conf.j2
 -----------------
 
-Synopsis: Template timesyncd.conf.
+Synopsis: Configure timesyncd.conf
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/timesyncd.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/timesyncd.conf.j2>`_]
+[`templates/timesyncd.conf.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/timesyncd.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -808,18 +842,19 @@ Description of the template.
 
 
 
+
 .. _as_template_udev_rules.j2:
 
 udev_rules.j2
 -------------
 
-Synopsis: Template udev_rules.
+Synopsis: Configure udev_rules
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/udev_rules.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/udev_rules.j2>`_]
+[`templates/udev_rules.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/udev_rules.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -831,18 +866,19 @@ Description of the template.
 
 
 
+
 .. _as_template_wpa_action.sh.j2:
 
 wpa_action.sh.j2
 ----------------
 
-Synopsis: Template wpa_action.sh.
+Synopsis: Configure wpa_action.sh
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/wpa_action.sh.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/wpa_action.sh.j2>`_]
+[`templates/wpa_action.sh.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/wpa_action.sh.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -854,18 +890,19 @@ Description of the template.
 
 
 
+
 .. _as_template_wpa_supplicant.conf.j2:
 
 wpa_supplicant.conf.j2
 ----------------------
 
-Synopsis: Template wpa_supplicant.conf.
+Synopsis: Configure wpa_supplicant.conf
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/wpa_supplicant.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/wpa_supplicant.conf.j2>`_]
+[`templates/wpa_supplicant.conf.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/wpa_supplicant.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -877,18 +914,19 @@ Description of the template.
 
 
 
+
 .. _as_template_xorg.conf.j2:
 
 xorg.conf.j2
 ------------
 
-Synopsis: Template xorg.conf.
+Synopsis: Configure xorg.conf
 
 
-Description of the template.
+Description of the task.
 
 
-[`templates/xorg.conf.j2 <https://github.com/vbotka/ansible-linux-postinstall/blob/master/templates/xorg.conf.j2>`_]
+[`templates/xorg.conf.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/xorg.conf.j2>`_]
 
 .. highlight:: jinja
     :linenothreshold: 5
@@ -896,6 +934,7 @@ Description of the template.
     :language: jinja
     :emphasize-lines: 1
     :linenos:
+
 
 
 

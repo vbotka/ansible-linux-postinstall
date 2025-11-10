@@ -20,6 +20,7 @@
       lp_wpasupplicant_bin: {{ lp_wpasupplicant_bin }}
       lp_wpasupplicant_conf_only: {{ lp_wpasupplicant_conf_only }}
       lp_wpasupplicant_conf_dir: {{ lp_wpasupplicant_conf_dir }}
+      lp_wpasupplicant_conf_template: {{ lp_wpasupplicant_conf_template }}
       lp_wpasupplicant_conf_owner: {{ lp_wpasupplicant_conf_owner }}
       lp_wpasupplicant_conf_group: {{ lp_wpasupplicant_conf_group }}
       lp_wpasupplicant_conf_mode: {{ lp_wpasupplicant_conf_mode }}
@@ -98,7 +99,7 @@
       vars:
         my_filename: "{{ lp_wpasupplicant_conf_file[item.type | d('default')] }}"
       ansible.builtin.template:
-        src: wpa_supplicant.conf.j2
+        src: "{{ lp_wpasupplicant_conf_template }}"
         dest: "{{ lp_wpasupplicant_conf_dir }}/{{ my_filename }}"
         owner: "{{ lp_wpasupplicant_conf_owner }}"
         group: "{{ lp_wpasupplicant_conf_group }}"

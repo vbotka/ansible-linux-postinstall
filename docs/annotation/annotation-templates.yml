@@ -5,468 +5,819 @@ mytemplates:
     link: acpi_action_lid.sh.j2
     path: templates/acpi_action_lid.sh.j2
     synopsis: |
-      Template acpi_action_lid.sh.
+      Configure acpi_action_lid.sh
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: acpi_event_default.j2
     link: acpi_event_default.j2
     path: templates/acpi_event_default.j2
     synopsis: |
-      Template acpi_event_default.
+      Configure acpi_event_default
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: aliases.j2
     link: aliases.j2
     path: templates/aliases.j2
     synopsis: |
-      Template aliases.
+      Configure aliases
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: apt_confd.j2
     link: apt_confd.j2
     path: templates/apt_confd.j2
     synopsis: |
-      Template apt_confd.
+      Configure apt_confd
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: auto_upgrades.j2
     link: auto_upgrades.j2
     path: templates/auto_upgrades.j2
     synopsis: |
-      Template auto_upgrades.
+      Configure auto_upgrades
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: blacklist_module.j2
     link: blacklist_module.j2
     path: templates/blacklist_module.j2
     synopsis: |
-      Template blacklist_module.
+      Configure blacklist_module
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: bluetooth_rfcomm_conf.j2
     link: bluetooth_rfcomm_conf.j2
     path: templates/bluetooth_rfcomm_conf.j2
     synopsis: |
-      Template bluetooth_rfcomm_conf.
+      Configure bluetooth_rfcomm_conf
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: chrony.conf.j2
     link: chrony.conf.j2
     path: templates/chrony.conf.j2
     synopsis: |
-      Template chrony.conf.
+      Configure chrony.conf
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: default_iptables.j2
     link: default_iptables.j2
     path: templates/default_iptables.j2
     synopsis: |
-      Template default_iptables.
+      Configure default_iptables
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: dnsmasq.conf.j2
     link: dnsmasq.conf.j2
     path: templates/dnsmasq.conf.j2
     synopsis: |
-      Template dnsmasq.conf.
+      Configure dnsmasq.conf
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: dnsmasq-openwrt-dhcp.j2
     link: dnsmasq-openwrt-dhcp.j2
     path: templates/dnsmasq-openwrt-dhcp.j2
     synopsis: |
-      Template dnsmasq-openwrt-dhcp.
+      Configure dnsmasq-openwrt-dhcp
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: exports.j2
     link: exports.j2
     path: templates/exports.j2
     synopsis: |
-      Template exports.
+      Configure exports
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: gpg.conf.j2
     link: gpg.conf.j2
     path: templates/gpg.conf.j2
     synopsis: |
-      Template gpg.conf.
+      Configure gpg.conf
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: gpsd.j2
     link: gpsd.j2
     path: templates/gpsd.j2
     synopsis: |
-      Template gpsd.
+      Configure gpsd
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: hci_name.rules.j2
     link: hci_name.rules.j2
     path: templates/hci_name.rules.j2
     synopsis: |
-      Template hci_name.rules.
+      Configure hci_name.rules
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: hci_run.rules.j2
     link: hci_run.rules.j2
     path: templates/hci_run.rules.j2
     synopsis: |
-      Template hci_run.rules.
+      Configure hci_run.rules
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: hostname.j2
     link: hostname.j2
     path: templates/hostname.j2
     synopsis: |
-      Template hostname.
+      Configure hostname
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: hosts.j2
     link: hosts.j2
     path: templates/hosts.j2
     synopsis: |
-      Template hosts.
+      Configure hosts
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: hosts-aliases-list.j2
     link: hosts-aliases-list.j2
     path: templates/hosts-aliases-list.j2
     synopsis: |
-      Template hosts-aliases-list.
+      Configure hosts-aliases-list
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: iptables_restore.j2
     link: iptables_restore.j2
     path: templates/iptables_restore.j2
     synopsis: |
-      Template iptables_restore.
+      Configure iptables_restore
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: modem_manager_override.j2
     link: modem_manager_override.j2
     path: templates/modem_manager_override.j2
     synopsis: |
-      Template modem_manager_override.
+      Configure modem_manager_override
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: netplan_conf.j2
     link: netplan_conf.j2
     path: templates/netplan_conf.j2
     synopsis: |
-      Template netplan_conf.
+      Configure netplan_conf
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: netplan_default.j2
     link: netplan_default.j2
     path: templates/netplan_default.j2
     synopsis: |
-      Template netplan_default.
+      Configure netplan_default
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: networkd.conf.j2
     link: networkd.conf.j2
     path: templates/networkd.conf.j2
     synopsis: |
-      Template networkd.conf.
+      Configure networkd.conf
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: network_manager_override.j2
     link: network_manager_override.j2
     path: templates/network_manager_override.j2
     synopsis: |
-      Template network_manager_override.
+      Configure network_manager_override
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: options_module.j2
     link: options_module.j2
     path: templates/options_module.j2
     synopsis: |
-      Template options_module.
+      Configure options_module
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: persistent_net.rules2.j2
     link: persistent_net.rules2.j2
     path: templates/persistent_net.rules2.j2
     synopsis: |
-      Template persistent_net.rules2.
+      Configure persistent_net.rules2
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: persistent_net.rules.j2
     link: persistent_net.rules.j2
     path: templates/persistent_net.rules.j2
     synopsis: |
-      Template persistent_net.rules.
+      Configure persistent_net.rules
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: pm_sleepd.j2
     link: pm_sleepd.j2
     path: templates/pm_sleepd.j2
     synopsis: |
-      Template pm_sleepd.
+      Configure pm_sleepd
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: rc.local.j2
     link: rc.local.j2
     path: templates/rc.local.j2
     synopsis: |
-      Template rc.local.
+      Configure rc.local
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: resolvconf_confd_head.j2
     link: resolvconf_confd_head.j2
     path: templates/resolvconf_confd_head.j2
     synopsis: |
-      Template resolvconf_confd_head.
+      Configure resolvconf_confd_head
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: router1_iptables.j2
     link: router1_iptables.j2
     path: templates/router1_iptables.j2
     synopsis: |
-      Template router1_iptables.
+      Configure router1_iptables
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: ssh_config.j2
     link: ssh_config.j2
     path: templates/ssh_config.j2
     synopsis: |
-      Template ssh_config.
+      Configure ssh_config
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: systemd_unit.j2
     link: systemd_unit.j2
     path: templates/systemd_unit.j2
     synopsis: |
-      Template systemd_unit.
+      Configure systemd_unit
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: timesyncd.conf.j2
     link: timesyncd.conf.j2
     path: templates/timesyncd.conf.j2
     synopsis: |
-      Template timesyncd.conf.
+      Configure timesyncd.conf
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: udev_rules.j2
     link: udev_rules.j2
     path: templates/udev_rules.j2
     synopsis: |
-      Template udev_rules.
+      Configure udev_rules
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: wpa_action.sh.j2
     link: wpa_action.sh.j2
     path: templates/wpa_action.sh.j2
     synopsis: |
-      Template wpa_action.sh.
+      Configure wpa_action.sh
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: wpa_supplicant.conf.j2
     link: wpa_supplicant.conf.j2
     path: templates/wpa_supplicant.conf.j2
     synopsis: |
-      Template wpa_supplicant.conf.
+      Configure wpa_supplicant.conf
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: xorg.conf.j2
     link: xorg.conf.j2
     path: templates/xorg.conf.j2
     synopsis: |
-      Template xorg.conf.
+      Configure xorg.conf
     description: |
-      Description of the template.
+      Description of the task.
     lines: 1
-    seealso: []
-    note: []
-    warning: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
 ...

@@ -9,424 +9,706 @@ mytasks:
       Import tasks if enabled.
     lines: 1,2
     seealso: []
-    note: []
-    warning: []
+    notes: []
+    hints: []
+    warnings: []
 
   - file: acpi.yml
     link: acpi.yml
     path: tasks/acpi.yml
     synopsis: |
-      Configure acpi.
+      Configure acpi
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: aliases.yml
     link: aliases.yml
     path: tasks/aliases.yml
     synopsis: |
-      Configure aliases.
+      Configure aliases
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'handlers': ['newaliases'], 'templates': ['aliases']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      handlers:
+      - newaliases
+      templates:
+      - aliases
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: apt.yml
     link: apt.yml
     path: tasks/apt.yml
     synopsis: |
-      Configure apt.
+      Configure apt
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'templates': ['apt_confd']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      templates:
+      - apt_confd
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: apparmor.yml
     link: apparmor.yml
     path: tasks/apparmor.yml
     synopsis: |
-      Configure apparmor.
+      Configure apparmor
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: authorized_keys.yml
     link: authorized_keys.yml
     path: tasks/authorized_keys.yml
     synopsis: |
-      Configure authorized_keys.
+      Configure authorized_keys
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: autofs.yml
     link: autofs.yml
     path: tasks/autofs.yml
     synopsis: |
-      Configure autofs.
+      Configure autofs
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'handlers': ['autofs']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      handlers:
+      - autofs
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: auto_upgrades.yml
     link: auto_upgrades.yml
     path: tasks/auto_upgrades.yml
     synopsis: |
-      Configure auto_upgrades.
+      Configure auto_upgrades
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: bluetooth.yml
     link: bluetooth.yml
     path: tasks/bluetooth.yml
     synopsis: |
-      Configure bluetooth.
+      Configure bluetooth
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'handlers': ['bluetooth']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      handlers:
+      - bluetooth
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: chrony.yml
     link: chrony.yml
     path: tasks/chrony.yml
     synopsis: |
-      Configure chrony.
+      Configure chrony
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: cron.yml
     link: cron.yml
     path: tasks/cron.yml
     synopsis: |
-      Configure cron.
+      Configure cron
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: debsums.yml
     link: debsums.yml
     path: tasks/debsums.yml
     synopsis: |
-      Configure debsums.
+      Configure debsums
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: debug.yml
     link: debug.yml
     path: tasks/debug.yml
     synopsis: |
-      Configure debug.
+      Configure debug
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: dnsmasq.yml
     link: dnsmasq.yml
     path: tasks/dnsmasq.yml
     synopsis: |
-      Configure dnsmasq.
+      Configure dnsmasq
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: fstab.yml
     link: fstab.yml
     path: tasks/fstab.yml
     synopsis: |
-      Configure fstab.
+      Configure fstab
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: gpg.yml
     link: gpg.yml
     path: tasks/gpg.yml
     synopsis: |
-      Configure gpg.
+      Configure gpg
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'handlers': ['gpg'], 'templates': ['gpg.conf']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      handlers:
+      - gpg
+      templates:
+      - gpg.conf
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: gpsd.yml
     link: gpsd.yml
     path: tasks/gpsd.yml
     synopsis: |
-      Configure gpsd.
+      Configure gpsd
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'handlers': ['gpsd', 'bluetooth'], 'templates': ['gpsd']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      handlers:
+      - gpsd
+      - bluetooth
+      templates:
+      - gpsd
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: groups.yml
     link: groups.yml
     path: tasks/groups.yml
     synopsis: |
-      Configure groups.
+      Configure groups
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: grub.yml
     link: grub.yml
     path: tasks/grub.yml
     synopsis: |
-      Configure grub.
+      Configure grub
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'handlers': ['grub']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      handlers:
+      - grub
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: hostname.yml
     link: hostname.yml
     path: tasks/hostname.yml
     synopsis: |
-      Configure hostname.
+      Configure hostname
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: hosts.yml
     link: hosts.yml
     path: tasks/hosts.yml
     synopsis: |
-      Configure hosts.
+      Configure hosts
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'templates': ['hosts']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      templates:
+      - hosts
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: iptables.yml
     link: iptables.yml
     path: tasks/iptables.yml
     synopsis: |
-      Configure iptables.
+      Configure iptables
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'handlers': ['iptables'], 'templates': ['iptables_restore', 'default_iptables', 'router1_iptables']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      handlers:
+      - iptables
+      templates:
+      - iptables_restore
+      - default_iptables
+      - router1_iptables
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: kvm.yml
     link: kvm.yml
     path: tasks/kvm.yml
     synopsis: |
-      Configure kvm.
+      Configure kvm
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: latex.yml
     link: latex.yml
     path: tasks/latex.yml
     synopsis: |
-      Configure latex.
+      Configure latex
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: libvirt.yml
     link: libvirt.yml
     path: tasks/libvirt.yml
     synopsis: |
-      Configure libvirt.
+      Configure libvirt
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: lid.yml
     link: lid.yml
     path: tasks/lid.yml
     synopsis: |
-      Configure lid.
+      Configure lid
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'handlers': ['messages']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      handlers:
+      - messages
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: logrotate.yml
     link: logrotate.yml
     path: tasks/logrotate.yml
     synopsis: |
-      Configure logrotate.
+      Configure logrotate
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: modemmanager.yml
     link: modemmanager.yml
     path: tasks/modemmanager.yml
     synopsis: |
-      Configure modemmanager.
+      Configure modemmanager
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: modules.yml
     link: modules.yml
     path: tasks/modules.yml
     synopsis: |
-      Configure modules.
+      Configure modules
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: netplan.yml
     link: netplan.yml
     path: tasks/netplan.yml
     synopsis: |
-      Configure netplan.
+      Configure netplan
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: {'handlers': ['netplan'], 'templates': ['netplan_default', 'netplan_conf']}
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      handlers:
+      - netplan
+      templates:
+      - netplan_default
+      - netplan_conf
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: networkd.yml
     link: networkd.yml
     path: tasks/networkd.yml
     synopsis: |
-      Configure networkd.
+      Configure networkd
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: networkmanager.yml
     link: networkmanager.yml
     path: tasks/networkmanager.yml
     synopsis: |
-      Configure networkmanager.
+      Configure networkmanager
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: nfsd.yml
     link: nfsd.yml
     path: tasks/nfsd.yml
     synopsis: |
-      Configure nfsd.
+      Configure nfsd
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: packages.yml
     link: packages.yml
@@ -465,101 +747,165 @@ mytasks:
       TBD
 
     lines: 2,4,13,41,56,69
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: passwords.yml
     link: passwords.yml
     path: tasks/passwords.yml
     synopsis: |
-      Configure passwords.
+      Configure passwords
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: pm_utils.yml
     link: pm_utils.yml
     path: tasks/pm_utils.yml
     synopsis: |
-      Configure pm_utils.
+      Configure pm_utils
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: postfix.yml
     link: postfix.yml
     path: tasks/postfix.yml
     synopsis: |
-      Configure postfix.
+      Configure postfix
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: rc_local.yml
     link: rc_local.yml
     path: tasks/rc_local.yml
     synopsis: |
-      Configure rc_local.
+      Configure rc_local
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: reboot.yml
     link: reboot.yml
     path: tasks/reboot.yml
     synopsis: |
-      Configure reboot.
+      Configure reboot
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: repos.yml
     link: repos.yml
     path: tasks/repos.yml
     synopsis: |
-      Configure repos.
+      Configure repos
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: resolvconf.yml
     link: resolvconf.yml
     path: tasks/resolvconf.yml
     synopsis: |
-      Configure resolvconf.
+      Configure resolvconf
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: service.yml
     link: service.yml
@@ -597,166 +943,270 @@ mytasks:
       service-\*.yml how manual management options notify handlers.
 
     lines: 2,4,23,74,104,117
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: service-service.yml
     link: service-service.yml
     path: tasks/fn/service-service.yml
     synopsis: |
-      Configure service-service.
+      Configure service-service
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: service-systemd.yml
     link: service-systemd.yml
     path: tasks/fn/service-systemd.yml
     synopsis: |
-      Configure service-systemd.
+      Configure service-systemd
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: service-sysvinit.yml
     link: service-sysvinit.yml
     path: tasks/fn/service-sysvinit.yml
     synopsis: |
-      Configure service-sysvinit.
+      Configure service-sysvinit
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: service-debug.yml
     link: service-debug.yml
     path: tasks/fn/service-debug.yml
     synopsis: |
-      Configure service-debug.
+      Configure service-debug
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: smart.yml
     link: smart.yml
     path: tasks/smart.yml
     synopsis: |
-      Configure smart.
+      Configure smart
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: snap.yml
     link: snap.yml
     path: tasks/snap.yml
     synopsis: |
-      Configure snap.
+      Configure snap
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: speechd.yml
     link: speechd.yml
     path: tasks/speechd.yml
     synopsis: |
-      Configure speechd.
+      Configure speechd
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: sshd.yml
     link: sshd.yml
     path: tasks/sshd.yml
     synopsis: |
-      Configure sshd.
+      Configure sshd
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: ssh.yml
     link: ssh.yml
     path: tasks/ssh.yml
     synopsis: |
-      Configure ssh.
+      Configure ssh
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: sudoers.yml
     link: sudoers.yml
     path: tasks/sudoers.yml
     synopsis: |
-      Configure sudoers.
+      Configure sudoers
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: swap.yml
     link: swap.yml
     path: tasks/swap.yml
     synopsis: |
-      Configure swap.
+      Configure swap
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: sysctl.yml
     link: sysctl.yml
     path: tasks/sysctl.yml
     synopsis: |
-      Configure sysctl.
+      Configure sysctl
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: systemd.yml
     link: systemd.yml
@@ -861,243 +1311,395 @@ mytasks:
       <TBD>
 
     lines: 2,4,28,54,67,105,129,148
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: timesyncd.yml
     link: timesyncd.yml
     path: tasks/timesyncd.yml
     synopsis: |
-      Configure timesyncd.
+      Configure timesyncd
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: timezone.yml
     link: timezone.yml
     path: tasks/timezone.yml
     synopsis: |
-      Configure timezone.
+      Configure timezone
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: tlp.yml
     link: tlp.yml
     path: tasks/tlp.yml
     synopsis: |
-      Configure tlp.
+      Configure tlp
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: udev.yml
     link: udev.yml
     path: tasks/udev.yml
     synopsis: |
-      Configure udev.
+      Configure udev
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: ufw.yml
     link: ufw.yml
     path: tasks/ufw.yml
     synopsis: |
-      Configure ufw.
+      Configure ufw
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: users.yml
     link: users.yml
     path: tasks/users.yml
     synopsis: |
-      Configure users.
+      Configure users
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: vars_firstfound.yml
     link: vars_firstfound.yml
     path: tasks/vars_firstfound.yml
     synopsis: |
-      Configure vars_firstfound.
+      Configure vars_firstfound
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: vars_incremental.yml
     link: vars_incremental.yml
     path: tasks/vars_incremental.yml
     synopsis: |
-      Configure vars_incremental.
+      Configure vars_incremental
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: vars.yml
     link: vars.yml
     path: tasks/vars.yml
     synopsis: |
-      Configure vars.
+      Configure vars
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: virtualbox.yml
     link: virtualbox.yml
     path: tasks/virtualbox.yml
     synopsis: |
-      Configure virtualbox.
+      Configure virtualbox
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: wpagui.yml
     link: wpagui.yml
     path: tasks/wpagui.yml
     synopsis: |
-      Configure wpagui.
+      Configure wpagui
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: wpasupplicant.yml
     link: wpasupplicant.yml
     path: tasks/wpasupplicant.yml
     synopsis: |
-      Configure wpasupplicant.
+      Configure wpasupplicant
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: xen.yml
     link: xen.yml
     path: tasks/xen.yml
     synopsis: |
-      Configure xen.
+      Configure xen
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: xorg.yml
     link: xorg.yml
     path: tasks/xorg.yml
     synopsis: |
-      Configure xorg.
+      Configure xorg
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: zeitgeist.yml
     link: zeitgeist.yml
     path: tasks/zeitgeist.yml
     synopsis: |
-      Configure zeitgeist.
+      Configure zeitgeist
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: zfs.yml
     link: zfs.yml
     path: tasks/zfs.yml
     synopsis: |
-      Configure zfs.
+      Configure zfs
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: vars_flavors.yml
     link: vars_flavors.yml
     path: tasks/sub/vars_flavors.yml
     synopsis: |
-      Configure vars_flavors.
+      Configure vars_flavors
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
   - file: vars_flavors_common.yml
     link: vars_flavors_common.yml
     path: tasks/sub/vars_flavors_common.yml
     synopsis: |
-      Configure vars_flavors_common.
+      Configure vars_flavors_common
     description: |
       Description of the task.
-    lines: 1,2
-    seealso: []
-    notes: []
-    hints: []
-    warnings: []
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
 
 ...

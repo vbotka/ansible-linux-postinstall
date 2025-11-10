@@ -6,6 +6,7 @@ lp_wpasupplicant_debug: false
 lp_wpasupplicant_debug_classified: false
 lp_wpasupplicant_bin: /sbin/wpa_supplicant
 lp_wpasupplicant_conf_only: false
+lp_wpasupplicant_conf_template: wpa_supplicant.conf.j2
 lp_wpasupplicant_conf_owner: root
 lp_wpasupplicant_conf_group: root
 lp_wpasupplicant_conf_mode: "0600"
