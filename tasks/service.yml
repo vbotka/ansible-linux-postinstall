@@ -29,7 +29,7 @@
       ansible.builtin.service_facts:
 
     - name: "Service: Debug my_services_* lp_service_debug2={{ lp_service_debug2 }}"
-      when: lp_service_debug2 | d(false) | bool
+      when: lp_service_debug2 | bool
       vars:
         my_services_alias: "{{ lp_service_auto }}"
         msg: |-

@@ -5,6 +5,24 @@ vbotka.linux_postinstall 2.7 Release Notes
 .. contents:: Topics
 
 
+2.7.1
+=====
+
+Release Summary
+---------------
+Update Ansible 2.20
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Update tasks/networkmanager; test masked services.
+* Update tasks/sysctl; create /etc/sysctl.conf if missing.
+* Update tasks/service; add var lp_service_debug2 (default=false);
+  remove resolvconf, udev, and speechd services from auto.
+
+
 2.7.0
 =====
 
