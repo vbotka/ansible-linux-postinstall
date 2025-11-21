@@ -1,6 +1,7 @@
 ---
 
 lp_service_debug: false
+lp_service_debug2: false
 lp_service_sanity: true
 lp_service_sanity_quiet: true
 
@@ -22,6 +23,9 @@ lp_service_auto_exclude:
   - lp_rc_local_service
   - lp_timesyncd_service
   - lp_wpasupplicant_service
+  - lp_resolvconf_service
+  - lp_udev_service
+  - lp_speechd_services
 lp_service_auto:
   - .*
 # - acpi
