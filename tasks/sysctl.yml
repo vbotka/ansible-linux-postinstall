@@ -17,6 +17,8 @@
   notify: load sysctl settings
   ansible.builtin.lineinfile:
     dest: /etc/sysctl.conf
+    create: true
+    mode: "0644"
     regexp: ^\s*{{ item.var }}\s*=(.*)$
     line: "{{ item.var }}{{ lp_sysctl_extra_space }}={{ lp_sysctl_extra_space }}{{ item.value }}"
     state: "{{ item.state | d(omit) }}"

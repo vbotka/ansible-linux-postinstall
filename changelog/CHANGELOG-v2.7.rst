@@ -18,6 +18,7 @@ Major Changes
 Minor Changes
 -------------
 * Update tasks/networkmanager; test masked services.
+* Update tasks/sysctl; create /etc/sysctl.conf if missing.
 
 
 2.7.0
