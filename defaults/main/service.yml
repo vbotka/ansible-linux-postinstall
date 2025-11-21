@@ -21,11 +21,11 @@ lp_service_auto_exclude:
   - lp_libvirt_libvirtd_service
   - lp_modemmanager_service
   - lp_rc_local_service
-  - lp_timesyncd_service
-  - lp_wpasupplicant_service
   - lp_resolvconf_service
+  - lp_speechd_service
+  - lp_timesyncd_service
   - lp_udev_service
-  - lp_speechd_services
+  - lp_wpasupplicant_service
 lp_service_auto:
   - .*
 # - acpi
