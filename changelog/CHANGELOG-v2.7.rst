@@ -17,6 +17,7 @@ Major Changes
 
 Minor Changes
 -------------
+* Update tasks/networkmanager; test masked services.
 
 
 2.7.0

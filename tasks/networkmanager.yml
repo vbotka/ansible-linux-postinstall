@@ -44,7 +44,7 @@
     name: vbotka.linux_lib
     tasks_from: install_package.yml
 
-- name: Override
+- name: Override Network Manager
   tags: lp_nm_override
   block:
 
@@ -75,20 +75,38 @@
     mode: "0644"
   loop: "{{ lp_nm_conf }}"
 
-- name: "Nm: Services start/stop and enable/disable"
+- name: Service enable or disable
   tags: lp_nm_service
   vars:
     srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
     srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
     srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
     default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
-  ansible.builtin.service:
-    name: "{{ srv_name }}"
-    state: "{{ srv_stat }}"
-    enabled: "{{ srv_enbl }}"
-  loop: "{{ lp_nm_services }}"
-  loop_control:
-    label: "{{ srv_name }} state: {{ srv_stat }} enabled: {{ srv_enbl }}"
+    status: "{{ dict(out.results | json_query('[].[name, status.UnitFileState]')) }}"
+  block:
+
+    - name: "Nm: Get services status."
+      register: out
+      ansible.builtin.service:
+        name: "{{ srv_name }}"
+      loop: "{{ lp_nm_services }}"
+      loop_control:
+        label: "{{ srv_name }}"
+
+    - name: "Nm: Debug service status lp_nm_debug={{ lp_nm_debug }}"
+      when: lp_nm_debug | bool
+      ansible.builtin.debug:
+        var: status
+
+    - name: "Nm: Services start/stop and enable/disable"
+      when: status[srv_name] in ['disabled', 'enabled']
+      ansible.builtin.service:
+        name: "{{ srv_name }}"
+        state: "{{ srv_stat }}"
+        enabled: "{{ srv_enbl }}"
+      loop: "{{ lp_nm_services }}"
+      loop_control:
+        label: "{{ srv_name }} state: {{ srv_stat }} enabled: {{ srv_enbl }}"
 
 - name: "Nm: Services mask={{ lp_nm_mask }}"
   tags: lp_nm_mask
