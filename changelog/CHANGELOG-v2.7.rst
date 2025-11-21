@@ -5,6 +5,22 @@ vbotka.linux_postinstall 2.7 Release Notes
 .. contents:: Topics
 
 
+2.7.2
+=====
+
+Release Summary
+---------------
+Docs update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Docs update version release in index.rst
+* Docs build also epub and pdf.
+
+
 2.7.1
 =====
 
