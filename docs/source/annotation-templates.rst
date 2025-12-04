@@ -795,6 +795,30 @@ Description of the task.
 
 
 
+.. _as_template_sysctl_conf.j2:
+
+sysctl_conf.j2
+--------------
+
+Synopsis: Configure sysctl_conf
+
+
+Description of the task.
+
+
+[`templates/sysctl_conf.j2 <https://github.com/__GITHUB_USERNAME__/__PROJECT__/blob/__BRANCH__/templates/sysctl_conf.j2>`_]
+
+.. highlight:: jinja
+    :linenothreshold: 5
+.. literalinclude:: ../../templates/sysctl_conf.j2
+    :language: jinja
+    :emphasize-lines: 1
+    :linenos:
+
+
+
+
+
 .. _as_template_systemd_unit.j2:
 
 systemd_unit.j2

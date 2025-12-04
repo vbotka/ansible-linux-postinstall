@@ -1,0 +1,9 @@
+#jinja2: trim_blocks:False
+# {{ ansible_managed }}
+{% for k,v in item.conf.items() %}
+{% if lp_sysctl_no_extra_spaces | bool %}
+{{ k }}={{ v }}
+{% else %}
+{{ k }} = {{ v }}
+{% endif %}
+{% endfor %}

@@ -4,5 +4,12 @@ lp_sysctl_debug: false
 lp_sysctl_vars: []
 lp_sysctl_no_extra_spaces: true
 lp_sysctl_extra_space: "{{ lp_sysctl_no_extra_spaces | ternary('', ' ') }}"
+lp_sysctl_owner: root
+lp_sysctl_group: root
+lp_sysctl_mode: "0644"
+lp_sysctld_conf: []
+lp_sysctld_template: sysctl_conf.j2
+lp_sysctld_root: /etc/sysctl.d
+
 
 # EOF

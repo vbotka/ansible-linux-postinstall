@@ -694,6 +694,27 @@ mytemplates:
       []
 
 
+  - file: sysctl_conf.j2
+    link: sysctl_conf.j2
+    path: templates/sysctl_conf.j2
+    synopsis: |
+      Configure sysctl_conf
+    description: |
+      Description of the task.
+    lines: 1
+    seealso:
+      {}
+
+    notes:
+      []
+
+    hints:
+      []
+
+    warnings:
+      []
+
+
   - file: systemd_unit.j2
     link: systemd_unit.j2
     path: templates/systemd_unit.j2
