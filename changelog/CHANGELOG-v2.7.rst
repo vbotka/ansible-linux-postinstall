@@ -5,6 +5,21 @@ vbotka.linux_postinstall 2.7 Release Notes
 .. contents:: Topics
 
 
+2.7.3
+=====
+
+Release Summary
+---------------
+
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+Update tasks/sysctl; configure /etc/sysctl.d
+
+
 2.7.2
 =====
 
