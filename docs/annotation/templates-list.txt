@@ -31,6 +31,7 @@ rc.local.j2
 resolvconf_confd_head.j2
 router1_iptables.j2
 ssh_config.j2
+sysctl_conf.j2
 systemd_unit.j2
 timesyncd.conf.j2
 udev_rules.j2

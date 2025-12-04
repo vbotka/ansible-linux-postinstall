@@ -10,7 +10,7 @@ vbotka.linux_postinstall 2.7 Release Notes
 
 Release Summary
 ---------------
-
+Update tasks/sysctl incl. docs.
 
 Major Changes
 -------------
@@ -18,7 +18,8 @@ Major Changes
 Minor Changes
 -------------
 * Update tasks/sysctl; configure /etc/sysctl.d; added handler "Load
-  sysctl system" and template ysctl-conf.j2
+  sysctl system" and template sysctl-conf.j2
+* Update docs.
 
 
 2.7.2
