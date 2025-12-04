@@ -7,14 +7,22 @@
   vars:
     msg: |-
       ansible_os_family: {{ ansible_os_family }}
+      lp_sysctl_owner: {{ lp_sysctl_owner }}
+      lp_sysctl_group: {{ lp_sysctl_group }}
+      lp_sysctl_mode: {{ lp_sysctl_mode }}
       lp_sysctl_no_extra_spaces: {{ lp_sysctl_no_extra_spaces }}
       lp_sysctl_vars:
         {{ lp_sysctl_vars | to_yaml(indent=2) | indent(2) }}
+      lp_sysctld_root: {{ lp_sysctld_root }}
+      lp_sysctld_template: {{ lp_sysctld_template }}
+      lp_sysctld_conf:
+        {{ lp_sysctld_conf | to_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
 
 - name: "Sysctl: Configure /etc/sysctl.conf"
   notify: load sysctl settings
+  tags: lp_sysctl_conf
   ansible.builtin.lineinfile:
     dest: /etc/sysctl.conf
     create: true
@@ -26,5 +34,19 @@
   loop: "{{ lp_sysctl_vars }}"
   loop_control:
     label: "{{ item.var }}: {{ item.value }} {{ item.state | d('present') }}"
+
+- name: "Sysctl: Configure files in {{ lp_sysctld_root }}"
+  notify: load sysctl system
+  tags: lp_sysctld_conf
+  ansible.builtin.template:
+    src: "{{ lp_sysctld_template }}"
+    dest: "{{ lp_sysctld_root }}/{{ item.file }}"
+    owner: "{{ item.owner | d(lp_sysctl_owner) }}"
+    group: "{{ item.group | d(lp_sysctl_group) }}"
+    mode: "{{ item.mode | d(lp_sysctl_mode) }}"
+    backup: "{{ lp_backup_conf }}"
+  loop: "{{ lp_sysctld_conf }}"
+  loop_control:
+    label: "{{ item.file }}"
 
 # EOF

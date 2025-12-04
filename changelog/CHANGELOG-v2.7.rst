@@ -17,7 +17,8 @@ Major Changes
 
 Minor Changes
 -------------
-Update tasks/sysctl; configure /etc/sysctl.d
+* Update tasks/sysctl; configure /etc/sysctl.d; added handler "Load
+  sysctl system" and template ysctl-conf.j2
 
 
 2.7.2

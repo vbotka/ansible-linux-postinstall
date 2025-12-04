@@ -9,3 +9,12 @@ lp_sysctl_vars:
  - {var: net.bridge.bridge-nf-call-arptables, value: 1}
  - {var: net.ipv4.ip_forward, value: 1}
  - {var: net.ipv4.conf.eth0.proxy_arp, value: 1}
+
+# Put the configuration into the directory /etc/sysctl.d
+# See: How to reload config after changing /etc/sysctl.d/?
+# https://askubuntu.com/questions/1440532/how-to-reload-config-after-changing-etc-sysctl-d
+
+lp_sysctld_conf:
+  - file: 10-apparmor.conf
+    conf:
+      kernel.apparmor_restrict_unprivileged_userns: 0

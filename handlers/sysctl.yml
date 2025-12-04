@@ -5,4 +5,10 @@
     cmd: >
       /sbin/sysctl -p /etc/sysctl.conf
 
+- name: Load sysctl system
+  listen: load sysctl system
+  ansible.builtin.command: # noqa: no-changed-when
+    cmd: >
+      /sbin/sysctl --system
+
 # EOF
