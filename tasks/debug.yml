@@ -5,13 +5,13 @@
   vars:
     msg: |-
       lp_role_version: {{ lp_role_version }}
-      ansible_architecture: {{ ansible_architecture }}
-      ansible_os_family: {{ ansible_os_family }}
-      ansible_distribution: {{ ansible_distribution }}
+      ansible_architecture: {{ ansible_facts['architecture'] }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
+      ansible_distribution: {{ ansible_facts['distribution'] }}
       ansible_distribution_major_version: {{ ansible_distribution_major_version }}
-      ansible_distribution_version: {{ ansible_distribution_version }}
-      ansible_distribution_release: {{ ansible_distribution_release }}
-      ansible_python_version: {{ ansible_python_version }}
+      ansible_distribution_version: {{ ansible_facts['distribution_version'] }}
+      ansible_distribution_release: {{ ansible_facts['distribution_release'] }}
+      ansible_python_version: {{ ansible_facts['python_version'] }}
 
       lp_vars_distro: {{ lp_vars_distro }}
       lp_vars_distro_firstfound_skip: {{ lp_vars_distro_firstfound_skip }}

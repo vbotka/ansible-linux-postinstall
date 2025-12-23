@@ -6,7 +6,7 @@
   tags: lp_xen_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_xen_packages:
         {{ lp_xen_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_xen_dom0_mem:

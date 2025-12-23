@@ -6,7 +6,7 @@
   tags: lp_dnsmasq_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_dnsmasq_install: {{ lp_dnsmasq_install }}
       lp_dnsmasq_enable: {{ lp_dnsmasq_enable }}
       lp_dnsmasq_service: {{ lp_dnsmasq_service }}

@@ -6,8 +6,8 @@
   tags: lp_gpg_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
-      ansible_python_version: {{ ansible_python_version }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
+      ansible_python_version: {{ ansible_facts['python_version'] }}
       lp_gpg_install: {{ lp_gpg_install }}
       lp_gpg_packages:
         {{ lp_gpg_packages | to_nice_yaml(indent=2) | indent(2) }}

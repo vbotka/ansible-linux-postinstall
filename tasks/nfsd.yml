@@ -6,7 +6,7 @@
   tags: lp_nfsd_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_nfsd_install: {{ lp_nfsd_install }}
       lp_nfsd_packages:
         {{ lp_nfsd_packages | to_nice_yaml(indent=2) | indent(2) }}

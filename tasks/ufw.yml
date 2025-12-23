@@ -23,7 +23,7 @@
   tags: lp_ufw_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_ufw_install: {{ lp_ufw_install }}
       lp_ufw_enable: {{ lp_ufw_enable }}
       lp_ufw_reset: {{ lp_ufw_reset }}

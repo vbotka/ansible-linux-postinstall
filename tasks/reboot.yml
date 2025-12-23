@@ -6,7 +6,7 @@
   tags: lp_reboot_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_reboot_force: {{ lp_reboot_force }}
       lp_reboot_required_ignore: {{ lp_reboot_required_ignore }}
       lp_reboot_required_file: {{ lp_reboot_required_file }}

@@ -1,5 +1,5 @@
-acts['---
-# lin']ux_postinstall service
+---
+# linux_postinstall service
 
 - name: "Service: Debug lp_service_debug={{ lp_service_debug }}"
   when: lp_service_debug | bool

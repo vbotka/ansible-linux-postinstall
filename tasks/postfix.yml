@@ -6,7 +6,7 @@
   tags: lp_postfix_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_postfix_install: {{ lp_postfix_install }}
       lp_postfix_enable: {{ lp_postfix_enable }}
       lp_postfix_flush_handlers: {{ lp_postfix_flush_handlers }}
