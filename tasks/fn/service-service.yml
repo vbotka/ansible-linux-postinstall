@@ -3,7 +3,7 @@
 
 - name: "Service: Manual management of services"
   register: result
-  notify: reload {{ ansible_service_mgr }} daemon
+  notify: reload {{ ansible_facts['service_mgr'] }} daemon
   ansible.builtin.service:
     name: "{{ item.name }}"
     arguments: "{{ item.arguments | d(omit) }}"
