@@ -6,7 +6,7 @@
   tags: lp_sysctl_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_sysctl_owner: {{ lp_sysctl_owner }}
       lp_sysctl_group: {{ lp_sysctl_group }}
       lp_sysctl_mode: {{ lp_sysctl_mode }}

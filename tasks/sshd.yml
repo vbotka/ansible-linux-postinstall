@@ -6,7 +6,7 @@
   tags: lp_sshd_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_sshd_enable: {{ lp_sshd_enable }}
       lp_sshd_config_remove_duplicates: {{ lp_sshd_config_remove_duplicates }}
       lp_sshd_config:

@@ -6,7 +6,7 @@
   tags: lp_sudoers_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_sudoers_conf:
         {{ lp_sudoers_conf | to_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}

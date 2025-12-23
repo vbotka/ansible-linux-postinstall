@@ -6,10 +6,10 @@
   tags: lp_acpi_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
-      ansible_distribution: {{ ansible_distribution }}
-      ansible_distribution_version: {{ ansible_distribution_version }}
-      ansible_distribution_release: {{ ansible_distribution_release }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
+      ansible_distribution: {{ ansible_facts['distribution'] }}
+      ansible_distribution_version: {{ ansible_facts['distribution_version'] }}
+      ansible_distribution_release: {{ ansible_facts['distribution_release'] }}
 
       lp_acpi_install: {{ lp_acpi_install }}
       lp_acpi_enable: {{ lp_acpi_enable }}

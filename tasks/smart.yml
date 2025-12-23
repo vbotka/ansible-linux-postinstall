@@ -6,7 +6,7 @@
   tags: lp_smart_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_smart_install: {{ lp_smart_install }}
       lp_smart_packages:
         {{ lp_smart_packages | to_nice_yaml(indent=2) | indent(2) }}

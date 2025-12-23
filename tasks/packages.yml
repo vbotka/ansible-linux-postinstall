@@ -15,7 +15,7 @@
   tags: lp_packages_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_packages_auto: {{ lp_packages_auto }}
       lp_package_state: {{ lp_package_state }}
       lp_packages_autoremove: {{ lp_packages_autoremove | bool }}

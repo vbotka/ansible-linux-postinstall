@@ -6,7 +6,7 @@
   tags: lp_groups_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_groups:
         {{ lp_groups | to_nice_yaml(indent=2) | indent(2) }}
       lp_backup_conf: {{ lp_backup_conf }}

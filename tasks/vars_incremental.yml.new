@@ -10,9 +10,9 @@
   loop:
     - "{{ my_path }}/defaults.yml"
     - "{{ my_path }}/default.yml"
-    - "{{ my_path }}/{{ ansible_facts['os_family'] }}.yml"
-    - "{{ my_path }}/{{ ansible_facts['distribution'] }}.yml"
-    - "{{ my_path }}/{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_release'] }}.yml"
+    - "{{ my_path }}/{{ ansible['os_family'] }}.yml"
+    - "{{ my_path }}/{{ ansible['distribution'] }}.yml"
+    - "{{ my_path }}/{{ ansible['distribution'] }}-{{ ansible['distribution_release'] }}.yml"
 
 - name: "Vars_incemental: Debug include default vars"
   when: lp_debug2 | d(false) | bool
@@ -28,9 +28,9 @@
   loop:
     - "{{ my_path }}/defaults.yml"
     - "{{ my_path }}/default.yml"
-    - "{{ my_path }}/{{ ansible_facts['os_family'] }}.yml"
-    - "{{ my_path }}/{{ ansible_facts['distribution'] }}.yml"
-    - "{{ my_path }}/{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_release'] }}.yml"
+    - "{{ my_path }}/{{ ansible['os_family'] }}.yml"
+    - "{{ my_path }}/{{ ansible['distribution'] }}.yml"
+    - "{{ my_path }}/{{ ansible['distribution'] }}-{{ ansible['distribution_release'] }}.yml"
 
 - name: "Vars_incemental: Debug include custom vars"
   when: lp_debug2 | d(false) | bool

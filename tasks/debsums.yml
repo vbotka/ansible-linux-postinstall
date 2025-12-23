@@ -6,7 +6,7 @@
   tags: lp_debsums_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_debsums_install: {{ lp_debsums_install }}
       lp_debsums_default_file: {{ lp_debsums_default_file }}
       lp_debsums_default_conf:

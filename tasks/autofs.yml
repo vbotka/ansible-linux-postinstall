@@ -6,7 +6,7 @@
   tags: lp_autofs_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_autofs_install: {{ lp_autofs_install }}
       lp_autofs_enable: {{ lp_autofs_enable }}
       lp_autofs_flush_handlers: {{ lp_swap_flush_handlers }}

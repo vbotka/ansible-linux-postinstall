@@ -30,7 +30,7 @@
   tags: lp_systemd_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_systemd_install: {{ lp_systemd_install }}
       lp_systemd_packages:
         {{ lp_systemd_packages | to_nice_yaml(indent=2) | indent(2) }}

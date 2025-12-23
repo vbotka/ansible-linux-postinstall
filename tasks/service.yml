@@ -6,8 +6,8 @@
   tags: lp_service_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
-      ansible_service_mgr: {{ ansible_service_mgr }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
+      ansible_service_mgr: {{ ansible_facts['service_mgr'] }}
       lp_service_sanity: {{ lp_service_sanity }}
 
       lp_service_module: {{ lp_service_module }}
@@ -79,7 +79,7 @@
     - name: "Service: Automatic management of services"
       when: run_task | bool
       register: result
-      notify: reload {{ ansible_service_mgr }} daemon
+      notify: reload {{ ansible_facts['service_mgr'] }} daemon
       vars:
         my_services_alias: "{{ lp_service_auto }}"
         vbase: "{{ item | reverse | replace('ecivres_', '', 1) | reverse }}"
@@ -109,7 +109,7 @@
     - name: "Service: Manual management set module auto"
       when: lp_service_module == 'auto'
       ansible.builtin.set_fact:
-        lp_service_module: "{{ ansible_service_mgr }}"
+        lp_service_module: "{{ ansible_facts['service_mgr'] }}"
 
     - name: "Service: Include {{ lp_service_module }}"
       ansible.builtin.include_tasks: fn/service-{{ lp_service_module }}.yml

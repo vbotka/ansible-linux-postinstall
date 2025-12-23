@@ -10,9 +10,9 @@
     params:
       skip: "{{ lp_vars_distro_firstfound_skip | bool }}"
       files:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "{{ ansible_os_family }}.yml"
+        - "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_release'] }}.yml"
+        - "{{ ansible_facts['distribution'] }}.yml"
+        - "{{ ansible_facts['os_family'] }}.yml"
         - default.yml
         - defaults.yml
       paths:
@@ -36,9 +36,9 @@
     params:
       skip: "{{ lp_vars_distro_firstfound_skip | bool }}"
       files:
-        - "{{ ansible_distribution }}-{{ ansible_distribution_release }}.yml"
-        - "{{ ansible_distribution }}.yml"
-        - "{{ ansible_os_family }}.yml"
+        - "{{ ansible_facts['distribution'] }}-{{ ansible_facts['distribution_release'] }}.yml"
+        - "{{ ansible_facts['distribution'] }}.yml"
+        - "{{ ansible_facts['os_family'] }}.yml"
         - default.yml
         - defaults.yml
       paths:

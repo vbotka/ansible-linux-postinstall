@@ -6,7 +6,7 @@
   tags: lp_latex_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_backup_conf: {{ lp_backup_conf }}
       lp_latex_install: {{ lp_latex_install }}
       lp_latex_packages:

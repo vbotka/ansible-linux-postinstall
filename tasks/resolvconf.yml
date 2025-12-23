@@ -6,7 +6,7 @@
   tags: lp_resolvconf_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_resolvconf_service: {{ lp_resolvconf_service }}
       lp_resolvconf_enable: {{ lp_resolvconf_enable }}
       lp_package_state: {{ lp_package_state }}

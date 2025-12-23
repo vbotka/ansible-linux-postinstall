@@ -6,7 +6,7 @@
   tags: lp_rc_local_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_rc_local_service: {{ lp_rc_local_service }}
       lp_rc_local_state: {{ lp_rc_local_state }}
       lp_rc_local_template: {{ lp_rc_local_template }}

@@ -6,7 +6,7 @@
   tags: lp_bluetooth_debug
   vars:
     msg: |-
-      ansible_os_family: {{ ansible_os_family }}
+      ansible_os_family: {{ ansible_facts['os_family'] }}
       lp_bluetooth_enable: {{ lp_bluetooth_enable }}
       lp_bluetooth_main_conf:
         {{ lp_bluetooth_main_conf | to_yaml(indent=2) | indent(2) }}
