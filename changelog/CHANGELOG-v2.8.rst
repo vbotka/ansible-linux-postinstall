@@ -18,3 +18,4 @@ Major Changes
 
 Minor Changes
 -------------
+* Convert ansible_* variables to ansible_facts
