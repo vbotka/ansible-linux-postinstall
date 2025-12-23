@@ -11,10 +11,8 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - focal
         - jammy
         - nobel
-        - oracular
         - plucky
   galaxy_tags:
     - linux
