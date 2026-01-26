@@ -1,0 +1,43 @@
+---
+# Parse wpa_supplicant.conf
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# https://github.com/vbotka/ansible-linux-postinstall/contrib/wpa_supplicant
+
+- name: Parse wpa_supplicant.conf
+  hosts: localhost
+  gather_facts: false
+
+  vars:
+    data: "{{ wpa_supplicant_conf.stdout | split('\n\n') }}"
+  tasks:
+
+    - name: Read wpa_supplicant.conf
+      command: cat wpa_supplicant.conf
+      register: wpa_supplicant_conf
+
+    - ansible.builtin.debug:
+        var: data
+
+    - name: Create configuration file db-wpa_supplicat_conf.yml
+      ansible.builtin.copy:
+        dest: db-wpa_supplicant_conf.yml
+        mode: '0600'
+        content: |
+          db_wpa_supplicant_conf_common:
+          {% for i in data %}
+          {% if i.splitlines().0 is not match('network={') %}
+          {% for j in i.splitlines() %}
+            {{ j | split('=') | join(': ') }}
+          {% endfor %}
+          {% endif %}
+          {% endfor %}
+
+          db_wpa_supplicant_conf:
+          {% for i in data %}
+          {% if i.splitlines().0 is match('network={') %}
+            - {{ i | regex_replace('network={', '')
+                   | regex_replace('}', '')
+                   | regex_replace('=', ': ')
+                   | regex_replace('\t', '    ') }}
+          {% endif %}
+          {% endfor %}

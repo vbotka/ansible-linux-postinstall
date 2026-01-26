@@ -1,0 +1,80 @@
+# wpa_supplicant.conf helpers
+
+## Parse wpa_supplicant.conf and create db-wpa_supplicant_conf.yml
+
+The parsing works with the blocks separated by an empty line. See the
+example wpa_supplicant.conf
+
+```console
+shell > ansible-playbook pb-parse-wpa_supplicant_conf.yml -e debug=true
+```
+
+```yaml
+PLAY [Parse wpa_supplicant.conf] ************************************************************************************
+
+TASK [Read wpa_supplicant.conf] *************************************************************************************
+changed: [localhost]
+
+TASK [ansible.builtin.debug] ****************************************************************************************
+ok: [localhost] => 
+    data:
+    - |-
+        ctrl_interface=/run/wpa_supplicant
+        ctrl_interface_group=adm
+        fast_reauth=0
+        update_config=1
+    - |-
+        network={
+                ssid="TEST"
+                psk="password"
+                pairwise=CCMP
+                mesh_fwding=1
+                disabled=1
+        }
+    - |-
+        network={
+                ssid="TEST 2"
+                psk="my password"
+                pairwise=CCMP
+                mesh_fwding=1
+                disabled=1
+        }
+
+TASK [Create configuration file db-wpa_supplicat_conf.yml] **********************************************************
+ok: [localhost]
+
+PLAY RECAP **********************************************************************************************************
+localhost                  : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
+
+## Create wpa_supplicant.conf.new from db-wpa_supplicate_conf.yml
+
+The variables db_wpa_supplicant_conf and db_wpa_supplicant_conf_common
+work with the template wpa-supplicant.conf-v3.j2
+
+```console
+shell > ansible-playbook pb-wpa_supplicant_conf.yml -e debug=true
+```
+
+```yaml
+PLAY [Create wpa_supplicant.conf.new] *******************************************************************************
+
+TASK [Debug db_wpa_supplicant_conf] *********************************************************************************
+ok: [localhost] => 
+    msg: |-
+        db_wpa_supplicant_conf_common:
+          ctrl_interface: /run/wpa_supplicant
+          ctrl_interface_group: adm
+          fast_reauth: 0
+          update_config: 1
+
+        db_wpa_supplicant_conf:
+          - {disabled: 1, mesh_fwding: 1, pairwise: CCMP, psk: password, ssid: TEST}
+          - {disabled: 1, mesh_fwding: 1, pairwise: CCMP, psk: my password, ssid: TEST 2}
+
+TASK [Create wpa_supplicant.conf.new] *******************************************************************************
+changed: [localhost]
+
+PLAY RECAP **********************************************************************************************************
+localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+```

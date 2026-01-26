@@ -1,0 +1,21 @@
+db_wpa_supplicant_conf_common:
+  ctrl_interface: /run/wpa_supplicant
+  ctrl_interface_group: adm
+  fast_reauth: 0
+  update_config: 1
+
+db_wpa_supplicant_conf:
+  - 
+    ssid: "TEST"
+    psk: "password"
+    pairwise: CCMP
+    mesh_fwding: 1
+    disabled: 1
+
+  - 
+    ssid: "TEST 2"
+    psk: "my password"
+    pairwise: CCMP
+    mesh_fwding: 1
+    disabled: 1
+

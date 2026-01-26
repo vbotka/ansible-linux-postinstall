@@ -1,0 +1,18 @@
+# {{ ansible_managed }}
+# {{ template_path }}
+
+{% for k,v in db_wpa_supplicant_conf_common.items() %}
+{{ k }}={{v }}
+{% endfor %}
+{% for i in db_wpa_supplicant_conf %}
+
+network={
+{% for k,v in i.items() %}
+{% if k in ['ssid', 'psk'] %}
+        {{ k }}="{{ v }}"
+{% else %}
+        {{ k }}={{ v }}
+{% endif %}
+{% endfor %}
+}
+{% endfor %}
