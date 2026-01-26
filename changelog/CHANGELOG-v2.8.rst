@@ -19,3 +19,18 @@ Major Changes
 Minor Changes
 -------------
 * Convert ansible_* variables to ansible_facts
+
+
+2.8.1
+=====
+
+Release Summary
+---------------
+Add contrib wpa_supplicant configuration.
+
+Major Changes
+-------------
+
+
+Minor Changes
+-------------
