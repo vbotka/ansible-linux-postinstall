@@ -1,0 +1,28 @@
+---
+# Create wpa_supplicant.conf.new
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# https://github.com/vbotka/ansible-linux-postinstall/contrib/wpa_supplicant
+
+- name: Create wpa_supplicant.conf.new
+  hosts: localhost
+  gather_facts: false
+
+  vars_files:
+    - db-wpa_supplicant_conf.yml
+
+  tasks:
+
+    - name: Debug db_wpa_supplicant_conf
+      when: debug | d(false) | bool
+      ansible.builtin.debug:
+        msg: |
+          db_wpa_supplicant_conf_common:
+            {{ db_wpa_supplicant_conf_common | to_nice_yaml(indent=2) | indent(2) }}
+          db_wpa_supplicant_conf:
+            {{ db_wpa_supplicant_conf | to_yaml(indent=2) | indent(2) }}
+
+    - name: Create wpa_supplicant.conf.new
+      ansible.builtin.template:
+        src: wpa-supplicant.conf-v3.j2
+        dest: wpa_supplicant.conf.new
+        mode: '0600'

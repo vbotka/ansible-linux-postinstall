@@ -1,0 +1,23 @@
+# Ansible managed
+# wpa-supplicant.conf-v3.j2
+
+ctrl_interface=/run/wpa_supplicant
+ctrl_interface_group=adm
+fast_reauth=0
+update_config=1
+
+network={
+        ssid="TEST"
+        psk="password"
+        pairwise=CCMP
+        mesh_fwding=1
+        disabled=1
+}
+
+network={
+        ssid="TEST 2"
+        psk="my password"
+        pairwise=CCMP
+        mesh_fwding=1
+        disabled=1
+}
