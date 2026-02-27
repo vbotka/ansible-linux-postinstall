@@ -1,7 +1,6 @@
 ---
 verbosity: 1
 quiet: false
-parseable: true
 use_default_rules: true
 skip_list:
   - schema[meta]

@@ -4,6 +4,23 @@ vbotka.linux_postinstall 2.8 Release Notes
 
 .. contents:: Topics
 
+2.8.2
+=====
+
+Release Summary
+---------------
+Maintenance update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Update lint configuration.
+* Update License years.
+* Fix lint errors in contrib/wpa_supplicant
+
+
 2.8.1
 =====
 
@@ -13,7 +30,6 @@ Add contrib wpa_supplicant configuration.
 
 Major Changes
 -------------
-
 
 Minor Changes
 -------------

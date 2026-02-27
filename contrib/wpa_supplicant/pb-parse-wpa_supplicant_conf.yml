@@ -11,11 +11,12 @@
     data: "{{ wpa_supplicant_conf.stdout | split('\n\n') }}"
   tasks:
 
-    - name: Read wpa_supplicant.conf
-      command: cat wpa_supplicant.conf
+    - name: Read wpa_supplicant.conf  # noqa: no-changed-when
+      ansible.builtin.command: cat wpa_supplicant.conf
       register: wpa_supplicant_conf
 
-    - ansible.builtin.debug:
+    - name: Debug data.
+      ansible.builtin.debug:
         var: data
 
     - name: Create configuration file db-wpa_supplicat_conf.yml
