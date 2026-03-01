@@ -5,6 +5,21 @@ db_wpa_supplicant_conf_common:
   update_config: 1
 
 db_wpa_supplicant_conf:
+
+  -
+    ssid: "foo"
+    psk: "password"
+    pairwise: CCMP
+    mesh_fwding: 1
+    disabled: 1
+
+  -
+    ssid: "bar"
+    psk: "password"
+    pairwise: CCMP
+    mesh_fwding: 1
+    disabled: 1
+
   -
     ssid: "TEST"
     psk: "password"

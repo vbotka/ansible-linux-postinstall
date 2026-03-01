@@ -23,6 +23,6 @@
 
     - name: Create wpa_supplicant.conf.new
       ansible.builtin.template:
-        src: wpa-supplicant.conf-v3.j2
+        src: wpa-supplicant.conf-v5.j2
         dest: wpa_supplicant.conf.new
         mode: '0600'
