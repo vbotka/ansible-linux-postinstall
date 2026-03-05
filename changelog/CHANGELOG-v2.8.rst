@@ -21,6 +21,7 @@ Minor Changes
 * Fix lint errors in contrib/wpa_supplicant
 * Add template wpa_supplicant.conf-v4.j2
 * Add template wpa_supplicant.conf-v5.j2 sort by SSID
+* Fixed role's absolute path.
 
 
 2.8.1
