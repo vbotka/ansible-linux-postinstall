@@ -1,0 +1,11 @@
+*~
+\#*\#
+.\#*
+.ansible
+.galaxy_install_info
+.vagrant
+build
+vagrant*
+vars/main.yml
+TODO
+ATTIC

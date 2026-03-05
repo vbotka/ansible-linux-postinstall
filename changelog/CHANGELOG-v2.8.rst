@@ -11,6 +11,7 @@ Release Summary
 ---------------
 Fix the tarball. Remove and ignore the .ansible directory.
 
+
 2.8.2
 =====
 
