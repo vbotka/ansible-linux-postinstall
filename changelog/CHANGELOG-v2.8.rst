@@ -16,6 +16,8 @@ Major Changes
 
 Minor Changes
 -------------
+* Do not configure /etc/hosts if lp_hosts is empty.
+
 
 2.8.2
 =====
