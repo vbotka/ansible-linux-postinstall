@@ -17,6 +17,7 @@ Major Changes
 Minor Changes
 -------------
 * Do not configure /etc/hosts if lp_hosts is empty.
+* Docs. Remove from_yaml filter from the annotations templates.
 
 
 2.8.2
