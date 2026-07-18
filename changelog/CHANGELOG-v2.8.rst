@@ -16,6 +16,7 @@ Major Changes
 
 Minor Changes
 -------------
+* Update ansible.builtin.vars lookup expressions.
 * Do not configure /etc/hosts if lp_hosts is empty.
 * Docs. Remove from_yaml filter from the annotations templates.
 

@@ -35,8 +35,8 @@
   tags: lp_zfs_services
   vars:
     srv_enbl: "{{ item.enabled | d(true) }}"
+    default_stat: "{{ srv_enbl | ternary('started', 'stopped') }}"
     srv_stat: "{{ item.state | d(default_stat) }}"
-    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
   ansible.builtin.service:
     name: "{{ item.name }}"
     enabled: "{{ srv_enbl }}"

@@ -83,12 +83,12 @@
       vars:
         my_services_alias: "{{ lp_service_auto }}"
         vbase: "{{ item | reverse | replace('ecivres_', '', 1) | reverse }}"
-        run_task: "{{ lookup('vars', vbase, default=false) }}"
-        srv_name: "{{ lookup('vars', vbase ~ '_service', default=item) }}"
-        srv_enbl: "{{ lookup('vars', vbase ~ '_enable', default=false) }}"
-        use_modl: "{{ lookup('vars', vbase ~ '_module', default='auto') }}"
-        srv_stat: "{{ lookup('vars', vbase ~ '_state', default=default_state) }}"
-        default_state: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
+        run_task: "{{ lookup('ansible.builtin.vars', vbase, default=false) }}"
+        srv_name: "{{ lookup('ansible.builtin.vars', vbase ~ '_service', default=item) }}"
+        use_modl: "{{ lookup('ansible.builtin.vars', vbase ~ '_module', default='auto') }}"
+        srv_enbl: "{{ lookup('ansible.builtin.vars', vbase ~ '_enable', default=false) }}"
+        default_state: "{{ srv_enbl | ternary('started', 'stopped') }}"
+        srv_stat: "{{ lookup('ansible.builtin.vars', vbase ~ '_state', default=default_state) }}"
       ansible.builtin.service:
         name: "{{ srv_name }}"
         state: "{{ srv_stat }}"
