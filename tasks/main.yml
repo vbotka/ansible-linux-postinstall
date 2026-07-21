@@ -107,7 +107,7 @@
 
 - name: Import hosts.yml
   ansible.builtin.import_tasks: hosts.yml
-  when: (ansible_facts['os_family'] == 'RedHat') or (ansible_facts['os_family'] == 'Debian')
+  when: (ansible_facts['os_family'] == 'RedHat') or (ansible_facts['os_family'] == 'Debian') and lp_hosts | length > 0
   tags: lp_hosts
 
 - name: Import iptables.yml

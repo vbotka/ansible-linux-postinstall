@@ -78,10 +78,10 @@
 - name: Service enable or disable
   tags: lp_nm_service
   vars:
-    srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
-    srv_enbl: "{{ lookup('vars', 'lp_' ~ item ~ '_enable', default=false) }}"
-    srv_stat: "{{ lookup('vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
-    default_stat: "{{ srv_enbl | bool | ternary('started', 'stopped') }}"
+    srv_name: "{{ lookup('ansible.builtin.vars', 'lp_' ~ item ~ '_service', default=item) }}"
+    srv_enbl: "{{ lookup('ansible.builtin.vars', 'lp_' ~ item ~ '_enable', default=false) }}"
+    default_stat: "{{ srv_enbl | ternary('started', 'stopped') }}"
+    srv_stat: "{{ lookup('ansible.builtin.vars', 'lp_' ~ item ~ '_state', default=default_stat) }}"
     status: "{{ dict(out.results | json_query('[].[name, status.UnitFileState]')) }}"
   block:
 
@@ -111,7 +111,7 @@
 - name: "Nm: Services mask={{ lp_nm_mask }}"
   tags: lp_nm_mask
   vars:
-    srv_name: "{{ lookup('vars', 'lp_' ~ item ~ '_service', default=item) }}"
+    srv_name: "{{ lookup('ansible.builtin.vars', 'lp_' ~ item ~ '_service', default=item) }}"
   ansible.builtin.systemd_service:
     name: "{{ srv_name }}"
     masked: "{{ lp_nm_mask }}"

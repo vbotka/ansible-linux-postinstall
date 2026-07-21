@@ -11,12 +11,12 @@ mytemplates:{% if my_files | d([]) | length == 0  %} []{% endif %}
       {{ lookup('vars', 'template_' ~ f.file_name ~ '_description', default='Description of the task.') | indent(width=6) }}
     lines: {{ lookup('vars', 'template_' ~ f.file_name ~ '_lines', default='1') }}
     seealso:
-      {{ lookup('vars', 'template_' ~ f.file_name ~ '_seealso', default={}) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+      {{ lookup('vars', 'template_' ~ f.file_name ~ '_seealso', default={}) | to_nice_yaml(indent=2) | indent(6) }}
     notes:
-      {{ lookup('vars', 'template_' ~ f.file_name ~ '_note', default=[]) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+      {{ lookup('vars', 'template_' ~ f.file_name ~ '_note', default=[]) | to_nice_yaml(indent=2) | indent(6) }}
     hints:
-      {{ lookup('vars', 'template_' ~ f.file_name ~ '_hint', default=[]) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+      {{ lookup('vars', 'template_' ~ f.file_name ~ '_hint', default=[]) | to_nice_yaml(indent=2) | indent(6) }}
     warnings:
-      {{ lookup('vars', 'template_' ~ f.file_name ~ '_warning', default=[]) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+      {{ lookup('vars', 'template_' ~ f.file_name ~ '_warning', default=[]) | to_nice_yaml(indent=2) | indent(6) }}
 {% endfor %}
 ...

@@ -23,12 +23,12 @@ mytasks:
       {{ lookup('vars', 'task_' ~ f.file_name ~ '_description', default='Description of the task.') | indent(width=6) }}
     lines: {{ lookup('vars', 'task_' ~ f.file_name ~ '_lines', default='1') }}
     seealso:
-      {{ lookup('vars', 'task_' ~ f.file_name ~ '_seealso', default={}) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+      {{ lookup('vars', 'task_' ~ f.file_name ~ '_seealso', default={}) | to_nice_yaml(indent=2) | indent(6) }}
     notes:
-      {{ lookup('vars', 'task_' ~ f.file_name ~ '_note', default=[]) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+      {{ lookup('vars', 'task_' ~ f.file_name ~ '_note', default=[]) | to_nice_yaml(indent=2) | indent(6) }}
     hints:
-      {{ lookup('vars', 'task_' ~ f.file_name ~ '_hint', default=[]) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+      {{ lookup('vars', 'task_' ~ f.file_name ~ '_hint', default=[]) | to_nice_yaml(indent=2) | indent(6) }}
     warnings:
-      {{ lookup('vars', 'task_' ~ f.file_name ~ '_warning', default=[]) | from_yaml | to_nice_yaml(indent=2) | indent(6) }}
+      {{ lookup('vars', 'task_' ~ f.file_name ~ '_warning', default=[]) | to_nice_yaml(indent=2) | indent(6) }}
 {% endfor %}
 ...
