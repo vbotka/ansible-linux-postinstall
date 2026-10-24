@@ -3,147 +3,184 @@
 Quick start guide
 *****************
 
-For the users who want to try the role quickly, this guide provides an
+For users who want to try the role quickly, this guide provides an
 example of how to create users, install packages, and configure
 services.
 
 
-* Install the roles::
+- Install the roles:
+
+.. code-block:: console
 
     shell> ansible-galaxy install vbotka.linux_postinstall
+
+.. code-block:: console
+
     shell> ansible-galaxy install vbotka.ansible_lib
+
+.. code-block:: console
+
     shell> ansible-galaxy install vbotka.linux_lib
 
 
-* Create the playbook ``playbook.yml`` for single host srv.example.com (2)
+- Create the playbook ``playbook.yml`` for a single host *srv.example.com*:
 
-.. code-block:: Bash
-   :emphasize-lines: 2
-   :linenos:
+.. code-block:: console
 
-   shell> cat playbook.yml
-   - hosts: srv.example.com
-     gather_facts: true
-     connection: ssh
-     remote_user: admin
-     become: yes
-     become_user: root
-     become_method: sudo
-     roles:
-       - vbotka.linux_postinstall
+    shell> cat playbook.yml
 
+.. code-block:: yaml
+    :linenos:
 
-* Create ``host_vars`` with customized variables
-
-.. code-block:: Bash
-   :emphasize-lines: 2-6
-   :linenos:
-
-   shell> ls -1 host_vars/srv.example.com/lp-*
-   host_vars/srv.example.com/lp-common.yml
-   host_vars/srv.example.com/lp-users.yml
-   host_vars/srv.example.com/lp-passwords.yml
-   host_vars/srv.example.com/lp-packages.yml
-   host_vars/srv.example.com/lp-service.yml
+    - hosts: srv.example.com
+      gather_facts: true
+      connection: ssh
+      remote_user: admin
+      become: true
+      become_user: root
+      become_method: sudo
+      roles:
+        - vbotka.linux_postinstall
 
 
-* To speedup the execution set some variables (2-4) to *false*
+- Create ``host_vars`` with customized variables:
 
-.. code-block:: Bash
-   :emphasize-lines: 2-4
-   :linenos:
+.. code-block:: console
 
-   shell> cat host_vars/srv.example.com/lp-common.yml
-   lp_debug: false
-   lp_backup_conf: false
-   lp_flavors_enable: false
+    shell> ls -1 host_vars/srv.example.com/lp-*
 
+.. code-block:: text
+    :linenos:
 
-* Create users. The passwords will not be created (5,8). See `details <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_
-
-.. code-block:: Bash
-   :emphasize-lines: 5,8
-   :linenos:
-
-   shell> cat host_vars/srv.example.com/lp-users.yml
-   lp_users:
-     - name: ansible
-       shell: /bin/sh
-       disabled_password: true
-     - name: admin
-       shell: /bin/bash
-       disabled_password: true
-   lp_users_groups:
-     - name: admin
-       groups: [adm, dialout]
+    host_vars/srv.example.com/lp-common.yml
+    host_vars/srv.example.com/lp-users.yml
+    host_vars/srv.example.com/lp-passwords.yml
+    host_vars/srv.example.com/lp-packages.yml
+    host_vars/srv.example.com/lp-service.yml
 
 
-* Configure passwords. See `details <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_
+- To speed up execution, set non-essential variables to *false*:
+
+.. code-block:: console
+
+    shell> cat host_vars/srv.example.com/lp-common.yml
+
+.. code-block:: yaml
+    :linenos:
+
+    lp_debug: false
+    lp_backup_conf: false
+    lp_flavors_enable: false
+
+
+- Create users. Passwords will not be created (lines 4, 7). See `details
+  <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_.
+
+.. code-block:: console
+
+    shell> cat host_vars/srv.example.com/lp-users.yml
+
+.. code-block:: yaml
+    :emphasize-lines: 4,7
+    :linenos:
+
+    lp_users:
+      - name: ansible
+        shell: /bin/sh
+        disabled_password: true
+      - name: admin
+        shell: /bin/bash
+        disabled_password: true
+    lp_users_groups:
+      - name: admin
+        groups: [adm, dialout]
+
+
+- Configure passwords. See `details
+  <https://github.com/vbotka/ansible-lib/blob/master/tasks/al_pws_user_host.yml>`_.
 
 .. index::
-   single: passwordstore
+    single: passwordstore; Quick start guide
 
-.. code-block:: Bash
-   :emphasize-lines: 2-5
-   :linenos:
+.. code-block:: console
 
-   shell> cat host_vars/srv.example.com/lp-passwords.yml
-   lp_passwords: true
-   lp_passwordstore: true
-   lp_passwordstore_create: false
-   lp_passwordstore_overwrite: false
+    shell> cat host_vars/srv.example.com/lp-passwords.yml
 
+.. code-block:: yaml
+    :linenos:
 
-* Install packages and enable autoremove
-
-.. code-block:: Bash
-   :emphasize-lines: 2-3
-   :linenos:
-
-   shell> cat host_vars/srv.example.com/lp-packages.yml
-   lp_packages_autoremove: true
-   lp_packages_install:
-     - ansible
-     - ansible-lint
-     - ansible-tower-cli
+    lp_passwords: true
+    lp_passwordstore: true
+    lp_passwordstore_create: false
+    lp_passwordstore_overwrite: false
 
 
-* Configure services
+- Install packages and enable autoremove:
 
-.. code-block:: Bash
-   :emphasize-lines: 2-3
-   :linenos:
+.. code-block:: console
 
-   shell> cat host_vars/srv.example.com/lp-service.yml
-   lp_service_debug: true
-   lp_service:
-     - {name: ssh, state: started, enabled: true}
-  
+    shell> cat host_vars/srv.example.com/lp-packages.yml
 
-* Test syntax ::
+.. code-block:: yaml
+    :linenos:
+
+    lp_packages_autoremove: true
+    lp_packages_install:
+      - ansible
+      - ansible-lint
+      - ansible-tower-cli
+
+
+- Configure services:
+
+.. code-block:: console
+
+    shell> cat host_vars/srv.example.com/lp-service.yml
+
+.. code-block:: yaml
+    :linenos:
+
+    lp_service_debug: true
+    lp_service:
+      - {name: ssh, state: started, enabled: true}
+
+
+- Test syntax:
+
+.. code-block:: console
 
     shell> ansible-playbook playbook.yml --syntax-check
 
 
-* See what variables will be included ::
+- See which variables will be included:
+
+.. code-block:: console
 
     shell> ansible-playbook playbook.yml -t lp_debug -e lp_debug=true
 
 
-* Install packages ::
+- Install packages:
+
+.. code-block:: console
 
     shell> ansible-playbook playbook.yml -t lp_packages
 
 
-* Dry-run, display differences and display variables ::
+- Perform a dry-run to display diffs and variable values:
+
+.. code-block:: console
 
     shell> ansible-playbook playbook.yml -e lp_debug=true --check --diff
 
 
-* Run the playbook ::
+- Run the playbook:
+
+.. code-block:: console
 
     shell> ansible-playbook playbook.yml
 
 
-.. warning:: The host has not been secured by this playbook and should
-             be used for testing only.
+.. warning::
+
+    The host has not been secured by this playbook and should be used for testing
+    only.

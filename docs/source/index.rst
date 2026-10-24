@@ -5,13 +5,10 @@ Ansible role Linux postinstall
 
 version |release|
 
-| This `role`_ and the documentation is work in progress.
-| Feel free to `share your feedback and report issues`_.
-| `Contributions are welcome <https://github.com/firstcontributions/first-contributions>`_.
-
-If the documentation of a task is missing it's necessary to review the `source code`_ to learn how
-to use it. If a functionality is missing consider role `config_light`_. See various `examples`_. If
-`config_light`_ is not able to do what you want update or create new tasks.
+If the documentation of a task is missing it's necessary to review the `source
+code`_ to learn how to use it. If a functionality is missing consider role
+`config_light`_. See various `examples`_. If `config_light`_ is not able to do
+what you want update or create new tasks.
 
 .. toctree::
    :maxdepth: 1
@@ -22,13 +19,7 @@ to use it. If a functionality is missing consider role `config_light`_. See vari
    annotation
    copyright
    legalnotice
-
-Indices and tables
-------------------
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   Index <genindex>
 
 .. _vbotka.linux_postinstall: https://galaxy.ansible.com/vbotka/linux_postinstall
 .. _role: https://galaxy.ansible.com/vbotka/linux_postinstall

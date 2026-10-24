@@ -18,6 +18,7 @@ Major Changes
 Minor Changes
 -------------
 * Docs. Add sphinx_rtd_dark_mode and coppybutton.
+* Docs. Update Quick Start Guide. Add Index to main menu.
 
 
 2.8.4
