@@ -5,6 +5,22 @@ vbotka.linux_postinstall 2.8 Release Notes
 .. contents:: Topics
 
 
+2.8.5
+=====
+
+Release Summary
+---------------
+Maintenace update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Docs. Add sphinx_rtd_dark_mode and coppybutton.
+* Docs. Update Quick Start Guide. Add Index to main menu.
+
+
 2.8.4
 =====
 

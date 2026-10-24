@@ -1,16 +1,50 @@
 ---
 
 lp_repos:
- - repo: 'deb http://archive.canonical.com/ubuntu artful partner'
- - repo: 'deb http://packages.cloud.google.com/apt cloud-sdk-artful main'
- - repo: 'deb http://ppa.launchpad.net/ansible/ansible-2.4/ubuntu artful main'
-lp_repos_keys:
- - url: 'https://packages.cloud.google.com/apt/doc/apt-key.gpg'
- - keyserver: 'keyserver.ubuntu.com'
-   id: '6125E2A8C77F2818FB7BD15B93C4A3FD7BB9C367'
+  # Canonical / Ubuntu official repository
+- name: 'ubuntu-archive'
+  uris: 'http://archive.ubuntu.com/ubuntu/'
+  suites: ['noble', 'noble-updates', 'noble-backports']
+  components: ['main', 'restricted', 'universe', 'multiverse']
+  types: ['deb']
+  signed_by: '/usr/share/keyrings/ubuntu-archive-keyring.gpg'
 
-# Notes on issues still open 08/2019)
-# 1) apt_repository: does not understand arch= option #18975 (reported Dec 8, 2016)
-# https://github.com/ansible/ansible/issues/18975
-# 2) apt-repository drops the arch specification given in the source string of the repo parameter #23690
-# https://github.com/ansible/ansible/issues/23690
+  # Ansible PPA repository
+- name: 'ansible-noble'
+  uris: 'https://ppa.launchpadcontent.net/ansible/ansible/ubuntu'
+  suites: 'noble'
+  components: 'main'
+  signed_by: '/etc/apt/keyrings/ansible-noble.asc'
+
+  # Third-party repo with architecture constraint
+- name: 'virtualbox'
+  uris: 'https://download.virtualbox.org/virtualbox/debian/'
+  suites: 'bookworm'
+  components: 'contrib'
+  architectures: ['amd64']
+  signed_by: '/etc/apt/keyrings/oracle_vbox_2016.asc'
+
+  # Deprecated repository set to absent
+- name: 'disco-security'
+  state: 'absent'
+
+lp_repos_keys:
+  # Fetch key from Ubuntu keyserver over HTTPS
+- url: 'https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x909582fb991dbdbb59bff53eb6b8a03edce0e38e'
+  dest: '/etc/apt/keyrings/ansible-noble.asc'
+  mode: '0644'
+
+  # Fetch key from project URL
+- url: 'https://www.virtualbox.org/download/oracle_vbox_2016.asc'
+  dest: '/etc/apt/keyrings/oracle_vbox_2016.asc'
+
+  # Inline key block
+- content: |
+    -----BEGIN PGP PUBLIC KEY BLOCK-----
+    ...
+    -----END PGP PUBLIC KEY BLOCK-----
+  dest: '/etc/apt/keyrings/custom-repo.asc'
+
+  # Removing a deprecated key
+- dest: '/etc/apt/keyrings/disco-security.asc'
+  state: 'absent'
