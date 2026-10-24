@@ -4,6 +4,14 @@ vbotka.linux_postinstall 2.9 Release Notes
 
 .. contents:: Topics
 
+2.9.2
+=====
+
+Release Summary
+---------------
+Docs update requirements.
+
+
 2.9.1
 =====
 
