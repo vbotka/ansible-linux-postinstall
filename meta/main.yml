@@ -7,13 +7,13 @@ galaxy_info:
   company: https://botka.info
   github_branch: master
   license: BSD
-  min_ansible_version: "2.20"
+  min_ansible_version: "2.21"
   platforms:
     - name: Ubuntu
       versions:
         - jammy
         - nobel
-        - plucky
+        - resolute
   galaxy_tags:
     - linux
     - ubuntu

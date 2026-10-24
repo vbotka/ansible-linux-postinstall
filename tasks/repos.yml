@@ -1,7 +1,7 @@
 ---
 # linux_postinstall repos
 
-- name: "Repos: Debug lp_repos_debug={{ lp_repos_debug }}"
+- name: "Repos: Debug lp_repos_debug={{ lp_repos_debug }}."
   when: lp_repos_debug | bool
   tags: lp_repos_debug
   vars:
@@ -14,52 +14,124 @@
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
 
-- name: Manage repo signing keys
+- name: "Manage repo signing keys."
   tags: lp_repos_keys_manage
   block:
 
-    - name: "Repos: Manage repo signing keys"
-      ansible.builtin.apt_key:
-        data: "{{ item.data | d(omit) }}"
-        file: "{{ item.file | d(omit) }}"
-        id: "{{ item.id | d(omit) }}"
-        keyring: "{{ item.keyring | d(omit) }}"
-        keyserver: "{{ item.keyserver | d(omit) }}"
-        state: "{{ item.state | d(omit) }}"
-        url: "{{ item.url | d(omit) }}"
+    - name: "Repos: Ensure /etc/apt/keyrings directory exists."
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+
+    - name: "Repos: Manage repo signing keys via URL."
+      when:
+        - item.url is defined
+        - (item.state | d('present')) != 'absent'
+      ansible.builtin.get_url:
+        url: "{{ item.url }}"
+        dest: "{{ item.dest }}"
+        owner: "{{ item.owner | d('root') }}"
+        group: "{{ item.group | d('root') }}"
+        mode: "{{ item.mode | d('0644') }}"
+        checksum: "{{ item.checksum | d(omit) }}"
+        client_cert: "{{ item.client_cert | d(omit) }}"
+        client_key: "{{ item.client_key | d(omit) }}"
+        force: "{{ item.force | d(omit) }}"
+        headers: "{{ item.headers | d(omit) }}"
+        http_agent: "{{ item.http_agent | d(omit) }}"
+        timeout: "{{ item.timeout | d(omit) }}"
+        url_password: "{{ item.url_password | d(omit) }}"
+        url_username: "{{ item.url_username | d(omit) }}"
+        use_gssapi: "{{ item.use_gssapi | d(omit) }}"
+        use_proxy: "{{ item.use_proxy | d(omit) }}"
         validate_certs: "{{ item.validate_certs | d(omit) }}"
       loop: "{{ lp_repos_keys }}"
-      register: result
+      loop_control:
+        label: "{{ item.dest | d(item.url | d('key')) }}"
+      register: result_keys_get
       retries: "{{ lp_install_retries }}"
-      until: result is succeeded
+      until: result_keys_get is succeeded
       delay: "{{ lp_install_delay }}"
 
-    - name: "Repos: Debug manage repo signing keys lp_repos_debug={{ lp_repos_debug }}"
+    - name: "Repos: Manage repo signing keys via content block."
+      when:
+        - item.content is defined
+        - (item.state | d('present')) != 'absent'
+      ansible.builtin.copy:
+        content: "{{ item.content }}"
+        dest: "{{ item.dest }}"
+        owner: "{{ item.owner | d('root') }}"
+        group: "{{ item.group | d('root') }}"
+        mode: "{{ item.mode | d('0644') }}"
+        backup: "{{ item.backup | d(omit) }}"
+        validate: "{{ item.validate | d(omit) }}"
+      loop: "{{ lp_repos_keys }}"
+      loop_control:
+        label: "{{ item.dest | d('inline-key') }}"
+      register: result_keys_copy
+
+    - name: "Repos: Remove repo signing keys when absent."
+      when: (item.state | d('present')) == 'absent'
+      ansible.builtin.file:
+        path: "{{ item.dest }}"
+        state: absent
+      loop: "{{ lp_repos_keys }}"
+      loop_control:
+        label: "{{ item.dest | d('remove-key') }}"
+      register: result_keys_rm
+
+    - name: "Repos: Debug manage repo signing keys lp_repos_debug={{ lp_repos_debug }}."
       when: lp_repos_debug | bool
       ansible.builtin.debug:
-        var: result
+        msg:
+          - "{{ result_keys_get }}"
+          - "{{ result_keys_copy }}"
+          - "{{ result_keys_rm }}"
 
-- name: Manage repositories
+- name: "Manage repositories."
   tags: lp_repos_manage
   block:
 
-    - name: "Repos: Manage repositories"
-      register: result
-      ansible.builtin.apt_repository:
-        codename: "{{ item.codename | d(omit) }}"
-        filename: "{{ item.filename | d(omit) }}"
-        mode: "{{ item.mode | d(omit) }}"
-        repo: "{{ item.repo | mandatory }}"
+    - name: "Repos: Manage DEB822 repositories."
+      ansible.builtin.deb822_repository:
+        name: "{{ item.name }}"
+        types: "{{ item.types | d(omit) }}"
+        uris: "{{ item.uris | d(omit) }}"
+        suites: "{{ item.suites | d(omit) }}"
+        components: "{{ item.components | d(omit) }}"
+        signed_by: "{{ item.signed_by | d(omit) }}"
+        architectures: "{{ item.architectures | d(omit) }}"
+        languages: "{{ item.languages | d(omit) }}"
+        targets: "{{ item.targets | d(omit) }}"
+        pdiffs: "{{ item.pdiffs | d(omit) }}"
+        by_hash: "{{ item.by_hash | d(omit) }}"
+        allow_insecure: "{{ item.allow_insecure | d(omit) }}"
+        allow_weak: "{{ item.allow_weak | d(omit) }}"
+        allow_downgrade_to_insecure: "{{ item.allow_downgrade_to_insecure | d(omit) }}"
+        trusted: "{{ item.trusted | d(omit) }}"
+        check_date: "{{ item.check_date | d(omit) }}"
+        check_valid_until: "{{ item.check_valid_until | d(omit) }}"
+        date_max_future: "{{ item.date_max_future | d(omit) }}"
+        inrelease_path: "{{ item.inrelease_path | d(omit) }}"
         state: "{{ item.state | d(omit) }}"
-        update_cache: "{{ item.update_cache | d(omit) }}"
-        validate_certs: "{{ item.validate_certs | d(omit) }}"
+        mode: "{{ item.mode | d(omit) }}"
+        owner: "{{ item.owner | d(omit) }}"
+        group: "{{ item.group | d(omit) }}"
+        enabled: "{{ item.enabled | d(omit) }}"
       loop: "{{ lp_repos }}"
       loop_control:
-        label: "{{ item.repo }}"
+        label: "{{ item.name }}"
+      register: result_repos
+      retries: "{{ lp_install_retries }}"
+      until: result_repos is succeeded
+      delay: "{{ lp_install_delay }}"
 
-    - name: "Repos: Debug manage repositories lp_repos_debug={{ lp_repos_debug }}"
+    - name: "Repos: Debug manage repositories lp_repos_debug={{ lp_repos_debug }}."
       when: lp_repos_debug | bool
       ansible.builtin.debug:
-        var: result
+        var: result_repos
 
 # EOF

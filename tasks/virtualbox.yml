@@ -9,8 +9,6 @@
       ansible_lsb.description: {{ ansible_lsb.codename }}
       lp_virtualbox: {{ lp_virtualbox }}
       lp_virtualbox_ignore_errors: {{ lp_virtualbox_ignore_errors }}
-      lp_virtualbox_keys: {{ lp_virtualbox_keys }}
-      lp_virtualbox_repos: {{ lp_virtualbox_repos }}
       lp_virtualbox_packages:
         {{ lp_virtualbox_packages | to_nice_yaml(indent=2) | indent(2) }}
       lp_virtualbox_services:
@@ -21,27 +19,7 @@
 # TODO: assert lp_virtualbox_modules are loaded
 #       when: lp_virtualbox | bool
 
-- name: "Virtualbox: Add signing key of VirtualBox"
-  tags: lp_virtualbox_keys
-  ansible.builtin.apt_key:
-    url: "{{ item }}"
-    state: present
-  loop: "{{ lp_virtualbox_keys }}"
-  register: result
-  retries: "{{ lp_install_retries }}"
-  until: result is succeeded
-  delay: "{{ lp_install_delay }}"
-  ignore_errors: "{{ lp_virtualbox_ignore_errors }}" # noqa ignore-errors
-
-- name: "Virtualbox: Add repository of VirtualBox"
-  tags: lp_virtualbox_repos
-  ansible.builtin.apt_repository:
-    repo: "{{ item }}"
-    state: present
-  loop: "{{ lp_virtualbox_repos }}"
-  ignore_errors: "{{ lp_virtualbox_ignore_errors }}" # noqa ignore-errors
-
-- name: "Virtualbox: Install VirtualBox packages"
+- name: "Virtualbox: Install VirtualBox packages."
   when: lp_virtualbox_install | bool
   tags: lp_virtualbox_packages
   vars:
@@ -55,7 +33,7 @@
     name: vbotka.linux_lib
     tasks_from: install_package.yml
 
-- name: "Virtualbox: Services start/stop and enable/disable"
+- name: "Virtualbox: Services start/stop and enable/disable."
   tags: lp_virtualbox_service
   vars:
     srv_name: "{{ lookup('ansible.builtin.vars', 'lp_' ~ item ~ '_service', default=item) }}"
