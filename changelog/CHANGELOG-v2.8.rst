@@ -17,6 +17,7 @@ Major Changes
 
 Minor Changes
 -------------
+* Docs. Add sphinx_rtd_dark_mode and coppybutton.
 
 
 2.8.4

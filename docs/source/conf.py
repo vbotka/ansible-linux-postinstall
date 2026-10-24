@@ -16,7 +16,16 @@ on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.intersphinx', 'sphinx.ext.todo', 'sphinx.ext.coverage', 'sphinx.ext.viewcode', 'sphinx.ext.githubpages']
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx',
+    'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+    'sphinx.ext.viewcode',
+    'sphinx.ext.githubpages',
+    'sphinx_rtd_theme',
+    'sphinx_rtd_dark_mode',
+    "sphinx_copybutton",]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -63,10 +72,10 @@ pygments_style = 'sphinx'
 todo_include_todos = False
 
 
-# -- Options for HTML output ----------------------------------------------                 
-#                                                                                           
-# The theme to use for HTML and HTML Help pages.  See the documentation for                 
-# a list of builtin themes.                                                                 
+# -- Options for HTML output ----------------------------------------------
+#
+# The theme to use for HTML and HTML Help pages.  See the documentation for
+# a list of builtin themes.
 if not on_rtd:  # only import and set the theme if we're building docs locally
     # import sphinx_rtd_theme
     # html_theme = 'alabaster'
@@ -93,7 +102,7 @@ else:
 # so a file named "default.css" will overwrite the builtin "default.css".
 # html_static_path = ['_static']
 html_static_path = []
-
+html_css_files = ["custom_dark.css",]
 
 # -- Options for HTMLHelp output ------------------------------------------
 
@@ -139,7 +148,6 @@ man_pages = [
      [author], 1)
 ]
 
-
 # -- Options for Texinfo output -------------------------------------------
 
 # Grouping the document tree into Texinfo files. List of tuples
@@ -150,3 +158,28 @@ texinfo_documents = [
      author, 'ansible-role-linux-postinstall', 'One line description of project.',
      'Miscellaneous'),
 ]
+
+# Copybutton - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Strip prompts
+copybutton_prompt_text = (
+    r"^(?:"
+    r"\[[a-zA-Z0-9_.-]+\][#$]\s*|"       # matches '[iocage_02]# '
+    r"shell>\s*|"                        # matches 'shell> '
+    r"(?:\([a-zA-Z0-9_.-]+\)\s*)?>\s*|"  # matches '(env) > ' or standalone '> '
+    r">>> |\.\.\. |\$ "                  # Python shell and standard bash prompts
+    r")"
+)
+copybutton_prompt_is_regexp = True
+# Change hover text or icon behavior
+copybutton_only_copy_prompt_lines = False
+copybutton_remove_prompts = True
+
+# Links - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+exclude_patterns = [
+    'links.rst',
+]
+from pathlib import Path
+
+links_path = Path(__file__).parent / "links.rst"
+if links_path.exists():
+    rst_epilog = links_path.read_text(encoding="utf-8")

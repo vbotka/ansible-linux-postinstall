@@ -1,0 +1,415 @@
+/* ==========================================================================
+   Solarized Dark Pygments Token Map for sphinx-rtd-dark-mode
+   Palette reference:
+     base03:  #002b36 (Main background)
+     base02:  #073642 (Subtle background / border / highlights)
+     base01:  #586e75 (Comments / secondary content)
+     base00:  #657b83
+     base0:   #839496 (Body text / identifiers)
+     base1:   #93a1a1 (Prompts / strong text)
+     yellow:  #b58900
+     orange:  #cb4b16
+     red:     #dc322f
+     magenta: #d33682
+     violet:  #6c71c4
+     blue:    #268bd2
+     cyan:    #2aa198
+     green:   #859900
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Container & Baseline Text
+   -------------------------------------------------------------------------- */
+html[data-theme="dark"] .highlight,
+html[data-theme="dark"] div[class^="highlight-"] {
+    background-color: #002b36 !important;
+    border: 1px solid #073642 !important;
+    border-radius: 4px;
+}
+
+html[data-theme="dark"] .highlight pre,
+html[data-theme="dark"] .highlight code,
+html[data-theme="dark"] .highlight .n {       /* Name / Identifiers */
+    color: #839496 !important;                /* base0 */
+}
+
+/* Line numbers */
+html[data-theme="dark"] .highlight .linenos,
+html[data-theme="dark"] .highlight .lineno {
+    color: #586e75 !important;                /* base01 */
+    background-color: #073642 !important;     /* base02 */
+}
+
+/* --------------------------------------------------------------------------
+   Comments (Group 'c')
+   -------------------------------------------------------------------------- */
+html[data-theme="dark"] .highlight .c,        /* Comment */
+html[data-theme="dark"] .highlight .ch,       /* Comment.Hashbang */
+html[data-theme="dark"] .highlight .cm,       /* Comment.Multiline */
+html[data-theme="dark"] .highlight .cp,       /* Comment.Preproc */
+html[data-theme="dark"] .highlight .cpf,      /* Comment.PreprocFile */
+html[data-theme="dark"] .highlight .c1,       /* Comment.Single */
+html[data-theme="dark"] .highlight .cs {      /* Comment.Special */
+    color: #586e75 !important;                /* base01 */
+    font-style: italic;
+}
+
+/* --------------------------------------------------------------------------
+   Keywords (Group 'k')
+   -------------------------------------------------------------------------- */
+html[data-theme="dark"] .highlight .k,        /* Keyword */
+html[data-theme="dark"] .highlight .kd,       /* Keyword.Declaration */
+html[data-theme="dark"] .highlight .kn,       /* Keyword.Namespace (import, from) */
+html[data-theme="dark"] .highlight .kp,       /* Keyword.Pseudo */
+html[data-theme="dark"] .highlight .kr,       /* Keyword.Reserved */
+html[data-theme="dark"] .highlight .kt {      /* Keyword.Type */
+    color: #859900 !important;                /* green */
+}
+
+html[data-theme="dark"] .highlight .kc {       /* Keyword.Constant (True, False, None) */
+    color: #b58900 !important;                 /* yellow */
+}
+
+/* --------------------------------------------------------------------------
+   Strings & Literals (Group 's')
+   -------------------------------------------------------------------------- */
+html[data-theme="dark"] .highlight .s,        /* Literal.String */
+html[data-theme="dark"] .highlight .sa,       /* Literal.String.Affix */
+html[data-theme="dark"] .highlight .sb,       /* Literal.String.Backtick */
+html[data-theme="dark"] .highlight .sc,       /* Literal.String.Char */
+html[data-theme="dark"] .highlight .dl,       /* Literal.String.Delimiter */
+html[data-theme="dark"] .highlight .sd,       /* Literal.String.Doc */
+html[data-theme="dark"] .highlight .s2,       /* Literal.String.Double */
+html[data-theme="dark"] .highlight .sh,       /* Literal.String.Heredoc */
+html[data-theme="dark"] .highlight .si,       /* Literal.String.Interpol */
+html[data-theme="dark"] .highlight .sx,       /* Literal.String.Other */
+html[data-theme="dark"] .highlight .sr,       /* Literal.String.Regex */
+html[data-theme="dark"] .highlight .s1,       /* Literal.String.Single */
+html[data-theme="dark"] .highlight .ss {      /* Literal.String.Symbol */
+    color: #2aa198 !important;                /* cyan */
+}
+
+html[data-theme="dark"] .highlight .se {      /* Literal.String.Escape */
+    color: #cb4b16 !important;                /* orange */
+}
+
+/* --------------------------------------------------------------------------
+   Numbers (Group 'm')
+   -------------------------------------------------------------------------- */
+html[data-theme="dark"] .highlight .m,        /* Literal.Number */
+html[data-theme="dark"] .highlight .mb,       /* Literal.Number.Bin */
+html[data-theme="dark"] .highlight .mf,       /* Literal.Number.Float */
+html[data-theme="dark"] .highlight .mh,       /* Literal.Number.Hex */
+html[data-theme="dark"] .highlight .mi,       /* Literal.Number.Integer */
+html[data-theme="dark"] .highlight .il,       /* Literal.Number.Integer.Long */
+html[data-theme="dark"] .highlight .mo {      /* Literal.Number.Oct */
+    color: #2aa198 !important;                /* cyan */
+}
+
+/* --------------------------------------------------------------------------
+   Functions, Classes, & Names (Group 'n')
+   -------------------------------------------------------------------------- */
+html[data-theme="dark"] .highlight .nf,       /* Name.Function */
+html[data-theme="dark"] .highlight .fm {      /* Name.Function.Magic (__init__) */
+    color: #268bd2 !important;                /* blue */
+}
+
+html[data-theme="dark"] .highlight .nc,       /* Name.Class */
+html[data-theme="dark"] .highlight .nn,       /* Name.Namespace */
+html[data-theme="dark"] .highlight .ne {      /* Name.Exception */
+    color: #b58900 !important;                /* yellow */
+}
+
+html[data-theme="dark"] .highlight .nd {      /* Name.Decorator (@property) */
+    color: #268bd2 !important;                /* blue */
+}
+
+html[data-theme="dark"] .highlight .nb,       /* Name.Builtin (print, len, dict) */
+html[data-theme="dark"] .highlight .bp {      /* Name.Builtin.Pseudo (self, cls) */
+    color: #b58900 !important;                /* yellow */
+}
+
+html[data-theme="dark"] .highlight .nv,       /* Name.Variable */
+html[data-theme="dark"] .highlight .vc,       /* Name.Variable.Class */
+html[data-theme="dark"] .highlight .vg,       /* Name.Variable.Global */
+html[data-theme="dark"] .highlight .vi,       /* Name.Variable.Instance */
+html[data-theme="dark"] .highlight .vm {      /* Name.Variable.Magic */
+    color: #268bd2 !important;                /* blue */
+}
+
+html[data-theme="dark"] .highlight .na,       /* Name.Attribute (HTML/XML) */
+html[data-theme="dark"] .highlight .nt {      /* Name.Tag (HTML/XML) */
+    color: #268bd2 !important;                /* blue */
+}
+
+/* --------------------------------------------------------------------------
+   Operators & Punctuation (Group 'o' and 'p')
+   -------------------------------------------------------------------------- */
+html[data-theme="dark"] .highlight .o,        /* Operator */
+html[data-theme="dark"] .highlight .ow {      /* Operator.Word (and, or, not, in) */
+    color: #859900 !important;                /* green */
+}
+
+html[data-theme="dark"] .highlight .p {       /* Punctuation ({}, [], (), :, ;) */
+    color: #839496 !important;                /* base0 */
+}
+
+/* --------------------------------------------------------------------------
+   Shell / Console Sessions (Group 'g' - Generic)
+   -------------------------------------------------------------------------- */
+html[data-theme="dark"] .highlight .gp {      /* Generic.Prompt ($ or #) */
+    color: #e2e2e0  !important;                /* surf-mist */
+    font-weight: bold;
+}
+
+html[data-theme="dark"] .highlight .go {      /* Generic.Output */
+    color: #e2e2e0 !important;                /* surf-mist */
+}
+
+html[data-theme="dark"] .highlight .gr,       /* Generic.Error */
+html[data-theme="dark"] .highlight .gt {      /* Generic.Traceback */
+    color: #dc322f !important;                /* red */
+}
+
+html[data-theme="dark"] .highlight .gh {      /* Generic.Heading (Markdown / Git) */
+    color: #cb4b16 !important;                /* orange */
+    font-weight: bold;
+}
+
+html[data-theme="dark"] .highlight .gu {      /* Generic.Subheading */
+    color: #6c71c4 !important;                /* violet */
+}
+
+html[data-theme="dark"] .highlight .gd {      /* Generic.Deleted (Diff -) */
+    color: #dc322f !important;                /* red */
+    background-color: rgba(220, 50, 47, 0.15) !important;
+}
+
+html[data-theme="dark"] .highlight .gi {      /* Generic.Inserted (Diff +) */
+    color: #859900 !important;                /* green */
+    background-color: rgba(133, 153, 0, 0.15) !important;
+}
+
+/* Plain command text inside console blocks - Solarized surf-mist */
+html[data-theme="dark"] .highlight-console pre,
+html[data-theme="dark"] .highlight-shell-session pre {
+    color: #e2e2e0 !important;
+}
+
+/* ==========================================================================
+   Default Literal Block (::) Styling for Dark Mode
+   ========================================================================== */
+
+/* Change default block text color (Solarized surf-mist) */
+html[data-theme="dark"] .highlight-default pre,
+html[data-theme="dark"] .highlight-none pre {
+    color: #e2e2e0 !important;
+}
+
+/* ==========================================================================
+   Lighten YAML Code Blocks (Solarized Dark Palette)
+   ========================================================================== */
+
+/* 1. YAML Keys (e.g. host_vars:, iocage_02:) - Bright Cyan/Teal */
+html[data-theme="dark"] .highlight-yaml .highlight .nt,
+html[data-theme="dark"] .highlight-yaml .highlight .na {
+    color: #2aa198 !important;   /* Bright Cyan */
+    font-weight: 600;
+}
+
+/* 2. Unquoted text, scalar strings, & general body values - Light Ivory */
+html[data-theme="dark"] .highlight-yaml pre,
+html[data-theme="dark"] .highlight-yaml .highlight .l,
+html[data-theme="dark"] .highlight-yaml .highlight .s,
+html[data-theme="dark"] .highlight-yaml .highlight .s1,
+html[data-theme="dark"] .highlight-yaml .highlight .s2 {
+    color: #e2e2e0 !important;   /* Solarized surf-mist */
+}
+
+/* 3. Punctuation (colons ':', list hyphens '-', brackets) - High-contrast Slate */
+html[data-theme="dark"] .highlight-yaml .highlight .p {
+    color: #e7e1c1 !important;   /* Solarized classic cream */
+}
+
+/* 4. Booleans & Nulls (true, false, null) - Bright Yellow/Gold */
+html[data-theme="dark"] .highlight-yaml .highlight .kc {
+    color: #b58900 !important;   /* Solarized Yellow */
+    font-weight: bold;
+}
+
+/* 5. Numbers (ports, counts) - Warm Orange */
+html[data-theme="dark"] .highlight-yaml .highlight .m,
+html[data-theme="dark"] .highlight-yaml .highlight .mi,
+html[data-theme="dark"] .highlight-yaml .highlight .mf {
+    color: #cb4b16 !important;   /* Solarized Orange */
+}
+
+/* 6. Comments (# comments) - Readable Muted Slate */
+html[data-theme="dark"] .highlight-yaml .highlight .c,
+html[data-theme="dark"] .highlight-yaml .highlight .c1 {
+    color: #93a1a1 !important;   /* Solarized base1 */
+    font-style: italic;
+}
+
+/* ==========================================================================
+   YAML + Jinja Template Styling (Solarized Dark)
+   ========================================================================== */
+
+/* 1. YAML Keys */
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .nt,
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .na,
+html[data-theme="dark"] .highlight-jinja .highlight .nt {
+    color: #2aa198 !important;   /* Bright Cyan */
+    font-weight: 600;
+}
+
+/* 2. Unquoted values, scalar strings, and pre body text */
+html[data-theme="dark"] [class*="highlight-yaml"] pre,
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .l,
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .s,
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .s1,
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .s2,
+html[data-theme="dark"] .highlight-jinja pre {
+    color: #eee8d5 !important;   /* Solarized base2 (Bright Ivory) */
+}
+
+/* 3. Punctuation (colons ':', list hyphens '-', brackets) */
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .p,
+html[data-theme="dark"] .highlight-jinja .highlight .p {
+    color: #93a1a1 !important;   /* Solarized base1 (Light Slate) */
+}
+
+/* 4. Booleans & Nulls */
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .kc,
+html[data-theme="dark"] .highlight-jinja .highlight .kc {
+    color: #b58900 !important;   /* Solarized Yellow */
+    font-weight: bold;
+}
+
+/* 5. Numbers */
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .m,
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .mi,
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .mf {
+    color: #cb4b16 !important;   /* Solarized Orange */
+}
+
+/* 6. Comments (# comments) */
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .c,
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .c1 {
+    color: #93a1a1 !important;   /* Solarized base1 */
+    font-style: italic;
+}
+
+/* 7. Jinja Tags ({{ ... }}, {% ... %}, filters, and controls) */
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .cp,
+html[data-theme="dark"] .highlight-jinja .highlight .cp {
+    color: #268bd2 !important;   /* Solarized Blue for Jinja delimiters */
+    font-weight: bold;
+}
+
+/* Variables & keywords inside Jinja delimiters */
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .nv,
+html[data-theme="dark"] .highlight-jinja .highlight .nv {
+    color: #b58900 !important;   /* Solarized Yellow for {{ my_var }} */
+}
+
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .k,
+html[data-theme="dark"] .highlight-jinja .highlight .k {
+    color: #859900 !important;   /* Solarized Green for {% if %}, {% for %} */
+}
+
+/* ==========================================================================
+   INI & CFG Code Block Styling (Solarized Dark Palette)
+   ========================================================================== */
+
+/* 1. Section Headers (e.g., [defaults], [webservers]) - Solarized Yellow */
+html[data-theme="dark"] .highlight-ini .highlight .gh,
+html[data-theme="dark"] .highlight-cfg .highlight .gh {
+    color: #b58900 !important;   /* Bright Yellow/Gold */
+    font-weight: bold;
+}
+
+/* 2. Key / Option Names (e.g., inventory, remote_user) - Solarized Cyan */
+html[data-theme="dark"] .highlight-ini .highlight .na,
+html[data-theme="dark"] .highlight-cfg .highlight .na {
+    color: #2aa198 !important;   /* Bright Cyan */
+    font-weight: 600;
+}
+
+/* 3. Values & General Body Text - Solarized base2 (Bright Ivory) */
+html[data-theme="dark"] .highlight-ini pre,
+html[data-theme="dark"] .highlight-cfg pre,
+html[data-theme="dark"] .highlight-ini .highlight .s,
+html[data-theme="dark"] .highlight-ini .highlight .s1,
+html[data-theme="dark"] .highlight-ini .highlight .s2,
+html[data-theme="dark"] .highlight-cfg .highlight .s,
+html[data-theme="dark"] .highlight-cfg .highlight .s1,
+html[data-theme="dark"] .highlight-cfg .highlight .s2 {
+    color: #eee8d5 !important;   /* Bright Ivory */
+}
+
+/* 4. Delimiters & Brackets (=, :, [, ]) - Solarized base1 */
+html[data-theme="dark"] .highlight-ini .highlight .o,
+html[data-theme="dark"] .highlight-ini .highlight .p,
+html[data-theme="dark"] .highlight-cfg .highlight .o,
+html[data-theme="dark"] .highlight-cfg .highlight .p {
+    color: #93a1a1 !important;   /* Light Slate */
+}
+
+/* 5. Booleans & Constants (true, false, yes, no, 1, 0) - Solarized Orange */
+html[data-theme="dark"] .highlight-ini .highlight .kc,
+html[data-theme="dark"] .highlight-ini .highlight .m,
+html[data-theme="dark"] .highlight-cfg .highlight .kc,
+html[data-theme="dark"] .highlight-cfg .highlight .m {
+    color: #cb4b16 !important;   /* Bright Orange */
+}
+
+/* 6. Comments (; comment or # comment) - Solarized base1 */
+html[data-theme="dark"] .highlight-ini .highlight .c,
+html[data-theme="dark"] .highlight-ini .highlight .c1,
+html[data-theme="dark"] .highlight-cfg .highlight .c,
+html[data-theme="dark"] .highlight-cfg .highlight .c1 {
+    color: #93a1a1 !important;   /* Readable Muted Slate */
+    font-style: italic;
+}
+
+/* ==========================================================================
+   High-Contrast Emphasized Lines (:emphasize-lines:)
+   Covers: YAML, Jinja, INI/CFG, Console/Bash/Shell, and JSON
+   ========================================================================== */
+
+html[data-theme="dark"] [class*="highlight-yaml"] .highlight .hll,
+html[data-theme="dark"] .highlight-jinja .highlight .hll,
+html[data-theme="dark"] .highlight-ini .highlight .hll,
+html[data-theme="dark"] .highlight-cfg .highlight .hll,
+html[data-theme="dark"] .highlight-console .highlight .hll,
+html[data-theme="dark"] .highlight-shell-session .highlight .hll,
+html[data-theme="dark"] .highlight-bash .highlight .hll,
+html[data-theme="dark"] .highlight-sh .highlight .hll,
+html[data-theme="dark"] .highlight-shell .highlight .hll,
+html[data-theme="dark"] .highlight-zsh .highlight .hll,
+html[data-theme="dark"] .highlight-json .highlight .hll {
+    display: block;
+    width: 100%;
+    /* Solarized base02 with a clear contrast lift */
+    background-color: #073642 !important;
+    
+    /* Left highlight indicator (Solarized Yellow) */
+    border-left: 3px solid #b58900 !important;
+    
+    /* Offset padding so text doesn't touch the border indicator */
+    padding-left: 0.5em;
+    margin-left: -0.5em;
+}
+
+/* Optional: If you prefer to apply this contrast globally to ALL code blocks */
+/*
+html[data-theme="dark"] .highlight .hll {
+    display: block;
+    width: 100%;
+    background-color: #073642 !important;
+    border-left: 3px solid #b58900 !important;
+    padding-left: 0.5em;
+    margin-left: -0.5em;
+}
+*/
