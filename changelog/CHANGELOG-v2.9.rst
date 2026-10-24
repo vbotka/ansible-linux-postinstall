@@ -4,6 +4,14 @@ vbotka.linux_postinstall 2.9 Release Notes
 
 .. contents:: Topics
 
+2.9.1
+=====
+
+Release Summary
+---------------
+Docs update. Add requirements sphinx-rtd-dark-mode and sphinx-copybutton.
+
+
 2.9.0
 =====
 
